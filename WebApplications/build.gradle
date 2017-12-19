@@ -1,0 +1,47 @@
+plugins {
+    id "org.gradle.java"
+    id "org.gradle.jacoco"
+    id "org.gradle.eclipse"
+    id "com.scuilion.syntastic" version "0.3.6"
+}
+
+group = 'edu.stanford.hivdb'
+version = '2.2.0'
+
+description = """WebApplications Maven Webapp"""
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+     mavenCentral()
+}
+
+dependencies {
+    compile 'org.apache.logging.log4j:log4j-api:2.5'
+    compile 'org.apache.logging.log4j:log4j-core:2.5'
+    compile 'javax.ws.rs:javax.ws.rs-api:2.0.1'
+    compile 'org.jboss.resteasy:resteasy-jaxrs:3.0.9.Final'
+    compile 'org.jboss.resteasy:resteasy-servlet-initializer:3.0.9.Final'
+    compile 'org.jboss.resteasy:resteasy-jackson2-provider:3.0.9.Final'
+    compile 'org.jboss.resteasy:resteasy-client:3.0.9.Final'
+    compile 'com.graphql-java:graphql-java:3.0.0'
+    compile project(':DrugResistance')
+    testCompile 'junit:junit:4.12'
+    testCompile project(':Utilities')
+    testCompile project(':TestResources')
+}
+
+task graphqlSchema(type: JavaExec, group: 'Generator', description: 'Generate GraphQL Schema.') {
+    main = 'edu.stanford.hivdb.graphql.ExportSchema'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+}
+
+check.dependsOn jacocoTestReport

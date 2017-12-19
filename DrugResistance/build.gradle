@@ -1,0 +1,158 @@
+plugins {
+    id "org.gradle.java"
+    id "org.gradle.jacoco"
+    id "org.gradle.eclipse"
+    id "com.scuilion.syntastic" version "0.3.6"
+}
+
+group = 'edu.stanford.hivdb'
+version = '2.2.0'
+
+description = """DrugResistance"""
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+     mavenCentral()
+     flatDir {
+         dirs 'lib'
+     }
+}
+
+dependencies {
+    compile 'org.apache.commons:commons-math3:3.0'
+    compile 'org.apache.commons:commons-lang3:3.0'
+    compile 'org.apache.logging.log4j:log4j-api:2.5'
+    compile 'org.apache.logging.log4j:log4j-core:2.5'
+    compile 'mysql:mysql-connector-java:5.1.38'
+    compile 'com.mchange:c3p0:0.9.5.2'
+    compile 'com.google.code.gson:gson:2.6.2'
+    compile 'org.fstrf.stanfordAsiInterpreter.resistance:resistance:1.0'
+    compile project(':Aligner')
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.mockito:mockito-core:1.9.5'
+    testCompile project(':Utilities')
+    testCompile project(':TestResources')
+}
+
+task updateCachableExceptMutPatterns(type: JavaExec) {
+    dependsOn classes
+    doFirst {
+        delete "$projectDir/src/main/resources/__cached_classes"
+    }
+    main = 'edu.stanford.hivdb.utilities.Cachable'
+    classpath = sourceSets.main.runtimeClasspath
+    systemProperty 'hivdb.updateCachable', """
+        edu.stanford.hivdb.drugresistance.database.MutationScores
+        edu.stanford.hivdb.drugresistance.database.MutationComboScores
+        edu.stanford.hivdb.drugresistance.database.ConditionalComments
+        edu.stanford.hivdb.drugresistance.reports.TabularRulesComparison
+    """
+    doLast {
+        copy {
+            from "$projectDir/src/main/resources/__cached_classes"
+            into "$buildDir/resources/main/__cached_classes"
+            include '**/*.json'
+        }
+    }
+}
+
+task updateAsi(type: JavaExec) {
+    dependsOn classes
+    dependsOn updateCachableExceptMutPatterns
+    main = 'edu.stanford.hivdb.drugresistance.scripts.AsiConstructor'
+    classpath = sourceSets.main.runtimeClasspath
+    doLast {
+        copy {
+            from "$projectDir/src/main/resources/AlgXMLs"
+            into "$buildDir/resources/main/AlgXMLs"
+            include '*.xml'
+        }
+    }
+}
+
+task updateCachableOnlyMutPatterns(type: JavaExec) {
+    dependsOn classes
+    dependsOn updateAsi
+    main = 'edu.stanford.hivdb.utilities.Cachable'
+    classpath = sourceSets.main.runtimeClasspath
+    systemProperty 'hivdb.updateCachable', """
+        edu.stanford.hivdb.drugresistance.database.MutationPatterns
+    """
+    doLast {
+        copy {
+            from "$projectDir/src/main/resources/__cached_classes"
+            into "$buildDir/resources/main/__cached_classes"
+            include '**/*.json'
+        }
+    }
+}
+
+
+task updateCachable(type: JavaExec, group: 'Generator', description: 'Generate files with Cachable.') {
+    dependsOn classes
+    dependsOn updateCachableOnlyMutPatterns
+    dependsOn ':Aligner:updateCachable'
+    main = 'edu.stanford.hivdb.utilities.Cachable'
+    classpath = sourceSets.main.runtimeClasspath
+    systemProperty 'hivdb.updateCachable', """
+        edu.stanford.hivdb.drugresistance.reports.TabularPatternsComparison
+    """
+    doLast {
+        copy {
+            from "$projectDir/src/main/resources/__cached_classes"
+            into "$buildDir/resources/main/__cached_classes"
+            include '**/*.json'
+        }
+    }
+}
+
+task compareVersionResults(type: JavaExec, group: 'Comparison') {
+    main = 'edu.stanford.hivdb.drugresistance.scripts.VersionResultsComparison'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task compareVersionRules(type: JavaExec, group: 'Comparison') {
+    main = 'edu.stanford.hivdb.drugresistance.scripts.VersionRulesComparison'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task generateMutationPatternsExpecteds(type: JavaExec, group: 'Test Generator') {
+    main = 'edu.stanford.hivdb.drugresistance.scripts.MutationPatternsResistanceToJson'
+    classpath = sourceSets.test.runtimeClasspath
+}
+
+task exportMutationScores(type: JavaExec, group: 'Generator', description: 'Export mutation score JSON file.') {
+    main = 'edu.stanford.hivdb.drugresistance.scripts.MutationScoresExporter'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task exportPatternScores(type: JavaExec, group: 'Generator', description: 'Export pattenr score JSON file.') {
+    main = 'edu.stanford.hivdb.drugresistance.scripts.MutationPatternScoresExporter'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task exportHivdbVersion(type: JavaExec, group: 'Generator', description: 'Export HIVdb version JSON file.') {
+    main = 'edu.stanford.hivdb.drugresistance.scripts.HivdbVersionExporter'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task exportTypedMutations(type: JavaExec, group: 'Generator', description: 'Export Apobec mutations/DRMs and unusual mutations.') {
+    main = 'edu.stanford.hivdb.drugresistance.scripts.TypedMutationsExporter'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+    afterEvaluate {
+        classDirectories = files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: 'edu/stanford/hivdb/drugresistance/scripts/**')
+        })
+    }
+}
+
+check.dependsOn jacocoTestReport

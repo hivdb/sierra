@@ -1,0 +1,432 @@
+[
+  {
+    "gene": "RT",
+    "cons": "M",
+    "pos": 41,
+    "aas": "L",
+    "triplet": "",
+    "insertedNAs": "",
+    "isInsertion": false,
+    "isDeletion": false
+  },
+  {
+    "gene": "RT",
+    "cons": "K",
+    "pos": 65,
+    "aas": "R",
+    "triplet": "",
+    "insertedNAs": "",
+    "isInsertion": false,
+    "isDeletion": false
+  },
+  {
+    "gene": "RT",
+    "cons": "D",
+    "pos": 67,
+    "aas": "EGN",
+    "triplet": "",
+    "insertedNAs": "",
+    "isInsertion": false,
+    "isDeletion": false
+  },
+  {
+    "gene": "RT",
+    "cons": "T",
+    "pos": 69,
+    "aas": "D_",
+    "triplet": "",
+    "insertedNAs": "",
+    "isInsertion": true,
+    "isDeletion": false
+  },
+  {
+    "gene": "RT",
+    "cons": "K",
+    "pos": 70,
+    "aas": "ER",
+    "triplet": "",
+    "insertedNAs": "",
+    "isInsertion": false,
+    "isDeletion": false
+  },
+  {
+    "gene": "RT",
+    "cons": "L",
+    "pos": 74,
+    "aas": "IV",
+    "triplet": "",
+    "insertedNAs": "",
+    "isInsertion": false,
+    "isDeletion": false
+  },
+  {
+    "gene": "RT",
+    "cons": "V",
+    "pos": 75,
+    "aas": "AMST",
+    "triplet": "",
+    "insertedNAs": "",
+    "isInsertion": false,
+    "isDeletion": false
+  },
+  {
+    "gene": "RT",
+    "cons": "F",
+    "pos": 77,
+    "aas": "L",
+    "triplet": "",
+    "insertedNAs": "",
+    "isInsertion": false,
+    "isDeletion": false
+  },
+  {
+    "gene": "RT",
+    "cons": "L",
+    "pos": 100,
+    "aas": "I",
+    "triplet": "",
+    "insertedNAs": "",
+    "isInsertion": false,
+    "isDeletion": false
+  },
+  {
+    "gene": "RT",
+    "cons": "K",
+    "pos": 101,
+    "aas": "EP",
+    "triplet": "",
+    "insertedNAs": "",
+    "isInsertion": false,
+    "isDeletion": false
+  },
+  {
+    "gene": "RT",
+    "cons": "K",
+    "pos": 103,
+    "aas": "NS",
+    "triplet": "",
+    "insertedNAs": "",
+    "isInsertion": false,
+    "isDeletion": false
+  },
+  {
+    "gene": "RT",
+    "cons": "V",
+    "pos": 106,
+    "aas": "AM",
+    "triplet": "",
+    "insertedNAs": "",
+    "isInsertion": false,
+    "isDeletion": false
+  },
+  {
+    "gene": "RT",
+    "cons": "Y",
+    "pos": 115,
+    "aas": "F",
+    "triplet": "",
+    "insertedNAs": "",
+    "isInsertion": false,
+    "isDeletion": false
+  },
+  {
+    "gene": "RT",
+    "cons": "F",
+    "pos": 116,
+    "aas": "Y",
+    "triplet": "",
+    "insertedNAs": "",
+    "isInsertion": false,
+    "isDeletion": false
+  },
+  {
+    "gene": "RT",
+    "cons": "Q",
+    "pos": 151,
+    "aas": "M",
+    "triplet": "",
+    "insertedNAs": "",
+    "isInsertion": false,
+    "isDeletion": false
+  },
+  {
+    "gene": "RT",
+    "cons": "V",
+    "pos": 179,
+    "aas": "F",
+    "triplet": "",
+    "insertedNAs": "",
+    "isInsertion": false,
+    "isDeletion": false
+  },
+  {
+    "gene": "RT",
+    "cons": "Y",
+    "pos": 181,
+    "aas": "CIV",
+    "triplet": "",
+    "insertedNAs": "",
+    "isInsertion": false,
+    "isDeletion": false
+  },
+  {
+    "gene": "RT",
+    "cons": "M",
+    "pos": 184,
+    "aas": "IV",
+    "triplet": "",
+    "insertedNAs": "",
+    "isInsertion": false,
+    "isDeletion": false
+  },
+  {
+    "gene": "RT",
+    "cons": "Y",
+    "pos": 188,
+    "aas": "CHL",
+    "triplet": "",
+    "insertedNAs": "",
+    "isInsertion": false,
+    "isDeletion": false
+  },
+  {
+    "gene": "RT",
+    "cons": "G",
+    "pos": 190,
+    "aas": "AES",
+    "triplet": "",
+    "insertedNAs": "",
+    "isInsertion": false,
+    "isDeletion": false
+  },
+  {
+    "gene": "RT",
+    "cons": "L",
+    "pos": 210,
+    "aas": "W",
+    "triplet": "",
+    "insertedNAs": "",
+    "isInsertion": false,
+    "isDeletion": false
+  },
+  {
+    "gene": "RT",
+    "cons": "T",
+    "pos": 215,
+    "aas": "CDEFISVY",
+    "triplet": "",
+    "insertedNAs": "",
+    "isInsertion": false,
+    "isDeletion": false
+  },
+  {
+    "gene": "RT",
+    "cons": "K",
+    "pos": 219,
+    "aas": "ENQR",
+    "triplet": "",
+    "insertedNAs": "",
+    "isInsertion": false,
+    "isDeletion": false
+  },
+  {
+    "gene": "RT",
+    "cons": "P",
+    "pos": 225,
+    "aas": "H",
+    "triplet": "",
+    "insertedNAs": "",
+    "isInsertion": false,
+    "isDeletion": false
+  },
+  {
+    "gene": "RT",
+    "cons": "M",
+    "pos": 230,
+    "aas": "L",
+    "triplet": "",
+    "insertedNAs": "",
+    "isInsertion": false,
+    "isDeletion": false
+  },
+  {
+    "gene": "PR",
+    "cons": "L",
+    "pos": 23,
+    "aas": "I",
+    "triplet": "",
+    "insertedNAs": "",
+    "isInsertion": false,
+    "isDeletion": false
+  },
+  {
+    "gene": "PR",
+    "cons": "L",
+    "pos": 24,
+    "aas": "I",
+    "triplet": "",
+    "insertedNAs": "",
+    "isInsertion": false,
+    "isDeletion": false
+  },
+  {
+    "gene": "PR",
+    "cons": "D",
+    "pos": 30,
+    "aas": "N",
+    "triplet": "",
+    "insertedNAs": "",
+    "isInsertion": false,
+    "isDeletion": false
+  },
+  {
+    "gene": "PR",
+    "cons": "V",
+    "pos": 32,
+    "aas": "I",
+    "triplet": "",
+    "insertedNAs": "",
+    "isInsertion": false,
+    "isDeletion": false
+  },
+  {
+    "gene": "PR",
+    "cons": "M",
+    "pos": 46,
+    "aas": "IL",
+    "triplet": "",
+    "insertedNAs": "",
+    "isInsertion": false,
+    "isDeletion": false
+  },
+  {
+    "gene": "PR",
+    "cons": "I",
+    "pos": 47,
+    "aas": "AV",
+    "triplet": "",
+    "insertedNAs": "",
+    "isInsertion": false,
+    "isDeletion": false
+  },
+  {
+    "gene": "PR",
+    "cons": "G",
+    "pos": 48,
+    "aas": "MV",
+    "triplet": "",
+    "insertedNAs": "",
+    "isInsertion": false,
+    "isDeletion": false
+  },
+  {
+    "gene": "PR",
+    "cons": "I",
+    "pos": 50,
+    "aas": "LV",
+    "triplet": "",
+    "insertedNAs": "",
+    "isInsertion": false,
+    "isDeletion": false
+  },
+  {
+    "gene": "PR",
+    "cons": "F",
+    "pos": 53,
+    "aas": "LY",
+    "triplet": "",
+    "insertedNAs": "",
+    "isInsertion": false,
+    "isDeletion": false
+  },
+  {
+    "gene": "PR",
+    "cons": "I",
+    "pos": 54,
+    "aas": "ALMSTV",
+    "triplet": "",
+    "insertedNAs": "",
+    "isInsertion": false,
+    "isDeletion": false
+  },
+  {
+    "gene": "PR",
+    "cons": "G",
+    "pos": 73,
+    "aas": "ACST",
+    "triplet": "",
+    "insertedNAs": "",
+    "isInsertion": false,
+    "isDeletion": false
+  },
+  {
+    "gene": "PR",
+    "cons": "L",
+    "pos": 76,
+    "aas": "V",
+    "triplet": "",
+    "insertedNAs": "",
+    "isInsertion": false,
+    "isDeletion": false
+  },
+  {
+    "gene": "PR",
+    "cons": "V",
+    "pos": 82,
+    "aas": "ACFLMST",
+    "triplet": "",
+    "insertedNAs": "",
+    "isInsertion": false,
+    "isDeletion": false
+  },
+  {
+    "gene": "PR",
+    "cons": "N",
+    "pos": 83,
+    "aas": "D",
+    "triplet": "",
+    "insertedNAs": "",
+    "isInsertion": false,
+    "isDeletion": false
+  },
+  {
+    "gene": "PR",
+    "cons": "I",
+    "pos": 84,
+    "aas": "ACV",
+    "triplet": "",
+    "insertedNAs": "",
+    "isInsertion": false,
+    "isDeletion": false
+  },
+  {
+    "gene": "PR",
+    "cons": "I",
+    "pos": 85,
+    "aas": "V",
+    "triplet": "",
+    "insertedNAs": "",
+    "isInsertion": false,
+    "isDeletion": false
+  },
+  {
+    "gene": "PR",
+    "cons": "N",
+    "pos": 88,
+    "aas": "DS",
+    "triplet": "",
+    "insertedNAs": "",
+    "isInsertion": false,
+    "isDeletion": false
+  },
+  {
+    "gene": "PR",
+    "cons": "L",
+    "pos": 90,
+    "aas": "M",
+    "triplet": "",
+    "insertedNAs": "",
+    "isInsertion": false,
+    "isDeletion": false
+  }
+]

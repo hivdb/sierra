@@ -1,0 +1,864 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE ALGORITHM SYSTEM "http://sierra2.stanford.edu/sierra/ASI2.1.dtd">
+<ALGORITHM>
+  <ALGNAME>HIVDB</ALGNAME>
+  <ALGVERSION>8.0.1</ALGVERSION>
+  <ALGDATE>2016-06-08</ALGDATE>
+  <DEFINITIONS>
+    <GENE_DEFINITION>
+      <NAME>PR</NAME>
+      <DRUGCLASSLIST>PI</DRUGCLASSLIST>
+    </GENE_DEFINITION>
+    <GENE_DEFINITION>
+      <NAME>RT</NAME>
+      <DRUGCLASSLIST>NRTI,NNRTI</DRUGCLASSLIST>
+    </GENE_DEFINITION>
+    <GENE_DEFINITION>
+      <NAME>IN</NAME>
+      <DRUGCLASSLIST>INSTI</DRUGCLASSLIST>
+    </GENE_DEFINITION>
+    <LEVEL_DEFINITION>
+      <ORDER>1</ORDER>
+      <ORIGINAL>Susceptible</ORIGINAL>
+      <SIR>S</SIR>
+    </LEVEL_DEFINITION>
+    <LEVEL_DEFINITION>
+      <ORDER>2</ORDER>
+      <ORIGINAL>Potential Low-Level Resistance</ORIGINAL>
+      <SIR>S</SIR>
+    </LEVEL_DEFINITION>
+    <LEVEL_DEFINITION>
+      <ORDER>3</ORDER>
+      <ORIGINAL>Low-Level Resistance</ORIGINAL>
+      <SIR>I</SIR>
+    </LEVEL_DEFINITION>
+    <LEVEL_DEFINITION>
+      <ORDER>4</ORDER>
+      <ORIGINAL>Intermediate Resistance</ORIGINAL>
+      <SIR>I</SIR>
+    </LEVEL_DEFINITION>
+    <LEVEL_DEFINITION>
+      <ORDER>5</ORDER>
+      <ORIGINAL>High-Level Resistance</ORIGINAL>
+      <SIR>R</SIR>
+    </LEVEL_DEFINITION>
+    <DRUGCLASS>
+      <NAME>NRTI</NAME>
+      <DRUGLIST>ABC,AZT,D4T,DDI,FTC,3TC,TDF</DRUGLIST>
+    </DRUGCLASS>
+    <DRUGCLASS>
+      <NAME>NNRTI</NAME>
+      <DRUGLIST>EFV,ETR,NVP,RPV</DRUGLIST>
+    </DRUGCLASS>
+    <DRUGCLASS>
+      <NAME>PI</NAME>
+      <DRUGLIST>ATV/r,DRV/r,FPV/r,IDV/r,LPV/r,NFV,SQV/r,TPV/r</DRUGLIST>
+    </DRUGCLASS>
+    <DRUGCLASS>
+      <NAME>INSTI</NAME>
+      <DRUGLIST>DTG,EVG,RAL</DRUGLIST>
+    </DRUGCLASS>
+    <GLOBALRANGE><![CDATA[(-INF TO 9 => 1,  10 TO 14 => 2,  15 TO 29 => 3,  30 TO 59 => 4,  60 TO INF => 5)]]></GLOBALRANGE>
+  </DEFINITIONS>
+  <DRUG>
+    <NAME>ABC</NAME>
+    <FULLNAME>abacavir</FULLNAME>
+    <RULE>
+      <CONDITION><![CDATA[SCORE FROM(41L => 5,
+                         62V => 5,
+                         MAX ( 65E => 10, 65N => 30, 65R => 45 ),
+                         MAX ( 67E => 5, 67G => 5, 67H => 5, 67N => 5, 67S => 5, 67T => 5, 67d => 30 ),
+                         68d => 15,
+                         MAX ( 69G => 10, 69i => 45, 69d => 15 ),
+                         MAX ( 70E => 15, 70G => 15, 70N => 15, 70Q => 15, 70R => 5, 70S => 15, 70T => 15, 70d => 15 ),
+                         MAX ( 74I => 30, 74V => 30 ),
+                         75I => 5,
+                         77L => 5,
+                         115F => 60,
+                         116Y => 10,
+                         MAX ( 151L => 30, 151M => 60 ),
+                         MAX ( 184I => 15, 184V => 15 ),
+                         210W => 5,
+                         MAX ( 215A => 5, 215C => 5, 215D => 5, 215E => 5, 215F => 10, 215I => 5, 215L => 5, 215N => 5, 215S => 5, 215V => 5, 215Y => 10 ),
+                         MAX ( 219E => 5, 219N => 5, 219Q => 5, 219R => 5 ),
+                         (184VI AND 74VI) => 15,
+                         (41L AND 184VI AND 215FY) => 5,
+                         (41L AND 210W) => 10,
+                         (41L AND 210W AND 215FY) => 10,
+                         (41L AND 40F AND 210W AND 215FY) => 5,
+                         (41L AND 44DA AND 210W AND 215FY) => 5,
+                         (41L AND 67NGE AND 215FY) => 5,
+                         (67NGE AND 215FY AND 219QE) => 5,
+                         (67NGE AND 70R AND 219QENR) => 10,
+                         (70R AND 215FY) => 5,
+                         (77L AND 116Y AND 151M) => 10,
+                         MAX ((210W AND 215FY) => 10, (210W AND 215SCDEIVNAL) => 5),
+                         MAX ((41L AND 215FY) => 10, (41L AND 215SCDEIVNAL) => 5))]]></CONDITION>
+      <ACTIONS>
+        <SCORERANGE>
+          <USE_GLOBALRANGE/>
+        </SCORERANGE>
+      </ACTIONS>
+    </RULE>
+  </DRUG>
+  <DRUG>
+    <NAME>AZT</NAME>
+    <FULLNAME>zidovudine</FULLNAME>
+    <RULE>
+      <CONDITION><![CDATA[SCORE FROM(41L => 15,
+                         62V => 5,
+                         MAX ( 65N => -10, 65R => -15 ),
+                         MAX ( 67E => 10, 67G => 10, 67H => 10, 67N => 15, 67S => 10, 67T => 10, 67d => 30 ),
+                         MAX ( 69G => 5, 69i => 45 ),
+                         MAX ( 70E => -10, 70G => -10, 70R => 30 ),
+                         MAX ( 75I => 5, 75M => 10 ),
+                         77L => 10,
+                         116Y => 10,
+                         MAX ( 151L => 30, 151M => 60 ),
+                         MAX ( 184I => -10, 184V => -10 ),
+                         210W => 15,
+                         MAX ( 215A => 20, 215C => 20, 215D => 20, 215E => 20, 215F => 40, 215I => 20, 215L => 20, 215N => 20, 215S => 20, 215V => 20, 215Y => 40 ),
+                         MAX ( 219E => 10, 219N => 10, 219Q => 10, 219R => 10, 219W => 10 ),
+                         (151M AND 184VI) => 10,
+                         (41L AND 210W) => 10,
+                         (41L AND 40F AND 210W AND 215FY) => 5,
+                         (41L AND 44DA AND 210W AND 215FY) => 5,
+                         (41L AND 67NGE AND 215FY) => 5,
+                         (65R AND 151M) => 10,
+                         (67NGE AND 215FY AND 219QE) => 5,
+                         (67NGE AND 70R AND 219QENR) => 10,
+                         (70R AND 215FY) => 5,
+                         (77L AND 116Y AND 151M) => 10,
+                         MAX ((210W AND 215FY) => 10, (210W AND 215SCDEIVNAL) => 5),
+                         MAX ((41L AND 215FY) => 10, (41L AND 215SCDEIVNAL) => 5))]]></CONDITION>
+      <ACTIONS>
+        <SCORERANGE>
+          <USE_GLOBALRANGE/>
+        </SCORERANGE>
+      </ACTIONS>
+    </RULE>
+  </DRUG>
+  <DRUG>
+    <NAME>D4T</NAME>
+    <FULLNAME>stavudine</FULLNAME>
+    <RULE>
+      <CONDITION><![CDATA[SCORE FROM(41L => 15,
+                         62V => 5,
+                         MAX ( 65E => 10, 65N => 30, 65R => 60 ),
+                         MAX ( 67E => 10, 67G => 10, 67H => 10, 67N => 15, 67S => 10, 67T => 10, 67d => 30 ),
+                         68d => 30,
+                         MAX ( 69D => 10, 69G => 10, 69i => 45, 69d => 30 ),
+                         MAX ( 70E => 15, 70G => 15, 70N => 15, 70Q => 15, 70R => 15, 70S => 15, 70T => 15, 70d => 30 ),
+                         MAX ( 75A => 30, 75I => 5, 75M => 30, 75S => 30, 75T => 60 ),
+                         77L => 10,
+                         116Y => 10,
+                         MAX ( 151L => 30, 151M => 60 ),
+                         MAX ( 184I => -10, 184V => -10 ),
+                         210W => 15,
+                         MAX ( 215A => 20, 215C => 20, 215D => 20, 215E => 20, 215F => 40, 215I => 20, 215L => 20, 215N => 20, 215S => 20, 215V => 20, 215Y => 40 ),
+                         MAX ( 219E => 10, 219N => 10, 219Q => 10, 219R => 10, 219W => 10 ),
+                         (151M AND 184VI) => 10,
+                         (41L AND 210W) => 10,
+                         (41L AND 40F AND 210W AND 215FY) => 5,
+                         (41L AND 44DA AND 210W AND 215FY) => 5,
+                         (41L AND 67NGE AND 215FY) => 5,
+                         (67NGE AND 215FY AND 219QE) => 5,
+                         (67NGE AND 70R AND 219QENR) => 10,
+                         (70EGQSTN AND 184VI) => 10,
+                         (70R AND 215FY) => 5,
+                         (77L AND 116Y AND 151M) => 10,
+                         MAX ((210W AND 215FY) => 10, (210W AND 215SCDEIVNAL) => 5),
+                         MAX ((41L AND 215FY) => 10, (41L AND 215SCDEIVNAL) => 5))]]></CONDITION>
+      <ACTIONS>
+        <SCORERANGE>
+          <USE_GLOBALRANGE/>
+        </SCORERANGE>
+      </ACTIONS>
+    </RULE>
+  </DRUG>
+  <DRUG>
+    <NAME>DDI</NAME>
+    <FULLNAME>didanosine</FULLNAME>
+    <RULE>
+      <CONDITION><![CDATA[SCORE FROM(41L => 10,
+                         62V => 5,
+                         MAX ( 65E => 10, 65N => 30, 65R => 60 ),
+                         MAX ( 67E => 5, 67G => 5, 67H => 5, 67N => 5, 67S => 5, 67T => 5, 67d => 30 ),
+                         68d => 30,
+                         MAX ( 69D => 30, 69G => 10, 69i => 45, 69d => 30 ),
+                         MAX ( 70E => 15, 70G => 15, 70N => 15, 70Q => 15, 70R => 10, 70S => 15, 70T => 15, 70d => 30 ),
+                         MAX ( 74I => 60, 74V => 60 ),
+                         MAX ( 75A => 15, 75I => 5, 75M => 15, 75S => 15, 75T => 30 ),
+                         77L => 10,
+                         116Y => 10,
+                         MAX ( 151L => 30, 151M => 60 ),
+                         MAX ( 184I => 10, 184V => 10 ),
+                         210W => 10,
+                         MAX ( 215A => 10, 215C => 10, 215D => 10, 215E => 10, 215F => 15, 215I => 10, 215L => 10, 215N => 10, 215S => 10, 215V => 10, 215Y => 15 ),
+                         MAX ( 219E => 5, 219N => 5, 219Q => 5, 219R => 5, 219W => 5 ),
+                         (41L AND 210W) => 10,
+                         (41L AND 40F AND 210W AND 215FY) => 5,
+                         (41L AND 44DA AND 210W AND 215FY) => 5,
+                         (41L AND 67NGE AND 215FY) => 5,
+                         (67NGE AND 215FY AND 219QE) => 5,
+                         (67NGE AND 70R AND 219QENR) => 10,
+                         (70R AND 215FY) => 5,
+                         (77L AND 116Y AND 151M) => 10,
+                         MAX ((210W AND 215FY) => 10, (210W AND 215SCDEIVNAL) => 5),
+                         MAX ((41L AND 215FY) => 10, (41L AND 215SCDEIVNAL) => 5))]]></CONDITION>
+      <ACTIONS>
+        <SCORERANGE>
+          <USE_GLOBALRANGE/>
+        </SCORERANGE>
+      </ACTIONS>
+    </RULE>
+  </DRUG>
+  <DRUG>
+    <NAME>FTC</NAME>
+    <FULLNAME>emtricitabine</FULLNAME>
+    <RULE>
+      <CONDITION><![CDATA[SCORE FROM(62V => 5,
+                         MAX ( 65N => 10, 65R => 30 ),
+                         67d => 15,
+                         68d => 15,
+                         MAX ( 69i => 30, 69d => 15 ),
+                         MAX ( 70E => 10, 70G => 10, 70N => 10, 70Q => 10, 70S => 10, 70T => 10, 70d => 15 ),
+                         75I => 5,
+                         77L => 5,
+                         116Y => 5,
+                         MAX ( 151L => 10, 151M => 15 ),
+                         MAX ( 184I => 60, 184V => 60 ),
+                         (210W AND 215FY) => 5,
+                         (41L AND 210W AND 215FY) => 5,
+                         (41L AND 215FY) => 5,
+                         (41L AND 67NGE AND 215FY) => 5,
+                         (67NGE AND 70R AND 219QENR) => 10,
+                         (77L AND 116Y AND 151M) => 15)]]></CONDITION>
+      <ACTIONS>
+        <SCORERANGE>
+          <USE_GLOBALRANGE/>
+        </SCORERANGE>
+      </ACTIONS>
+    </RULE>
+  </DRUG>
+  <DRUG>
+    <NAME>3TC</NAME>
+    <FULLNAME>lamivudine</FULLNAME>
+    <RULE>
+      <CONDITION><![CDATA[SCORE FROM(62V => 5,
+                         MAX ( 65N => 10, 65R => 30 ),
+                         67d => 15,
+                         68d => 15,
+                         MAX ( 69i => 30, 69d => 15 ),
+                         MAX ( 70E => 10, 70G => 10, 70N => 10, 70Q => 10, 70S => 10, 70T => 10, 70d => 15 ),
+                         75I => 5,
+                         77L => 5,
+                         116Y => 5,
+                         MAX ( 151L => 10, 151M => 15 ),
+                         MAX ( 184I => 60, 184V => 60 ),
+                         (210W AND 215FY) => 5,
+                         (41L AND 210W AND 215FY) => 5,
+                         (41L AND 215FY) => 5,
+                         (41L AND 67NGE AND 215FY) => 5,
+                         (67NGE AND 70R AND 219QENR) => 10,
+                         (77L AND 116Y AND 151M) => 15)]]></CONDITION>
+      <ACTIONS>
+        <SCORERANGE>
+          <USE_GLOBALRANGE/>
+        </SCORERANGE>
+      </ACTIONS>
+    </RULE>
+  </DRUG>
+  <DRUG>
+    <NAME>TDF</NAME>
+    <FULLNAME>tenofovir</FULLNAME>
+    <RULE>
+      <CONDITION><![CDATA[SCORE FROM(41L => 5,
+                         62V => 5,
+                         MAX ( 65E => 10, 65N => 30, 65R => 60 ),
+                         MAX ( 67E => 5, 67G => 5, 67H => 5, 67N => 5, 67S => 5, 67T => 5, 67d => 30 ),
+                         68d => 15,
+                         MAX ( 69G => 5, 69i => 45, 69d => 15 ),
+                         MAX ( 70E => 15, 70G => 15, 70N => 10, 70Q => 15, 70R => 5, 70S => 10, 70T => 10, 70d => 15 ),
+                         75I => 5,
+                         77L => 5,
+                         115F => 15,
+                         116Y => 5,
+                         MAX ( 151L => 10, 151M => 15 ),
+                         MAX ( 184I => -10, 184V => -10 ),
+                         210W => 5,
+                         MAX ( 215A => 5, 215C => 5, 215D => 5, 215E => 5, 215F => 10, 215I => 5, 215L => 5, 215N => 5, 215S => 5, 215V => 5, 215Y => 10 ),
+                         MAX ( 219E => 5, 219N => 5, 219Q => 5, 219R => 5 ),
+                         (151M AND 184VI) => 10,
+                         (41L AND 210W) => 10,
+                         (41L AND 210W AND 215FY) => 10,
+                         (41L AND 40F AND 210W AND 215FY) => 5,
+                         (41L AND 44DA AND 210W AND 215FY) => 5,
+                         (41L AND 67NGE AND 215FY) => 5,
+                         (65R AND 151M) => 10,
+                         (67NGE AND 215FY AND 219QE) => 5,
+                         (67NGE AND 70R AND 219QENR) => 10,
+                         (69i AND 215FY) => 15,
+                         (70EGQSTN AND 184VI) => 10,
+                         (70R AND 215FY) => 5,
+                         (77L AND 116Y AND 151M) => 15,
+                         MAX ((210W AND 215FY) => 10, (210W AND 215SCDEIVNAL) => 5),
+                         MAX ((41L AND 215FY) => 10, (41L AND 215SCDEIVNAL) => 5))]]></CONDITION>
+      <ACTIONS>
+        <SCORERANGE>
+          <USE_GLOBALRANGE/>
+        </SCORERANGE>
+      </ACTIONS>
+    </RULE>
+  </DRUG>
+  <DRUG>
+    <NAME>EFV</NAME>
+    <FULLNAME>efavirenz</FULLNAME>
+    <RULE>
+      <CONDITION><![CDATA[SCORE FROM(98G => 15,
+                         MAX ( 100I => 60, 100V => 30 ),
+                         MAX ( 101E => 15, 101H => 10, 101P => 60 ),
+                         MAX ( 103H => 60, 103N => 60, 103S => 45, 103T => 15 ),
+                         MAX ( 106A => 45, 106M => 60 ),
+                         108I => 10,
+                         MAX ( 138G => 10, 138K => 10, 138Q => 10, 138R => 10 ),
+                         MAX ( 179D => 10, 179E => 10, 179F => 10, 179L => 10 ),
+                         MAX ( 181C => 30, 181F => 15, 181G => 15, 181I => 30, 181S => 15, 181V => 30 ),
+                         MAX ( 188C => 60, 188F => 60, 188H => 30, 188L => 60 ),
+                         MAX ( 190A => 45, 190C => 60, 190E => 60, 190Q => 60, 190S => 60, 190T => 60, 190V => 60 ),
+                         221Y => 10,
+                         225H => 45,
+                         MAX ( 227C => 45, 227L => 15 ),
+                         MAX ( 230I => 15, 230L => 45 ),
+                         MAX ( 238N => 10, 238T => 30 ),
+                         318F => 10,
+                         (101E AND 181C) => 5,
+                         (103R AND 179D) => 20,
+                         (106A AND 227L) => 15,
+                         (98G AND 181C) => 5)]]></CONDITION>
+      <ACTIONS>
+        <SCORERANGE>
+          <USE_GLOBALRANGE/>
+        </SCORERANGE>
+      </ACTIONS>
+    </RULE>
+  </DRUG>
+  <DRUG>
+    <NAME>ETR</NAME>
+    <FULLNAME>etravirine</FULLNAME>
+    <RULE>
+      <CONDITION><![CDATA[SCORE FROM(98G => 10,
+                         MAX ( 100I => 30, 100V => 10 ),
+                         MAX ( 101E => 10, 101H => 10, 101P => 60 ),
+                         MAX ( 138G => 10, 138K => 10, 138Q => 10, 138R => 10 ),
+                         MAX ( 179D => 10, 179E => 10, 179F => 15, 179L => 10 ),
+                         MAX ( 181C => 30, 181F => 15, 181G => 15, 181I => 60, 181S => 15, 181V => 60 ),
+                         188L => 10,
+                         MAX ( 190A => 10, 190C => 10, 190E => 45, 190Q => 45, 190S => 10, 190T => 10, 190V => 10 ),
+                         221Y => 10,
+                         227C => 30,
+                         MAX ( 230I => 15, 230L => 30 ),
+                         (101E AND 138A) => 5,
+                         (101E AND 181C) => 5,
+                         (101E AND 188L) => 5,
+                         (181C AND 190ASCVT) => 10,
+                         (98G AND 181C) => 5,
+                         MAX ((101E AND 190A) => 5, (101E AND 190S) => 5),
+                         MAX ((179F AND 181C) => 15, (179T AND 181C) => 10))]]></CONDITION>
+      <ACTIONS>
+        <SCORERANGE>
+          <USE_GLOBALRANGE/>
+        </SCORERANGE>
+      </ACTIONS>
+    </RULE>
+  </DRUG>
+  <DRUG>
+    <NAME>NVP</NAME>
+    <FULLNAME>nevirapine</FULLNAME>
+    <RULE>
+      <CONDITION><![CDATA[SCORE FROM(98G => 30,
+                         MAX ( 100I => 60, 100V => 30 ),
+                         MAX ( 101E => 30, 101H => 15, 101P => 60 ),
+                         MAX ( 103H => 60, 103N => 60, 103S => 60, 103T => 60 ),
+                         MAX ( 106A => 60, 106M => 60 ),
+                         108I => 15,
+                         MAX ( 138G => 10, 138K => 10, 138Q => 10, 138R => 10 ),
+                         MAX ( 179D => 10, 179E => 10, 179F => 15, 179L => 10 ),
+                         MAX ( 181C => 60, 181F => 60, 181G => 60, 181I => 60, 181S => 60, 181V => 60 ),
+                         MAX ( 188C => 60, 188F => 60, 188H => 60, 188L => 60 ),
+                         MAX ( 190A => 60, 190C => 60, 190E => 60, 190Q => 60, 190S => 60, 190T => 60, 190V => 60 ),
+                         221Y => 15,
+                         225H => 45,
+                         MAX ( 227C => 45, 227L => 30 ),
+                         MAX ( 230I => 30, 230L => 60 ),
+                         MAX ( 238N => 10, 238T => 30 ),
+                         318F => 30,
+                         348I => 15,
+                         (101E AND 181C) => 5,
+                         (103R AND 179D) => 20,
+                         (98G AND 181C) => 5)]]></CONDITION>
+      <ACTIONS>
+        <SCORERANGE>
+          <USE_GLOBALRANGE/>
+        </SCORERANGE>
+      </ACTIONS>
+    </RULE>
+  </DRUG>
+  <DRUG>
+    <NAME>RPV</NAME>
+    <FULLNAME>rilpivirine</FULLNAME>
+    <RULE>
+      <CONDITION><![CDATA[SCORE FROM(98G => 15,
+                         MAX ( 100I => 60, 100V => 15 ),
+                         MAX ( 101E => 45, 101H => 10, 101P => 60 ),
+                         MAX ( 138A => 15, 138G => 15, 138K => 45, 138Q => 15, 138R => 15 ),
+                         MAX ( 179D => 10, 179E => 10, 179F => 15, 179L => 15 ),
+                         MAX ( 181C => 45, 181F => 30, 181G => 30, 181I => 60, 181S => 30, 181V => 60 ),
+                         MAX ( 188F => 30, 188L => 60 ),
+                         MAX ( 190A => 15, 190C => 10, 190E => 60, 190Q => 45, 190S => 15, 190T => 10, 190V => 10 ),
+                         221Y => 15,
+                         227C => 45,
+                         MAX ( 230I => 30, 230L => 60 ),
+                         (101E AND 184I) => 15,
+                         (103R AND 179D) => 15,
+                         (138K AND 184I) => 15,
+                         (181C AND 190ASCVT) => 10,
+                         (98G AND 181C) => 5,
+                         MAX ((179F AND 181C) => 15, (179T AND 181C) => 10))]]></CONDITION>
+      <ACTIONS>
+        <SCORERANGE>
+          <USE_GLOBALRANGE/>
+        </SCORERANGE>
+      </ACTIONS>
+    </RULE>
+  </DRUG>
+  <DRUG>
+    <NAME>ATV/r</NAME>
+    <FULLNAME>atazanavir/r</FULLNAME>
+    <RULE>
+      <CONDITION><![CDATA[SCORE FROM(20T => 5,
+                         MAX ( 24F => 5, 24I => 10, 24M => 5 ),
+                         32I => 15,
+                         33F => 5,
+                         MAX ( 46I => 10, 46L => 10, 46V => 10 ),
+                         MAX ( 48A => 10, 48L => 10, 48M => 30, 48Q => 10, 48S => 10, 48T => 10, 48V => 30 ),
+                         50L => 60,
+                         53L => 10,
+                         MAX ( 54A => 15, 54L => 15, 54M => 15, 54S => 15, 54T => 15, 54V => 15 ),
+                         MAX ( 73A => 10, 73C => 10, 73D => 5, 73S => 10, 73T => 10, 73V => 5 ),
+                         74P => 10,
+                         MAX ( 82A => 15, 82C => 15, 82F => 15, 82L => 10, 82M => 10, 82S => 30, 82T => 30 ),
+                         83D => 10,
+                         MAX ( 84A => 60, 84C => 60, 84V => 60 ),
+                         MAX ( 88D => 10, 88G => 15, 88S => 60, 88T => 15 ),
+                         90M => 25,
+                         (46IL AND 84V AND 90M) => 5,
+                         (46ILV AND 82ATSFMCL) => 10,
+                         (46ILV AND 90M) => 10,
+                         (53L AND 90M) => 10,
+                         (54AVSTLM AND 90M) => 10,
+                         (54VSTAML AND 82AFSTMCL) => 10,
+                         (73STCAV AND 90M) => 10,
+                         (82ATSFMCL AND 90M) => 10)]]></CONDITION>
+      <ACTIONS>
+        <SCORERANGE>
+          <USE_GLOBALRANGE/>
+        </SCORERANGE>
+      </ACTIONS>
+    </RULE>
+  </DRUG>
+  <DRUG>
+    <NAME>DRV/r</NAME>
+    <FULLNAME>darunavir/r</FULLNAME>
+    <RULE>
+      <CONDITION><![CDATA[SCORE FROM(10F => 5,
+                         32I => 15,
+                         33F => 5,
+                         MAX ( 47A => 10, 47V => 10 ),
+                         MAX ( 50L => -10, 50V => 20 ),
+                         MAX ( 54L => 20, 54M => 20 ),
+                         74P => 5,
+                         76V => 20,
+                         82F => 15,
+                         MAX ( 84A => 30, 84C => 15, 84V => 15 ),
+                         88S => -5,
+                         89V => 5,
+                         (11IL AND 32I) => 5,
+                         (11IL AND 54ML) => 5,
+                         (32I AND 47VA) => 5,
+                         (32I AND 54ML) => 5,
+                         (32I AND 76V) => 5,
+                         (32I AND 84V) => 5,
+                         (32I AND 89V) => 5,
+                         (47VA AND 54ML) => 5,
+                         (47VA AND 84V) => 5,
+                         (54ML AND 84V) => 5,
+                         (54ML AND 89V) => 5)]]></CONDITION>
+      <ACTIONS>
+        <SCORERANGE>
+          <USE_GLOBALRANGE/>
+        </SCORERANGE>
+      </ACTIONS>
+    </RULE>
+  </DRUG>
+  <DRUG>
+    <NAME>FPV/r</NAME>
+    <FULLNAME>fosamprenavir/r</FULLNAME>
+    <RULE>
+      <CONDITION><![CDATA[SCORE FROM(10F => 15,
+                         20T => 5,
+                         MAX ( 24F => 5, 24I => 10, 24M => 5 ),
+                         32I => 30,
+                         33F => 10,
+                         MAX ( 46I => 10, 46L => 10, 46V => 10 ),
+                         MAX ( 47A => 60, 47V => 35 ),
+                         MAX ( 50L => -5, 50V => 60 ),
+                         MAX ( 54A => 10, 54L => 60, 54M => 60, 54S => 10, 54T => 10, 54V => 10 ),
+                         MAX ( 73A => 10, 73C => 10, 73D => 5, 73S => 10, 73T => 10, 73V => 5 ),
+                         74P => 10,
+                         76V => 60,
+                         MAX ( 82A => 15, 82C => 15, 82F => 30, 82L => 15, 82M => 15, 82S => 15, 82T => 15 ),
+                         MAX ( 84A => 60, 84C => 60, 84V => 60 ),
+                         88S => -10,
+                         89V => 10,
+                         90M => 20,
+                         (11IL AND 32I) => 5,
+                         (11IL AND 54ML) => 5,
+                         (32I AND 47VA) => 5,
+                         (32I AND 54ML) => 5,
+                         (32I AND 76V) => 5,
+                         (32I AND 84V) => 5,
+                         (32I AND 89V) => 5,
+                         (46IL AND 84V AND 90M) => 5,
+                         (46ILV AND 76V) => 10,
+                         (46ILV AND 82ATSFMCL) => 10,
+                         (46ILV AND 90M) => 10,
+                         (47VA AND 54ML) => 5,
+                         (47VA AND 84V) => 5,
+                         (53L AND 90M) => 10,
+                         (54AVSTLM AND 90M) => 10,
+                         (54ML AND 84V) => 5,
+                         (54ML AND 89V) => 5,
+                         (54VSTAML AND 82AFSTMCL) => 10,
+                         (73STCAV AND 90M) => 10,
+                         (82ATSFMCL AND 90M) => 10)]]></CONDITION>
+      <ACTIONS>
+        <SCORERANGE>
+          <USE_GLOBALRANGE/>
+        </SCORERANGE>
+      </ACTIONS>
+    </RULE>
+  </DRUG>
+  <DRUG>
+    <NAME>IDV/r</NAME>
+    <FULLNAME>indinavir/r</FULLNAME>
+    <RULE>
+      <CONDITION><![CDATA[SCORE FROM(10F => 10,
+                         20T => 5,
+                         MAX ( 24F => 5, 24I => 15, 24M => 5 ),
+                         32I => 15,
+                         33F => 5,
+                         MAX ( 46I => 10, 46L => 10, 46V => 10 ),
+                         MAX ( 47A => 15, 47V => 15 ),
+                         MAX ( 48A => 10, 48L => 10, 48M => 10, 48Q => 10, 48S => 10, 48T => 10, 48V => 10 ),
+                         50L => -5,
+                         MAX ( 54A => 15, 54L => 10, 54M => 15, 54S => 15, 54T => 15, 54V => 15 ),
+                         MAX ( 73A => 15, 73C => 15, 73D => 5, 73S => 15, 73T => 15, 73V => 5 ),
+                         74P => 10,
+                         76V => 30,
+                         MAX ( 82A => 30, 82C => 15, 82F => 30, 82L => 10, 82M => 30, 82S => 30, 82T => 30 ),
+                         83D => 10,
+                         MAX ( 84A => 60, 84C => 60, 84V => 60 ),
+                         88S => 15,
+                         89V => 5,
+                         90M => 30,
+                         (11IL AND 32I) => 5,
+                         (11IL AND 54ML) => 5,
+                         (32I AND 47VA) => 5,
+                         (32I AND 54ML) => 5,
+                         (32I AND 76V) => 5,
+                         (32I AND 84V) => 5,
+                         (32I AND 89V) => 5,
+                         (46IL AND 84V AND 90M) => 5,
+                         (46ILV AND 76V) => 10,
+                         (46ILV AND 82ATSFMCL) => 10,
+                         (46ILV AND 90M) => 10,
+                         (47VA AND 54ML) => 5,
+                         (47VA AND 84V) => 5,
+                         (53L AND 90M) => 10,
+                         (54AVSTLM AND 90M) => 10,
+                         (54ML AND 84V) => 5,
+                         (54ML AND 89V) => 5,
+                         (54VSTAML AND 82AFSTMCL) => 10,
+                         (73STCAV AND 90M) => 10,
+                         (82ATSFMCL AND 90M) => 10)]]></CONDITION>
+      <ACTIONS>
+        <SCORERANGE>
+          <USE_GLOBALRANGE/>
+        </SCORERANGE>
+      </ACTIONS>
+    </RULE>
+  </DRUG>
+  <DRUG>
+    <NAME>LPV/r</NAME>
+    <FULLNAME>lopinavir/r</FULLNAME>
+    <RULE>
+      <CONDITION><![CDATA[SCORE FROM(10F => 5,
+                         MAX ( 24F => 5, 24I => 10, 24M => 5 ),
+                         32I => 15,
+                         33F => 5,
+                         MAX ( 46I => 10, 46L => 10, 46V => 5 ),
+                         MAX ( 47A => 60, 47V => 15 ),
+                         MAX ( 48A => 10, 48L => 10, 48M => 10, 48Q => 10, 48S => 10, 48T => 10, 48V => 10 ),
+                         MAX ( 50L => -10, 50V => 30 ),
+                         MAX ( 54A => 15, 54L => 15, 54M => 15, 54S => 15, 54T => 15, 54V => 15 ),
+                         MAX ( 73A => 5, 73C => 5, 73D => 5, 73S => 5, 73T => 5, 73V => 5 ),
+                         74P => 5,
+                         76V => 30,
+                         MAX ( 82A => 30, 82C => 15, 82F => 30, 82L => 10, 82M => 25, 82S => 30, 82T => 30 ),
+                         MAX ( 84A => 60, 84C => 30, 84V => 30 ),
+                         90M => 15,
+                         (11IL AND 32I) => 5,
+                         (11IL AND 54ML) => 5,
+                         (32I AND 47VA) => 5,
+                         (32I AND 54ML) => 5,
+                         (32I AND 76V) => 5,
+                         (32I AND 84V) => 5,
+                         (32I AND 89V) => 5,
+                         (46IL AND 84V AND 90M) => 5,
+                         (46ILV AND 76V) => 10,
+                         (46ILV AND 82ATSFMCL) => 10,
+                         (47VA AND 54ML) => 5,
+                         (47VA AND 84V) => 5,
+                         (54AVSTLM AND 90M) => 5,
+                         (54ML AND 84V) => 5,
+                         (54ML AND 89V) => 5,
+                         (54VSTAML AND 82AFSTMCL) => 10,
+                         (82ATSFMCL AND 90M) => 5)]]></CONDITION>
+      <ACTIONS>
+        <SCORERANGE>
+          <USE_GLOBALRANGE/>
+        </SCORERANGE>
+      </ACTIONS>
+    </RULE>
+  </DRUG>
+  <DRUG>
+    <NAME>NFV</NAME>
+    <FULLNAME>nelfinavir</FULLNAME>
+    <RULE>
+      <CONDITION><![CDATA[SCORE FROM(10F => 15,
+                         20T => 15,
+                         23I => 15,
+                         MAX ( 24F => 10, 24I => 10, 24M => 10 ),
+                         30N => 60,
+                         32I => 15,
+                         33F => 10,
+                         43T => 10,
+                         MAX ( 46I => 30, 46L => 20, 46V => 20 ),
+                         MAX ( 47A => 30, 47V => 20 ),
+                         MAX ( 48A => 30, 48L => 30, 48M => 30, 48Q => 30, 48S => 30, 48T => 30, 48V => 30 ),
+                         50V => 15,
+                         53L => 10,
+                         MAX ( 54A => 20, 54L => 20, 54M => 20, 54S => 20, 54T => 20, 54V => 20 ),
+                         58E => 10,
+                         MAX ( 73A => 15, 73C => 15, 73D => 10, 73S => 15, 73T => 15, 73V => 10 ),
+                         74P => 20,
+                         76V => 10,
+                         MAX ( 82A => 30, 82C => 30, 82F => 30, 82L => 10, 82M => 30, 82S => 30, 82T => 30 ),
+                         83D => 15,
+                         MAX ( 84A => 60, 84C => 60, 84V => 60 ),
+                         MAX ( 88D => 60, 88G => 30, 88S => 60, 88T => 30 ),
+                         89V => 10,
+                         90M => 60,
+                         (11IL AND 32I) => 5,
+                         (11IL AND 54ML) => 5,
+                         (32I AND 47VA) => 5,
+                         (32I AND 54ML) => 5,
+                         (32I AND 76V) => 5,
+                         (32I AND 84V) => 5,
+                         (32I AND 89V) => 5,
+                         (46IL AND 84V AND 90M) => 5,
+                         (46ILV AND 76V) => 10,
+                         (46ILV AND 82ATSFMCL) => 10,
+                         (46ILV AND 90M) => 10,
+                         (47VA AND 54ML) => 5,
+                         (47VA AND 84V) => 5,
+                         (53L AND 90M) => 10,
+                         (54AVSTLM AND 90M) => 10,
+                         (54ML AND 84V) => 5,
+                         (54ML AND 89V) => 5,
+                         (54VSTAML AND 82AFSTMCL) => 10,
+                         (73STCAV AND 90M) => 10,
+                         (82ATSFMCL AND 90M) => 10)]]></CONDITION>
+      <ACTIONS>
+        <SCORERANGE>
+          <USE_GLOBALRANGE/>
+        </SCORERANGE>
+      </ACTIONS>
+    </RULE>
+  </DRUG>
+  <DRUG>
+    <NAME>SQV/r</NAME>
+    <FULLNAME>saquinavir/r</FULLNAME>
+    <RULE>
+      <CONDITION><![CDATA[SCORE FROM(20T => 5,
+                         MAX ( 24F => 5, 24I => 10, 24M => 5 ),
+                         33F => 5,
+                         MAX ( 46I => 10, 46L => 10, 46V => 5 ),
+                         MAX ( 48A => 60, 48L => 60, 48M => 60, 48Q => 60, 48S => 60, 48T => 60, 48V => 60 ),
+                         MAX ( 50L => -5, 50V => 15 ),
+                         53L => 15,
+                         MAX ( 54A => 15, 54L => 15, 54M => 15, 54S => 15, 54T => 15, 54V => 15 ),
+                         MAX ( 73A => 15, 73C => 15, 73D => 10, 73S => 15, 73T => 15, 73V => 10 ),
+                         74P => 10,
+                         MAX ( 82A => 15, 82C => 15, 82F => 10, 82L => 10, 82M => 15, 82S => 15, 82T => 15 ),
+                         83D => 10,
+                         MAX ( 84A => 60, 84C => 60, 84V => 60 ),
+                         MAX ( 88D => 10, 88S => 15 ),
+                         90M => 45,
+                         (46IL AND 84V AND 90M) => 5,
+                         (46ILV AND 82ATSFMCL) => 10,
+                         (46ILV AND 90M) => 5,
+                         (53L AND 90M) => 10,
+                         (54AVSTLM AND 90M) => 10,
+                         (54VSTAML AND 82AFSTMCL) => 10,
+                         (73STCAV AND 90M) => 10,
+                         (82ATSFMCL AND 90M) => 10)]]></CONDITION>
+      <ACTIONS>
+        <SCORERANGE>
+          <USE_GLOBALRANGE/>
+        </SCORERANGE>
+      </ACTIONS>
+    </RULE>
+  </DRUG>
+  <DRUG>
+    <NAME>TPV/r</NAME>
+    <FULLNAME>tiprnavir/r</FULLNAME>
+    <RULE>
+      <CONDITION><![CDATA[SCORE FROM(24I => -5,
+                         32I => 5,
+                         33F => 10,
+                         43T => 10,
+                         MAX ( 46I => 5, 46L => 10, 46V => 5 ),
+                         MAX ( 47A => 30, 47V => 30 ),
+                         MAX ( 50L => -5, 50V => -5 ),
+                         MAX ( 54A => 20, 54L => -10, 54M => 20, 54S => 20, 54T => 20, 54V => 20 ),
+                         58E => 15,
+                         74P => 25,
+                         76V => -5,
+                         MAX ( 82C => 10, 82L => 45, 82M => 10, 82S => 30, 82T => 45 ),
+                         83D => 25,
+                         MAX ( 84A => 60, 84C => 30, 84V => 30 ),
+                         (46IL AND 84V AND 90M) => 5)]]></CONDITION>
+      <ACTIONS>
+        <SCORERANGE>
+          <USE_GLOBALRANGE/>
+        </SCORERANGE>
+      </ACTIONS>
+    </RULE>
+  </DRUG>
+  <DRUG>
+    <NAME>DTG</NAME>
+    <FULLNAME>dolutegravir</FULLNAME>
+    <RULE>
+      <CONDITION><![CDATA[SCORE FROM(51Y => 5,
+                         66K => 15,
+                         92Q => 10,
+                         118R => 15,
+                         121Y => 10,
+                         MAX ( 138A => 10, 138K => 10, 138T => 10 ),
+                         MAX ( 140A => 10, 140C => 10, 140S => 10 ),
+                         MAX ( 143A => 5, 143C => 5, 143G => 5, 143H => 5, 143K => 5, 143R => 5, 143S => 5 ),
+                         MAX ( 148H => 30, 148K => 30, 148R => 30 ),
+                         151L => 15,
+                         MAX ( 153F => 15, 153Y => 15 ),
+                         155H => 15,
+                         263K => 15,
+                         (138AKT AND 140SAC) => 10,
+                         (138AKT AND 148HRK) => 5,
+                         (140SAC AND 148HRK) => 5,
+                         (143CRHSGA AND 163R) => 5,
+                         (143CRHSGA AND 230R) => 5,
+                         (148HRK AND 163RK) => 5,
+                         (157Q AND 263K) => 10,
+                         (51Y AND 263K) => 10,
+                         (74MI AND 143CRHSGA) => 5,
+                         (74MI AND 148HRK) => 5,
+                         (92Q AND 155H) => 5,
+                         (97A AND 143CRHSGA) => 5,
+                         (97A AND 148HRK) => 5)]]></CONDITION>
+      <ACTIONS>
+        <SCORERANGE>
+          <USE_GLOBALRANGE/>
+        </SCORERANGE>
+      </ACTIONS>
+    </RULE>
+  </DRUG>
+  <DRUG>
+    <NAME>EVG</NAME>
+    <FULLNAME>elvitegravir</FULLNAME>
+    <RULE>
+      <CONDITION><![CDATA[SCORE FROM(51Y => 15,
+                         MAX ( 66A => 60, 66I => 60, 66K => 60 ),
+                         MAX ( 92G => 30, 92Q => 60, 92V => 60 ),
+                         95K => 10,
+                         97A => 10,
+                         118R => 30,
+                         121Y => 60,
+                         MAX ( 138A => 15, 138K => 15, 138T => 15 ),
+                         MAX ( 140A => 30, 140C => 30, 140S => 30 ),
+                         MAX ( 143A => 10, 143C => 10, 143G => 10, 143H => 10, 143K => 10, 143R => 10, 143S => 10 ),
+                         145S => 60,
+                         146P => 60,
+                         147G => 60,
+                         MAX ( 148H => 60, 148K => 60, 148N => 15, 148R => 60 ),
+                         MAX ( 151A => 30, 151L => 60 ),
+                         MAX ( 153F => 15, 153Y => 15 ),
+                         MAX ( 155H => 60, 155S => 30, 155T => 30 ),
+                         157Q => 10,
+                         MAX ( 163K => 10, 163R => 10 ),
+                         230R => 15,
+                         263K => 30,
+                         (138AKT AND 140SAC) => 15,
+                         (143CRHSGA AND 163R) => 5,
+                         (143CRHSGA AND 230R) => 5,
+                         (51Y AND 263K) => 15,
+                         (74MI AND 143CRHSGA) => 5,
+                         (97A AND 143CRHSGA) => 5)]]></CONDITION>
+      <ACTIONS>
+        <SCORERANGE>
+          <USE_GLOBALRANGE/>
+        </SCORERANGE>
+      </ACTIONS>
+    </RULE>
+  </DRUG>
+  <DRUG>
+    <NAME>RAL</NAME>
+    <FULLNAME>raltegravir</FULLNAME>
+    <RULE>
+      <CONDITION><![CDATA[SCORE FROM(51Y => 15,
+                         MAX ( 66A => 15, 66I => 15, 66K => 60 ),
+                         MAX ( 92G => 15, 92Q => 30, 92V => 30 ),
+                         95K => 10,
+                         97A => 10,
+                         118R => 30,
+                         121Y => 60,
+                         MAX ( 138A => 15, 138K => 15, 138T => 15 ),
+                         MAX ( 140A => 30, 140C => 30, 140S => 30 ),
+                         MAX ( 143A => 60, 143C => 60, 143G => 60, 143H => 60, 143K => 60, 143R => 60, 143S => 60 ),
+                         MAX ( 148H => 60, 148K => 60, 148N => 10, 148R => 60 ),
+                         MAX ( 151A => 15, 151L => 30 ),
+                         MAX ( 155H => 60, 155S => 30, 155T => 30 ),
+                         157Q => 10,
+                         MAX ( 163K => 10, 163R => 10 ),
+                         230R => 15,
+                         263K => 15,
+                         (138AKT AND 140SAC) => 15)]]></CONDITION>
+      <ACTIONS>
+        <SCORERANGE>
+          <USE_GLOBALRANGE/>
+        </SCORERANGE>
+      </ACTIONS>
+    </RULE>
+  </DRUG>
+</ALGORITHM>

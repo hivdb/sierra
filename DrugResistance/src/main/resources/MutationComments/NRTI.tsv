@@ -1,0 +1,41 @@
+Position	Rank	AAs	Comment
+65	1	R	K65R causes intermediate/high-level resistance to TDF, ddI, ABC and d4T and low/intermediate resistance to 3TC and FTC.  K65R increases susceptibility to AZT.
+65	2	N	K65R causes intermediate/high-level resistance to TDF, ddI, ABC and d4T and low/intermediate resistance to 3TC and FTC.  K65R increases susceptibility to AZT.  K65N is a rare mutation with effects on NRTI susceptibility that are similar but weaker to those of K65R.
+65	3	E	K65R causes intermediate/high-level resistance to TDF, ddI, ABC and d4T and low/intermediate resistance to 3TC and FTC.  K65R increases susceptibility to AZT.  K65E is an extremely rare NRTI-selected mutation with markedly reduced replication fitness.
+67	1	N	D67N is a non-polymorphic TAM associated with low-level resistance to AZT and d4T.  When present with other TAMs, it contributes reduced susceptibility to ABC, ddI, and TDF.
+67	2	GESTHQ	D67N is a non-polymorphic TAM associated with low-level resistance to AZT and d4T.  When present with other TAMs, it contributes reduced susceptibility to ABC, ddI, and TDF.  D67G/E/S/T/H are non-polymorphic NRTI-selected mutations that also generally occur in viruses with multiple TAMs.
+67	3	-	Amino acid deletions between codons 66 to 71 are rare and usually occur in combination with multiple TAMs, the Q151M mutation complex, or K65R.  Deletions at position 67 are more often associated with multiple TAMs.  Deletions at position 69 are more often associated with either the Q151M complex or K65R.
+69	1	-	Amino acid deletions between codons 66 to 71 are rare and usually occur in combination with multiple TAMs, the Q151M mutation complex, or K65R.  Deletions at position 67 are more often associated with multiple TAMs.  Deletions at position 69 are more often associated with either the Q151M complex or K65R.
+69	2	_	Double amino acid insertions between codons 66 to 71 most often align to codon 69 and occur in less than 1% of heavily treated persons.  Together with TAMs, they confer high-level resistance to AZT, d4T, ddI, ABC and TDF and intermediate/high-level resistance to 3TC and FTC.
+69	3	D	T69D is a non-polymorphic mutation that reduces susceptibility to ddI and possibly d4T.
+69	4	G	T69G is a rare non-polymorphic mutation that usually occurs in viruses with a deletion at codon 67 and multiple other NRTI-resistance mutations.
+69	5	N	T69N is a relatively non-polymorphic mutation weakly selected in patients receiving NRTIs.  Its effects on NRTI susceptibility has not been well studied.
+69	6	SAIE	T69S/A/I/E are relatively polymorphicmutations weakly selected in patients receiving NRTIs.  Their effects on NRTI susceptibility have not been well studied.
+70	1	R	K70R causes intermediate resistance to AZT and possibly low-level resistance to d4T and TDF.
+70	2	EG	K70E/G cause low-level resistance to TDF, ABC, DDI and possibly 3TC and FTC.  K70E increases susceptibility to AZT.
+70	3	QNST	K70R causes intermediate resistance to AZT and possibly low-level resistance to d4T and TDF.  K70E/G cause low-level resistance to TDF, ABC, DDI and possibly 3TC and FTC.  K70E increases susceptibility to AZT.  K70Q/N/S/T are rare non-polymorphic NRTI-selected mutations that appear to have resistance profiles similar to K70E/G.
+40	1	F	E40F is a non-polymorphic accessory mutation selected by AZT and d4T.  It usually occurs in combination with M41L, L210W and T215Y.  In this context it is associated with reduced susceptibility to each of the NRTIs.
+41	1	L	M41L is a TAM that usually occurs with T215Y.  Together, M41L and T215Y confer high-level resistance to AZT and d4T and intermediate resistance to ddI, ABC and TDF.  However, viruses with M41L + T215Y + M184V will have intermediate resistance to AZT and d4T and low-level resistance to TDF.
+41	2	I	M41I is usually an artifact resulting from APOBEC3G-mediated hypermutation.
+74	1	VI	L74V/I cause high-level resistance to ddI and intermediate resistance to ABC.
+75	1	I	V75I is a relatively non-polymorphic accessory mutation that often occurs in combination with the multi-NRTI resistance mutation Q151M.  When V75I occurs alone its clinical significance is uncertain.
+75	2	T	V75T causes high-level d4T resistance, intermediate ddI resistance, and potential low-level ABC resistance.
+75	3	M	V75M causes intermediate d4T resistance and low-level ddI resistance.
+75	4	SAL	V75S/A/L are non-polymorphic mutations that appear to reduce susceptibility to d4T and ddI.
+44	1	AD	E44A/D are minimally polymorphic accessory mutations that usually occur with multiple TAMs.
+77	1	L	F77L usually occurs in combination with the multi-NRTI resistance mutation Q151M.  When it occurs alone, its clinical significance is uncertain.
+210	1	W	L210W is TAM which usually occurs in combination with M41L and T215Y.  The combination of M41, L210W and T215Y causes high-level resistance to AZT and d4T and intermediate to high-level resistance to ddI, ABC and TDF.
+115	1	F	Y115F causes intermediate resistance to ABC and low-level resistance to TDF.
+116	1	Y	F116Y usually occurs in combination with the multi-NRTI resistance mutation Q151M.
+118	1	I	V118I is a polymorphic accessory NRTI-resistance mutation that occurs in combination with multiple TAMs.
+151	1	M	Q151M causes intermediate/high-level resistance to AZT, ddI, d4T and ABC and low-level resistance to TDF, 3TC and FTC.  In combination with accessory mutations at positions 62, 75, 77, and 116, Q151M confers high-level resistance to AZT, ddI, d4T and ABC and intermediate resistance to TDF, 3TC and FTC.
+151	2	L	Q151M causes intermediate/high-level resistance to AZT, ddI, d4T and ABC and low-level resistance to TDF, 3TC and FTC.  In combination with accessory mutations at positions 62, 75, 77, and 116, Q151M confers high-level resistance to AZT, ddI, d4T and ABC and intermediate resistance to TDF, 3TC and FTC.  Q151L is an extremely rare transitional mutation that may precede the emergence of the Q151M.
+215	1	Y	T215Y is a TAM which causes intermediate/high-level resistance to AZT and d4T and low-level resistance to ABC, ddI, and TDF.
+215	2	F	T215F is a TAM which causes intermediate/high-level resistance to AZT and d4T and low-level resistance to ABC, ddI and TDF.  Compared with T215Y, T215F occurs more commonly with the Type II TAMs (D67N, K70R, and/or K219E) and in this context, it affects susceptibility to TDF, ABC, and ddI less markedly than does T215Y.
+215	3	SCDEIVALN	T215Y/F cause intermediate/high-level resistance to AZT and d4T and low-level resistance to ABC, ddI and TDF.  T215S/C/D/E/I/V/N/A/L do not reduce NRTI susceptibility but arise from viruses that once contained T215Y/F.  The presence of one of these revertant mutations suggests that the patient may have once had a majority virus population with T215Y/F.
+184	1	VI	M184V/I cause high-level in vitro resistance to 3TC and FTC and low-level resistance to ddI and ABC.  However, M184V/I are not contraindications to continued treatment with 3TC or FTC because they increase susceptibility to AZT, TDF and d4T and are associated with clinically significant reductions in HIV-1 replication.
+219	1	QE	K219Q/E are accessory TAMS associated with reduced susceptibility to AZT and possibly d4T.
+219	2	NR	K219N/R are accessory TAMS that usually occur in combination with multiple other TAMs.
+219	3	W	K219W is an uncommon NRTI-selected mutation.
+62	1	V	A62V is an accessory mutation that often occurs in combination with the multi-NRTI resistance mutations K65R or Q151M.  A62V is widespread in subtype A viruses in former Soviet Union countries but is otherwise non-polymorphic.
+

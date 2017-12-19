@@ -1,0 +1,20 @@
+plugins {
+    id "org.gradle.java"
+    id "org.gradle.eclipse"
+    id "com.scuilion.syntastic" version "0.3.6"
+}
+
+group = 'edu.stanford.hivdb'
+version = '2.2.0'
+
+description = """Test resources"""
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+}

@@ -1,0 +1,3 @@
+[submodule "hiv-genotyper"]
+	path = hiv-genotyper
+	url = git@github.com:hivdb/hiv-genotyper.git

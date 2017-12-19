@@ -1,0 +1,3 @@
+include 'Utilities', 'TestResources', 'Aligner', 'DrugResistance', 'WebApplications', 'hiv-genotyper'
+
+rootProject.name = 'sierra'
