@@ -19,6 +19,7 @@ target/
 *.swo
 *.orig
 *.jar
+!DrugResistance/lib/resistance-1.0.jar
 .DS_Store
 __input
 __output
