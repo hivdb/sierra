@@ -2,8 +2,8 @@
 
 ![Sierra project][sierra-logo]
 
-[![Travis CI](https://travis-ci.com/hivdb/sierra.svg?token=nLssk8eESpsbvQBLZpNN)](https://travis-ci.com/hivdb/sierra)
-[![codecov](https://codecov.io/gh/hivdb/sierra/branch/master/graph/badge.svg?token=1gWrJCsfTf)](https://codecov.io/gh/hivdb/sierra)
+[![Travis CI](https://travis-ci.org/hivdb/sierra.svg)](https://travis-ci.org/hivdb/sierra)
+[![codecov](https://codecov.io/gh/hivdb/sierra/branch/master/graph/badge.svg)](https://codecov.io/gh/hivdb/sierra)
 
 ## Prerequisites
 
