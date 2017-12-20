@@ -31,14 +31,14 @@ import graphql.schema.PropertyDataFetcher;
 
 public class ExtendedFieldDefinition {
 
-	public static DataFetcher pipeLineDataFetcher = new DataFetcher() {
+	public static DataFetcher<Object> pipeLineDataFetcher = new DataFetcher<Object>() {
 		@Override
 		public Object get(DataFetchingEnvironment environment) {
 			return environment.getSource();
 		}
 	};
 
-	public static class ExtendedPropertyDataFetcher extends PropertyDataFetcher {
+	public static class ExtendedPropertyDataFetcher<T> extends PropertyDataFetcher<T> {
 
 		private final String propertyName;
 
@@ -47,20 +47,21 @@ public class ExtendedFieldDefinition {
 			this.propertyName = propertyName;
 		}
 
+		@SuppressWarnings("unchecked")
 		@Override
-		public Object get(DataFetchingEnvironment environment) {
-			Object result = super.get(environment);
+		public T get(DataFetchingEnvironment environment) {
+			T result = super.get(environment);
 			if (result == null) {
 				Object source = environment.getSource();
 		        if (source == null) return null;
-		        result = getPropertyViaMethod(source, propertyName);
+		        result = (T) getPropertyViaMethod(source, propertyName);
 			}
 			result = postProcess(result, environment);
 			if (result instanceof Set) {
 				// cast all set to list
-				result = new ArrayList<>((Set<?>) result);
+				result = (T) new ArrayList<>((Set<?>) result);
 			}
-			return result;
+			return (T) result;
 		}
 
 		/**
@@ -69,7 +70,7 @@ public class ExtendedFieldDefinition {
 		 * @param object
 		 * @return object
 		 */
-		protected Object postProcess(Object object, DataFetchingEnvironment environment) {
+		protected T postProcess(T object, DataFetchingEnvironment environment) {
 			return object;
 		}
 
@@ -104,7 +105,7 @@ public class ExtendedFieldDefinition {
 	public static class Builder extends GraphQLFieldDefinition.Builder {
 
 		private String name;
-		private DataFetcher dataFetcher;
+		private DataFetcher<?> dataFetcher;
 
 		@Override
 		public Builder name(String name) {
@@ -114,7 +115,7 @@ public class ExtendedFieldDefinition {
 		}
 
 		@Override
-		public Builder dataFetcher(DataFetcher dataFetcher) {
+		public Builder dataFetcher(DataFetcher<?> dataFetcher) {
 			super.dataFetcher(dataFetcher);
 			this.dataFetcher = dataFetcher;
 			return this;
@@ -123,7 +124,7 @@ public class ExtendedFieldDefinition {
 		@Override
 		public GraphQLFieldDefinition build() {
 			if (dataFetcher == null) {
-				super.dataFetcher(new ExtendedPropertyDataFetcher(name));
+				super.dataFetcher(new ExtendedPropertyDataFetcher<Object>(name));
 			}
 			return super.build();
 		}

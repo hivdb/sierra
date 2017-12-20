@@ -23,12 +23,39 @@ import org.junit.Test;
 import edu.stanford.hivdb.drugs.DrugClass;
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.Map;
 
 public class MutationSetTest {
+	
+	@Test
+	public void testMutationAndIndelAtSamePosition() {
+		MutationSet mutations = new MutationSet("RT69D, RT69D_K, RT69D_N, RT69del");
+		assertTrue(mutations.contains(new Mutation(Gene.RT, 69, "D")));
+		assertTrue(mutations.contains(new Mutation(Gene.RT, 69, "D_K")));
+		assertTrue(mutations.contains(new Mutation(Gene.RT, 69, "D_N")));
+		assertFalse(mutations.contains(new Mutation(Gene.RT, 69, "D_KK")));
+		assertFalse(mutations.contains(new Mutation(Gene.RT, 69, "_")));
+		assertTrue(mutations.contains(new Mutation(Gene.RT, 69, "-")));
+		assertFalse(mutations.contains(new Mutation(Gene.RT, 69, "del"))); // wrong format
+	}
+	
+	@Test
+	public void testMergeRefIntoMutation() {
+		MutationSet mutations = new MutationSet(
+			new Mutation(Gene.PR, 1, "P") // ref
+		);
+		assertTrue(mutations.contains(new Mutation(Gene.PR, 1, "P")));
+		mutations = new MutationSet(
+			new Mutation(Gene.PR, 1, "P"), // ref
+			new Mutation(Gene.PR, 1, "S"),
+			new Mutation(Gene.PR, 1, "L")
+		);
+		assertEquals(new MutationSet("PR:P1PSL"), mutations);
+	}
 
 	@Test
 	public void testParseMutationsString() {
@@ -159,6 +186,13 @@ public class MutationSetTest {
 			.mergesWith(new Mutation(Gene.RT, 31, "K")));
 
 	}
+	
+	@Test
+	public void testHasSharedAAMutation() {
+		MutationSet self = new MutationSet(Gene.RT, "48VER");
+		assertTrue(self.hasSharedAAMutation(Mutation.parseString("RT:48V")));
+		assertFalse(self.hasSharedAAMutation(Mutation.parseString("RT:48T")));
+	}
 
 	@Test
 	public void testIntersectsWith() {
@@ -167,6 +201,9 @@ public class MutationSetTest {
 		assertEquals(
 			new MutationSet(Gene.RT, "48ER"),
 			self.intersectsWith(another));
+		assertEquals(
+			new MutationSet(Gene.RT, "48ER"),
+			self.intersectsWith(new ArrayList<>(another)));
 
 		assertEquals(
 			new MutationSet(Gene.RT, "48ER"),
@@ -269,14 +306,14 @@ public class MutationSetTest {
 	}
 
 	@Test
-	public void testGet() {
+	public void testGetMerged() {
 		assertEquals(
 			new Mutation(Gene.RT, 69, "S_SS"),
 			new MutationSet(
 				new Mutation(Gene.RT, 31, "KM"),
 				new Mutation(Gene.RT, 67, "P"),
 				new Mutation(Gene.RT, 69, "S_SS")
-			).get(Gene.RT, 69));
+			).getMerged(Gene.RT, 69));
 
 		assertEquals(
 			new Mutation(Gene.RT, 31, "KM"),
@@ -284,7 +321,7 @@ public class MutationSetTest {
 				new Mutation(Gene.RT, 31, "KM"),
 				new Mutation(Gene.RT, 67, "P"),
 				new Mutation(Gene.RT, 69, "S_SS")
-			).get(Gene.RT, 31));
+			).getMerged(Gene.RT, 31));
 
 		assertEquals(
 			null,
@@ -292,7 +329,7 @@ public class MutationSetTest {
 				new Mutation(Gene.RT, 31, "KM"),
 				new Mutation(Gene.RT, 67, "P"),
 				new Mutation(Gene.RT, 69, "S_SS")
-			).get(Gene.RT, 37));
+			).getMerged(Gene.RT, 37));
 
 		assertEquals(
 			null,
@@ -300,7 +337,7 @@ public class MutationSetTest {
 				new Mutation(Gene.RT, 31, "KM"),
 				new Mutation(Gene.PR, 67, "P"),
 				new Mutation(Gene.RT, 69, "S_SS")
-			).get(Gene.RT, 67));
+			).getMerged(Gene.RT, 67));
 
 		assertEquals(
 			new Mutation(Gene.PR, 67, "P"),
@@ -309,7 +346,7 @@ public class MutationSetTest {
 				new Mutation(Gene.RT, 67, "K"),
 				new Mutation(Gene.PR, 67, "P"),
 				new Mutation(Gene.RT, 69, "S_SS")
-			).get(Gene.PR, 67));
+			).getMerged(Gene.PR, 67));
 	}
 
 	@Test
@@ -362,7 +399,7 @@ public class MutationSetTest {
 				new Mutation(Gene.RT, 31, "M"),
 				new Mutation(Gene.RT, 67, "P"),
 				new Mutation(Gene.RT, 69, "S_SS")
-			).get(Gene.RT, 31));
+			).getMerged(Gene.RT, 31));
 	}
 
 	@Test

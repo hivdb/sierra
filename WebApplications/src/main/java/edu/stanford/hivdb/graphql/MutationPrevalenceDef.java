@@ -82,10 +82,10 @@ public class MutationPrevalenceDef {
 			.collect(Collectors.toList());
 	}
 
-	private static DataFetcher subtypeStatsDataFetcher = new DataFetcher() {
+	private static DataFetcher<List<Map<String, Object>>> subtypeStatsDataFetcher = new DataFetcher<List<Map<String, Object>>>() {
 
 		@Override
-		public Object get(DataFetchingEnvironment environment) {
+		public List<Map<String, Object>> get(DataFetchingEnvironment environment) {
 			String subtype = (String) environment.getSource();
 			return MutationPrevalences.getNumPatients()
 				.entrySet().stream()

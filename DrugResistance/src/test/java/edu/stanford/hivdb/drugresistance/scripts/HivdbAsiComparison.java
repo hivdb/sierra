@@ -72,7 +72,7 @@ public class HivdbAsiComparison {
 		StringBuffer differencesOutput = new StringBuffer();
 
 		for (Sequence seq : sequences) {
-			Map<Gene, AlignedGeneSeq> alignedGeneSeqs = Aligner.alignGenesToSequence(seq);
+			Map<Gene, AlignedGeneSeq> alignedGeneSeqs = Aligner.align(seq).getAlignedGeneSequenceMap();
 			for (Gene gene : alignedGeneSeqs.keySet()) {
 				AlignedGeneSeq alignedGeneSeq = alignedGeneSeqs.get(gene);
 				final MutationSet mutations = alignedGeneSeq.getMutations();

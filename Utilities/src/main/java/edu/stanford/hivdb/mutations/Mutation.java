@@ -306,6 +306,10 @@ public class Mutation implements Comparable<Mutation> {
 		return gene;
 	}
 
+	public boolean isDRM() {
+		return DRMs.isDRM(this);
+	}
+
 	/**
 	 * Converts gene and mutText string into a Mutation object
 	 * mutText may or may not have a preceding consensus

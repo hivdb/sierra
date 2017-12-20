@@ -22,6 +22,9 @@ import graphql.schema.*;
 import static graphql.Scalars.*;
 import static graphql.schema.GraphQLObjectType.newObject;
 
+import java.util.List;
+
+import edu.stanford.hivdb.drugs.Drug;
 import edu.stanford.hivdb.drugs.DrugClass;
 
 import static edu.stanford.hivdb.graphql.ExtendedFieldDefinition.*;
@@ -31,10 +34,10 @@ public class DrugClassDef {
 	public static GraphQLEnumType oDrugClassEnum;
 	public static GraphQLObjectType oDrugClass;
 
-	private static DataFetcher drugsDataFetcher = new DataFetcher() {
+	private static DataFetcher<List<Drug>> drugsDataFetcher = new DataFetcher<List<Drug>>() {
 
 		@Override
-		public Object get(DataFetchingEnvironment environment) {
+		public List<Drug> get(DataFetchingEnvironment environment) {
 			return ((DrugClass) environment.getSource()).getDrugsForHivdbTesting();
 		}
 

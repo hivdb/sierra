@@ -38,6 +38,7 @@ import org.junit.Test;
 import com.google.gson.reflect.TypeToken;
 
 import edu.stanford.hivdb.alignment.AlignedGeneSeq;
+import edu.stanford.hivdb.mutations.FrameShift;
 import edu.stanford.hivdb.filetestutils.TestSequencesFiles;
 import edu.stanford.hivdb.filetestutils.TestSequencesFiles.TestSequencesProperties;
 import edu.stanford.hivdb.mutations.Gene;
@@ -65,17 +66,18 @@ public class AlignerTest {
 			final List<Sequence> sequences = FastaUtils.readStream(testSequenceInputStream);
 
 
-			Map <Sequence, Map<Gene, AlignedGeneSeq>> allAligneds =
-					Aligner.parallelAlign(sequences).stream()
-					.collect(Collectors.toMap(
-						as -> as.getInputSequence(),
-						as -> as.getAlignedGeneSequenceMap()));
+			Map<Sequence, AlignedSequence> allAligneds = (
+				Aligner.parallelAlign(sequences)
+				.stream()
+				.collect(Collectors.toMap(as -> as.getInputSequence(), as -> as))
+			);
 
 			Type mapType = new TypeToken<Map<Gene, AlignedGeneSeq>>() {}.getType();
 
 			for (Sequence seq : sequences) {
 				LOGGER.debug("\nSequence:"  + seq.getHeader());
-				Map<Gene, AlignedGeneSeq> alignmentResults = allAligneds.get(seq);
+				AlignedSequence alignedSeq = allAligneds.get(seq);
+				List<AlignedGeneSeq> alignmentResults = alignedSeq.getAlignedGeneSequences();
 				final InputStream alignedGeneSeqJsonInputStream =
 					AlignerTest.class.getClassLoader().getResourceAsStream(testSequenceProperty.name() +
 							"_" + seq.getHeader() + ".json");
@@ -89,8 +91,8 @@ public class AlignerTest {
 				//System.out.println(  "NumAlignedGenesActual:" + alignmentResults.size());
 				Assert.assertEquals(alignedGeneSeqsExpected.size(), alignmentResults.size());
 
-				for (Gene gene : alignmentResults.keySet()) {
-					final AlignedGeneSeq alignedGeneSeq = alignmentResults.get(gene);
+				for (AlignedGeneSeq alignedGeneSeq : alignmentResults) {
+					final Gene gene = alignedGeneSeq.getGene();
 					final MutationSet mutations = alignedGeneSeq.getMutations();
 					final MutationSet expectedMutations = alignedGeneSeqsExpected.get(gene).getMutations();
 					final String name = alignedGeneSeq.getSequence().getHeader();

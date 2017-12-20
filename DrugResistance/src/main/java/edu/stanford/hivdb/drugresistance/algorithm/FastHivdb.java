@@ -24,9 +24,13 @@ import java.util.EnumMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
+
+import com.google.common.primitives.Chars;
 
 import edu.stanford.hivdb.drugresistance.database.MutationComboScores;
 import edu.stanford.hivdb.drugresistance.database.MutationComboScores.ComboScore;
@@ -36,6 +40,7 @@ import edu.stanford.hivdb.drugresistance.scripts.HivdbLevelDefinitions;
 import edu.stanford.hivdb.drugs.Drug;
 import edu.stanford.hivdb.drugs.DrugClass;
 import edu.stanford.hivdb.mutations.Gene;
+import edu.stanford.hivdb.mutations.GenePosition;
 import edu.stanford.hivdb.mutations.Mutation;
 import edu.stanford.hivdb.mutations.MutationSet;
 
@@ -152,7 +157,7 @@ public class FastHivdb {
 
 	private static void calcScores(
 			List<Integer> sortedPositions,
-			List<String> sortedAAs,
+			List<Set<Character>> sortedAAs,
 			Map<Integer, PositionNode> ruleTree,
 			Map<Drug, Map<String, Double>> scores,
 			Map<Drug, Map<String, MutationSet>> triggeredMuts,
@@ -163,7 +168,7 @@ public class FastHivdb {
 			return;
 		}
 		int pos = sortedPositions.remove(0);
-		String aas = sortedAAs.remove(0);
+		Set<Character> aas = sortedAAs.remove(0);
 		if (!ruleTree.containsKey(pos)) {
 			calcScores(
 				sortedPositions, sortedAAs, ruleTree, scores,
@@ -171,7 +176,7 @@ public class FastHivdb {
 			return;
 		}
 		PositionNode node = ruleTree.get(pos);
-		for (Character aa : aas.toCharArray()) {
+		for (Character aa : aas) {
 			if (!node.childAAs.containsKey(aa)) {
 				continue;
 			}
@@ -218,18 +223,23 @@ public class FastHivdb {
 		separatedScores = new EnumMap<>(Drug.class);
 		triggeredMuts = new EnumMap<>(Drug.class);
 		List<Integer> sortedPositions = new ArrayList<>();
-		List<String> sortedAAs = new ArrayList<>();
-		for (Mutation mut : mutations) {
-			sortedPositions.add(mut.getPosition());
-			if (mut.isInsertion()) {
-				sortedAAs.add("_");
+		List<Set<Character>> sortedAAs = new ArrayList<>();
+		for (GenePosition gp : mutations.getPositions()) {
+			Set<Mutation> posMuts = mutations.get(gp.gene, gp.position);
+			sortedPositions.add(gp.position);
+			Set<Character> setAAs = new TreeSet<>();
+			for (Mutation mut : posMuts) {
+				if (mut.isInsertion()) {
+					setAAs.add('_');
+				}
+				else if (mut.isDeletion()) {
+					setAAs.add('-');
+				}
+				else {
+					setAAs.addAll(Chars.asList(mut.getAAs().toCharArray()));
+				}
 			}
-			else if (mut.isDeletion()) {
-				sortedAAs.add("-");
-			}
-			else {
-				sortedAAs.add(mut.getAAs());
-			}
+			sortedAAs.add(setAAs);
 		}
 		calcScores(
 			sortedPositions, sortedAAs, geneRuleTrees.get(gene),

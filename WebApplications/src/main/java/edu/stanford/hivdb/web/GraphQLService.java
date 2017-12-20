@@ -36,6 +36,7 @@ import edu.stanford.hivdb.graphql.SierraSchema;
 import edu.stanford.hivdb.mutations.Mutation.InvalidMutationStringException;
 import edu.stanford.hivdb.utilities.Json;
 import graphql.ExceptionWhileDataFetching;
+import graphql.ExecutionInput;
 import graphql.ExecutionResult;
 import graphql.GraphQL;
 import graphql.GraphQLError;
@@ -48,7 +49,7 @@ public class GraphQLService {
 	private final GraphQL graphql;
 
 	public GraphQLService() {
-		graphql = new GraphQL(SierraSchema.schema);
+		graphql = GraphQL.newGraphQL(SierraSchema.schema).build();
 	}
 
 	private static class GraphQLRequest {
@@ -61,11 +62,16 @@ public class GraphQLService {
 		GraphQLRequest request = Json.loads(x, GraphQLRequest.class);
 		String query = request.query;
 		Object context = null;
-		Map<String, Object> arguments = request.variables;
+		Map<String, Object> variables = request.variables;
 		if (query == null) { query = ""; }
-		if (arguments == null) {arguments = Collections.emptyMap(); }
-		ExecutionResult result = graphql
-			.execute(query, context, arguments);
+		if (variables == null) {variables = Collections.emptyMap(); }
+		ExecutionInput input = (
+			ExecutionInput
+			.newExecutionInput()
+			.query(query).context(context).variables(variables)
+			.build()
+		);
+		ExecutionResult result = graphql.execute(input);
 		List<Map<String, Object>> errors = handleErrors(result);
 		Map<String, Object> output = new LinkedHashMap<>();
 		Status status = Status.OK;

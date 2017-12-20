@@ -129,8 +129,8 @@ public class UnusualMutations {
 			GenePosition gpos = new GenePosition(gene, pos);
 
 			String aa = rs.getString("AA");
-			aa = aa.replaceAll("#","_");
-			aa = aa.replaceAll("~", "-");
+			aa = aa.replace("#","_");
+			aa = aa.replace("~", "-");
 			char aaChar = aa.charAt(0);
 
 			double pcnt = rs.getDouble("Pcnt");

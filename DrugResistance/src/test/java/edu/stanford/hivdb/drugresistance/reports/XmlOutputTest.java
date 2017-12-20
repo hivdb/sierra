@@ -67,7 +67,10 @@ public class XmlOutputTest {
 		allResistanceResults = new ArrayList<>();
 		alignedSequences = Aligner.parallelAlign(sequences);
 		for (AlignedSequence alignedSeq : alignedSequences) {
-			Map<Gene, GeneDR> resistanceResults = GeneDRFast.getResistanceByGene(alignedSeq.getAlignedGeneSequenceMap());
+			Map<Gene, GeneDR> resistanceResults =
+				GeneDRFast.getResistanceByGeneFromAlignedGeneSeqs(
+					alignedSeq.getAlignedGeneSequences()
+				);
 			allResistanceResults.add(resistanceResults);
 		}
 

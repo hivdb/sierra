@@ -18,11 +18,6 @@
 
 package edu.stanford.hivdb.alignment;
 
-import org.junit.Test;
-
-import edu.stanford.hivdb.utilities.Sequence;
-import edu.stanford.hivdb.mutations.Gene;
-
 public class AlignedGeneSeqTest {
 
 	// private AlignedGeneSeq getAlignedGeneSeq() {

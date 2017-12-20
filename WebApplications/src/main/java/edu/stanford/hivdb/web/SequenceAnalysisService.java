@@ -100,10 +100,10 @@ public class SequenceAnalysisService {
 
 		private Map<Gene, GeneDR> getDRs(Sequence seq) {
 			if (!drsMap.containsKey(seq)) {
-				Map<Gene, AlignedGeneSeq> aligneds =
-					getAlignedSeq(seq).getAlignedGeneSequenceMap();
+				List<AlignedGeneSeq> aligneds =
+					getAlignedSeq(seq).getAlignedGeneSequences();
 				drsMap.put(
-					seq, GeneDRFast.getResistanceByGene(aligneds));
+					seq, GeneDRFast.getResistanceByGeneFromAlignedGeneSeqs(aligneds));
 			}
 			return drsMap.get(seq);
 		}
