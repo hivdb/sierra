@@ -43,7 +43,6 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import edu.stanford.hivdb.alignment.AlignedGeneSeq;
 import edu.stanford.hivdb.alignment.AlignedSequence;
-import edu.stanford.hivdb.alignment.FrameShift;
 import edu.stanford.hivdb.drugresistance.GeneDR;
 import edu.stanford.hivdb.drugresistance.database.CommentType;
 import edu.stanford.hivdb.drugresistance.database.ConditionalComments.BoundComment;
@@ -58,6 +57,7 @@ import edu.stanford.hivdb.mutations.MutType;
 import edu.stanford.hivdb.mutations.Mutation;
 import edu.stanford.hivdb.mutations.Apobec;
 import edu.stanford.hivdb.mutations.CodonTranslation;
+import edu.stanford.hivdb.mutations.FrameShift;
 import edu.stanford.hivdb.utilities.NumberFormats;
 import edu.stanford.hivdb.utilities.Sequence;
 

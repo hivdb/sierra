@@ -191,38 +191,50 @@ public class ConditionalComments {
 		}
 		
 		int pos = cc.getMutationPosition();
-		Mutation mut = mutations.get(gene, pos);
-		if (mut == null) {
+		Set<Mutation> posMuts = mutations.get(gene, pos);
+		if (posMuts == null) {
 			// skip if there's no mutation for current condition
 			return null;
 		}
 
 		String aas = cc.getMutationAAs();
-		if (mut.isInsertion()) {
-			if (!aas.contains("_")) {
-				// skip if the corresponding mutation is insertion
-				// but not insertion in current condition
-				return null;
+		Mutation resultMut = null;
+		for (Mutation mut : posMuts) {
+			if (mut.isInsertion()) {
+				if (!aas.contains("_")) {
+					// skip if the corresponding mutation is insertion
+					// but not insertion in current condition
+					continue;
+				}
+				// remove details
+				resultMut = new Mutation(gene, pos, '_');
+				break;
 			}
-			// remove details
-			mut = new Mutation(gene, pos, '_');
+			else {
+				aas = aas.replace("_", "");
+				if (!mut.containsSharedAA(aas)) {
+					continue;
+				}
+				if (mut.isDeletion()) {
+					resultMut = mut;
+				} else {
+					resultMut = mut.intersectsWith(new Mutation(gene, pos, aas));
+				}
+				break;
+			}
 		}
-		else {
-			aas = aas.replace("_", "");
-			if (!mut.containsSharedAA(aas)) {
-				return null;
-			}
-			mut = mut.intersectsWith(new Mutation(gene, pos, aas));
+		if (resultMut == null) {
+			return null;
 		}
 		List<String> highlight = new ArrayList<>();
-		highlight.add(mut.getHumanFormat());
+		highlight.add(resultMut.getHumanFormat());
 
 		return new BoundComment(
 			cc.commentName, cc.drugClass,
-			CommentType.fromMutType(mut.getPrimaryType()),
-			cc.comment.replaceAll(WILDCARD_REGEX, mut.getHumanFormat()),
+			CommentType.fromMutType(resultMut.getPrimaryType()),
+			cc.comment.replaceAll(WILDCARD_REGEX, resultMut.getHumanFormat()),
 			highlight,
-			mut
+			resultMut
 		);
 	}
 	

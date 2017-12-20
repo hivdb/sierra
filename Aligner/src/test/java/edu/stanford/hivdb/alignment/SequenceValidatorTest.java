@@ -79,13 +79,13 @@ public class SequenceValidatorTest {
 		Sequence seq1 = new Sequence("overlap_test", seqStr);
 		Sequence seq2 = new Sequence(
 			"overlap_test_2", seqStr.replace("MTTGGTTGCACT", "MTTGGTAAAACT"));
-		AlignedSequence alignedSeq = NucAminoAligner.align(seq1);
+		AlignedSequence alignedSeq = Aligner.align(seq1);
 		SequenceValidator validator = spy(new SequenceValidator(alignedSeq));
 		assertFalse(validator.validateLongGap());
 		verify(validator, times(1))
 		.addValidationResult("overlap", Gene.RT, "CAGMTTGGTTGC...");
 
-		alignedSeq = NucAminoAligner.align(seq2);
+		alignedSeq = Aligner.align(seq2);
 		validator = spy(new SequenceValidator(alignedSeq));
 		assertFalse(validator.validateLongGap());
 		verify(validator, times(1))

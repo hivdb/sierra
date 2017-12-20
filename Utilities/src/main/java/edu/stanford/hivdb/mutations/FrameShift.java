@@ -16,12 +16,11 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package edu.stanford.hivdb.alignment;
+package edu.stanford.hivdb.mutations;
 
 import java.util.List;
 import java.util.Map;
 
-import edu.stanford.hivdb.mutations.Gene;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 

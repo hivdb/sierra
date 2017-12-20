@@ -58,9 +58,9 @@ public class DrugResistanceDef {
 		.value("R", Asi.SIREnum.R, "Resistance level.")
 		.build();
 
-	private static DataFetcher drugScoresDataFetcher = new DataFetcher() {
+	private static DataFetcher<List<Map<String, Object>>> drugScoresDataFetcher = new DataFetcher<List<Map<String, Object>>>() {
 		@Override
-		public Object get(DataFetchingEnvironment environment) {
+		public List<Map<String, Object>> get(DataFetchingEnvironment environment) {
 			DrugClass drugClassArg = environment.getArgument("drugClass");
 			GeneDR geneDR = (GeneDR) environment.getSource();
 			Gene gene = geneDR.getGene();
@@ -108,9 +108,9 @@ public class DrugResistanceDef {
 		}
 	};
 
-	private static DataFetcher mutationsByTypesDataFetcher = new DataFetcher() {
+	private static DataFetcher<List<Map<String, Object>>> mutationsByTypesDataFetcher = new DataFetcher<List<Map<String, Object>>>() {
 		@Override
-		public Object get(DataFetchingEnvironment environment) {
+		public List<Map<String, Object>> get(DataFetchingEnvironment environment) {
 			GeneDR geneDR = (GeneDR) environment.getSource();
 			Gene gene = geneDR.getGene();
 			return gene.getMutationTypes()
@@ -125,9 +125,9 @@ public class DrugResistanceDef {
 		}
 	};
 
-	private static DataFetcher commentsByTypesDataFetcher = new DataFetcher() {
+	private static DataFetcher<List<Map<String, Object>>> commentsByTypesDataFetcher = new DataFetcher<List<Map<String, Object>>>() {
 		@Override
-		public Object get(DataFetchingEnvironment environment) {
+		public List<Map<String, Object>> get(DataFetchingEnvironment environment) {
 			GeneDR geneDR = (GeneDR) environment.getSource();
 			return geneDR.groupCommentsByTypes()
 				.entrySet()

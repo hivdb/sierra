@@ -120,15 +120,14 @@ public class MutationSetDef {
 
 	public static Builder newMutationSet(String name) {
 
-		final class MutationSetDataFetcher extends ExtendedPropertyDataFetcher {
+		final class MutationSetDataFetcher extends ExtendedPropertyDataFetcher<MutationSet> {
 
 			public MutationSetDataFetcher(String propertyName) {
 				super(propertyName);
 			}
 
 			@Override
-			protected Object postProcess(Object object, DataFetchingEnvironment environment) {
-				MutationSet mutations = (MutationSet) object;
+			protected MutationSet postProcess(MutationSet mutations, DataFetchingEnvironment environment) {
 				List<?> filterOptions = environment.getArgument("filterOptions");
 				if (filterOptions == null) { filterOptions = new ArrayList<>(); }
 				for (Object filterOption : filterOptions) {

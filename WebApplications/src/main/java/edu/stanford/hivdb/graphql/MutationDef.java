@@ -22,7 +22,10 @@ import graphql.schema.*;
 import static graphql.Scalars.*;
 import static graphql.schema.GraphQLObjectType.newObject;
 
+import java.util.List;
+
 import edu.stanford.hivdb.drugresistance.database.ConditionalComments;
+import edu.stanford.hivdb.drugresistance.database.ConditionalComments.BoundComment;
 import edu.stanford.hivdb.mutations.MutType;
 import edu.stanford.hivdb.mutations.Mutation;
 
@@ -45,9 +48,9 @@ public class MutationDef {
 	public static GraphQLEnumType oMutationType = newMutationType()
 		.build();
 
-	private static DataFetcher commentsDataFetcher = new DataFetcher() {
+	private static DataFetcher<List<BoundComment>> commentsDataFetcher = new DataFetcher<List<BoundComment>>() {
 		@Override
-		public Object get(DataFetchingEnvironment environment) {
+		public List<BoundComment> get(DataFetchingEnvironment environment) {
 			Mutation mut = (Mutation) environment.getSource();
 			return ConditionalComments.getComments(mut);
 		}
@@ -115,15 +118,15 @@ public class MutationDef {
 			.type(GraphQLBoolean)
 			.name("isApobecMutation")
 			.description(
-				"The mutation is an APOBEC-mediated G-to-A " +
+				"The mutation is a signature APOBEC-mediated G-to-A " +
 				"hypermutation or not.")
 			.build())
 		.field(newFieldDefinition()
 			.type(GraphQLBoolean)
 			.name("isApobecDRM")
 			.description(
-				"The mutation is an APOBEC drug " +
-				"resistance mutation (DRM) or not.")
+				"The mutation is a drug resistance mutation (DRM) might " +
+				"be caused by APOBEC-mediated G-to-A hypermutation or not.")
 			.build())
 		.field(newFieldDefinition()
 			.type(GraphQLBoolean)
@@ -137,6 +140,12 @@ public class MutationDef {
 				.description(
 					"If the mutation is a drug resistance mutation (DRM) or not.")
 				.build())
+		.field(newFieldDefinition()
+			.type(GraphQLBoolean)
+			.name("isDRM")
+			.description(
+				"If the mutation is a drug resistance mutation (DRM) or not.")
+			.build())
 		.field(newFieldDefinition()
 			.type(GraphQLBoolean)
 			.name("hasStop")

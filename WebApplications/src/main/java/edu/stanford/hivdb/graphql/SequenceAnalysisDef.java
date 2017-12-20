@@ -36,7 +36,6 @@ import edu.stanford.hivdb.drugresistance.GeneDR;
 import edu.stanford.hivdb.drugresistance.GeneDRFast;
 import edu.stanford.hivdb.genotyper.BoundGenotype;
 import edu.stanford.hivdb.genotyper.HIVGenotypeResult;
-import edu.stanford.hivdb.mutations.Gene;
 import edu.stanford.hivdb.subtype.Subtype;
 
 import static edu.stanford.hivdb.graphql.UnalignedSequenceDef.*;
@@ -44,7 +43,7 @@ import static edu.stanford.hivdb.graphql.MutationSetDef.*;
 import static edu.stanford.hivdb.graphql.GeneDef.*;
 import static edu.stanford.hivdb.graphql.FrameShiftDef.*;
 import static edu.stanford.hivdb.graphql.SubtypeDef.*;
-import static edu.stanford.hivdb.graphql.AlignedSequenceDef.*;
+import static edu.stanford.hivdb.graphql.AlignedGeneSequenceDef.*;
 import static edu.stanford.hivdb.graphql.DrugResistanceDef.*;
 import static edu.stanford.hivdb.graphql.ValidationResultDef.*;
 import static edu.stanford.hivdb.graphql.SubtypeV2Def.*;
@@ -94,8 +93,8 @@ public class SequenceAnalysisDef {
 		@Override
 		public List<GeneDR> get(DataFetchingEnvironment environment) {
 			AlignedSequence alignedSeq = (AlignedSequence) environment.getSource();
-			Map<Gene, AlignedGeneSeq> geneSeqMap = alignedSeq.getAlignedGeneSequenceMap();
-			return new ArrayList<>(GeneDRFast.getResistanceByGene(geneSeqMap).values());
+			List<AlignedGeneSeq> geneSeqs = alignedSeq.getAlignedGeneSequences();
+			return new ArrayList<>(GeneDRFast.getResistanceByGeneFromAlignedGeneSeqs(geneSeqs).values());
 		}
 	};
 

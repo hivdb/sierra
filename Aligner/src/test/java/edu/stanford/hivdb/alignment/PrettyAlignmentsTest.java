@@ -43,17 +43,15 @@ public class PrettyAlignmentsTest {
 		}
 		final InputStream testSequenceInputStream = TestSequencesFiles.getTestSequenceInputStream(TestSequencesProperties.MALDARELLI2);
 		final List<Sequence> sequences = FastaUtils.readStream(testSequenceInputStream);
-		Map <Sequence, Map<Gene, AlignedGeneSeq>> allAligneds =
-				Aligner.parallelAlign(sequences).stream()
-				.collect(Collectors.toMap(
-					as -> as.getInputSequence(),
-					as -> as.getAlignedGeneSequenceMap()
-				));
+		Map<Sequence, AlignedSequence> allAligneds = (
+			Aligner.parallelAlign(sequences)
+			.stream().collect(Collectors.toMap(as -> as.getInputSequence(), as -> as))
+		);
 		for (Gene gene : Gene.values()) {
 			List<AlignedGeneSeq> alignmentResults = new ArrayList<>();
 
 			for (Sequence seq : sequences) {
-				AlignedGeneSeq alignedGeneSeq = allAligneds.get(seq).get(gene);
+				AlignedGeneSeq alignedGeneSeq = allAligneds.get(seq).getAlignedGeneSequence(gene);
 				if (alignedGeneSeq != null) {
 					alignmentResults.add(alignedGeneSeq);
 				}

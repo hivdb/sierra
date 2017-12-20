@@ -16,12 +16,17 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package edu.stanford.hivdb.alignment;
+package edu.stanford.hivdb.utilities;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
 import org.apache.commons.lang3.StringUtils;
 
+import edu.stanford.hivdb.mutations.FrameShift;
 import edu.stanford.hivdb.mutations.Gene;
 import edu.stanford.hivdb.mutations.Mutation;
 import edu.stanford.hivdb.mutations.MutationSet;
@@ -34,22 +39,25 @@ public class PrettyPairwise {
 	private List<String> mutationLine = new ArrayList<>();
 
 
-	private PrettyPairwise() {};
 	public List<String> getPositionLine() { return positionLine; }
 	public List<String> getRefAALine() { return refAALine; }
 	public List<String> getAlignedNAsLine() { return alignedNAsLine; }
 	public List<String> getMutationLine() { return mutationLine; }
 
 
-	public static PrettyPairwise createPrettyAlignment(Gene gene, AlignedGeneSeq alignedGeneSeq) {
-		PrettyPairwise prettyPairwise = new PrettyPairwise();
-		String alignedNAs = alignedGeneSeq.getAlignedNAs();
+	public PrettyPairwise(
+			final Gene gene, final String alignedNAs, final int firstAA,
+			final MutationSet mutations, Collection<FrameShift> frameShifts) {
 		int numAAs = (int) alignedNAs.length()/3;
-		int refFirstAA = alignedGeneSeq.getFirstAA();
-		MutationSet mutations = alignedGeneSeq.getMutations();
+		Map<Integer, FrameShift> fsInsMap = (
+			frameShifts.stream()
+			.filter(fs -> fs.isInsertion())
+			.collect(Collectors.toMap(
+				fs -> fs.getPosition(),
+				fs -> fs)));
 
 		for (int i=0; i<numAAs; i++) {
-			int aaPos = refFirstAA + i;
+			int aaPos = firstAA + i;
 			String fmtAAPos;
 			if (aaPos <100) {
 				fmtAAPos = String.format("%2d ", aaPos);
@@ -58,15 +66,16 @@ public class PrettyPairwise {
 			}
 			String fmtAACons = String.format(" %1s ", gene.getConsensus(aaPos));
 			String codon = alignedNAs.substring(i*3, (i*3) + 3);
-			Mutation mut = mutations.get(gene, aaPos);
+			Mutation mut = mutations.getMerged(gene, aaPos);
 
 			if (mut == null) {
-				prettyPairwise.positionLine.add(fmtAAPos);
-				prettyPairwise.refAALine.add(fmtAACons);
-				prettyPairwise.alignedNAsLine.add(codon);
-				prettyPairwise.mutationLine.add(" - ");
+				this.positionLine.add(fmtAAPos);
+				this.refAALine.add(fmtAACons);
+				this.alignedNAsLine.add(codon);
+				this.mutationLine.add(" - ");
 
-			} else if ( mut.isInsertion()){
+			} else if (mut.isInsertion()){
+				// TODO: what about NGS insertion?
 
 				// Get information about the insertion
 				String insertedNAs = mut.getInsertedNAs();
@@ -85,10 +94,10 @@ public class PrettyPairwise {
 				char[] insertedAAs = insertionAAText[1].toCharArray();
 
 				// Handle the position with the insertion
-				prettyPairwise.positionLine.add(fmtAAPos);
-				prettyPairwise.refAALine.add(fmtAACons);
-				prettyPairwise.alignedNAsLine.add(codon);
-				prettyPairwise.mutationLine.add(fmtPreInsertionAA);
+				this.positionLine.add(fmtAAPos);
+				this.refAALine.add(fmtAACons);
+				this.alignedNAsLine.add(codon);
+				this.mutationLine.add(fmtPreInsertionAA);
 
 				// If the insertedAAs longer than 1, split the insertion per codon
 				for (int j = 0; j < insertedAAs.length; j ++) {
@@ -98,22 +107,22 @@ public class PrettyPairwise {
 					String fmtInsertedAAs = " " + insertedAAs[j] + " ";
 
 					//Handle the insertion
-					prettyPairwise.positionLine.add(insertedSpaces);
-					prettyPairwise.refAALine.add(insertedSpaces);
-					prettyPairwise.alignedNAsLine.add(insertedNAs.substring(j * 3, j * 3 + 3));
-					prettyPairwise.mutationLine.add(fmtInsertedAAs);
+					this.positionLine.add(insertedSpaces);
+					this.refAALine.add(insertedSpaces);
+					this.alignedNAsLine.add(insertedNAs.substring(j * 3, j * 3 + 3));
+					this.mutationLine.add(fmtInsertedAAs);
 				}
 
 			} else if (mut.isDeletion()) {
-				prettyPairwise.positionLine.add(fmtAAPos);
-				prettyPairwise.refAALine.add(fmtAACons);
-				prettyPairwise.alignedNAsLine.add(codon);
-				prettyPairwise.mutationLine.add("Del");
+				this.positionLine.add(fmtAAPos);
+				this.refAALine.add(fmtAACons);
+				this.alignedNAsLine.add(codon);
+				this.mutationLine.add("Del");
 
 			} else {
-				prettyPairwise.positionLine.add(fmtAAPos);
-				prettyPairwise.refAALine.add(fmtAACons);
-				prettyPairwise.alignedNAsLine.add(codon);
+				this.positionLine.add(fmtAAPos);
+				this.refAALine.add(fmtAACons);
+				this.alignedNAsLine.add(codon);
 				String mutAAs = mut.getAAsWithConsFirst();
 				String fmtMutAAs;
 				if (mutAAs.length() == 1) {
@@ -123,32 +132,24 @@ public class PrettyPairwise {
  				} else {
  					fmtMutAAs = mutAAs;
  				}
-				prettyPairwise.mutationLine.add(fmtMutAAs);
+				this.mutationLine.add(fmtMutAAs);
 			}
 
-			FrameShift fsInsertion = alignedGeneSeq.checkPosForFrameShiftInsertion(aaPos);
-			if (fsInsertion != null) {
-				//System.out.println("  FrameShiftInsertion: Pos:" + aaPos + " FS:" + fsInsertion);
+			FrameShift fsIns = fsInsMap.get(aaPos);
+			if (fsIns != null) {
 				// Get Frameshift data
-				String insertionNAs = fsInsertion.getNAs();
-				int insertionSize = fsInsertion.getSize();
+				String insertionNAs = fsIns.getNAs();
+				int insertionSize = fsIns.getSize();
 				int numMissingNAs = 3 - insertionSize%3;
 				String allotedSpace = StringUtils.repeat(" ", insertionSize + numMissingNAs);
 
-				prettyPairwise.positionLine.add(allotedSpace);
-				prettyPairwise.refAALine.add(allotedSpace);
-				prettyPairwise.alignedNAsLine.add(insertionNAs + StringUtils.repeat(" ", numMissingNAs));
-				prettyPairwise.mutationLine.add(StringUtils.repeat("^", insertionSize) +
+				this.positionLine.add(allotedSpace);
+				this.refAALine.add(allotedSpace);
+				this.alignedNAsLine.add(insertionNAs + StringUtils.repeat(" ", numMissingNAs));
+				this.mutationLine.add(StringUtils.repeat("^", insertionSize) +
 						StringUtils.repeat(" ", numMissingNAs));
 			}
 		}
-		return prettyPairwise;
 	}
-
-
-
-
-
-
 
 }

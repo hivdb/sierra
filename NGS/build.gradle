@@ -1,0 +1,37 @@
+plugins {
+    id "org.gradle.java"
+    id "org.gradle.jacoco"
+    id "org.gradle.eclipse"
+    id "com.scuilion.syntastic" version "0.3.6"
+}
+
+group = 'edu.stanford.hivdb'
+version = '2.2.0'
+
+description = """NGS"""
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+     mavenCentral()
+}
+
+dependencies {
+    // This dependency is exported to consumers, that is to say found on their compile classpath.
+    compile 'org.apache.commons:commons-math3:3.6.1'
+
+    // This dependency is used internally, and not exposed to consumers on their own compile classpath.
+    compile 'com.google.guava:guava:21.0'
+
+    compile(project(':Utilities')) {
+        exclude module: 'testutils'
+        exclude group: 'junit'
+        exclude group: 'org.mockito'
+    }
+    compile(project(':hiv-genotyper'))
+
+    // Use JUnit test framework
+    testCompile 'junit:junit:4.12'
+}
+

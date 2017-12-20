@@ -46,6 +46,7 @@ import com.amazonaws.services.lambda.model.InvokeRequest;
 import com.amazonaws.services.lambda.model.InvokeResult;
 import com.google.gson.reflect.TypeToken;
 
+import edu.stanford.hivdb.mutations.FrameShift;
 import edu.stanford.hivdb.mutations.Gene;
 import edu.stanford.hivdb.mutations.Mutation;
 import edu.stanford.hivdb.utilities.FastaUtils;
@@ -64,9 +65,6 @@ import edu.stanford.hivdb.utilities.Sequence;
  *
  */
 public class NucAminoAligner {
-	private static final String NUCAMINO_PROGRAM_PATH = "NUCAMINO_PROGRAM";
-	private static final String NUCAMINO_AWS_LAMBDA = "NUCAMINO_AWS_LAMBDA";
-
 	private static final Map<Gene, Integer[]> GENE_AA_RANGE;
 
 	private static final Map<Gene, Integer> MIN_NUM_OF_SITES_PER_GENE;
@@ -202,7 +200,7 @@ public class NucAminoAligner {
 				.collect(Collectors.toList());
 		}
 		List<String> jsonStrings;
-		String awsFunc = System.getenv(NUCAMINO_AWS_LAMBDA);
+		String awsFunc = System.getenv("NUCAMINO_AWS_LAMBDA");
 		if (awsFunc == null || awsFunc.equals("")) {
 			jsonStrings = localNucamino(preparedSeqs);
 		} else {
@@ -523,7 +521,7 @@ public class NucAminoAligner {
 	 * @return cmd.toString()
 	 */
 	private static String[] generateCmd() {
-		String executable = System.getenv(NUCAMINO_PROGRAM_PATH);
+		String executable = System.getenv("NUCAMINO_PROGRAM");
 		if (executable == null) {
 			// use "nucamino" as default program path
 			executable = "nucamino";

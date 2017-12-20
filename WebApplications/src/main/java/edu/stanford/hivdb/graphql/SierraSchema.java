@@ -19,6 +19,7 @@
 package edu.stanford.hivdb.graphql;
 
 import graphql.schema.*;
+import graphql.schema.GraphQLObjectType.Builder;
 
 import static graphql.Scalars.*;
 import static graphql.schema.GraphQLArgument.newArgument;
@@ -38,6 +39,7 @@ import edu.stanford.hivdb.mutations.Gene;
 import edu.stanford.hivdb.mutations.Mutation;
 import edu.stanford.hivdb.mutations.MutationPrevalences;
 import edu.stanford.hivdb.mutations.MutationSet;
+import edu.stanford.hivdb.ngs.SequenceReads;
 import edu.stanford.hivdb.utilities.Sequence;
 
 import static edu.stanford.hivdb.graphql.Exceptions.*;
@@ -48,6 +50,7 @@ import static edu.stanford.hivdb.graphql.SierraVersionDef.*;
 import static edu.stanford.hivdb.graphql.MutationPrevalenceDef.oMutationPrevalenceSubtype;
 import static edu.stanford.hivdb.graphql.ExtendedFieldDefinition.newFieldDefinition;
 import static edu.stanford.hivdb.graphql.SequenceAnalysisDef.oSequenceAnalysis;
+import static edu.stanford.hivdb.graphql.SequenceReadsAnalysisDef.*;
 import static edu.stanford.hivdb.graphql.MutationsAnalysisDef.oMutationsAnalysis;
 
 public class SierraSchema {
@@ -67,6 +70,20 @@ public class SierraSchema {
 				List<Sequence> seqList = toSequenceList(seqs);
 
 				return Aligner.parallelAlign(seqList);
+			}
+
+		};
+	}
+
+	private static DataFetcher<List<SequenceReads>> getSequenceReadsAnalysisDataFetcher() {
+		return new DataFetcher<List<SequenceReads>>() {
+			@Override
+			public List<SequenceReads> get(DataFetchingEnvironment environment) {
+				List<Map<String, Object>> seqReads = environment.getArgument("sequenceReads");
+				return (
+					seqReads.stream()
+					.map(s -> toSequenceReadsList(s))
+					.collect(Collectors.toList()));
 			}
 
 		};
@@ -139,8 +156,7 @@ public class SierraSchema {
 	};
 
 	// https://github.com/facebook/relay/issues/112
-	public static GraphQLObjectType oViewer = newObject()
-		.name("Viewer")
+	public static Builder oViewerBuilder = newObject()
 		.field(newFieldDefinition()
 			.type(oHivdbVersion)
 			.name("currentVersion")
@@ -163,6 +179,17 @@ public class SierraSchema {
 				.description("Sequences to be analyzed.")
 				.build())
 			.dataFetcher(getSequenceAnalysisDataFetcher())
+			.build())
+		.field(newFieldDefinition()
+			.type(new GraphQLList(oSequenceReadsAnalysis))
+			.name("sequenceReadsAnalysis")
+			.description("Analyze sequence reads and output results.")
+			.argument(newArgument()
+				.name("sequenceReads")
+				.type(new GraphQLList(iSequenceReads))
+				.description("Sequence reads to be analyzed.")
+				.build())
+			.dataFetcher(getSequenceReadsAnalysisDataFetcher())
 			.build())
 		.field(newFieldDefinition()
 			.type(oMutationsAnalysis)
@@ -194,7 +221,7 @@ public class SierraSchema {
 			.description("List all supported genes.")
 			.argument(newArgument()
 				.name("names")
-				.type(new GraphQLList(oGeneEnum))
+				.type(new GraphQLList(enumGene))
 				.description("Genes to be requested.")
 				.build())
 			.dataFetcher(geneDataFetcher)
@@ -204,17 +231,19 @@ public class SierraSchema {
 			.name("mutationPrevalenceSubtypes")
 			.description("List all supported HIV-1 subtypes by mutation prevalence.")
 			.dataFetcher(mutationPrevalenceSubtypesDataFetcher)
-			.build())
-		.build();
+			.build());
+	
+	public static GraphQLObjectType oViewer = oViewerBuilder.name("Viewer").build();
 
-	public static GraphQLObjectType oRoot = newObject()
+	public static GraphQLObjectType oRoot = oViewerBuilder
 		.name("Root")
-		.field(newFieldDefinition()
+		.field(field -> field
 			.type(oViewer)
 			.name("viewer")
-			.description("Root viewer of all accessiable objects.")
-			.dataFetcher(rootDataFetcher)
-			.build())
+			.description(
+				"Root viewer of all accessiable objects. An alternative way to " +
+				"access the root fields.")
+			.dataFetcher(rootDataFetcher))
 		.build();
 
 	public static GraphQLSchema schema = GraphQLSchema.newSchema()

@@ -109,7 +109,7 @@ public class PrettyAlignments {
 				if (pos < seqFirstPos || pos > seqLastPos) {
 					aas = ".";
 				} else {
-					Mutation mut = mutations.get(gene, pos);
+					Mutation mut = mutations.getMerged(gene, pos);
 					if (mut == null) {
 						aas = "-";
 					} else {

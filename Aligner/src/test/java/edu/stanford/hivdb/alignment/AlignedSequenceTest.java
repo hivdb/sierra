@@ -35,7 +35,7 @@ public class AlignedSequenceTest {
 	@Test
 	public void testEmptySeq() {
 		Sequence seq = new Sequence("empty", "EMPTY");
-		AlignedSequence alignedSeq = NucAminoAligner.align(seq);
+		AlignedSequence alignedSeq = Aligner.align(seq);
 		assertTrue(alignedSeq.isEmpty());
 		assertEquals(Collections.emptyMap(), alignedSeq.getAlignedGeneSequenceMap());
 		assertEquals(Collections.emptyList(), alignedSeq.getAlignedGeneSequences());
@@ -86,7 +86,7 @@ public class AlignedSequenceTest {
 
 		Sequence seq = sample.getSequence();
 
-		AlignedSequence alignedSeq = NucAminoAligner.align(seq);
+		AlignedSequence alignedSeq = Aligner.align(seq);
 
 		assertEquals(Collections.emptyList(), alignedSeq.getValidationResults());
 
@@ -130,7 +130,7 @@ public class AlignedSequenceTest {
 
 		Sequence seq = sample.getSequence();
 
-		AlignedSequence alignedSeq = NucAminoAligner.align(seq);
+		AlignedSequence alignedSeq = Aligner.align(seq);
 
 		String alignedSeqStr = alignedSeq.getConcatenatedSeq();
 
@@ -172,7 +172,7 @@ public class AlignedSequenceTest {
 
 		Sequence seq = sample.getSequence();
 
-		AlignedSequence alignedSeq = NucAminoAligner.align(seq);
+		AlignedSequence alignedSeq = Aligner.align(seq);
 
 		String alignedSeqStr = alignedSeq.getConcatenatedSeq();
 
@@ -215,7 +215,7 @@ public class AlignedSequenceTest {
 
 		Sequence seq = sample.getSequence();
 
-		AlignedSequence alignedSeq = NucAminoAligner.align(seq);
+		AlignedSequence alignedSeq = Aligner.align(seq);
 
 		String alignedSeqStr = alignedSeq.getConcatenatedSeq();
 
@@ -270,7 +270,7 @@ public class AlignedSequenceTest {
 
 		Sequence seq = sample.getSequence();
 
-		AlignedSequence alignedSeq = NucAminoAligner.align(seq);
+		AlignedSequence alignedSeq = Aligner.align(seq);
 
 		String alignedSeqStr = alignedSeq.getConcatenatedSeq();
 
@@ -301,7 +301,7 @@ public class AlignedSequenceTest {
 
 		Sequence seq = sample.getSequence();
 
-		AlignedSequence alignedSeq = NucAminoAligner.align(seq);
+		AlignedSequence alignedSeq = Aligner.align(seq);
 
 		String alignedSeqStr = alignedSeq.getConcatenatedSeq();
 
@@ -332,8 +332,7 @@ public class AlignedSequenceTest {
 
 		Sequence seq = sample.getSequence();
 
-		AlignedSequence alignedSeq = NucAminoAligner.align(seq);
-;
+		AlignedSequence alignedSeq = Aligner.align(seq);
 
 		String alignedSeqStr = alignedSeq.getConcatenatedSeq();
 

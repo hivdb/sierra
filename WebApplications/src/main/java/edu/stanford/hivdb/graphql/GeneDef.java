@@ -27,46 +27,41 @@ import edu.stanford.hivdb.mutations.Gene;
 
 public class GeneDef {
 
-	public static GraphQLEnumType oGeneEnum;
+	public static GraphQLEnumType enumGene;
 	public static GraphQLObjectType oGene;
 
 	static {
-		GraphQLEnumType.Builder newGeneEnum =
-			GraphQLEnumType.newEnum().name("GeneEnum");
+		GraphQLEnumType.Builder newEnumGene =
+			GraphQLEnumType.newEnum().name("EnumGene");
 		for (Gene gene : Gene.values()) {
-			newGeneEnum.value(gene.toString(), gene);
+			newEnumGene.value(gene.toString(), gene);
 		}
-		oGeneEnum = newGeneEnum.build();
+		enumGene = newEnumGene.build();
 
 	oGene = newObject()
 		.name("Gene")
 		.description("HIV genes. Accept PR, RT or IN.")
-		.field(newFieldDefinition()
-			.type(oGeneEnum)
+		.field(field -> field
+			.type(enumGene)
 			.name("name")
 			.description("Name of the gene.")
-			.dataFetcher(pipeLineDataFetcher)
-			.build())
-		.field(newFieldDefinition()
+			.dataFetcher(pipeLineDataFetcher))
+		.field(field -> field
 			.type(GraphQLString)
 			.name("consensus")
-			.description("(Type B) consensus sequence of the gene.")
-			.build())
-		.field(newFieldDefinition()
+			.description("(Type B) consensus sequence of the gene."))
+		.field(field -> field
 			.type(GraphQLInt)
 			.name("length")
-			.description("Length of current gene.")
-			.build())
-		.field(newFieldDefinition()
+			.description("Length of current gene."))
+		.field(field -> field
 			.type(new GraphQLList(new GraphQLTypeReference("DrugClass")))
 			.name("drugClasses")
-			.description("Supported drug classes of current gene.")
-			.build())
-		.field(newFieldDefinition()
+			.description("Supported drug classes of current gene."))
+		.field(field -> field
 			.type(new GraphQLList(new GraphQLTypeReference("MutationType")))
 			.name("mutationTypes")
-			.description("Supported mutation types of current gene.")
-			.build())
+			.description("Supported mutation types of current gene."))
 		.build();
 	}
 
