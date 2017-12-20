@@ -20,9 +20,9 @@ package edu.stanford.hivdb.alignment;
 
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.junit.Test;
 
@@ -37,10 +37,18 @@ public class PrettyAlignmentsTest {
 
 	@Test
 	public void test() {
+		final boolean isTravisBuild = System.getenv().get("TRAVIS") == "true";
+		if (isTravisBuild) {
+			return;
+		}
 		final InputStream testSequenceInputStream = TestSequencesFiles.getTestSequenceInputStream(TestSequencesProperties.MALDARELLI2);
 		final List<Sequence> sequences = FastaUtils.readStream(testSequenceInputStream);
 		Map <Sequence, Map<Gene, AlignedGeneSeq>> allAligneds =
-				Aligner.parallelAlign(new HashSet<>(sequences));
+				Aligner.parallelAlign(sequences).stream()
+				.collect(Collectors.toMap(
+					as -> as.getInputSequence(),
+					as -> as.getAlignedGeneSequenceMap()
+				));
 		for (Gene gene : Gene.values()) {
 			List<AlignedGeneSeq> alignmentResults = new ArrayList<>();
 
