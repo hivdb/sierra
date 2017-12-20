@@ -29,6 +29,7 @@ import edu.stanford.hivdb.utilities.TSV;
 import edu.stanford.hivdb.drugs.DrugClass;
 import edu.stanford.hivdb.mutations.Gene;
 import edu.stanford.hivdb.mutations.Apobec;
+import edu.stanford.hivdb.mutations.FrameShift;
 import edu.stanford.hivdb.mutations.MutType;
 import edu.stanford.hivdb.mutations.MutationSet;
 import edu.stanford.hivdb.utilities.NumberFormats;

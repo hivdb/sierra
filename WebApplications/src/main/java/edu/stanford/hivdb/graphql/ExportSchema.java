@@ -30,7 +30,7 @@ import graphql.GraphQL;
 public class ExportSchema {
 
 	private static final ObjectMapper MAPPER = new ObjectMapper();
-	private static final GraphQL GRAPHQL = new GraphQL(SierraSchema.schema);
+	private static final GraphQL GRAPHQL = GraphQL.newGraphQL(SierraSchema.schema).build();
 	private static final String INTROSPECTION_QUERY =
 		"query IntrospectionQuery {\n" +
 		"  __schema {\n" +

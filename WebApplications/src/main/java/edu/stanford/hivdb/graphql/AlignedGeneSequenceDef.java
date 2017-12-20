@@ -27,7 +27,7 @@ import static edu.stanford.hivdb.graphql.MutationSetDef.*;
 import static edu.stanford.hivdb.graphql.GeneDef.*;
 import static edu.stanford.hivdb.graphql.FrameShiftDef.*;
 
-public class AlignedSequenceDef {
+public class AlignedGeneSequenceDef {
 
 	public static GraphQLObjectType oAlignedGeneSequence = newObject()
 		.name("AlignedGeneSequence")
@@ -103,24 +103,6 @@ public class AlignedSequenceDef {
 			.type(new GraphQLList(oFrameShift))
 			.name("frameShifts")
 			.description("All frame shifts found in the aligned sequence.")
-		)
-		.build();
-
-	// TODO: TSV interface?
-	public static GraphQLObjectType oAlignedSequenceSpreadsheet = newObject()
-		.name("AlignedSequenceSpreadsheet")
-		.description(
-			"Summarized spreadsheet output (TSV) " +
-			"for mutiple aligned sequences.")
-		.field(field -> field
-			.type(GraphQLString)
-			.name("header")
-			.description("The header line(s) of TSV output.")
-		)
-		.field(field -> field
-			.type(GraphQLString)
-			.name("body")
-			.description("The body lines of TSV output.")
 		)
 		.build();
 

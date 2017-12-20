@@ -32,6 +32,7 @@ import edu.stanford.hivdb.filetestutils.TestSequencesFiles.TestSequencesProperti
 import edu.stanford.hivdb.utilities.FastaUtils;
 import edu.stanford.hivdb.utilities.Json;
 import graphql.ExceptionWhileDataFetching;
+import graphql.ExecutionInput;
 import graphql.ExecutionResult;
 import graphql.GraphQL;
 import graphql.GraphQLError;
@@ -53,70 +54,48 @@ public class SierraSchemaTest {
 			})
 			.collect(Collectors.toList());
 		arguments.put("sequences", sequences);
-		Object context = null;
+		GraphQL gql = GraphQL.newGraphQL(SierraSchema.schema).build();
+		ExecutionInput input = ExecutionInput.newExecutionInput()
+			.query(
+				"query ($sequences: [UnalignedSequenceInput]) {\n" +
+				//"  viewer {\n" +
+				"    genes { name mutationTypes }\n" +
+				"    sequenceAnalysis(sequences: $sequences) {\n" +
+				"      inputSequence { header MD5 }\n" +
+				"      validationResults { level message }\n" +
+				"      availableGenes { name }\n" +
+				"      mutations {\n" +
+				"        gene { name }\n" +
+				"        consensus\n" +
+				"        position\n" +
+				"        AAs\n" +
+				"        triplet\n" +
+				"        isInsertion\n" +
+				"        isDeletion\n" +
+				"        isIndel\n" +
+				"        isAmbiguous\n" +
+				"        isApobecMutation\n" +
+				"        isApobecDRM\n" +
+				"        hasStop\n" +
+				"        isUnusual\n" +
+				"        types\n" +
+				"        primaryType\n" +
+				"        comments { consensus triggeredAAs type text }\n" +
+				"        shortText\n" +
+				"        text\n" +
+				"      }\n" +
+				"      mixturePcnt\n" +
+				"      subtypes {name, distancePcnt} \n" +
+				"      subtypeText\n" +
+				"      absoluteFirstNA\n" +
+				"      frameShifts {gene {name}, position, isInsertion, isDeletion, size, NAs, text}\n" +
+				"    }\n" +
+				//"  }\n" +
+				"}")
+			.variables(arguments)
+			.build();
 
-		ExecutionResult result = new GraphQL(SierraSchema.schema)
-			.execute(
-			"query ($sequences: [UnalignedSequenceInput]) {\n" +
-			"  viewer {\n" +
-			"  genes { name mutationTypes }\n" +
-			"  sequenceAnalysis(sequences: $sequences) {\n" +
-			"    inputSequence { header MD5 }\n" +
-			"    validationResults { level message }\n" +
-			"    availableGenes { name }\n" +
-			"    mutations {\n" +
-			"      gene { name }\n" +
-			"      consensus\n" +
-			"      position\n" +
-			"      AAs\n" +
-			"      triplet\n" +
-			"      isInsertion\n" +
-			"      isDeletion\n" +
-			"      isIndel\n" +
-			"      isAmbiguous\n" +
-			"      isApobecMutation\n" +
-			"      isApobecDRM\n" +
-			"      hasStop\n" +
-			"      isUnusual\n" +
-			"      types\n" +
-			"      primaryType\n" +
-			"      comments { consensus triggeredAAs type text }\n" +
-			"      shortText\n" +
-			"      text\n" +
-			"    }\n" +
-			"    mixturePcnt\n" +
-			"    subtypes {name, distancePcnt} \n" +
-			"    subtypeText\n" +
-			"    absoluteFirstNA\n" +
-			"    frameShifts {gene {name}, position, isInsertion, isDeletion, size, NAs, text}\n" +
-			/*"    alignedGeneSequences {\n" +
-			"       gene {name length }\n" +
-			"       firstNA lastNA firstAA lastAA\n" +
-			"       matchPcnt frameShifts { text }\n" +
-			"       mutations(filterOptions: [INSERTION]) { text }\n" +
-			"       prettyPairwise { mutationLine }\n" +
-			"    }\n" +
-			"    drugResistance {" +
-			"      gene {name, drugClasses {name fullName drugs {name fullName drugClass {name}} } }" +
-			"      mutationsByTypes {mutationType mutations {text} } \n" +
-			"      drugScores { drugClass{name} drug{name} level score text SIR, partialScores {mutations {text}, score} }\n" +
-			"    }\n" +*/
-			"  }\n" +
-			//"  alignedSequenceSpreadsheet {header body}\n" +
-			//"    mutationPrevalenceSubtypes { name stats {gene{name} totalNaive totalTreated} }\n" +
-			//"mutationsAnalysis(mutations:[\"RT:122*\",\"RT:133*\",\"RT:144X\",\"RT:155X\"]) {\n" +
-			/*"    mutationPrevalences {\n" +
-			"      boundMutation {text}\n" +
-			"	   matched { AA subtypes {\n" +
-			"        percentageNaive\n" +
-			"        percentageTreated\n" +
-			"        subtype {name  } } }\n" +
-			"	   others { AA subtypes { subtype {name} } }\n" +
-			"    }\n" +*/
-			//"  validationResults { level message }\n" +
-			//"}\n" +
-			"  }\n" +
-			"}", context, arguments);
+		ExecutionResult result = gql.execute(input);
 		for (GraphQLError error : result.getErrors()) {
 			if (error instanceof ExceptionWhileDataFetching) {
 				((ExceptionWhileDataFetching) error).getException().printStackTrace();

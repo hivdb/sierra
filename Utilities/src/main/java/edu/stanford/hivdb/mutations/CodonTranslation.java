@@ -19,12 +19,17 @@
 package edu.stanford.hivdb.mutations;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
+
+import org.apache.commons.lang3.StringUtils;
 
 import com.codepoetics.protonpack.StreamUtils;
 import com.google.common.base.Splitter;
@@ -43,6 +48,7 @@ public class CodonTranslation {
 		"S", "K", "B", "D", "H", "V", "N"
 	};
 	private static final Map <String, String []> ambiguityMapping;
+	private static final Map <String, Character> ambiguityInverseMapping;
 	public static final Map <String, String> aaThreeToOneLetter;
 	public static final Map <Character, String> aaOneToThreeLetter;
 	private static Map<String, String> tripletsTable;
@@ -65,6 +71,23 @@ public class CodonTranslation {
 		ambiguityMapping.put("H", new String[]{"A","C","T"});
 		ambiguityMapping.put("V", new String[]{"A","C","G"});
 		ambiguityMapping.put("N", new String[]{"A","C","G","T"});
+
+		ambiguityInverseMapping = new HashMap<String, Character>();
+		ambiguityInverseMapping.put("A", 'A');
+		ambiguityInverseMapping.put("C", 'C');
+		ambiguityInverseMapping.put("G", 'G');
+		ambiguityInverseMapping.put("T", 'T');
+		ambiguityInverseMapping.put("AG", 'R');
+		ambiguityInverseMapping.put("CT", 'Y');
+		ambiguityInverseMapping.put("AC", 'M');
+		ambiguityInverseMapping.put("AT", 'W');
+		ambiguityInverseMapping.put("CG", 'S');
+		ambiguityInverseMapping.put("GT", 'K');
+		ambiguityInverseMapping.put("CGT", 'B');
+		ambiguityInverseMapping.put("AGT", 'D');
+		ambiguityInverseMapping.put("ACT", 'H');
+		ambiguityInverseMapping.put("ACG", 'V');
+		ambiguityInverseMapping.put("ACGT", 'N');
 
 		aaThreeToOneLetter = new HashMap<String, String>();
 		aaThreeToOneLetter.put("Ala","A");
@@ -403,5 +426,38 @@ public class CodonTranslation {
 			}
 		}
 		return codonPossibilities;
+	}
+	
+	/** Returns merged codon may or may not contained IUPAC ambiguity codes.
+	 * 
+	 * @param codons a collection of codons; should be sorted by percent in descending order 
+	 * @return String merged codon
+	 */
+	public static String getMergedCodon(Collection<String> codons) {
+		List<Set<Character>> allBPs = new ArrayList<>();
+		allBPs.add(new TreeSet<>());
+		allBPs.add(new TreeSet<>());
+		allBPs.add(new TreeSet<>());
+		for (String codon : codons) {
+			for (int i=0; i<3; i++) {
+				Set<Character> bps = allBPs.get(i);
+				char bp = codon.charAt(i);
+				// only allows '-' if bps is empty
+				if (bp == '-' && !bps.isEmpty()) {
+					continue;
+				}
+				bps.add(bp);
+			}
+		}
+		StringBuilder resultCodon = new StringBuilder();
+		for (Set<Character> bps : allBPs) {
+			if (bps.contains('-')) {
+				// '-' override any NA codes
+				resultCodon.append('-');
+			} else {
+				resultCodon.append(ambiguityInverseMapping.get(StringUtils.join(bps, "")));
+			}
+		}
+		return resultCodon.toString();
 	}
 }

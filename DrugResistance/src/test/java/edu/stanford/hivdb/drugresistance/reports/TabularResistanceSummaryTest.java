@@ -27,6 +27,7 @@ import java.util.Map;
 import org.junit.Test;
 
 import edu.stanford.hivdb.alignment.AlignedGeneSeq;
+import edu.stanford.hivdb.alignment.AlignedSequence;
 import edu.stanford.hivdb.alignment.Aligner;
 import edu.stanford.hivdb.drugresistance.GeneDR;
 import edu.stanford.hivdb.drugresistance.GeneDRFast;
@@ -94,13 +95,12 @@ public class TabularResistanceSummaryTest {
 		Map<Gene, GeneDR> resistanceResults = new HashMap<>();
 		List<Map<Gene, GeneDR>> allResistanceResults = new ArrayList<>();
 		for (Sequence seq : sequences) {
-			Map<Gene, AlignedGeneSeq> alignmentResults = Aligner.alignGenesToSequence(seq);
-			resistanceResults = GeneDRFast.getResistanceByGene(alignmentResults);
+			AlignedSequence alignedSeq = Aligner.align(seq);
+			List<AlignedGeneSeq> alignmentResults = alignedSeq.getAlignedGeneSequences();
+			resistanceResults = GeneDRFast.getResistanceByGeneFromAlignedGeneSeqs(alignmentResults);
 			allResistanceResults.add(resistanceResults);
 		}
 		return allResistanceResults;
 	}
 
 }
-
-

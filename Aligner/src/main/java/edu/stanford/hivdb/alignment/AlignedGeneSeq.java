@@ -35,8 +35,9 @@ import edu.stanford.hivdb.mutations.Tsms;
 import edu.stanford.hivdb.mutations.Sdrms;
 import edu.stanford.hivdb.mutations.MutType;
 import edu.stanford.hivdb.mutations.CodonTranslation;
+import edu.stanford.hivdb.mutations.FrameShift;
+import edu.stanford.hivdb.utilities.PrettyPairwise;
 import edu.stanford.hivdb.utilities.Sequence;
-import edu.stanford.hivdb.alignment.FrameShift.Type;
 import edu.stanford.hivdb.drugs.DrugClass;
 
 
@@ -77,7 +78,6 @@ public class AlignedGeneSeq {
 	private transient MutationSet sdrms;
 	private transient Map<DrugClass, MutationSet> nonDrmTsms;
 
-	//private final PrettyPairwise prettyPairwise;
 	// This may help for debugging and may be preferable to serialize than mutations
 	@SuppressWarnings("unused")
 	private String mutationListString;
@@ -139,8 +139,6 @@ public class AlignedGeneSeq {
 		this.alignedSites = Collections.unmodifiableList(alignedSites);
 		this.mutations = new MutationSet(mutations);
 		this.frameShifts = Collections.unmodifiableList(frameShifts);
-
-		prettyPairwise = PrettyPairwise.createPrettyAlignment(this.gene, this);
 		mutationListString = getMutationListString();
 	}
 
@@ -226,17 +224,16 @@ public class AlignedGeneSeq {
 
 	public MutationSet getMutations() { return mutations; }  // Need
 	public List<FrameShift> getFrameShifts() { return frameShifts; } // Need
-	public FrameShift checkPosForFrameShiftInsertion(int position) {
 
-		for (FrameShift fs : frameShifts) {
-			if (fs.getType().equals(Type.INSERTION) && fs.getPosition() == position) {
-				return fs;
-			}
+	public PrettyPairwise getPrettyPairwise() {
+		if (prettyPairwise == null) {
+			prettyPairwise = new PrettyPairwise(
+				gene, getAlignedNAs(), firstAA,
+				getMutations(), Collections.emptyList());
 		}
-		return null;
+		return prettyPairwise;
 	}
 
-	public PrettyPairwise getPrettyPairwise() { return prettyPairwise; }
 	public String getMutationListString() { return mutations.join(); } // Need
 
 	public MutationSet getInsertions() { return mutations.getInsertions(); }

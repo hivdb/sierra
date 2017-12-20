@@ -29,6 +29,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import edu.stanford.hivdb.alignment.MutationListValidator;
+import edu.stanford.hivdb.alignment.ValidationResult;
+import edu.stanford.hivdb.drugresistance.GeneDR;
 import edu.stanford.hivdb.drugresistance.GeneDRFast;
 import edu.stanford.hivdb.drugresistance.algorithm.Algorithm;
 import edu.stanford.hivdb.mutations.Gene;
@@ -59,9 +61,9 @@ public class MutationsAnalysisDef {
 		return (MutationSet) data.get(1);
 	}
 
-	private static DataFetcher drugResistanceDataFetcher = new DataFetcher() {
+	private static DataFetcher<List<GeneDR>> drugResistanceDataFetcher = new DataFetcher<List<GeneDR>>() {
 		@Override
-		public Object get(DataFetchingEnvironment environment) {
+		public List<GeneDR> get(DataFetchingEnvironment environment) {
 			Map<Gene, MutationSet> mutationsByGene = getMutationsByGeneFromSource(environment);
 			return mutationsByGene
 				.entrySet()
@@ -71,17 +73,17 @@ public class MutationsAnalysisDef {
 		}
 	};
 
-	private static DataFetcher mutationPrevalencesDataFetcher = new DataFetcher() {
+	private static DataFetcher<List<Map<String, Object>>> mutationPrevalencesDataFetcher = new DataFetcher<List<Map<String, Object>>>() {
 		@Override
-		public Object get(DataFetchingEnvironment environment) {
+		public List<Map<String, Object>> get(DataFetchingEnvironment environment) {
 			MutationSet mutations = getMutationSetFromSource(environment);
 			return getBoundMutationPrevalenceList(mutations);
 		}
 	};
 
-	private static DataFetcher algorithmComparisonDataFetcher = new DataFetcher() {
+	private static DataFetcher<List<Map<String, Object>>> algorithmComparisonDataFetcher = new DataFetcher<List<Map<String, Object>>>() {
 		@Override
-		public Object get(DataFetchingEnvironment environment) {
+		public List<Map<String, Object>> get(DataFetchingEnvironment environment) {
 			List<Algorithm> asiAlgs = environment.getArgument("algorithms");
 			List<Map<String, String>> customAlgs = environment.getArgument("customAlgorithms");
 			if (asiAlgs == null) { asiAlgs = Collections.emptyList(); }
@@ -106,10 +108,10 @@ public class MutationsAnalysisDef {
 		}
 	};
 
-	private static DataFetcher validationResultsDataFetcher = new DataFetcher() {
+	private static DataFetcher<List<ValidationResult>> validationResultsDataFetcher = new DataFetcher<List<ValidationResult>>() {
 
 		@Override
-		public Object get(DataFetchingEnvironment environment) {
+		public List<ValidationResult> get(DataFetchingEnvironment environment) {
 			MutationSet mutations = getMutationSetFromSource(environment);
 			MutationListValidator validator = new MutationListValidator(mutations);
 			return validator.getValidationResults();

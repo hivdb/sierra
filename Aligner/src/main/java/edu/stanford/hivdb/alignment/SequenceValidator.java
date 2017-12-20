@@ -32,6 +32,7 @@ import org.apache.logging.log4j.Logger;
 
 import edu.stanford.hivdb.genotyper.HIVGenotypeResult;
 import edu.stanford.hivdb.mutations.Apobec;
+import edu.stanford.hivdb.mutations.FrameShift;
 import edu.stanford.hivdb.mutations.Gene;
 import edu.stanford.hivdb.mutations.Mutation;
 import edu.stanford.hivdb.mutations.MutationSet;
