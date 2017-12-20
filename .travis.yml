@@ -20,4 +20,4 @@ script:
   - ./gradlew assemble
   - ./gradlew -D java.util.concurrent.ForkJoinPool.common.parallelism=2 check
 after_success:
-  - bash <(curl -s https://codecov.io/bash) -t b969aa2c-ac45-4d0c-8152-9cc482aa5796 || echo "Codecov did not collect coverage reports"
+  - bash <(curl -s https://codecov.io/bash) -t 7af6ff72-0786-4e60-b368-760b022dacc9 || echo "Codecov did not collect coverage reports"
