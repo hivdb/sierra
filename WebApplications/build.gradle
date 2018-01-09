@@ -6,7 +6,7 @@ plugins {
 }
 
 group = 'edu.stanford.hivdb'
-version = '2.2.1-dev'
+version = '2.2.1'
 
 description = """WebApplications Maven Webapp"""
 
