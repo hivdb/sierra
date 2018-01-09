@@ -1,0 +1,1021 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE ALGORITHM SYSTEM 
+  "http://hivdb.stanford.edu/DR/xml/ASI2.dtd">
+
+<!-- Rega algorithm in XML format -->
+<!-- 
+History:
+22-MAY-2017 added DRV/c, TAF rules. D4T, EVG, TDF, RTG, DTG, TPV/r, ATV/r, LPV/r, DRV/r rules change
+08-SEP-O4 TFL updated
+13-JAN-04 TFL updated
+13-NOV-03 TFL updated
+27-NOV-01 BBE Creation
+-->
+
+<ALGORITHM>
+    <ALGNAME>Rega v10.0.0</ALGNAME>
+    <ALGVERSION>10.0.0</ALGVERSION>
+
+    <DEFINITIONS>
+    	<GENE_DEFINITION>
+    	   <NAME>PR</NAME>
+    	   <DRUGCLASSLIST>PI</DRUGCLASSLIST>
+    	</GENE_DEFINITION>
+
+    	<GENE_DEFINITION>
+    	   <NAME>RT</NAME>
+    	   <DRUGCLASSLIST>NNRTI, NRTI</DRUGCLASSLIST>
+    	</GENE_DEFINITION>
+
+    	<GENE_DEFINITION>
+    	   <NAME>IN</NAME>
+    	   <DRUGCLASSLIST>INI</DRUGCLASSLIST>
+    	</GENE_DEFINITION>
+
+    	<GENE_DEFINITION>
+    	   <NAME>FU</NAME>
+    	   <DRUGCLASSLIST>EI</DRUGCLASSLIST>
+    	</GENE_DEFINITION>
+
+        <LEVEL_DEFINITION>
+            <ORDER>1</ORDER>
+            <ORIGINAL>Susceptible GSS 1</ORIGINAL>
+            <SIR>S</SIR>
+        </LEVEL_DEFINITION>
+
+        <LEVEL_DEFINITION>
+            <ORDER>2</ORDER>
+            <ORIGINAL>Susceptible GSS 1.5</ORIGINAL>
+            <SIR>S</SIR>
+        </LEVEL_DEFINITION>
+
+        <LEVEL_DEFINITION>
+            <ORDER>3</ORDER>
+            <ORIGINAL>Intermediate Resistant GSS 0.75</ORIGINAL>
+            <SIR>I</SIR>
+        </LEVEL_DEFINITION>
+
+	<LEVEL_DEFINITION>
+            <ORDER>4</ORDER>
+            <ORIGINAL>Intermediate Resistant GSS 0.5</ORIGINAL>
+            <SIR>I</SIR>
+        </LEVEL_DEFINITION>
+
+	<LEVEL_DEFINITION>
+            <ORDER>5</ORDER>
+            <ORIGINAL>Intermediate Resistant GSS 0.25</ORIGINAL>
+            <SIR>I</SIR>
+        </LEVEL_DEFINITION>
+
+	<LEVEL_DEFINITION>
+            <ORDER>6</ORDER>
+            <ORIGINAL>Resistant GSS 0</ORIGINAL>
+            <SIR>R</SIR>
+        </LEVEL_DEFINITION>
+
+        <DRUGCLASS>
+            <NAME>PI</NAME>
+            <DRUGLIST>IDV/r,SQV/r,NFV,FPV/r,LPV/r,ATV/r,TPV/r,DRV/r</DRUGLIST>
+        </DRUGCLASS>
+
+        <DRUGCLASS>
+            <NAME>NRTI</NAME>
+            <DRUGLIST>AZT,DDI,D4T,3TC,ABC,FTC,TDF</DRUGLIST>
+        </DRUGCLASS>
+
+        <DRUGCLASS>
+            <NAME>NNRTI</NAME>
+            <DRUGLIST>NVP,EFV,ETR,RPV</DRUGLIST>
+        </DRUGCLASS>
+
+	<DRUGCLASS>
+            <NAME>INI</NAME>
+            <DRUGLIST>RAL,EVG,DTG</DRUGLIST>
+        </DRUGCLASS>
+
+        <DRUGCLASS>
+            <NAME>EI</NAME>
+            <DRUGLIST>T20</DRUGLIST>
+        </DRUGCLASS>
+    </DEFINITIONS>
+
+<!-- ********** Begin NRTI drugs ********** -->
+
+    <DRUG>
+        <NAME>AZT</NAME>
+        <RULE>
+	    <CONDITION>            
+	        SELECT ATLEAST 1 FROM (151M,69i)
+            </CONDITION>
+            <ACTIONS><LEVEL>6</LEVEL></ACTIONS>
+        </RULE>
+        <RULE>
+            <CONDITION>
+                SELECT ATLEAST 4 FROM (41L,67GN,69AN,70R,210W,215ACDEGHILNSVFY,219EHNQR)
+	    </CONDITION>
+            <ACTIONS><LEVEL>6</LEVEL></ACTIONS>
+        </RULE>
+        <RULE>
+            <CONDITION>
+                (41L AND 210W AND 215Y AND EXCLUDE 184IV AND EXCLUDE 74V)
+	    </CONDITION>
+            <ACTIONS>
+                <LEVEL>6</LEVEL>
+            </ACTIONS>
+        </RULE>
+	<RULE>
+            <CONDITION>
+                SELECT ATLEAST 3 FROM (67GN,70R,215F,219EQ)
+            </CONDITION>
+            <ACTIONS>
+                <LEVEL>6</LEVEL>
+            </ACTIONS>
+        </RULE>
+	<RULE>
+	    <CONDITION>
+                SELECT ATLEAST 2 AND NOTMORETHAN 3 FROM (41L,67GN,69AN,70R,210W,215ACDEGHILNSVFY,219EHNQR)
+            </CONDITION>
+            <ACTIONS>
+                <LEVEL>4</LEVEL>
+            </ACTIONS>
+        </RULE>
+	<RULE>
+	    <CONDITION>
+                (215ACDEGHILNSVFY AND EXCLUDE 184IV)
+            </CONDITION>
+            <ACTIONS>
+                <LEVEL>4</LEVEL>
+            </ACTIONS>
+        </RULE>
+    </DRUG>   <!-- END AZT -->
+
+    <DRUG>
+        <NAME>DDI</NAME>
+        <RULE>
+            <CONDITION>
+                SELECT ATLEAST 1 FROM (69DGN,69i,151M)
+            </CONDITION>
+            <ACTIONS>
+                <LEVEL>6</LEVEL>
+            </ACTIONS>
+        </RULE>
+	<RULE>
+            <CONDITION>
+                (SELECT ATLEAST 1 FROM (65NR,74IV) AND 184IV)
+            </CONDITION>
+            <ACTIONS>
+                <LEVEL>6</LEVEL>
+            </ACTIONS>
+        </RULE>
+	<RULE>
+	    <CONDITION>
+	        SELECT ATLEAST 5 FROM (41L,67N,70R,74IV,210W,215ACDEGHILNSVFY,219EHNQR)
+            </CONDITION>
+            <ACTIONS>
+                <LEVEL>6</LEVEL>
+            </ACTIONS>
+        </RULE>
+	<RULE>
+	    <CONDITION>
+                 SELECT ATLEAST 1 FROM (65NR,70EG,74IV,75T)
+            </CONDITION>
+            <ACTIONS>
+                 <LEVEL>4</LEVEL>
+            </ACTIONS>
+        </RULE>
+	<RULE>
+	    <CONDITION>
+	        (41L AND 215FY)
+            </CONDITION>
+            <ACTIONS>
+                <LEVEL>4</LEVEL>
+            </ACTIONS>
+        </RULE>
+	<RULE>
+	    <CONDITION>
+	        SELECT ATLEAST 3 AND NOTMORETHAN 4 FROM (41L,67N,70R,210W,215ACDEGHILNSVFY,219EHNQR)
+            </CONDITION>
+            <ACTIONS>
+                <LEVEL>4</LEVEL>
+            </ACTIONS>
+        </RULE>
+    </DRUG>    <!-- END DDI -->
+
+	<DRUG>
+        <NAME>D4T</NAME>
+        <RULE>
+            <CONDITION>
+                 SELECT ATLEAST 1 FROM (65R,67d,69i,75AMST,151M)
+            </CONDITION>
+            <ACTIONS>
+                 <LEVEL>6</LEVEL>
+            </ACTIONS>
+        </RULE>
+        <RULE>
+            <CONDITION>
+                 SELECT ATLEAST 4 FROM (41L,67N,69ADGN,70R,210W,215ACDEGHILNSVFY,219EHNQR)
+            </CONDITION>
+            <ACTIONS>
+                 <LEVEL>6</LEVEL>
+            </ACTIONS>
+        </RULE>
+	<RULE>
+            <CONDITION>
+                (41L AND 210W AND 215Y)
+	    </CONDITION>
+            <ACTIONS>
+                <LEVEL>6</LEVEL>
+            </ACTIONS>
+        </RULE>
+        <RULE>
+            <CONDITION>
+                SELECT ATLEAST 2 AND NOTMORETHAN 3 FROM (41L,67N,69ADGN,70R,210W,215ACDEGHILNSVFY,219EHNQR)
+            </CONDITION>
+            <ACTIONS><LEVEL>4</LEVEL></ACTIONS>
+        </RULE>
+	<RULE>
+	    <CONDITION>
+                (215ACDEGHILNSVFY AND EXCLUDE 184IV)
+            </CONDITION>
+            <ACTIONS>
+                <LEVEL>4</LEVEL>
+            </ACTIONS>
+        </RULE>
+    </DRUG>   <!-- END D4T -->
+
+  
+    <DRUG>
+        <NAME>3TC</NAME>
+        <RULE>
+            <CONDITION>
+                 184VI
+            </CONDITION>
+            <ACTIONS>
+                 <LEVEL>6</LEVEL>
+            </ACTIONS>
+        </RULE>
+        <RULE>
+            <CONDITION>
+                 (65NR AND 151M)
+            </CONDITION>
+            <ACTIONS>
+                <LEVEL>6</LEVEL>
+            </ACTIONS>
+        </RULE>
+	<RULE>
+            <CONDITION>
+	         SELECT ATLEAST 1 FROM (67d,69i,65NR,70EG)
+            </CONDITION>
+            <ACTIONS>
+                 <LEVEL>4</LEVEL>
+            </ACTIONS>
+        </RULE>
+        <RULE>
+            <CONDITION>
+                 SELECT ATLEAST 1 FROM (44AD,118I) AND 
+	         SELECT ATLEAST 3 FROM (41L,67N,69AN,70R,210W,215ACDEGHILNSVFY,219QEHNR) 
+            </CONDITION>
+            <ACTIONS>
+                 <LEVEL>4</LEVEL>
+            </ACTIONS>
+        </RULE>
+	<RULE>
+            <CONDITION> 
+	         (SELECT ATLEAST 3 FROM (75I,77L,116Y) AND 151M)
+            </CONDITION>
+            <ACTIONS>
+                 <LEVEL>4</LEVEL>
+            </ACTIONS>
+        </RULE>
+    </DRUG>    <!-- END 3TC -->
+
+  
+    <DRUG>
+        <NAME>ABC</NAME>
+        <RULE>
+            <CONDITION>
+                SELECT ATLEAST 1 FROM (67d,69G)
+	    </CONDITION>
+            <ACTIONS>
+                <LEVEL>6</LEVEL>
+            </ACTIONS>
+        </RULE>
+        <RULE>
+            <CONDITION>
+	          SELECT ATLEAST 2 FROM (65NR,69i,74IV,115F,151M,184VI) 
+	    </CONDITION>
+            <ACTIONS>
+                <LEVEL>6</LEVEL>
+            </ACTIONS>
+        </RULE>
+	<RULE>
+	    <CONDITION>
+                 (SELECT ATLEAST 3 FROM (41L,67N,70R,210W,215ACDEGHILNSVFY,219QEHNR) AND 69i)
+            </CONDITION>
+            <ACTIONS>
+                <LEVEL>6</LEVEL>
+            </ACTIONS>
+        </RULE>
+        <RULE>
+	    <CONDITION>
+                 SELECT ATLEAST 1 FROM (65NR,74IV,115F,184VI) AND
+                 SELECT ATLEAST 4 FROM (41L,67N,70R,210W,215ACDEGHILNSVFY,219QEHNR)
+            </CONDITION>
+            <ACTIONS>
+                <LEVEL>6</LEVEL>
+            </ACTIONS>
+        </RULE>
+	<RULE>
+	    <CONDITION>
+                 (SELECT ATLEAST 2 FROM (75I,77L,116Y) AND 151M)
+            </CONDITION>
+            <ACTIONS>
+                <LEVEL>6</LEVEL>
+            </ACTIONS>
+        </RULE>
+	<RULE>
+		<CONDITION>
+			SELECT ATLEAST 1 AND NOTMORETHAN 1 FROM (69i,70EG,151M)
+		</CONDITION>
+		<ACTIONS>
+			<LEVEL>4</LEVEL>
+		</ACTIONS>
+	</RULE>
+	<RULE>
+		<CONDITION>
+			SELECT ATLEAST 1 FROM (65NR,74IV,115F,184IV) AND
+			SELECT ATLEAST 2 AND NOTMORETHAN 3 FROM (41L,67N,70R,210W,215ACDEGHILNSVFY,219QEHNR)
+		</CONDITION>
+		<ACTIONS>
+			<LEVEL>4</LEVEL>
+		</ACTIONS>
+	</RULE>
+        <RULE>
+	    <CONDITION>
+	         SELECT ATLEAST 3 FROM (41L,67N,70R,210W,215ACDEGHILNSVYF,219QEHNR)
+            </CONDITION>
+            <ACTIONS>
+                 <LEVEL>4</LEVEL>
+            </ACTIONS>
+	</RULE>
+	    </DRUG>    <!-- END ABC -->
+	<DRUG>
+		<NAME>FTC</NAME>
+		<RULE>
+            <CONDITION>
+                 184VI
+            </CONDITION>
+            <ACTIONS>
+                 <LEVEL>6</LEVEL>
+            </ACTIONS>
+        </RULE>
+        <RULE>
+            <CONDITION>
+                 (65NR AND 151M)
+            </CONDITION>
+            <ACTIONS>
+                <LEVEL>6</LEVEL>
+            </ACTIONS>
+        </RULE>
+	<RULE>
+            <CONDITION>
+	         SELECT ATLEAST 1 FROM (67d,69i,65NR,70EG)
+            </CONDITION>
+            <ACTIONS>
+                 <LEVEL>4</LEVEL>
+            </ACTIONS>
+        </RULE>
+        <RULE>
+            <CONDITION>
+                 SELECT ATLEAST 1 FROM (44AD,118I) AND 
+	         SELECT ATLEAST 3 FROM (41L,67N,69AN,70R,210W,215ACDEGHILNSVFY,219QEHNR) 
+            </CONDITION>
+            <ACTIONS>
+                 <LEVEL>4</LEVEL>
+            </ACTIONS>
+        </RULE>
+	<RULE>
+            <CONDITION> 
+	         (SELECT ATLEAST 3 FROM (75I,77L,116Y) AND 151M)
+            </CONDITION>
+            <ACTIONS>
+                 <LEVEL>4</LEVEL>
+            </ACTIONS>
+        </RULE>
+    </DRUG>    <!-- END FTC -->
+
+    <DRUG>
+        <NAME>TDF</NAME>
+			<RULE>
+				<CONDITION>
+					69i
+				</CONDITION>
+				<ACTIONS>
+					<LEVEL>6</LEVEL>
+				</ACTIONS>
+			</RULE>
+			
+			<RULE>
+				<CONDITION>
+					65NR AND EXCLUDE 184IV
+				</CONDITION>
+				<ACTIONS>
+					<LEVEL>6</LEVEL>
+				</ACTIONS>
+			</RULE>
+		
+			<RULE>
+				<CONDITION>
+					41L AND 210W AND 215Y AND 
+					EXCLUDE 184IV
+				</CONDITION>
+				<ACTIONS>
+					<LEVEL>6</LEVEL>
+				</ACTIONS>
+			</RULE>
+		
+			<RULE>
+				<CONDITION>
+					SELECT ATLEAST 3 FROM (67N,70R,215ACDEGHILNSVYF,219EHNQR) AND 
+					SELECT ATLEAST 1 FROM (41L,210W)
+				</CONDITION>
+				<ACTIONS>
+					<LEVEL>6</LEVEL>
+				</ACTIONS>
+			</RULE>
+        
+			<RULE>
+				<CONDITION>
+					70EG
+				</CONDITION>
+				<ACTIONS>
+					<LEVEL>4</LEVEL>
+				</ACTIONS>
+			</RULE>
+		
+			<RULE>
+				<CONDITION>
+				65NR AND 184IV
+				</CONDITION>
+				<ACTIONS>
+					<LEVEL>4</LEVEL>
+				</ACTIONS>
+			</RULE>
+	
+			<RULE>
+				<CONDITION>
+					41L AND 210W AND 215Y AND 184IV
+				</CONDITION>
+				<ACTIONS>
+					<LEVEL>4</LEVEL>
+				</ACTIONS>
+			</RULE>
+			
+			<RULE>
+				<CONDITION>
+					SELECT ATLEAST 2 FROM (67N,70R,215ACDEGHILNSVFY,219ENQHR) AND
+					SELECT ATLEAST 1 FROM (41L,210W)
+				</CONDITION>
+				<ACTIONS>
+					<LEVEL>4</LEVEL>
+				</ACTIONS>
+			</RULE>
+	
+			<RULE>
+				<CONDITION> 
+					151M AND 75I AND 77L AND 116Y
+				</CONDITION>
+				<ACTIONS>
+					<LEVEL>4</LEVEL>
+				</ACTIONS>
+			</RULE>
+	</DRUG><!-- END TDF -->
+
+	<!-- ********** Begin NNRTI drugs ********** -->
+
+    <DRUG>
+        <NAME>NVP</NAME>
+        <RULE>
+            <CONDITION>
+		 SCORE FROM ( 98G => 0.5,
+                              100I => 2, 
+                              MAX ( 101P => 2, 101EHNQ => 0.5 ),
+                              MAX ( 103HNST => 2, 103R => 0.5 ),
+                              MAX ( 106AM => 2, 106I => 0.5 ),
+                              108I => 0.5,
+                              138KQ => 1, 
+                              179DE => 0.5,
+                              181CIV => 2, 
+                              188CHL => 2, 
+                              190ACEQSTV => 2, 
+                              221Y => 0.5, 
+                              227CL => 1, 
+                              230IL => 2, 
+                              238NT => 1, 
+                              318F => 1 )
+	    </CONDITION>
+            <ACTIONS>
+                 <SCORERANGE>(-INF TO 0.99 => 1, 1 TO 1.99 => 5, 2 TO INF => 6)</SCORERANGE>
+            </ACTIONS>
+	</RULE>   
+    </DRUG>    <!-- END NVP -->
+    
+    <DRUG>
+        <NAME>EFV</NAME>
+        <RULE>
+            <CONDITION>
+		 SCORE FROM ( 90I => 0.5,
+                              98G => 0.5,
+                              100I => 2,
+                              MAX ( 101P => 2, 101EHNQ => 0.5 ),
+                              MAX ( 103HNST => 2, 103R => 0.5 ),
+                              MAX ( 106M => 2, 106A => 1.5, 106I => 0.5 ),
+                              108I => 0.5,
+                              MAX ( 138Q => 1.5, 138K => 0.5 ),
+                              179DE => 0.5,
+                              181CIV => 2,
+                              188CHFL => 2,
+                              190ACEQSTV => 2,
+                              221Y => 0.5,
+                              225H => 1.5,
+                              227CL => 0.5,
+                              230IL => 2,
+                              238NT => 0.5,
+                              318F => 0.5 )
+	    </CONDITION>
+            <ACTIONS>
+                 <SCORERANGE>(-INF TO 0.99 => 1, 1 TO 1.99 => 5, 2 TO INF => 6)</SCORERANGE>
+            </ACTIONS>
+	</RULE>    
+    </DRUG>    <!-- END EFV -->
+<DRUG>
+        <NAME>ETR</NAME>
+        <RULE>
+            <CONDITION>
+		 SCORE FROM ( 90I => 0.25,
+                              98G => 0.25,
+                              100I => 1.5,
+                              MAX ( 101P => 1.5, 101EHNQ => 0.5, 101R => 0.25 ),
+                              103HNST => 0.25,
+                              MAX ( 106I => 0.5, 106AM => 0.25 ),
+                              108I => 0.25,
+                              MAX ( 138KQ => 0.75, 138A => 0.5 ),
+                              MAX ( 179F => 0.75, 179DET => 0.25 ),
+                              181CIV => 1.5,
+                              188CHFL => 0.25,
+                              MAX ( 190CEQSTV => 0.75, 190A => 0.5 ),
+                              221Y => 0.25,
+                              225H => 0.25,
+                              MAX ( 227C => 1.5, 227L => 0.25 ),
+                              230IL => 1.5,
+                              234I => 0.25,
+                              236L => 0.25,
+                              238NT => 0.25,
+                              318F => 0.25 )
+	    </CONDITION>
+            <ACTIONS>
+                 <SCORERANGE>(-INF TO 1.49 => 1, 1.5 TO 2.99 => 4, 3 TO INF => 6)</SCORERANGE>
+            </ACTIONS>
+	</RULE>
+    </DRUG>    <!-- END ETR-->
+<DRUG> 
+	<NAME>RPV</NAME> 
+	<RULE> 
+		<CONDITION> 
+			SCORE FROM (
+			90I => 0.5,
+			MAX(101E => 1.5, 101P => 2.5, 101QT => 0.5, (101E AND 184IV) => 2.5),
+			103S => 0.5,
+			106AI => 0.5,
+			108I => 0.5,
+			MAX(138AGKQRS => 1.5, (138K AND 184IV) => 2.5),
+			MAX(179DTI => 0.5, 179L => 1.5),
+			MAX(181C => 1.5, 181IV => 2.5),
+			188L => 2.5,
+			189I => 0.5,
+			190E => 0.5,
+			221Y => 1.5,
+			227C => 1.5,
+			230IL => 1.5,
+			(100I AND 103N) => 2.5)
+		</CONDITION> 
+		<ACTIONS> 
+			<SCORERANGE>(-INF TO 1.49 => 1, 1.5 TO 2.49 => 5, 2.5 TO INF => 6)</SCORERANGE> 
+		</ACTIONS> 
+	</RULE> 
+</DRUG>    <!-- END RPV -->
+
+<!-- ********** Begin PI drugs ********** -->
+
+
+<DRUG>
+        <NAME>IDV/r</NAME>
+        <RULE>
+	<CONDITION>
+		SELECT ATLEAST 0 FROM (1P)
+		</CONDITION>
+            <ACTIONS>
+                <LEVEL>2</LEVEL>
+            </ACTIONS>
+        </RULE>
+	<RULE>
+            <CONDITION>
+		 SCORE FROM ( MAX ( 10F => 1, 10IV => 0.25 ),
+                              MAX ( 20T => 0.5, 20IMRV => 0.25 ),
+                              24I => 1,
+                              32I => 1,
+                              35GN => 0.25,
+                              MAX ( 43T => 0.5, 43R => 0.25 ),
+                              46IL => 1.5,
+                              MAX ( 48MV => 1, 48A => 0.5 ),
+                              50L => -0.25,
+                              MAX ( 54AST => 1.5, 54V => 1, 54LM => 0.5 ),
+                              62V => 0.25,
+                              66F => 0.5,
+                              MAX ( 71I => 0.5, 71TV => 0.25 ),
+                              73STC => 0.5,
+                              MAX ( 74P => 0.5, 74AS => 0.25 ),
+                              76V => 1,
+                              MAX ( 82AFST => 2, 82M => 1 ),
+                              MAX ( 84AV => 2, 84C => 0.5 ),
+                              MAX ( 88S => 1, 88D => 0.5 ),
+                              MAX ( 89TV => 0.5, 89I => 0.25 ),
+                              90M => 1,
+                              95F => 0.5 )
+	    </CONDITION>
+            <ACTIONS>
+                 <SCORERANGE>(-INF TO 1.99 => 2, 2 TO 2.99 => 3, 3 TO INF => 6)</SCORERANGE>
+            </ACTIONS>
+	</RULE>
+     </DRUG>    <!-- END IDV/r --> 
+
+<DRUG>
+        <NAME>SQV/r</NAME>
+	<RULE>
+	<CONDITION>
+		SELECT ATLEAST 0 FROM (1P)
+		</CONDITION>
+            <ACTIONS>
+                <LEVEL>2</LEVEL>
+            </ACTIONS>
+        </RULE>        
+	<RULE>
+	    <CONDITION>
+		 SCORE FROM ( MAX ( 10F => 0.5, 10IV => 0.25 ),
+                              11I => 0.25, 
+                              MAX ( 20T => 0.5, 20IMRV => 0.25 ),
+                              24I => 1,
+                              46IL => 0.5,
+                              MAX ( 48MV => 2, 48A => 0.5 ),
+                              MAX ( 50V => 0.5, 50L => -0.25 ),
+                              53L => 1,
+                              MAX ( 54AST => 1.5, 54V => 1, 54LM => 0.5 ),
+                              58E => 0.5,
+                              62V => 0.25,
+                              MAX ( 71V => 1, 71I => 0.5, 71T => 0.25 ),
+                              73STC => 0.5,
+                              MAX ( 74SP => 0.5, 74A => 0.25 ),
+                              82AFLMST => 0.25,
+                              MAX ( 84AC => 1.5, 84V => 1 ),
+                              88DS => 1,
+                              MAX ( 89V => 1, 89T => 0.5, 89I => 0.25 ),
+                              90M => 2 )
+	    </CONDITION>
+            <ACTIONS>
+                 <SCORERANGE>(-INF TO 1.99 => 2, 2 TO 3.49 => 3, 3.5 TO INF => 6)</SCORERANGE>
+            </ACTIONS>
+        </RULE>
+    </DRUG>    <!-- END SQV/r -->
+
+    <DRUG>
+        <NAME>NFV</NAME>
+	<RULE>
+	    <CONDITION>
+		 SCORE FROM ( MAX ( 10F => 0.5, 10IV => 0.25 ),
+                              MAX ( 20T => 0.5, 20IMRV => 0.25 ),
+                              23I => 0.5,
+                              24I => 0.5,
+                              30N => 2,
+                              32I => 0.5,
+                              33FI => 0.25,
+                              35GN => 0.25,
+                              MAX ( 43T => 0.5, 43R => 0.25 ),
+                              46IL => 0.5,
+                              48AV => 0.5,
+                              50L => -0.25,
+                              MAX ( 54AST => 1.5, 54V => 1, 54LM => 0.5 ),
+                              58E => 0.5,
+                              62V => 0.25,
+                              64V => 0.25,
+                              66F => 0.5,
+                              MAX ( 71I => 0.5, 71TV => 0.25 ),
+                              73STC => 0.5,
+                              MAX ( 74P => 0.5, 74AS => 0.25 ),
+                              76V => 0.5,
+                              MAX ( 82ATF => 1, 82LMS => 0.5 ),
+                              MAX ( 84AC => 1.5, 84V => 0.5 ),
+                              MAX ( 88S => 1.5, 88D => 1 ),
+                              MAX ( 89TV => 0.5, 89I => 0.25 ),
+                              90M => 2,
+                              93M => 0.5 )
+	    </CONDITION>
+            <ACTIONS>
+                 <SCORERANGE>(-INF TO 1.24 => 1, 1.25 TO 1.99 => 4, 2 TO INF => 6)</SCORERANGE>
+            </ACTIONS>
+	</RULE>
+    </DRUG>    <!-- END NFV -->
+
+
+<DRUG>
+        <NAME>FPV/r</NAME>
+	<RULE>
+	<CONDITION>
+		SELECT ATLEAST 0 FROM (1P)
+		</CONDITION>
+            <ACTIONS>
+                <LEVEL>2</LEVEL>
+            </ACTIONS>
+        </RULE>        
+<RULE>
+            <CONDITION>
+		 SCORE FROM ( MAX ( 10F => 0.5, 10IV => 0.25 ),
+                              MAX ( 20T => 0.5, 20IRMV => 0.25 ),
+                              24I => 0.5,
+                              32I => 0.5,
+                              MAX ( 33F => 0.5, 33I => 0.25 ),
+                              MAX ( 43T => 0.5, 43R => 0.25 ),
+                              46IL => 0.5,
+                              47AV => 1,
+                              MAX ( 48M => 1, 48A => 0.5, 48V => 0.25 ),
+                              MAX ( 50V => 2, 50L => -0.25 ),
+                              MAX ( 54MTV => 1, 54AL => 0.5 ),
+                              58E => 0.5,
+                              76V => 1.5,
+                              MAX ( 82F => 1, 82AMST => 0.5 ),
+                              84ACV => 1.5,
+                              88S => -0.25,
+                              MAX ( 89TV => 0.5, 89I => 0.25 ),
+                              90M => 0.25 )
+	    </CONDITION>
+            <ACTIONS>
+                 <SCORERANGE>(-INF TO 1.99 => 2, 2 TO 3.49 => 3, 3.5 TO INF => 6)</SCORERANGE>
+            </ACTIONS>
+	</RULE>
+    </DRUG>    <!-- END FPV/r -->
+
+	<DRUG>
+	<NAME>LPV/r</NAME>
+	<RULE>
+	<CONDITION>
+		SELECT ATLEAST 0 FROM (1P)
+		</CONDITION>
+            <ACTIONS>
+                <LEVEL>2</LEVEL>
+            </ACTIONS>
+        </RULE>	
+	<RULE>
+	<CONDITION>
+		 SCORE FROM ( MAX ( 10F => 0.5, 10IV => 0.25 ),
+                              MAX ( 20T => 0.5, 20IMRV => 0.25 ),
+                              24FI => 0.5,
+                              MAX ( 32i => 1.5, 32I => 0.5 ),
+                              MAX ( 33F => 0.5, 33I => 0.25 ),
+                              MAX ( 43T => 0.5, 43R => 0.25 ),
+                              46IL => 0.5,
+                              MAX ( 47A => 2, 47V => 1 ),
+                              MAX ( 48M => 1, 48AV => 0.5 ),
+                              MAX ( 50V => 1.5, 50L => -0.25 ),
+                              53L => 0.5,
+                              MAX ( 54AT => 1.5, 54SV => 1, 54LM => 0.5 ),
+                              64MV => 0.25,
+                              MAX ( 71I => 0.5, 71TV => 0.25 ),
+                              73STC => 0.5,
+                              76V => 1.5,
+                              77ATV => 0.25,
+                              MAX ( 82FS => 1, 82ALMT => 0.5 ),
+                              MAX ( 84A => 1, 84V => 0.5 ),
+                              88D => 0.5,
+                              90M => 0.5 )
+	   </CONDITION>
+            <ACTIONS>
+                 <SCORERANGE>(-INF TO 1.99 => 2, 2 TO 3.49 => 3, 3.5 TO INF => 6)</SCORERANGE>
+            </ACTIONS>
+	</RULE>
+	</DRUG>    <!-- END LPV/r -->
+
+
+<DRUG>
+        <NAME>ATV/r</NAME>
+	<RULE>
+	<CONDITION>
+		SELECT ATLEAST 0 FROM (1P)
+		</CONDITION>
+            <ACTIONS>
+                <LEVEL>2</LEVEL>
+            </ACTIONS>
+        </RULE>        
+	<RULE>
+            <CONDITION>
+		 SCORE FROM ( MAX ( 10Y => 1, 10F => 0.5, 10IV => 0.25 ),
+                              MAX ( 20T => 1, 20IMRV => 0.25 ),
+                              24I => 0.5,
+                              32I => 0.5,
+                              33FI => 0.25,
+                              46IL => 0.5,
+                              47V => 1,
+                              48MV => 2,
+                              50L => 2,
+                              MAX ( 54AST => 1.5, 54V => 1, 54LM => 0.5 ),
+                              58E => 0.5,
+                              MAX ( 71IL => 0.5, 71TV => 0.25 ),
+                              73ACFST => 0.5,
+                              MAX ( 74P => 1, 74AS => 0.25 ),
+                              76V => -0.25,
+                              MAX ( 82LT => 1, 82AMSF => 0.5 ),
+                              84V => 1,
+                              85V => 0.5,
+                              MAX ( 88S => 1.5, 88D => 1 ),
+                              90M => 1 )
+	   </CONDITION>
+            <ACTIONS>
+                 <SCORERANGE>(-INF TO 1.99 => 2, 2 TO 3.49 => 3, 3.5 TO INF => 6)</SCORERANGE>
+            </ACTIONS> 
+        </RULE>
+       </DRUG>    <!-- END ATV/r -->
+<DRUG>
+	<NAME>TPV/r</NAME>
+	<RULE>
+	<CONDITION>
+		SELECT ATLEAST 0 FROM (1P)
+		</CONDITION>
+            <ACTIONS>
+                <LEVEL>2</LEVEL>
+            </ACTIONS>
+        </RULE>	
+<RULE>
+		<CONDITION>
+		 SCORE FROM ( 32I => 0.25,
+					  33F => 0.5,
+					  38W => 0.25,
+					  41T => 1,
+					  43T => 1,
+					  45I => 0.25,
+					  46L => 0.5,
+					  MAX ( 47V => 2, 47A => 0.5 ),
+					  50LV => -0.25,
+					  MAX ( 54AMV => 1, 54ST => 0.5 ),
+					  58E => 1.5,
+					  71L => 0.25,
+					  73T => 0.25,
+					  74P => 2,
+					  MAX ( 82T => 2, 82LS => 1.5, 82AFM => 0.25 ),
+					  83D => 1.5,
+					  84ACV => 1,
+					  89TV => 0.25,
+					  90M => 0.25 )
+	   </CONDITION>
+            <ACTIONS>
+                 <SCORERANGE>(-INF TO 1.99 => 2, 2 TO 3.49 => 3, 3.5 TO INF => 6)</SCORERANGE>
+            </ACTIONS> 
+	</RULE>
+	</DRUG>	<!-- END TPV/r -->
+<DRUG>
+	<NAME>DRV/r</NAME>
+	<RULE>
+	<CONDITION>
+		SELECT ATLEAST 0 FROM (1P)
+		</CONDITION>
+            <ACTIONS>
+                <LEVEL>2</LEVEL>
+            </ACTIONS>
+        </RULE>	
+<RULE>
+		<CONDITION>
+		 SCORE FROM ( 11I => 0.5,
+                              32I => 1,
+                              33F => 0.5,
+                              46I => 0.25,
+                              47AV => 1,
+                              MAX ( 50V => 1.5, 50L => -0.25 ),
+                              54LM => 1,
+                              74P => 0.5,
+                              76V => 1.5,
+                              82AST => -0.25,
+                              84ACV => 1.5,
+                              88S => -0.25,
+                              MAX ( 89V => 0.5, 89I => 0.25 ) )
+	   </CONDITION>
+            <ACTIONS>
+                 <SCORERANGE>(-INF TO 2.49 => 2, 2.5 TO 3.49 => 3, 3.5 TO INF => 6)</SCORERANGE>
+            </ACTIONS> 
+	</RULE>
+	</DRUG>	<!-- END DRV/r -->
+
+	<!-- ********** Begin EI drugs ********** -->
+
+    <DRUG>
+        <NAME>T20</NAME>
+        <RULE>
+            <CONDITION>
+                SELECT ATLEAST 2 FROM (36DESV,38AEM,40H,41R,42DEHKQT,43DKQS,44MV,45MPQ)
+            </CONDITION>
+            <ACTIONS>
+                <LEVEL>6</LEVEL>
+            </ACTIONS>
+        </RULE>
+        <RULE>
+            <CONDITION>
+                SELECT ATLEAST 1 AND NOTMORETHAN 1 FROM (36DESV,38AEM,40H,41R,42DEHKQT,43DKQS,44MV,45MPQ)
+            </CONDITION>
+            <ACTIONS>
+                <LEVEL>5</LEVEL>
+            </ACTIONS>
+        </RULE>
+    </DRUG>    <!-- END T20 -->
+
+<!-- ********** Begin INI drugs ********** -->
+    <DRUG> 
+    	<NAME>EVG</NAME>
+    	<RULE> 
+    		<CONDITION> 
+    		SCORE FROM (
+				51Y => 0.5,
+				66AIK => 2,
+				92QG => 2,
+				97A => 0.5,
+				114Y => 0.5,
+				121Y => 1,
+				140ACS => 1,
+				145S => 2,
+				MAX(146ILPR => 2, 146K => 0.5),
+				147G => 2,
+				148HKR => 2,
+				151AL => 1,
+				153FY => 0.5,
+				155HST => 2,
+				263K => 0.5)
+    		</CONDITION> 
+    		<ACTIONS> 
+    	 		<SCORERANGE>(-INF TO 0.99 => 1, 1 TO 1.99 => 5, 2 TO INF => 6)</SCORERANGE> 
+    		</ACTIONS> 
+    	</RULE> 
+    </DRUG>    <!-- END EVG -->
+	
+	<DRUG> 
+		<NAME>DTG</NAME> 
+		<RULE> 
+			<CONDITION> 
+				SCORE FROM (
+					49GP => 0.25,
+					74M => 0.5,
+					66K => 0.5,
+					92Q => 0.5,
+					97A => 0.25,
+					118R  => 1,
+					121Y => 0.25,
+					140ACS => 0.5,
+					147G => 0.25,
+					MAX(148HKR => 1, (148HKR AND 74I)  => 1.5),
+					151L => 0.5,
+					153FY => 0.5,
+					155HST => 0.5,
+					230GR => 0.25,
+					263K => 1,
+					(49G AND 230R AND 263K) => 0.5)
+			</CONDITION> 
+		<ACTIONS> 
+			<SCORERANGE>(-INF TO 1.49 => 1, 1.5 TO 1.99 => 4, 2 TO INF => 6)</SCORERANGE>
+		</ACTIONS> 
+		</RULE> 
+	</DRUG>    <!-- END DTG -->
+
+    <DRUG>
+        <NAME>RAL</NAME>
+        <RULE>
+            <CONDITION>
+				SCORE FROM (
+					66K => 1,
+					74M => 0.5,
+					92QV => 1,
+					97A => 0.5,
+					118R => 1,
+					119R => 0.25,
+					121Y => 1,
+					MAX(138A => 0.5, 138K => 0.25),
+					140ACS => 1,
+					143CHKRS => 2,
+					148HKR => 2,
+					MAX(151L => 1, 151I => 0.25),
+					155HST => 2,
+					157Q => 0.25,
+					MAX(163K => 0.5, 163R => 0.25),
+					230NR => 0.25,
+					263K => 0.25)
+			</CONDITION>
+			<ACTIONS>
+				 <SCORERANGE>(-INF TO 0.99 => 1, 1 TO 1.99 => 5, 2 TO INF => 6)</SCORERANGE>
+			</ACTIONS> 
+        </RULE>
+    </DRUG>    <!-- END RAL -->
+
+</ALGORITHM>	

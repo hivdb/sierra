@@ -45,7 +45,7 @@ public class HIVGenotypeResultTest {
 
 	@Test
 	public void test() {
-		final boolean isTravisBuild = System.getenv().get("TRAVIS").equals("true");
+		final boolean isTravisBuild = System.getenv().getOrDefault("TRAVIS", "false").equals("true");
 		if (isTravisBuild) {
 			return;
 		}
