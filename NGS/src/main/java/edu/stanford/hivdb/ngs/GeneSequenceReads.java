@@ -42,10 +42,19 @@ public class GeneSequenceReads {
 			final List<PositionCodonReads> posCodonReads,
 			final double minPrevalence) {
 		this.gene = gene;
-		this.posCodonReads = Collections.unmodifiableList(posCodonReads);
 		this.minPrevalence = minPrevalence;
-		this.firstAA = (int) posCodonReads.get(0).getPosition();
-		this.lastAA = (int) posCodonReads.get(posCodonReads.size() - 1).getPosition();
+		this.firstAA = Math.max(1, (int) posCodonReads.get(0).getPosition());
+		this.lastAA = Math.min(gene.getLength(), (int) posCodonReads.get(posCodonReads.size() - 1).getPosition());
+		this.posCodonReads = Collections.unmodifiableList(
+			posCodonReads
+			.stream()
+			// remove illegal positions 
+			.filter(pcr -> {
+				long pos = pcr.getPosition();
+				return pos >= this.firstAA && pos <= this.lastAA;
+			})
+			.collect(Collectors.toList())
+		);
 	}
 	
 	/** initializes GeneSequence without specify gene
