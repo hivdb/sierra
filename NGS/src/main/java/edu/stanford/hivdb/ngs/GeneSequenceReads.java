@@ -20,6 +20,8 @@ package edu.stanford.hivdb.ngs;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
@@ -93,6 +95,24 @@ public class GeneSequenceReads {
 	
 	public MutationSet getMutations() {
 		return getMutations(this.minPrevalence);
+	}
+	
+	/** Returns prevalence points where mutation(s) got pruned
+	 * 
+	 * @return all prevalence points
+	 */
+	public Set<Double> getPrevalencePoints() {
+		return (
+			posCodonReads
+			.stream()
+			.map(pcr -> new TreeSet<>(pcr.getCodonWithPrevalence(0).values()))
+			.reduce(new TreeSet<Double>(), (s1, s2) -> {
+				s1.addAll(s2);
+				return s1;
+			}))
+			.stream()
+			.map(p -> p / 100.0)
+			.collect(Collectors.toSet());
 	}
 	
 	/** Returns consensus sequence aligned to subtype B reference.
