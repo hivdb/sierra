@@ -404,9 +404,13 @@ abstract public class AsiBase implements Asi {
 			EvaluatedDrugClass evalDrugClass = (EvaluatedDrugClass) drugClassObj;
 			DrugClass drugClass = convertDrugClass(evalDrugClass);
 
-			for(Object drugObj : evalDrugClass.getEvaluatedDrugs()) {
+			for (Object drugObj : evalDrugClass.getEvaluatedDrugs()) {
 				EvaluatedDrug evalDrug = (EvaluatedDrug) drugObj;
 				Drug drug = convertDrug(evalDrug);
+				if (drug == null) {
+					// skip unknown drug
+					continue;
+				}
 
 				LevelDefinition levelDef = evalDrug.getHighestLevelDefinition();
 

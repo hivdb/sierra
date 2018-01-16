@@ -18,6 +18,7 @@
 
 package edu.stanford.hivdb.drugs;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -48,10 +49,25 @@ public enum Drug {
 	EVG("elvitegravir", "EVG", DrugClass.INSTI, true),
 	RAL("raltegravir", "RAL",DrugClass.INSTI, true);
 
+	private static final Map<String, Drug> drugSynonyms;
+
 	private final String fullName;
 	private final String displayAbbr;
 	private final DrugClass drugClass;
 	public final boolean forHivdbResistanceTesting;
+	
+	static {
+		Map<String, Drug> tmpDrugSynonyms = new HashMap<>();
+		tmpDrugSynonyms.put("LPV/r", Drug.LPV);
+		tmpDrugSynonyms.put("IDV/r", Drug.IDV);
+		tmpDrugSynonyms.put("FPV/r", Drug.FPV);
+		tmpDrugSynonyms.put("ATV/r", Drug.ATV);
+		tmpDrugSynonyms.put("DRV/r", Drug.DRV);
+		tmpDrugSynonyms.put("TPV/r", Drug.TPV);
+		tmpDrugSynonyms.put("SQV/r", Drug.SQV);
+		tmpDrugSynonyms.put("3TC",  Drug.LMV);
+		drugSynonyms = Collections.unmodifiableMap(tmpDrugSynonyms);
+	}
 
 	private Drug(
 			final String fullName, final String displayAbbr,
@@ -75,18 +91,12 @@ public enum Drug {
 	}
 
 	public static Drug getSynonym(String synonym) {
-		Map<String, Drug> drugSynonyms = new HashMap<>();
-		drugSynonyms.put("LPV/r", Drug.LPV);
-		drugSynonyms.put("IDV/r", Drug.IDV);
-		drugSynonyms.put("FPV/r", Drug.FPV);
-		drugSynonyms.put("ATV/r", Drug.ATV);
-		drugSynonyms.put("DRV/r", Drug.DRV);
-		drugSynonyms.put("TPV/r", Drug.TPV);
-		drugSynonyms.put("SQV/r", Drug.SQV);
-		drugSynonyms.put("3TC",  Drug.LMV);
-
 		if (!drugSynonyms.containsKey(synonym)) {
-			return Drug.valueOf(synonym);
+			try {
+				return Drug.valueOf(synonym);
+			} catch (IllegalArgumentException e) {
+				return null;
+			}
 		} else {
 			return drugSynonyms.get(synonym);
 		}
