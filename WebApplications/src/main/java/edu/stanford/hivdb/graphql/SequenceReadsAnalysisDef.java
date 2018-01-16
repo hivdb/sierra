@@ -177,6 +177,11 @@ public class SequenceReadsAnalysisDef {
 				)
 			))
 			.description("List of statistics of mutations."))
+		.field(field -> field
+			.type(new GraphQLList(oMutationStats))
+			.name("allMutationStats")
+			.description(
+				"List of statistics of mutations at all prevalence points. (INTERNAL)"))
 		// .field(field -> field
 		// 	.type(new GraphQLList(oFrameShift))
 		// 	.name("frameShifts")

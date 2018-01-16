@@ -18,6 +18,11 @@
 
 package edu.stanford.hivdb.ngs;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+import edu.stanford.hivdb.mutations.Gene;
+import edu.stanford.hivdb.mutations.Mutation;
 import edu.stanford.hivdb.mutations.MutationSet;
 
 public class MutationStats {
@@ -32,21 +37,24 @@ public class MutationStats {
 	
 	public MutationStats(final double minPrevalence, final MutationSet mutations) {
 		this.minPrevalence = minPrevalence;
+		List<Mutation> filtered = (mutations.stream()
+				.filter(mut -> !(mut.getGene() == Gene.RT && mut.getPosition() > 240))
+				.collect(Collectors.toList()));
 		numUsuals = (
-			mutations.stream()
+			filtered.stream()
 			.filter(m -> !m.isUnusual())
 			.count());
 		numUnusuals = (
-			mutations.stream()
+			filtered.stream()
 			.filter(
 				m -> m.isUnusual() &&
 				!m.isApobecMutation() && !m.isApobecDRM()
 			)
 			.count());
-		numDRMs = mutations.stream().filter(m -> m.isDRM()).count();
-		numStops = mutations.stream().filter(m -> m.hasStop()).count();
-		numApobecMutations = mutations.stream().filter(m -> m.isApobecMutation()).count();
-		numApobecDRMs = mutations.stream().filter(m -> m.isApobecDRM()).count();
+		numDRMs = filtered.stream().filter(m -> m.isDRM()).count();
+		numStops = filtered.stream().filter(m -> m.hasStop()).count();
+		numApobecMutations = filtered.stream().filter(m -> m.isApobecMutation()).count();
+		numApobecDRMs = filtered.stream().filter(m -> m.isApobecDRM()).count();
 	}
 	
 	public double getMinPrevalence() { return minPrevalence; }

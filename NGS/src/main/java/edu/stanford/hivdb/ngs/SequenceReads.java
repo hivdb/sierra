@@ -19,8 +19,11 @@
 package edu.stanford.hivdb.ngs;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.EnumMap;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
@@ -89,10 +92,19 @@ public class SequenceReads {
 		return new ArrayList<>(allGeneSequenceReads.keySet());
 	}
 	
-	public List<MutationStats> getMutationStats(List<Double> allMinPrevalence) {
+	public List<MutationStats> getMutationStats(Collection<Double> allMinPrevalence) {
 		return allMinPrevalence.stream().map(
 			mp -> new MutationStats(mp, getMutations(mp))
 		).collect(Collectors.toList());
+	}
+	
+	public List<MutationStats> getAllMutationStats() {
+		Set<Double> allMinPrevalence = allGeneSequenceReads.values().stream()
+			.map(gs -> gs.getPrevalencePoints())
+			.reduce(new TreeSet<>(), (s1, s2) -> {
+				s1.addAll(s2); return s1;
+			});
+		return getMutationStats(allMinPrevalence);
 	}
 	
 	public String getConcatenatedSeq() {
