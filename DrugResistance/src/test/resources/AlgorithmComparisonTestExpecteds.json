@@ -11272,7 +11272,7 @@
           "algorithm": "ANRS",
           "SIR": "R",
           "interpretation": "Resistance",
-          "explanation": "SELECT ATLEAST 4 FROM (11I, 32I, 33F, 47V, 50V, 54LM, 74P, 76V, 84V, 89V) (Resistance)"
+          "explanation": "SELECT ATLEAST 2 FROM (11I, 32I, 33F, 47V, 50V, 54LM, 74P, 76V, 84V, 89V) (Resistance)"
         },
         {
           "drug": "FPV",
@@ -19903,9 +19903,9 @@
         {
           "drug": "DTG",
           "algorithm": "ANRS",
-          "SIR": "S",
-          "interpretation": "Susceptible",
-          "explanation": "No rules were triggered"
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "155H (Resistance)"
         },
         {
           "drug": "EVG",
@@ -19977,7 +19977,7 @@
           "algorithm": "ANRS",
           "SIR": "R",
           "interpretation": "Resistance",
-          "explanation": "92Q AND 155H (Resistance)"
+          "explanation": "155H (Resistance)"
         },
         {
           "drug": "EVG",
@@ -20047,9 +20047,9 @@
         {
           "drug": "DTG",
           "algorithm": "ANRS",
-          "SIR": "S",
-          "interpretation": "Susceptible",
-          "explanation": "No rules were triggered"
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "155H (Resistance)"
         },
         {
           "drug": "EVG",
@@ -20119,9 +20119,9 @@
         {
           "drug": "DTG",
           "algorithm": "ANRS",
-          "SIR": "S",
-          "interpretation": "Susceptible",
-          "explanation": "No rules were triggered"
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "155H (Resistance)"
         },
         {
           "drug": "EVG",
@@ -20191,9 +20191,9 @@
         {
           "drug": "DTG",
           "algorithm": "ANRS",
-          "SIR": "S",
-          "interpretation": "Susceptible",
-          "explanation": "No rules were triggered"
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "155H (Resistance)"
         },
         {
           "drug": "EVG",
@@ -20263,9 +20263,9 @@
         {
           "drug": "DTG",
           "algorithm": "ANRS",
-          "SIR": "S",
-          "interpretation": "Susceptible",
-          "explanation": "No rules were triggered"
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "155H (Resistance)"
         },
         {
           "drug": "EVG",
@@ -20335,9 +20335,9 @@
         {
           "drug": "DTG",
           "algorithm": "ANRS",
-          "SIR": "I",
-          "interpretation": "Possible resistance",
-          "explanation": "148HKR AND SELECT ATLEAST 1 AND NOTMORETHAN 1 FROM (74I, 138AKT, 140ACS) (Possible resistance)"
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "140ACS (Resistance)\n148HKR (Resistance)"
         },
         {
           "drug": "EVG",
@@ -20407,9 +20407,9 @@
         {
           "drug": "DTG",
           "algorithm": "ANRS",
-          "SIR": "I",
-          "interpretation": "Possible resistance",
-          "explanation": "148HKR AND SELECT ATLEAST 1 AND NOTMORETHAN 1 FROM (74I, 138AKT, 140ACS) (Possible resistance)"
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "140ACS (Resistance)\n148HKR (Resistance)"
         },
         {
           "drug": "EVG",
@@ -20481,7 +20481,7 @@
           "algorithm": "ANRS",
           "SIR": "R",
           "interpretation": "Resistance",
-          "explanation": "148HKR AND 155H (Resistance)"
+          "explanation": "148HKR (Resistance)\n155H (Resistance)"
         },
         {
           "drug": "EVG",
@@ -20551,9 +20551,9 @@
         {
           "drug": "DTG",
           "algorithm": "ANRS",
-          "SIR": "I",
-          "interpretation": "Possible resistance",
-          "explanation": "148HKR AND SELECT ATLEAST 1 AND NOTMORETHAN 1 FROM (74I, 138AKT, 140ACS) (Possible resistance)"
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "140ACS (Resistance)\n148HKR (Resistance)"
         },
         {
           "drug": "EVG",
@@ -20623,9 +20623,9 @@
         {
           "drug": "DTG",
           "algorithm": "ANRS",
-          "SIR": "S",
-          "interpretation": "Susceptible",
-          "explanation": "No rules were triggered"
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "155H (Resistance)"
         },
         {
           "drug": "EVG",
@@ -20695,9 +20695,9 @@
         {
           "drug": "DTG",
           "algorithm": "ANRS",
-          "SIR": "I",
-          "interpretation": "Possible resistance",
-          "explanation": "148HKR AND SELECT ATLEAST 1 AND NOTMORETHAN 1 FROM (74I, 138AKT, 140ACS) (Possible resistance)"
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "140ACS (Resistance)\n148HKR (Resistance)"
         },
         {
           "drug": "EVG",
@@ -20767,9 +20767,9 @@
         {
           "drug": "DTG",
           "algorithm": "ANRS",
-          "SIR": "S",
-          "interpretation": "Susceptible",
-          "explanation": "No rules were triggered"
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "140ACS (Resistance)"
         },
         {
           "drug": "EVG",
@@ -20839,9 +20839,9 @@
         {
           "drug": "DTG",
           "algorithm": "ANRS",
-          "SIR": "S",
-          "interpretation": "Susceptible",
-          "explanation": "No rules were triggered"
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "140ACS (Resistance)"
         },
         {
           "drug": "EVG",
@@ -20911,9 +20911,9 @@
         {
           "drug": "DTG",
           "algorithm": "ANRS",
-          "SIR": "I",
-          "interpretation": "Possible resistance",
-          "explanation": "148HKR AND SELECT ATLEAST 1 AND NOTMORETHAN 1 FROM (74I, 138AKT, 140ACS) (Possible resistance)"
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "140ACS (Resistance)\n148HKR (Resistance)"
         },
         {
           "drug": "EVG",
@@ -20983,9 +20983,9 @@
         {
           "drug": "DTG",
           "algorithm": "ANRS",
-          "SIR": "I",
-          "interpretation": "Possible resistance",
-          "explanation": "148HKR AND SELECT ATLEAST 1 AND NOTMORETHAN 1 FROM (74I, 138AKT, 140ACS) (Possible resistance)"
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "140ACS (Resistance)\n148HKR (Resistance)"
         },
         {
           "drug": "EVG",
@@ -21057,7 +21057,7 @@
           "algorithm": "ANRS",
           "SIR": "R",
           "interpretation": "Resistance",
-          "explanation": "148HKR AND SELECT ATLEAST 2 FROM (74I, 138AKT, 140ACS) (Resistance)"
+          "explanation": "140ACS (Resistance)\n148HKR (Resistance)"
         },
         {
           "drug": "EVG",
@@ -21127,9 +21127,9 @@
         {
           "drug": "DTG",
           "algorithm": "ANRS",
-          "SIR": "S",
-          "interpretation": "Susceptible",
-          "explanation": "No rules were triggered"
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "155H (Resistance)"
         },
         {
           "drug": "EVG",
@@ -21343,9 +21343,9 @@
         {
           "drug": "DTG",
           "algorithm": "ANRS",
-          "SIR": "I",
-          "interpretation": "Possible resistance",
-          "explanation": "148HKR AND SELECT ATLEAST 1 AND NOTMORETHAN 1 FROM (74I, 138AKT, 140ACS) (Possible resistance)"
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "138AKT (Resistance)\n148HKR (Resistance)"
         },
         {
           "drug": "EVG",
@@ -21559,9 +21559,9 @@
         {
           "drug": "DTG",
           "algorithm": "ANRS",
-          "SIR": "S",
-          "interpretation": "Susceptible",
-          "explanation": "No rules were triggered"
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "155H (Resistance)"
         },
         {
           "drug": "EVG",
@@ -21633,7 +21633,7 @@
           "algorithm": "ANRS",
           "SIR": "R",
           "interpretation": "Resistance",
-          "explanation": "92Q AND 155H (Resistance)\n148HKR AND 155H (Resistance)\n148HKR AND SELECT ATLEAST 1 AND NOTMORETHAN 1 FROM (74I, 138AKT, 140ACS) (Possible resistance)"
+          "explanation": "140ACS (Resistance)\n148HKR (Resistance)\n155H (Resistance)"
         },
         {
           "drug": "EVG",
@@ -21703,9 +21703,9 @@
         {
           "drug": "DTG",
           "algorithm": "ANRS",
-          "SIR": "I",
-          "interpretation": "Possible resistance",
-          "explanation": "148HKR AND SELECT ATLEAST 1 AND NOTMORETHAN 1 FROM (74I, 138AKT, 140ACS) (Possible resistance)"
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "140ACS (Resistance)\n148HKR (Resistance)"
         },
         {
           "drug": "EVG",
@@ -21777,7 +21777,7 @@
           "algorithm": "ANRS",
           "SIR": "R",
           "interpretation": "Resistance",
-          "explanation": "148HKR AND SELECT ATLEAST 2 FROM (74I, 138AKT, 140ACS) (Resistance)"
+          "explanation": "138AKT (Resistance)\n140ACS (Resistance)\n148HKR (Resistance)"
         },
         {
           "drug": "EVG",
@@ -21847,9 +21847,9 @@
         {
           "drug": "DTG",
           "algorithm": "ANRS",
-          "SIR": "I",
-          "interpretation": "Possible resistance",
-          "explanation": "148HKR AND SELECT ATLEAST 1 AND NOTMORETHAN 1 FROM (74I, 138AKT, 140ACS) (Possible resistance)"
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "140ACS (Resistance)\n148HKR (Resistance)"
         },
         {
           "drug": "EVG",
@@ -21921,7 +21921,7 @@
           "algorithm": "ANRS",
           "SIR": "R",
           "interpretation": "Resistance",
-          "explanation": "148HKR AND SELECT ATLEAST 2 FROM (74I, 138AKT, 140ACS) (Resistance)"
+          "explanation": "138AKT (Resistance)\n140ACS (Resistance)\n148HKR (Resistance)"
         },
         {
           "drug": "EVG",
@@ -21993,7 +21993,7 @@
           "algorithm": "ANRS",
           "SIR": "R",
           "interpretation": "Resistance",
-          "explanation": "148HKR AND SELECT ATLEAST 2 FROM (74I, 138AKT, 140ACS) (Resistance)"
+          "explanation": "138AKT (Resistance)\n140ACS (Resistance)\n148HKR (Resistance)"
         },
         {
           "drug": "EVG",
@@ -22065,7 +22065,7 @@
           "algorithm": "ANRS",
           "SIR": "R",
           "interpretation": "Resistance",
-          "explanation": "148HKR AND SELECT ATLEAST 2 FROM (74I, 138AKT, 140ACS) (Resistance)"
+          "explanation": "138AKT (Resistance)\n140ACS (Resistance)\n148HKR (Resistance)"
         },
         {
           "drug": "EVG",
@@ -22137,7 +22137,7 @@
           "algorithm": "ANRS",
           "SIR": "R",
           "interpretation": "Resistance",
-          "explanation": "148HKR AND SELECT ATLEAST 2 FROM (74I, 138AKT, 140ACS) (Resistance)"
+          "explanation": "138AKT (Resistance)\n140ACS (Resistance)\n148HKR (Resistance)"
         },
         {
           "drug": "EVG",
@@ -22209,7 +22209,7 @@
           "algorithm": "ANRS",
           "SIR": "R",
           "interpretation": "Resistance",
-          "explanation": "92Q AND 155H (Resistance)\n148HKR AND 155H (Resistance)\n148HKR AND SELECT ATLEAST 1 AND NOTMORETHAN 1 FROM (74I, 138AKT, 140ACS) (Possible resistance)"
+          "explanation": "140ACS (Resistance)\n148HKR (Resistance)\n155H (Resistance)"
         },
         {
           "drug": "EVG",
@@ -25587,9 +25587,9 @@
         {
           "drug": "DRV",
           "algorithm": "ANRS",
-          "SIR": "I",
-          "interpretation": "Possible resistance",
-          "explanation": "SELECT ATLEAST 3 AND NOTMORETHAN 3 FROM (11I, 32I, 33F, 47V, 50V, 54LM, 74P, 76V, 84V, 89V) (Possible resistance)"
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "SELECT ATLEAST 2 FROM (11I, 32I, 33F, 47V, 50V, 54LM, 74P, 76V, 84V, 89V) (Resistance)"
         },
         {
           "drug": "FPV",
