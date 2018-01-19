@@ -19,14 +19,13 @@
 package edu.stanford.hivdb.mutations;
 
 import java.sql.SQLException;
-import java.util.Collection;
 
 import edu.stanford.hivdb.utilities.JdbcDatabase;
 import edu.stanford.hivdb.utilities.Cachable;
 
 public class Sdrms {
 	@Cachable.CachableField
-	private static Collection<Mutation> sdrms;
+	private static MutationSet sdrms;
 	private static final JdbcDatabase db;
 
 	static {
@@ -48,16 +47,22 @@ public class Sdrms {
 	public static MutationSet getSdrms(MutationSet seqMuts) {
 		return seqMuts.intersectsWith(sdrms);
 	}
+	
+	public static boolean isSDRM(Mutation mut) {
+		return sdrms.hasSharedAAMutation(mut);
+	}
 
 	private static void populateSDRMs() throws SQLException {
 		final String sqlStatement =
 			"SELECT Gene, Pos, AAs FROM tblSDRMs ORDER BY Gene, Pos, AAs";
 
-		sdrms = db.iterate(sqlStatement, rs -> {
-			return new Mutation(
-				Gene.valueOf(rs.getString("Gene")),
-				rs.getInt("Pos"),
-				rs.getString("AAs"));
-		});
+		sdrms = new MutationSet(
+			db.iterate(sqlStatement, rs -> {
+				return new Mutation(
+						Gene.valueOf(rs.getString("Gene")),
+						rs.getInt("Pos"),
+						rs.getString("AAs"));
+			})
+		);
 	}
 }

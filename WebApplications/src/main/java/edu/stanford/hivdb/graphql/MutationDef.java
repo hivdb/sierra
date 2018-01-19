@@ -144,6 +144,12 @@ public class MutationDef {
 				"The mutation is a low prevalence (unusual) mutation or not.")
 			.build())
 		.field(newFieldDefinition()
+			.type(GraphQLBoolean)
+			.name("isSDRM")
+			.description(
+				"The mutation is a Surveillance Drug Resistance Mutation (SDRM) or not.")
+			.build())
+		.field(newFieldDefinition()
 			.type(new GraphQLList(oMutationType))
 			.name("types")
 			.description(

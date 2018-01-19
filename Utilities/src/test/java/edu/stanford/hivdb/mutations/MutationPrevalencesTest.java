@@ -36,17 +36,17 @@ public class MutationPrevalencesTest {
 
 			/* mutation towards the end of INI file */
 			m = new Mutation(Gene.IN, 286, "N");
-			checkPrevalence(MutationPrevalences.getPrevalenceAtSamePosition(m), "N", "CRF01_AE", 1616, 43, 2.7, 1, 0, 0);
+			checkPrevalence(MutationPrevalences.getPrevalenceAtSamePosition(m), "N", "CRF01_AE", 1600, 42, 2.6, 1, 0, 0);
 
 			/* mutations in the middle of RTI file*/
 			m = new Mutation(Gene.RT, 553, "I");
 			checkNullPrevalence(MutationPrevalences.getPrevalenceAtSamePosition(m), "I", "G");
 			m = new Mutation(Gene.RT, 554, "S");
-			checkPrevalence(MutationPrevalences.getPrevalenceAtSamePosition(m), "S", "Other", 729, 552, 75.7, 6, 0, 0);
+			checkPrevalence(MutationPrevalences.getPrevalenceAtSamePosition(m), "S", "Other", 735, 557, 75.8, 2, 0, 0);
 
 			/* mutation in the middle of PI file */
 			m = new Mutation(Gene.PR, 72, "T");
-			checkPrevalence(MutationPrevalences.getPrevalenceAtSamePosition(m), "T", "All", 89773, 3288, 3.7, 24786, 2051, 8.3);
+			checkPrevalence(MutationPrevalences.getPrevalenceAtSamePosition(m), "T", "All", 91387, 3312, 3.6, 25313, 2056, 8.1);
 
 		}
 

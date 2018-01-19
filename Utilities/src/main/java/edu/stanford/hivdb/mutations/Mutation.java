@@ -338,6 +338,7 @@ public class Mutation implements Comparable<Mutation> {
 	public boolean hasConsensus () { return aas.split("_", 2)[0].contains(gene.getConsensus(pos));}
 	public boolean hasStop() { return getAAs().contains("*"); }
 	public boolean isUnusual() { return UnusualMutations.containsUnusualMut(this); }
+	public boolean isSDRM() { return Sdrms.isSDRM(this); }
 	public boolean hasBDHVN() {
 		// TODO: what if BDHVN doesn't affect the amimo acid?
 		return triplet.contains("B") || triplet.contains("D") || triplet.contains("H") ||

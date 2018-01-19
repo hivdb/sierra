@@ -1,5 +1,185 @@
 [
   {
+    "gene": "PR",
+    "cons": "L",
+    "pos": 23,
+    "aas": "I",
+    "triplet": "",
+    "insertedNAs": "",
+    "isInsertion": false,
+    "isDeletion": false
+  },
+  {
+    "gene": "PR",
+    "cons": "L",
+    "pos": 24,
+    "aas": "I",
+    "triplet": "",
+    "insertedNAs": "",
+    "isInsertion": false,
+    "isDeletion": false
+  },
+  {
+    "gene": "PR",
+    "cons": "D",
+    "pos": 30,
+    "aas": "N",
+    "triplet": "",
+    "insertedNAs": "",
+    "isInsertion": false,
+    "isDeletion": false
+  },
+  {
+    "gene": "PR",
+    "cons": "V",
+    "pos": 32,
+    "aas": "I",
+    "triplet": "",
+    "insertedNAs": "",
+    "isInsertion": false,
+    "isDeletion": false
+  },
+  {
+    "gene": "PR",
+    "cons": "M",
+    "pos": 46,
+    "aas": "IL",
+    "triplet": "",
+    "insertedNAs": "",
+    "isInsertion": false,
+    "isDeletion": false
+  },
+  {
+    "gene": "PR",
+    "cons": "I",
+    "pos": 47,
+    "aas": "AV",
+    "triplet": "",
+    "insertedNAs": "",
+    "isInsertion": false,
+    "isDeletion": false
+  },
+  {
+    "gene": "PR",
+    "cons": "G",
+    "pos": 48,
+    "aas": "MV",
+    "triplet": "",
+    "insertedNAs": "",
+    "isInsertion": false,
+    "isDeletion": false
+  },
+  {
+    "gene": "PR",
+    "cons": "I",
+    "pos": 50,
+    "aas": "LV",
+    "triplet": "",
+    "insertedNAs": "",
+    "isInsertion": false,
+    "isDeletion": false
+  },
+  {
+    "gene": "PR",
+    "cons": "F",
+    "pos": 53,
+    "aas": "LY",
+    "triplet": "",
+    "insertedNAs": "",
+    "isInsertion": false,
+    "isDeletion": false
+  },
+  {
+    "gene": "PR",
+    "cons": "I",
+    "pos": 54,
+    "aas": "ALMSTV",
+    "triplet": "",
+    "insertedNAs": "",
+    "isInsertion": false,
+    "isDeletion": false
+  },
+  {
+    "gene": "PR",
+    "cons": "G",
+    "pos": 73,
+    "aas": "ACST",
+    "triplet": "",
+    "insertedNAs": "",
+    "isInsertion": false,
+    "isDeletion": false
+  },
+  {
+    "gene": "PR",
+    "cons": "L",
+    "pos": 76,
+    "aas": "V",
+    "triplet": "",
+    "insertedNAs": "",
+    "isInsertion": false,
+    "isDeletion": false
+  },
+  {
+    "gene": "PR",
+    "cons": "V",
+    "pos": 82,
+    "aas": "ACFLMST",
+    "triplet": "",
+    "insertedNAs": "",
+    "isInsertion": false,
+    "isDeletion": false
+  },
+  {
+    "gene": "PR",
+    "cons": "N",
+    "pos": 83,
+    "aas": "D",
+    "triplet": "",
+    "insertedNAs": "",
+    "isInsertion": false,
+    "isDeletion": false
+  },
+  {
+    "gene": "PR",
+    "cons": "I",
+    "pos": 84,
+    "aas": "ACV",
+    "triplet": "",
+    "insertedNAs": "",
+    "isInsertion": false,
+    "isDeletion": false
+  },
+  {
+    "gene": "PR",
+    "cons": "I",
+    "pos": 85,
+    "aas": "V",
+    "triplet": "",
+    "insertedNAs": "",
+    "isInsertion": false,
+    "isDeletion": false
+  },
+  {
+    "gene": "PR",
+    "cons": "N",
+    "pos": 88,
+    "aas": "DS",
+    "triplet": "",
+    "insertedNAs": "",
+    "isInsertion": false,
+    "isDeletion": false
+  },
+  {
+    "gene": "PR",
+    "cons": "L",
+    "pos": 90,
+    "aas": "M",
+    "triplet": "",
+    "insertedNAs": "",
+    "isInsertion": false,
+    "isDeletion": false
+  },
+  {
     "gene": "RT",
     "cons": "M",
     "pos": 41,
@@ -244,186 +424,6 @@
     "cons": "M",
     "pos": 230,
     "aas": "L",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
-  },
-  {
-    "gene": "PR",
-    "cons": "L",
-    "pos": 23,
-    "aas": "I",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
-  },
-  {
-    "gene": "PR",
-    "cons": "L",
-    "pos": 24,
-    "aas": "I",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
-  },
-  {
-    "gene": "PR",
-    "cons": "D",
-    "pos": 30,
-    "aas": "N",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
-  },
-  {
-    "gene": "PR",
-    "cons": "V",
-    "pos": 32,
-    "aas": "I",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
-  },
-  {
-    "gene": "PR",
-    "cons": "M",
-    "pos": 46,
-    "aas": "IL",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
-  },
-  {
-    "gene": "PR",
-    "cons": "I",
-    "pos": 47,
-    "aas": "AV",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
-  },
-  {
-    "gene": "PR",
-    "cons": "G",
-    "pos": 48,
-    "aas": "MV",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
-  },
-  {
-    "gene": "PR",
-    "cons": "I",
-    "pos": 50,
-    "aas": "LV",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
-  },
-  {
-    "gene": "PR",
-    "cons": "F",
-    "pos": 53,
-    "aas": "LY",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
-  },
-  {
-    "gene": "PR",
-    "cons": "I",
-    "pos": 54,
-    "aas": "ALMSTV",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
-  },
-  {
-    "gene": "PR",
-    "cons": "G",
-    "pos": 73,
-    "aas": "ACST",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
-  },
-  {
-    "gene": "PR",
-    "cons": "L",
-    "pos": 76,
-    "aas": "V",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
-  },
-  {
-    "gene": "PR",
-    "cons": "V",
-    "pos": 82,
-    "aas": "ACFLMST",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
-  },
-  {
-    "gene": "PR",
-    "cons": "N",
-    "pos": 83,
-    "aas": "D",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
-  },
-  {
-    "gene": "PR",
-    "cons": "I",
-    "pos": 84,
-    "aas": "ACV",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
-  },
-  {
-    "gene": "PR",
-    "cons": "I",
-    "pos": 85,
-    "aas": "V",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
-  },
-  {
-    "gene": "PR",
-    "cons": "N",
-    "pos": 88,
-    "aas": "DS",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
-  },
-  {
-    "gene": "PR",
-    "cons": "L",
-    "pos": 90,
-    "aas": "M",
     "triplet": "",
     "insertedNAs": "",
     "isInsertion": false,
