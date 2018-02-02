@@ -22,6 +22,8 @@ import graphql.schema.*;
 import static graphql.Scalars.*;
 import static graphql.schema.GraphQLInputObjectField.newInputObjectField;
 import static graphql.schema.GraphQLObjectType.newObject;
+
+import static edu.stanford.hivdb.graphql.Exceptions.*;
 import static edu.stanford.hivdb.graphql.ExtendedFieldDefinition.newFieldDefinition;
 
 import java.util.Map;
@@ -35,11 +37,13 @@ import static graphql.schema.GraphQLInputObjectType.newInputObject;
 
 public class UnalignedSequenceDef {
 
+	private static final int MAXIMUM_SEQUENCE_SIZE = 15000;
+	
 	public static List<Sequence> toSequenceList(List<Map<String, String>> input) {
 		if (input == null) {
 			return Collections.emptyList();
 		}
-		return input
+		List<Sequence> seqs = input
 			.stream()
 			.filter(seqInput -> {
 				return seqInput instanceof Map
@@ -51,6 +55,17 @@ public class UnalignedSequenceDef {
 				seqInput.get("sequence")
 			))
 			.collect(Collectors.toList());
+		
+		// a simple validation
+		for (Sequence seq : seqs) {
+			if (seq.getLength() > MAXIMUM_SEQUENCE_SIZE) {
+				throw new SequenceSizeLimitExceededException(String.format(
+					"The length of sequence '%s' exceeded the maximum limitation. (%d > %d)",
+					seq.getHeader(), seq.getLength(), MAXIMUM_SEQUENCE_SIZE
+				));
+			}
+		}
+		return seqs;
 	}
 
 	public static GraphQLObjectType oUnalignedSequence = newObject()

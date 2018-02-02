@@ -19,6 +19,7 @@
 package edu.stanford.hivdb.graphql;
 
 import graphql.schema.*;
+
 import static graphql.Scalars.*;
 import static graphql.schema.GraphQLArgument.newArgument;
 import static graphql.schema.GraphQLObjectType.newObject;
@@ -35,6 +36,7 @@ import edu.stanford.hivdb.mutations.MutationPrevalences;
 import edu.stanford.hivdb.mutations.MutationSet;
 import edu.stanford.hivdb.utilities.Sequence;
 
+import static edu.stanford.hivdb.graphql.Exceptions.*;
 import static edu.stanford.hivdb.graphql.UnalignedSequenceDef.*;
 import static edu.stanford.hivdb.graphql.GeneDef.*;
 import static edu.stanford.hivdb.graphql.HivdbVersionDef.*;
@@ -45,12 +47,19 @@ import static edu.stanford.hivdb.graphql.SequenceAnalysisDef.oSequenceAnalysis;
 import static edu.stanford.hivdb.graphql.MutationsAnalysisDef.oMutationsAnalysis;
 
 public class SierraSchema {
-
+	
+	private static final int MAXIMUM_SEQUENCES_PER_PAYLOAD;
+	
 	private static DataFetcher<List<AlignedSequence>> getSequenceAnalysisDataFetcher() {
 		return new DataFetcher<List<AlignedSequence>>() {
 			@Override
 			public List<AlignedSequence> get(DataFetchingEnvironment environment) {
 				List<Map<String, String>> seqs = environment.getArgument("sequences");
+				if (seqs.size() > MAXIMUM_SEQUENCES_PER_PAYLOAD) {
+					throw new NumSequencesLimitExceededException(String.format(
+							"Too many sequences submitted in one request. (%d > %d)",
+							seqs.size(), MAXIMUM_SEQUENCES_PER_PAYLOAD));
+				}
 				List<Sequence> seqList = toSequenceList(seqs);
 
 				return Aligner.parallelAlign(seqList);
@@ -187,4 +196,12 @@ public class SierraSchema {
 	public static GraphQLSchema schema = GraphQLSchema.newSchema()
 		.query(oRoot)
 		.build();
+	
+	static {
+		String maxSeqs = System.getenv("MAXIMUM_SEQUENCES_PER_PAYLOAD");
+		if (maxSeqs == null) {
+			maxSeqs = "120";
+		}
+		MAXIMUM_SEQUENCES_PER_PAYLOAD = Integer.parseInt(maxSeqs); 		
+	}
 }

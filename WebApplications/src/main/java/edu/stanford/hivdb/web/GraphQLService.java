@@ -66,7 +66,7 @@ public class GraphQLService {
 		if (arguments == null) {arguments = Collections.emptyMap(); }
 		ExecutionResult result = graphql
 			.execute(query, context, arguments);
-		List<Object> errors = handleErrors(result);
+		List<Map<String, Object>> errors = handleErrors(result);
 		Map<String, Object> output = new LinkedHashMap<>();
 		Status status = Status.OK;
 		if (!errors.isEmpty()) {
@@ -83,23 +83,28 @@ public class GraphQLService {
 			.build();
 	}
 
-	private List<Object> handleErrors(ExecutionResult result) {
-		List<Object> errors = new ArrayList<>();
+	private List<Map<String, Object>> handleErrors(ExecutionResult result) {
+		List<Map<String, Object>> errors = new ArrayList<>();
 		for (GraphQLError error : result.getErrors()) {
-			if (error instanceof ExceptionWhileDataFetching) {
+			Map<String, Object> errorMap = new LinkedHashMap<>(); 
+			errorMap.put("type", error.getErrorType());
+			errorMap.put("message", error.getMessage());
+			errorMap.put("locations", error.getLocations());
+			errors.add(errorMap);
+			/*if (error instanceof ExceptionWhileDataFetching) {
 				Throwable innerExc = ((ExceptionWhileDataFetching) error).getException();
 				if (!(innerExc instanceof InvalidMutationStringException)) {
 					throw new RuntimeException("Unhandled exception", innerExc);
 				}
 			}
-			/*else if (error instanceof InvalidSyntaxError) {
+			else if (error instanceof InvalidSyntaxError) {
 				Map<String, Object> errorMap = new LinkedHashMap<>();
 				errorMap.put("type", "InvalidSyntaxError");
 				errorMap.put("message", ((InvalidSyntaxError) error).getMessage());
 				errorMap.put("locations", ((InvalidSyntaxError) error).getLocations());
 				errors.add(errorMap);
 			}*/
-			errors.add(error);
+			// errors.add(error);
 		}
 		return errors;
 	}
