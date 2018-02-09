@@ -75,6 +75,8 @@ dependencies from Bash or Windows command line.
 
 ```bash
 cd path/to/sierra
+# initialize the hiv-genotyper submodule (first setup only)
+git submodule init && git submodule update
 # any gradle command will trigger downloading of dependencies
 ./gradlew assemble
 ```
@@ -83,6 +85,9 @@ cd path/to/sierra
 
 ```winbatch
 cd path\to\sierra
+# initialize the hiv-genotyper submodule (first setup only)
+git submodule init
+git submodule update
 gradlew.bat assemble
 ```
 
