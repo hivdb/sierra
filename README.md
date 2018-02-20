@@ -101,6 +101,13 @@ for more instructions.
 
 ### TODO list
 
+## Donation
+
+If you find NucAmino useful and wish to donate to the HIVDB team, you can do
+so through [Stanford Make a Gift][donation] form. Your contribution will be
+greatly appreciated.
+
+
 [sierra-logo]: http://hivdb.stanford.edu/DR/webservices/images/Sierra.gif
 [nucamino-paper]: https://hivdb.stanford.edu/pages/pdf/Tzou.2017.BMCBioinformatics.pdf
 [nucamino-github]: https://github.com/hivdb/nucamino
@@ -119,3 +126,4 @@ for more instructions.
 [junit]: http://junit.org/junit4/
 [graphql-java]: https://github.com/graphql-java/graphql-java
 [fstrf]: https://www.fstrf.org/
+[donation]: https://giving.stanford.edu/goto/shafergift
