@@ -97,13 +97,10 @@ With private project [HIVdb Deployment][deployment] one can easily deploy
 Sierra and start an HTTP server with Docker. See [HIVdb Deployment][deployment]
 for more instructions.
 
-## Development
-
-### TODO list
 
 ## Donation
 
-If you find NucAmino useful and wish to donate to the HIVDB team, you can do
+If you find Sierra useful and wish to donate to the HIVDB team, you can do
 so through [Stanford Make a Gift][donation] form. Your contribution will be
 greatly appreciated.
 
