@@ -65,7 +65,6 @@ public class MutationPatternsResistanceJsonComparisonTest {
 
 			final Map<MutationSet, GeneDR> allResistanceResults =
 				GeneDRFast.parallelConstructor(drugClass.gene(), new HashSet<>(mutationLists));
-
 			// Test the totalScore files
 			// Calculated scores for each mutation list
 			Map<String, Map<Drug, Integer>> mutPatternScoresCalculated = new HashMap<>();
@@ -114,7 +113,7 @@ public class MutationPatternsResistanceJsonComparisonTest {
 			Map<String, Map<Drug, Integer>> mutPatternLevelsCalculated = new HashMap<>();
 			for (MutationSet mutations : mutationLists) {
 				String fmtMutationList = mutations.join();
-				GeneDR resistanceResults = new GeneDRFast(drugClass.gene(), mutations);
+				GeneDR resistanceResults = allResistanceResults.get(mutations);
 				Map<Drug, Integer> levels = new HashMap<>();
 				for (Drug drug : drugClass.getDrugsForHivdbTesting()) {
 					int level = resistanceResults.getDrugLevel(drug);
@@ -123,7 +122,7 @@ public class MutationPatternsResistanceJsonComparisonTest {
 				mutPatternLevelsCalculated.put(fmtMutationList, levels);
 			}
 
-			// Retrieve pre-existing saved scores in json format
+			// Retrieve pre-existing saved levels in json format
 			final InputStream mutPatternDrugLevelsJsonInputStream =
 				MutationPatternsResistanceJsonComparisonTest.class.getClassLoader().getResourceAsStream(
 					"MutationPatternsExpectedResistanceResults/Patterns" + drugClass + ".levels.json");
@@ -147,7 +146,7 @@ public class MutationPatternsResistanceJsonComparisonTest {
 			Map<String, Map<MutType, String>> mutPatternMutTypesCalculated = new HashMap<>();
 			for (MutationSet mutations : mutationLists) {
 				String fmtMutationList = mutations.join();
-				GeneDR resistanceResults = new GeneDRFast(drugClass.gene(), mutations);
+				GeneDR resistanceResults = allResistanceResults.get(mutations);
 				Map<MutType, String> mutTypes = new HashMap<>();
 				Map<MutType, MutationSet> mutTypeMutLists = resistanceResults.groupMutationsByTypes();
 				for (MutType mutType : mutTypeMutLists.keySet()) {
@@ -158,7 +157,7 @@ public class MutationPatternsResistanceJsonComparisonTest {
 				mutPatternMutTypesCalculated.put(fmtMutationList, mutTypes);
 			}
 
-			// Retrieve pre-existing saved scores in json format
+			// Retrieve pre-existing saved mutTypes in json format
 			Type mapTypeMutTypes = new TypeToken<Map<String, Map<MutType, String>>>() {}.getType();
 			final InputStream mutPatternMutTypesJsonInputStream =
 					MutationPatternsResistanceJsonComparisonTest.class.getClassLoader().getResourceAsStream(
@@ -185,7 +184,7 @@ public class MutationPatternsResistanceJsonComparisonTest {
 			Map<String, Map<String, String>> mutPatternCommentsCalculated = new HashMap<>();
 			for (MutationSet mutations : mutationLists) {
 				String fmtMutationList = mutations.join();
-				GeneDR geneDR = new GeneDRFast(drugClass.gene(), mutations);
+				GeneDR geneDR = allResistanceResults.get(mutations);
 
 				Map<String, String> mutComments = ConditionalComments
 					.getComments(geneDR).stream()
