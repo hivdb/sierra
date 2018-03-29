@@ -25,11 +25,13 @@ import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import edu.stanford.hivdb.alignment.MutationListValidator;
 import edu.stanford.hivdb.drugresistance.GeneDRFast;
 import edu.stanford.hivdb.drugresistance.algorithm.Algorithm;
+import edu.stanford.hivdb.mutations.Gene;
 import edu.stanford.hivdb.mutations.MutationSet;
 import static edu.stanford.hivdb.graphql.DrugResistanceDef.*;
 import static edu.stanford.hivdb.graphql.ValidationResultDef.*;
@@ -38,13 +40,31 @@ import static edu.stanford.hivdb.graphql.AlgorithmComparisonDef.*;
 import static edu.stanford.hivdb.graphql.ExtendedFieldDefinition.*;
 
 public class MutationsAnalysisDef {
+	
+	private static Map<Gene, MutationSet> getMutationsByGeneFromSource(DataFetchingEnvironment env) {
+		List<?> data = (List<?>) env.getSource();
+		Set<Gene> knownGenes = ((Set<?>) data.get(0)).stream().map(g -> ((Gene) g)).collect(Collectors.toSet());
+		MutationSet mutations = (MutationSet) data.get(1);
+		Map<Gene, MutationSet> mutationsByGene = mutations.groupByGene();
+		for (Gene gene : knownGenes) {
+			if (!mutationsByGene.containsKey(gene)) {
+				mutationsByGene.put(gene, new MutationSet());
+			}
+		}
+		return mutationsByGene;
+	}
+	
+	private static MutationSet getMutationSetFromSource(DataFetchingEnvironment env) {
+		List<?> data = (List<?>) env.getSource();
+		return (MutationSet) data.get(1);
+	}
 
 	private static DataFetcher drugResistanceDataFetcher = new DataFetcher() {
 		@Override
 		public Object get(DataFetchingEnvironment environment) {
-			MutationSet mutations = (MutationSet) environment.getSource();
-			return mutations
-				.groupByGene().entrySet()
+			Map<Gene, MutationSet> mutationsByGene = getMutationsByGeneFromSource(environment);
+			return mutationsByGene
+				.entrySet()
 				.stream()
 				.map(e -> new GeneDRFast(e.getKey(), e.getValue()))
 				.collect(Collectors.toList());
@@ -54,7 +74,7 @@ public class MutationsAnalysisDef {
 	private static DataFetcher mutationPrevalencesDataFetcher = new DataFetcher() {
 		@Override
 		public Object get(DataFetchingEnvironment environment) {
-			MutationSet mutations = (MutationSet) environment.getSource();
+			MutationSet mutations = getMutationSetFromSource(environment);
 			return getBoundMutationPrevalenceList(mutations);
 		}
 	};
@@ -81,9 +101,8 @@ public class MutationsAnalysisDef {
 					(x1, x2) -> x2,
 					LinkedHashMap::new
 				));
-			MutationSet mutations = (MutationSet) environment.getSource();
-			return fetchAlgorithmComparisonData(
-				mutations.groupByGene(), asiAlgs, customAlgs2);
+			Map<Gene, MutationSet> mutationsByGene = getMutationsByGeneFromSource(environment);
+			return fetchAlgorithmComparisonData(mutationsByGene, asiAlgs, customAlgs2);
 		}
 	};
 
@@ -91,7 +110,7 @@ public class MutationsAnalysisDef {
 
 		@Override
 		public Object get(DataFetchingEnvironment environment) {
-			MutationSet mutations = (MutationSet) environment.getSource();
+			MutationSet mutations = getMutationSetFromSource(environment);
 			MutationListValidator validator = new MutationListValidator(mutations);
 			return validator.getValidationResults();
 		}

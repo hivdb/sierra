@@ -24,14 +24,18 @@ import static graphql.Scalars.*;
 import static graphql.schema.GraphQLArgument.newArgument;
 import static graphql.schema.GraphQLObjectType.newObject;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.EnumSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import edu.stanford.hivdb.alignment.AlignedSequence;
 import edu.stanford.hivdb.alignment.Aligner;
 import edu.stanford.hivdb.mutations.Gene;
+import edu.stanford.hivdb.mutations.Mutation;
 import edu.stanford.hivdb.mutations.MutationPrevalences;
 import edu.stanford.hivdb.mutations.MutationSet;
 import edu.stanford.hivdb.utilities.Sequence;
@@ -68,21 +72,41 @@ public class SierraSchema {
 		};
 	}
 
-	private static DataFetcher<MutationSet> mutationsAnalysisDataFetcher = new DataFetcher<MutationSet>() {
+	private static Set<Gene> extractKnownGenes(List<String> mutations) {
+		Set<Gene> knownGenes = EnumSet.noneOf(Gene.class);
+		int numGenes = Gene.values().length;
+		for (String mutText : mutations) {
+			Gene gene = Mutation.extractGene(mutText);
+			knownGenes.add(gene);
+			if (knownGenes.size() == numGenes) {
+				break;
+			}
+		}
+		return knownGenes;
+	}
+	
+	private static List<Object> prepareMutationsAnalysisData(List<String> mutations) {
+		List<Object> result = new ArrayList<>();
+		result.add(extractKnownGenes(mutations));
+		result.add(new MutationSet(null, mutations));
+		return result;
+	}
+
+	private static DataFetcher<List<Object>> mutationsAnalysisDataFetcher = new DataFetcher<List<Object>>() {
 		@Override
-		public MutationSet get(DataFetchingEnvironment environment) {
+		public List<Object> get(DataFetchingEnvironment environment) {
 			List<String> mutations = environment.getArgument("mutations");
-			return new MutationSet(null, mutations);
+			return prepareMutationsAnalysisData(mutations);
 		}
 	};
 
-	private static DataFetcher<List<MutationSet>> patternAnalysisDataFetcher = new DataFetcher<List<MutationSet>>() {
+	private static DataFetcher<List<List<Object>>> patternAnalysisDataFetcher = new DataFetcher<List<List<Object>>>() {
 		@Override
-		public List<MutationSet> get(DataFetchingEnvironment environment) {
+		public List<List<Object>> get(DataFetchingEnvironment environment) {
 			List<List<String>> patterns = environment.getArgument("patterns");
 			return patterns
 				.stream()
-				.map(mutations -> new MutationSet(null, mutations))
+				.map(mutations -> prepareMutationsAnalysisData(mutations))
 				.collect(Collectors.toList());
 		}
 	};

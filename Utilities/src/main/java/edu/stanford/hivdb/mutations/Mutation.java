@@ -276,6 +276,35 @@ public class Mutation implements Comparable<Mutation> {
 		return !isInsertion &&
 			StringUtils.countMatches(triplet.replace('-', 'N'),	"N") > 1;
 	}
+	
+	/**
+	 * Extracts gene from mutText string
+	 * @param mutText
+	 * @return a Gene enum object
+	 */
+	public static Gene extractGene(String mutText) {
+		Gene gene = null;
+		mutText = mutText
+			.replaceAll("[iI]nsertion", "_")
+			.replaceAll("[dD]eletion", "-")
+			.replaceAll("#|i(ns)?", "_")
+			.replaceAll("~|d(el)?", "-")
+			.replace('Z', '*');
+		mutText = mutText.toUpperCase();
+		Matcher m = mutationPattern.matcher(mutText);
+		if (m.matches()) {
+			try {
+				gene = Gene.valueOf(m.group(1).toUpperCase());
+			} catch (NullPointerException e) {
+				throw new InvalidMutationStringException(
+					"Gene is not specified and also not found in the " +
+					"given text: " + mutText + ". The correct format " +
+					"for an input mutation string is, for example, " +
+					"RT:215Y.", e);
+			}
+		}
+		return gene;
+	}
 
 	/**
 	 * Converts gene and mutText string into a Mutation object
