@@ -45,6 +45,7 @@ public enum Drug {
 	NVP("nevirapine", "NVP", DrugClass.NNRTI, true),
 	RPV("rilpivirine", "RPV", DrugClass.NNRTI, true),
 
+	BIC("bictegravir", "BIC", DrugClass.INSTI, true),
 	DTG("dolutegravir", "DTG", DrugClass.INSTI, true),
 	EVG("elvitegravir", "EVG", DrugClass.INSTI, true),
 	RAL("raltegravir", "RAL",DrugClass.INSTI, true);

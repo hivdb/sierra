@@ -33,7 +33,8 @@ public enum HivdbVersion {
 	V8_1_1("AlgXMLs/HIVDB_8.1.1.xml", "2016-09-23", "8.1.1"),
 	V8_2("AlgXMLs/HIVDB_8.2.xml", "2016-12-09", "8.2"),
 	V8_3("AlgXMLs/HIVDB_8.3.xml", "2017-03-02", "8.3"),
-	V8_4("AlgXMLs/HIVDB_8.4.xml", "2017-06-16", "8.4");
+	V8_4("AlgXMLs/HIVDB_8.4.xml", "2017-06-16", "8.4"),
+	V8_5("AlgXMLs/HIVDB_8.5.xml", "2018-04-09", "8.5");
 
 	public final String resourcePath;
 	public final String versionDate;
@@ -70,13 +71,13 @@ public enum HivdbVersion {
 				getLatestVersion()
 			},
 			new HivdbVersion[] {
-				V8_3, V8_4
+				V8_4, V8_5
 			}
 		};
 	}
 
 	public static HivdbVersion getLatestVersion() {
-		return V8_4;
+		return V8_5;
 	}
 
 	public InputStream getResource() {
