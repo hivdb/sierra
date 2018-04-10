@@ -157,6 +157,10 @@ public class SequenceValidator {
 		messages.put(
 			"overlap", "Alignment overlap detected at the begining of %s " +
 			"sequence (\"%s\"). Try insert Ns between partial sequences.");
+		
+		levels.put("reverse-complement", ValidationLevel.WARNING);
+		messages.put(
+			"reverse-complement", "This report was derived from the reverse complement of input sequence.");
 
 		VALIDATION_RESULT_LEVELS = Collections.unmodifiableMap(levels);
 		VALIDATION_RESULT_MESSAGES = Collections.unmodifiableMap(messages);
@@ -177,6 +181,7 @@ public class SequenceValidator {
 		if (!validateNotEmpty()) {
 			return false;
 		}
+		validated = validateReverseComplement() && validated;
 		validated = validateGene() && validated;
 		validated = validateSequenceSize() && validated;
 		validated = validateShrinkage() && validated;
@@ -205,6 +210,15 @@ public class SequenceValidator {
 		boolean validated = true;
 		if (alignedSequence.isEmpty()) {
 			addValidationResult("no-gene-found");
+			validated = false;
+		}
+		return validated;
+	}
+	
+	protected boolean validateReverseComplement() {
+		boolean validated = true;
+		if (alignedSequence.isReverseComplement()) {
+			addValidationResult("reverse-complement");
 			validated = false;
 		}
 		return validated;

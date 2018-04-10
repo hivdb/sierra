@@ -133,15 +133,21 @@ public class NucAminoAligner {
 		return parallelAlign(sequences, false);
 	}
 
-	private static List<AlignedSequence> parallelAlign(Collection<Sequence> sequences, boolean sequenceReversed) {
+	private static List<AlignedSequence> parallelAlign(Collection<Sequence> sequences, boolean reversingSequence) {
 		String jsonString;
 		String[] cmd = NucAminoAligner.generateCmd();
 		Map<Sequence, StringBuilder> errors = new LinkedHashMap<>();
+		Collection<Sequence> preparedSeqs = sequences;
+		if (reversingSequence) {
+			preparedSeqs = preparedSeqs.stream()
+				.map(s -> s.reverseCompliment())
+				.collect(Collectors.toList());
+		}
 		try {
 			Process proc = Runtime.getRuntime().exec(cmd);
 			OutputStream stdin = proc.getOutputStream();
 			BufferedReader stdout = new BufferedReader(new InputStreamReader(proc.getInputStream()));
-			FastaUtils.writeStream(sequences, stdin);
+			FastaUtils.writeStream(preparedSeqs, stdin);
 			jsonString = stdout.lines().collect(Collectors.joining());
 			stdout.close();
 			proc.waitFor();
@@ -150,17 +156,16 @@ public class NucAminoAligner {
 		} catch (InterruptedException e) {
 			throw new RuntimeException(e);
 		}
-		List<AlignedSequence> results = processCommandOutput(sequences, jsonString, errors);
-		if (!sequenceReversed && !errors.isEmpty()) {
-			List<Sequence> reversed = errors.keySet().stream()
-				.map(s -> s.reverseCompliment())
-				.collect(Collectors.toList());
-			Map<Sequence, AlignedSequence> reversedResults = parallelAlign(reversed, true).stream()
+		List<AlignedSequence> results = processCommandOutput(sequences, jsonString, reversingSequence, errors);
+		if (!reversingSequence && !errors.isEmpty()) {
+			// a second run for reverse complement
+			List<Sequence> errorSeqs = new ArrayList<>(errors.keySet());
+			Map<Sequence, AlignedSequence> reversedResults = parallelAlign(errorSeqs, true).stream()
 				.collect(Collectors.toMap(as -> as.getInputSequence(), as -> as));
 			results = results.stream()
 				.map(as -> {
 					if (as.isEmpty()) {
-						AlignedSequence ras = reversedResults.get(as.getInputSequence().reverseCompliment());
+						AlignedSequence ras = reversedResults.get(as.getInputSequence());
 						if (!ras.isEmpty()) {
 							as = ras;
 						}
@@ -409,7 +414,7 @@ public class NucAminoAligner {
 	 */
 	private static List<AlignedSequence> processCommandOutput(
 			Collection<Sequence> sequences, String jsonString,
-			Map<Sequence, StringBuilder> errors) {
+			boolean sequenceReversed, Map<Sequence, StringBuilder> errors) {
 		Map<?, ?> jsonObj = Json.loads(
 			jsonString, new TypeToken<Map<?, ?>>(){}.getType());
 		List<?> alignmentResults = (List<?>) jsonObj.get("POL");
@@ -418,6 +423,7 @@ public class NucAminoAligner {
 			.collect(Collectors.toMap(seq -> seq.getHeader(), seq -> seq));
 		for (Object _result : alignmentResults) {
 			Map<?, ?> result = (Map<?, ?>) _result;
+			// TODO: should we use hash key to prevent name conflict?
 			String name = (String) result.get("Name");
 			Sequence sequence = sequenceMap.get(name);
 			Map<?, ?> report = (Map<?, ?>) result.get("Report");
@@ -442,7 +448,9 @@ public class NucAminoAligner {
 					errors.get(sequence).append("No aligned results were found.");
 				}
 			}
-			alignedSequences.add(new AlignedSequence(sequence, alignedGeneSeqs, discardedGenes));
+			alignedSequences.add(
+				new AlignedSequence(sequence, alignedGeneSeqs, discardedGenes, sequenceReversed)
+			);
 		}
 		return alignedSequences;
 

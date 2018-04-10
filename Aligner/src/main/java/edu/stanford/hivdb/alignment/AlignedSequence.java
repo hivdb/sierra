@@ -56,6 +56,7 @@ public class AlignedSequence {
 	private Double mixturePcnt;
 	private Apobec apobec;
 	private transient List<FrameShift> frameShifts;
+	private final Boolean isReverseComplement; 
 	private final Boolean isEmpty;
 
 	private static final Logger LOGGER = LogManager.getLogger();
@@ -77,15 +78,21 @@ public class AlignedSequence {
 	public AlignedSequence(
 			final Sequence unalignedSequence,
 			final Map<Gene, AlignedGeneSeq> alignedGeneSequenceMap,
-			final Map<Gene, String> discardedGenes) {
+			final Map<Gene, String> discardedGenes,
+			final boolean sequenceReversed) {
 		inputSequence = unalignedSequence;
 		this.alignedGeneSequenceMap = alignedGeneSequenceMap;
 		this.discardedGenes = discardedGenes;
+		isReverseComplement = sequenceReversed;
 		isEmpty = alignedGeneSequenceMap.isEmpty();
 	}
 
 	public boolean isEmpty() {
 		return isEmpty;
+	}
+	
+	public boolean isReverseComplement() {
+		return isReverseComplement;
 	}
 
 	public Map<Gene, AlignedGeneSeq> getAlignedGeneSequenceMap() {

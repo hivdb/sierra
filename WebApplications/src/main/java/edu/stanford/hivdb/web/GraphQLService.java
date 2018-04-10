@@ -86,18 +86,19 @@ public class GraphQLService {
 	private List<Map<String, Object>> handleErrors(ExecutionResult result) {
 		List<Map<String, Object>> errors = new ArrayList<>();
 		for (GraphQLError error : result.getErrors()) {
-			Map<String, Object> errorMap = new LinkedHashMap<>(); 
+			Map<String, Object> errorMap = new LinkedHashMap<>();
 			errorMap.put("type", error.getErrorType());
 			errorMap.put("message", error.getMessage());
 			errorMap.put("locations", error.getLocations());
-			errors.add(errorMap);
-			/*if (error instanceof ExceptionWhileDataFetching) {
+			if (error instanceof ExceptionWhileDataFetching) {
 				Throwable innerExc = ((ExceptionWhileDataFetching) error).getException();
-				if (!(innerExc instanceof InvalidMutationStringException)) {
+				errorMap.put("stackTrace", innerExc.getStackTrace());
+				/*if (!(innerExc instanceof InvalidMutationStringException)) {
 					throw new RuntimeException("Unhandled exception", innerExc);
-				}
+				}*/
 			}
-			else if (error instanceof InvalidSyntaxError) {
+			errors.add(errorMap);
+			/*else if (error instanceof InvalidSyntaxError) {
 				Map<String, Object> errorMap = new LinkedHashMap<>();
 				errorMap.put("type", "InvalidSyntaxError");
 				errorMap.put("message", ((InvalidSyntaxError) error).getMessage());
