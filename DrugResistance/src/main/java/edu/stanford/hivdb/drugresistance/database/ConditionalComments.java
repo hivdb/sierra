@@ -67,19 +67,31 @@ public class ConditionalComments {
 		}
 
 		public Gene getMutationGene() {
+			if (conditionType != ConditionType.MUTATION) {
+				return null;
+			}
 			return Gene.valueOf((String) conditionValue.get("gene"));
 		}
 
-		public int getMutationPosition() {
+		public Integer getMutationPosition() {
+			if (conditionType != ConditionType.MUTATION) {
+				return null;
+			}
 			return ((Double) conditionValue.get("pos")).intValue();
 		}
 
 		public String getMutationAAs() {
+			if (conditionType != ConditionType.MUTATION) {
+				return null;
+			}
 			return (String) conditionValue.get("aas");
 		}
 
 		private Map<Drug, List<Integer>> getDrugLevels() {
 			Map<Drug, List<Integer>> drugLevels = new LinkedHashMap<>();
+			if (conditionType != ConditionType.DRUGLEVEL) {
+				return drugLevels;
+			}
 			if (conditionValue.containsKey("and")) {
 				for (Object dlevel : ((List<?>) conditionValue.get("and"))) {
 					Map<?, ?> dlevelMap = (Map<?, ?>) dlevel;
@@ -100,6 +112,23 @@ public class ConditionalComments {
 				drugLevels.put(drug, levels);
 			}
 			return drugLevels;
+		}
+		
+		public String getDrugLevelsText() {
+			StringBuilder text = new StringBuilder();
+			Map<Drug, List<Integer>> drugLevels = getDrugLevels();
+			String delimiter = "";
+			for (Map.Entry<Drug, List<Integer>> e : drugLevels.entrySet()) {
+				Drug drug = e.getKey();
+				List<Integer> levels= e.getValue();
+				text.append(String.format(
+					"%s%s: %s", delimiter, drug,
+					levels.stream().map(l -> l.toString())
+					.collect(Collectors.joining(", "))
+				));
+				delimiter = "; ";
+			}
+			return text.toString();
 		}
 
 		public String getName() { return commentName; }

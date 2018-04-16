@@ -24,16 +24,16 @@ import edu.stanford.hivdb.drugresistance.database.ConditionalComments;
 import edu.stanford.hivdb.drugs.DrugClass;
 import edu.stanford.hivdb.utilities.MyFileUtils;
 
-public class MutationCommentsExporter {
+public class ConditionalCommentsExporter {
 
 	private static final String OUTPUT_FILE_PREFIX =
-		"__output/MutationComments";
+		"__output/ConditionalComments";
 
 	public static void main(String[] args) {
 
 		for (DrugClass drugClass : DrugClass.values()) {
 			StringBuilder output = new StringBuilder();
-			String header = "Position\tRank\tAAs\tComment\n";
+			String header = "CommentName\tDrugClass\tConditionType\tGene\tPosition\tAAs\tDrugLevels\tComment\n";
 			output.append(header);
 
 			output.append(
@@ -41,7 +41,9 @@ public class MutationCommentsExporter {
 					.stream()
 					.filter(cc -> cc.getDrugClass() == drugClass)
 					.map(cc -> String.format(
-						"%d\t%d\t%s\t%s", cc.getMutationPosition(), 0, cc.getMutationAAs(), cc.getText()))
+						"%s\t%s\t%s\t%s\t%d\t%s\t%s\t%s",
+						cc.getName(), cc.getDrugClass(), cc.getConditionType(), cc.getMutationGene(),
+						cc.getMutationPosition(), cc.getMutationAAs(), cc.getDrugLevelsText(), cc.getText()))
 					.collect(Collectors.joining("\n")
 				)
 			);
