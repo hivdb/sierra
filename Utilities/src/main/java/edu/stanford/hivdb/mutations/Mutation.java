@@ -466,6 +466,11 @@ public class Mutation implements Comparable<Mutation> {
 	public String toString() {
 		return getHumanFormat();
 	}
+	
+	public String getText() {
+		// same as `toString()`, only for GraphQL
+		return getHumanFormat();
+	}
 
 	/**
 	 * This method is just an alias name of getShortHumanFormat
