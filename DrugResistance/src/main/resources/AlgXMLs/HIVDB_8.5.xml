@@ -61,19 +61,19 @@
     <GLOBALRANGE><![CDATA[(-INF TO 9 => 1,  10 TO 14 => 2,  15 TO 29 => 3,  30 TO 59 => 4,  60 TO INF => 5)]]></GLOBALRANGE>
     <COMMENT_DEFINITIONS>
       <COMMENT_STRING id="IN118ACDEFHIKLMNPQSTVWY_-">
-        <TEXT><![CDATA[G118R is an extremely rare non-polymorphic mutation selected in one patient receiving RAL and two patients receiving DTG It has also been selected in vitro by DTG. Its reported effect on in vitro susceptibility has been highly variable ranging from having no effect to causing >5-fold reduced susceptibility to each of the INSTIs. $listMutsIn{118(NOT R)} is an unusual mutation at this position.]]></TEXT>
+        <TEXT><![CDATA[G118R is an extremely rare non-polymorphic mutation selected in patients receiving RAL and DTG. It has also been selected in vitro by DTG. Its reported effect on in vitro susceptibility has been highly variable ranging from having no effect to causing >5-fold reduced susceptibility to each of the INSTIs. $listMutsIn{118(NOT R)} is an unusual mutation at this position.]]></TEXT>
         <SORT_TAG>1</SORT_TAG>
       </COMMENT_STRING>
       <COMMENT_STRING id="IN118R">
-        <TEXT><![CDATA[G118R is an extremely rare non-polymorphic mutation selected. It has been selected in patients receiving RAL and DTG. It has also been selected in vitro by DTG. Its reported effect on in vitro susceptibility has been highly variable ranging from having no effect to causing >5-fold reduced susceptibility to each of the INSTIs.]]></TEXT>
+        <TEXT><![CDATA[G118R is an extremely rare non-polymorphic mutation selected in patients receiving RAL and DTG. It has also been selected in vitro by DTG. Its reported effect on in vitro susceptibility has been highly variable ranging from having no effect to causing >5-fold reduced susceptibility to each of the INSTIs. Data are not available for BIC.]]></TEXT>
         <SORT_TAG>1</SORT_TAG>
       </COMMENT_STRING>
       <COMMENT_STRING id="IN121ACDEGHIKLMNPQRSTVW_-">
-        <TEXT><![CDATA[F121Y is a non-polymorphic mutation selected in vitro by RAL and EVG. It has been reported rarely in patients receiving RAL. It reduces susceptibility to RAL by ~10-fold and to EVG by ~30-fold. It may also reduce DTG susceptibility. $listMutsIn{121(NOT Y)} is an unusual mutation at this position.]]></TEXT>
+        <TEXT><![CDATA[F121Y is a non-polymorphic mutation selected in vitro by RAL and EVG. It has been reported rarely in patients receiving RAL. It reduces susceptibility to RAL by ~10-fold and to EVG by ~30-fold.  $listMutsIn{121(NOT Y)} is an unusual mutation at this position.]]></TEXT>
         <SORT_TAG>1</SORT_TAG>
       </COMMENT_STRING>
       <COMMENT_STRING id="IN121Y">
-        <TEXT><![CDATA[F121Y is a non-polymorphic mutation selected in vitro by RAL and EVG. It has been reported rarely in patients receiving RAL. It causes intermediate-level reductions in RAL susceptibility (~10-fold) and high-level reductions in EVG susceptibility (~30-fold).]]></TEXT>
+        <TEXT><![CDATA[F121Y is a non-polymorphic mutation selected in vitro by RAL and EVG. It has been reported rarely in patients receiving RAL. It reduces susceptibility to RAL by ~10-fold and to EVG by ~30-fold.]]></TEXT>
         <SORT_TAG>1</SORT_TAG>
       </COMMENT_STRING>
       <COMMENT_STRING id="IN128T">
@@ -81,7 +81,7 @@
         <SORT_TAG>1</SORT_TAG>
       </COMMENT_STRING>
       <COMMENT_STRING id="IN138CFGHILMNPQRSVWY_-">
-        <TEXT><![CDATA[E138K/A are non-polymorphic mutations selected in patients receiving RAL, EVG and DTG. They usually occur in combination with Q148 mutations. In combination with Q148 they significantly reduce susceptibility to RAL, EVG and DTG. E138D is a polymorphism that occurs in 1% to 2% of viruses from INSTI-naive patients. It does not appear to be selected by INSTIs or to reduce INSTI susceptibility. $listMutsIn{138(NOT KATD)} is an unusual mutation at this position.]]></TEXT>
+        <TEXT><![CDATA[E138K/A/T are non-polymorphic mutations selected in patients receiving RAL, EVG and rarely DTG. They usually occur in combination with Q148 mutations. In combination with Q148 they cause high-level resistance to RAL and EVG and intermediate reductions in susceptibility to DTG and BIC. E138D is a polymorphism that occurs in 1% to 2% of viruses from INSTI-naive patients. It does not appear to be selected by INSTIs or to reduce INSTI susceptibility. $listMutsIn{138(NOT KATD)} is an unusual mutation at this position.]]></TEXT>
         <SORT_TAG>1</SORT_TAG>
       </COMMENT_STRING>
       <COMMENT_STRING id="IN138D">
@@ -89,31 +89,31 @@
         <SORT_TAG>1</SORT_TAG>
       </COMMENT_STRING>
       <COMMENT_STRING id="IN138KAT">
-        <TEXT><![CDATA[E138K/A are non-polymorphic mutations selected in patients receiving RAL, EVG, and DTG. They usually occur in combination with Q148 mutations. Alone they do not reduce INSTI susceptibility. However, they are associated with high-level reductions in RAL and EVG susceptibility (>100-fold) and intermediate reductions in DTG susceptibility (up to 10-fold) when they occur in combination with Q148 mutations. E138T is a rare nonpolymorphic INSTI-selected mutation that appears to have an effect similar to E138K/A.]]></TEXT>
+        <TEXT><![CDATA[E138K/A are non-polymorphic mutations selected in patients receiving RAL, EVG, and DTG. They usually occur in combination with Q148 mutations. Alone they do not reduce INSTI susceptibility. However, when they occur in combination with Q148 mutations, they are associated with high-level resistance to RAL and EVG and intermediate reductions in DTG and BIC susceptibility. E138T is an uncommon nonpolymorphic INSTI-selected mutation that appears to have an effect similar to E138K/A.]]></TEXT>
         <SORT_TAG>1</SORT_TAG>
       </COMMENT_STRING>
       <COMMENT_STRING id="IN140DEFHIKLMNPQRTVWY_-">
-        <TEXT><![CDATA[G140S/A/C are non-polymorphic mutations that usually occur with Q148 mutations in patients receiving RAL or EVG. Alone, they do not reduce INSTI susceptibility. However, in combination with Q148 mutations they are associated with >100-fold reduction in RAL and EVG susceptibility and an up to 10-fold reduction in DTG susceptibility. $listMutsIn{140(NOT SAC)} is an unusual mutation at this position.]]></TEXT>
+        <TEXT><![CDATA[G140S/A/C are non-polymorphic mutations that usually occur with Q148 mutations in patients receiving RAL or EVG. Alone, they do not reduce INSTI susceptibility. However, in combination with Q148 mutations they are associated with high-level resistance to RAL and EVG and intermediate reductions in DTG and BIC susceptibility. $listMutsIn{140(NOT SAC)} is an unusual mutation at this position.]]></TEXT>
         <SORT_TAG>1</SORT_TAG>
       </COMMENT_STRING>
       <COMMENT_STRING id="IN140SAC">
-        <TEXT><![CDATA[G140S/A/C are non-polymorphic mutations that usually occur with Q148 mutations in patients receiving RAL or EVG. Alone, they minimally reduce susceptibility to RAL and EVG. However, in combination with Q148 mutations they are associated with a >100-fold reduction in RAL and EVG susceptibility and an up to 10-fold reduction in DTG susceptibility.]]></TEXT>
+        <TEXT><![CDATA[G140S/A/C are non-polymorphic mutations that usually occur with Q148 mutations in patients receiving RAL or EVG. Alone, they minimally reduce susceptibility to RAL and EVG. However, in combination with Q148 mutations they are associated with high-level resistance to RAL and EVG and intermediate reductions in DTG and BIC susceptibility.]]></TEXT>
         <SORT_TAG>1</SORT_TAG>
       </COMMENT_STRING>
       <COMMENT_STRING id="IN143CR">
-        <TEXT><![CDATA[Y143C/R are non-polymorphic mutations selected by RAL. Alone, Y143C and Y143R reduce RAL susceptibility ~5 and 20-fold, respectively. In combination with T97A and other accessory mutations they reduce RAL susceptibility >100-fold. Alone, Y143C/R have minimal effects on EVG susceptibility. However, they are associated with intermediate to high-level reductions in EVG susceptibility (~10-fold) when they when they occur in combination with one or more accessory INSTI-resistance mutations. Y143 mutations do not reduce DTG susceptibility.]]></TEXT>
+        <TEXT><![CDATA[Y143C/R are non-polymorphic mutations selected by RAL. Alone, Y143C and Y143R reduce RAL susceptibility ~5 and 20-fold, respectively. In combination with T97A and other accessory mutations they reduce RAL susceptibility >100-fold. Alone, Y143C/R have minimal effects on EVG susceptibility. However, they are associated with intermediate to high-level reductions in EVG susceptibility (~10-fold) when they occur in combination with one or more accessory INSTI-resistance mutations. Y143 mutations do not reduce DTG or BIC susceptibility.]]></TEXT>
         <SORT_TAG>1</SORT_TAG>
       </COMMENT_STRING>
       <COMMENT_STRING id="IN143DEFILMNPQTVW_-">
-        <TEXT><![CDATA[Y143C/R are non-polymorphic mutations selected by RAL. Alone, Y143C and Y143R reduce RAL susceptibility by about 5 and 20-fold, respectively. In combination with T97A and other accessory mutations they reduce RAL susceptibility >100-fold. Alone, Y143C/R have minimal effects on EVG susceptibility. However, they are associated with ~10-fold reduced EVG susceptibility when they occur in combination with two or more accessory INSTI-resistance mutations. Y143 mutations do not reduce DTG susceptibility. $listMutsIn{143(NOT CRHKGSA)} is an unusual mutation at this position.]]></TEXT>
+        <TEXT><![CDATA[Y143C/R are non-polymorphic mutations selected by RAL. Alone, Y143C and Y143R reduce RAL susceptibility by about 5 and 20-fold, respectively. In combination with T97A and other accessory mutations they reduce RAL susceptibility >100-fold. Alone, Y143C/R have minimal effects on EVG susceptibility. However, they are associated with ~10-fold reduced EVG susceptibility when they occur in combination with two or more accessory INSTI-resistance mutations. Y143 mutations do not reduce DTG or BIC  susceptibility. $listMutsIn{143(NOT CRHKGSA)} is an unusual mutation at this position.]]></TEXT>
         <SORT_TAG>1</SORT_TAG>
       </COMMENT_STRING>
       <COMMENT_STRING id="IN143H">
-        <TEXT><![CDATA[Y143C/R are non-polymorphic mutations selected by RAL. Alone, Y143C and Y143R reduce RAL susceptibility ~5 and 20-fold, respectively. In combination with T97A and other accessory mutations they reduce RAL susceptibility >100-fold. Y143H is a less-common mutation at this position that is likely a transitional mutation between the wildtype Y amino acid and the mutant R which differs from Y by two bases.]]></TEXT>
+        <TEXT><![CDATA[Y143C/R are non-polymorphic mutations selected by RAL. Alone, Y143C and Y143R reduce RAL susceptibility ~5 and 20-fold, respectively. In combination with T97A and other accessory mutations they reduce RAL susceptibility >100-fold. Y143H is a less-common mutation at this position that is likely a transitional mutation between the wildtype Y amino acid and the mutant R (which differs from the wildtype Y by two nucleotides).]]></TEXT>
         <SORT_TAG>1</SORT_TAG>
       </COMMENT_STRING>
       <COMMENT_STRING id="IN143KGSA">
-        <TEXT><![CDATA[Y143K/G/S/A are extremely rare mutations that cause intermediate reductions in RAL susceptibility (~5 to 10-fold).]]></TEXT>
+        <TEXT><![CDATA[Y143K/G/S/A are rare mutations that cause intermediate reductions in RAL susceptibility. When they occur in combination with other accessory mutations, they may also cause low-level reductions in EVG susceptibility.]]></TEXT>
         <SORT_TAG>1</SORT_TAG>
       </COMMENT_STRING>
       <COMMENT_STRING id="IN145ACDEFGHIKLMNQRTVWY_-">
@@ -133,23 +133,23 @@
         <SORT_TAG>1</SORT_TAG>
       </COMMENT_STRING>
       <COMMENT_STRING id="IN147ACDEFHIKLMNPQRTVWY_-">
-        <TEXT><![CDATA[S147G is a non-polymorphic mutation selected in patients receiving EVG. It reduces EVG susceptibility 5 to 10-fold. It does not reduce RAL or DTG susceptibility. $listMutsIn{147(NOT G)} is an unusual mutation at this position.]]></TEXT>
+        <TEXT><![CDATA[S147G is a non-polymorphic mutation selected in patients receiving EVG. It moderately reduces EVG susceptibility 5 to 10-fold. It does not reduce RAL, DTG, or BIC susceptibility. $listMutsIn{147(NOT G)} is an unusual mutation at this position.]]></TEXT>
         <SORT_TAG>1</SORT_TAG>
       </COMMENT_STRING>
       <COMMENT_STRING id="IN147G">
-        <TEXT><![CDATA[S147G is a non-polymorphic mutation selected in patients receiving EVG. It moderately reduces EVG susceptibility (~5 to 10-fold). It does not reduce RAL or DTG susceptibility.]]></TEXT>
+        <TEXT><![CDATA[S147G is a non-polymorphic mutation selected in patients receiving EVG. It moderately reduces EVG susceptibility (5-10-fold). It does not reduce RAL or DTGsusceptibility.]]></TEXT>
         <SORT_TAG>1</SORT_TAG>
       </COMMENT_STRING>
       <COMMENT_STRING id="IN148ACDEFGILMPSTVWY_-">
-        <TEXT><![CDATA[Q148H/K/R are non-polymorphic mutations selected by RAL and EVG. Alone, Q148H reduces RAL and EVG susceptibility ~5 to 10-fold. Alone, Q148R/K reduce RAL and EVG susceptibility ~30 to 100-fold. In combination with G140S/A or E138K/A, they reduce RAL and EVG susceptibility >100-fold. Alone, Q148H/K/R have minimal effects on DTG susceptibility. In combination with G140S/A/C and/or E138K/A, they reduce DTG susceptibility up to 10-fold. $listMutsIn{148(NOT HKRN)} is an unusual mutation at this position.]]></TEXT>
+        <TEXT><![CDATA[Q148H/K/R are non-polymorphic mutations selected by RAL, EVG, and rarely DTG. Alone, Q148H moderately reduces RAL and EVG susceptibility ~5 to 10-fold. Alone, Q148R/K reduce RAL and EVG susceptibility ~30 to 100-fold. However, Q148H/K/R usually occur In combination with G140S/A or E138K/A/T, in which case they reduce RAL and EVG susceptibility >100-fold. Alone, Q148H/K/R have minimal effects on DTG and BIC susceptibility. In combination with G140S/A/C and/or E138K/A/T, they cause moderate to high level reductions in DTG and BIC susceptibility. $listMutsIn{148(NOT HKRN)} is an unusual mutation at this position.]]></TEXT>
         <SORT_TAG>1</SORT_TAG>
       </COMMENT_STRING>
       <COMMENT_STRING id="IN148HKR">
-        <TEXT><![CDATA[Q148H/K/R are non-polymorphic mutations selected by RAL and EVG. Alone, Q148H moderately reduces RAL and EVG susceptibility ~5 to 10-fold. Alone, Q148R/K reduce RAL and EVG susceptibility ~30 to 100-fold. In combination with G140S/A or E138K/A, they reduce RAL and EVG susceptibility >100-fold. Alone, Q148H/K/R have minimal effects on DTG susceptibility. In combination with G140S/A/C and/or E138K/A, they reduce DTG susceptibility up to 10-fold.]]></TEXT>
+        <TEXT><![CDATA[Q148H/K/R are non-polymorphic mutations selected by RAL, EVG, and rarely DTG. Alone, Q148H moderately reduces RAL and EVG susceptibility ~5 to 10-fold. Alone, Q148R/K reduce RAL and EVG susceptibility ~30 to 100-fold. However, Q148H/K/R usually occur In combination with G140S/A or E138K/A/T, in which case they reduce RAL and EVG susceptibility >100-fold. Alone, Q148H/K/R have minimal effects on DTG and BIC susceptibility. In combination with G140S/A/C and/or E138K/A/T, they cause moderate to high level reductions in DTG and BIC susceptibility.]]></TEXT>
         <SORT_TAG>1</SORT_TAG>
       </COMMENT_STRING>
       <COMMENT_STRING id="IN148N">
-        <TEXT><![CDATA[Q148H/K/R are non-polymorphic mutations selected by RAL and EVG. In combination with G140S/A or E138K/A, they reduce RAL and EVG susceptibility >100-fold. In combination with G140S/A/C and/or E138K/A, they reduce DTG susceptibility >10-fold. Q148N is a rare INSTI-selected mutation that causes ~3-fold reduced EVG susceptibility and may represent a reversion from Q148H or Q148K.]]></TEXT>
+        <TEXT><![CDATA[Q148H/K/R are non-polymorphic mutations selected by RAL, EVG, and rarely DTG. Alone, Q148H moderately reduces RAL and EVG susceptibility ~5 to 10-fold. Alone, Q148R/K reduce RAL and EVG susceptibility ~30 to 100-fold. However, Q148H/K/R usually occur In combination with G140S/A or E138K/A/T, in which case they reduce RAL and EVG susceptibility >100-fold. Alone, Q148H/K/R have minimal effects on DTG and BIC susceptibility. In combination with G140S/A/C and/or E138K/A/T, they cause moderate to high level reductions in DTG and BIC susceptibility. Q148N is a rare INSTI-selected mutation that causes ~3-fold reduced EVG susceptibility and may represent a reversion from Q148H or Q148K.]]></TEXT>
         <SORT_TAG>1</SORT_TAG>
       </COMMENT_STRING>
       <COMMENT_STRING id="IN151A">
@@ -165,35 +165,35 @@
         <SORT_TAG>1</SORT_TAG>
       </COMMENT_STRING>
       <COMMENT_STRING id="IN151L">
-        <TEXT><![CDATA[V151L is an extremely rare non-polymorphic mutation selected in vitro by early investigational INSTIs but not in patients receiving current INSTIs. It confers intermediate / high-level reduced susceptibility to RAL and EVG (~10-to 20-fold) and low-level reduced susceptibility to DTG (~2-fold).]]></TEXT>
+        <TEXT><![CDATA[V151L is an extemely rare non-polymorphic mutation selected in vitro by early investigational INSTIs but not in patients receiving current INSTIs. It confers intermediate / high-level reduced susceptibility to RAL and EVG and low-level reduced susceptibility to DTG.]]></TEXT>
         <SORT_TAG>1</SORT_TAG>
       </COMMENT_STRING>
       <COMMENT_STRING id="IN153ACDEGHIKLMNPQRTVW_-">
-        <TEXT><![CDATA[S153Y/F are extremely rare non-polymorphic mutations selected in vitro by EVG and DTG. S153Y/F reduce RAL and DTG susceptibility ~2-fold and EVG susceptibility ~4-fold. $listMutsIn{153(NOT YF)} is an unusual mutation at this position.]]></TEXT>
+        <TEXT><![CDATA[S153Y/F are extremely rare non-polymorphic mutations selected in vitro by EVG and DTG. S153Y/F reduce RAL, DTG, and possibly BIC susceptibility about 2-fold and EVG susceptibility about 4-fold. $listMutsIn{153(NOT YF)} is an unusual mutation at this position.]]></TEXT>
         <SORT_TAG>1</SORT_TAG>
       </COMMENT_STRING>
       <COMMENT_STRING id="IN153YF">
-        <TEXT><![CDATA[S153Y/F are rare non-polymorphic mutations selected in vitro by EVG and DTG. S153Y/F cause low-level reductions in susceptibility to each of the INSTIs.]]></TEXT>
+        <TEXT><![CDATA[S153Y/F are extremely rare non-polymorphic mutations selected in vitro by EVG and DTG. S153Y/F reduce RAL, DTG, and possibly BIC susceptibility about 2-fold and EVG susceptibility about 4-fold.]]></TEXT>
         <SORT_TAG>1</SORT_TAG>
       </COMMENT_STRING>
       <COMMENT_STRING id="IN155ACDEFGIKLMPQRVWY_-">
-        <TEXT><![CDATA[N155H is a non-polymorphic mutation selected in patients receiving RAL and EVG. Alone, it reduces RAL and EVG susceptibility ~15-fold and 30-fold, respectively. N155H has been selected by DTG in RAL-experienced patients but alone does not reduce DTG susceptibility. N155S/T are rare non-polymorphic mutations selected in vitro by investigational INSTIs. They reduce RAL and EVG susceptibility somewhat less than does N155H. $listMutsIn{155(NOT HST)} is an unusual mutation at this position.]]></TEXT>
+        <TEXT><![CDATA[N155H is a non-polymorphic mutation selected in patients receiving RAL, EVG, and rarely DTG. It reduces RAL and EVG susceptibility >15-fold. It causes minimal if any clinically significant reduction in DTG susceptibility. N155S/T are rare non-polymorphic mutations selected in vitro by investigational INSTIs. They reduce RAL and EVG susceptibility somewhat less than does N155H. $listMutsIn{155(NOT HST)} is an unusual mutation at this position.]]></TEXT>
         <SORT_TAG>1</SORT_TAG>
       </COMMENT_STRING>
       <COMMENT_STRING id="IN155H">
-        <TEXT><![CDATA[N155H is a non-polymorphic mutation selected in patients receiving RAL and EVG. Alone, it reduces RAL and EVG susceptibility ~15-fold and 30-fold, respectively. N155H has been selected by DTG in RAL-experienced patients but alone does not reduce DTG susceptibility.]]></TEXT>
+        <TEXT><![CDATA[N155H is a non-polymorphic mutation selected in patients receiving RAL, EVG, and rarely DTG. It reduces RAL and EVG susceptibility >15-fold. It causes minimal if any clinically significant reduction in DTG susceptibility.]]></TEXT>
         <SORT_TAG>1</SORT_TAG>
       </COMMENT_STRING>
       <COMMENT_STRING id="IN155ST">
-        <TEXT><![CDATA[N155H is a non-polymorphic mutation selected in patients receiving RAL and EVG. Alone, it reduces RAL and EVG susceptibility ~15-fold and 30-fold, respectively. N155H has been selected by DTG in RAL-experienced patients but alone does not reduce DTG susceptibility. N155S/T are rare non-polymorphic mutations selected in vitro by investigational INSTIs. They reduce RAL and EVG susceptibility somewhat less than does N155H.]]></TEXT>
+        <TEXT><![CDATA[N155H is a non-polymorphic mutation selected in patients receiving RAL, EVG, and rarely DTG. It reduces RAL and EVG susceptibility >15-fold. It causes minimal if any clinically significant reduction in DTG susceptibility. N155S/T are extremely rare non-polymorphic mutations selected in vitro by investigational INSTIs. They reduce RAL and EVG susceptibility somewhat less than does N155H.]]></TEXT>
         <SORT_TAG>1</SORT_TAG>
       </COMMENT_STRING>
       <COMMENT_STRING id="IN157Q">
-        <TEXT><![CDATA[E157Q is a polymorphic mutation selected in patients receiving RAL and in vitro by EVG. It appears to have little, if any, effect on INSTI susceptibility.]]></TEXT>
+        <TEXT><![CDATA[E157Q is a polymorphic mutation selected in patients receiving RAL and EVG. It appears to have little, if any, effect on INSTI susceptibility.]]></TEXT>
         <SORT_TAG>1</SORT_TAG>
       </COMMENT_STRING>
       <COMMENT_STRING id="IN163RK">
-        <TEXT><![CDATA[G163R/K occur in 5% to 10% of subtype F viruses from ARV-naive patients but are otherwise non-polymorphic. They are commonly selected in patients receiving RAL. Alone, they have little, if any, effect on INSTI susceptibility.]]></TEXT>
+        <TEXT><![CDATA[G163R/K are polymorphic in subtype F viruses from ARV-naive patients but are otherwise non-polymorphic. They are commonly selected in patients receiving RAL and possibly EVG. Alone, they have little, if any, effect on INSTI susceptibility.]]></TEXT>
         <SORT_TAG>1</SORT_TAG>
       </COMMENT_STRING>
       <COMMENT_STRING id="IN230N">
@@ -201,15 +201,15 @@
         <SORT_TAG>1</SORT_TAG>
       </COMMENT_STRING>
       <COMMENT_STRING id="IN230R">
-        <TEXT><![CDATA[S230R is a non-polymorphic accessory mutation selected by RAL and EVG. It appears to have minimal, if any, effect on INSTI susceptibility.]]></TEXT>
+        <TEXT><![CDATA[S230R is a non-polymorphic accessory mutation selected by RAL, EVG, and rarely DTG. It appears to have minimal, if any, effect on INSTI susceptibility.]]></TEXT>
         <SORT_TAG>1</SORT_TAG>
       </COMMENT_STRING>
       <COMMENT_STRING id="IN263ACDEFGHILMNPQSTVWY_-">
-        <TEXT><![CDATA[R263K is a rare non-polymorphic mutation selected in patients receiving RAL and DTG and in vitro by EVG and DTG. It reduces RAL, DTG, and EVG susceptibility by ~2-fold, 2-fold, and 4-fold, respectively. $listMutsIn{263(NOT K)} is an unusual mutation at this position.]]></TEXT>
+        <TEXT><![CDATA[R263K is an uncommon mutation selected in patients receiving RAL and DTG and in vitro by EVG, DTG, and BIC. It reduces EVG susceptibility by about 4-fold, and RAL, DTG, and BIC susceptibility by about 2-fold. $listMutsIn{263(NOT K)} is an unusual mutation at this position.]]></TEXT>
         <SORT_TAG>1</SORT_TAG>
       </COMMENT_STRING>
       <COMMENT_STRING id="IN263K">
-        <TEXT><![CDATA[R263K is a rare non-polymorphic mutation selected in patients receiving RAL and DTG and in vitro by EVG and DTG. It confers low-level reductions in EVG susceptibility (~5-fold) and minimal reductions in RAL and DTG susceptibility.]]></TEXT>
+        <TEXT><![CDATA[R263K is an uncommon mutation selected in patients receiving RAL and DTG and in vitro by EVG, DTG, and BIC. It reduces EVG susceptibility by about 4-fold, and RAL, DTG, and BIC susceptibility by about 2-fold.]]></TEXT>
         <SORT_TAG>1</SORT_TAG>
       </COMMENT_STRING>
       <COMMENT_STRING id="IN51ACDEFGIKLMNPQRSTVW_-">
@@ -221,7 +221,7 @@
         <SORT_TAG>1</SORT_TAG>
       </COMMENT_STRING>
       <COMMENT_STRING id="IN66A">
-        <TEXT><![CDATA[T66A is a non-polymorphic mutation selected in patients receiving EVG and RAL, usually in combination with other INSTI-resistance mutations. It reduces EVG susceptibility moderately (~5-fold). It does not appear to reduce RAL or DTG susceptibility.]]></TEXT>
+        <TEXT><![CDATA[T66A is a non-polymorphic mutation selected in patients receiving EVG and RAL, usually in combination with other INSTI-resistance mutations. It causes a moderatereduction in EVG susceptibility (~5-fold). It does not appear to reduce RAL or DTG susceptibility.]]></TEXT>
         <SORT_TAG>1</SORT_TAG>
       </COMMENT_STRING>
       <COMMENT_STRING id="IN66CDEFGHLMNPQRSVWY_-">
@@ -229,15 +229,15 @@
         <SORT_TAG>1</SORT_TAG>
       </COMMENT_STRING>
       <COMMENT_STRING id="IN66I">
-        <TEXT><![CDATA[T66I is a non-polymorphic mutation selected in patients receiving EVG and RAL. It reduces EVG susceptibility moderately (~10-fold) but does not appear to reduce RAL or DTG susceptibility.]]></TEXT>
+        <TEXT><![CDATA[T66I is a non-polymorphic mutation selected in patients receiving EVG and RAL. It reduces EVG susceptibility by about 10-fold but does not reduce RAL, DTG, or BIC susceptibility.]]></TEXT>
         <SORT_TAG>1</SORT_TAG>
       </COMMENT_STRING>
       <COMMENT_STRING id="IN66K">
-        <TEXT><![CDATA[T66K is a non-polymorphic mutation selected in patients receiving EVG. It is associated with high-level EVG resistance, intermediate/high-level RAL resistance, and low-level DTG resistance.]]></TEXT>
+        <TEXT><![CDATA[T66K is a non-polymorphic mutation selected in patients receiving EVG. It is associated with high-level EVG resistance, intermediate/high-level RAL resistance, and low-level DTG resistance. Its effect on BIC is not known.]]></TEXT>
         <SORT_TAG>1</SORT_TAG>
       </COMMENT_STRING>
       <COMMENT_STRING id="IN74MI">
-        <TEXT><![CDATA[L74M/I are highly polymorphic accessory mutations commonly selected by each of the INSTIs. In ARV-naive patients, L74M occurs in 0.5% to 10% of patients and L74I occurs in 3% to 20% of patients depending on subtype. Alone, L74M/I have minimal, if any, effect on INSTI susceptibility. However, they appear to contribute reduced susceptibility to each of the INSTIs when they occur with major INSTI-resistance mutations.]]></TEXT>
+        <TEXT><![CDATA[L74M/I are highly polymorphic accessory mutations commonly selected by each of the INSTIs. In ARV-naive patients, L74M occurs in 0.5% to 10% of patients and L74I occurs in 3% to 20% of patients depending on subtype. Alone, L74M/I have minimal, if any, effect on INSTI susceptibility. However, they contribute reduced susceptibility to each of the INSTIs when they occur with major INSTI-resistance mutations.]]></TEXT>
         <SORT_TAG>1</SORT_TAG>
       </COMMENT_STRING>
       <COMMENT_STRING id="IN92ACDFHIKLMNPRSTWY_-">
@@ -245,15 +245,15 @@
         <SORT_TAG>1</SORT_TAG>
       </COMMENT_STRING>
       <COMMENT_STRING id="IN92G">
-        <TEXT><![CDATA[E92G is a rare non-polymorphic mutation that has been selected in patients receiving EVG. It moderately reduces EVG susceptibility (~10-fold). It does not reduce RAL or DTG susceptibility.]]></TEXT>
+        <TEXT><![CDATA[E92G is a rare non-polymorphic mutation that has been selected in patients receiving EVG. It moderately reduces EVG susceptibility but does not reduce RAL or DTG susceptibility.]]></TEXT>
         <SORT_TAG>1</SORT_TAG>
       </COMMENT_STRING>
       <COMMENT_STRING id="IN92Q">
-        <TEXT><![CDATA[E92Q is a common non-polymorphic mutation selected in patients receiving RAL and EVG. It causes intermediate-level reductions in RAL susceptibility (5 to 10-fold) and high-level reductions in EVG susceptibility (~30-fold). It is selected in vitro by DTG and reduces DTG susceptibility ~1.5-fold.]]></TEXT>
+        <TEXT><![CDATA[E92Q is a common non-polymorphic mutation selected in patients receiving RAL and EVG. It causes intermediate and high-level reductions in RAL and EVG susceptibility, respectively. It is selected in vitro by DTG and reduces DTG susceptibility <=1.5-fold. Its effect on BIC is uncertain.]]></TEXT>
         <SORT_TAG>1</SORT_TAG>
       </COMMENT_STRING>
       <COMMENT_STRING id="IN92V">
-        <TEXT><![CDATA[E92V is a rare non-polymorphic mutation selected in vitro by an investigational INSTI. It causes intermediate-level reductions in RAL susceptibility (~10-fold) and high-level reductions in EVG susceptibility (~40-fold).]]></TEXT>
+        <TEXT><![CDATA[E92V is a rare non-polymorphic mutation selected in vitro by an investigational INSTI. It causes intermediate and high-level reductionss in EVG and RAL susceptibility, respectively.]]></TEXT>
         <SORT_TAG>1</SORT_TAG>
       </COMMENT_STRING>
       <COMMENT_STRING id="IN95K">
@@ -261,7 +261,7 @@
         <SORT_TAG>1</SORT_TAG>
       </COMMENT_STRING>
       <COMMENT_STRING id="IN97A">
-        <TEXT><![CDATA[T97A is a polymorphic accessory mutation that, depending on subtype, occurs in 1% to 5% of viruses from untreated persons. It is selected by RAL and EVG. Alone, it has minimal effects on INSTI susceptibility but in combination with other major resistance mutations, particularly Y143C/R, it synergistically reduces susceptibility to EVG and RAL.]]></TEXT>
+        <TEXT><![CDATA[T97A is a polymorphic accessory mutation that, depending on subtype, occurs in 1% to 5% of viruses from untreated persons. It is selected primarily by RAL and EVG. Alone, it has minimal effects on INSTI susceptibility but in combination with other major resistance mutations, it synergistically reduces susceptibility to EVG, RAL, DTG, and possibly BIC.]]></TEXT>
         <SORT_TAG>1</SORT_TAG>
       </COMMENT_STRING>
       <COMMENT_STRING id="PR10ACDEGHKMNPQSTW_-">
