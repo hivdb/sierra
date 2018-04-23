@@ -71,7 +71,7 @@ public enum HivdbVersion {
 				getLatestVersion()
 			},
 			new HivdbVersion[] {
-				V8_4, V8_5
+				V8_3, V8_5
 			}
 		};
 	}
