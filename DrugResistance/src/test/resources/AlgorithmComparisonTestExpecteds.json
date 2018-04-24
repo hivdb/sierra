@@ -4573,6 +4573,13 @@
           "explanation": "No rules were triggered"
         },
         {
+          "drug": "BIC",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
           "drug": "DTG",
           "algorithm": "HIVDB",
           "SIR": "S",
@@ -4594,6 +4601,13 @@
           "explanation": "No rules were triggered"
         },
         {
+          "drug": "BIC",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
           "drug": "DTG",
           "algorithm": "ANRS",
           "SIR": "S",
@@ -4612,6 +4626,13 @@
           "algorithm": "ANRS",
           "SIR": "S",
           "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "BIC",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
           "explanation": "No rules were triggered"
         },
         {
@@ -5044,6 +5065,13 @@
           "explanation": "No rules were triggered"
         },
         {
+          "drug": "BIC",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
           "drug": "DTG",
           "algorithm": "HIVDB",
           "SIR": "S",
@@ -5065,6 +5093,13 @@
           "explanation": "No rules were triggered"
         },
         {
+          "drug": "BIC",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
           "drug": "DTG",
           "algorithm": "ANRS",
           "SIR": "S",
@@ -5083,6 +5118,13 @@
           "algorithm": "ANRS",
           "SIR": "S",
           "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "BIC",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
           "explanation": "No rules were triggered"
         },
         {
@@ -5515,6 +5557,13 @@
           "explanation": "Total score: 0\nV179I (0) "
         },
         {
+          "drug": "BIC",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
           "drug": "DTG",
           "algorithm": "HIVDB",
           "SIR": "S",
@@ -5536,6 +5585,13 @@
           "explanation": "No rules were triggered"
         },
         {
+          "drug": "BIC",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
           "drug": "DTG",
           "algorithm": "ANRS",
           "SIR": "S",
@@ -5554,6 +5610,13 @@
           "algorithm": "ANRS",
           "SIR": "S",
           "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "BIC",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
           "explanation": "No rules were triggered"
         },
         {
@@ -5986,6 +6049,13 @@
           "explanation": "Total score: 0\nV189I (0) "
         },
         {
+          "drug": "BIC",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
           "drug": "DTG",
           "algorithm": "HIVDB",
           "SIR": "S",
@@ -6007,6 +6077,13 @@
           "explanation": "No rules were triggered"
         },
         {
+          "drug": "BIC",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
           "drug": "DTG",
           "algorithm": "ANRS",
           "SIR": "S",
@@ -6025,6 +6102,13 @@
           "algorithm": "ANRS",
           "SIR": "S",
           "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "BIC",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
           "explanation": "No rules were triggered"
         },
         {
@@ -6457,6 +6541,13 @@
           "explanation": "No rules were triggered"
         },
         {
+          "drug": "BIC",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
           "drug": "DTG",
           "algorithm": "HIVDB",
           "SIR": "S",
@@ -6478,6 +6569,13 @@
           "explanation": "Total score: 10\nE157Q (10) "
         },
         {
+          "drug": "BIC",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
           "drug": "DTG",
           "algorithm": "ANRS",
           "SIR": "I",
@@ -6497,6 +6595,13 @@
           "SIR": "R",
           "interpretation": "Resistance",
           "explanation": "157Q (Resistance)"
+        },
+        {
+          "drug": "BIC",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
         },
         {
           "drug": "DTG",
@@ -6928,6 +7033,13 @@
           "explanation": "No rules were triggered"
         },
         {
+          "drug": "BIC",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
           "drug": "DTG",
           "algorithm": "HIVDB",
           "SIR": "S",
@@ -6949,6 +7061,13 @@
           "explanation": "No rules were triggered"
         },
         {
+          "drug": "BIC",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
           "drug": "DTG",
           "algorithm": "ANRS",
           "SIR": "S",
@@ -6967,6 +7086,13 @@
           "algorithm": "ANRS",
           "SIR": "S",
           "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "BIC",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
           "explanation": "No rules were triggered"
         },
         {
@@ -7399,6 +7525,13 @@
           "explanation": "No rules were triggered"
         },
         {
+          "drug": "BIC",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
           "drug": "DTG",
           "algorithm": "HIVDB",
           "SIR": "S",
@@ -7420,6 +7553,13 @@
           "explanation": "No rules were triggered"
         },
         {
+          "drug": "BIC",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
           "drug": "DTG",
           "algorithm": "ANRS",
           "SIR": "S",
@@ -7438,6 +7578,13 @@
           "algorithm": "ANRS",
           "SIR": "S",
           "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "BIC",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
           "explanation": "No rules were triggered"
         },
         {
@@ -7870,6 +8017,13 @@
           "explanation": "No rules were triggered"
         },
         {
+          "drug": "BIC",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
           "drug": "DTG",
           "algorithm": "HIVDB",
           "SIR": "S",
@@ -7891,6 +8045,13 @@
           "explanation": "No rules were triggered"
         },
         {
+          "drug": "BIC",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
           "drug": "DTG",
           "algorithm": "ANRS",
           "SIR": "S",
@@ -7909,6 +8070,13 @@
           "algorithm": "ANRS",
           "SIR": "S",
           "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "BIC",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
           "explanation": "No rules were triggered"
         },
         {
@@ -8341,6 +8509,13 @@
           "explanation": "No rules were triggered"
         },
         {
+          "drug": "BIC",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
           "drug": "DTG",
           "algorithm": "HIVDB",
           "SIR": "S",
@@ -8362,6 +8537,13 @@
           "explanation": "No rules were triggered"
         },
         {
+          "drug": "BIC",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
           "drug": "DTG",
           "algorithm": "ANRS",
           "SIR": "S",
@@ -8380,6 +8562,13 @@
           "algorithm": "ANRS",
           "SIR": "S",
           "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "BIC",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
           "explanation": "No rules were triggered"
         },
         {
@@ -8812,6 +9001,13 @@
           "explanation": "No rules were triggered"
         },
         {
+          "drug": "BIC",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
           "drug": "DTG",
           "algorithm": "HIVDB",
           "SIR": "S",
@@ -8833,6 +9029,13 @@
           "explanation": "No rules were triggered"
         },
         {
+          "drug": "BIC",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
           "drug": "DTG",
           "algorithm": "ANRS",
           "SIR": "S",
@@ -8851,6 +9054,13 @@
           "algorithm": "ANRS",
           "SIR": "S",
           "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "BIC",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
           "explanation": "No rules were triggered"
         },
         {
@@ -11133,6 +11343,13 @@
           "explanation": "No rules were triggered"
         },
         {
+          "drug": "BIC",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
           "drug": "DTG",
           "algorithm": "HIVDB",
           "SIR": "S",
@@ -11154,6 +11371,13 @@
           "explanation": "No rules were triggered"
         },
         {
+          "drug": "BIC",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
           "drug": "DTG",
           "algorithm": "ANRS",
           "SIR": "S",
@@ -11172,6 +11396,13 @@
           "algorithm": "ANRS",
           "SIR": "S",
           "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "BIC",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
           "explanation": "No rules were triggered"
         },
         {
@@ -19592,6 +19823,13 @@
       ],
       "comparisonResults": [
         {
+          "drug": "BIC",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
           "drug": "DTG",
           "algorithm": "HIVDB",
           "SIR": "S",
@@ -19613,6 +19851,13 @@
           "explanation": "No rules were triggered"
         },
         {
+          "drug": "BIC",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
           "drug": "DTG",
           "algorithm": "ANRS",
           "SIR": "S",
@@ -19631,6 +19876,13 @@
           "algorithm": "ANRS",
           "SIR": "S",
           "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "BIC",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
           "explanation": "No rules were triggered"
         },
         {
@@ -19664,6 +19916,13 @@
       ],
       "comparisonResults": [
         {
+          "drug": "BIC",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
           "drug": "DTG",
           "algorithm": "HIVDB",
           "SIR": "S",
@@ -19685,6 +19944,13 @@
           "explanation": "No rules were triggered"
         },
         {
+          "drug": "BIC",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
           "drug": "DTG",
           "algorithm": "ANRS",
           "SIR": "S",
@@ -19703,6 +19969,13 @@
           "algorithm": "ANRS",
           "SIR": "S",
           "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "BIC",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
           "explanation": "No rules were triggered"
         },
         {
@@ -19736,6 +20009,13 @@
       ],
       "comparisonResults": [
         {
+          "drug": "BIC",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
           "drug": "DTG",
           "algorithm": "HIVDB",
           "SIR": "S",
@@ -19757,6 +20037,13 @@
           "explanation": "No rules were triggered"
         },
         {
+          "drug": "BIC",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
           "drug": "DTG",
           "algorithm": "ANRS",
           "SIR": "S",
@@ -19775,6 +20062,13 @@
           "algorithm": "ANRS",
           "SIR": "S",
           "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "BIC",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
           "explanation": "No rules were triggered"
         },
         {
@@ -19808,6 +20102,13 @@
       ],
       "comparisonResults": [
         {
+          "drug": "BIC",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "Total score: 5\nY143YS (5) "
+        },
+        {
           "drug": "DTG",
           "algorithm": "HIVDB",
           "SIR": "S",
@@ -19829,6 +20130,13 @@
           "explanation": "Total score: 60\nY143YS (60) "
         },
         {
+          "drug": "BIC",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
           "drug": "DTG",
           "algorithm": "ANRS",
           "SIR": "S",
@@ -19848,6 +20156,13 @@
           "SIR": "R",
           "interpretation": "Resistance",
           "explanation": "143ACGHRS (Resistance)"
+        },
+        {
+          "drug": "BIC",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
         },
         {
           "drug": "DTG",
@@ -19880,6 +20195,13 @@
       ],
       "comparisonResults": [
         {
+          "drug": "BIC",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Potential Low-Level Resistance",
+          "explanation": "Total score: 10\nN155H (10) "
+        },
+        {
           "drug": "DTG",
           "algorithm": "HIVDB",
           "SIR": "S",
@@ -19901,6 +20223,13 @@
           "explanation": "Total score: 60\nN155H (60) "
         },
         {
+          "drug": "BIC",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
           "drug": "DTG",
           "algorithm": "ANRS",
           "SIR": "R",
@@ -19920,6 +20249,13 @@
           "SIR": "R",
           "interpretation": "Resistance",
           "explanation": "155HST (Resistance)"
+        },
+        {
+          "drug": "BIC",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
         },
         {
           "drug": "DTG",
@@ -19952,6 +20288,13 @@
       ],
       "comparisonResults": [
         {
+          "drug": "BIC",
+          "algorithm": "HIVDB",
+          "SIR": "I",
+          "interpretation": "Low-Level Resistance",
+          "explanation": "Total score: 25\nE92Q (10), N155H (10) E92Q + N155H (5)"
+        },
+        {
           "drug": "DTG",
           "algorithm": "HIVDB",
           "SIR": "I",
@@ -19973,6 +20316,13 @@
           "explanation": "Total score: 90\nN155H (60), E92Q (30) "
         },
         {
+          "drug": "BIC",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
           "drug": "DTG",
           "algorithm": "ANRS",
           "SIR": "R",
@@ -19992,6 +20342,13 @@
           "SIR": "R",
           "interpretation": "Resistance",
           "explanation": "92Q (Resistance)\n155HST (Resistance)"
+        },
+        {
+          "drug": "BIC",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
         },
         {
           "drug": "DTG",
@@ -20024,6 +20381,13 @@
       ],
       "comparisonResults": [
         {
+          "drug": "BIC",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Potential Low-Level Resistance",
+          "explanation": "Total score: 10\nN155H (10) "
+        },
+        {
           "drug": "DTG",
           "algorithm": "HIVDB",
           "SIR": "S",
@@ -20045,6 +20409,13 @@
           "explanation": "Total score: 60\nN155H (60) "
         },
         {
+          "drug": "BIC",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
           "drug": "DTG",
           "algorithm": "ANRS",
           "SIR": "R",
@@ -20064,6 +20435,13 @@
           "SIR": "R",
           "interpretation": "Resistance",
           "explanation": "155HST (Resistance)"
+        },
+        {
+          "drug": "BIC",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
         },
         {
           "drug": "DTG",
@@ -20096,6 +20474,13 @@
       ],
       "comparisonResults": [
         {
+          "drug": "BIC",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Potential Low-Level Resistance",
+          "explanation": "Total score: 10\nN155H (10) "
+        },
+        {
           "drug": "DTG",
           "algorithm": "HIVDB",
           "SIR": "S",
@@ -20117,6 +20502,13 @@
           "explanation": "Total score: 60\nN155H (60) "
         },
         {
+          "drug": "BIC",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
           "drug": "DTG",
           "algorithm": "ANRS",
           "SIR": "R",
@@ -20136,6 +20528,13 @@
           "SIR": "R",
           "interpretation": "Resistance",
           "explanation": "155HST (Resistance)"
+        },
+        {
+          "drug": "BIC",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
         },
         {
           "drug": "DTG",
@@ -20168,6 +20567,13 @@
       ],
       "comparisonResults": [
         {
+          "drug": "BIC",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Potential Low-Level Resistance",
+          "explanation": "Total score: 10\nN155H (10) "
+        },
+        {
           "drug": "DTG",
           "algorithm": "HIVDB",
           "SIR": "S",
@@ -20189,6 +20595,13 @@
           "explanation": "Total score: 75\nN155H (60), G163R (15) "
         },
         {
+          "drug": "BIC",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
           "drug": "DTG",
           "algorithm": "ANRS",
           "SIR": "R",
@@ -20208,6 +20621,13 @@
           "SIR": "R",
           "interpretation": "Resistance",
           "explanation": "155HST (Resistance)"
+        },
+        {
+          "drug": "BIC",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
         },
         {
           "drug": "DTG",
@@ -20240,6 +20660,13 @@
       ],
       "comparisonResults": [
         {
+          "drug": "BIC",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Potential Low-Level Resistance",
+          "explanation": "Total score: 10\nN155H (10) "
+        },
+        {
           "drug": "DTG",
           "algorithm": "HIVDB",
           "SIR": "S",
@@ -20261,6 +20688,13 @@
           "explanation": "Total score: 70\nN155H (60), T97A (10) "
         },
         {
+          "drug": "BIC",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
           "drug": "DTG",
           "algorithm": "ANRS",
           "SIR": "R",
@@ -20280,6 +20714,13 @@
           "SIR": "R",
           "interpretation": "Resistance",
           "explanation": "155HST (Resistance)"
+        },
+        {
+          "drug": "BIC",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
         },
         {
           "drug": "DTG",
@@ -20312,6 +20753,13 @@
       ],
       "comparisonResults": [
         {
+          "drug": "BIC",
+          "algorithm": "HIVDB",
+          "SIR": "I",
+          "interpretation": "Intermediate Resistance",
+          "explanation": "Total score: 45\nQ148H (25), G140S (10) G140S + Q148H (10)"
+        },
+        {
           "drug": "DTG",
           "algorithm": "HIVDB",
           "SIR": "I",
@@ -20333,6 +20781,13 @@
           "explanation": "Total score: 90\nQ148H (60), G140S (30) "
         },
         {
+          "drug": "BIC",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
           "drug": "DTG",
           "algorithm": "ANRS",
           "SIR": "R",
@@ -20352,6 +20807,13 @@
           "SIR": "R",
           "interpretation": "Resistance",
           "explanation": "140AS (Resistance)\n148EGHKR (Resistance)"
+        },
+        {
+          "drug": "BIC",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
         },
         {
           "drug": "DTG",
@@ -20384,6 +20846,13 @@
       ],
       "comparisonResults": [
         {
+          "drug": "BIC",
+          "algorithm": "HIVDB",
+          "SIR": "I",
+          "interpretation": "Intermediate Resistance",
+          "explanation": "Total score: 45\nQ148H (25), G140S (10) G140S + Q148H (10)"
+        },
+        {
           "drug": "DTG",
           "algorithm": "HIVDB",
           "SIR": "I",
@@ -20405,6 +20874,13 @@
           "explanation": "Total score: 90\nQ148H (60), G140S (30) "
         },
         {
+          "drug": "BIC",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
           "drug": "DTG",
           "algorithm": "ANRS",
           "SIR": "R",
@@ -20424,6 +20900,13 @@
           "SIR": "R",
           "interpretation": "Resistance",
           "explanation": "140AS (Resistance)\n148EGHKR (Resistance)"
+        },
+        {
+          "drug": "BIC",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
         },
         {
           "drug": "DTG",
@@ -20456,6 +20939,13 @@
       ],
       "comparisonResults": [
         {
+          "drug": "BIC",
+          "algorithm": "HIVDB",
+          "SIR": "I",
+          "interpretation": "Intermediate Resistance",
+          "explanation": "Total score: 40\nQ148R (25), N155H (10) Q148R + N155H (5)"
+        },
+        {
           "drug": "DTG",
           "algorithm": "HIVDB",
           "SIR": "I",
@@ -20477,6 +20967,13 @@
           "explanation": "Total score: 120\nQ148R (60), N155H (60) "
         },
         {
+          "drug": "BIC",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
           "drug": "DTG",
           "algorithm": "ANRS",
           "SIR": "R",
@@ -20496,6 +20993,13 @@
           "SIR": "R",
           "interpretation": "Resistance",
           "explanation": "148EGHKR (Resistance)\n155HST (Resistance)"
+        },
+        {
+          "drug": "BIC",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
         },
         {
           "drug": "DTG",
@@ -20528,6 +21032,13 @@
       ],
       "comparisonResults": [
         {
+          "drug": "BIC",
+          "algorithm": "HIVDB",
+          "SIR": "I",
+          "interpretation": "Intermediate Resistance",
+          "explanation": "Total score: 45\nQ148H (25), G140S (10) G140S + Q148H (10)"
+        },
+        {
           "drug": "DTG",
           "algorithm": "HIVDB",
           "SIR": "I",
@@ -20549,6 +21060,13 @@
           "explanation": "Total score: 90\nQ148H (60), G140S (30) "
         },
         {
+          "drug": "BIC",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
           "drug": "DTG",
           "algorithm": "ANRS",
           "SIR": "R",
@@ -20568,6 +21086,13 @@
           "SIR": "R",
           "interpretation": "Resistance",
           "explanation": "140AS (Resistance)\n148EGHKR (Resistance)"
+        },
+        {
+          "drug": "BIC",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
         },
         {
           "drug": "DTG",
@@ -20600,6 +21125,13 @@
       ],
       "comparisonResults": [
         {
+          "drug": "BIC",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Potential Low-Level Resistance",
+          "explanation": "Total score: 10\nN155H (10) "
+        },
+        {
           "drug": "DTG",
           "algorithm": "HIVDB",
           "SIR": "S",
@@ -20621,6 +21153,13 @@
           "explanation": "Total score: 60\nN155H (60) "
         },
         {
+          "drug": "BIC",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
           "drug": "DTG",
           "algorithm": "ANRS",
           "SIR": "R",
@@ -20640,6 +21179,13 @@
           "SIR": "R",
           "interpretation": "Resistance",
           "explanation": "155HST (Resistance)"
+        },
+        {
+          "drug": "BIC",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
         },
         {
           "drug": "DTG",
@@ -20672,6 +21218,13 @@
       ],
       "comparisonResults": [
         {
+          "drug": "BIC",
+          "algorithm": "HIVDB",
+          "SIR": "I",
+          "interpretation": "Intermediate Resistance",
+          "explanation": "Total score: 50\nQ148H (25), G140S (10) G140S + Q148H (10), Q148H + G163R (5)"
+        },
+        {
           "drug": "DTG",
           "algorithm": "HIVDB",
           "SIR": "I",
@@ -20693,6 +21246,13 @@
           "explanation": "Total score: 105\nQ148H (60), G140S (30), G163R (15) "
         },
         {
+          "drug": "BIC",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
           "drug": "DTG",
           "algorithm": "ANRS",
           "SIR": "R",
@@ -20712,6 +21272,13 @@
           "SIR": "R",
           "interpretation": "Resistance",
           "explanation": "140AS (Resistance)\n148EGHKR (Resistance)"
+        },
+        {
+          "drug": "BIC",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
         },
         {
           "drug": "DTG",
@@ -20744,6 +21311,13 @@
       ],
       "comparisonResults": [
         {
+          "drug": "BIC",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Potential Low-Level Resistance",
+          "explanation": "Total score: 10\nG140S (10) "
+        },
+        {
           "drug": "DTG",
           "algorithm": "HIVDB",
           "SIR": "S",
@@ -20765,6 +21339,13 @@
           "explanation": "Total score: 30\nG140S (30) "
         },
         {
+          "drug": "BIC",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
           "drug": "DTG",
           "algorithm": "ANRS",
           "SIR": "R",
@@ -20784,6 +21365,13 @@
           "SIR": "R",
           "interpretation": "Resistance",
           "explanation": "140AS (Resistance)"
+        },
+        {
+          "drug": "BIC",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
         },
         {
           "drug": "DTG",
@@ -20816,6 +21404,13 @@
       ],
       "comparisonResults": [
         {
+          "drug": "BIC",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Potential Low-Level Resistance",
+          "explanation": "Total score: 10\nG140S (10) "
+        },
+        {
           "drug": "DTG",
           "algorithm": "HIVDB",
           "SIR": "S",
@@ -20837,6 +21432,13 @@
           "explanation": "Total score: 30\nG140S (30) "
         },
         {
+          "drug": "BIC",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
           "drug": "DTG",
           "algorithm": "ANRS",
           "SIR": "R",
@@ -20856,6 +21458,13 @@
           "SIR": "R",
           "interpretation": "Resistance",
           "explanation": "140AS (Resistance)"
+        },
+        {
+          "drug": "BIC",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
         },
         {
           "drug": "DTG",
@@ -20888,6 +21497,13 @@
       ],
       "comparisonResults": [
         {
+          "drug": "BIC",
+          "algorithm": "HIVDB",
+          "SIR": "I",
+          "interpretation": "Intermediate Resistance",
+          "explanation": "Total score: 45\nQ148H (25), G140S (10) G140S + Q148H (10)"
+        },
+        {
           "drug": "DTG",
           "algorithm": "HIVDB",
           "SIR": "I",
@@ -20909,6 +21525,13 @@
           "explanation": "Total score: 90\nQ148H (60), G140S (30) "
         },
         {
+          "drug": "BIC",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
           "drug": "DTG",
           "algorithm": "ANRS",
           "SIR": "R",
@@ -20928,6 +21551,13 @@
           "SIR": "R",
           "interpretation": "Resistance",
           "explanation": "140AS (Resistance)\n148EGHKR (Resistance)"
+        },
+        {
+          "drug": "BIC",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
         },
         {
           "drug": "DTG",
@@ -20960,6 +21590,13 @@
       ],
       "comparisonResults": [
         {
+          "drug": "BIC",
+          "algorithm": "HIVDB",
+          "SIR": "I",
+          "interpretation": "Intermediate Resistance",
+          "explanation": "Total score: 45\nQ148H (25), G140S (10) G140S + Q148H (10)"
+        },
+        {
           "drug": "DTG",
           "algorithm": "HIVDB",
           "SIR": "I",
@@ -20981,6 +21618,13 @@
           "explanation": "Total score: 90\nQ148H (60), G140S (30) "
         },
         {
+          "drug": "BIC",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
           "drug": "DTG",
           "algorithm": "ANRS",
           "SIR": "R",
@@ -21000,6 +21644,13 @@
           "SIR": "R",
           "interpretation": "Resistance",
           "explanation": "140AS (Resistance)\n148EGHKR (Resistance)"
+        },
+        {
+          "drug": "BIC",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
         },
         {
           "drug": "DTG",
@@ -21032,6 +21683,13 @@
       ],
       "comparisonResults": [
         {
+          "drug": "BIC",
+          "algorithm": "HIVDB",
+          "SIR": "I",
+          "interpretation": "Intermediate Resistance",
+          "explanation": "Total score: 50\nQ148H (25), G140S (10) G140S + Q148H (10), L74I + Q148H (5)"
+        },
+        {
           "drug": "DTG",
           "algorithm": "HIVDB",
           "SIR": "I",
@@ -21053,6 +21711,13 @@
           "explanation": "Total score: 90\nQ148H (60), G140S (30) "
         },
         {
+          "drug": "BIC",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
           "drug": "DTG",
           "algorithm": "ANRS",
           "SIR": "R",
@@ -21072,6 +21737,13 @@
           "SIR": "R",
           "interpretation": "Resistance",
           "explanation": "140AS (Resistance)\n148EGHKR (Resistance)"
+        },
+        {
+          "drug": "BIC",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
         },
         {
           "drug": "DTG",
@@ -21104,6 +21776,13 @@
       ],
       "comparisonResults": [
         {
+          "drug": "BIC",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Potential Low-Level Resistance",
+          "explanation": "Total score: 10\nN155H (10) "
+        },
+        {
           "drug": "DTG",
           "algorithm": "HIVDB",
           "SIR": "S",
@@ -21125,6 +21804,13 @@
           "explanation": "Total score: 60\nN155H (60) "
         },
         {
+          "drug": "BIC",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
           "drug": "DTG",
           "algorithm": "ANRS",
           "SIR": "R",
@@ -21144,6 +21830,13 @@
           "SIR": "R",
           "interpretation": "Resistance",
           "explanation": "155HST (Resistance)"
+        },
+        {
+          "drug": "BIC",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
         },
         {
           "drug": "DTG",
@@ -21176,6 +21869,13 @@
       ],
       "comparisonResults": [
         {
+          "drug": "BIC",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "Total score: 5\nY143R (5) "
+        },
+        {
           "drug": "DTG",
           "algorithm": "HIVDB",
           "SIR": "S",
@@ -21197,6 +21897,13 @@
           "explanation": "Total score: 70\nY143R (60), T97A (10) "
         },
         {
+          "drug": "BIC",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
           "drug": "DTG",
           "algorithm": "ANRS",
           "SIR": "S",
@@ -21216,6 +21923,13 @@
           "SIR": "R",
           "interpretation": "Resistance",
           "explanation": "143ACGHRS (Resistance)"
+        },
+        {
+          "drug": "BIC",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
         },
         {
           "drug": "DTG",
@@ -21248,6 +21962,13 @@
       ],
       "comparisonResults": [
         {
+          "drug": "BIC",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Potential Low-Level Resistance",
+          "explanation": "Total score: 10\nY143R (5) Y143R + G163GR (5)"
+        },
+        {
           "drug": "DTG",
           "algorithm": "HIVDB",
           "SIR": "S",
@@ -21269,6 +21990,13 @@
           "explanation": "Total score: 85\nY143R (60), G163GR (15), T97A (10) "
         },
         {
+          "drug": "BIC",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
           "drug": "DTG",
           "algorithm": "ANRS",
           "SIR": "S",
@@ -21288,6 +22016,13 @@
           "SIR": "R",
           "interpretation": "Resistance",
           "explanation": "143ACGHRS (Resistance)"
+        },
+        {
+          "drug": "BIC",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
         },
         {
           "drug": "DTG",
@@ -21320,6 +22055,13 @@
       ],
       "comparisonResults": [
         {
+          "drug": "BIC",
+          "algorithm": "HIVDB",
+          "SIR": "I",
+          "interpretation": "Intermediate Resistance",
+          "explanation": "Total score: 45\nQ148R (25), E138K (10) E138K + Q148R (10)"
+        },
+        {
           "drug": "DTG",
           "algorithm": "HIVDB",
           "SIR": "I",
@@ -21341,6 +22083,13 @@
           "explanation": "Total score: 75\nQ148R (60), E138K (15) "
         },
         {
+          "drug": "BIC",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
           "drug": "DTG",
           "algorithm": "ANRS",
           "SIR": "R",
@@ -21360,6 +22109,13 @@
           "SIR": "R",
           "interpretation": "Resistance",
           "explanation": "148EGHKR (Resistance)"
+        },
+        {
+          "drug": "BIC",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
         },
         {
           "drug": "DTG",
@@ -21392,6 +22148,13 @@
       ],
       "comparisonResults": [
         {
+          "drug": "BIC",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Potential Low-Level Resistance",
+          "explanation": "Total score: 10\nE92Q (10) "
+        },
+        {
           "drug": "DTG",
           "algorithm": "HIVDB",
           "SIR": "S",
@@ -21413,6 +22176,13 @@
           "explanation": "Total score: 30\nE92Q (30) "
         },
         {
+          "drug": "BIC",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
           "drug": "DTG",
           "algorithm": "ANRS",
           "SIR": "S",
@@ -21432,6 +22202,13 @@
           "SIR": "R",
           "interpretation": "Resistance",
           "explanation": "92Q (Resistance)"
+        },
+        {
+          "drug": "BIC",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
         },
         {
           "drug": "DTG",
@@ -21464,6 +22241,13 @@
       ],
       "comparisonResults": [
         {
+          "drug": "BIC",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Potential Low-Level Resistance",
+          "explanation": "Total score: 10\nE92EQ (10) "
+        },
+        {
           "drug": "DTG",
           "algorithm": "HIVDB",
           "SIR": "S",
@@ -21485,6 +22269,13 @@
           "explanation": "Total score: 30\nE92EQ (30) "
         },
         {
+          "drug": "BIC",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
           "drug": "DTG",
           "algorithm": "ANRS",
           "SIR": "S",
@@ -21504,6 +22295,13 @@
           "SIR": "R",
           "interpretation": "Resistance",
           "explanation": "92Q (Resistance)"
+        },
+        {
+          "drug": "BIC",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
         },
         {
           "drug": "DTG",
@@ -21536,6 +22334,13 @@
       ],
       "comparisonResults": [
         {
+          "drug": "BIC",
+          "algorithm": "HIVDB",
+          "SIR": "I",
+          "interpretation": "Low-Level Resistance",
+          "explanation": "Total score: 15\nN155NH (10), H51HY (5) "
+        },
+        {
           "drug": "DTG",
           "algorithm": "HIVDB",
           "SIR": "I",
@@ -21557,6 +22362,13 @@
           "explanation": "Total score: 90\nN155NH (60), H51HY (15), T66TA (15) "
         },
         {
+          "drug": "BIC",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
           "drug": "DTG",
           "algorithm": "ANRS",
           "SIR": "R",
@@ -21576,6 +22388,13 @@
           "SIR": "R",
           "interpretation": "Resistance",
           "explanation": "155HST (Resistance)"
+        },
+        {
+          "drug": "BIC",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
         },
         {
           "drug": "DTG",
@@ -21608,6 +22427,13 @@
       ],
       "comparisonResults": [
         {
+          "drug": "BIC",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 90\nQ148QK (30), E92EQ (10), G140GS (10), N155NH (10), H51HY (5) G140GS + Q148QK (10), Q148QK + N155NH (5), Q148QK + G163GR (5), E92EQ + N155NH (5)"
+        },
+        {
           "drug": "DTG",
           "algorithm": "HIVDB",
           "SIR": "R",
@@ -21629,6 +22455,13 @@
           "explanation": "Total score: 210\nQ148QK (60), N155NH (60), E92EQ (30), G140GS (30), H51HY (15), G163GR (15) "
         },
         {
+          "drug": "BIC",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
           "drug": "DTG",
           "algorithm": "ANRS",
           "SIR": "R",
@@ -21648,6 +22481,13 @@
           "SIR": "R",
           "interpretation": "Resistance",
           "explanation": "92Q (Resistance)\n140AS (Resistance)\n148EGHKR (Resistance)\n155HST (Resistance)"
+        },
+        {
+          "drug": "BIC",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
         },
         {
           "drug": "DTG",
@@ -21680,6 +22520,13 @@
       ],
       "comparisonResults": [
         {
+          "drug": "BIC",
+          "algorithm": "HIVDB",
+          "SIR": "I",
+          "interpretation": "Intermediate Resistance",
+          "explanation": "Total score: 45\nQ148H (25), G140S (10) G140S + Q148H (10)"
+        },
+        {
           "drug": "DTG",
           "algorithm": "HIVDB",
           "SIR": "I",
@@ -21701,6 +22548,13 @@
           "explanation": "Total score: 90\nQ148H (60), G140S (30) "
         },
         {
+          "drug": "BIC",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
           "drug": "DTG",
           "algorithm": "ANRS",
           "SIR": "R",
@@ -21720,6 +22574,13 @@
           "SIR": "R",
           "interpretation": "Resistance",
           "explanation": "140AS (Resistance)\n148EGHKR (Resistance)"
+        },
+        {
+          "drug": "BIC",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
         },
         {
           "drug": "DTG",
@@ -21752,6 +22613,13 @@
       ],
       "comparisonResults": [
         {
+          "drug": "BIC",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 75\nQ148QH (25), E138EK (10), G140GS (10) E138EK + G140GS (10), E138EK + Q148QH (10), G140GS + Q148QH (10)"
+        },
+        {
           "drug": "DTG",
           "algorithm": "HIVDB",
           "SIR": "R",
@@ -21773,6 +22641,13 @@
           "explanation": "Total score: 120\nQ148QH (60), G140GS (30), E138EK (15) E138EK + G140GS (15)"
         },
         {
+          "drug": "BIC",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
           "drug": "DTG",
           "algorithm": "ANRS",
           "SIR": "R",
@@ -21792,6 +22667,13 @@
           "SIR": "R",
           "interpretation": "Resistance",
           "explanation": "140AS (Resistance)\n148EGHKR (Resistance)"
+        },
+        {
+          "drug": "BIC",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
         },
         {
           "drug": "DTG",
@@ -21824,6 +22706,13 @@
       ],
       "comparisonResults": [
         {
+          "drug": "BIC",
+          "algorithm": "HIVDB",
+          "SIR": "I",
+          "interpretation": "Intermediate Resistance",
+          "explanation": "Total score: 45\nQ148QH (25), G140GS (10) G140GS + Q148QH (10)"
+        },
+        {
           "drug": "DTG",
           "algorithm": "HIVDB",
           "SIR": "I",
@@ -21845,6 +22734,13 @@
           "explanation": "Total score: 90\nQ148QH (60), G140GS (30) "
         },
         {
+          "drug": "BIC",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
           "drug": "DTG",
           "algorithm": "ANRS",
           "SIR": "R",
@@ -21864,6 +22760,13 @@
           "SIR": "R",
           "interpretation": "Resistance",
           "explanation": "140AS (Resistance)\n148EGHKR (Resistance)"
+        },
+        {
+          "drug": "BIC",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
         },
         {
           "drug": "DTG",
@@ -21896,6 +22799,13 @@
       ],
       "comparisonResults": [
         {
+          "drug": "BIC",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 75\nQ148QH (25), E138EK (10), G140GS (10) E138EK + G140GS (10), E138EK + Q148QH (10), G140GS + Q148QH (10)"
+        },
+        {
           "drug": "DTG",
           "algorithm": "HIVDB",
           "SIR": "R",
@@ -21917,6 +22827,13 @@
           "explanation": "Total score: 120\nQ148QH (60), G140GS (30), E138EK (15) E138EK + G140GS (15)"
         },
         {
+          "drug": "BIC",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
           "drug": "DTG",
           "algorithm": "ANRS",
           "SIR": "R",
@@ -21936,6 +22853,13 @@
           "SIR": "R",
           "interpretation": "Resistance",
           "explanation": "140AS (Resistance)\n148EGHKR (Resistance)"
+        },
+        {
+          "drug": "BIC",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
         },
         {
           "drug": "DTG",
@@ -21968,6 +22892,13 @@
       ],
       "comparisonResults": [
         {
+          "drug": "BIC",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 75\nQ148QH (25), E138EA (10), G140GS (10) E138EA + G140GS (10), E138EA + Q148QH (10), G140GS + Q148QH (10)"
+        },
+        {
           "drug": "DTG",
           "algorithm": "HIVDB",
           "SIR": "R",
@@ -21989,6 +22920,13 @@
           "explanation": "Total score: 120\nQ148QH (60), G140GS (30), E138EA (15) E138EA + G140GS (15)"
         },
         {
+          "drug": "BIC",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
           "drug": "DTG",
           "algorithm": "ANRS",
           "SIR": "R",
@@ -22008,6 +22946,13 @@
           "SIR": "R",
           "interpretation": "Resistance",
           "explanation": "140AS (Resistance)\n148EGHKR (Resistance)"
+        },
+        {
+          "drug": "BIC",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
         },
         {
           "drug": "DTG",
@@ -22040,6 +22985,13 @@
       ],
       "comparisonResults": [
         {
+          "drug": "BIC",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 75\nQ148QH (25), E138EA (10), G140GS (10) E138EA + G140GS (10), E138EA + Q148QH (10), G140GS + Q148QH (10)"
+        },
+        {
           "drug": "DTG",
           "algorithm": "HIVDB",
           "SIR": "R",
@@ -22061,6 +23013,13 @@
           "explanation": "Total score: 120\nQ148QH (60), G140GS (30), E138EA (15) E138EA + G140GS (15)"
         },
         {
+          "drug": "BIC",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
           "drug": "DTG",
           "algorithm": "ANRS",
           "SIR": "R",
@@ -22080,6 +23039,13 @@
           "SIR": "R",
           "interpretation": "Resistance",
           "explanation": "140AS (Resistance)\n148EGHKR (Resistance)"
+        },
+        {
+          "drug": "BIC",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
         },
         {
           "drug": "DTG",
@@ -22112,6 +23078,13 @@
       ],
       "comparisonResults": [
         {
+          "drug": "BIC",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 75\nQ148QH (25), E138EA (10), G140GS (10) E138EA + G140GS (10), E138EA + Q148QH (10), G140GS + Q148QH (10)"
+        },
+        {
           "drug": "DTG",
           "algorithm": "HIVDB",
           "SIR": "R",
@@ -22133,6 +23106,13 @@
           "explanation": "Total score: 120\nQ148QH (60), G140GS (30), E138EA (15) E138EA + G140GS (15)"
         },
         {
+          "drug": "BIC",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
           "drug": "DTG",
           "algorithm": "ANRS",
           "SIR": "R",
@@ -22152,6 +23132,13 @@
           "SIR": "R",
           "interpretation": "Resistance",
           "explanation": "140AS (Resistance)\n148EGHKR (Resistance)"
+        },
+        {
+          "drug": "BIC",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
         },
         {
           "drug": "DTG",
@@ -22184,6 +23171,13 @@
       ],
       "comparisonResults": [
         {
+          "drug": "BIC",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 75\nQ148QR (25), E92EQ (10), G140GS (10), N155NH (10) G140GS + Q148QR (10), Q148QR + N155NH (5), E92EQ + N155NH (5)"
+        },
+        {
           "drug": "DTG",
           "algorithm": "HIVDB",
           "SIR": "R",
@@ -22205,6 +23199,13 @@
           "explanation": "Total score: 180\nQ148QR (60), N155NH (60), E92EQ (30), G140GS (30) "
         },
         {
+          "drug": "BIC",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
           "drug": "DTG",
           "algorithm": "ANRS",
           "SIR": "R",
@@ -22224,6 +23225,13 @@
           "SIR": "R",
           "interpretation": "Resistance",
           "explanation": "92Q (Resistance)\n140AS (Resistance)\n148EGHKR (Resistance)\n155HST (Resistance)"
+        },
+        {
+          "drug": "BIC",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
         },
         {
           "drug": "DTG",

@@ -1,1050 +1,1260 @@
 {
   "E138A": {
+    "BIC": 2,
     "DTG": 2,
     "EVG": 3,
     "RAL": 3
   },
   "E138A,G140A,Q148R": {
+    "BIC": 5,
     "DTG": 5,
     "EVG": 5,
     "RAL": 5
   },
   "E138A,G140S,Q148H": {
+    "BIC": 5,
     "DTG": 5,
     "EVG": 5,
     "RAL": 5
   },
   "E138A,G140S,Q148H,E157Q": {
+    "BIC": 5,
     "DTG": 5,
     "EVG": 5,
     "RAL": 5
   },
   "E138A,G140S,Y143H,Q148H": {
+    "BIC": 5,
     "DTG": 5,
     "EVG": 5,
     "RAL": 5
   },
   "E138A,Q148H": {
+    "BIC": 4,
     "DTG": 4,
     "EVG": 5,
     "RAL": 5
   },
   "E138A,S147G,Q148R,N155H": {
+    "BIC": 5,
     "DTG": 5,
     "EVG": 5,
     "RAL": 5
   },
   "E138K": {
+    "BIC": 2,
     "DTG": 2,
     "EVG": 3,
     "RAL": 3
   },
   "E138K,G140A,Q148K": {
+    "BIC": 5,
     "DTG": 5,
     "EVG": 5,
     "RAL": 5
   },
   "E138K,G140A,Q148K,N155H": {
+    "BIC": 5,
     "DTG": 5,
     "EVG": 5,
     "RAL": 5
   },
   "E138K,G140A,Q148R,N155H": {
+    "BIC": 5,
     "DTG": 5,
     "EVG": 5,
     "RAL": 5
   },
   "E138K,G140C,Q148R": {
+    "BIC": 5,
     "DTG": 5,
     "EVG": 5,
     "RAL": 5
   },
   "E138K,G140S,Q148H": {
+    "BIC": 5,
     "DTG": 5,
     "EVG": 5,
     "RAL": 5
   },
   "E138K,G140S,Q148R": {
+    "BIC": 5,
     "DTG": 5,
     "EVG": 5,
     "RAL": 5
   },
   "E138K,G140S,Q148R,G163R": {
+    "BIC": 5,
     "DTG": 5,
     "EVG": 5,
     "RAL": 5
   },
   "E138K,G140S,S147G,Q148R": {
+    "BIC": 5,
     "DTG": 5,
     "EVG": 5,
     "RAL": 5
   },
   "E138K,Q148R": {
+    "BIC": 4,
     "DTG": 4,
     "EVG": 5,
     "RAL": 5
   },
   "E138K,Q148R,N155H,G163K": {
+    "BIC": 5,
     "DTG": 5,
     "EVG": 5,
     "RAL": 5
   },
   "E138K,S147G,Q148R": {
+    "BIC": 4,
     "DTG": 4,
     "EVG": 5,
     "RAL": 5
   },
   "E138K,S147G,Q148R,G163R": {
+    "BIC": 4,
     "DTG": 4,
     "EVG": 5,
     "RAL": 5
   },
   "E138K,Y143C,N155H,G163R,S230R": {
+    "BIC": 4,
     "DTG": 4,
     "EVG": 5,
     "RAL": 5
   },
   "E138K,Y143R,Q148R": {
+    "BIC": 4,
     "DTG": 4,
     "EVG": 5,
     "RAL": 5
   },
   "E138T": {
+    "BIC": 2,
     "DTG": 2,
     "EVG": 3,
     "RAL": 3
   },
   "E138T,G140S,Q148H": {
+    "BIC": 5,
     "DTG": 5,
     "EVG": 5,
     "RAL": 5
   },
   "E157Q": {
+    "BIC": 1,
     "DTG": 1,
     "EVG": 2,
     "RAL": 2
   },
   "E157Q,G163R": {
+    "BIC": 1,
     "DTG": 1,
     "EVG": 3,
     "RAL": 3
   },
   "E157Q,R263K": {
+    "BIC": 3,
     "DTG": 3,
     "EVG": 4,
     "RAL": 3
   },
   "E92G": {
+    "BIC": 1,
     "DTG": 1,
     "EVG": 4,
     "RAL": 3
   },
   "E92G,N155H": {
+    "BIC": 2,
     "DTG": 2,
     "EVG": 5,
     "RAL": 5
   },
   "E92G,T97A,N155H,G163R": {
+    "BIC": 2,
     "DTG": 2,
     "EVG": 5,
     "RAL": 5
   },
   "E92Q": {
+    "BIC": 2,
     "DTG": 2,
     "EVG": 5,
     "RAL": 4
   },
   "E92Q,E138K,N155H": {
+    "BIC": 4,
     "DTG": 4,
     "EVG": 5,
     "RAL": 5
   },
   "E92Q,E138K,Y143C,N155H,S230R": {
+    "BIC": 4,
     "DTG": 4,
     "EVG": 5,
     "RAL": 5
   },
   "E92Q,G140S,Q148K,N155H": {
+    "BIC": 5,
     "DTG": 5,
     "EVG": 5,
     "RAL": 5
   },
   "E92Q,G140S,Q148R,N155H": {
+    "BIC": 5,
     "DTG": 5,
     "EVG": 5,
     "RAL": 5
   },
   "E92Q,N155H": {
+    "BIC": 3,
     "DTG": 3,
     "EVG": 5,
     "RAL": 5
   },
   "E92Q,N155H,E157Q": {
+    "BIC": 3,
     "DTG": 3,
     "EVG": 5,
     "RAL": 5
   },
   "E92Q,N155H,G163R": {
+    "BIC": 3,
     "DTG": 3,
     "EVG": 5,
     "RAL": 5
   },
   "E92Q,Q95K,N155H": {
+    "BIC": 3,
     "DTG": 3,
     "EVG": 5,
     "RAL": 5
   },
   "E92Q,T97A": {
+    "BIC": 2,
     "DTG": 2,
     "EVG": 5,
     "RAL": 4
   },
   "E92Q,T97A,E157Q": {
+    "BIC": 2,
     "DTG": 2,
     "EVG": 5,
     "RAL": 4
   },
   "E92Q,T97A,N155H": {
+    "BIC": 3,
     "DTG": 3,
     "EVG": 5,
     "RAL": 5
   },
   "E92Q,T97A,Y143H,N155H": {
+    "BIC": 4,
     "DTG": 4,
     "EVG": 5,
     "RAL": 5
   },
   "E92Q,T97A,Y143R": {
+    "BIC": 3,
     "DTG": 3,
     "EVG": 5,
     "RAL": 5
   },
   "E92Q,Y143H": {
+    "BIC": 3,
     "DTG": 3,
     "EVG": 5,
     "RAL": 5
   },
   "E92V,N155H": {
+    "BIC": 2,
     "DTG": 2,
     "EVG": 5,
     "RAL": 5
   },
   "F121Y": {
+    "BIC": 2,
     "DTG": 2,
     "EVG": 5,
     "RAL": 5
   },
   "F121Y,N155H,G163R": {
+    "BIC": 3,
     "DTG": 3,
     "EVG": 5,
     "RAL": 5
   },
   "G140A,Q148K": {
+    "BIC": 4,
     "DTG": 4,
     "EVG": 5,
     "RAL": 5
   },
   "G140A,Q148R": {
+    "BIC": 4,
     "DTG": 4,
     "EVG": 5,
     "RAL": 5
   },
   "G140A,Q148R,E157Q": {
+    "BIC": 4,
     "DTG": 4,
     "EVG": 5,
     "RAL": 5
   },
   "G140A,Q148R,G163K": {
+    "BIC": 4,
     "DTG": 4,
     "EVG": 5,
     "RAL": 5
   },
   "G140A,Q148R,G163R": {
+    "BIC": 4,
     "DTG": 4,
     "EVG": 5,
     "RAL": 5
   },
   "G140S": {
+    "BIC": 2,
     "DTG": 2,
     "EVG": 4,
     "RAL": 4
   },
   "G140S,N155H": {
+    "BIC": 3,
     "DTG": 3,
     "EVG": 5,
     "RAL": 5
   },
   "G140S,Q148H": {
+    "BIC": 4,
     "DTG": 4,
     "EVG": 5,
     "RAL": 5
   },
   "G140S,Q148H,E157Q": {
+    "BIC": 4,
     "DTG": 4,
     "EVG": 5,
     "RAL": 5
   },
   "G140S,Q148H,E157Q,G163K": {
+    "BIC": 4,
     "DTG": 4,
     "EVG": 5,
     "RAL": 5
   },
   "G140S,Q148H,G163K": {
+    "BIC": 4,
     "DTG": 4,
     "EVG": 5,
     "RAL": 5
   },
   "G140S,Q148H,G163R": {
+    "BIC": 4,
     "DTG": 4,
     "EVG": 5,
     "RAL": 5
   },
   "G140S,Q148H,N155H": {
+    "BIC": 5,
     "DTG": 5,
     "EVG": 5,
     "RAL": 5
   },
   "G140S,Q148H,N155H,E157Q": {
+    "BIC": 5,
     "DTG": 5,
     "EVG": 5,
     "RAL": 5
   },
   "G140S,Q148H,V151A": {
+    "BIC": 4,
     "DTG": 4,
     "EVG": 5,
     "RAL": 5
   },
   "G140S,Q148K,N155H": {
+    "BIC": 5,
     "DTG": 5,
     "EVG": 5,
     "RAL": 5
   },
   "G140S,Q148K,N155H,G163R": {
+    "BIC": 5,
     "DTG": 5,
     "EVG": 5,
     "RAL": 5
   },
   "G140S,Q148N": {
+    "BIC": 2,
     "DTG": 2,
     "EVG": 4,
     "RAL": 4
   },
   "G140S,Q148N,G163R": {
+    "BIC": 2,
     "DTG": 2,
     "EVG": 5,
     "RAL": 4
   },
   "G140S,Q148R": {
+    "BIC": 4,
     "DTG": 4,
     "EVG": 5,
     "RAL": 5
   },
   "G140S,Q148R,G163K": {
+    "BIC": 4,
     "DTG": 4,
     "EVG": 5,
     "RAL": 5
   },
   "G140S,Q148R,G163R": {
+    "BIC": 4,
     "DTG": 4,
     "EVG": 5,
     "RAL": 5
   },
   "G140S,Q148R,N155H,E157Q": {
+    "BIC": 5,
     "DTG": 5,
     "EVG": 5,
     "RAL": 5
   },
   "G140S,Y143H,Q148H": {
+    "BIC": 4,
     "DTG": 4,
     "EVG": 5,
     "RAL": 5
   },
   "G140S,Y143H,Q148H,G163R": {
+    "BIC": 5,
     "DTG": 5,
     "EVG": 5,
     "RAL": 5
   },
   "G140S,Y143R,Q148H": {
+    "BIC": 4,
     "DTG": 4,
     "EVG": 5,
     "RAL": 5
   },
   "G163K": {
+    "BIC": 1,
     "DTG": 1,
     "EVG": 3,
     "RAL": 3
   },
   "G163R": {
+    "BIC": 1,
     "DTG": 1,
     "EVG": 3,
     "RAL": 3
   },
   "H51Y": {
+    "BIC": 1,
     "DTG": 1,
     "EVG": 3,
     "RAL": 3
   },
   "H51Y,E92Q,G140S,Q148K,N155H": {
+    "BIC": 5,
     "DTG": 5,
     "EVG": 5,
     "RAL": 5
   },
   "H51Y,E92Q,G140S,Q148K,N155H,G163R": {
+    "BIC": 5,
     "DTG": 5,
     "EVG": 5,
     "RAL": 5
   },
   "H51Y,G140S,Q148K": {
+    "BIC": 4,
     "DTG": 4,
     "EVG": 5,
     "RAL": 5
   },
   "H51Y,T66A,N155H": {
+    "BIC": 3,
     "DTG": 3,
     "EVG": 5,
     "RAL": 5
   },
   "L74I,E138K,Q148R": {
+    "BIC": 4,
     "DTG": 4,
     "EVG": 5,
     "RAL": 5
   },
   "L74I,E138K,S147G,Q148R": {
+    "BIC": 4,
     "DTG": 4,
     "EVG": 5,
     "RAL": 5
   },
   "L74I,E138K,S147G,Q148R,G163R": {
+    "BIC": 4,
     "DTG": 4,
     "EVG": 5,
     "RAL": 5
   },
   "L74I,E138T,G140S,Q148H": {
+    "BIC": 5,
     "DTG": 5,
     "EVG": 5,
     "RAL": 5
   },
   "L74I,G140S,Q148H": {
+    "BIC": 4,
     "DTG": 4,
     "EVG": 5,
     "RAL": 5
   },
   "L74I,G140S,Q148R": {
+    "BIC": 4,
     "DTG": 4,
     "EVG": 5,
     "RAL": 5
   },
   "L74I,G140S,Q148R,E157Q": {
+    "BIC": 4,
     "DTG": 4,
     "EVG": 5,
     "RAL": 5
   },
   "L74I,G140S,Q148R,G163R": {
+    "BIC": 4,
     "DTG": 4,
     "EVG": 5,
     "RAL": 5
   },
   "L74I,G140S,Q148R,R263K": {
+    "BIC": 5,
     "DTG": 5,
     "EVG": 5,
     "RAL": 5
   },
   "L74I,Q148R": {
+    "BIC": 4,
     "DTG": 4,
     "EVG": 5,
     "RAL": 5
   },
   "L74I,T97A,Y143C,S230R": {
+    "BIC": 3,
     "DTG": 3,
     "EVG": 4,
     "RAL": 5
   },
   "L74I,T97A,Y143G": {
+    "BIC": 2,
     "DTG": 2,
     "EVG": 4,
     "RAL": 5
   },
   "L74I,T97A,Y143R": {
+    "BIC": 2,
     "DTG": 2,
     "EVG": 4,
     "RAL": 5
   },
   "L74I,T97A,Y143R,E157Q": {
+    "BIC": 2,
     "DTG": 2,
     "EVG": 4,
     "RAL": 5
   },
   "L74I,T97A,Y143S": {
+    "BIC": 2,
     "DTG": 2,
     "EVG": 4,
     "RAL": 5
   },
   "L74I,Y143R": {
+    "BIC": 2,
     "DTG": 2,
     "EVG": 3,
     "RAL": 5
   },
   "L74M,E138K,G140C,Q148R,E157Q": {
+    "BIC": 5,
     "DTG": 5,
     "EVG": 5,
     "RAL": 5
   },
   "L74M,E138T,G140S,Q148H": {
+    "BIC": 5,
     "DTG": 5,
     "EVG": 5,
     "RAL": 5
   },
   "L74M,E92Q,Q148R": {
+    "BIC": 4,
     "DTG": 4,
     "EVG": 5,
     "RAL": 5
   },
   "L74M,G140A,Q148R": {
+    "BIC": 4,
     "DTG": 4,
     "EVG": 5,
     "RAL": 5
   },
   "L74M,G140C,Q148R": {
+    "BIC": 4,
     "DTG": 4,
     "EVG": 5,
     "RAL": 5
   },
   "L74M,G140C,Q148R,G163R": {
+    "BIC": 4,
     "DTG": 4,
     "EVG": 5,
     "RAL": 5
   },
   "L74M,G140S,Q148H": {
+    "BIC": 4,
     "DTG": 4,
     "EVG": 5,
     "RAL": 5
   },
   "L74M,G140S,Q148R": {
+    "BIC": 4,
     "DTG": 4,
     "EVG": 5,
     "RAL": 5
   },
   "L74M,G140S,Q148R,E157Q": {
+    "BIC": 4,
     "DTG": 4,
     "EVG": 5,
     "RAL": 5
   },
   "L74M,Q95K,T97A,Y143C,S230R": {
+    "BIC": 3,
     "DTG": 3,
     "EVG": 5,
     "RAL": 5
   },
   "L74M,Q95K,T97A,Y143R": {
+    "BIC": 2,
     "DTG": 2,
     "EVG": 4,
     "RAL": 5
   },
   "L74M,Q95K,Y143C,S230R": {
+    "BIC": 3,
     "DTG": 3,
     "EVG": 4,
     "RAL": 5
   },
   "L74M,T97A,E138A,Y143C": {
+    "BIC": 3,
     "DTG": 3,
     "EVG": 4,
     "RAL": 5
   },
   "L74M,T97A,E138K,Y143C,S230R": {
+    "BIC": 3,
     "DTG": 3,
     "EVG": 5,
     "RAL": 5
   },
   "L74M,T97A,E138K,Y143R": {
+    "BIC": 3,
     "DTG": 3,
     "EVG": 4,
     "RAL": 5
   },
   "L74M,T97A,Y143C,G163R,S230R": {
+    "BIC": 3,
     "DTG": 3,
     "EVG": 5,
     "RAL": 5
   },
   "L74M,T97A,Y143C,S230R": {
+    "BIC": 3,
     "DTG": 3,
     "EVG": 4,
     "RAL": 5
   },
   "L74M,T97A,Y143G": {
+    "BIC": 2,
     "DTG": 2,
     "EVG": 4,
     "RAL": 5
   },
   "L74M,T97A,Y143G,G163R": {
+    "BIC": 3,
     "DTG": 3,
     "EVG": 4,
     "RAL": 5
   },
   "L74M,T97A,Y143H,G163R": {
+    "BIC": 3,
     "DTG": 3,
     "EVG": 4,
     "RAL": 5
   },
   "L74M,T97A,Y143R": {
+    "BIC": 2,
     "DTG": 2,
     "EVG": 4,
     "RAL": 5
   },
   "L74M,T97A,Y143R,E157Q": {
+    "BIC": 2,
     "DTG": 2,
     "EVG": 4,
     "RAL": 5
   },
   "L74M,T97A,Y143R,G163K": {
+    "BIC": 2,
     "DTG": 2,
     "EVG": 4,
     "RAL": 5
   },
   "L74M,T97A,Y143S,S230R": {
+    "BIC": 3,
     "DTG": 3,
     "EVG": 4,
     "RAL": 5
   },
   "L74M,Y143C": {
+    "BIC": 2,
     "DTG": 2,
     "EVG": 3,
     "RAL": 5
   },
   "L74M,Y143C,N155H,S230R": {
+    "BIC": 3,
     "DTG": 3,
     "EVG": 5,
     "RAL": 5
   },
   "L74M,Y143R": {
+    "BIC": 2,
     "DTG": 2,
     "EVG": 3,
     "RAL": 5
   },
   "L74M,Y143R,E157Q": {
+    "BIC": 2,
     "DTG": 2,
     "EVG": 3,
     "RAL": 5
   },
   "N155H": {
+    "BIC": 2,
     "DTG": 2,
     "EVG": 5,
     "RAL": 5
   },
   "N155H,E157Q": {
+    "BIC": 2,
     "DTG": 2,
     "EVG": 5,
     "RAL": 5
   },
   "N155H,E157Q,G163K": {
+    "BIC": 2,
     "DTG": 2,
     "EVG": 5,
     "RAL": 5
   },
   "N155H,E157Q,G163R": {
+    "BIC": 2,
     "DTG": 2,
     "EVG": 5,
     "RAL": 5
   },
   "N155H,G163K": {
+    "BIC": 2,
     "DTG": 2,
     "EVG": 5,
     "RAL": 5
   },
   "N155H,G163R": {
+    "BIC": 2,
     "DTG": 2,
     "EVG": 5,
     "RAL": 5
   },
   "N155H,R263K": {
+    "BIC": 3,
     "DTG": 3,
     "EVG": 5,
     "RAL": 5
   },
   "N155H,S230R": {
+    "BIC": 2,
     "DTG": 2,
     "EVG": 5,
     "RAL": 5
   },
   "N155T": {
+    "BIC": 1,
     "DTG": 1,
     "EVG": 4,
     "RAL": 4
   },
   "P145S": {
+    "BIC": 1,
     "DTG": 1,
     "EVG": 5,
     "RAL": 1
   },
   "Q146P": {
+    "BIC": 1,
     "DTG": 1,
     "EVG": 5,
     "RAL": 1
   },
   "Q148H": {
+    "BIC": 3,
     "DTG": 3,
     "EVG": 5,
     "RAL": 5
   },
   "Q148R": {
+    "BIC": 3,
     "DTG": 3,
     "EVG": 5,
     "RAL": 5
   },
   "Q148R,E157Q": {
+    "BIC": 3,
     "DTG": 3,
     "EVG": 5,
     "RAL": 5
   },
   "Q148R,N155H": {
+    "BIC": 4,
     "DTG": 4,
     "EVG": 5,
     "RAL": 5
   },
   "Q95K": {
+    "BIC": 1,
     "DTG": 1,
     "EVG": 2,
     "RAL": 2
   },
   "Q95K,E138K,S147G,Q148R": {
+    "BIC": 4,
     "DTG": 4,
     "EVG": 5,
     "RAL": 5
   },
   "Q95K,E157Q": {
+    "BIC": 1,
     "DTG": 1,
     "EVG": 3,
     "RAL": 3
   },
   "Q95K,N155H": {
+    "BIC": 2,
     "DTG": 2,
     "EVG": 5,
     "RAL": 5
   },
   "Q95K,T97A,N155H": {
+    "BIC": 2,
     "DTG": 2,
     "EVG": 5,
     "RAL": 5
   },
   "Q95K,T97A,Y143C": {
+    "BIC": 1,
     "DTG": 1,
     "EVG": 4,
     "RAL": 5
   },
   "Q95K,Y143R,N155H": {
+    "BIC": 3,
     "DTG": 3,
     "EVG": 5,
     "RAL": 5
   },
   "R263K": {
+    "BIC": 3,
     "DTG": 3,
     "EVG": 4,
     "RAL": 3
   },
   "S147G": {
+    "BIC": 1,
     "DTG": 1,
     "EVG": 5,
     "RAL": 1
   },
   "S147G,Q148R": {
+    "BIC": 3,
     "DTG": 3,
     "EVG": 5,
     "RAL": 5
   },
   "S153F": {
+    "BIC": 3,
     "DTG": 3,
     "EVG": 3,
     "RAL": 1
   },
   "S230R": {
+    "BIC": 1,
     "DTG": 1,
     "EVG": 3,
     "RAL": 3
   },
   "T66A": {
+    "BIC": 1,
     "DTG": 1,
     "EVG": 5,
     "RAL": 3
   },
   "T66A,E92Q": {
+    "BIC": 2,
     "DTG": 2,
     "EVG": 5,
     "RAL": 4
   },
   "T66A,G163R": {
+    "BIC": 1,
     "DTG": 1,
     "EVG": 5,
     "RAL": 4
   },
   "T66I": {
+    "BIC": 1,
     "DTG": 1,
     "EVG": 5,
     "RAL": 3
   },
   "T66I,T97A,G163R": {
+    "BIC": 1,
     "DTG": 1,
     "EVG": 5,
     "RAL": 4
   },
   "T66I,T97A,N155H": {
+    "BIC": 2,
     "DTG": 2,
     "EVG": 5,
     "RAL": 5
   },
   "T66I,Y143C": {
+    "BIC": 1,
     "DTG": 1,
     "EVG": 5,
     "RAL": 5
   },
   "T66K": {
+    "BIC": 3,
     "DTG": 3,
     "EVG": 5,
     "RAL": 5
   },
   "T66K,L74M,G140S,Q148R,E157Q": {
+    "BIC": 5,
     "DTG": 5,
     "EVG": 5,
     "RAL": 5
   },
   "T97A": {
+    "BIC": 1,
     "DTG": 1,
     "EVG": 2,
     "RAL": 2
   },
   "T97A,E138A,G140S,Q148H": {
+    "BIC": 5,
     "DTG": 5,
     "EVG": 5,
     "RAL": 5
   },
   "T97A,E138A,Y143K": {
+    "BIC": 3,
     "DTG": 3,
     "EVG": 4,
     "RAL": 5
   },
   "T97A,E138K": {
+    "BIC": 2,
     "DTG": 2,
     "EVG": 3,
     "RAL": 3
   },
   "T97A,E138K,E157Q": {
+    "BIC": 2,
     "DTG": 2,
     "EVG": 4,
     "RAL": 4
   },
   "T97A,E138K,Q148R,N155H,G163K": {
+    "BIC": 5,
     "DTG": 5,
     "EVG": 5,
     "RAL": 5
   },
   "T97A,E138K,S147G,N155H,E157Q": {
+    "BIC": 3,
     "DTG": 3,
     "EVG": 5,
     "RAL": 5
   },
   "T97A,E157Q": {
+    "BIC": 1,
     "DTG": 1,
     "EVG": 3,
     "RAL": 3
   },
   "T97A,E157Q,G163R": {
+    "BIC": 1,
     "DTG": 1,
     "EVG": 4,
     "RAL": 4
   },
   "T97A,F121Y": {
+    "BIC": 2,
     "DTG": 2,
     "EVG": 5,
     "RAL": 5
   },
   "T97A,G140S,Q148H": {
+    "BIC": 4,
     "DTG": 4,
     "EVG": 5,
     "RAL": 5
   },
   "T97A,G140S,Q148R,N155H,G163R": {
+    "BIC": 5,
     "DTG": 5,
     "EVG": 5,
     "RAL": 5
   },
   "T97A,G163K": {
+    "BIC": 1,
     "DTG": 1,
     "EVG": 3,
     "RAL": 3
   },
   "T97A,G163R": {
+    "BIC": 1,
     "DTG": 1,
     "EVG": 3,
     "RAL": 3
   },
   "T97A,N155H": {
+    "BIC": 2,
     "DTG": 2,
     "EVG": 5,
     "RAL": 5
   },
   "T97A,N155H,G163K": {
+    "BIC": 2,
     "DTG": 2,
     "EVG": 5,
     "RAL": 5
   },
   "T97A,N155H,G163R": {
+    "BIC": 2,
     "DTG": 2,
     "EVG": 5,
     "RAL": 5
   },
   "T97A,Y143C": {
+    "BIC": 1,
     "DTG": 1,
     "EVG": 3,
     "RAL": 5
   },
   "T97A,Y143C,G163R,S230R": {
+    "BIC": 3,
     "DTG": 3,
     "EVG": 5,
     "RAL": 5
   },
   "T97A,Y143C,N155H": {
+    "BIC": 3,
     "DTG": 3,
     "EVG": 5,
     "RAL": 5
   },
   "T97A,Y143C,S230R": {
+    "BIC": 2,
     "DTG": 2,
     "EVG": 4,
     "RAL": 5
   },
   "T97A,Y143H,N155H,E157Q": {
+    "BIC": 3,
     "DTG": 3,
     "EVG": 5,
     "RAL": 5
   },
   "T97A,Y143H,N155H,G163R": {
+    "BIC": 3,
     "DTG": 3,
     "EVG": 5,
     "RAL": 5
   },
   "T97A,Y143R": {
+    "BIC": 1,
     "DTG": 1,
     "EVG": 3,
     "RAL": 5
   },
   "T97A,Y143R,G163K": {
+    "BIC": 1,
     "DTG": 1,
     "EVG": 4,
     "RAL": 5
   },
   "T97A,Y143R,G163R": {
+    "BIC": 2,
     "DTG": 2,
     "EVG": 4,
     "RAL": 5
   },
   "T97A,Y143R,N155H": {
+    "BIC": 3,
     "DTG": 3,
     "EVG": 5,
     "RAL": 5
   },
   "T97A,Y143S,S230R": {
+    "BIC": 2,
     "DTG": 2,
     "EVG": 4,
     "RAL": 5
   },
   "V151A": {
+    "BIC": 1,
     "DTG": 1,
     "EVG": 4,
     "RAL": 3
   },
   "V151L": {
+    "BIC": 3,
     "DTG": 3,
     "EVG": 5,
     "RAL": 4
   },
   "Y143C": {
+    "BIC": 1,
     "DTG": 1,
     "EVG": 2,
     "RAL": 5
   },
   "Y143C,E157Q,S230R": {
+    "BIC": 2,
     "DTG": 2,
     "EVG": 4,
     "RAL": 5
   },
   "Y143C,G163K,S230R": {
+    "BIC": 2,
     "DTG": 2,
     "EVG": 4,
     "RAL": 5
   },
   "Y143C,G163R": {
+    "BIC": 2,
     "DTG": 2,
     "EVG": 4,
     "RAL": 5
   },
   "Y143C,G163R,S230R": {
+    "BIC": 3,
     "DTG": 3,
     "EVG": 4,
     "RAL": 5
   },
   "Y143C,N155H": {
+    "BIC": 3,
     "DTG": 3,
     "EVG": 5,
     "RAL": 5
   },
   "Y143C,N155H,E157Q,S230R": {
+    "BIC": 3,
     "DTG": 3,
     "EVG": 5,
     "RAL": 5
   },
   "Y143C,N155H,S230R": {
+    "BIC": 3,
     "DTG": 3,
     "EVG": 5,
     "RAL": 5
   },
   "Y143C,S230R": {
+    "BIC": 2,
     "DTG": 2,
     "EVG": 4,
     "RAL": 5
   },
   "Y143H": {
+    "BIC": 1,
     "DTG": 1,
     "EVG": 2,
     "RAL": 5
   },
   "Y143H,N155H": {
+    "BIC": 3,
     "DTG": 3,
     "EVG": 5,
     "RAL": 5
   },
   "Y143K": {
+    "BIC": 1,
     "DTG": 1,
     "EVG": 2,
     "RAL": 5
   },
   "Y143R": {
+    "BIC": 1,
     "DTG": 1,
     "EVG": 2,
     "RAL": 5
   },
   "Y143R,E157Q": {
+    "BIC": 1,
     "DTG": 1,
     "EVG": 3,
     "RAL": 5
   },
   "Y143R,G163R": {
+    "BIC": 2,
     "DTG": 2,
     "EVG": 4,
     "RAL": 5
   },
   "Y143R,N155H": {
+    "BIC": 3,
     "DTG": 3,
     "EVG": 5,
     "RAL": 5
   },
   "Y143S": {
+    "BIC": 1,
     "DTG": 1,
     "EVG": 2,
     "RAL": 5
   },
   "Y143S,N155H,G163K,S230R": {
+    "BIC": 3,
     "DTG": 3,
     "EVG": 5,
     "RAL": 5
   },
   "Y143S,S230R": {
+    "BIC": 2,
     "DTG": 2,
     "EVG": 4,
     "RAL": 5

@@ -35,7 +35,7 @@ import edu.stanford.hivdb.testutils.MockDatabase;
 public class TabularRulesComparisonTest {
 
 	// This was intend to hard coded. Review the changes when you made an upgrade and change the version pair here
-	final static private String versionPair = "7.0:8.4";
+	final static private String versionPair = "7.0:8.5";
 
 	@Test
 	public void testGetInstance() {
@@ -48,7 +48,7 @@ public class TabularRulesComparisonTest {
 	public void testToString() {
 		TabularRulesComparison instance = TabularRulesComparison.getInstance(versionPair, DrugClass.INSTI);
 		assertEquals(
-			"Rule\tDTG\tEVG\tRAL\tNum Diffs\tMax Diff",
+			"Rule\tBIC\tDTG\tEVG\tRAL\tNum Diffs\tMax Diff",
 			instance.toString().split("\n")[0]);
 	}
 
@@ -68,15 +68,15 @@ public class TabularRulesComparisonTest {
 			new Object[] {
 				DrugClass.PI.name(),
 				HivdbVersion.V7_0.name(),
-				HivdbVersion.V8_4.name()
+				HivdbVersion.V8_5.name()
 			},
 			new String[] {
 				"Gene", "Pos", "AA", "Drug", "Version", "Score"
 			},
 			new Object[][] {
 				{"PR", 10, "F", "DRV", "V7_0", 5},
-				{"PR", 10, "F", "DRV", "V8_4", 15},
-				{"PR", 10, "F", "NFV", "V8_4", 15},
+				{"PR", 10, "F", "DRV", "V8_5", 15},
+				{"PR", 10, "F", "NFV", "V8_5", 15},
 				{"PR", 11, "I", "DRV", "V7_0", 5},
 			});
 		db.whenSelect(
@@ -84,21 +84,21 @@ public class TabularRulesComparisonTest {
 			new Object[] {
 				DrugClass.NRTI.name(),
 				HivdbVersion.V7_0.name(),
-				HivdbVersion.V8_4.name()
+				HivdbVersion.V8_5.name()
 			},
 			new String[] {
 				"Gene", "Pos", "AA", "Drug", "Version", "Score"
 			},
 			new Object[][] {
 				{"RT", 40, "F", "ABC", "V7_0", 5},
-				{"RT", 40, "F", "ABC", "V8_4", 5},
+				{"RT", 40, "F", "ABC", "V8_5", 5},
 			});
 		db.whenSelect(
 			stmt2,
 			new Object[] {
 				DrugClass.NRTI.name(),
 				HivdbVersion.V7_0.name(),
-				HivdbVersion.V8_4.name()
+				HivdbVersion.V8_5.name()
 			},
 			new String[] {
 				"Rule", "Drug", "Version", "Score"
@@ -106,12 +106,12 @@ public class TabularRulesComparisonTest {
 			new Object[][] {
 				{"115F+184VI", "TDF", "V7_0", 10},
 				{"184VI+74VI", "ABC", "V7_0", 15},
-				{"184VI+74VI", "ABC", "V8_4", 15},
-				{"210W+215FY", "LMV", "V8_4", 5},
+				{"184VI+74VI", "ABC", "V8_5", 15},
+				{"210W+215FY", "LMV", "V8_5", 5},
 				{"210W+215FY", "ABC", "V7_0", 10},
-				{"210W+215FY", "ABC", "V8_4", 10},
+				{"210W+215FY", "ABC", "V8_5", 10},
 				{"210W+215FY", "AZT", "V7_0", 10},
-				{"210W+215FY", "AZT", "V8_4", 10}
+				{"210W+215FY", "AZT", "V8_5", 10}
 			});
 		Map<DrugClass, List<List<String>>> result = dl.load().get(versionPair);
 		// For IndexOutOfBoundsException: Did you just update the HIVdb version?

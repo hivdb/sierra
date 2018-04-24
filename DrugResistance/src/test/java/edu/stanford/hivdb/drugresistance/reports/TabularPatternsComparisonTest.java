@@ -43,7 +43,7 @@ public class TabularPatternsComparisonTest {
 	public void testToString() {
 		TabularPatternsComparison instance = TabularPatternsComparison.getInstance(DrugClass.INSTI);
 		assertEquals(
-			"Pattern\tCount\tDTG\tEVG\tRAL\tNum Diffs\tMax Diff",
+			"Pattern\tCount\tBIC\tDTG\tEVG\tRAL\tNum Diffs\tMax Diff",
 			instance.toString().split("\n")[0]);
 	}
 
