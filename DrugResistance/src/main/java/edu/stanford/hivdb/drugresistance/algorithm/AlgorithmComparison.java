@@ -163,8 +163,12 @@ public class AlgorithmComparison {
 						.getDeclaredConstructor(Gene.class, MutationSet.class)
 						.newInstance(gene, mutations);
 				}
-				catch (InvocationTargetException | IllegalAccessException |
-						InstantiationException | NoSuchMethodException e) {
+				catch (InvocationTargetException e) {
+					System.out.println(e.getTargetException());
+					throw new RuntimeException(e.getTargetException());
+				}
+				catch (IllegalAccessException | InstantiationException |
+						NoSuchMethodException e) {
 					throw new RuntimeException(e);
 				}
 			})

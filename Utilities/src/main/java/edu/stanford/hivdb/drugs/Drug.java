@@ -67,6 +67,10 @@ public enum Drug {
 		tmpDrugSynonyms.put("TPV/r", Drug.TPV);
 		tmpDrugSynonyms.put("SQV/r", Drug.SQV);
 		tmpDrugSynonyms.put("3TC",  Drug.LMV);
+		// ANRS distinguishes QD and BID for DRV/r and DTG;
+		// By default we only use BID here
+		tmpDrugSynonyms.put("DRV/r_QD", Drug.DRV);
+		tmpDrugSynonyms.put("DTG_QD", Drug.DTG);
 		drugSynonyms = Collections.unmodifiableMap(tmpDrugSynonyms);
 	}
 
