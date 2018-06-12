@@ -6,7 +6,7 @@ plugins {
 }
 
 group = 'edu.stanford.hivdb'
-version = '2.2.6'
+version = '2.2.6-1'
 
 description = """Aligner"""
 
