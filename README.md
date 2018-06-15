@@ -41,10 +41,10 @@ dependencies:
 - [c3p0][c3p0] (dev only)
 - [junit][junit] (dev only)
 
-Note: the `DrugResistance` sub-project also depends on a semi-private project
-named ASI owned by us and [Frontier Science][fstrf]. The binary jar file is
-located in `DrugResistance/lib` directory and is configured to be installed
-with other dependencies when runing Gradle.
+Note: the `DrugResistance` sub-project also depends on an open source project
+named [ASI][asi-github] created by us and [Frontier Science][fstrf]. The
+binary jar file is located in `DrugResistance/lib` directory and is configured
+to be installed with other dependencies when runing Gradle.
 
 
 ## Installation
@@ -130,5 +130,6 @@ greatly appreciated.
 [protonpack]: https://github.com/poetix/protonpack
 [junit]: http://junit.org/junit4/
 [graphql-java]: https://github.com/graphql-java/graphql-java
+[asi-github]: https://github.com/FrontierScience/asi_interpreter
 [fstrf]: https://www.fstrf.org/
 [donation]: https://giving.stanford.edu/goto/shafergift
