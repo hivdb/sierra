@@ -22,7 +22,10 @@ import graphql.schema.*;
 import static graphql.Scalars.*;
 import static graphql.schema.GraphQLObjectType.newObject;
 
+import edu.stanford.hivdb.ngs.GeneSequenceReads;
+
 import static edu.stanford.hivdb.graphql.MutationSetDef.*;
+import static edu.stanford.hivdb.graphql.MutationStatsDef.oMutationStats;
 import static edu.stanford.hivdb.graphql.GeneDef.*;
 
 public class GeneSequenceReadsDef {
@@ -83,6 +86,22 @@ public class GeneSequenceReadsDef {
 		// 	.name("frameShifts")
 		// 	.description("All frame shifts found in the aligned sequence.")
 		// )
+		.field(field -> field
+			.type(new GraphQLList(oMutationStats))
+			.name("mutationStats")
+			.argument(arg -> arg
+				.type(new GraphQLList(GraphQLFloat))
+				.name("allMinPrevalence")
+				.description(
+					"Specify the prevalence cutoff of fetching mutation stats."
+				))
+			.dataFetcher(env -> (
+				((GeneSequenceReads) env.getSource())
+				.getMutationStats(
+					env.getArgument("allMinPrevalence")
+				)
+			))
+			.description("List of statistics of mutations."))
 		.build();
 
 }
