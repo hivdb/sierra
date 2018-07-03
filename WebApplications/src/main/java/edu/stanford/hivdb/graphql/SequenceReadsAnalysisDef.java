@@ -90,7 +90,8 @@ public class SequenceReadsAnalysisDef {
 		return SequenceReads.fromCodonReadsTable(
 			(String) input.get("name"),
 			allReads,
-			(Double) input.get("minPrevalence"));
+			(Double) input.get("minPrevalence"),
+			(Long) input.get("minReadDepth"));
 	}
 
 	public static GraphQLInputType iSequenceReads = newInputObject()
@@ -106,10 +107,19 @@ public class SequenceReadsAnalysisDef {
 		.field(field -> field
 			.type(GraphQLFloat)
 			.name("minPrevalence")
+			.defaultValue(-1.0d)
 			.description(
-				"The minimal prevalence cutoff to apply on this sequence. " +
+				"The minimal prevalence cutoff to apply on each codon. " +
 				"Leave this field empty or specify a negative number to " +
 				"use the dynamic cutoff based on sequencing quality."))
+		.field(field -> field
+			.type(GraphQLLong)
+			.name("minReadDepth")
+			.defaultValue(1000L)
+			.description(
+				"The minal read depth for each codon. Default to 1000 " +
+				"if this field was left empty or had a negative number" +
+				"specified."))
 		.build();
 
 	public static GraphQLObjectType oSequenceReadsAnalysis = newObject()
@@ -126,6 +136,12 @@ public class SequenceReadsAnalysisDef {
 				"If the same name field didn't specified in `SequenceReadsInput`, " +
 				"this value was dynamically selected by the program " +
 				"based on sequencing quality."))
+		.field(field -> field
+			.type(GraphQLLong)
+			.name("minReadDepth")
+			.description(
+				"The minimal read depth for each codon of this sequence."
+			))
 		.field(field -> field
 			.type(new GraphQLList(oGene))
 			.name("availableGenes")

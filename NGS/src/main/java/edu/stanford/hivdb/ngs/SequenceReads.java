@@ -45,12 +45,16 @@ public class SequenceReads {
 	private String concatenatedSeq;
 	private Double mixturePcnt;
 	private Double minPrevalence;
+	private Long minReadDepth;
 	
 	public static SequenceReads fromCodonReadsTable(
-			String name, List<PositionCodonReads> allReads, Double minPrevalence) {
+			String name, List<PositionCodonReads> allReads,
+			Double minPrevalence, Long minReadDepth) {
 		// TODO: dynamic cutoff
 		double finalMinPrevalence = minPrevalence >= 0 ? minPrevalence : (double) 0.05;
+		long finalMinReadDepth = minReadDepth > 0 ? minReadDepth : (long) 1000;
 		EnumMap<Gene, GeneSequenceReads> geneSequences = allReads.stream()
+			.filter(read -> read.getTotalReads() >= finalMinReadDepth)
 			.collect(
 				Collectors.groupingBy(
 					PositionCodonReads::getGene,
@@ -62,16 +66,19 @@ public class SequenceReads {
 				)
 			);
 		
-		return new SequenceReads(name, geneSequences, finalMinPrevalence);
+		return new SequenceReads(
+				name, geneSequences,
+				finalMinPrevalence, finalMinReadDepth);
 	}
 	
 	public SequenceReads(
 			final String name,
 			final EnumMap<Gene, GeneSequenceReads> allGeneSequenceReads,
-			final double minPrevalence) {
+			final double minPrevalence, final long minReadDepth) {
 		this.name = name;
 		this.allGeneSequenceReads = allGeneSequenceReads;
 		this.minPrevalence = minPrevalence;
+		this.minReadDepth = minReadDepth;
 	}
 	
 	public String getName() { return name; }
@@ -79,6 +86,8 @@ public class SequenceReads {
 	public boolean isEmpty() { return allGeneSequenceReads.isEmpty(); }
 	
 	public double getMinPrevalence() { return minPrevalence; }
+	
+	public long getMinReadDepth() { return minReadDepth; }
 	
 	public List<GeneSequenceReads> getAllGeneSequenceReads() {
 		return new ArrayList<>(allGeneSequenceReads.values());
@@ -130,7 +139,7 @@ public class SequenceReads {
 				.reduce((m1, m2) -> m1.mergesWith(m2))
 				.get();
 		} else {
-			return null;
+			return new MutationSet();
 		}
 	}
 
