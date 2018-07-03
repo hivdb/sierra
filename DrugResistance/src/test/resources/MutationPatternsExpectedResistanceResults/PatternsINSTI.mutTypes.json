@@ -130,9 +130,9 @@
     "Accessory": "E157Q,G163R"
   },
   "E157Q,R263K": {
-    "Major": "None",
+    "Major": "R263K",
     "Other": "None",
-    "Accessory": "E157Q,R263K"
+    "Accessory": "E157Q"
   },
   "E92G": {
     "Major": "E92G",
@@ -445,9 +445,9 @@
     "Accessory": "G163R"
   },
   "L74I,G140S,Q148R,R263K": {
-    "Major": "G140S,Q148R",
+    "Major": "G140S,Q148R,R263K",
     "Other": "L74I",
-    "Accessory": "R263K"
+    "Accessory": "None"
   },
   "L74I,Q148R": {
     "Major": "Q148R",
@@ -655,9 +655,9 @@
     "Accessory": "G163R"
   },
   "N155H,R263K": {
-    "Major": "N155H",
+    "Major": "N155H,R263K",
     "Other": "None",
-    "Accessory": "R263K"
+    "Accessory": "None"
   },
   "N155H,S230R": {
     "Major": "N155H",
@@ -735,9 +735,9 @@
     "Accessory": "Q95K"
   },
   "R263K": {
-    "Major": "None",
+    "Major": "R263K",
     "Other": "None",
-    "Accessory": "R263K"
+    "Accessory": "None"
   },
   "S147G": {
     "Major": "S147G",

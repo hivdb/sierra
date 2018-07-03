@@ -1593,14 +1593,14 @@
     "drugClass": "INSTI",
     "rule": "148HKR+155H",
     "drug": "BIC",
-    "score": 5.0
+    "score": 10.0
   },
   {
     "gene": "IN",
     "drugClass": "INSTI",
     "rule": "148HKR+155H",
     "drug": "DTG",
-    "score": 5.0
+    "score": 10.0
   },
   {
     "gene": "IN",
@@ -1654,37 +1654,51 @@
   {
     "gene": "IN",
     "drugClass": "INSTI",
-    "rule": "74IM+143ACGHRS",
+    "rule": "74FM+143ACGHRS",
     "drug": "BIC",
     "score": 5.0
   },
   {
     "gene": "IN",
     "drugClass": "INSTI",
-    "rule": "74IM+143ACGHRS",
+    "rule": "74FM+143ACGHRS",
     "drug": "DTG",
     "score": 5.0
   },
   {
     "gene": "IN",
     "drugClass": "INSTI",
-    "rule": "74IM+143ACGHRS",
+    "rule": "74FM+143ACGHRS",
     "drug": "EVG",
     "score": 5.0
   },
   {
     "gene": "IN",
     "drugClass": "INSTI",
-    "rule": "74IM+148HKR",
+    "rule": "74FM+148HKR",
     "drug": "BIC",
-    "score": 5.0
+    "score": 10.0
   },
   {
     "gene": "IN",
     "drugClass": "INSTI",
-    "rule": "74IM+148HKR",
+    "rule": "74FM+148HKR",
     "drug": "DTG",
-    "score": 5.0
+    "score": 10.0
+  },
+  {
+    "gene": "IN",
+    "drugClass": "INSTI",
+    "rule": "74FM+148HKR",
+    "drug": "EVG",
+    "score": 10.0
+  },
+  {
+    "gene": "IN",
+    "drugClass": "INSTI",
+    "rule": "74FM+148HKR",
+    "drug": "RAL",
+    "score": 10.0
   },
   {
     "gene": "IN",
@@ -1712,13 +1726,13 @@
     "drugClass": "INSTI",
     "rule": "97A+148HKR",
     "drug": "BIC",
-    "score": 5.0
+    "score": 10.0
   },
   {
     "gene": "IN",
     "drugClass": "INSTI",
     "rule": "97A+148HKR",
     "drug": "DTG",
-    "score": 5.0
+    "score": 10.0
   }
 ]

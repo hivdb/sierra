@@ -20943,14 +20943,14 @@
           "algorithm": "HIVDB",
           "SIR": "I",
           "interpretation": "Intermediate Resistance",
-          "explanation": "Total score: 40\nQ148R (25), N155H (10) Q148R + N155H (5)"
+          "explanation": "Total score: 45\nQ148R (25), N155H (10) Q148R + N155H (10)"
         },
         {
           "drug": "DTG",
           "algorithm": "HIVDB",
           "SIR": "I",
           "interpretation": "Intermediate Resistance",
-          "explanation": "Total score: 40\nQ148R (25), N155H (10) Q148R + N155H (5)"
+          "explanation": "Total score: 45\nQ148R (25), N155H (10) Q148R + N155H (10)"
         },
         {
           "drug": "EVG",
@@ -21687,14 +21687,14 @@
           "algorithm": "HIVDB",
           "SIR": "I",
           "interpretation": "Intermediate Resistance",
-          "explanation": "Total score: 50\nQ148H (25), G140S (10) G140S + Q148H (10), L74I + Q148H (5)"
+          "explanation": "Total score: 45\nQ148H (25), G140S (10) G140S + Q148H (10)"
         },
         {
           "drug": "DTG",
           "algorithm": "HIVDB",
           "SIR": "I",
           "interpretation": "Intermediate Resistance",
-          "explanation": "Total score: 50\nQ148H (25), G140S (10) G140S + Q148H (10), L74I + Q148H (5)"
+          "explanation": "Total score: 45\nQ148H (25), G140S (10) G140S + Q148H (10)"
         },
         {
           "drug": "EVG",
@@ -22338,14 +22338,14 @@
           "algorithm": "HIVDB",
           "SIR": "I",
           "interpretation": "Low-Level Resistance",
-          "explanation": "Total score: 15\nN155NH (10), H51HY (5) "
+          "explanation": "Total score: 20\nH51HY (10), N155NH (10) "
         },
         {
           "drug": "DTG",
           "algorithm": "HIVDB",
           "SIR": "I",
           "interpretation": "Low-Level Resistance",
-          "explanation": "Total score: 15\nN155NH (10), H51HY (5) "
+          "explanation": "Total score: 20\nH51HY (10), N155NH (10) "
         },
         {
           "drug": "EVG",
@@ -22431,14 +22431,14 @@
           "algorithm": "HIVDB",
           "SIR": "R",
           "interpretation": "High-Level Resistance",
-          "explanation": "Total score: 90\nQ148QK (30), E92EQ (10), G140GS (10), N155NH (10), H51HY (5) G140GS + Q148QK (10), Q148QK + N155NH (5), Q148QK + G163GR (5), E92EQ + N155NH (5)"
+          "explanation": "Total score: 100\nQ148QK (30), H51HY (10), E92EQ (10), G140GS (10), N155NH (10) G140GS + Q148QK (10), Q148QK + N155NH (10), Q148QK + G163GR (5), E92EQ + N155NH (5)"
         },
         {
           "drug": "DTG",
           "algorithm": "HIVDB",
           "SIR": "R",
           "interpretation": "High-Level Resistance",
-          "explanation": "Total score: 90\nQ148QK (30), E92EQ (10), G140GS (10), N155NH (10), H51HY (5) G140GS + Q148QK (10), Q148QK + N155NH (5), Q148QK + G163GR (5), E92EQ + N155NH (5)"
+          "explanation": "Total score: 100\nQ148QK (30), H51HY (10), E92EQ (10), G140GS (10), N155NH (10) G140GS + Q148QK (10), Q148QK + N155NH (10), Q148QK + G163GR (5), E92EQ + N155NH (5)"
         },
         {
           "drug": "EVG",
@@ -23175,14 +23175,14 @@
           "algorithm": "HIVDB",
           "SIR": "R",
           "interpretation": "High-Level Resistance",
-          "explanation": "Total score: 75\nQ148QR (25), E92EQ (10), G140GS (10), N155NH (10) G140GS + Q148QR (10), Q148QR + N155NH (5), E92EQ + N155NH (5)"
+          "explanation": "Total score: 80\nQ148QR (25), E92EQ (10), G140GS (10), N155NH (10) G140GS + Q148QR (10), Q148QR + N155NH (10), E92EQ + N155NH (5)"
         },
         {
           "drug": "DTG",
           "algorithm": "HIVDB",
           "SIR": "R",
           "interpretation": "High-Level Resistance",
-          "explanation": "Total score: 75\nQ148QR (25), E92EQ (10), G140GS (10), N155NH (10) G140GS + Q148QR (10), Q148QR + N155NH (5), E92EQ + N155NH (5)"
+          "explanation": "Total score: 80\nQ148QR (25), E92EQ (10), G140GS (10), N155NH (10) G140GS + Q148QR (10), Q148QR + N155NH (10), E92EQ + N155NH (5)"
         },
         {
           "drug": "EVG",

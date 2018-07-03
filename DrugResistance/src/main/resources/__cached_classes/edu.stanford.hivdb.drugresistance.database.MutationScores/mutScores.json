@@ -7035,7 +7035,7 @@
     "pos": 51,
     "aa": "Y",
     "drug": "BIC",
-    "score": 5.0
+    "score": 10.0
   },
   {
     "gene": "IN",
@@ -7044,7 +7044,7 @@
     "pos": 51,
     "aa": "Y",
     "drug": "DTG",
-    "score": 5.0
+    "score": 10.0
   },
   {
     "gene": "IN",
@@ -7081,6 +7081,24 @@
     "aa": "A",
     "drug": "RAL",
     "score": 15.0
+  },
+  {
+    "gene": "IN",
+    "drugClass": "INSTI",
+    "cons": "T",
+    "pos": 66,
+    "aa": "I",
+    "drug": "BIC",
+    "score": 5.0
+  },
+  {
+    "gene": "IN",
+    "drugClass": "INSTI",
+    "cons": "T",
+    "pos": 66,
+    "aa": "I",
+    "drug": "DTG",
+    "score": 5.0
   },
   {
     "gene": "IN",
@@ -8177,8 +8195,26 @@
     "cons": "S",
     "pos": 230,
     "aa": "R",
+    "drug": "BIC",
+    "score": 10.0
+  },
+  {
+    "gene": "IN",
+    "drugClass": "INSTI",
+    "cons": "S",
+    "pos": 230,
+    "aa": "R",
+    "drug": "DTG",
+    "score": 20.0
+  },
+  {
+    "gene": "IN",
+    "drugClass": "INSTI",
+    "cons": "S",
+    "pos": 230,
+    "aa": "R",
     "drug": "EVG",
-    "score": 15.0
+    "score": 20.0
   },
   {
     "gene": "IN",
@@ -8187,7 +8223,7 @@
     "pos": 230,
     "aa": "R",
     "drug": "RAL",
-    "score": 15.0
+    "score": 20.0
   },
   {
     "gene": "IN",
@@ -8196,7 +8232,7 @@
     "pos": 263,
     "aa": "K",
     "drug": "BIC",
-    "score": 15.0
+    "score": 25.0
   },
   {
     "gene": "IN",
@@ -8205,7 +8241,7 @@
     "pos": 263,
     "aa": "K",
     "drug": "DTG",
-    "score": 15.0
+    "score": 25.0
   },
   {
     "gene": "IN",
@@ -8223,6 +8259,6 @@
     "pos": 263,
     "aa": "K",
     "drug": "RAL",
-    "score": 15.0
+    "score": 25.0
   }
 ]

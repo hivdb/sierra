@@ -151,7 +151,7 @@
     "IN163RK": "G163R/K are polymorphic in subtype F viruses from ARV-naive patients but are otherwise non-polymorphic. They are commonly selected in patients receiving RAL and possibly EVG. Alone, they have little, if any, effect on INSTI susceptibility."
   },
   "E157Q,R263K": {
-    "DTGLow": "There is evidence for low-level DTG resistance. If DTG is used, it should be administered twice daily.",
+    "DTGIntermediate": "There is evidence for intermediate DTG resistance. If DTG is used, it should be administered twice daily.",
     "IN157Q": "E157Q is a polymorphic mutation selected in patients receiving RAL and EVG. It appears to have little, if any, effect on INSTI susceptibility.",
     "IN263K": "R263K is an uncommon mutation selected in patients receiving RAL and DTG and in vitro by EVG, DTG, and BIC. It reduces EVG susceptibility by about 4-fold, and RAL, DTG, and BIC susceptibility by about 2-fold."
   },
@@ -178,7 +178,7 @@
     "IN92Q": "E92Q is a common non-polymorphic mutation selected in patients receiving RAL and EVG. It causes intermediate and high-level reductions in RAL and EVG susceptibility, respectively. It is selected in vitro by DTG and reduces DTG susceptibility \u003c\u003d1.5-fold. Its effect on BIC is uncertain."
   },
   "E92Q,E138K,Y143C,N155H,S230R": {
-    "DTGIntermediate": "There is evidence for intermediate DTG resistance. If DTG is used, it should be administered twice daily.",
+    "DTGHigh": "There is evidence for high-level DTG resistance. If DTG is used, it should be administered twice daily.",
     "IN138KAT": "E138K/A are non-polymorphic mutations selected in patients receiving RAL, EVG, and DTG. They usually occur in combination with Q148 mutations. Alone they do not reduce INSTI susceptibility. However, when they occur in combination with Q148 mutations, they are associated with high-level resistance to RAL and EVG and intermediate reductions in DTG and BIC susceptibility. E138T is an uncommon nonpolymorphic INSTI-selected mutation that appears to have an effect similar to E138K/A.",
     "IN143CR": "Y143C/R are non-polymorphic mutations selected by RAL. Alone, Y143C and Y143R reduce RAL susceptibility ~5 and 20-fold, respectively. In combination with T97A and other accessory mutations they reduce RAL susceptibility \u003e100-fold. Alone, Y143C/R have minimal effects on EVG susceptibility. However, they are associated with intermediate to high-level reductions in EVG susceptibility (~10-fold) when they occur in combination with one or more accessory INSTI-resistance mutations. Y143 mutations do not reduce DTG or BIC susceptibility.",
     "IN155H": "N155H is a non-polymorphic mutation selected in patients receiving RAL, EVG, and rarely DTG. It reduces RAL and EVG susceptibility \u003e15-fold. It causes minimal if any clinically significant reduction in DTG susceptibility.",
@@ -445,7 +445,7 @@
     "IN92Q": "E92Q is a common non-polymorphic mutation selected in patients receiving RAL and EVG. It causes intermediate and high-level reductions in RAL and EVG susceptibility, respectively. It is selected in vitro by DTG and reduces DTG susceptibility \u003c\u003d1.5-fold. Its effect on BIC is uncertain."
   },
   "H51Y,G140S,Q148K": {
-    "DTGIntermediate": "There is evidence for intermediate DTG resistance. If DTG is used, it should be administered twice daily.",
+    "DTGHigh": "There is evidence for high-level DTG resistance. If DTG is used, it should be administered twice daily.",
     "IN140SAC": "G140S/A/C are non-polymorphic mutations that usually occur with Q148 mutations in patients receiving RAL or EVG. Alone, they minimally reduce susceptibility to RAL and EVG. However, in combination with Q148 mutations they are associated with high-level resistance to RAL and EVG and intermediate reductions in DTG and BIC susceptibility.",
     "IN148HKR": "Q148H/K/R are non-polymorphic mutations selected by RAL, EVG, and rarely DTG. Alone, Q148H moderately reduces RAL and EVG susceptibility ~5 to 10-fold. Alone, Q148R/K reduce RAL and EVG susceptibility ~30 to 100-fold. However, Q148H/K/R usually occur In combination with G140S/A or E138K/A/T, in which case they reduce RAL and EVG susceptibility \u003e100-fold. Alone, Q148H/K/R have minimal effects on DTG and BIC susceptibility. In combination with G140S/A/C and/or E138K/A/T, they cause moderate to high level reductions in DTG and BIC susceptibility.",
     "IN51Y": "H51Y is a rare non-polymorphic accessory mutation selected in patients receiving RAL and EVG and in vitro by DTG. H51Y minimally reduces EVG susceptibility (~2 to 3-fold). It does not reduce RAL or DTG susceptibility."
@@ -518,12 +518,12 @@
     "IN74MI": "L74M/I are highly polymorphic accessory mutations commonly selected by each of the INSTIs. In ARV-naive patients, L74M occurs in 0.5% to 10% of patients and L74I occurs in 3% to 20% of patients depending on subtype. Alone, L74M/I have minimal, if any, effect on INSTI susceptibility. However, they contribute reduced susceptibility to each of the INSTIs when they occur with major INSTI-resistance mutations."
   },
   "L74I,Q148R": {
-    "DTGIntermediate": "There is evidence for intermediate DTG resistance. If DTG is used, it should be administered twice daily.",
+    "DTGLow": "There is evidence for low-level DTG resistance. If DTG is used, it should be administered twice daily.",
     "IN148HKR": "Q148H/K/R are non-polymorphic mutations selected by RAL, EVG, and rarely DTG. Alone, Q148H moderately reduces RAL and EVG susceptibility ~5 to 10-fold. Alone, Q148R/K reduce RAL and EVG susceptibility ~30 to 100-fold. However, Q148H/K/R usually occur In combination with G140S/A or E138K/A/T, in which case they reduce RAL and EVG susceptibility \u003e100-fold. Alone, Q148H/K/R have minimal effects on DTG and BIC susceptibility. In combination with G140S/A/C and/or E138K/A/T, they cause moderate to high level reductions in DTG and BIC susceptibility.",
     "IN74MI": "L74M/I are highly polymorphic accessory mutations commonly selected by each of the INSTIs. In ARV-naive patients, L74M occurs in 0.5% to 10% of patients and L74I occurs in 3% to 20% of patients depending on subtype. Alone, L74M/I have minimal, if any, effect on INSTI susceptibility. However, they contribute reduced susceptibility to each of the INSTIs when they occur with major INSTI-resistance mutations."
   },
   "L74I,T97A,Y143C,S230R": {
-    "DTGLow": "There is evidence for low-level DTG resistance. If DTG is used, it should be administered twice daily.",
+    "DTGIntermediate": "There is evidence for intermediate DTG resistance. If DTG is used, it should be administered twice daily.",
     "IN143CR": "Y143C/R are non-polymorphic mutations selected by RAL. Alone, Y143C and Y143R reduce RAL susceptibility ~5 and 20-fold, respectively. In combination with T97A and other accessory mutations they reduce RAL susceptibility \u003e100-fold. Alone, Y143C/R have minimal effects on EVG susceptibility. However, they are associated with intermediate to high-level reductions in EVG susceptibility (~10-fold) when they occur in combination with one or more accessory INSTI-resistance mutations. Y143 mutations do not reduce DTG or BIC susceptibility.",
     "IN230R": "S230R is a non-polymorphic accessory mutation selected by RAL, EVG, and rarely DTG. It appears to have minimal, if any, effect on INSTI susceptibility.",
     "IN74MI": "L74M/I are highly polymorphic accessory mutations commonly selected by each of the INSTIs. In ARV-naive patients, L74M occurs in 0.5% to 10% of patients and L74I occurs in 3% to 20% of patients depending on subtype. Alone, L74M/I have minimal, if any, effect on INSTI susceptibility. However, they contribute reduced susceptibility to each of the INSTIs when they occur with major INSTI-resistance mutations.",
@@ -588,7 +588,7 @@
     "IN74MI": "L74M/I are highly polymorphic accessory mutations commonly selected by each of the INSTIs. In ARV-naive patients, L74M occurs in 0.5% to 10% of patients and L74I occurs in 3% to 20% of patients depending on subtype. Alone, L74M/I have minimal, if any, effect on INSTI susceptibility. However, they contribute reduced susceptibility to each of the INSTIs when they occur with major INSTI-resistance mutations."
   },
   "L74M,G140C,Q148R,G163R": {
-    "DTGIntermediate": "There is evidence for intermediate DTG resistance. If DTG is used, it should be administered twice daily.",
+    "DTGHigh": "There is evidence for high-level DTG resistance. If DTG is used, it should be administered twice daily.",
     "IN140SAC": "G140S/A/C are non-polymorphic mutations that usually occur with Q148 mutations in patients receiving RAL or EVG. Alone, they minimally reduce susceptibility to RAL and EVG. However, in combination with Q148 mutations they are associated with high-level resistance to RAL and EVG and intermediate reductions in DTG and BIC susceptibility.",
     "IN148HKR": "Q148H/K/R are non-polymorphic mutations selected by RAL, EVG, and rarely DTG. Alone, Q148H moderately reduces RAL and EVG susceptibility ~5 to 10-fold. Alone, Q148R/K reduce RAL and EVG susceptibility ~30 to 100-fold. However, Q148H/K/R usually occur In combination with G140S/A or E138K/A/T, in which case they reduce RAL and EVG susceptibility \u003e100-fold. Alone, Q148H/K/R have minimal effects on DTG and BIC susceptibility. In combination with G140S/A/C and/or E138K/A/T, they cause moderate to high level reductions in DTG and BIC susceptibility.",
     "IN163RK": "G163R/K are polymorphic in subtype F viruses from ARV-naive patients but are otherwise non-polymorphic. They are commonly selected in patients receiving RAL and possibly EVG. Alone, they have little, if any, effect on INSTI susceptibility.",
@@ -614,7 +614,7 @@
     "IN74MI": "L74M/I are highly polymorphic accessory mutations commonly selected by each of the INSTIs. In ARV-naive patients, L74M occurs in 0.5% to 10% of patients and L74I occurs in 3% to 20% of patients depending on subtype. Alone, L74M/I have minimal, if any, effect on INSTI susceptibility. However, they contribute reduced susceptibility to each of the INSTIs when they occur with major INSTI-resistance mutations."
   },
   "L74M,Q95K,T97A,Y143C,S230R": {
-    "DTGLow": "There is evidence for low-level DTG resistance. If DTG is used, it should be administered twice daily.",
+    "DTGIntermediate": "There is evidence for intermediate DTG resistance. If DTG is used, it should be administered twice daily.",
     "IN143CR": "Y143C/R are non-polymorphic mutations selected by RAL. Alone, Y143C and Y143R reduce RAL susceptibility ~5 and 20-fold, respectively. In combination with T97A and other accessory mutations they reduce RAL susceptibility \u003e100-fold. Alone, Y143C/R have minimal effects on EVG susceptibility. However, they are associated with intermediate to high-level reductions in EVG susceptibility (~10-fold) when they occur in combination with one or more accessory INSTI-resistance mutations. Y143 mutations do not reduce DTG or BIC susceptibility.",
     "IN230R": "S230R is a non-polymorphic accessory mutation selected by RAL, EVG, and rarely DTG. It appears to have minimal, if any, effect on INSTI susceptibility.",
     "IN74MI": "L74M/I are highly polymorphic accessory mutations commonly selected by each of the INSTIs. In ARV-naive patients, L74M occurs in 0.5% to 10% of patients and L74I occurs in 3% to 20% of patients depending on subtype. Alone, L74M/I have minimal, if any, effect on INSTI susceptibility. However, they contribute reduced susceptibility to each of the INSTIs when they occur with major INSTI-resistance mutations.",
@@ -628,7 +628,7 @@
     "IN97A": "T97A is a polymorphic accessory mutation that, depending on subtype, occurs in 1% to 5% of viruses from untreated persons. It is selected primarily by RAL and EVG. Alone, it has minimal effects on INSTI susceptibility but in combination with other major resistance mutations, it synergistically reduces susceptibility to EVG, RAL, DTG, and possibly BIC."
   },
   "L74M,Q95K,Y143C,S230R": {
-    "DTGLow": "There is evidence for low-level DTG resistance. If DTG is used, it should be administered twice daily.",
+    "DTGIntermediate": "There is evidence for intermediate DTG resistance. If DTG is used, it should be administered twice daily.",
     "IN143CR": "Y143C/R are non-polymorphic mutations selected by RAL. Alone, Y143C and Y143R reduce RAL susceptibility ~5 and 20-fold, respectively. In combination with T97A and other accessory mutations they reduce RAL susceptibility \u003e100-fold. Alone, Y143C/R have minimal effects on EVG susceptibility. However, they are associated with intermediate to high-level reductions in EVG susceptibility (~10-fold) when they occur in combination with one or more accessory INSTI-resistance mutations. Y143 mutations do not reduce DTG or BIC susceptibility.",
     "IN230R": "S230R is a non-polymorphic accessory mutation selected by RAL, EVG, and rarely DTG. It appears to have minimal, if any, effect on INSTI susceptibility.",
     "IN74MI": "L74M/I are highly polymorphic accessory mutations commonly selected by each of the INSTIs. In ARV-naive patients, L74M occurs in 0.5% to 10% of patients and L74I occurs in 3% to 20% of patients depending on subtype. Alone, L74M/I have minimal, if any, effect on INSTI susceptibility. However, they contribute reduced susceptibility to each of the INSTIs when they occur with major INSTI-resistance mutations.",
@@ -642,7 +642,7 @@
     "IN97A": "T97A is a polymorphic accessory mutation that, depending on subtype, occurs in 1% to 5% of viruses from untreated persons. It is selected primarily by RAL and EVG. Alone, it has minimal effects on INSTI susceptibility but in combination with other major resistance mutations, it synergistically reduces susceptibility to EVG, RAL, DTG, and possibly BIC."
   },
   "L74M,T97A,E138K,Y143C,S230R": {
-    "DTGLow": "There is evidence for low-level DTG resistance. If DTG is used, it should be administered twice daily.",
+    "DTGIntermediate": "There is evidence for intermediate DTG resistance. If DTG is used, it should be administered twice daily.",
     "IN138KAT": "E138K/A are non-polymorphic mutations selected in patients receiving RAL, EVG, and DTG. They usually occur in combination with Q148 mutations. Alone they do not reduce INSTI susceptibility. However, when they occur in combination with Q148 mutations, they are associated with high-level resistance to RAL and EVG and intermediate reductions in DTG and BIC susceptibility. E138T is an uncommon nonpolymorphic INSTI-selected mutation that appears to have an effect similar to E138K/A.",
     "IN143CR": "Y143C/R are non-polymorphic mutations selected by RAL. Alone, Y143C and Y143R reduce RAL susceptibility ~5 and 20-fold, respectively. In combination with T97A and other accessory mutations they reduce RAL susceptibility \u003e100-fold. Alone, Y143C/R have minimal effects on EVG susceptibility. However, they are associated with intermediate to high-level reductions in EVG susceptibility (~10-fold) when they occur in combination with one or more accessory INSTI-resistance mutations. Y143 mutations do not reduce DTG or BIC susceptibility.",
     "IN230R": "S230R is a non-polymorphic accessory mutation selected by RAL, EVG, and rarely DTG. It appears to have minimal, if any, effect on INSTI susceptibility.",
@@ -657,7 +657,7 @@
     "IN97A": "T97A is a polymorphic accessory mutation that, depending on subtype, occurs in 1% to 5% of viruses from untreated persons. It is selected primarily by RAL and EVG. Alone, it has minimal effects on INSTI susceptibility but in combination with other major resistance mutations, it synergistically reduces susceptibility to EVG, RAL, DTG, and possibly BIC."
   },
   "L74M,T97A,Y143C,G163R,S230R": {
-    "DTGLow": "There is evidence for low-level DTG resistance. If DTG is used, it should be administered twice daily.",
+    "DTGIntermediate": "There is evidence for intermediate DTG resistance. If DTG is used, it should be administered twice daily.",
     "IN143CR": "Y143C/R are non-polymorphic mutations selected by RAL. Alone, Y143C and Y143R reduce RAL susceptibility ~5 and 20-fold, respectively. In combination with T97A and other accessory mutations they reduce RAL susceptibility \u003e100-fold. Alone, Y143C/R have minimal effects on EVG susceptibility. However, they are associated with intermediate to high-level reductions in EVG susceptibility (~10-fold) when they occur in combination with one or more accessory INSTI-resistance mutations. Y143 mutations do not reduce DTG or BIC susceptibility.",
     "IN163RK": "G163R/K are polymorphic in subtype F viruses from ARV-naive patients but are otherwise non-polymorphic. They are commonly selected in patients receiving RAL and possibly EVG. Alone, they have little, if any, effect on INSTI susceptibility.",
     "IN230R": "S230R is a non-polymorphic accessory mutation selected by RAL, EVG, and rarely DTG. It appears to have minimal, if any, effect on INSTI susceptibility.",
@@ -665,7 +665,7 @@
     "IN97A": "T97A is a polymorphic accessory mutation that, depending on subtype, occurs in 1% to 5% of viruses from untreated persons. It is selected primarily by RAL and EVG. Alone, it has minimal effects on INSTI susceptibility but in combination with other major resistance mutations, it synergistically reduces susceptibility to EVG, RAL, DTG, and possibly BIC."
   },
   "L74M,T97A,Y143C,S230R": {
-    "DTGLow": "There is evidence for low-level DTG resistance. If DTG is used, it should be administered twice daily.",
+    "DTGIntermediate": "There is evidence for intermediate DTG resistance. If DTG is used, it should be administered twice daily.",
     "IN143CR": "Y143C/R are non-polymorphic mutations selected by RAL. Alone, Y143C and Y143R reduce RAL susceptibility ~5 and 20-fold, respectively. In combination with T97A and other accessory mutations they reduce RAL susceptibility \u003e100-fold. Alone, Y143C/R have minimal effects on EVG susceptibility. However, they are associated with intermediate to high-level reductions in EVG susceptibility (~10-fold) when they occur in combination with one or more accessory INSTI-resistance mutations. Y143 mutations do not reduce DTG or BIC susceptibility.",
     "IN230R": "S230R is a non-polymorphic accessory mutation selected by RAL, EVG, and rarely DTG. It appears to have minimal, if any, effect on INSTI susceptibility.",
     "IN74MI": "L74M/I are highly polymorphic accessory mutations commonly selected by each of the INSTIs. In ARV-naive patients, L74M occurs in 0.5% to 10% of patients and L74I occurs in 3% to 20% of patients depending on subtype. Alone, L74M/I have minimal, if any, effect on INSTI susceptibility. However, they contribute reduced susceptibility to each of the INSTIs when they occur with major INSTI-resistance mutations.",
@@ -708,7 +708,7 @@
     "IN97A": "T97A is a polymorphic accessory mutation that, depending on subtype, occurs in 1% to 5% of viruses from untreated persons. It is selected primarily by RAL and EVG. Alone, it has minimal effects on INSTI susceptibility but in combination with other major resistance mutations, it synergistically reduces susceptibility to EVG, RAL, DTG, and possibly BIC."
   },
   "L74M,T97A,Y143S,S230R": {
-    "DTGLow": "There is evidence for low-level DTG resistance. If DTG is used, it should be administered twice daily.",
+    "DTGIntermediate": "There is evidence for intermediate DTG resistance. If DTG is used, it should be administered twice daily.",
     "IN143KGSA": "Y143K/G/S/A are rare mutations that cause intermediate reductions in RAL susceptibility. When they occur in combination with other accessory mutations, they may also cause low-level reductions in EVG susceptibility.",
     "IN230R": "S230R is a non-polymorphic accessory mutation selected by RAL, EVG, and rarely DTG. It appears to have minimal, if any, effect on INSTI susceptibility.",
     "IN74MI": "L74M/I are highly polymorphic accessory mutations commonly selected by each of the INSTIs. In ARV-naive patients, L74M occurs in 0.5% to 10% of patients and L74I occurs in 3% to 20% of patients depending on subtype. Alone, L74M/I have minimal, if any, effect on INSTI susceptibility. However, they contribute reduced susceptibility to each of the INSTIs when they occur with major INSTI-resistance mutations.",
@@ -719,7 +719,7 @@
     "IN74MI": "L74M/I are highly polymorphic accessory mutations commonly selected by each of the INSTIs. In ARV-naive patients, L74M occurs in 0.5% to 10% of patients and L74I occurs in 3% to 20% of patients depending on subtype. Alone, L74M/I have minimal, if any, effect on INSTI susceptibility. However, they contribute reduced susceptibility to each of the INSTIs when they occur with major INSTI-resistance mutations."
   },
   "L74M,Y143C,N155H,S230R": {
-    "DTGLow": "There is evidence for low-level DTG resistance. If DTG is used, it should be administered twice daily.",
+    "DTGIntermediate": "There is evidence for intermediate DTG resistance. If DTG is used, it should be administered twice daily.",
     "IN143CR": "Y143C/R are non-polymorphic mutations selected by RAL. Alone, Y143C and Y143R reduce RAL susceptibility ~5 and 20-fold, respectively. In combination with T97A and other accessory mutations they reduce RAL susceptibility \u003e100-fold. Alone, Y143C/R have minimal effects on EVG susceptibility. However, they are associated with intermediate to high-level reductions in EVG susceptibility (~10-fold) when they occur in combination with one or more accessory INSTI-resistance mutations. Y143 mutations do not reduce DTG or BIC susceptibility.",
     "IN155H": "N155H is a non-polymorphic mutation selected in patients receiving RAL, EVG, and rarely DTG. It reduces RAL and EVG susceptibility \u003e15-fold. It causes minimal if any clinically significant reduction in DTG susceptibility.",
     "IN230R": "S230R is a non-polymorphic accessory mutation selected by RAL, EVG, and rarely DTG. It appears to have minimal, if any, effect on INSTI susceptibility.",
@@ -760,11 +760,12 @@
     "IN163RK": "G163R/K are polymorphic in subtype F viruses from ARV-naive patients but are otherwise non-polymorphic. They are commonly selected in patients receiving RAL and possibly EVG. Alone, they have little, if any, effect on INSTI susceptibility."
   },
   "N155H,R263K": {
-    "DTGLow": "There is evidence for low-level DTG resistance. If DTG is used, it should be administered twice daily.",
+    "DTGIntermediate": "There is evidence for intermediate DTG resistance. If DTG is used, it should be administered twice daily.",
     "IN155H": "N155H is a non-polymorphic mutation selected in patients receiving RAL, EVG, and rarely DTG. It reduces RAL and EVG susceptibility \u003e15-fold. It causes minimal if any clinically significant reduction in DTG susceptibility.",
     "IN263K": "R263K is an uncommon mutation selected in patients receiving RAL and DTG and in vitro by EVG, DTG, and BIC. It reduces EVG susceptibility by about 4-fold, and RAL, DTG, and BIC susceptibility by about 2-fold."
   },
   "N155H,S230R": {
+    "DTGIntermediate": "There is evidence for intermediate DTG resistance. If DTG is used, it should be administered twice daily.",
     "IN155H": "N155H is a non-polymorphic mutation selected in patients receiving RAL, EVG, and rarely DTG. It reduces RAL and EVG susceptibility \u003e15-fold. It causes minimal if any clinically significant reduction in DTG susceptibility.",
     "IN230R": "S230R is a non-polymorphic accessory mutation selected by RAL, EVG, and rarely DTG. It appears to have minimal, if any, effect on INSTI susceptibility."
   },
@@ -846,6 +847,7 @@
     "IN153YF": "S153Y/F are extremely rare non-polymorphic mutations selected in vitro by EVG and DTG. S153Y/F reduce RAL, DTG, and possibly BIC susceptibility about 2-fold and EVG susceptibility about 4-fold."
   },
   "S230R": {
+    "DTGLow": "There is evidence for low-level DTG resistance. If DTG is used, it should be administered twice daily.",
     "IN230R": "S230R is a non-polymorphic accessory mutation selected by RAL, EVG, and rarely DTG. It appears to have minimal, if any, effect on INSTI susceptibility."
   },
   "T66A": {
@@ -868,6 +870,7 @@
     "IN97A": "T97A is a polymorphic accessory mutation that, depending on subtype, occurs in 1% to 5% of viruses from untreated persons. It is selected primarily by RAL and EVG. Alone, it has minimal effects on INSTI susceptibility but in combination with other major resistance mutations, it synergistically reduces susceptibility to EVG, RAL, DTG, and possibly BIC."
   },
   "T66I,T97A,N155H": {
+    "DTGLow": "There is evidence for low-level DTG resistance. If DTG is used, it should be administered twice daily.",
     "IN155H": "N155H is a non-polymorphic mutation selected in patients receiving RAL, EVG, and rarely DTG. It reduces RAL and EVG susceptibility \u003e15-fold. It causes minimal if any clinically significant reduction in DTG susceptibility.",
     "IN66I": "T66I is a non-polymorphic mutation selected in patients receiving EVG and RAL. It reduces EVG susceptibility by about 10-fold but does not reduce RAL, DTG, or BIC susceptibility.",
     "IN97A": "T97A is a polymorphic accessory mutation that, depending on subtype, occurs in 1% to 5% of viruses from untreated persons. It is selected primarily by RAL and EVG. Alone, it has minimal effects on INSTI susceptibility but in combination with other major resistance mutations, it synergistically reduces susceptibility to EVG, RAL, DTG, and possibly BIC."
@@ -983,7 +986,7 @@
     "IN97A": "T97A is a polymorphic accessory mutation that, depending on subtype, occurs in 1% to 5% of viruses from untreated persons. It is selected primarily by RAL and EVG. Alone, it has minimal effects on INSTI susceptibility but in combination with other major resistance mutations, it synergistically reduces susceptibility to EVG, RAL, DTG, and possibly BIC."
   },
   "T97A,Y143C,G163R,S230R": {
-    "DTGLow": "There is evidence for low-level DTG resistance. If DTG is used, it should be administered twice daily.",
+    "DTGIntermediate": "There is evidence for intermediate DTG resistance. If DTG is used, it should be administered twice daily.",
     "IN143CR": "Y143C/R are non-polymorphic mutations selected by RAL. Alone, Y143C and Y143R reduce RAL susceptibility ~5 and 20-fold, respectively. In combination with T97A and other accessory mutations they reduce RAL susceptibility \u003e100-fold. Alone, Y143C/R have minimal effects on EVG susceptibility. However, they are associated with intermediate to high-level reductions in EVG susceptibility (~10-fold) when they occur in combination with one or more accessory INSTI-resistance mutations. Y143 mutations do not reduce DTG or BIC susceptibility.",
     "IN163RK": "G163R/K are polymorphic in subtype F viruses from ARV-naive patients but are otherwise non-polymorphic. They are commonly selected in patients receiving RAL and possibly EVG. Alone, they have little, if any, effect on INSTI susceptibility.",
     "IN230R": "S230R is a non-polymorphic accessory mutation selected by RAL, EVG, and rarely DTG. It appears to have minimal, if any, effect on INSTI susceptibility.",
@@ -996,6 +999,7 @@
     "IN97A": "T97A is a polymorphic accessory mutation that, depending on subtype, occurs in 1% to 5% of viruses from untreated persons. It is selected primarily by RAL and EVG. Alone, it has minimal effects on INSTI susceptibility but in combination with other major resistance mutations, it synergistically reduces susceptibility to EVG, RAL, DTG, and possibly BIC."
   },
   "T97A,Y143C,S230R": {
+    "DTGIntermediate": "There is evidence for intermediate DTG resistance. If DTG is used, it should be administered twice daily.",
     "IN143CR": "Y143C/R are non-polymorphic mutations selected by RAL. Alone, Y143C and Y143R reduce RAL susceptibility ~5 and 20-fold, respectively. In combination with T97A and other accessory mutations they reduce RAL susceptibility \u003e100-fold. Alone, Y143C/R have minimal effects on EVG susceptibility. However, they are associated with intermediate to high-level reductions in EVG susceptibility (~10-fold) when they occur in combination with one or more accessory INSTI-resistance mutations. Y143 mutations do not reduce DTG or BIC susceptibility.",
     "IN230R": "S230R is a non-polymorphic accessory mutation selected by RAL, EVG, and rarely DTG. It appears to have minimal, if any, effect on INSTI susceptibility.",
     "IN97A": "T97A is a polymorphic accessory mutation that, depending on subtype, occurs in 1% to 5% of viruses from untreated persons. It is selected primarily by RAL and EVG. Alone, it has minimal effects on INSTI susceptibility but in combination with other major resistance mutations, it synergistically reduces susceptibility to EVG, RAL, DTG, and possibly BIC."
@@ -1035,6 +1039,7 @@
     "IN97A": "T97A is a polymorphic accessory mutation that, depending on subtype, occurs in 1% to 5% of viruses from untreated persons. It is selected primarily by RAL and EVG. Alone, it has minimal effects on INSTI susceptibility but in combination with other major resistance mutations, it synergistically reduces susceptibility to EVG, RAL, DTG, and possibly BIC."
   },
   "T97A,Y143S,S230R": {
+    "DTGIntermediate": "There is evidence for intermediate DTG resistance. If DTG is used, it should be administered twice daily.",
     "IN143KGSA": "Y143K/G/S/A are rare mutations that cause intermediate reductions in RAL susceptibility. When they occur in combination with other accessory mutations, they may also cause low-level reductions in EVG susceptibility.",
     "IN230R": "S230R is a non-polymorphic accessory mutation selected by RAL, EVG, and rarely DTG. It appears to have minimal, if any, effect on INSTI susceptibility.",
     "IN97A": "T97A is a polymorphic accessory mutation that, depending on subtype, occurs in 1% to 5% of viruses from untreated persons. It is selected primarily by RAL and EVG. Alone, it has minimal effects on INSTI susceptibility but in combination with other major resistance mutations, it synergistically reduces susceptibility to EVG, RAL, DTG, and possibly BIC."
@@ -1050,11 +1055,13 @@
     "IN143CR": "Y143C/R are non-polymorphic mutations selected by RAL. Alone, Y143C and Y143R reduce RAL susceptibility ~5 and 20-fold, respectively. In combination with T97A and other accessory mutations they reduce RAL susceptibility \u003e100-fold. Alone, Y143C/R have minimal effects on EVG susceptibility. However, they are associated with intermediate to high-level reductions in EVG susceptibility (~10-fold) when they occur in combination with one or more accessory INSTI-resistance mutations. Y143 mutations do not reduce DTG or BIC susceptibility."
   },
   "Y143C,E157Q,S230R": {
+    "DTGIntermediate": "There is evidence for intermediate DTG resistance. If DTG is used, it should be administered twice daily.",
     "IN143CR": "Y143C/R are non-polymorphic mutations selected by RAL. Alone, Y143C and Y143R reduce RAL susceptibility ~5 and 20-fold, respectively. In combination with T97A and other accessory mutations they reduce RAL susceptibility \u003e100-fold. Alone, Y143C/R have minimal effects on EVG susceptibility. However, they are associated with intermediate to high-level reductions in EVG susceptibility (~10-fold) when they occur in combination with one or more accessory INSTI-resistance mutations. Y143 mutations do not reduce DTG or BIC susceptibility.",
     "IN157Q": "E157Q is a polymorphic mutation selected in patients receiving RAL and EVG. It appears to have little, if any, effect on INSTI susceptibility.",
     "IN230R": "S230R is a non-polymorphic accessory mutation selected by RAL, EVG, and rarely DTG. It appears to have minimal, if any, effect on INSTI susceptibility."
   },
   "Y143C,G163K,S230R": {
+    "DTGIntermediate": "There is evidence for intermediate DTG resistance. If DTG is used, it should be administered twice daily.",
     "IN143CR": "Y143C/R are non-polymorphic mutations selected by RAL. Alone, Y143C and Y143R reduce RAL susceptibility ~5 and 20-fold, respectively. In combination with T97A and other accessory mutations they reduce RAL susceptibility \u003e100-fold. Alone, Y143C/R have minimal effects on EVG susceptibility. However, they are associated with intermediate to high-level reductions in EVG susceptibility (~10-fold) when they occur in combination with one or more accessory INSTI-resistance mutations. Y143 mutations do not reduce DTG or BIC susceptibility.",
     "IN163RK": "G163R/K are polymorphic in subtype F viruses from ARV-naive patients but are otherwise non-polymorphic. They are commonly selected in patients receiving RAL and possibly EVG. Alone, they have little, if any, effect on INSTI susceptibility.",
     "IN230R": "S230R is a non-polymorphic accessory mutation selected by RAL, EVG, and rarely DTG. It appears to have minimal, if any, effect on INSTI susceptibility."
@@ -1064,7 +1071,7 @@
     "IN163RK": "G163R/K are polymorphic in subtype F viruses from ARV-naive patients but are otherwise non-polymorphic. They are commonly selected in patients receiving RAL and possibly EVG. Alone, they have little, if any, effect on INSTI susceptibility."
   },
   "Y143C,G163R,S230R": {
-    "DTGLow": "There is evidence for low-level DTG resistance. If DTG is used, it should be administered twice daily.",
+    "DTGIntermediate": "There is evidence for intermediate DTG resistance. If DTG is used, it should be administered twice daily.",
     "IN143CR": "Y143C/R are non-polymorphic mutations selected by RAL. Alone, Y143C and Y143R reduce RAL susceptibility ~5 and 20-fold, respectively. In combination with T97A and other accessory mutations they reduce RAL susceptibility \u003e100-fold. Alone, Y143C/R have minimal effects on EVG susceptibility. However, they are associated with intermediate to high-level reductions in EVG susceptibility (~10-fold) when they occur in combination with one or more accessory INSTI-resistance mutations. Y143 mutations do not reduce DTG or BIC susceptibility.",
     "IN163RK": "G163R/K are polymorphic in subtype F viruses from ARV-naive patients but are otherwise non-polymorphic. They are commonly selected in patients receiving RAL and possibly EVG. Alone, they have little, if any, effect on INSTI susceptibility.",
     "IN230R": "S230R is a non-polymorphic accessory mutation selected by RAL, EVG, and rarely DTG. It appears to have minimal, if any, effect on INSTI susceptibility."
@@ -1075,19 +1082,20 @@
     "IN155H": "N155H is a non-polymorphic mutation selected in patients receiving RAL, EVG, and rarely DTG. It reduces RAL and EVG susceptibility \u003e15-fold. It causes minimal if any clinically significant reduction in DTG susceptibility."
   },
   "Y143C,N155H,E157Q,S230R": {
-    "DTGLow": "There is evidence for low-level DTG resistance. If DTG is used, it should be administered twice daily.",
+    "DTGIntermediate": "There is evidence for intermediate DTG resistance. If DTG is used, it should be administered twice daily.",
     "IN143CR": "Y143C/R are non-polymorphic mutations selected by RAL. Alone, Y143C and Y143R reduce RAL susceptibility ~5 and 20-fold, respectively. In combination with T97A and other accessory mutations they reduce RAL susceptibility \u003e100-fold. Alone, Y143C/R have minimal effects on EVG susceptibility. However, they are associated with intermediate to high-level reductions in EVG susceptibility (~10-fold) when they occur in combination with one or more accessory INSTI-resistance mutations. Y143 mutations do not reduce DTG or BIC susceptibility.",
     "IN155H": "N155H is a non-polymorphic mutation selected in patients receiving RAL, EVG, and rarely DTG. It reduces RAL and EVG susceptibility \u003e15-fold. It causes minimal if any clinically significant reduction in DTG susceptibility.",
     "IN157Q": "E157Q is a polymorphic mutation selected in patients receiving RAL and EVG. It appears to have little, if any, effect on INSTI susceptibility.",
     "IN230R": "S230R is a non-polymorphic accessory mutation selected by RAL, EVG, and rarely DTG. It appears to have minimal, if any, effect on INSTI susceptibility."
   },
   "Y143C,N155H,S230R": {
-    "DTGLow": "There is evidence for low-level DTG resistance. If DTG is used, it should be administered twice daily.",
+    "DTGIntermediate": "There is evidence for intermediate DTG resistance. If DTG is used, it should be administered twice daily.",
     "IN143CR": "Y143C/R are non-polymorphic mutations selected by RAL. Alone, Y143C and Y143R reduce RAL susceptibility ~5 and 20-fold, respectively. In combination with T97A and other accessory mutations they reduce RAL susceptibility \u003e100-fold. Alone, Y143C/R have minimal effects on EVG susceptibility. However, they are associated with intermediate to high-level reductions in EVG susceptibility (~10-fold) when they occur in combination with one or more accessory INSTI-resistance mutations. Y143 mutations do not reduce DTG or BIC susceptibility.",
     "IN155H": "N155H is a non-polymorphic mutation selected in patients receiving RAL, EVG, and rarely DTG. It reduces RAL and EVG susceptibility \u003e15-fold. It causes minimal if any clinically significant reduction in DTG susceptibility.",
     "IN230R": "S230R is a non-polymorphic accessory mutation selected by RAL, EVG, and rarely DTG. It appears to have minimal, if any, effect on INSTI susceptibility."
   },
   "Y143C,S230R": {
+    "DTGIntermediate": "There is evidence for intermediate DTG resistance. If DTG is used, it should be administered twice daily.",
     "IN143CR": "Y143C/R are non-polymorphic mutations selected by RAL. Alone, Y143C and Y143R reduce RAL susceptibility ~5 and 20-fold, respectively. In combination with T97A and other accessory mutations they reduce RAL susceptibility \u003e100-fold. Alone, Y143C/R have minimal effects on EVG susceptibility. However, they are associated with intermediate to high-level reductions in EVG susceptibility (~10-fold) when they occur in combination with one or more accessory INSTI-resistance mutations. Y143 mutations do not reduce DTG or BIC susceptibility.",
     "IN230R": "S230R is a non-polymorphic accessory mutation selected by RAL, EVG, and rarely DTG. It appears to have minimal, if any, effect on INSTI susceptibility."
   },
@@ -1122,13 +1130,14 @@
     "IN143KGSA": "Y143K/G/S/A are rare mutations that cause intermediate reductions in RAL susceptibility. When they occur in combination with other accessory mutations, they may also cause low-level reductions in EVG susceptibility."
   },
   "Y143S,N155H,G163K,S230R": {
-    "DTGLow": "There is evidence for low-level DTG resistance. If DTG is used, it should be administered twice daily.",
+    "DTGIntermediate": "There is evidence for intermediate DTG resistance. If DTG is used, it should be administered twice daily.",
     "IN143KGSA": "Y143K/G/S/A are rare mutations that cause intermediate reductions in RAL susceptibility. When they occur in combination with other accessory mutations, they may also cause low-level reductions in EVG susceptibility.",
     "IN155H": "N155H is a non-polymorphic mutation selected in patients receiving RAL, EVG, and rarely DTG. It reduces RAL and EVG susceptibility \u003e15-fold. It causes minimal if any clinically significant reduction in DTG susceptibility.",
     "IN163RK": "G163R/K are polymorphic in subtype F viruses from ARV-naive patients but are otherwise non-polymorphic. They are commonly selected in patients receiving RAL and possibly EVG. Alone, they have little, if any, effect on INSTI susceptibility.",
     "IN230R": "S230R is a non-polymorphic accessory mutation selected by RAL, EVG, and rarely DTG. It appears to have minimal, if any, effect on INSTI susceptibility."
   },
   "Y143S,S230R": {
+    "DTGIntermediate": "There is evidence for intermediate DTG resistance. If DTG is used, it should be administered twice daily.",
     "IN143KGSA": "Y143K/G/S/A are rare mutations that cause intermediate reductions in RAL susceptibility. When they occur in combination with other accessory mutations, they may also cause low-level reductions in EVG susceptibility.",
     "IN230R": "S230R is a non-polymorphic accessory mutation selected by RAL, EVG, and rarely DTG. It appears to have minimal, if any, effect on INSTI susceptibility."
   }
