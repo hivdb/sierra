@@ -228,7 +228,7 @@ public class CodonTranslation {
 	 */
 	public static String translateNATriplet(String nas) {
 		if (nas.length() != 3) {
-			System.err.println("WARNING: Must be a string of 3 nas!");
+			// System.err.println("WARNING: Must be a string of 3 nas!");
 			return "X";
 		}
 		String aa = getAAsForTriplet(nas);

@@ -57,6 +57,7 @@ public class PositionCodonReads {
 	
 	public Gene getGene() { return gene; }
 	public long getPosition() { return position; }
+	public long getTotalReads() { return totalReads; }
 
 	public Map<String, Double> getCodonWithPrevalence(double minPrevalence) {
 		long minReads = Math.round(totalReads * minPrevalence + 0.5);
@@ -94,8 +95,11 @@ public class PositionCodonReads {
 				else if (codon.equals("---") || codon.isEmpty()) {
 					return "-";  // deletion
 				}
+				codon = codon.replace("-", "");
+				codon = codon.substring(0, 3);
 				return CodonTranslation.translateNATriplet(codon);
 			})
+			.filter(a -> a != "X")
 			.toArray(String[]::new);
 		Set<String> uniAAs = new LinkedHashSet<>();
 		for (String aas : allAAs) {

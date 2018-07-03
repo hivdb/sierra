@@ -18,6 +18,7 @@
 
 package edu.stanford.hivdb.ngs;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
@@ -157,6 +158,12 @@ public class GeneSequenceReads {
 	public String getAlignedAAs() {
 		return CodonTranslation.simpleTranslate(
 			this.getAlignedNAs(false), firstAA, gene.getConsensus());
+	}
+	
+	public List<MutationStats> getMutationStats(Collection<Double> allMinPrevalence) {
+		return allMinPrevalence.stream().map(
+			mp -> new MutationStats(mp, getMutations(mp))
+		).collect(Collectors.toList());
 	}
 
 }
