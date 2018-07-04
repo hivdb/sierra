@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import edu.stanford.hivdb.mutations.Gene;
+import edu.stanford.hivdb.mutations.MutType;
 import edu.stanford.hivdb.mutations.Mutation;
 import edu.stanford.hivdb.mutations.MutationSet;
 
@@ -31,13 +32,14 @@ public class MutationStats {
 	private final long numUsuals;
 	private final long numUnusuals;
 	private final long numDRMs;
+	private final long numSDRMs;
 	private final long numStops;
 	private final long numApobecMutations;
 	private final long numApobecDRMs;
 	
 	public MutationStats(final double minPrevalence, final MutationSet mutations) {
 		this.minPrevalence = minPrevalence;
-		List<Mutation> filtered = (mutations.stream()
+		List<Mutation> filtered = (mutations.getSplitted().stream()
 				.filter(mut -> !(mut.getGene() == Gene.RT && mut.getPosition() > 240))
 				.collect(Collectors.toList()));
 		numUsuals = (
@@ -52,6 +54,10 @@ public class MutationStats {
 			)
 			.count());
 		numDRMs = filtered.stream().filter(m -> m.isDRM()).count();
+		numSDRMs = filtered.stream().filter(m -> (
+			(m.getGene() != Gene.IN && m.isSDRM()) ||
+			(m.getGene() == Gene.IN && m.getPrimaryType() == MutType.Major)
+		)).count();
 		numStops = filtered.stream().filter(m -> m.hasStop()).count();
 		numApobecMutations = filtered.stream().filter(m -> m.isApobecMutation()).count();
 		numApobecDRMs = filtered.stream().filter(m -> m.isApobecDRM()).count();
@@ -61,6 +67,7 @@ public class MutationStats {
 	public long getNumUsualMutations() { return numUsuals; }
 	public long getNumUnusualMutations() { return numUnusuals; }
 	public long getNumDRMs() { return numDRMs; }
+	public long getNumSDRMs() { return numSDRMs; }
 	public long getNumStopCodons() { return numStops; }
 	public long getNumApobecMutations() { return numApobecMutations; }
 	public long getNumApobecDRMs() { return numApobecDRMs; }
