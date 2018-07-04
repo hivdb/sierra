@@ -497,6 +497,20 @@ public class MutationSet extends TreeSet<Mutation> {
 		}
 		return splittedMuts;
 	}
+
+	/** Returns a set of non-mixture mutations for all mutations.
+	 * 
+	 * @return The mutation set
+	 */
+	public Set<Mutation> getSplitted() {
+		Set<Mutation> splittedMuts = new TreeSet<>();
+		for (Set<Mutation> posMuts : genePositionMap.values()) {
+			for (Mutation mut : posMuts) {
+				splittedMuts.addAll(mut.split());
+			}
+		}
+		return splittedMuts;
+	}
 	
 	/** Returns a mutation at specified gene position.
 	 * 
