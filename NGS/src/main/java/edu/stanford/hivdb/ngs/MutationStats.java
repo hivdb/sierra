@@ -49,7 +49,7 @@ public class MutationStats {
 		numUnusuals = (
 			filtered.stream()
 			.filter(
-				m -> m.isUnusual() &&
+				m -> m.isUnusual() && !m.isIndel() &&
 				!m.isApobecMutation() && !m.isApobecDRM()
 			)
 			.count());
