@@ -1,19 +1,19 @@
 /*
-    
-    Copyright (C) 2017 Stanford HIVDB team
-    
-    Sierra is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-    
-    Sierra is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-    
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+	Copyright (C) 2017 Stanford HIVDB team
+
+	Sierra is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+
+	Sierra is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+
+	You should have received a copy of the GNU General Public License
+	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 package edu.stanford.hivdb.alignment;
@@ -65,7 +65,7 @@ public class NucAminoAligner {
 
 	private static final Map<Gene, Integer> MIN_NUM_OF_SITES_PER_GENE;
 	private static final int MIN_MATCH_PCNT = 60;
-	private static final Double SEQUENCE_SHRINKAGE_BAD_QUALITY_MUT_PREVALENCE = 0.1;
+	private static final Double SEQUENCE_SHRINKAGE_BAD_QUALITY_MUT_PREVALENCE = 0.01; // 1 in 10,000
 	private static final int SEQUENCE_SHRINKAGE_WINDOW = 15;
 	private static final int SEQUENCE_SHRINKAGE_CUTOFF_PCNT = 30;
 
@@ -470,8 +470,8 @@ public class NucAminoAligner {
 	private static String[] generateCmd() {
 		String executable = System.getenv(NUCAMINO_PROGRAM_PATH);
 		if (executable == null) {
-		    // use "nucamino" as default program path
-		    executable = "nucamino";
+			// use "nucamino" as default program path
+			executable = "nucamino";
 		}
 		return new String[] {
 			executable,

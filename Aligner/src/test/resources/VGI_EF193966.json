@@ -7,13 +7,13 @@
       "removedInvalidChars": ""
     },
     "firstAA": 1,
-    "lastAA": 97,
+    "lastAA": 99,
     "firstNA": 1,
-    "lastNA": 291,
+    "lastNA": 297,
     "leftTrimmed": 0,
-    "rightTrimmed": 2,
-    "matchPcnt": 92.78351,
-    "alignedNAs": "CCTCAGATCACTCTTTGGCAGCGACCCATTGTCACAATAAAGATAGGGGGGCAACTAAAGGAAGCTCTATTAGATACAGGAGCAGATGATACAGTMTTAGAAGACATAAATTTGCCAGGAAAATGGAAACCAAAAATGATAGGGGGAATTGGAGGTTTTATCAAAGTAAAACAGTATGATCAAATATCCATAGAAATCTGTGGACATAAGGCTATAGGTACAGTTTTAGTAGGGCCTACACCTGTCAACATAATTGGAAGAAATCTGTTGACTCAGCTTGGGTGTACTTTA",
+    "rightTrimmed": 0,
+    "matchPcnt": 90.90909,
+    "alignedNAs": "CCTCAGATCACTCTTTGGCAGCGACCCATTGTCACAATAAAGATAGGGGGGCAACTAAAGGAAGCTCTATTAGATACAGGAGCAGATGATACAGTMTTAGAAGACATAAATTTGCCAGGAAAATGGAAACCAAAAATGATAGGGGGAATTGGAGGTTTTATCAAAGTAAAACAGTATGATCAAATATCCATAGAAATCTGTGGACATAAGGCTATAGGTACAGTTTTAGTAGGGCCTACACCTGTCAACATAATTGGAAGAAATCTGTTGACTCAGCTTGGGTGTACTTTAATTTTN",
     "prettyPairwise": {
       "positionLine": [
         " 1 ",
@@ -112,7 +112,9 @@
         "94 ",
         "95 ",
         "96 ",
-        "97 "
+        "97 ",
+        "98 ",
+        "99 "
       ],
       "refAALine": [
         " P ",
@@ -211,7 +213,9 @@
         " G ",
         " C ",
         " T ",
-        " L "
+        " L ",
+        " N ",
+        " F "
       ],
       "alignedNAsLine": [
         "CCT",
@@ -310,7 +314,9 @@
         "GGG",
         "TGT",
         "ACT",
-        "TTA"
+        "TTA",
+        "ATT",
+        "TTN"
       ],
       "mutationLine": [
         " - ",
@@ -409,7 +415,9 @@
         " - ",
         " - ",
         " - ",
-        " - "
+        " - ",
+        " I ",
+        "FL "
       ]
     },
     "mutations": [
@@ -482,10 +490,30 @@
         "insertedNAs": "",
         "isInsertion": false,
         "isDeletion": false
+      },
+      {
+        "gene": "PR",
+        "cons": "N",
+        "pos": 98,
+        "aas": "I",
+        "triplet": "ATT",
+        "insertedNAs": "",
+        "isInsertion": false,
+        "isDeletion": false
+      },
+      {
+        "gene": "PR",
+        "cons": "F",
+        "pos": 99,
+        "aas": "FL",
+        "triplet": "TTN",
+        "insertedNAs": "",
+        "isInsertion": false,
+        "isDeletion": false
       }
     ],
     "frameShifts": [],
-    "mutationListString": "L10I,E35D,M36I,R41K,R57K,L63S,I93L"
+    "mutationListString": "L10I,E35D,M36I,R41K,R57K,L63S,I93L,N98I,F99FL"
   },
   "RT": {
     "gene": "RT",
