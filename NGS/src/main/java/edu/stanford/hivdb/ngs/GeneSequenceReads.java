@@ -29,6 +29,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import edu.stanford.hivdb.mutations.CodonTranslation;
 import edu.stanford.hivdb.mutations.Gene;
+import edu.stanford.hivdb.mutations.Mutation;
 import edu.stanford.hivdb.mutations.MutationSet;
 
 public class GeneSequenceReads {
@@ -83,10 +84,18 @@ public class GeneSequenceReads {
 		if (minPrevalence == this.minPrevalence && mutations != null) {
 			retMuts = mutations;
 		} else {
-			retMuts = posCodonReads
-				.stream()
-				.map(pcr -> pcr.getMutations(minPrevalence))
-				.reduce(new MutationSet(), (ms1, ms2) -> ms1.mergesWith(ms2));
+			retMuts = new MutationSet();
+			long prevPos = firstAA - 1;
+			for (PositionCodonReads pcr : posCodonReads) {
+				long curPos = pcr.getPosition();
+				for (Long pos = prevPos; pos < curPos - 1; pos ++) {
+					// add unsequenced regions 
+					retMuts = retMuts.mergesWith(new Mutation(gene, pos.intValue(), "X", "NNN"));
+				}
+				prevPos = curPos;
+				MutationSet muts = pcr.getMutations(minPrevalence);
+				retMuts = retMuts.mergesWith(muts);
+			}
 			if (minPrevalence == this.minPrevalence) {
 				mutations = retMuts;
 			}
