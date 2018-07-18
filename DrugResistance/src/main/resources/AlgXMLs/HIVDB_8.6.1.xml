@@ -353,6 +353,42 @@
         <TEXT><![CDATA[L33F is a relatively non-polymorphic accessory mutation selected by each of the PIs. In combination with other PI-resistance mutations, it is associated with reduced susceptibility to each of the PIs. It is included in the Tibotec DRV genotypic susceptibility score.]]></TEXT>
         <SORT_TAG>1</SORT_TAG>
       </COMMENT_STRING>
+      <COMMENT_STRING id="PR33_">
+        <TEXT><![CDATA[Insertions between positions 33 and 41 do not appear to be selected by PIs or to reduce PI susceptibility.]]></TEXT>
+        <SORT_TAG>1</SORT_TAG>
+      </COMMENT_STRING>
+      <COMMENT_STRING id="PR34_">
+        <TEXT><![CDATA[Insertions between positions 33 and 41 do not appear to be selected by PIs or to reduce PI susceptibility.]]></TEXT>
+        <SORT_TAG>1</SORT_TAG>
+      </COMMENT_STRING>
+      <COMMENT_STRING id="PR35_">
+        <TEXT><![CDATA[Insertions between positions 33 and 41 do not appear to be selected by PIs or to reduce PI susceptibility.]]></TEXT>
+        <SORT_TAG>1</SORT_TAG>
+      </COMMENT_STRING>
+      <COMMENT_STRING id="PR36_">
+        <TEXT><![CDATA[Insertions between positions 33 and 41 do not appear to be selected by PIs or to reduce PI susceptibility.]]></TEXT>
+        <SORT_TAG>1</SORT_TAG>
+      </COMMENT_STRING>
+      <COMMENT_STRING id="PR37_">
+        <TEXT><![CDATA[Insertions between positions 33 and 41 do not appear to be selected by PIs or to reduce PI susceptibility.]]></TEXT>
+        <SORT_TAG>1</SORT_TAG>
+      </COMMENT_STRING>
+      <COMMENT_STRING id="PR38_">
+        <TEXT><![CDATA[Insertions between positions 33 and 41 do not appear to be selected by PIs or to reduce PI susceptibility.]]></TEXT>
+        <SORT_TAG>1</SORT_TAG>
+      </COMMENT_STRING>
+      <COMMENT_STRING id="PR39_">
+        <TEXT><![CDATA[Insertions between positions 33 and 41 do not appear to be selected by PIs or to reduce PI susceptibility.]]></TEXT>
+        <SORT_TAG>1</SORT_TAG>
+      </COMMENT_STRING>
+      <COMMENT_STRING id="PR40_">
+        <TEXT><![CDATA[Insertions between positions 33 and 41 do not appear to be selected by PIs or to reduce PI susceptibility.]]></TEXT>
+        <SORT_TAG>1</SORT_TAG>
+      </COMMENT_STRING>
+      <COMMENT_STRING id="PR41_">
+        <TEXT><![CDATA[Insertions between positions 33 and 41 do not appear to be selected by PIs or to reduce PI susceptibility.]]></TEXT>
+        <SORT_TAG>1</SORT_TAG>
+      </COMMENT_STRING>
       <COMMENT_STRING id="PR43T">
         <TEXT><![CDATA[K43T is a non-polymorphic PI-selected accessory mutation. K43T is included in the Boehringer-Ingelheim TPV genotypic susceptibility score.]]></TEXT>
         <SORT_TAG>1</SORT_TAG>
@@ -1998,6 +2034,60 @@
         <CONDITION>33F</CONDITION>
         <ACTIONS>
           <COMMENT ref="PR33F"/>
+        </ACTIONS>
+      </RULE>
+      <RULE>
+        <CONDITION>33i</CONDITION>
+        <ACTIONS>
+          <COMMENT ref="PR33_"/>
+        </ACTIONS>
+      </RULE>
+      <RULE>
+        <CONDITION>34i</CONDITION>
+        <ACTIONS>
+          <COMMENT ref="PR34_"/>
+        </ACTIONS>
+      </RULE>
+      <RULE>
+        <CONDITION>35i</CONDITION>
+        <ACTIONS>
+          <COMMENT ref="PR35_"/>
+        </ACTIONS>
+      </RULE>
+      <RULE>
+        <CONDITION>36i</CONDITION>
+        <ACTIONS>
+          <COMMENT ref="PR36_"/>
+        </ACTIONS>
+      </RULE>
+      <RULE>
+        <CONDITION>37i</CONDITION>
+        <ACTIONS>
+          <COMMENT ref="PR37_"/>
+        </ACTIONS>
+      </RULE>
+      <RULE>
+        <CONDITION>38i</CONDITION>
+        <ACTIONS>
+          <COMMENT ref="PR38_"/>
+        </ACTIONS>
+      </RULE>
+      <RULE>
+        <CONDITION>39i</CONDITION>
+        <ACTIONS>
+          <COMMENT ref="PR39_"/>
+        </ACTIONS>
+      </RULE>
+      <RULE>
+        <CONDITION>40i</CONDITION>
+        <ACTIONS>
+          <COMMENT ref="PR40_"/>
+        </ACTIONS>
+      </RULE>
+      <RULE>
+        <CONDITION>41i</CONDITION>
+        <ACTIONS>
+          <COMMENT ref="PR41_"/>
         </ACTIONS>
       </RULE>
       <RULE>

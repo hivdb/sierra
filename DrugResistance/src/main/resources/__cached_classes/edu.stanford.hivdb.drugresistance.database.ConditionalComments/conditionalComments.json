@@ -963,6 +963,105 @@
     "comment": "L33F is a relatively non-polymorphic accessory mutation selected by each of the PIs. In combination with other PI-resistance mutations, it is associated with reduced susceptibility to each of the PIs. It is included in the Tibotec DRV genotypic susceptibility score."
   },
   {
+    "commentName": "PR33_",
+    "drugClass": "PI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "gene": "PR",
+      "pos": 33.0,
+      "aas": "_"
+    },
+    "comment": "Insertions between positions 33 and 41 do not appear to be selected by PIs or to reduce PI susceptibility."
+  },
+  {
+    "commentName": "PR34_",
+    "drugClass": "PI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "gene": "PR",
+      "pos": 34.0,
+      "aas": "_"
+    },
+    "comment": "Insertions between positions 33 and 41 do not appear to be selected by PIs or to reduce PI susceptibility."
+  },
+  {
+    "commentName": "PR35_",
+    "drugClass": "PI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "gene": "PR",
+      "pos": 35.0,
+      "aas": "_"
+    },
+    "comment": "Insertions between positions 33 and 41 do not appear to be selected by PIs or to reduce PI susceptibility."
+  },
+  {
+    "commentName": "PR36_",
+    "drugClass": "PI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "gene": "PR",
+      "pos": 36.0,
+      "aas": "_"
+    },
+    "comment": "Insertions between positions 33 and 41 do not appear to be selected by PIs or to reduce PI susceptibility."
+  },
+  {
+    "commentName": "PR37_",
+    "drugClass": "PI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "gene": "PR",
+      "pos": 37.0,
+      "aas": "_"
+    },
+    "comment": "Insertions between positions 33 and 41 do not appear to be selected by PIs or to reduce PI susceptibility."
+  },
+  {
+    "commentName": "PR38_",
+    "drugClass": "PI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "gene": "PR",
+      "pos": 38.0,
+      "aas": "_"
+    },
+    "comment": "Insertions between positions 33 and 41 do not appear to be selected by PIs or to reduce PI susceptibility."
+  },
+  {
+    "commentName": "PR39_",
+    "drugClass": "PI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "gene": "PR",
+      "pos": 39.0,
+      "aas": "_"
+    },
+    "comment": "Insertions between positions 33 and 41 do not appear to be selected by PIs or to reduce PI susceptibility."
+  },
+  {
+    "commentName": "PR40_",
+    "drugClass": "PI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "gene": "PR",
+      "pos": 40.0,
+      "aas": "_"
+    },
+    "comment": "Insertions between positions 33 and 41 do not appear to be selected by PIs or to reduce PI susceptibility."
+  },
+  {
+    "commentName": "PR41_",
+    "drugClass": "PI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "gene": "PR",
+      "pos": 41.0,
+      "aas": "_"
+    },
+    "comment": "Insertions between positions 33 and 41 do not appear to be selected by PIs or to reduce PI susceptibility."
+  },
+  {
     "commentName": "PR43T",
     "drugClass": "PI",
     "conditionType": "MUTATION",

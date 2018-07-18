@@ -1271,6 +1271,87 @@
   {
     "gene": "PR",
     "drugClass": "PI",
+    "position": 33,
+    "consensus": "L",
+    "aas": "_",
+    "type": "Other",
+    "isUnusual": false
+  },
+  {
+    "gene": "PR",
+    "drugClass": "PI",
+    "position": 34,
+    "consensus": "E",
+    "aas": "_",
+    "type": "Other",
+    "isUnusual": true
+  },
+  {
+    "gene": "PR",
+    "drugClass": "PI",
+    "position": 35,
+    "consensus": "E",
+    "aas": "_",
+    "type": "Other",
+    "isUnusual": false
+  },
+  {
+    "gene": "PR",
+    "drugClass": "PI",
+    "position": 36,
+    "consensus": "M",
+    "aas": "_",
+    "type": "Other",
+    "isUnusual": false
+  },
+  {
+    "gene": "PR",
+    "drugClass": "PI",
+    "position": 37,
+    "consensus": "N",
+    "aas": "_",
+    "type": "Other",
+    "isUnusual": false
+  },
+  {
+    "gene": "PR",
+    "drugClass": "PI",
+    "position": 38,
+    "consensus": "L",
+    "aas": "_",
+    "type": "Other",
+    "isUnusual": true
+  },
+  {
+    "gene": "PR",
+    "drugClass": "PI",
+    "position": 39,
+    "consensus": "P",
+    "aas": "_",
+    "type": "Other",
+    "isUnusual": true
+  },
+  {
+    "gene": "PR",
+    "drugClass": "PI",
+    "position": 40,
+    "consensus": "G",
+    "aas": "_",
+    "type": "Other",
+    "isUnusual": true
+  },
+  {
+    "gene": "PR",
+    "drugClass": "PI",
+    "position": 41,
+    "consensus": "R",
+    "aas": "_",
+    "type": "Other",
+    "isUnusual": true
+  },
+  {
+    "gene": "PR",
+    "drugClass": "PI",
     "position": 43,
     "consensus": "K",
     "aas": "T",
@@ -1712,6 +1793,15 @@
   {
     "gene": "IN",
     "drugClass": "INSTI",
+    "position": 50,
+    "consensus": "M",
+    "aas": "I",
+    "type": "Other",
+    "isUnusual": false
+  },
+  {
+    "gene": "IN",
+    "drugClass": "INSTI",
     "position": 51,
     "consensus": "H",
     "aas": "Y",
@@ -1768,7 +1858,7 @@
     "drugClass": "INSTI",
     "position": 74,
     "consensus": "L",
-    "aas": "MI",
+    "aas": "MIF",
     "type": "Other",
     "isUnusual": false
   },
@@ -1847,6 +1937,15 @@
   {
     "gene": "IN",
     "drugClass": "INSTI",
+    "position": 119,
+    "consensus": "S",
+    "aas": "R",
+    "type": "Other",
+    "isUnusual": false
+  },
+  {
+    "gene": "IN",
+    "drugClass": "INSTI",
     "position": 121,
     "consensus": "F",
     "aas": "Y",
@@ -1915,6 +2014,15 @@
     "aas": "DEFHIKLMNPQRTVWY_-",
     "type": "Accessory",
     "isUnusual": true
+  },
+  {
+    "gene": "IN",
+    "drugClass": "INSTI",
+    "position": 142,
+    "consensus": "P",
+    "aas": "T",
+    "type": "Accessory",
+    "isUnusual": false
   },
   {
     "gene": "IN",
@@ -2031,6 +2139,15 @@
     "consensus": "Q",
     "aas": "N",
     "type": "Major",
+    "isUnusual": false
+  },
+  {
+    "gene": "IN",
+    "drugClass": "INSTI",
+    "position": 149,
+    "consensus": "G",
+    "aas": "A",
+    "type": "Accessory",
     "isUnusual": false
   },
   {
