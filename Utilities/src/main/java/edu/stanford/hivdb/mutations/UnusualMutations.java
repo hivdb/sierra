@@ -18,12 +18,13 @@
 
 package edu.stanford.hivdb.mutations;
 
-import java.sql.SQLException;
-import java.util.Collections;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
-import edu.stanford.hivdb.utilities.JdbcDatabase;
 import edu.stanford.hivdb.utilities.Cachable;
 
 /**
@@ -31,23 +32,63 @@ import edu.stanford.hivdb.utilities.Cachable;
  *
  */
 public class UnusualMutations {
+	
+	public static class AminoAcidPercent {
+		public Gene gene;
+		public Integer position;
+		public Character aa;
+		public Double percent;
+		public Integer count;
+		public Integer total;
+		public String reason;
+		public Boolean isUsual;
+		
+		public GenePosition getGenePosition() {
+			return new GenePosition(gene, position);
+		}
+	}
+	
 	@Cachable.CachableField
-	private static Map<GenePosition, Map<Character, Double>> genePosAAPcnt = new LinkedHashMap<>();
-	@Cachable.CachableField
-	private static Map<GenePosition, Map<Character, Boolean>> unusualMuts = new LinkedHashMap<>();
+	private static List<AminoAcidPercent> aminoAcidPcnts = new ArrayList<>();
+
+	private static Map<GenePosition, Map<Character, AminoAcidPercent>> aminoAcidPcntMap = new HashMap<>();
 
 	static {
-		Cachable.setup(UnusualMutations.class, () -> {
-			try {
-				populateMutPrevalence();
-			} catch (SQLException e) {
-				throw new ExceptionInInitializerError(e);
-			}
-		});
+		Cachable.setup(UnusualMutations.class);
+
+		for (AminoAcidPercent aaPcnt : aminoAcidPcnts) {
+			GenePosition gp = aaPcnt.getGenePosition();
+			aminoAcidPcntMap.putIfAbsent(gp, new LinkedHashMap<>());
+			aminoAcidPcntMap.get(gp).put(aaPcnt.aa, aaPcnt);
+		}
 	}
 
 	public static Map<GenePosition, Map<Character, Boolean>> getUnusualMuts() {
+		Map<GenePosition, Map<Character, Boolean>> unusualMuts = new LinkedHashMap<>();
+		for (AminoAcidPercent aaPcnt : aminoAcidPcnts) {
+			GenePosition gp = aaPcnt.getGenePosition();
+			unusualMuts.putIfAbsent(gp, new LinkedHashMap<>());
+			unusualMuts.get(gp).put(aaPcnt.aa, aaPcnt.isUsual);
+		}
 		return unusualMuts;
+	}
+	
+	public static List<AminoAcidPercent> getAminoAcidPercents() {
+		return aminoAcidPcnts;
+	}
+	
+	public static List<AminoAcidPercent> getAminoAcidPercents(Gene gene) {
+		return (aminoAcidPcnts
+				.stream().filter(aap -> aap.gene == gene)
+				.collect(Collectors.toList()));
+	}
+
+	public static List<AminoAcidPercent> getAminoAcidPercents(Gene gene, int pos) {
+		return new ArrayList<>(aminoAcidPcntMap.get(new GenePosition(gene, pos)).values());
+	}
+
+	public static AminoAcidPercent getAminoAcidPercent(Gene gene, int pos, char aa) {
+		return aminoAcidPcntMap.get(new GenePosition(gene, pos)).get(aa);
 	}
 
 	/**
@@ -92,11 +133,9 @@ public class UnusualMutations {
 			aaString = "-";
 		}
 
-		Map<Character, Boolean> empty = Collections.emptyMap();
 		for (char aaChar : aaString.toCharArray()) {
-			if (unusualMuts
-					.getOrDefault(gpos, empty)
-					.getOrDefault(aaChar, false)) {
+			AminoAcidPercent aaPcnt = aminoAcidPcntMap.get(gpos).get(aaChar);
+			if (aaPcnt != null && !aaPcnt.isUsual) {
 				return true;
 			}
 		}
@@ -105,44 +144,12 @@ public class UnusualMutations {
 
 
 	// Receives a single amino acid at a position. Returns prevalence
-	// TODO: use Gene object
 	private static Double getMutPrevalence(GenePosition gpos, char aa) {
-		return genePosAAPcnt
-			.getOrDefault(gpos, new LinkedHashMap<>())
-			.getOrDefault(aa, 0.0);
-	}
-
-
-	// Populate the Map genePosAAPcnts using tblMutPrevalences in HIVDBScores
-	// For now most positions do not have entries for insertions and deletions none have entries for 'X'.
-	//   These are assigned a prevalence of 0.0
-	// TODO use Gene object
-	// TODO add in prevalences for known indels
-	private static void populateMutPrevalence() throws SQLException{
-		final JdbcDatabase db = JdbcDatabase.getDefault();
-		String sqlStatement =
-			"SELECT Gene, Pos, AA, Pcnt, Unusual FROM tblMutPrevalences " +
-			"ORDER BY Gene, Pos, AA";
-		db.iterate(sqlStatement, rs -> {
-			Gene gene = Gene.valueOf(rs.getString("Gene"));
-			int pos = rs.getInt("Pos");
-			GenePosition gpos = new GenePosition(gene, pos);
-
-			String aa = rs.getString("AA");
-			aa = aa.replace("#","_");
-			aa = aa.replace("~", "-");
-			char aaChar = aa.charAt(0);
-
-			double pcnt = rs.getDouble("Pcnt");
-			boolean unusual = rs.getString("Unusual").equals("T");
-
-			genePosAAPcnt.putIfAbsent(gpos, new LinkedHashMap<>());
-			genePosAAPcnt.get(gpos).put(aaChar, pcnt);
-
-			unusualMuts.putIfAbsent(gpos,  new LinkedHashMap<>());
-			unusualMuts.get(gpos).put(aaChar, unusual);
-			return null;
-		});
+		AminoAcidPercent aaPcnt = aminoAcidPcntMap.get(gpos).get(aa);
+		if (aaPcnt != null) {
+			return aaPcnt.percent * 100;
+		}
+		return 0.0;
 	}
 
 }

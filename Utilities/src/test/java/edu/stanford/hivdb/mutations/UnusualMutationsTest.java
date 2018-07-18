@@ -21,25 +21,27 @@ package edu.stanford.hivdb.mutations;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
+import edu.stanford.hivdb.mutations.UnusualMutations.AminoAcidPercent;
+
 public class UnusualMutationsTest {
 
 	@Test
 	public void testGetHighestMutPrevalence() {
 
 		Mutation mut1 = new Mutation(Gene.RT, 67, "N");
-		assertEquals(10.373, UnusualMutations.getHighestMutPrevalence(mut1), 1e-4);
+		assertEquals(9.0194, UnusualMutations.getHighestMutPrevalence(mut1), 1e-4);
 
 		Mutation mut2 = new Mutation(Gene.RT, 69, "KS");
-		assertEquals(0.813, UnusualMutations.getHighestMutPrevalence(mut2), 1e-4);
+		assertEquals(0.8043, UnusualMutations.getHighestMutPrevalence(mut2), 1e-4);
 
 		Mutation mut3 = new Mutation(Gene.PR, 82, "VIA");
-		assertEquals(5.33, UnusualMutations.getHighestMutPrevalence(mut3), 1e-4);
+		assertEquals(4.7036, UnusualMutations.getHighestMutPrevalence(mut3), 1e-4);
 
 		Mutation mut4 = new Mutation(Gene.RT, 67, "W");
 		assertEquals(0.0, UnusualMutations.getHighestMutPrevalence(mut4), 1e-4);
 
 		Mutation mut5 = new Mutation(Gene.RT, 67, "N*");
-		assertEquals(10.373, UnusualMutations.getHighestMutPrevalence(mut5), 1e-4);
+		assertEquals(9.0194, UnusualMutations.getHighestMutPrevalence(mut5), 1e-4);
 
 		Mutation mut6 = new Mutation(Gene.RT, 67, "*");
 		assertEquals(0.0, UnusualMutations.getHighestMutPrevalence(mut6), 1e-4);
@@ -73,6 +75,19 @@ public class UnusualMutationsTest {
 
 		Mutation mut8 = new Mutation(Gene.PR, 67, "-");
 		assertTrue(UnusualMutations.containsUnusualMut(mut8));
+	}
+	
+	@Test
+	public void testGetAminoAcidPercents() {
+		assertEquals(UnusualMutations.getAminoAcidPercents().size(), (99 + 560 + 288) * 22);
+		assertEquals(UnusualMutations.getAminoAcidPercents(Gene.RT).size(), 560 * 22);
+		assertEquals(UnusualMutations.getAminoAcidPercents(Gene.RT, 184).size(), 22);
+		AminoAcidPercent RT184V = UnusualMutations.getAminoAcidPercent(Gene.RT, 184, 'V');
+		assertEquals(RT184V.gene, Gene.RT);
+		assertEquals((int) RT184V.position, 184);
+		assertEquals((char) RT184V.aa, 'V');
+		assertEquals((double) RT184V.percent, 0.2118, 1e-4);
+		assertEquals(RT184V.isUsual, true);
 	}
 
 }
