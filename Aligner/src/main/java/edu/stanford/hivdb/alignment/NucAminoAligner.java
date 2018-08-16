@@ -415,6 +415,9 @@ public class NucAminoAligner {
 	private static List<AlignedSequence> processCommandOutput(
 			Collection<Sequence> sequences, String jsonString,
 			boolean sequenceReversed, Map<Sequence, StringBuilder> errors) {
+		
+		System.out.println(jsonString);
+		
 		Map<?, ?> jsonObj = Json.loads(
 			jsonString, new TypeToken<Map<?, ?>>(){}.getType());
 		List<?> alignmentResults = (List<?>) jsonObj.get("POL");
@@ -462,8 +465,8 @@ public class NucAminoAligner {
 	}
 
 	/**
-	 * Generates command line text for executing nucamino program using default
-	 * parameters for gap size/open/extended/etc.
+	 * Generates command line text for executing nucamino program using the built-in hiv1b
+	 * profile to align against the POL gene.
 	 * @param seq, gene
 	 * @return cmd.toString()
 	 */
@@ -474,16 +477,15 @@ public class NucAminoAligner {
 			executable = "nucamino";
 		}
 		return new String[] {
-			executable,
-			"hiv1b", // hiv1b sub-command
-			"-q", // quiet mode
-			"--gene", "POL", // align input sequence with POL consensus
-			"--output-format", "json",
-			"--indel-codon-opening-bonus", "" + INDEL_CODON_OPENING_BONUS,
-			"--indel-codon-extension-bonus", "" + INDEL_CODON_EXTENSION_BONUS,
-			"--stop-codon-penalty", "" + STOP_CODON_PENALTY,
-			"--gap-opening-penalty", "" + GAP_OPENING_PENALTY,
-			"--gap-extension-penalty", "" + GAP_EXTENSION_PENALTY
+			/* Command */
+			executable,	 	// path to nucamino binary
+			"align", 		// sub-command: use built-in alignment profile
+			"hiv1b", 		// specify built-in profile choice
+			"pol", 			// specify gene to align against
+			
+			/* Flags */
+			"-q", 			// quiet mode
+			"-f", "json", 	// return output format as json
 		};
 	}
 
