@@ -415,9 +415,6 @@ public class NucAminoAligner {
 	private static List<AlignedSequence> processCommandOutput(
 			Collection<Sequence> sequences, String jsonString,
 			boolean sequenceReversed, Map<Sequence, StringBuilder> errors) {
-		
-		System.out.println(jsonString);
-		
 		Map<?, ?> jsonObj = Json.loads(
 			jsonString, new TypeToken<Map<?, ?>>(){}.getType());
 		List<?> alignmentResults = (List<?>) jsonObj.get("POL");
