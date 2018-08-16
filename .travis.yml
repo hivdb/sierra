@@ -10,7 +10,7 @@ cache:
     - $HOME/.gradle/caches/
     - $HOME/.gradle/wrapper/
 before_install:
-  - wget https://github.com/hivdb/nucamino/releases/download/0.2.0-beta.2/nucamino-darwin-amd64 -O $NUCAMINO_PROGRAM
+  - wget https://github.com/hivdb/nucamino/releases/download/0.2.0-beta.2/nucamino-linux-amd64 -O $NUCAMINO_PROGRAM
   - chmod 755 $NUCAMINO_PROGRAM
 env:
   global:
