@@ -55,12 +55,6 @@ import edu.stanford.hivdb.utilities.Sequence;
 public class NucAminoAligner {
 	private static final String NUCAMINO_PROGRAM_PATH = "NUCAMINO_PROGRAM";
 
-	private static final int INDEL_CODON_OPENING_BONUS = 0;
-	private static final int INDEL_CODON_EXTENSION_BONUS = 2;
-	private static final int STOP_CODON_PENALTY = 4;
-	private static final int GAP_OPENING_PENALTY = 10;
-	private static final int GAP_EXTENSION_PENALTY = 2;
-
 	private static final Map<Gene, Integer[]> GENE_AA_RANGE;
 
 	private static final Map<Gene, Integer> MIN_NUM_OF_SITES_PER_GENE;
