@@ -23,6 +23,7 @@ public class AA {
 	private AA() {}
 
 	public static String toHIVDBFormat(String input) {
+		System.out.println("testing Travis on forked repo");
 		return input
 			.replace("Insertion", "#")
 			.replace("Deletion", "~")

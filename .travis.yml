@@ -10,7 +10,7 @@ cache:
     - $HOME/.gradle/caches/
     - $HOME/.gradle/wrapper/
 before_install:
-  - wget https://github.com/hivdb/nucamino/releases/download/v0.1.3/nucamino-linux-amd64 -O $NUCAMINO_PROGRAM
+  - wget https://github.com/hivdb/nucamino/releases/download/0.2.0-beta.2/nucamino-linux-amd64 -O $NUCAMINO_PROGRAM
   - chmod 755 $NUCAMINO_PROGRAM
 env:
   global:
@@ -20,4 +20,6 @@ script:
   - ./gradlew assemble
   - ./gradlew -D java.util.concurrent.ForkJoinPool.common.parallelism=2 check
 after_success:
-  - bash <(curl -s https://codecov.io/bash) -t 7af6ff72-0786-4e60-b368-760b022dacc9 || echo "Codecov did not collect coverage reports"
+  - bash <(curl -s https://codecov.io/bash) -t 87787c42-8172-4a61-b6ed-e78bc7523027 || echo "Codecov did not collect coverage reports"
+# main repo: 7af6ff72-0786-4e60-b368-760b022dacc9
+
