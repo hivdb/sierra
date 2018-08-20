@@ -20,40 +20,35 @@ package edu.stanford.hivdb.mutations;
 
 import static org.junit.Assert.*;
 
-//import java.io.InputStream;
-//import java.util.List;
+import java.io.InputStream;
+import java.util.List;
 
 import org.junit.Test;
 
-//import edu.stanford.hivdb.testutils.TestMutationsFiles;
-//import edu.stanford.hivdb.testutils.TestMutationsFiles.TestMutationsProperties;
-//import edu.stanford.hivdb.utilities.MutationFileReader;
+import edu.stanford.hivdb.testutils.TestMutationsFiles;
+import edu.stanford.hivdb.testutils.TestMutationsFiles.TestMutationsProperties;
+import edu.stanford.hivdb.utilities.MutationFileReader;
 
 public class ApobecTest {
-	/*@Test
+	@Test
 	public void testCheckSequence() {
-
 		final InputStream testMutationsInputStream =
 				TestMutationsFiles.getTestMutationsInputStream(TestMutationsProperties.APOBEC_TEST);
 		final List<MutationSet> mutationLists = MutationFileReader.readMutationLists(testMutationsInputStream);
-
 		final Apobec a = new Apobec(mutationLists.get(0));
-
 		// Let's confirm what we got back.
 		// First, we expect three total Apobec muts.
 		final MutationSet eMuts =
 			new MutationSet("PR:48RE PR:52R RT:41I RT:190R");
 		final MutationSet muts = a.getApobecMuts();
 		assertEquals("Apobec mutations not as expected.", eMuts, muts);
-
 		// Now let's check the DRMs.
 		final MutationSet eDRMs =
 			new MutationSet("PR:73S RT:67N RT:184I");
 		final MutationSet drms = a.getApobecDRMs();
 		assertEquals("DRMs not as expected.", eDRMs, drms);
-
 		//Console dump if you want to see it.
-	}*/
+	}
 
 	@Test
 	public void testRT239Stop() {

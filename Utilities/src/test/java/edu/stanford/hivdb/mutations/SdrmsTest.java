@@ -18,18 +18,18 @@
 
 package edu.stanford.hivdb.mutations;
 
-//import java.io.InputStream;
-//import java.util.List;
+import java.io.InputStream;
+import java.util.List;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-//import edu.stanford.hivdb.testutils.TestMutationsFiles;
-//import edu.stanford.hivdb.testutils.TestMutationsFiles.TestMutationsProperties;
-//import edu.stanford.hivdb.utilities.MutationFileReader;
+import edu.stanford.hivdb.testutils.TestMutationsFiles;
+import edu.stanford.hivdb.testutils.TestMutationsFiles.TestMutationsProperties;
+import edu.stanford.hivdb.utilities.MutationFileReader;
 
 public class SdrmsTest {
 
-	/*@Test
+	@Test
 	public void lookUpSdrms() {
 		final InputStream testMutationsInputStream =
 			TestMutationsFiles.getTestMutationsInputStream(
@@ -42,7 +42,7 @@ public class SdrmsTest {
 			System.out.println("Submitted list: " + mutSet.join(",", Mutation::getHumanFormatWithGene));
 			System.out.println("SDRM list: " + sdrms.join(",", Mutation::getHumanFormatWithGene));
 		}
-	}*/
+	}
 
 	@Test
 	public void lookUpSdrms2() {
