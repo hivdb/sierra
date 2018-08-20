@@ -57,4 +57,29 @@ public class ApobecTest {
 		assertEquals(expected, a.getApobecMuts());
 		assertTrue(new Mutation(Gene.RT, 239, "*").isApobecMutation());
 	}
+	
+	@Test
+	public void testCommentGeneration() {
+		String expected = "The following 1 APOBEC muts were present in the sequence: RT: W239*.";
+		final Apobec a = new Apobec(new MutationSet("RT239*"));
+		assertEquals(expected, a.generateComment());
+	}
+	
+//	@Test 
+//	public void testClassMembers() {
+//		isApobecMutation
+//		isApobecDRM
+//		getApobecMutsLU
+//		getApobecDRMsLU
+//	}
+	
+//	@Test 
+//	public void testInstanceMembers() {
+//		getApobecMuts
+//		getNumApobecMuts
+//		getApobecDRMs
+//		getApobecMutsAtDRP
+//		
+//	}
+	
 }
