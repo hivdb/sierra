@@ -28,13 +28,13 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
+import edu.stanford.hivdb.filetestutils.TestSequencesFiles;
+import edu.stanford.hivdb.filetestutils.TestSequencesFiles.TestSequencesProperties;
 import edu.stanford.hivdb.genotyper.BoundGenotype;
 import edu.stanford.hivdb.genotyper.HIVGenotypeResult;
 import edu.stanford.hivdb.mutations.Apobec;
 import edu.stanford.hivdb.mutations.Gene;
 import edu.stanford.hivdb.mutations.MutationSet;
-import edu.stanford.hivdb.testutils.TestSequencesFiles;
-import edu.stanford.hivdb.testutils.TestSequencesFiles.TestSequencesProperties;
 import edu.stanford.hivdb.utilities.FastaUtils;
 import edu.stanford.hivdb.utilities.Sequence;
 

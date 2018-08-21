@@ -29,12 +29,12 @@ import java.util.Map;
 import edu.stanford.hivdb.alignment.AlignedGeneSeq;
 import edu.stanford.hivdb.alignment.AlignedSequence;
 import edu.stanford.hivdb.mutations.Gene;
-import edu.stanford.hivdb.testutils.TestSequencesFiles;
-import edu.stanford.hivdb.testutils.TestSequencesFiles.TestSequencesProperties;
 import edu.stanford.hivdb.utilities.Json;
 import edu.stanford.hivdb.utilities.FastaUtils;
 import edu.stanford.hivdb.utilities.Sequence;
 import edu.stanford.hivdb.alignment.Aligner;
+import edu.stanford.hivdb.filetestutils.TestSequencesFiles;
+import edu.stanford.hivdb.filetestutils.TestSequencesFiles.TestSequencesProperties;
 
 public class AlignerTestExpectedsGenerator {
 

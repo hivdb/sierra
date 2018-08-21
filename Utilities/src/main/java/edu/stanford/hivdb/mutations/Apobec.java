@@ -133,7 +133,7 @@ public class Apobec {
 					rs.getString("AA"));
 			})
 		);
-
+		
 		apobecDRMsLU = new MutationSet(
 			db.iterate(sqlStatementApobecDRMs, rs -> {
 				return new Mutation(

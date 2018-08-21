@@ -33,6 +33,7 @@ dependencies {
     compile 'junit:junit:4.12'
     compile 'org.mockito:mockito-core:1.9.5'
     compile 'com.mashape.unirest:unirest-java:1.4.9'
+    compile project(':TestResources')
 }
 
 task clearCachable(type: Exec, group: 'Generator', description: 'Clean files created by Cachable.') {

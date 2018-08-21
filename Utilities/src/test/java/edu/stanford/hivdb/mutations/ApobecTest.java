@@ -25,8 +25,8 @@ import java.util.List;
 
 import org.junit.Test;
 
-import edu.stanford.hivdb.testutils.TestMutationsFiles;
-import edu.stanford.hivdb.testutils.TestMutationsFiles.TestMutationsProperties;
+import edu.stanford.hivdb.filetestutils.TestMutationsFiles;
+import edu.stanford.hivdb.filetestutils.TestMutationsFiles.TestMutationsProperties;
 import edu.stanford.hivdb.utilities.MutationFileReader;
 
 public class ApobecTest {

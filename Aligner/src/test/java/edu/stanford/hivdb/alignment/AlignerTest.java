@@ -38,10 +38,10 @@ import org.junit.Test;
 import com.google.gson.reflect.TypeToken;
 
 import edu.stanford.hivdb.alignment.AlignedGeneSeq;
+import edu.stanford.hivdb.filetestutils.TestSequencesFiles;
+import edu.stanford.hivdb.filetestutils.TestSequencesFiles.TestSequencesProperties;
 import edu.stanford.hivdb.mutations.Gene;
 import edu.stanford.hivdb.mutations.MutationSet;
-import edu.stanford.hivdb.testutils.TestSequencesFiles;
-import edu.stanford.hivdb.testutils.TestSequencesFiles.TestSequencesProperties;
 import edu.stanford.hivdb.utilities.Json;
 import edu.stanford.hivdb.utilities.FastaUtils;
 import edu.stanford.hivdb.utilities.Sequence;
