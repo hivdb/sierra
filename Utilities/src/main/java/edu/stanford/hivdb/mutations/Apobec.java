@@ -1,5 +1,4 @@
 /*
-    
     Copyright (C) 2017 Stanford HIVDB team
     
     Sierra is free software: you can redistribute it and/or modify
@@ -70,7 +69,6 @@ public class Apobec {
 	public int getNumApobecMuts() { return apobecMuts.size(); }
 	public MutationSet getApobecDRMs() { return apobecDRMs; }
 
-
 	public MutationSet getApobecMutsAtDRP() {
 		return apobecMuts.getAtDRPMutations();
 	}
@@ -103,7 +101,8 @@ public class Apobec {
 			"The following %d APOBEC muts were present " +
 		    "in the sequence", apobecMuts));
 
-
+		
+		System.out.println("DRMs: " + apobecDRMs);
 		if (apobecDRMs.size() > 0) {
 			comment.append(generatePartialComment(
 				" The following %d DRMs in this sequence " +

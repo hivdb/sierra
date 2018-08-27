@@ -20,7 +20,6 @@ package edu.stanford.hivdb.filetestutils;
 
 import java.io.InputStream;
 
-
 public class TestMutationsFiles {
 
 	public enum TestMutationsProperties
@@ -42,7 +41,6 @@ public class TestMutationsFiles {
 
 	    @Override public String toString() { return propertyName; }
 	}
-
 
 	public static InputStream getTestMutationsInputStream(TestMutationsProperties testMutationsProperties)
 	{

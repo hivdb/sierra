@@ -49,7 +49,7 @@ public class ApobecTest {
 		assertEquals("DRMs not as expected.", eDRMs, drms);
 		//Console dump if you want to see it.
 	}
-
+	
 	@Test
 	public void testRT239Stop() {
 		MutationSet expected = new MutationSet("RT239*");
@@ -58,28 +58,50 @@ public class ApobecTest {
 		assertTrue(new Mutation(Gene.RT, 239, "*").isApobecMutation());
 	}
 	
+	// Comment Generation
+	
 	@Test
-	public void testCommentGeneration() {
+	public void testCommentGenerationWithZeroMuts() {
+		String expected = "The following 0 APOBEC muts were present in the sequence: .";
+		final Apobec a = new Apobec(new MutationSet(""));
+		assertEquals(expected, a.generateComment());
+	}
+	
+	@Test
+	public void testCommentGenerationWithSingleAPOBECMut() {
 		String expected = "The following 1 APOBEC muts were present in the sequence: RT: W239*.";
 		final Apobec a = new Apobec(new MutationSet("RT239*"));
 		assertEquals(expected, a.generateComment());
 	}
 	
-//	@Test 
-//	public void testClassMembers() {
-//		isApobecMutation
-//		isApobecDRM
-//		getApobecMutsLU
-//		getApobecDRMsLU
-//	}
+	@Test
+	public void testCommentGenerationWithMultipleAPOBECMuts() {
+		String expected = "The following 3 APOBEC muts were present in the sequence: PR: W6*, G17K; RT: W239*.";
+		final Apobec a = new Apobec(new MutationSet("PR6* PR17k RT239*"));
+		
+		System.out.println(a.generateComment());
+		assertEquals(expected, a.generateComment());
+	}
 	
-//	@Test 
-//	public void testInstanceMembers() {
-//		getApobecMuts
-//		getNumApobecMuts
-//		getApobecDRMs
-//		getApobecMutsAtDRP
-//		
-//	}
+	@Test
+	public void testCommentGenerationWithSingleDRM() {
+		String expected = "The following 0 APOBEC muts were present in the sequence: . The following 1 DRMs in this sequence could reflect APOBEC activity: PR: D30N.";
+		final Apobec a = new Apobec(new MutationSet("PR:D30N"));
+		assertEquals(expected, a.generateComment());
+	}
+	
+	@Test
+	public void testCommentGenerationWithMultipleDRMs() {
+		String expected = "The following 0 APOBEC muts were present in the sequence: . The following 3 DRMs in this sequence could reflect APOBEC activity: PR: D30N; RT: M230I; IN: G140S.";
+		final Apobec a = new Apobec(new MutationSet("PR:D30N IN:G140S RT:M230I"));
+		assertEquals(expected, a.generateComment());
+	}
+	
+	@Test
+	public void testCommentGenerationWithMixedMuts() {
+		String expected = "The following 2 APOBEC muts were present in the sequence: PR: W6*, G17K. The following 3 DRMs in this sequence could reflect APOBEC activity: PR: D30N; RT: M230I; IN: G140S.";
+		final Apobec a = new Apobec(new MutationSet("PR:D30N IN:G140S PR6* RT:M230I PR6* PR17k PR6*"));
+		assertEquals(expected, a.generateComment());
+	}
 	
 }
