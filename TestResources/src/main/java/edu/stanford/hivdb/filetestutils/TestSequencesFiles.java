@@ -68,7 +68,6 @@ public class TestSequencesFiles {
 
 	public static InputStream getTestSequenceInputStream(TestSequencesProperties testSequencesProperties)
 	{
-		System.out.println("URL: " + testSequencesProperties.propertyName);
 		return TestSequencesFiles.class.getClassLoader().getResourceAsStream(testSequencesProperties.propertyName);
 	}
 }

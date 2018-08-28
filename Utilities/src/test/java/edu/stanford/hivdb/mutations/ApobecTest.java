@@ -21,6 +21,7 @@ package edu.stanford.hivdb.mutations;
 import static org.junit.Assert.*;
 
 import java.io.InputStream;
+//import java.sql.SQLException;
 import java.util.List;
 
 import org.junit.Test;
@@ -30,78 +31,121 @@ import edu.stanford.hivdb.filetestutils.TestMutationsFiles.TestMutationsProperti
 import edu.stanford.hivdb.utilities.MutationFileReader;
 
 public class ApobecTest {
+	// Initialization
+//	@Test
+//	public void testAPOBECMapPopulation() {
+//		
+//		try {
+//			Apobec.populateApobecMaps();
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//		
+//	}
+	
 	@Test
-	public void testCheckSequence() {
-		final InputStream testMutationsInputStream =
-				TestMutationsFiles.getTestMutationsInputStream(TestMutationsProperties.APOBEC_TEST);
-		final List<MutationSet> mutationLists = MutationFileReader.readMutationLists(testMutationsInputStream);
-		final Apobec a = new Apobec(mutationLists.get(0));
-		// Let's confirm what we got back.
-		// First, we expect three total Apobec muts.
-		final MutationSet eMuts =
-			new MutationSet("PR:48RE PR:52R RT:41I RT:190R");
-		final MutationSet muts = a.getApobecMuts();
-		assertEquals("Apobec mutations not as expected.", eMuts, muts);
-		// Now let's check the DRMs.
-		final MutationSet eDRMs =
-			new MutationSet("PR:73S RT:67N RT:184I");
-		final MutationSet drms = a.getApobecDRMs();
-		assertEquals("DRMs not as expected.", eDRMs, drms);
-		//Console dump if you want to see it.
+	public void testBasicApobecMutVerification() {
+		final Mutation apocecMut = new Mutation(Gene.RT, 239, "*");
+		final Mutation drmMut = new Mutation(Gene.PR, 30, "N");
+		assertFalse(Apobec.isApobecMutation(drmMut));
+		assertTrue(Apobec.isApobecMutation(apocecMut));
 	}
 	
 	@Test
-	public void testRT239Stop() {
-		MutationSet expected = new MutationSet("RT239*");
-		final Apobec a = new Apobec(expected);
-		assertEquals(expected, a.getApobecMuts());
-		assertTrue(new Mutation(Gene.RT, 239, "*").isApobecMutation());
+	public void testBasicDrmMutVerification() {
+		final Mutation drmMut = new Mutation(Gene.PR, 30, "N");
+		final Mutation apocecMut = new Mutation(Gene.RT, 239, "*");
+		assertFalse(Apobec.isApobecDRM(apocecMut));
+		assertTrue(Apobec.isApobecDRM(drmMut));
+	}
+		
+	@Test
+	public void testExhaustiveApobecMutVerification() {
+		final MutationSet apocecMuts = Apobec.getApobecMutsLU();
+		apocecMuts.forEach(mut -> {
+			assertFalse(Apobec.isApobecDRM(mut));
+			assertTrue(Apobec.isApobecMutation(mut));
+		});
 	}
 	
-	// Comment Generation
+	@Test
+	public void testExhaustiveDrmMutVerification() {
+		final MutationSet drms = Apobec.getApobecDRMsLU();
+		drms.forEach(mut -> {
+			assertFalse(Apobec.isApobecMutation(mut));
+			assertTrue(Apobec.isApobecDRM(mut));
+		});
+	}
 	
 	@Test
-	public void testCommentGenerationWithZeroMuts() {
-		String expected = "The following 0 APOBEC muts were present in the sequence: .";
+	public void testZeroMuts() {
+		final String expected = "The following 0 APOBEC muts were present in the sequence: .";
 		final Apobec a = new Apobec(new MutationSet(""));
+		assertEquals(0, a.getNumApobecMuts());
 		assertEquals(expected, a.generateComment());
 	}
 	
 	@Test
-	public void testCommentGenerationWithSingleAPOBECMut() {
-		String expected = "The following 1 APOBEC muts were present in the sequence: RT: W239*.";
+	public void testSingleApobecMut() {
+		final String expected = "The following 1 APOBEC muts were present in the sequence: RT: W239*.";
 		final Apobec a = new Apobec(new MutationSet("RT239*"));
 		assertEquals(expected, a.generateComment());
 	}
 	
 	@Test
-	public void testCommentGenerationWithMultipleAPOBECMuts() {
-		String expected = "The following 3 APOBEC muts were present in the sequence: PR: W6*, G17K; RT: W239*.";
+	public void testMultipleApobecMuts() {
+		final String expected = "The following 3 APOBEC muts were present in the sequence: PR: W6*, G17K; RT: W239*.";
 		final Apobec a = new Apobec(new MutationSet("PR6* PR17k RT239*"));
-		
-		System.out.println(a.generateComment());
+		assertEquals(3, a.getNumApobecMuts());
 		assertEquals(expected, a.generateComment());
 	}
 	
 	@Test
-	public void testCommentGenerationWithSingleDRM() {
-		String expected = "The following 0 APOBEC muts were present in the sequence: . The following 1 DRMs in this sequence could reflect APOBEC activity: PR: D30N.";
-		final Apobec a = new Apobec(new MutationSet("PR:D30N"));
+	public void testSingleDRM() {
+		final String expected = "The following 0 APOBEC muts were present in the sequence: . The following 1 DRMs in this sequence could reflect APOBEC activity: PR: D30N.";
+		final MutationSet drm = new MutationSet("PR:D30N");
+		final Apobec a = new Apobec(drm);
+		assertEquals(0, a.getNumApobecMuts());
+		assertEquals(drm.getDRMs(), a.getApobecDRMs());
 		assertEquals(expected, a.generateComment());
 	}
 	
 	@Test
-	public void testCommentGenerationWithMultipleDRMs() {
-		String expected = "The following 0 APOBEC muts were present in the sequence: . The following 3 DRMs in this sequence could reflect APOBEC activity: PR: D30N; RT: M230I; IN: G140S.";
-		final Apobec a = new Apobec(new MutationSet("PR:D30N IN:G140S RT:M230I"));
+	public void testMultipleDRMs() {
+		final String expected = "The following 0 APOBEC muts were present in the sequence: . The following 3 DRMs in this sequence could reflect APOBEC activity: PR: D30N; RT: M230I; IN: G140S.";
+		final MutationSet drms = new MutationSet("PR:D30N IN:G140S RT:M230I");
+		final Apobec a = new Apobec(drms);
+		assertEquals(0, a.getNumApobecMuts());
+		assertEquals(drms.getDRMs(), a.getApobecDRMs());
 		assertEquals(expected, a.generateComment());
 	}
 	
 	@Test
-	public void testCommentGenerationWithMixedMuts() {
-		String expected = "The following 2 APOBEC muts were present in the sequence: PR: W6*, G17K. The following 3 DRMs in this sequence could reflect APOBEC activity: PR: D30N; RT: M230I; IN: G140S.";
-		final Apobec a = new Apobec(new MutationSet("PR:D30N IN:G140S PR6* RT:M230I PR6* PR17k PR6*"));
+	public void testMixedMuts() {
+		final String expected = "The following 2 APOBEC muts were present in the sequence: PR: W6*, G17K. The following 3 DRMs in this sequence could reflect APOBEC activity: PR: D30N; RT: M230I; IN: G140S.";
+		final MutationSet muts = new MutationSet("PR6* PR17k");
+		final MutationSet drms = new MutationSet("PR:D30N IN:G140S RT:M230I");
+		final MutationSet mixedMuts = muts.mergesWith(drms);
+		final Apobec a = new Apobec(mixedMuts);
+		assertEquals(mixedMuts.subtractsBy(mixedMuts.getDRMs()).size(), a.getNumApobecMuts());
+		assertEquals(mixedMuts.subtractsBy(mixedMuts.getDRMs()), a.getApobecMuts());
+		assertEquals(mixedMuts.getDRMs(), a.getApobecDRMs());
 		assertEquals(expected, a.generateComment());
 	}
+	
+	@Test
+	public void testWorkflow() {
+		final String eComment = "The following 4 APOBEC muts were present in the sequence: PR: G48ER, G52R; RT: M41I, G190R. The following 3 DRMs in this sequence could reflect APOBEC activity: PR: G73S; RT: D67N, M184I.";
+		final MutationSet eMuts = new MutationSet("PR:48RE PR:52R RT:41I RT:190R");
+		final MutationSet eDRMs = new MutationSet("PR:73S RT:67N RT:184I");
+		final InputStream testMutationsInputStream = TestMutationsFiles.getTestMutationsInputStream(TestMutationsProperties.APOBEC_TEST);
+		final List<MutationSet> mutationLists = MutationFileReader.readMutationLists(testMutationsInputStream);
+		final Apobec a = new Apobec(mutationLists.get(0));
+		final MutationSet muts = a.getApobecMuts();
+		final MutationSet drms = a.getApobecDRMs();
+		assertEquals("Apobec mutations not as expected.", eMuts, muts);
+		assertEquals("DRMs not as expected.", eDRMs, drms);
+		assertEquals(eComment, a.generateComment());
+	}	
 	
 }
