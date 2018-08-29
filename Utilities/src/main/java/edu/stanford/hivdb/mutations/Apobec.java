@@ -24,7 +24,9 @@ import edu.stanford.hivdb.utilities.JdbcDatabase;
 import edu.stanford.hivdb.utilities.Cachable;
 
 public class Apobec {
-
+	
+	final private static JdbcDatabase db = JdbcDatabase.getDefault(); 
+	
 	@Cachable.CachableField
 	private static MutationSet apobecMutsLU;
 
@@ -66,7 +68,7 @@ public class Apobec {
 	public MutationSet getApobecMutsAtDRP() {
 		return apobecMuts.getAtDRPMutations();
 	}
-
+	
 	private static String generatePartialComment
 			(String description, MutationSet muts) {
 		StringBuffer comment = new StringBuffer();
@@ -123,8 +125,6 @@ public class Apobec {
 	// Note: This function is package-private for testing, but it should
 	// otherwise be invoked privately.
 	public static void populateApobecMaps() throws SQLException {
-		final JdbcDatabase db = JdbcDatabase.getDefault();
-		
 		final String sqlStatementApobecMuts =
 			"SELECT Gene, Pos, AA FROM tblApobecMuts ORDER BY Gene, Pos, AA";
 		final String sqlStatementApobecDRMs =

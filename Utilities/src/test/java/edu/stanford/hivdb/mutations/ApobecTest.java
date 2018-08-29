@@ -31,17 +31,16 @@ import edu.stanford.hivdb.filetestutils.TestMutationsFiles.TestMutationsProperti
 import edu.stanford.hivdb.utilities.MutationFileReader;
 
 public class ApobecTest {
+
 	// Initialization
-//	@Test
-//	public void testAPOBECMapPopulation() {
-//		
+	@Test
+	public void testApobecMapPopulation() {	
 //		try {
 //			Apobec.populateApobecMaps();
 //		} catch (SQLException e) {
 //			e.printStackTrace();
 //		}
-//		
-//	}
+	}
 	
 	@Test
 	public void testBasicApobecMutVerification() {
@@ -77,6 +76,20 @@ public class ApobecTest {
 		});
 	}
 	
+	@Test
+	public void testZeroMutsAtDRP() {
+		final MutationSet nonDRPmuts = new MutationSet("PR6* PR17k PR:D30N IN:G140S RT:M230I");
+		final Apobec a = new Apobec(nonDRPmuts);
+		assertEquals(new MutationSet(""), a.getApobecMutsAtDRP());
+	}
+	
+	@Test
+	public void testMultipleMutsAtDRP() {
+		final MutationSet eMutsAtDR = new MutationSet("PR48R IN140E RT190R");
+		final Apobec a = new Apobec(eMutsAtDR);
+		assertEquals(eMutsAtDR, a.getApobecMutsAtDRP());
+	}
+		
 	@Test
 	public void testZeroMuts() {
 		final String expected = "The following 0 APOBEC muts were present in the sequence: .";
@@ -134,7 +147,7 @@ public class ApobecTest {
 	}
 	
 	@Test
-	public void testWorkflow() {
+	public void testMixMutsFromFile() {
 		final String eComment = "The following 4 APOBEC muts were present in the sequence: PR: G48ER, G52R; RT: M41I, G190R. The following 3 DRMs in this sequence could reflect APOBEC activity: PR: G73S; RT: D67N, M184I.";
 		final MutationSet eMuts = new MutationSet("PR:48RE PR:52R RT:41I RT:190R");
 		final MutationSet eDRMs = new MutationSet("PR:73S RT:67N RT:184I");
