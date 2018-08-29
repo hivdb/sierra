@@ -37,10 +37,18 @@ public class CodonTranslationTest {
 
 	@Test
 	public void testGenerateControlString() {
-
 		assertEquals(
 			"  .", CodonTranslation.generateControlString("TTT", "Asn"));
-
+		
+		assertEquals(
+			"  .", CodonTranslation.generateControlString("TTTT", "Asn"));
+		
+		assertEquals(
+			"  .", CodonTranslation.generateControlString("TTTTT", "Asn"));
+		
+		assertEquals(
+			"  .", CodonTranslation.generateControlString("TTTTTT", "Asn"));
+		
 		assertEquals(
 			":::", CodonTranslation.generateControlString("ATG", "Met"));
 
@@ -62,11 +70,27 @@ public class CodonTranslationTest {
 		assertEquals(
 			". .", CodonTranslation.generateControlString("TGA", "Leu"));
 	}
-
-	@Test
-	public void testSimpleTranslate() {
-		assertEquals("SX", CodonTranslation.simpleTranslate("AGTCAM"));
+	
+	@Test 
+	public void testSimpleTranslate() {	
+		assertEquals("", CodonTranslation.simpleTranslate(""));
+		assertEquals("S", CodonTranslation.simpleTranslate("AGT"));
+		assertEquals("S", CodonTranslation.simpleTranslate("AGTC"));
 		assertEquals("S", CodonTranslation.simpleTranslate("AGTCA"));
+		assertEquals("X", CodonTranslation.simpleTranslate("SCN"));
+		assertEquals("X", CodonTranslation.simpleTranslate("AWK"));
+		assertEquals("X", CodonTranslation.simpleTranslate("YWR"));
+		assertEquals("SQ", CodonTranslation.simpleTranslate("AGTCAA"));
+		assertEquals("SX", CodonTranslation.simpleTranslate("AGTCAM"));
+		assertEquals("XS", CodonTranslation.simpleTranslate("CAMAGT"));
+		assertEquals("XX", CodonTranslation.simpleTranslate("ABCDEF"));
+		assertEquals("HXH", CodonTranslation.simpleTranslate("CATABCCAC"));
+	}
+	
+	@Test
+	public void testSimpleTranslateWithConAA() {	
+		assertEquals("P", CodonTranslation.simpleTranslate("SCN", 1, "A"));
+		assertEquals("A", CodonTranslation.simpleTranslate("SCN", 1, "P"));
 	}
 
 	@Test
@@ -78,11 +102,10 @@ public class CodonTranslationTest {
 
 	@Test
 	public void testTranslateToTripletAA() {
-		assertEquals("Ser", CodonTranslation.translateToTripletAA("S"));
-		assertEquals("ArgSer", CodonTranslation.translateToTripletAA("RS"));
 		assertEquals("", CodonTranslation.translateToTripletAA(null));
 		assertEquals("", CodonTranslation.translateToTripletAA(""));
+		assertEquals("Ser", CodonTranslation.translateToTripletAA("S"));
+		assertEquals("ArgSer", CodonTranslation.translateToTripletAA("RS"));
 		assertEquals("ArgSerXxx", CodonTranslation.translateToTripletAA("RSX"));
-
 	}
 }

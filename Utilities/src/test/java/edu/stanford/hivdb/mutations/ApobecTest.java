@@ -100,8 +100,15 @@ public class ApobecTest {
 	
 	@Test
 	public void testSingleApobecMut() {
-		final String expected = "The following 1 APOBEC muts were present in the sequence: RT: W239*.";
-		final Apobec a = new Apobec(new MutationSet("RT239*"));
+		final String expected = "The following 1 APOBEC muts were present in the sequence: PR: G17K.";
+		final Apobec a = new Apobec(new MutationSet("PR17k"));
+		assertEquals(expected, a.generateComment());
+	}
+	
+	@Test
+	public void testSingleApobecMutWithStopCodon() {
+		final String expected = "The following 1 APOBEC muts were present in the sequence: PR: W6*.";
+		final Apobec a = new Apobec(new MutationSet("PR6*"));
 		assertEquals(expected, a.generateComment());
 	}
 	

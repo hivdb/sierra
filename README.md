@@ -2,8 +2,8 @@
 
 ![Sierra project][sierra-logo]
 
-[![Travis CI](https://api.travis-ci.org/arodcasanova/sierra.svg?branch=develop)](https://travis-ci.org/arodcasanova/sierra)
-[![codecov](https://codecov.io/gh/arodcasanova/sierra/branch/develop/graph/badge.svg)](https://codecov.io/gh/arodcasanova/sierra/branch/develop)
+[![Travis CI](https://api.travis-ci.org/hivdb/sierra.svg?branch=master)](https://travis-ci.org/hivdb/sierra)
+[![codecov](https://codecov.io/gh/hivdb/sierra/branch/master/graph/badge.svg)](https://codecov.io/gh/hivdb/sierra)
 [![donation](https://img.shields.io/badge/Donate-Stanford_Giving-green.svg)][donation]
 
 ## Prerequisites
