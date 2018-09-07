@@ -33,14 +33,14 @@ import edu.stanford.hivdb.utilities.MutationFileReader;
 public class ApobecTest {
 
 	// Initialization
-	@Test
-	public void testApobecMapPopulation() {	
+//	@Test
+//	public void testApobecMapPopulation() {	
 //		try {
 //			Apobec.populateApobecMaps();
 //		} catch (SQLException e) {
 //			e.printStackTrace();
 //		}
-	}
+//	}
 	
 	@Test
 	public void testBasicApobecMutVerification() {
@@ -57,7 +57,7 @@ public class ApobecTest {
 		assertFalse(Apobec.isApobecDRM(apocecMut));
 		assertTrue(Apobec.isApobecDRM(drmMut));
 	}
-		
+	
 	@Test
 	public void testExhaustiveApobecMutVerification() {
 		final MutationSet apocecMuts = Apobec.getApobecMutsLU();
@@ -92,7 +92,7 @@ public class ApobecTest {
 		
 	@Test
 	public void testZeroMuts() {
-		final String expected = "The following 0 APOBEC muts were present in the sequence: .";
+		final String expected = "There are no mutations present in this sequence.";
 		final Apobec a = new Apobec(new MutationSet(""));
 		assertEquals(0, a.getNumApobecMuts());
 		assertEquals(expected, a.generateComment());

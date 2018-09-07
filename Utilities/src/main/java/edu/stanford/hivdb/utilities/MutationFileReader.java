@@ -55,9 +55,7 @@ public class MutationFileReader {
 		LOGGER.debug("In readMutationListsAllGenes");
 		List<MutationSet> mutationLists = new ArrayList<>();
 
-		try {
-			System.out.println(fileInputStream);
-			
+		try {	
 			BufferedReader br = new BufferedReader (new InputStreamReader(fileInputStream));
 			String line;
 			while ((line = br.readLine()) != null) {

@@ -24,9 +24,7 @@ import edu.stanford.hivdb.utilities.JdbcDatabase;
 import edu.stanford.hivdb.utilities.Cachable;
 
 public class Apobec {
-	
-	final private static JdbcDatabase db = JdbcDatabase.getDefault(); 
-	
+		
 	@Cachable.CachableField
 	private static MutationSet apobecMutsLU;
 
@@ -37,7 +35,13 @@ public class Apobec {
 	private transient final MutationSet apobecDRMs;
 
 	static {
-		staticInit();
+		Cachable.setup(Apobec.class, () -> {
+			try {
+				populateApobecMaps();
+			} catch (SQLException e) {
+				throw new ExceptionInInitializerError(e);
+			}
+		});
 	}
 
 	public static boolean isApobecMutation(Mutation mutation) {
@@ -91,6 +95,10 @@ public class Apobec {
 	}
 
 	public String generateComment() {
+		if (apobecMuts.size() < 1 && apobecDRMs.size() < 1) {
+			return "There are no mutations present in this sequence."; 
+		}
+		
 		StringBuffer comment = new StringBuffer();
 
 		comment.append(generatePartialComment(
@@ -106,25 +114,13 @@ public class Apobec {
 
 		return comment.toString();
 	}
-
-	static void staticInit() {
-		Cachable.setup(Apobec.class, () -> {
-			try {
-				populateApobecMaps();
-			} catch (SQLException e) {
-				throw new ExceptionInInitializerError(e);
-			}
-		});
-	}
 	
 	// Populates two sets. One containing all mutations indicative
 	// of APOBEC-mediated G-to-A hypermutation.
 	// The second containing those DRMs that could be selected by
 	// therapy or could could be caused by APOBEC.
-	//
-	// Note: This function is package-private for testing, but it should
-	// otherwise be invoked privately.
-	public static void populateApobecMaps() throws SQLException {
+	protected static void populateApobecMaps() throws SQLException {
+		final JdbcDatabase db = JdbcDatabase.getDefault(); 
 		final String sqlStatementApobecMuts =
 			"SELECT Gene, Pos, AA FROM tblApobecMuts ORDER BY Gene, Pos, AA";
 		final String sqlStatementApobecDRMs =

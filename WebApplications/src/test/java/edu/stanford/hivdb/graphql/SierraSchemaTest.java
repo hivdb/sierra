@@ -42,8 +42,8 @@ public class SierraSchemaTest {
 	@Test
 	public void testSequenceAnalysisDataFetcher() {
 		Map<String, Object> arguments = new LinkedHashMap<>();
-		List<Map<String, String>> sequences =	
-			FastaUtils.readStream(TestSequencesFiles.class.getClassLoader().getResourceAsStream(TestSequencesProperties.PROBLEM_SEQUENCES.propertyName))
+		List<Map<String, String>> sequences =
+			FastaUtils.readStream(TestSequencesFiles.getTestSequenceInputStream(TestSequencesProperties.PROBLEM_SEQUENCES))
 			.stream()
 			.map(seq -> {
 				Map<String, String> seqMap = new LinkedHashMap<>();
