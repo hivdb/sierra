@@ -16,14 +16,9 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package edu.stanford.hivdb.testutils;
+package edu.stanford.hivdb.filetestutils;
 
 import java.io.InputStream;
-import java.util.List;
-
-import edu.stanford.hivdb.utilities.FastaUtils;
-import edu.stanford.hivdb.utilities.Sequence;
-
 
 public class TestSequencesFiles {
 
@@ -71,15 +66,8 @@ public class TestSequencesFiles {
 	    @Override public String toString() { return propertyName; }
 	}
 
-
-
 	public static InputStream getTestSequenceInputStream(TestSequencesProperties testSequencesProperties)
 	{
 		return TestSequencesFiles.class.getClassLoader().getResourceAsStream(testSequencesProperties.propertyName);
 	}
-
-	public static List<Sequence> getTestSequences(TestSequencesProperties property) {
-		return FastaUtils.readStream(getTestSequenceInputStream(property));
-	}
-
 }

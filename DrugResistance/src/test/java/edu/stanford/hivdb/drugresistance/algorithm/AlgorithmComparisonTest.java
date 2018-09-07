@@ -43,10 +43,10 @@ import edu.stanford.hivdb.drugresistance.algorithm.AlgorithmComparison.Comparabl
 import edu.stanford.hivdb.drugresistance.algorithm.Asi.SIREnum;
 import edu.stanford.hivdb.drugresistance.database.HivdbVersion;
 import edu.stanford.hivdb.drugs.Drug;
+import edu.stanford.hivdb.filetestutils.TestSequencesFiles;
+import edu.stanford.hivdb.filetestutils.TestSequencesFiles.TestSequencesProperties;
 import edu.stanford.hivdb.mutations.Gene;
 import edu.stanford.hivdb.mutations.MutationSet;
-import edu.stanford.hivdb.testutils.TestSequencesFiles;
-import edu.stanford.hivdb.testutils.TestSequencesFiles.TestSequencesProperties;
 import edu.stanford.hivdb.utilities.Json;
 import edu.stanford.hivdb.utilities.MyFileUtils;
 import edu.stanford.hivdb.utilities.FastaUtils;

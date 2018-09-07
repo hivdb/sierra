@@ -34,8 +34,8 @@ import edu.stanford.hivdb.alignment.AlignedSequence;
 import edu.stanford.hivdb.alignment.Aligner;
 import edu.stanford.hivdb.drugresistance.algorithm.Algorithm;
 import edu.stanford.hivdb.drugresistance.database.HivdbVersion;
-import edu.stanford.hivdb.testutils.TestSequencesFiles;
-import edu.stanford.hivdb.testutils.TestSequencesFiles.TestSequencesProperties;
+import edu.stanford.hivdb.filetestutils.TestSequencesFiles;
+import edu.stanford.hivdb.filetestutils.TestSequencesFiles.TestSequencesProperties;
 import edu.stanford.hivdb.utilities.FastaUtils;
 import edu.stanford.hivdb.utilities.Sequence;
 

@@ -16,10 +16,9 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package edu.stanford.hivdb.testutils;
+package edu.stanford.hivdb.filetestutils;
 
 import java.io.InputStream;
-
 
 public class TestMutationsFiles {
 
@@ -42,8 +41,6 @@ public class TestMutationsFiles {
 
 	    @Override public String toString() { return propertyName; }
 	}
-
-
 
 	public static InputStream getTestMutationsInputStream(TestMutationsProperties testMutationsProperties)
 	{

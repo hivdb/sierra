@@ -1,5 +1,4 @@
 /*
-    
     Copyright (C) 2017 Stanford HIVDB team
     
     Sierra is free software: you can redistribute it and/or modify
@@ -25,7 +24,7 @@ import edu.stanford.hivdb.utilities.JdbcDatabase;
 import edu.stanford.hivdb.utilities.Cachable;
 
 public class Apobec {
-
+		
 	@Cachable.CachableField
 	private static MutationSet apobecMutsLU;
 
@@ -65,16 +64,15 @@ public class Apobec {
 		apobecMuts = seqMuts.intersectsWith(apobecMutsLU);
 		apobecDRMs = seqMuts.intersectsWith(apobecDRMsLU);
 	}
-
+	
 	public MutationSet getApobecMuts() { return apobecMuts; }
 	public int getNumApobecMuts() { return apobecMuts.size(); }
 	public MutationSet getApobecDRMs() { return apobecDRMs; }
 
-
 	public MutationSet getApobecMutsAtDRP() {
 		return apobecMuts.getAtDRPMutations();
 	}
-
+	
 	private static String generatePartialComment
 			(String description, MutationSet muts) {
 		StringBuffer comment = new StringBuffer();
@@ -97,13 +95,17 @@ public class Apobec {
 	}
 
 	public String generateComment() {
+		if (apobecMuts.size() < 1 && apobecDRMs.size() < 1) {
+			return "There are no mutations present in this sequence."; 
+		}
+		
 		StringBuffer comment = new StringBuffer();
 
 		comment.append(generatePartialComment(
 			"The following %d APOBEC muts were present " +
 		    "in the sequence", apobecMuts));
 
-
+		
 		if (apobecDRMs.size() > 0) {
 			comment.append(generatePartialComment(
 				" The following %d DRMs in this sequence " +
@@ -112,14 +114,13 @@ public class Apobec {
 
 		return comment.toString();
 	}
-
+	
 	// Populates two sets. One containing all mutations indicative
 	// of APOBEC-mediated G-to-A hypermutation.
 	// The second containing those DRMs that could be selected by
 	// therapy or could could be caused by APOBEC.
-	private static void populateApobecMaps() throws SQLException {
-		final JdbcDatabase db = JdbcDatabase.getDefault();
-
+	protected static void populateApobecMaps() throws SQLException {
+		final JdbcDatabase db = JdbcDatabase.getDefault(); 
 		final String sqlStatementApobecMuts =
 			"SELECT Gene, Pos, AA FROM tblApobecMuts ORDER BY Gene, Pos, AA";
 		final String sqlStatementApobecDRMs =
@@ -133,7 +134,7 @@ public class Apobec {
 					rs.getString("AA"));
 			})
 		);
-
+		
 		apobecDRMsLU = new MutationSet(
 			db.iterate(sqlStatementApobecDRMs, rs -> {
 				return new Mutation(
@@ -142,7 +143,6 @@ public class Apobec {
 					rs.getString("AA"));
 			})
 		);
-
 	}
 
 }

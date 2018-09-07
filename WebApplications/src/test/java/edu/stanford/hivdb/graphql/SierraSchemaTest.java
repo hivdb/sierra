@@ -27,8 +27,9 @@ import java.util.stream.Collectors;
 
 import org.junit.Test;
 
-import edu.stanford.hivdb.testutils.TestSequencesFiles;
-import edu.stanford.hivdb.testutils.TestSequencesFiles.TestSequencesProperties;
+import edu.stanford.hivdb.filetestutils.TestSequencesFiles;
+import edu.stanford.hivdb.filetestutils.TestSequencesFiles.TestSequencesProperties;
+import edu.stanford.hivdb.utilities.FastaUtils;
 import edu.stanford.hivdb.utilities.Json;
 import graphql.ExceptionWhileDataFetching;
 import graphql.ExecutionResult;
@@ -42,7 +43,7 @@ public class SierraSchemaTest {
 	public void testSequenceAnalysisDataFetcher() {
 		Map<String, Object> arguments = new LinkedHashMap<>();
 		List<Map<String, String>> sequences =
-			TestSequencesFiles.getTestSequences(TestSequencesProperties.PROBLEM_SEQUENCES)
+			FastaUtils.readStream(TestSequencesFiles.getTestSequenceInputStream(TestSequencesProperties.PROBLEM_SEQUENCES))
 			.stream()
 			.map(seq -> {
 				Map<String, String> seqMap = new LinkedHashMap<>();

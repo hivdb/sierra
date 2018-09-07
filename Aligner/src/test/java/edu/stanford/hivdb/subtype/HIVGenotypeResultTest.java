@@ -27,13 +27,13 @@ import org.junit.Test;
 
 import edu.stanford.hivdb.alignment.AlignedSequence;
 import edu.stanford.hivdb.alignment.Aligner;
+import edu.stanford.hivdb.filetestutils.TestSequencesFiles;
+import edu.stanford.hivdb.filetestutils.TestSequencesFiles.TestSequencesProperties;
 import edu.stanford.hivdb.genotyper.BoundGenotype;
 import edu.stanford.hivdb.genotyper.HIVGenotypeResult;
 import edu.stanford.hivdb.mutations.MutationSet;
 import edu.stanford.hivdb.mutations.Sdrms;
 import edu.stanford.hivdb.subtype.Subtype;
-import edu.stanford.hivdb.testutils.TestSequencesFiles;
-import edu.stanford.hivdb.testutils.TestSequencesFiles.TestSequencesProperties;
 import edu.stanford.hivdb.utilities.MyFileUtils;
 // import edu.stanford.hivdb.utilities.NumberFormats;
 import edu.stanford.hivdb.utilities.FastaUtils;

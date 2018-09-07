@@ -88,14 +88,14 @@ public class CodonTranslation {
 		aaThreeToOneLetter.put("Val","V");
 		aaThreeToOneLetter.put("Trp","W");
 		aaThreeToOneLetter.put("Tyr","Y");
-
+		
 		aaOneToThreeLetter = aaThreeToOneLetter
 			.entrySet()
 			.stream()
 			.collect(Collectors.toMap(
 				e -> e.getValue().charAt(0),
 				e -> e.getKey()));
-
+		
 		codonToAminoAcidMap = new HashMap<String, String>();
 		codonToAminoAcidMap.put("TTT","F");
 		codonToAminoAcidMap.put("TTC","F");
@@ -176,7 +176,7 @@ public class CodonTranslation {
 		codonToAminoAcidMap.put("GGC","G");
 		codonToAminoAcidMap.put("GGA","G");
 		codonToAminoAcidMap.put("GGG","G");
-
+		
 		aminoAcidToCodonsMap = new HashMap<String, List<String>>();
 
 		for (String aa: aaThreeToOneLetter.values()) {
@@ -195,8 +195,7 @@ public class CodonTranslation {
 		generateTable();
 	}
 
-
-	/**
+	/*
 	 * Translates a triplet into its corresponding amino acid or amino acids (if the triplet encodes > 1 amino acid)
 	 * The amino acid "X" is returned if the codon encodes > 4 (DEFAULT_AAS_LIMIT) amino acids or
 	 * if there is no entry for the codon in the tripletsTable (occurs when triplet contains one or two '-'
@@ -233,7 +232,7 @@ public class CodonTranslation {
 	 * For example: given nas="TTT" and aas="Asn"; the generated result is
 	 * "  ." since the shortest path from TTT to Asn is via AAT.
 	 *
-	 * This method assume that nas and aas are always valid (length%3=0).
+	 * This method assumes that nas and aas are always valid (length%3=0).
 	 *
 	 * @param allNAs
 	 * @param allAAs
@@ -254,21 +253,17 @@ public class CodonTranslation {
 		.collect(Collectors.joining());
 	}
 
-	protected static String generateTripletControl(String nas, String aas) {
+	protected static String generateTripletControl(String nas, String aas) {	
 		aas = aaThreeToOneLetter.get(aas);
 		int maxMatched = -1;
 		String maxMatchedControlString = "   ";
 		for (String cmp: aminoAcidToCodonsMap.get(aas)) {
 			int matched = 0;
 			String controlStr = "";
-			for(int i=0; i < 3; i ++) {
+			for(int i = 0; i < 3; i++) {
 				Character na1 = null, na2 = null;
-				if (nas.length() > i) {
-					na1 = nas.charAt(i);
-				}
-				if (cmp.length() > i) {
-					na2 = cmp.charAt(i);
-				}
+				na1 = nas.charAt(i);
+				na2 = cmp.charAt(i);
 				if (na1 == na2) {
 					controlStr += ".";
 					matched ++;
@@ -288,33 +283,35 @@ public class CodonTranslation {
 		}
 		return maxMatchedControlString;
 	}
-
-	public static int getMinimalNAChanges(String codon, String aa) {
-		int maxMatched = -1;
-		for (String cmp: aminoAcidToCodonsMap.get(aa)) {
-			int matched = 0;
-			for(int i=0; i < 3; i ++) {
-				Character na1 = null, na2 = null;
-				if (codon.length() > i) {
-					na1 = codon.charAt(i);
-				}
-				if (cmp.length() > i) {
-					na2 = cmp.charAt(i);
-				}
-				if (na1 == na2) {
-					matched ++;
-				}
-			}
-			if (matched == 3) {
-				break;
-			}
-			if (matched > maxMatched) {
-				maxMatched = matched;
-			}
-		}
-		return 3 - maxMatched;
-
-	}
+	
+//	public static int getMinimalNAChanges(String codon, String aa) {
+//		int maxMatched = -1;
+//		for (String cmp: aminoAcidToCodonsMap.get(aa)) {
+//			System.out.println("cmp: " + cmp);
+//			int matched = 0;
+//			for(int i = 0; i < 3; i++) {
+//				Character na1 = null, na2 = null;
+//				if (codon.length() > i) {
+//					na1 = codon.charAt(i);
+//				}
+//				if (cmp.length() > i) {
+//					na2 = cmp.charAt(i);
+//				}
+//				if (na1 == na2) {
+//					matched ++;
+//				}
+//			}
+//			if (matched == 3) {
+//				break;
+//			}
+//			if (matched > maxMatched) {
+//				maxMatched = matched;
+//			}
+//		}
+//		
+//		return 3 - maxMatched;
+//	
+//	}
 
 	/**
 	 * Translates a string of nucleotides into a string of amino acids. Nucleotide triplets that
@@ -326,7 +323,7 @@ public class CodonTranslation {
 	public static String simpleTranslate(String nas) {
 		return simpleTranslate(nas, null, null);
 	}
-
+	
 	/**
 	 * Translate a string of nucleotides into a string of amino acids. Nucleotide triplets that
 	 * encode more than one amino acid are translated to an "X". If `consAAs` is specified, the
