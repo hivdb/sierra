@@ -65,6 +65,11 @@ public class GeneSequenceReadsDef {
 				"The amino acid size of this sequence without unsequenced region (Ns).")
 		)
 		.field(field -> field
+			.type(GraphQLFloat)
+			.name("medianReadDepth")
+			.description("Median read depth of all codons in this gene.")
+		)
+		.field(field -> field
 			.type(GraphQLString)
 			.name("alignedNAs")
 			.description("Aligned DNA sequence without insertions and insertion gaps.")

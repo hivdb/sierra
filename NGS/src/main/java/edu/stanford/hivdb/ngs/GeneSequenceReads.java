@@ -26,6 +26,7 @@ import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.math3.stat.descriptive.rank.Median;
 
 import edu.stanford.hivdb.mutations.CodonTranslation;
 import edu.stanford.hivdb.mutations.Gene;
@@ -101,6 +102,20 @@ public class GeneSequenceReads {
 			}
 		}
 		return retMuts;
+	}
+	
+	public Double getMedianReadDepth() {
+		Median median = new Median();
+		double[] ReadDepths = (
+			posCodonReads.stream()
+			.mapToDouble(read -> read.getTotalReads())
+			.toArray()
+		);
+		double medianReadDepth = -1;
+		if (ReadDepths.length > 0) {
+			medianReadDepth = median.evaluate(ReadDepths);
+		}
+		return medianReadDepth;
 	}
 	
 	public MutationSet getMutations() {
