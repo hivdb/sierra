@@ -1,6 +1,3 @@
-login:
-	@`aws ecr get-login --no-include-email --region us-west-1`
-
 build:
 	@docker pull ubuntu:16.04
 	@docker build -t hivdb/tomcat-with-nucamino .

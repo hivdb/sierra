@@ -20,6 +20,7 @@ package edu.stanford.hivdb.utilities;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -157,7 +158,7 @@ public class FastaUtils {
 		InputStream stream = new ByteArrayInputStream(inputString.getBytes());
 		return readStream(stream);
 	}
-
+	
 	public static void writeStream(Collection<Sequence> sequences, OutputStream stream) {
 		try (
 			FASTAFileWriter writer = new FASTAFileWriter(stream);
@@ -189,6 +190,12 @@ public class FastaUtils {
 		List<Sequence> sequences = new ArrayList<>();
 		sequences.add(sequence);
 		writeFile(sequences, filePath);
+	}
+
+	public static String writeString(Collection<Sequence> sequences) {
+		OutputStream stream = new ByteArrayOutputStream();
+		writeStream(sequences, stream);
+		return stream.toString();
 	}
 
 }

@@ -28,8 +28,8 @@ dependencies {
     compile 'mysql:mysql-connector-java:5.1.38'
     compile 'com.mchange:c3p0:0.9.5.2'
     compile 'com.google.code.gson:gson:2.6.2'
-    compile 'org.fstrf.stanfordAsiInterpreter.resistance:resistance:1.0'
     compile project(':Aligner')
+    compile 'org.fstrf.stanfordAsiInterpreter.resistance:resistance:1.0'
     testCompile 'junit:junit:4.12'
     testCompile 'org.mockito:mockito-core:1.9.5'
     testCompile project(':Utilities')
