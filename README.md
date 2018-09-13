@@ -62,7 +62,6 @@ through this URL:
 
     http://localhost:8080/WebApplications/rest/graphql
 
-
 ### Development with Eclipse IDE
 
 Sierra project uses Gradle to manage the dependencies, build and test. The
@@ -80,6 +79,67 @@ easiest way to install the whole project is through Eclipse. Here're the steps:
 There may be an issue that you can't find "Gradle Project" in step #2. In this
 case you can install the latest "Buildship Gradle Integration" with "Help" >
 "Eclipse Marketplace...". then you can import a Gradle project in Eclipse.
+
+### NucAmino on AWS Lambda
+
+The sequence alignment program NucAmino is very compute-intensive. By default,
+Sierra runs sequence alignment on local NucAmino instances. In the case of a
+few thousands of sequences, the CPU load can easily become very high during the
+process.
+
+In the version 2.2.8, we introduce a new way to run NucAmino remotely on AWS
+Lambda. AWS Lambda is an event-driven, serverless computing platform provided
+by Amazon as a part of the Amazon Web Services. This platform allows user to
+take the advantage of [MapReduce](https://en.wikipedia.org/wiki/MapReduce) to
+process a large amount of data. The Sierra 2.2.8 is able to dispatch alignment
+tasks to several Lambda instances and aggregate the results.
+
+#### Usage
+
+To enable this feature in your Sierra instance, you need first to create an AWS
+function from a zip file created for NucAmino:
+
+```bash
+git clone https://github.com/hivdb/nucamino.git
+cd nucamino
+make aws_lambda_zip
+```
+
+Please follow the [README file][nucamino-github] of NucAmino for prerequisites.
+The zip file should be located at `build/nucamino-aws-lambda.zip`.
+
+Please follow the [AWS Lambda Document][lambda-create] to create a new Python
+3.6 function. You can use any name and qualifier for this function.
+
+To run a Sierra instance using the remote NucAmino, following system
+environments are required/recommended:
+
+```bash
+# specify the AWS Lambda function name and qualifier (both required)
+NUCAMINO_AWS_LAMBDA="<FUNCTION_NAME>:<FUNCTION_QUALIFIER>"
+
+# specify AWS Region using `~/.aws/config` or this variable
+AWS_REGION="us-west-1"
+
+# specify AWS credentials using `~/.aws/credentials` or these variables
+AWS_ACCESS_KEY_ID=
+AWS_SECRET_ACCESS_KEY=
+```
+
+If you are using the Docker instance to run Sierra:
+
+```bash
+docker run \
+  -it \
+  -e "NUCAMINO_AWS_LAMBDA=<FUNCTION_NAME>:<FUNCTION_QUALIFIER>"
+  -e "AWS_REGION=us-west-1"
+  -e "AWS_ACCESS_KEY_ID=<AWS_ACCESS_KEY_ID>"
+  -e "AWS_SECRET_ACCESS_KEY=<AWS_SECRET_ACCESS_KEY>"
+  --publish=8080 hivdb/sierra prod
+```
+
+You can also use AWS IAM to provide further access control. Please search
+IAM documents for further information.
 
 ### Console installation
 
@@ -133,3 +193,4 @@ greatly appreciated.
 [asi-github]: https://github.com/FrontierScience/asi_interpreter
 [fstrf]: https://www.fstrf.org/
 [donation]: https://giving.stanford.edu/goto/shafergift
+[lambda-create]: https://docs.aws.amazon.com/lambda/latest/dg/get-started-create-function.html
