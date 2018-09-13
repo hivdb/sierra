@@ -27,6 +27,7 @@ import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.math3.stat.descriptive.rank.Median;
 
 import edu.stanford.hivdb.genotyper.BoundGenotype;
 import edu.stanford.hivdb.genotyper.HIVGenotypeReference;
@@ -45,6 +46,7 @@ public class SequenceReads {
 	private String concatenatedSeq;
 	private Double mixturePcnt;
 	private Double minPrevalence;
+	private Double medianReadDepth;
 	private Long minReadDepth;
 	
 	public static SequenceReads fromCodonReadsTable(
@@ -66,20 +68,35 @@ public class SequenceReads {
 					)
 				)
 			);
+
+		Median median = new Median();
+		double[] ReadDepths = (
+			allReads.stream()
+			.filter(read -> read.getTotalReads() >= finalMinReadDepth)
+			.mapToDouble(read -> read.getTotalReads())
+			.toArray()
+		);
+		double medianReadDepth = -1;
+		if (ReadDepths.length > 0) {
+			medianReadDepth = median.evaluate(ReadDepths);
+		}
 		
 		return new SequenceReads(
 				name, geneSequences,
-				finalMinPrevalence, finalMinReadDepth);
+				finalMinPrevalence, finalMinReadDepth,
+				medianReadDepth);
 	}
 	
 	public SequenceReads(
 			final String name,
 			final EnumMap<Gene, GeneSequenceReads> allGeneSequenceReads,
-			final double minPrevalence, final long minReadDepth) {
+			final double minPrevalence, final long minReadDepth,
+			final double medianReadDepth) {
 		this.name = name;
 		this.allGeneSequenceReads = allGeneSequenceReads;
 		this.minPrevalence = minPrevalence;
 		this.minReadDepth = minReadDepth;
+		this.medianReadDepth = medianReadDepth;
 	}
 	
 	public String getName() { return name; }
@@ -89,6 +106,8 @@ public class SequenceReads {
 	public double getMinPrevalence() { return minPrevalence; }
 	
 	public long getMinReadDepth() { return minReadDepth; }
+
+	public Double getMedianReadDepth() { return medianReadDepth; }
 	
 	public List<GeneSequenceReads> getAllGeneSequenceReads() {
 		return new ArrayList<>(allGeneSequenceReads.values());
