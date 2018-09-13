@@ -143,6 +143,11 @@ public class SequenceReadsAnalysisDef {
 				"The minimal read depth for each codon of this sequence."
 			))
 		.field(field -> field
+			.type(GraphQLFloat)
+			.name("medianReadDepth")
+			.description("Median read depth of all codons in this sequence.")
+		)
+		.field(field -> field
 			.type(new GraphQLList(oGene))
 			.name("availableGenes")
 			.description("Available genes found in the sequence reads."))
