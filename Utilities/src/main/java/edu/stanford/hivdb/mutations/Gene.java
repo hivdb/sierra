@@ -23,7 +23,6 @@ import java.util.List;
 
 import edu.stanford.hivdb.drugs.DrugClass;
 
-
 /**
  *
  * enum for Gene. Will replace the previous class-wrapper-around enum implementation now called Gene

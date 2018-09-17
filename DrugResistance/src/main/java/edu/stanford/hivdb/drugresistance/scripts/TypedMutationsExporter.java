@@ -1,5 +1,4 @@
 /*
-    
     Copyright (C) 2017 Stanford HIVDB team
     
     Sierra is free software: you can redistribute it and/or modify
@@ -33,7 +32,6 @@ import edu.stanford.hivdb.utilities.MyFileUtils;
 import edu.stanford.hivdb.utilities.TSV;
 
 public class TypedMutationsExporter {
-
 	private static final String OUTPUT_FILE_PREFIX =
 		"__output/TypedMutations";
 
@@ -95,5 +93,4 @@ public class TypedMutationsExporter {
 		String outputFile = OUTPUT_FILE_PREFIX + "/" + type + ".tsv";
 		MyFileUtils.writeFile(outputFile, output);
 	}
-
 }

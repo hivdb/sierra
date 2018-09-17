@@ -27,7 +27,6 @@ import org.junit.Test;
 import edu.stanford.hivdb.drugs.DrugClass;
 
 public class GeneTest {
-
 	@Test
 	public void testGetDrugClasses() {
 		assertEquals(

@@ -31,7 +31,6 @@ import edu.stanford.hivdb.filetestutils.TestMutationsFiles.TestMutationsProperti
 import edu.stanford.hivdb.utilities.MutationFileReader;
 
 public class ApobecTest {
-
 	// Initialization
 //	@Test
 //	public void testApobecMapPopulation() {	
