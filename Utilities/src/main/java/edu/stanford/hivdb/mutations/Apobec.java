@@ -24,7 +24,6 @@ import edu.stanford.hivdb.utilities.JdbcDatabase;
 import edu.stanford.hivdb.utilities.Cachable;
 
 public class Apobec {
-		
 	@Cachable.CachableField
 	private static MutationSet apobecMutsLU;
 
@@ -144,5 +143,4 @@ public class Apobec {
 			})
 		);
 	}
-
 }

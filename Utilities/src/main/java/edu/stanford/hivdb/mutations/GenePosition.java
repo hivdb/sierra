@@ -24,30 +24,23 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 /**
  * Helper class mainly used to build mutation search index.
  *
- * Many mutation-related indice use gene and position as their index
+ * Many mutation-related indices use gene and position as their index
  * key. This class instantiates hashable and comparable objects using
  * value gene and pos.
  */
 public class GenePosition implements Comparable<GenePosition> {
-
 	public final Gene gene;
 	public final Integer position;
-
+	
 	public GenePosition(final Gene gene, final int pos) {
 		this.gene = gene;
 		this.position = pos;
 	}
-
+	
 	public GenePosition(final String text) {
 		String[] genePos = text.split(":", 2);
 		this.gene = Gene.valueOf(genePos[0]);
 		this.position = Integer.parseInt(genePos[1]);
-	}
-
-	@Override
-	public int hashCode() {
-		return new HashCodeBuilder(63261, 362788935)
-			.append(gene).append(position).toHashCode();
 	}
 
 	@Override
@@ -61,19 +54,25 @@ public class GenePosition implements Comparable<GenePosition> {
 			.append(position, gp.position)
 			.isEquals();
 	}
-
+	
+	@Override
+	public int compareTo(GenePosition o) {
+		if (o == null) throw new NullPointerException("Null is incomprable.");
+		int cmp = gene.compareTo(o.gene);
+		if (cmp == 0) {
+			cmp = Integer.valueOf(position).compareTo(o.position);
+		}
+		return cmp;
+	}
+	
 	@Override
 	public String toString() {
 		return String.format("%s:%d", gene, position);
 	}
-
+	
 	@Override
-	public int compareTo(GenePosition o) {
-		int cmp = gene.compareTo(o.gene);
-		if (cmp == 0) {
-			cmp = new Integer(position).compareTo(o.position);
-		}
-		return cmp;
+	public int hashCode() {
+		return new HashCodeBuilder(63261, 362788935)
+			.append(gene).append(position).toHashCode();
 	}
-
 }
