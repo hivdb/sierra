@@ -59,8 +59,8 @@ public class ApobecTest {
 	
 	@Test
 	public void testExhaustiveApobecMutVerification() {
-		final MutationSet apocecMuts = Apobec.getApobecMutsLU();
-		apocecMuts.forEach(mut -> {
+		final MutationSet apobecMuts = Apobec.getApobecMutsLU();
+		apobecMuts.forEach(mut -> {
 			assertFalse(Apobec.isApobecDRM(mut));
 			assertTrue(Apobec.isApobecMutation(mut));
 		});
@@ -165,6 +165,5 @@ public class ApobecTest {
 		assertEquals("Apobec mutations not as expected.", eMuts, muts);
 		assertEquals("DRMs not as expected.", eDRMs, drms);
 		assertEquals(eComment, a.generateComment());
-	}	
-	
+	}		
 }
