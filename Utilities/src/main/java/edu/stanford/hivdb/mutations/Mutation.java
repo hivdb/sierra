@@ -293,8 +293,8 @@ public class Mutation implements Comparable<Mutation> {
 			.replaceAll("[dD]eletion", "-")
 			.replaceAll("#|i(ns)?", "_")
 			.replaceAll("~|d(el)?", "-")
-			.replace('Z', '*');
-		mutText = mutText.toUpperCase();
+			.replace('Z', '*')
+			.toUpperCase();
 		Matcher m = mutationPattern.matcher(mutText);
 		if (m.matches()) {
 			try {
@@ -339,7 +339,7 @@ public class Mutation implements Comparable<Mutation> {
 				}
 			}
 			int pos = Integer.parseInt(m.group(3));
-			String aas = m.group(4);
+			String aas = m.group(4); // normalizeAA(m.group)
 			String triplet = m.group(5);
 			if (triplet == null) {
 				triplet = "";
