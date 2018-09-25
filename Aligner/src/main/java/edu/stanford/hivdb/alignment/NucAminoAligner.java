@@ -52,7 +52,6 @@ import edu.stanford.hivdb.utilities.FastaUtils;
 import edu.stanford.hivdb.utilities.Json;
 import edu.stanford.hivdb.utilities.Sequence;
 
-
 /**
  * Receives unaligned sequence objects; uses the Go program
  * NucAmino to align the input sequences and returns a list of
@@ -129,7 +128,6 @@ public class NucAminoAligner {
 		}
 		return result.get(0);
 	}
-
 
 	/**
 	 * Receives set of sequences and aligns them to each HIV gene in parallel by NucAmino.
@@ -543,5 +541,4 @@ public class NucAminoAligner {
 			"-f", "json", 	// return output format as json
 		};
 	}
-
 }

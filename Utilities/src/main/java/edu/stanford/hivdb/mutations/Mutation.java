@@ -33,13 +33,13 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import edu.stanford.hivdb.utilities.MyStringUtils;
 
 public class Mutation implements Comparable<Mutation> {
-
+	
 	private static Pattern mutationPattern = Pattern.compile(
 		"^\\s*([pP][rR]|[rR][tT]|[iI][nN])?[:_-]?" +
 		"([AC-IK-NP-TV-Y])?(\\d+)([AC-IK-NP-TV-Y_*-]+)" +
 		"(?::([ACGTRYMWSKBDHVN-]{3})?)?" +
 		"\\s*$");
-
+	
 	private Gene gene;
 	private String cons;
 	private int pos;
@@ -50,17 +50,84 @@ public class Mutation implements Comparable<Mutation> {
 	private boolean isDeletion = false;
 	private transient List<MutType> types;
 	private transient Boolean isAtDrugResistancePosition;
-
+	
 	public static class InvalidMutationStringException extends RuntimeException {
 		private static final long serialVersionUID = 4271016133470715497L;
 
 		public InvalidMutationStringException(String message, Exception e) {
 			super(message, e);
 		}
-
+		
 		public InvalidMutationStringException(String message) {
 			super(message);
-		}}
+		}
+	}
+
+	/**
+	 *
+	 * @param gene
+	 * @param pos
+	 * @param aas
+	 * @param triplet
+	 * @param insertedNAs
+	 */
+	public Mutation(Gene gene, int pos, String aas, String triplet, String insertedNAs) {		
+		if (pos > gene.getLength()) {
+			throw new IllegalArgumentException("Length is out of bounds for this gene.");
+		}
+		this.aas = aas = normalizeAAs(aas);
+		
+		if (aas.contains("_")) {
+			isInsertion = true;
+		} else if (aas.equals("-")) {
+			isDeletion = true;
+		}
+		this.gene = gene;
+		this.cons = gene.getConsensus(pos);
+		this.pos = pos;
+		this.triplet = triplet.toUpperCase();
+		this.insertedNAs = insertedNAs;
+	}
+
+	public Mutation(Gene gene, int pos, String aas, String triplet) {
+		this(gene, pos, aas, triplet, "");
+	}
+
+	public Mutation(Gene gene, int pos, String aas) {
+		this(gene, pos, aas, "", "");
+	}
+
+	public Mutation(Gene gene, int pos, Character aa) {
+		this(gene, pos, "" + aa, "", "");
+	}
+	
+	// Potential Issue:
+	// Doesn't support sole insertions such as "_N"
+	// See commented-out conditional for illustration
+	public static Mutation fromNucAminoMutation(Gene gene, int aaStart, Map<?, ?> mut) {
+		int pos = ((Double) mut.get("Position")).intValue() - aaStart + 1;
+		
+		String codon = "";
+		String insertedCodon = "";
+		boolean isInsertion = (Boolean) mut.get("IsInsertion");
+		boolean isDeletion = (Boolean) mut.get("IsDeletion");
+		
+		StringBuilder aas = new StringBuilder();
+		if (isDeletion) {
+			aas.append('-');
+		}
+		else {
+			codon = (String) mut.get("CodonText");
+			codon = codon.replace(' ', '-');
+			/*if (codon.length() > 0)*/ aas.append(CodonTranslation.translateNATriplet(codon));
+			if (isInsertion) {       
+				aas.append('_');
+				insertedCodon = (String) mut.get("InsertedCodonsText");
+				aas.append(CodonTranslation.simpleTranslate(insertedCodon));
+			}
+		}
+		return new Mutation(gene, pos, aas.toString(), codon, insertedCodon);
+	}
 
 	/**
 	 * Normalize the input AAs.
@@ -89,69 +156,7 @@ public class Mutation implements Comparable<Mutation> {
 		}
 		return aas;
 	}
-
-	/**
-	 *
-	 * @param gene
-	 * @param pos
-	 * @param aas
-	 * @param triplet
-	 * @param insertedNAs
-	 */
-	public Mutation(Gene gene, int pos, String aas, String triplet, String insertedNAs) {
-		if (pos > gene.getLength()) {
-			throw new IllegalArgumentException("Length is out of bounds for this gene.");
-		}
-		this.aas = aas = normalizeAAs(aas);
-		if (aas.contains("_")) {
-			isInsertion = true;
-		} else if (aas.equals("-")) {
-			isDeletion = true;
-		}
-		this.gene = gene;
-		this.cons = gene.getConsensus(pos);
-		this.pos = pos;
-		this.triplet = triplet.toUpperCase();
-		this.insertedNAs = insertedNAs;
-	}
-
-	public Mutation(Gene gene, int pos, String aas, String triplet) {
-		this(gene, pos, aas, triplet, "");
-	}
-
-	public Mutation(Gene gene, int pos, String aas) {
-		this(gene, pos, aas, "", "");
-	}
-
-	public Mutation(Gene gene, int pos, Character aa) {
-		this(gene, pos, "" + aa, "", "");
-	}
-
-	public static Mutation fromNucAminoMutation(Gene gene, int aaStart, Map<?, ?> mut) {
-		int pos = ((Double) mut.get("Position")).intValue() - aaStart + 1;
-
-		String codon = "";
-		String insertedCodon = "";
-		boolean isInsertion = (Boolean) mut.get("IsInsertion");
-		boolean isDeletion = (Boolean) mut.get("IsDeletion");
-
-		StringBuilder aas = new StringBuilder();
-		if (isDeletion) {
-			aas.append('-');
-		}
-		else {
-			codon = (String) mut.get("CodonText");
-			codon = codon.replace(' ', '-');
-			aas.append(CodonTranslation.translateNATriplet(codon));
-			if (isInsertion) {
-				aas.append('_');
-				insertedCodon = (String) mut.get("InsertedCodonsText");
-				aas.append(CodonTranslation.simpleTranslate(insertedCodon));
-			}
-		}
-		return new Mutation(gene, pos, aas.toString(), codon, insertedCodon);
-	}
-
+	
 	public Set<Mutation> split() {
 		Set<Mutation> r = new HashSet<>();
 		if (isInsertion()) {
@@ -219,7 +224,7 @@ public class Mutation implements Comparable<Mutation> {
 		if (newAAs.length() == 0) {
 			return null;
 		}
-
+		
 		return new Mutation(gene, pos, newAAs.toString());
 	}
 
@@ -261,7 +266,6 @@ public class Mutation implements Comparable<Mutation> {
 		return new Mutation(gene, pos, newAAs.toString());
 	}
 
-
 	public boolean isAtDrugResistancePosition() {
 		if (isAtDrugResistancePosition == null) {
 			isAtDrugResistancePosition =
@@ -289,8 +293,8 @@ public class Mutation implements Comparable<Mutation> {
 			.replaceAll("[dD]eletion", "-")
 			.replaceAll("#|i(ns)?", "_")
 			.replaceAll("~|d(el)?", "-")
-			.replace('Z', '*');
-		mutText = mutText.toUpperCase();
+			.replace('Z', '*')
+			.toUpperCase();
 		Matcher m = mutationPattern.matcher(mutText);
 		if (m.matches()) {
 			try {
@@ -335,7 +339,7 @@ public class Mutation implements Comparable<Mutation> {
 				}
 			}
 			int pos = Integer.parseInt(m.group(3));
-			String aas = m.group(4);
+			String aas = m.group(4); // normalizeAA(m.group)
 			String triplet = m.group(5);
 			if (triplet == null) {
 				triplet = "";
@@ -612,5 +616,4 @@ public class Mutation implements Comparable<Mutation> {
 	public String getHumanFormatWithGene() {
 		return gene.toString() + "_" + getHumanFormat();
 	}
-
 }
