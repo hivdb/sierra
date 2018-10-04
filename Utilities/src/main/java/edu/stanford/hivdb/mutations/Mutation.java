@@ -18,11 +18,11 @@
 
 package edu.stanford.hivdb.mutations;
 
-import java.util.Set;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.HashSet;
-import java.util.Collections;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -35,8 +35,11 @@ import edu.stanford.hivdb.utilities.MyStringUtils;
 public class Mutation implements Comparable<Mutation> {
 	
 	private static Pattern mutationPattern = Pattern.compile(
-		"^\\s*([pP][rR]|[rR][tT]|[iI][nN])?[:_-]?" +
-		"([AC-IK-NP-TV-Y])?(\\d+)([AC-IK-NP-TV-Y_*-]+)" +
+		"^\\s*" +
+		"([pP][rR]|[rR][tT]|[iI][nN])?[:_-]?" +
+		"([AC-IK-NP-TV-Y])?" + 
+		"(\\d+)" +
+		"([AC-IK-NP-TV-Y_*-]+)" +
 		"(?::([ACGTRYMWSKBDHVN-]{3})?)?" +
 		"\\s*$");
 	
@@ -75,18 +78,15 @@ public class Mutation implements Comparable<Mutation> {
 		if (pos > gene.getLength()) {
 			throw new IllegalArgumentException("Length is out of bounds for this gene.");
 		}
-		this.aas = aas = normalizeAAs(aas);
 		
-		if (aas.contains("_")) {
-			isInsertion = true;
-		} else if (aas.equals("-")) {
-			isDeletion = true;
-		}
 		this.gene = gene;
-		this.cons = gene.getConsensus(pos);
+		this.cons = this.gene.getConsensus(pos);
 		this.pos = pos;
+		this.aas = normalizeAAs(aas);
 		this.triplet = triplet.toUpperCase();
 		this.insertedNAs = insertedNAs;
+		this.isInsertion = this.aas.contains("_");
+		this.isDeletion = this.aas.equals("-");
 	}
 
 	public Mutation(Gene gene, int pos, String aas, String triplet) {
@@ -390,7 +390,6 @@ public class Mutation implements Comparable<Mutation> {
 		return UnusualMutations.getHighestMutPrevalence(this);
 	}
 
-
 	public String getAAsWithConsFirst() {
 		String aas = getAAs();
 		String cons = getConsensus();
@@ -461,7 +460,7 @@ public class Mutation implements Comparable<Mutation> {
 			.append(aas)
 			.toHashCode();
 	}
-
+	
 	@Override
 	public String toString() {
 		return getHumanFormat();
@@ -496,7 +495,6 @@ public class Mutation implements Comparable<Mutation> {
 		}
 		return cmp;
 	}
-
 
 	/**
 	 * Compares two mutations to determine if they share a nonconsensus amino acid
