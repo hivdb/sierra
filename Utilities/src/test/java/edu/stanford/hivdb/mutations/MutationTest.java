@@ -577,16 +577,6 @@ public class MutationTest {
 		assertTrue(unusualMut.isUnusual());
 		assertTrue(unusualMuts.isUnusual());
 		assertTrue(mixedMuts.isUnusual());
-			
-//		The JSON suggests so, but are some insertions and deletions 'usual?' 
-//		Arrays.asList(Gene.values()).forEach(gene -> {
-//			IntStream.range(1, gene.getLength() + 1).forEach(pos -> {
-//				System.out.println("del Gene:" + gene + " : " + pos + " " + new Mutation(gene, pos, "-").isUnusual());
-//				System.out.println("ins Gene:" + gene + " : " + pos + " " + new Mutation(gene, pos, "_").isUnusual());
-//				assertTrue(new Mutation(gene, pos, "-").isUnusual());
-//				assert(new Mutation(gene, pos, "_").isUnusual());
-//			});
-//		});
 	}
 	
 	@Test
@@ -623,6 +613,10 @@ public class MutationTest {
 	
 	@Test
 	public void testGetHighestMutPrevalance() {
+		// Since we update prevalence data periodically, we  
+		// expect the following assertions to ultimately fail. 
+		// Hence we must manually update these assertions every time
+		// we upload new prevalence data. 
 		final Mutation prevMut = new Mutation(Gene.IN, 45, "G");
 		final Mutation prevMuts = new Mutation(Gene.IN, 45, "HKQ");
 		final Mutation prevMutZero = new Mutation(Gene.IN, 45, "C");
