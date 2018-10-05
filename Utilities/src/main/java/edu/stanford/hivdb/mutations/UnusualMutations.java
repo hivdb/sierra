@@ -67,19 +67,19 @@ public class UnusualMutations {
 		if (aas.contains(cons)) {
 			aas = aas.replace(cons, "");
 		}
-
+		
 		// ignore stop codon when there's one or more other AAs
 		if (aas.contains("*") && aas.length() > 1) {
 			aas = aas.replace("*", "");
 		}
-
+		
 		for (char aa : aas.toCharArray()) {
 			double aaPrevalence = getMutPrevalence(mut.getGenePosition(), aa);
 			prevalence = Math.max(prevalence, aaPrevalence);
 		}
 		return prevalence;
 	}
-
+	
 	// Receives a single mutation. Looks up all of the non-consensus AA's in the HashMap usualMuts
 	// If any of the AAs are not in the HashMap, the mutation is considered to have an unusual mutation
 	public static boolean containsUnusualMut(Mutation mut) {
@@ -91,7 +91,7 @@ public class UnusualMutations {
 		if (mut.isDeletion()) {
 			aaString = "-";
 		}
-
+		
 		Map<Character, Boolean> empty = Collections.emptyMap();
 		for (char aaChar : aaString.toCharArray()) {
 			if (unusualMuts
@@ -103,7 +103,6 @@ public class UnusualMutations {
 		return false;
 	}
 
-
 	// Receives a single amino acid at a position. Returns prevalence
 	// TODO: use Gene object
 	private static Double getMutPrevalence(GenePosition gpos, char aa) {
@@ -111,8 +110,7 @@ public class UnusualMutations {
 			.getOrDefault(gpos, new LinkedHashMap<>())
 			.getOrDefault(aa, 0.0);
 	}
-
-
+	
 	// Populate the Map genePosAAPcnts using tblMutPrevalences in HIVDBScores
 	// For now most positions do not have entries for insertions and deletions none have entries for 'X'.
 	//   These are assigned a prevalence of 0.0
@@ -144,5 +142,4 @@ public class UnusualMutations {
 			return null;
 		});
 	}
-
 }

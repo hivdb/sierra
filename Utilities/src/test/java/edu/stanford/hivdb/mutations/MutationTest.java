@@ -25,14 +25,16 @@ import edu.stanford.hivdb.mutations.Mutation.InvalidMutationStringException;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.IntStream;
 
 public class MutationTest {
-
+	
 	@Test
 	public void testFromNucAminoMut() {
 		final Map<String, Object> mutMap = new HashMap<>();
@@ -517,11 +519,11 @@ public class MutationTest {
 	
 	@Test 
 	public void testIsUnsequenced() {
-		final Mutation mut = new Mutation(Gene.PR, 1, "N");
-		final Mutation mutSeq = new Mutation(Gene.PR, 1, "_N", "NN-");
-		final Mutation mutUnseqNN = new Mutation(Gene.PR, 1, "N", "NN-");
-		final Mutation mutUnseqNNN = new Mutation(Gene.PR, 1, "N", "NNN");
-		final Mutation mutUnseqNNG = new Mutation(Gene.PR, 1, "N", "NNG");
+		final Mutation mut = new Mutation(Gene.PR, 1, "X");
+		final Mutation mutSeq = new Mutation(Gene.PR, 1, "_X", "NN-");
+		final Mutation mutUnseqNN = new Mutation(Gene.PR, 1, "X", "NN-");
+		final Mutation mutUnseqNNN = new Mutation(Gene.PR, 1, "X", "NNN");
+		final Mutation mutUnseqNNG = new Mutation(Gene.PR, 1, "X", "NNG");
 		assertFalse(mut.isUnsequenced());
 		assertFalse(mutSeq.isUnsequenced());
 		assertTrue(mutUnseqNN.isUnsequenced());
@@ -537,5 +539,95 @@ public class MutationTest {
 		assertEquals(mutPR68.getGenePosition(), new GenePosition(Gene.PR, 68));
 		assertEquals(mutRT67.getGenePosition(), new GenePosition(Gene.RT, 67));
 		assertEquals(mutIN155.getGenePosition(), new GenePosition(Gene.IN, 155));
+	}
+	
+	@Test
+	public void testIsDeletion() {
+		final Mutation del = new Mutation(Gene.PR, 68, "-");
+		final Mutation ins = new Mutation(Gene.PR, 68, "_");
+		final Mutation mut = new Mutation(Gene.PR, 68, "N");
+		final Mutation delMut = new Mutation(Gene.PR, 68, "N-");
+		final Mutation delIns = new Mutation(Gene.RT, 67, "_-");
+		assertTrue(del.isDeletion());
+		assertFalse(ins.isDeletion());
+		assertFalse(mut.isDeletion());
+		assertFalse(delMut.isDeletion());
+		assertFalse(delIns.isDeletion());
+	}
+	
+	@Test
+	public void testHasStop() {
+		final Mutation mut = new Mutation(Gene.PR, 68, "N");
+		final Mutation stop = new Mutation(Gene.RT, 67, "*");
+		final Mutation stopMut = new Mutation(Gene.IN, 155, "N*");
+		assertFalse(mut.hasStop());
+		assertTrue(stop.hasStop());
+		assertTrue(stopMut.hasStop());
+	}
+	
+	@Test
+	public void testIsUnusual() {
+		final Mutation unusualMut = new Mutation(Gene.RT, 1, "A");
+		final Mutation usualMut = new Mutation(Gene.RT, 1, "H");
+		final Mutation usualMuts = new Mutation(Gene.RT, 1, "HLPST");
+		final Mutation unusualMuts = new Mutation(Gene.RT, 1, "ACDEFG");
+		final Mutation mixedMuts = new Mutation(Gene.PR, 75, "AILMVSTY");
+		assertFalse(usualMut.isUnusual());
+		assertFalse(usualMuts.isUnusual());
+		assertTrue(unusualMut.isUnusual());
+		assertTrue(unusualMuts.isUnusual());
+		assertTrue(mixedMuts.isUnusual());
+	}
+	
+	@Test
+	public void testIsSDRM() {
+		final Mutation mut = new Mutation(Gene.PR, 24, "N");
+		final Mutation sdrmMut = new Mutation(Gene.PR, 24, "I");
+		final Mutation mixedMuts = new Mutation(Gene.RT, 230, "LI");
+		assertFalse(mut.isSDRM());
+		assertTrue(sdrmMut.isSDRM());
+		assertTrue(mixedMuts.isSDRM());
+	}
+		
+	@Test
+	public void testIsAmbiguous() {
+		final Mutation mut = new Mutation(Gene.PR, 24, "N");
+		final Mutation xMut = new Mutation(Gene.PR, 24, "X");
+		final Mutation tripMut = new Mutation(Gene.PR, 24, "N", "AAC");
+		final Mutation tripMutX = new Mutation(Gene.PR, 24, "X", "AAC");
+		final Mutation bTripMut = new Mutation(Gene.PR, 24, "N", "AAB");
+		final Mutation dTripMut = new Mutation(Gene.PR, 24, "N", "DAC");
+		final Mutation hTripMut = new Mutation(Gene.PR, 24, "S", "THT");
+		final Mutation vTripMut = new Mutation(Gene.PR, 24, "S", "TCV");
+		final Mutation nTripMut = new Mutation(Gene.PR, 24, "S", "TNA");
+		assertFalse(mut.isAmbiguous());
+		assertTrue(xMut.isAmbiguous());
+		assertFalse(tripMut.isAmbiguous());
+		assertTrue(tripMutX.isAmbiguous());
+		assertTrue(bTripMut.isAmbiguous());
+		assertTrue(dTripMut.isAmbiguous());
+		assertTrue(hTripMut.isAmbiguous());
+		assertTrue(vTripMut.isAmbiguous());
+		assertTrue(nTripMut.isAmbiguous());
+	}
+	
+	@Test
+	public void testGetHighestMutPrevalance() {
+		// Since we update prevalence data periodically, we  
+		// expect the following assertions to ultimately fail. 
+		// Hence we must manually update these assertions every time
+		// we upload new prevalence data. 
+		final Mutation prevMut = new Mutation(Gene.IN, 45, "G");
+		final Mutation prevMuts = new Mutation(Gene.IN, 45, "HKQ");
+		final Mutation prevMutZero = new Mutation(Gene.IN, 45, "C");
+		final Mutation prevMutsZero = new Mutation(Gene.IN, 45, "CDEFH");
+		final Mutation prevMutsWCons = new Mutation(Gene.IN, 45, "LHKQ");
+		final Mutation prevMutsWConsAndStop = new Mutation(Gene.IN, 45, "*LHKQ");
+		assertEquals(0.052, prevMut.getHighestMutPrevalence(), 0.0);
+		assertEquals(3.535, prevMuts.getHighestMutPrevalence(), 0.0);
+		assertEquals(0.0, prevMutZero.getHighestMutPrevalence(), 0.0);
+		assertEquals(0.0, prevMutsZero.getHighestMutPrevalence(), 0.0);
+		assertEquals(3.535, prevMutsWCons.getHighestMutPrevalence(), 0.0);
+		assertEquals(3.535, prevMutsWConsAndStop.getHighestMutPrevalence(), 0.0);
 	}
 }
