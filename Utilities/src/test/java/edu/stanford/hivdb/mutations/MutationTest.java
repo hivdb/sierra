@@ -88,10 +88,11 @@ public class MutationTest {
 		assertEquals("ACDE", Mutation.normalizeAAs("deca"));
 	}
 	
-//	@Test
-//	public void testExtractGene() {
-//		TODO: Refactor class to reduce redundancy between normalization logic. 
-//	}
+	@Test
+	public void testExtractGene() {
+		assertEquals(Gene.PR, Mutation.extractGene("PR100A"));
+		
+	}
 
 	@Test(expected=IllegalArgumentException.class)
 	public void testPositionOutOfGene() {
@@ -428,6 +429,7 @@ public class MutationTest {
 
 	@Test
 	public void testParseString() {
+		Mutation.parseString(Gene.RT, "T69Insertion");
 		assertEquals(
 			new Mutation(Gene.RT, 77, 'V'),
 			Mutation.parseString("RT:77V"));
@@ -588,7 +590,7 @@ public class MutationTest {
 		assertTrue(sdrmMut.isSDRM());
 		assertTrue(mixedMuts.isSDRM());
 	}
-		
+	
 	@Test
 	public void testIsAmbiguous() {
 		final Mutation mut = new Mutation(Gene.PR, 24, "N");
@@ -629,5 +631,17 @@ public class MutationTest {
 		assertEquals(0.0, prevMutsZero.getHighestMutPrevalence(), 0.0);
 		assertEquals(3.535, prevMutsWCons.getHighestMutPrevalence(), 0.0);
 		assertEquals(3.535, prevMutsWConsAndStop.getHighestMutPrevalence(), 0.0);
+	}
+	
+	@Test
+	public void testGetPrimaryType() {
+		final Mutation prevMut = new Mutation(Gene.IN, 45, "G");
+		
+	}
+	
+	@Test
+	public void testGetHumanFormatFromGene() {
+		final Mutation prevMut = new Mutation(Gene.IN, 45, "G");
+		
 	}
 }
