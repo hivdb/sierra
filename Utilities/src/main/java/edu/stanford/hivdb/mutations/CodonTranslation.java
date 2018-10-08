@@ -40,7 +40,6 @@ import com.google.common.base.Splitter;
  * The first time it is called, the tripletsTable Map is created.
  */
 public class CodonTranslation {
-
 	private CodonTranslation() {};
 
 	private static final int DEFAULT_AAS_LIMIT = 4;
