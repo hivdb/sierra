@@ -38,6 +38,18 @@ public class PositionCodonReads {
 	private final long totalReads;
 	private final Map<String, Long> allCodonReads;
 	
+	public static class CodonReads {
+		public final String codon;
+		public final long reads;
+		public final String aminoAcids;
+		
+		public CodonReads(final String codon, final long reads) {
+			this.codon = codon;
+			this.reads = reads;
+			this.aminoAcids = CodonTranslation.translateNATriplet(codon);
+		}
+	}
+	
 	public PositionCodonReads(
 		final Gene gene,
 		final int position,
@@ -58,6 +70,11 @@ public class PositionCodonReads {
 	public Gene getGene() { return gene; }
 	public long getPosition() { return position; }
 	public long getTotalReads() { return totalReads; }
+	public List<CodonReads> getCodonReads() {
+		return allCodonReads.entrySet().stream()
+			.map(e -> new CodonReads(e.getKey(), e.getValue()))
+			.collect(Collectors.toList());
+	}
 
 	public Map<String, Double> getCodonWithPrevalence(double minPrevalence) {
 		long minReads = Math.round(totalReads * minPrevalence + 0.5);

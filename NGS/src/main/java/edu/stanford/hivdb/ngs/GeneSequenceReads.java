@@ -79,6 +79,7 @@ public class GeneSequenceReads {
 	public int getFirstAA() { return firstAA; }
 	public int getLastAA() { return lastAA; }
 	public int getSize() { return lastAA - firstAA + 1; }
+	public List<PositionCodonReads> getAllPositionCodonReads() { return this.posCodonReads; }
 	
 	public MutationSet getMutations(final double minPrevalence) {
 		MutationSet retMuts;
