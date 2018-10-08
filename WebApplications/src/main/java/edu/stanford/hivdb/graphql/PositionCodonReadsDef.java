@@ -20,7 +20,9 @@ package edu.stanford.hivdb.graphql;
 
 import graphql.schema.*;
 import static graphql.Scalars.*;
+import static edu.stanford.hivdb.graphql.GeneDef.oGene;
 import static edu.stanford.hivdb.graphql.GeneDef.enumGene;
+import static graphql.schema.GraphQLObjectType.newObject;
 import static graphql.schema.GraphQLInputObjectType.newInputObject;
 
 import java.util.HashMap;
@@ -56,7 +58,7 @@ public class PositionCodonReadsDef {
 	}
 	
 	public static GraphQLInputObjectType iOneCodonReads = newInputObject()
-		.name("OneCodonReads")
+		.name("OneCodonReadsInput")
 		.description("A single codon reads.")
 		.field(field -> field
 			.type(GraphQLString)
@@ -69,6 +71,27 @@ public class PositionCodonReadsDef {
 			.name("reads")
 			.description("Number of reads for this codon."))
 		.build();
+	
+	public static GraphQLObjectType oOneCodonReads = newObject()
+		.name("OneCodonReads")
+		.description("A single codon reads.")
+		.field(field -> field
+			.type(GraphQLString)
+			.name("codon")
+			.description(
+				"The triplet codon. Insertion should be append to " +
+				"the triplet NAs directly. Deletion should use '-'."))
+		.field(field -> field
+			.type(GraphQLLong)
+			.name("reads")
+			.description("Number of reads for this codon."))
+		.field(field -> field
+			.type(GraphQLString)
+			.name("aminoAcids")
+			.description(
+				"The corresponding amino acid(s)."
+			))
+		.build();
 
 	public static GraphQLInputObjectType iPositionCodonReads = newInputObject()
 		.name("PositionCodonReadsInput")
@@ -76,7 +99,7 @@ public class PositionCodonReadsDef {
 		.field(field -> field
 			.type(enumGene)
 			.name("gene")
-			.description("Gene name."))
+			.description("Gene of this position."))
 		.field(field -> field
 			.type(GraphQLInt)
 			.name("position")
@@ -93,5 +116,29 @@ public class PositionCodonReadsDef {
 			.name("allCodonReads")
 			.description("All codon reads at this position."))
 		.build();
+	
+	public static GraphQLObjectType oPositionCodonReads = newObject()
+		.name("PositionCodonReads")
+		.description("Codon reads at a single position.")
+		.field(field -> field
+			.type(oGene)
+			.name("gene")
+			.description("Gene of this position."))
+		.field(field -> field
+			.type(GraphQLInt)
+			.name("position")
+			.description("Codon/amino acid position."))
+		.field(field -> field
+			.type(GraphQLLong)
+			.name("totalReads")
+			.description(
+				"Total reads at this position. The field will be automatically " +
+				"calculated from `allCodonReads` if it's absent."))
+		.field(field -> field
+			.type(new GraphQLList(oOneCodonReads))
+			.name("codonReads")
+			.description("All codon reads at this position."))
+		.build();
+		
 
 }

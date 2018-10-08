@@ -26,6 +26,7 @@ import edu.stanford.hivdb.ngs.GeneSequenceReads;
 
 import static edu.stanford.hivdb.graphql.MutationSetDef.*;
 import static edu.stanford.hivdb.graphql.MutationStatsDef.oMutationStats;
+import static edu.stanford.hivdb.graphql.PositionCodonReadsDef.oPositionCodonReads;
 import static edu.stanford.hivdb.graphql.GeneDef.*;
 
 public class GeneSequenceReadsDef {
@@ -50,6 +51,12 @@ public class GeneSequenceReadsDef {
 			.description(
 				"The last sequenced position (start from 1) " +
 				"in protein relative to the reference sequence.")
+		)
+		.field(field -> field
+			.type(new GraphQLList(oPositionCodonReads))
+			.name("allPositionCodonReads")
+			.description(
+				"Position codon reads in this gene sequence.")
 		)
 		// .field(field -> field
 		// 	.type(GraphQLFloat)
