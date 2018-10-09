@@ -91,7 +91,14 @@ public class MutationTest {
 	@Test
 	public void testExtractGene() {
 		assertEquals(Gene.PR, Mutation.extractGene("PR100A"));
-		
+		assertEquals(Gene.IN, Mutation.extractGene("IN100A"));
+		assertEquals(Gene.RT, Mutation.extractGene("RT100A"));
+		assertEquals(null, Mutation.extractGene("not a mutation"));
+	}
+	
+	@Test(expected=InvalidMutationStringException.class)
+	public void testExtractGeneWithMalformedMut() {
+		assertEquals(null, Mutation.extractGene("P100D"));
 	}
 
 	@Test(expected=IllegalArgumentException.class)

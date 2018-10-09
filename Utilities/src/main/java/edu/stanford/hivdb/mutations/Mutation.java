@@ -39,7 +39,7 @@ public class Mutation implements Comparable<Mutation> {
 		"(PR|RT|IN)?[:_-]?" +
 		"([AC-IK-NP-TV-Y])?" + 
 		"(\\d{1,3})" +
-		"((?:[AC-IK-NP-TV-Z.~#_*-]|ins(?:ertion)?|del(?:etion)?)+)" +
+		"((?:[AC-IK-NP-TV-Z.~#_*-]|ins(?:ertion)|del(?:etion))+)" +
 		"(?::([ACGTRYMWSKBDHVN-]{3})?)?" +
 		"\\s*$",
 		Pattern.CASE_INSENSITIVE);
@@ -282,6 +282,7 @@ public class Mutation implements Comparable<Mutation> {
 		Gene gene = null;
 		Matcher m = mutationPattern.matcher(mutText);
 		if (m.matches()) {
+			System.out.println(m.group(0));
 			try {
 				gene = Gene.valueOf(m.group(1).toUpperCase());
 			} catch (NullPointerException e) {
