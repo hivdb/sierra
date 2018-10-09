@@ -56,7 +56,6 @@ public class AlgorithmComparisonTest {
 
 	@Test
 	public void testRegression() {
-
 		Type mapType =
 			new TypeToken<
 				Map<String, Map<String, AlgorithmComparison>>
@@ -148,5 +147,4 @@ public class AlgorithmComparisonTest {
 		List<Asi> r = AlgorithmComparison.calcAsiListFromCustomAlgorithms(Gene.RT, mutations, xmls);
 		assertEquals("test", r.get(0).getAlgorithmName());
 	}
-
 }

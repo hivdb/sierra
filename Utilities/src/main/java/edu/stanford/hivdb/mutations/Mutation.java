@@ -39,11 +39,11 @@ public class Mutation implements Comparable<Mutation> {
 		"(PR|RT|IN)?[:_-]?" +
 		"([AC-IK-NP-TV-Y])?" + 
 		"(\\d{1,3})" +
-		"([AC-IK-NP-TV-Y_*-]+)" +
+		"((?:[AC-IK-NP-TV-Z.~#_*-]|ins(?:ertion)?|del(?:etion)?)+)" +
 		"(?::([ACGTRYMWSKBDHVN-]{3})?)?" +
 		"\\s*$",
 		Pattern.CASE_INSENSITIVE);
-	
+		
 	private Gene gene;
 	private String cons;
 	private int pos;
@@ -135,48 +135,20 @@ public class Mutation implements Comparable<Mutation> {
 	 *
 	 * The code explains the normalization rules.
 	 */
-	public static String normalizeAAs(String mutStr) {
-		if (mutStr == null) {
-			return null;
+	public static String normalizeAAs(String aas) {
+		if (aas == null) return null;
+		
+		aas = aas.replaceAll("[dD]eletion|d(el)?|~", "-")
+			     .replaceAll("[iI]nsertion|i(ns)?|#", "_")
+			     .replaceAll("[.Z]", "*");
+			
+		if (aas.length() > 1 && !aas.contains("_")) {
+			return MyStringUtils.sortAlphabetically(aas).toUpperCase();
 		}
-		mutStr = mutStr
-			.replace('#', '_')
-			.replace('~', '-')
-			.replace('Z', '*')
-			.replace('.', '*');
-		if (mutStr.equals("Insertion")) {
-			mutStr = "_";
-		}
-		else if (mutStr.equals("Deletion")) {
-			mutStr = "-";
-		}
-		if (mutStr.length() > 1 &&
-			   	!mutStr.contains("_")) {
-			// sort mixture
-			mutStr = MyStringUtils.sortAlphabetically(mutStr).toUpperCase();
-		}
-		return mutStr;
+		
+		return aas.toUpperCase();
 	}
-	
-	/**
-	 * Normalize the input AAs.
-	 *
-	 * The code explains the normalization rules.
-	 */
-	private static String normalizeMutStr(String mutText) {
-		// Re-implementation Notes:
-		// Regex normalizes "insertion" piecewise because the 
-		// the regex matches the "i" in delet[i]on. So the current
-		// implementation removes deletion and then re-applies "insertion"
-		// normalization logic. A better approach is to just parse deletion first. 
-		// We could also apply \^oi(ns)?\ as a band-aid to escape this edge case. 
-		return mutText
-			.replaceAll("[dD]eletion|d(el)?|~", "-")
-			.replaceAll("[iI]nsertion|i(ns)?|#", "_")
-			.replace('Z', '*')
-			.toUpperCase();
-	}
-	
+		
 	public Set<Mutation> split() {
 		Set<Mutation> r = new HashSet<>();
 		if (isInsertion()) {
@@ -308,7 +280,7 @@ public class Mutation implements Comparable<Mutation> {
 	 */
 	public static Gene extractGene(String mutText) {
 		Gene gene = null;
-		Matcher m = mutationPattern.matcher(normalizeMutStr(mutText));
+		Matcher m = mutationPattern.matcher(mutText);
 		if (m.matches()) {
 			try {
 				gene = Gene.valueOf(m.group(1).toUpperCase());
@@ -330,12 +302,9 @@ public class Mutation implements Comparable<Mutation> {
 	 * @return a Mutation object
 	 */
 	public static Mutation parseString(Gene gene, String mutText) {
-		Matcher m = mutationPattern.matcher(normalizeMutStr(mutText));
+		Matcher m = mutationPattern.matcher(mutText);
 		Mutation mut = null;
 		if (m.matches()) {
-			
-			Matcher m2 = mutationPattern.matcher(new StringBuilder(mutText).replace(m.start(4), m.end(4), normalizeAAs(m.group(4))));	
-					
 			if (gene == null) {
 				try {
 					gene = Gene.valueOf(m.group(1).toUpperCase());
@@ -348,14 +317,11 @@ public class Mutation implements Comparable<Mutation> {
 				}
 			}
 			int pos = Integer.parseInt(m.group(3));
-			String aas = m.group(4); // normalizeAA(m.group)
+			String aas = normalizeAAs(m.group(4)); 
 			String triplet = m.group(5);
-			if (triplet == null) {
-				triplet = "";
-			}
+			if (triplet == null) triplet = "";
 			mut = new Mutation(gene, pos, aas, triplet);
-		}
-		else {
+		} else {
 			throw new InvalidMutationStringException(
 				"Tried to parse mutation string using invalid parameters: " + mutText);
 		}

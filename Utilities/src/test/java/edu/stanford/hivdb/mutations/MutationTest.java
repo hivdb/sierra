@@ -85,7 +85,7 @@ public class MutationTest {
 		assertEquals("_", Mutation.normalizeAAs("Insertion"));
 		assertEquals("-", Mutation.normalizeAAs("Deletion"));
 		assertEquals("ACDE", Mutation.normalizeAAs("DECA"));
-		assertEquals("ACDE", Mutation.normalizeAAs("deca"));
+		assertEquals("-ACE", Mutation.normalizeAAs("deca"));
 	}
 	
 	@Test
@@ -633,15 +633,13 @@ public class MutationTest {
 		assertEquals(3.535, prevMutsWConsAndStop.getHighestMutPrevalence(), 0.0);
 	}
 	
-	@Test
-	public void testGetPrimaryType() {
-		final Mutation prevMut = new Mutation(Gene.IN, 45, "G");
-		
-	}
-	
-	@Test
-	public void testGetHumanFormatFromGene() {
-		final Mutation prevMut = new Mutation(Gene.IN, 45, "G");
-		
-	}
+//	@Test
+//	public void testGetPrimaryType() {
+//		// TODO
+//	}
+//	
+//	@Test
+//	public void testGetHumanFormatFromGene() {
+//		// TODO
+//	}
 }
