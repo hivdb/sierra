@@ -41,6 +41,7 @@ public class UnusualMutations {
 		public Integer count;
 		public Integer total;
 		public String reason;
+		public Boolean isAPOBEC;
 		public Boolean isUsual;
 		
 		public GenePosition getGenePosition() {
