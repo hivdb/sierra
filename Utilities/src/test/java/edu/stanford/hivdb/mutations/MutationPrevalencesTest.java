@@ -46,7 +46,7 @@ public class MutationPrevalencesTest {
 
 			/* mutation in the middle of PI file */
 			m = new Mutation(Gene.PR, 72, "T");
-			checkPrevalence(MutationPrevalences.getPrevalenceAtSamePosition(m), "T", "All", 98118, 3731, 3.8, 26364, 2105, 8.0);
+			checkPrevalence(MutationPrevalences.getPrevalenceAtSamePosition(m), "T", "All", 98144, 3731, 3.8, 26381, 2105, 8.0);
 
 		}
 

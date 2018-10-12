@@ -29,7 +29,7 @@ public class DrugTest {
 		// This test failed every time when a new drug is added.
 		// WARNING: Don't just fix this test case. Add the new drug
 		// to all following cases too.
-		assertEquals(Drug.values().length, 23);
+		assertEquals(Drug.values().length, 24);
 	}
 
 	@Test

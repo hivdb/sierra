@@ -125,6 +125,7 @@ public class AsiBaseTest {
 		expected.get(DrugClass.NRTI).put(Drug.DDI, 40.0);
 		expected.get(DrugClass.NRTI).put(Drug.LMV, 70.0);
 		expected.get(DrugClass.NRTI).put(Drug.ABC, 60.0);
+		expected.get(DrugClass.NNRTI).put(Drug.DOR, 0.0);
 		expected.get(DrugClass.NNRTI).put(Drug.NVP, 0.0);
 		expected.get(DrugClass.NNRTI).put(Drug.RPV, 0.0);
 		expected.get(DrugClass.NNRTI).put(Drug.ETR, 0.0);
@@ -176,6 +177,10 @@ public class AsiBaseTest {
 		expected.get(DrugClass.NNRTI).get(Drug.ETR).put(Mutation.parseString("RT181C"), 30.0);
 		expected.get(DrugClass.NNRTI).get(Drug.ETR).put(Mutation.parseString("RT101E"), 15.0);
 		expected.get(DrugClass.NNRTI).get(Drug.ETR).put(Mutation.parseString("RT100I"), 30.0);
+		expected.get(DrugClass.NNRTI).put(Drug.DOR, new TreeMap<>());
+		expected.get(DrugClass.NNRTI).get(Drug.DOR).put(Mutation.parseString("RT100I"), 15.0);
+		expected.get(DrugClass.NNRTI).get(Drug.DOR).put(Mutation.parseString("RT101E"), 15.0);
+		expected.get(DrugClass.NNRTI).get(Drug.DOR).put(Mutation.parseString("RT181C"), 10.0);
 		expected.get(DrugClass.NRTI).put(Drug.ABC, new TreeMap<>());
 		expected.get(DrugClass.NRTI).get(Drug.ABC).put(Mutation.parseString("RT184V"), 15.0);
 		expected.get(DrugClass.NRTI).get(Drug.ABC).put(Mutation.parseString("RT219Q"), 5.0);
