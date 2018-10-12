@@ -1535,6 +1535,15 @@
     "cons": "A",
     "pos": 98,
     "aa": "G",
+    "drug": "DOR",
+    "score": 15.0
+  },
+  {
+    "gene": "RT",
+    "drugClass": "NNRTI",
+    "cons": "A",
+    "pos": 98,
+    "aa": "G",
     "drug": "EFV",
     "score": 15.0
   },
@@ -1571,6 +1580,15 @@
     "cons": "L",
     "pos": 100,
     "aa": "I",
+    "drug": "DOR",
+    "score": 15.0
+  },
+  {
+    "gene": "RT",
+    "drugClass": "NNRTI",
+    "cons": "L",
+    "pos": 100,
+    "aa": "I",
     "drug": "EFV",
     "score": 60.0
   },
@@ -1600,6 +1618,15 @@
     "aa": "I",
     "drug": "RPV",
     "score": 60.0
+  },
+  {
+    "gene": "RT",
+    "drugClass": "NNRTI",
+    "cons": "L",
+    "pos": 100,
+    "aa": "V",
+    "drug": "DOR",
+    "score": 10.0
   },
   {
     "gene": "RT",
@@ -1635,6 +1662,15 @@
     "pos": 100,
     "aa": "V",
     "drug": "RPV",
+    "score": 15.0
+  },
+  {
+    "gene": "RT",
+    "drugClass": "NNRTI",
+    "cons": "K",
+    "pos": 101,
+    "aa": "E",
+    "drug": "DOR",
     "score": 15.0
   },
   {
@@ -1707,6 +1743,15 @@
     "pos": 101,
     "aa": "H",
     "drug": "RPV",
+    "score": 10.0
+  },
+  {
+    "gene": "RT",
+    "drugClass": "NNRTI",
+    "cons": "K",
+    "pos": 101,
+    "aa": "P",
+    "drug": "DOR",
     "score": 10.0
   },
   {
@@ -1823,6 +1868,15 @@
     "cons": "V",
     "pos": 106,
     "aa": "A",
+    "drug": "DOR",
+    "score": 60.0
+  },
+  {
+    "gene": "RT",
+    "drugClass": "NNRTI",
+    "cons": "V",
+    "pos": 106,
+    "aa": "A",
     "drug": "EFV",
     "score": 45.0
   },
@@ -1840,6 +1894,51 @@
     "drugClass": "NNRTI",
     "cons": "V",
     "pos": 106,
+    "aa": "I",
+    "drug": "DOR",
+    "score": 15.0
+  },
+  {
+    "gene": "RT",
+    "drugClass": "NNRTI",
+    "cons": "V",
+    "pos": 106,
+    "aa": "I",
+    "drug": "ETR",
+    "score": 10.0
+  },
+  {
+    "gene": "RT",
+    "drugClass": "NNRTI",
+    "cons": "V",
+    "pos": 106,
+    "aa": "I",
+    "drug": "NVP",
+    "score": 10.0
+  },
+  {
+    "gene": "RT",
+    "drugClass": "NNRTI",
+    "cons": "V",
+    "pos": 106,
+    "aa": "I",
+    "drug": "RPV",
+    "score": 10.0
+  },
+  {
+    "gene": "RT",
+    "drugClass": "NNRTI",
+    "cons": "V",
+    "pos": 106,
+    "aa": "M",
+    "drug": "DOR",
+    "score": 30.0
+  },
+  {
+    "gene": "RT",
+    "drugClass": "NNRTI",
+    "cons": "V",
+    "pos": 106,
     "aa": "M",
     "drug": "EFV",
     "score": 60.0
@@ -1852,6 +1951,15 @@
     "aa": "M",
     "drug": "NVP",
     "score": 60.0
+  },
+  {
+    "gene": "RT",
+    "drugClass": "NNRTI",
+    "cons": "V",
+    "pos": 108,
+    "aa": "I",
+    "drug": "DOR",
+    "score": 10.0
   },
   {
     "gene": "RT",
@@ -2390,6 +2498,15 @@
     "cons": "Y",
     "pos": 181,
     "aa": "C",
+    "drug": "DOR",
+    "score": 10.0
+  },
+  {
+    "gene": "RT",
+    "drugClass": "NNRTI",
+    "cons": "Y",
+    "pos": 181,
+    "aa": "C",
     "drug": "EFV",
     "score": 30.0
   },
@@ -2498,6 +2615,15 @@
     "cons": "Y",
     "pos": 181,
     "aa": "I",
+    "drug": "DOR",
+    "score": 20.0
+  },
+  {
+    "gene": "RT",
+    "drugClass": "NNRTI",
+    "cons": "Y",
+    "pos": 181,
+    "aa": "I",
     "drug": "EFV",
     "score": 30.0
   },
@@ -2563,6 +2689,15 @@
     "aa": "S",
     "drug": "RPV",
     "score": 30.0
+  },
+  {
+    "gene": "RT",
+    "drugClass": "NNRTI",
+    "cons": "Y",
+    "pos": 181,
+    "aa": "V",
+    "drug": "DOR",
+    "score": 20.0
   },
   {
     "gene": "RT",
@@ -2732,6 +2867,15 @@
     "cons": "Y",
     "pos": 188,
     "aa": "C",
+    "drug": "DOR",
+    "score": 10.0
+  },
+  {
+    "gene": "RT",
+    "drugClass": "NNRTI",
+    "cons": "Y",
+    "pos": 188,
+    "aa": "C",
     "drug": "EFV",
     "score": 60.0
   },
@@ -2743,6 +2887,15 @@
     "aa": "C",
     "drug": "NVP",
     "score": 60.0
+  },
+  {
+    "gene": "RT",
+    "drugClass": "NNRTI",
+    "cons": "Y",
+    "pos": 188,
+    "aa": "F",
+    "drug": "DOR",
+    "score": 30.0
   },
   {
     "gene": "RT",
@@ -2777,6 +2930,15 @@
     "cons": "Y",
     "pos": 188,
     "aa": "H",
+    "drug": "DOR",
+    "score": 10.0
+  },
+  {
+    "gene": "RT",
+    "drugClass": "NNRTI",
+    "cons": "Y",
+    "pos": 188,
+    "aa": "H",
     "drug": "EFV",
     "score": 30.0
   },
@@ -2795,6 +2957,15 @@
     "cons": "Y",
     "pos": 188,
     "aa": "L",
+    "drug": "DOR",
+    "score": 60.0
+  },
+  {
+    "gene": "RT",
+    "drugClass": "NNRTI",
+    "cons": "Y",
+    "pos": 188,
+    "aa": "L",
     "drug": "EFV",
     "score": 60.0
   },
@@ -2867,6 +3038,15 @@
     "cons": "G",
     "pos": 190,
     "aa": "C",
+    "drug": "DOR",
+    "score": 10.0
+  },
+  {
+    "gene": "RT",
+    "drugClass": "NNRTI",
+    "cons": "G",
+    "pos": 190,
+    "aa": "C",
     "drug": "EFV",
     "score": 60.0
   },
@@ -2903,6 +3083,15 @@
     "cons": "G",
     "pos": 190,
     "aa": "E",
+    "drug": "DOR",
+    "score": 60.0
+  },
+  {
+    "gene": "RT",
+    "drugClass": "NNRTI",
+    "cons": "G",
+    "pos": 190,
+    "aa": "E",
     "drug": "EFV",
     "score": 60.0
   },
@@ -2912,42 +3101,6 @@
     "cons": "G",
     "pos": 190,
     "aa": "E",
-    "drug": "ETR",
-    "score": 45.0
-  },
-  {
-    "gene": "RT",
-    "drugClass": "NNRTI",
-    "cons": "G",
-    "pos": 190,
-    "aa": "E",
-    "drug": "NVP",
-    "score": 60.0
-  },
-  {
-    "gene": "RT",
-    "drugClass": "NNRTI",
-    "cons": "G",
-    "pos": 190,
-    "aa": "E",
-    "drug": "RPV",
-    "score": 60.0
-  },
-  {
-    "gene": "RT",
-    "drugClass": "NNRTI",
-    "cons": "G",
-    "pos": 190,
-    "aa": "Q",
-    "drug": "EFV",
-    "score": 60.0
-  },
-  {
-    "gene": "RT",
-    "drugClass": "NNRTI",
-    "cons": "G",
-    "pos": 190,
-    "aa": "Q",
     "drug": "ETR",
     "score": 45.0
   },
@@ -2956,6 +3109,51 @@
     "drugClass": "NNRTI",
     "cons": "G",
     "pos": 190,
+    "aa": "E",
+    "drug": "NVP",
+    "score": 60.0
+  },
+  {
+    "gene": "RT",
+    "drugClass": "NNRTI",
+    "cons": "G",
+    "pos": 190,
+    "aa": "E",
+    "drug": "RPV",
+    "score": 60.0
+  },
+  {
+    "gene": "RT",
+    "drugClass": "NNRTI",
+    "cons": "G",
+    "pos": 190,
+    "aa": "Q",
+    "drug": "DOR",
+    "score": 60.0
+  },
+  {
+    "gene": "RT",
+    "drugClass": "NNRTI",
+    "cons": "G",
+    "pos": 190,
+    "aa": "Q",
+    "drug": "EFV",
+    "score": 60.0
+  },
+  {
+    "gene": "RT",
+    "drugClass": "NNRTI",
+    "cons": "G",
+    "pos": 190,
+    "aa": "Q",
+    "drug": "ETR",
+    "score": 45.0
+  },
+  {
+    "gene": "RT",
+    "drugClass": "NNRTI",
+    "cons": "G",
+    "pos": 190,
     "aa": "Q",
     "drug": "NVP",
     "score": 60.0
@@ -2975,6 +3173,15 @@
     "cons": "G",
     "pos": 190,
     "aa": "S",
+    "drug": "DOR",
+    "score": 30.0
+  },
+  {
+    "gene": "RT",
+    "drugClass": "NNRTI",
+    "cons": "G",
+    "pos": 190,
+    "aa": "S",
     "drug": "EFV",
     "score": 60.0
   },
@@ -3011,6 +3218,15 @@
     "cons": "G",
     "pos": 190,
     "aa": "T",
+    "drug": "DOR",
+    "score": 10.0
+  },
+  {
+    "gene": "RT",
+    "drugClass": "NNRTI",
+    "cons": "G",
+    "pos": 190,
+    "aa": "T",
     "drug": "EFV",
     "score": 60.0
   },
@@ -3047,6 +3263,15 @@
     "cons": "G",
     "pos": 190,
     "aa": "V",
+    "drug": "DOR",
+    "score": 10.0
+  },
+  {
+    "gene": "RT",
+    "drugClass": "NNRTI",
+    "cons": "G",
+    "pos": 190,
+    "aa": "V",
     "drug": "EFV",
     "score": 60.0
   },
@@ -3823,6 +4048,15 @@
     "aa": "W",
     "drug": "DDI",
     "score": 5.0
+  },
+  {
+    "gene": "RT",
+    "drugClass": "NNRTI",
+    "cons": "H",
+    "pos": 221,
+    "aa": "Y",
+    "drug": "DOR",
+    "score": 10.0
   },
   {
     "gene": "RT",
@@ -3866,6 +4100,15 @@
     "cons": "P",
     "pos": 225,
     "aa": "H",
+    "drug": "DOR",
+    "score": 30.0
+  },
+  {
+    "gene": "RT",
+    "drugClass": "NNRTI",
+    "cons": "P",
+    "pos": 225,
+    "aa": "H",
     "drug": "EFV",
     "score": 45.0
   },
@@ -3884,6 +4127,15 @@
     "cons": "F",
     "pos": 227,
     "aa": "C",
+    "drug": "DOR",
+    "score": 60.0
+  },
+  {
+    "gene": "RT",
+    "drugClass": "NNRTI",
+    "cons": "F",
+    "pos": 227,
+    "aa": "C",
     "drug": "EFV",
     "score": 45.0
   },
@@ -3919,6 +4171,42 @@
     "drugClass": "NNRTI",
     "cons": "F",
     "pos": 227,
+    "aa": "I",
+    "drug": "DOR",
+    "score": 30.0
+  },
+  {
+    "gene": "RT",
+    "drugClass": "NNRTI",
+    "cons": "F",
+    "pos": 227,
+    "aa": "I",
+    "drug": "EFV",
+    "score": 10.0
+  },
+  {
+    "gene": "RT",
+    "drugClass": "NNRTI",
+    "cons": "F",
+    "pos": 227,
+    "aa": "I",
+    "drug": "NVP",
+    "score": 30.0
+  },
+  {
+    "gene": "RT",
+    "drugClass": "NNRTI",
+    "cons": "F",
+    "pos": 227,
+    "aa": "L",
+    "drug": "DOR",
+    "score": 30.0
+  },
+  {
+    "gene": "RT",
+    "drugClass": "NNRTI",
+    "cons": "F",
+    "pos": 227,
     "aa": "L",
     "drug": "EFV",
     "score": 15.0
@@ -3931,6 +4219,42 @@
     "aa": "L",
     "drug": "NVP",
     "score": 30.0
+  },
+  {
+    "gene": "RT",
+    "drugClass": "NNRTI",
+    "cons": "F",
+    "pos": 227,
+    "aa": "V",
+    "drug": "DOR",
+    "score": 30.0
+  },
+  {
+    "gene": "RT",
+    "drugClass": "NNRTI",
+    "cons": "F",
+    "pos": 227,
+    "aa": "V",
+    "drug": "EFV",
+    "score": 10.0
+  },
+  {
+    "gene": "RT",
+    "drugClass": "NNRTI",
+    "cons": "F",
+    "pos": 227,
+    "aa": "V",
+    "drug": "NVP",
+    "score": 30.0
+  },
+  {
+    "gene": "RT",
+    "drugClass": "NNRTI",
+    "cons": "M",
+    "pos": 230,
+    "aa": "I",
+    "drug": "DOR",
+    "score": 15.0
   },
   {
     "gene": "RT",
@@ -3967,6 +4291,15 @@
     "aa": "I",
     "drug": "RPV",
     "score": 30.0
+  },
+  {
+    "gene": "RT",
+    "drugClass": "NNRTI",
+    "cons": "M",
+    "pos": 230,
+    "aa": "L",
+    "drug": "DOR",
+    "score": 60.0
   },
   {
     "gene": "RT",
@@ -4007,6 +4340,15 @@
   {
     "gene": "RT",
     "drugClass": "NNRTI",
+    "cons": "L",
+    "pos": 234,
+    "aa": "I",
+    "drug": "DOR",
+    "score": 30.0
+  },
+  {
+    "gene": "RT",
+    "drugClass": "NNRTI",
     "cons": "K",
     "pos": 238,
     "aa": "N",
@@ -4038,6 +4380,15 @@
     "pos": 238,
     "aa": "T",
     "drug": "NVP",
+    "score": 30.0
+  },
+  {
+    "gene": "RT",
+    "drugClass": "NNRTI",
+    "cons": "Y",
+    "pos": 318,
+    "aa": "F",
+    "drug": "DOR",
     "score": 30.0
   },
   {

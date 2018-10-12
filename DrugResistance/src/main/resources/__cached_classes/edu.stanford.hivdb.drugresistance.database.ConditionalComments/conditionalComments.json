@@ -1620,7 +1620,7 @@
       "pos": 100.0,
       "aas": "I"
     },
-    "comment": "L100I is a non-polymorphic mutation that usually occurs in combination with K103N. It is associated with high-level resistance to NVP, EFV, and RPV and intermediate resistance to ETR. It has a high weight in the Tibotec ETR genotypic susceptibility score."
+    "comment": "L100I is a non-polymorphic mutation that usually occurs in combination with K103N. In this setting it causes high-level resistance to NVP, EFV, and RPV and intermediate resistance to ETR. It has a weight of 2.5 in the Tibotec ETR genotypic susceptibility score. Preliminary data suggests it is contributes low to intermediate reductions in DOR susceptibility when it occurs in combination with K103N."
   },
   {
     "commentName": "RT100V",
@@ -1631,7 +1631,7 @@
       "pos": 100.0,
       "aas": "V"
     },
-    "comment": "L100I is a non-polymorphic mutation that usually occurs with K103N. It is associated with high-level resistance to NVP, EFV, and RPV and intermediate resistance to ETR. L100V is a rare non-polymorphic mutation with low / intermediate resistance to EFV, NVP, ETR, and RPV."
+    "comment": "L100I is a non-polymorphic mutation that usually occurs with K103N. In this setting it causes high-level resistance to NVP, EFV, and RPV and intermediate resistance to ETR. L100V is a rare non-polymorphic mutation with low / intermediate resistance to EFV, NVP, and RPV."
   },
   {
     "commentName": "RT101CDFGILMSVWY_-",
@@ -1653,7 +1653,7 @@
       "pos": 101.0,
       "aas": "E"
     },
-    "comment": "K101E is a non-polymorphic primarily accessory mutation that causes intermediate resistance to NVP and RPV, and low-level resistance to EFV and ETR. It has a low weight in the Tibotec ETR genotypic susceptibility score."
+    "comment": "K101E is a non-polymorphic primarily accessory mutation that causes intermediate resistance to NVP and RPV, low-level resistance to EFV, and potentially low-level resistance to ETR. It has a weight of 1.0 in the Tibotec ETR genotypic susceptibility score. It is associated with low-level reductions in DOR susceptibility."
   },
   {
     "commentName": "RT101H",
@@ -1664,7 +1664,7 @@
       "pos": 101.0,
       "aas": "H"
     },
-    "comment": "K101H is a non-polymorphic accessory mutation selected by NVP, EFV and ETR. When present with other NNRTI-resistance mutations, K101H further reduces susceptibility to these NNRTIs. It has a low weight in the Tibotec ETR genotypic susceptibility score."
+    "comment": "K101H is a non-polymorphic accessory mutation selected by NVP, EFV and ETR. When present with other NNRTI-resistance mutations, K101H further reduces susceptibility to these NNRTIs. It has a weight of 1.0 in the Tibotec ETR genotypic susceptibility score. Its effect on DOR susceptibility is not known."
   },
   {
     "commentName": "RT101NAT",
@@ -1686,7 +1686,7 @@
       "pos": 101.0,
       "aas": "P"
     },
-    "comment": "K101P is a non-polymorphic mutation that causes high-level resistance to each of the NNRTIs. It has a high weight in the Tibotec ETR genotypic susceptibility score."
+    "comment": "K101P is a non-polymorphic mutation that causes high-level resistance to each of the NNRTIs. It has a weight of 2.5 in the Tibotec ETR genotypic susceptibility score. Its does not appear to reduce DOR susceptibility."
   },
   {
     "commentName": "RT101Q",
@@ -1741,7 +1741,7 @@
       "pos": 103.0,
       "aas": "N"
     },
-    "comment": "K103N is a non-polymorphic mutation that causes high-level resistance to NVP and EFV."
+    "comment": "K103N is a non-polymorphic mutation that causes high-level reductions in NVP and EFV susceptibility."
   },
   {
     "commentName": "RT103R",
@@ -1752,7 +1752,7 @@
       "pos": 103.0,
       "aas": "R"
     },
-    "comment": "K103R is a polymorphic mutation that alone has no effect on NNRTI susceptibility. However, in combination with V179D, it causes intermediate resistance to EFV and NVP."
+    "comment": "K103R is a polymorphic mutation that alone has no effect on NNRTI susceptibility. However, in combination with V179D, it reduces NVP and EFV susceptibility about 15-fold."
   },
   {
     "commentName": "RT103S",
@@ -1763,7 +1763,7 @@
       "pos": 103.0,
       "aas": "S"
     },
-    "comment": "K103S is a non-polymorphic mutation that causes high-level resistance to NVP and intermediate resistance to EFV. Because K103S is a 2-bp change from the wildtype K and a 1-bp change from K103N, patients with K103S may be likely to have once had K103N."
+    "comment": "K103S is a non-polymorphic mutation that causes high-level reductions in NVP susceptibility but intermediate reductions in EFV susceptibility. Because K103S is a 2-bp change from the wildtype K and a 1-bp change from K103N, persons with K103S may be likely to have once had K103N."
   },
   {
     "commentName": "RT103T",
@@ -1785,7 +1785,7 @@
       "pos": 106.0,
       "aas": "A"
     },
-    "comment": "V106A is a non-polymorphic mutation that causes high-level resistance to NVP and intermediate resistance to EFV."
+    "comment": "V106A is a non-polymorphic mutation that causes high-level resistance to NVP and intermediate resistance to EFV. It is selected in vitro and in vivo by DOR and alone it causes intermediate reductions in DOR susceptibility. In combination with other DOR-associated DRMs it is associated with high-level DOR resistance."
   },
   {
     "commentName": "RT106CDEFGHKLNPQRSTWY_-",
@@ -1796,7 +1796,7 @@
       "pos": 106.0,
       "aas": "CDEFGHKLNPQRSTWY_-"
     },
-    "comment": "V106A/M are NNRTI-resistance mutations. V106I is a polymorphic NNRTI-selected accessory mutation. $listMutsIn{106(NOT AIM)} is a highly unusual mutation at this position."
+    "comment": "V106A/M are NNRTI-resistance mutations. $listMutsIn{106(NOT AIM)} is a highly unusual mutation at this position."
   },
   {
     "commentName": "RT106I",
@@ -1807,7 +1807,7 @@
       "pos": 106.0,
       "aas": "I"
     },
-    "comment": "V106I is a polymorphic NNRTI-selected accessory mutation. It has a low weight in the Tibotec ETR genotypic susceptibility score. It has minimal, if any, effect on NNRTI susceptibility."
+    "comment": "V106I is occurs in 1% to 2% of viruses from untreated persons. It contributes to reduced NNRTI susceptibility in combination with other mutations. It has a weight of 1.5 in the Tibotec ETR genotypic susceptibility score despite not contributing much to reduced ETR susceptibility. It likely plays a greater role in reducing DOR susceptibility, particularly in combination with other NNRTI-associated DRMs. "
   },
   {
     "commentName": "RT106M",
@@ -1818,7 +1818,7 @@
       "pos": 106.0,
       "aas": "M"
     },
-    "comment": "V106M is a non-polymorphic mutation that causes high-level resistance to NVP and EFV."
+    "comment": "V106M is a non-polymorphic mutation that causes high-level resistance to NVP and EFV. It is selected in vitro and in vivo by DOR and preliminary data suggests it is associated with low/intermediate reductions in DOR susceptibility."
   },
   {
     "commentName": "RT108ACDEFGHKLMNPQRSTWY_-",
@@ -1829,7 +1829,7 @@
       "pos": 108.0,
       "aas": "ACDEFGHKLMNPQRSTWY_-"
     },
-    "comment": "V108I is a relatively non-polymorphic accessory mutation selected in patients receiving NVP, EFV and ETR. It causes low-level resistance to NVP and EFV. $listMutsIn{108(NOT I)} is a highly unusual mutation at this position."
+    "comment": "V108I is a relatively non-polymorphic accessory mutation selected in vitro and/or in vivo with each of the NNRTIs. $listMutsIn{108(NOT I)} is a highly unusual mutation at this position."
   },
   {
     "commentName": "RT108I",
@@ -1840,7 +1840,7 @@
       "pos": 108.0,
       "aas": "I"
     },
-    "comment": "V108I is a relatively non-polymorphic accessory mutation selected in patients receiving NVP, EFV and ETR. It causes low-level resistance to NVP and potentially low-level resistance to EFV. It does not appear to reduce susceptibility to ETR or RPV."
+    "comment": "V108I is a relatively non-polymorphic accessory mutation selected in vitro and/or in vivo with each of the NNRTIs. It causes low-level reductions in susceptibility to NVP and DOR. Alone, it does not appear to reduce susceptibility to EFV, ETR, or RPV."
   },
   {
     "commentName": "RT115ACDEGHIKLMNPQRSTVW_-",
@@ -1917,7 +1917,7 @@
       "pos": 138.0,
       "aas": "A"
     },
-    "comment": "E138A is a common polymorphic accessory mutation weakly selected in patients receiving ETR and RPV. It confers a borderline low-level reduction in RPV susceptibility. It has a low weight in the Tibotec ETR genotypic susceptibility score."
+    "comment": "E138A is a common polymorphic accessory mutation weakly selected in patients receiving ETR and RPV. It reduces ETR and RPV susceptibility ~2-fold. It has a weight of 1.5 in the Tibotec ETR genotypic susceptibility score."
   },
   {
     "commentName": "RT138CDFHILMNPSTVWY_-",
@@ -1939,7 +1939,7 @@
       "pos": 138.0,
       "aas": "K"
     },
-    "comment": "E138K is a non-polymorphic mutation selected in a high proportion of patients receiving RPV. It reduces RPV susceptibility by 2 to 3-fold and in combination with K101E or the NRTI-resistance mutation M184I, it is sufficient to cause virological failure on a first-line RPV-containing regimen. E138K causes low-level cross-resistance to ETR but minimal, if any, cross-resistance to NVP and EFV."
+    "comment": "E138K is a non-polymorphic mutation selected in a high proportion of patients receiving RPV. It reduces RPV susceptibility by 2 to 3-fold and in combination with K101E or the NRTI-resistance mutation M184I, it is sufficient to cause virological failure on a first-line RPV-containing regimen. E138K causes low-level cross-resistance to ETR but no cross-resistance to NVP, EFV, or DOR."
   },
   {
     "commentName": "RT138QG",
@@ -1950,7 +1950,7 @@
       "pos": 138.0,
       "aas": "QG"
     },
-    "comment": "E138Q/G are non-polymorphic accessory mutations frequently selected in patients receiving ETR and RPV and occasionally in patients receiving NVP and EFV. Preliminary data suggest that E138Q/G are associated with 2 to 3-fold reduced susceptibility to each of the NNRTIs."
+    "comment": "E138Q/G are non-polymorphic accessory mutations frequently selected in patients receiving ETR and RPV and occasionally in patients receiving NVP and EFV. In most studies, they cause low-level reductions in susceptibility to NVP, RPV, and ETR."
   },
   {
     "commentName": "RT138R",
@@ -1961,7 +1961,7 @@
       "pos": 138.0,
       "aas": "R"
     },
-    "comment": "E138R is a rare non-polymorphic accessory mutation selected in vitro by RPV. It confers a borderline low-level reduction in RPV susceptibility."
+    "comment": "E138R is a rare non-polymorphic accessory mutation selected in vitro by RPV. It is associated with 2 to 3-fold reduced susceptibility to ETR and RPV."
   },
   {
     "commentName": "RT151ACDEFGHIKNPRSTVWY_-",
@@ -2016,7 +2016,7 @@
       "pos": 179.0,
       "aas": "DE"
     },
-    "comment": "V179D is a polymorphic accessory NNRTI-selected mutation. It contributes low-levels reductions in susceptibility to each of the NNRTIs. The combination of V179D and K103R act synergistically to reduce NVP and EFV susceptibility. V179D has a low weight in the Tibotec ETR genotypic susceptibility score. V179E is a non-polymorphic mutation occasionally selected by NVP and EFV. V179E appears similar to V179D in its effects on NNRTIs. V179D/E do not appear to reduce the virological response to a first-line EFV-containing regimen."
+    "comment": "V179D is a polymorphic accessory NNRTI-selected mutation. It contributes low-levels reductions in susceptibility to each of the NNRTIs. The combination of V179D and K103R act synergistically to reduce NVP and EFV susceptibility. V179D has a weight of 1.0 in the Tibotec ETR genotypic susceptibility score. V179E is a non-polymorphic mutation occasionally selected by NVP and EFV. V179E appears similar to V179D in its effects on NNRTIs. V179D/E do not appear to reduce the virological response to a first-line EFV-containing regimen."
   },
   {
     "commentName": "RT179F",
@@ -2027,7 +2027,7 @@
       "pos": 179.0,
       "aas": "F"
     },
-    "comment": "V179F is a non-polymorphic mutation frequently selected in patients receiving ETR. It nearly always occurs in combination with Y181C. Alone V179F has little effect on NNRTI susceptibility. However, the combination of V179F and Y181C is associated with high-level ETR and RPV resistance. It has a low weight in the Tibotec ETR genotypic susceptibility score."
+    "comment": "V179F is a non-polymorphic mutation frequently selected in patients receiving ETR. It nearly always occurs in combination with Y181C. Alone V179F has little effect on NNRTI susceptibility. In combination with Y181C, however, it is associated with high-level ETR and RPV resistance. It has a weight of 1.5 in the Tibotec ETR genotypic susceptibility score."
   },
   {
     "commentName": "RT179I",
@@ -2060,7 +2060,7 @@
       "pos": 179.0,
       "aas": "T"
     },
-    "comment": "V179T is a relatively rare non-polymorphic mutation occasionally selected in patients receiving NNRTIs. It is associated with minimal, if any, reduction in ETR and RPV susceptibility. It has a low weight in the Tibotec ETR genotypic susceptibility score."
+    "comment": "V179T is a relatively rare non-polymorphic mutation occasionally selected in patients receiving NNRTIs. It is associated with minimal, if any, reduction in ETR and RPV susceptibility. It has a weight of 1.0 in the Tibotec ETR genotypic susceptibility score."
   },
   {
     "commentName": "RT181ADEHKLMNPQRTW_-",
@@ -2082,7 +2082,7 @@
       "pos": 181.0,
       "aas": "C"
     },
-    "comment": "Y181C is a non-polymorphic mutation selected in patients receiving each of the NNRTIs. It causes high-level reduction in NVP susceptibility, intermediate-level reduction in RPV and ETR susceptibility, and low-level reduction in EFV susceptibility. Y181C has a high weight in the Tibotec ETR genotypic susceptibility score."
+    "comment": "Y181C is a non-polymorphic mutation selected in patients receiving NVP, ETR and RPV. It reduces susceptibility to NVP, ETR, RPV, and EFV by \u003e50-fold, 5-fold, 3-fold, and 2-fold, respectively. Although Y181C itself reduces EFV susceptibility by only 2-fold, it has been associated with a reduced response to an EFV-containing regimen in NNRTI-experienced patients. Y181C has a weight of 2.5 in the Tibotec ETR genotypic susceptibility score. Alone, it does not appear to reduce DOR susceptibility."
   },
   {
     "commentName": "RT181FSG",
@@ -2104,7 +2104,7 @@
       "pos": 181.0,
       "aas": "IV"
     },
-    "comment": "Y181I/V are 2-base pair non-polymorphic mutations selected by NVP and ETR. They cause high-level reductions in NVP, ETR, and RPV susceptibility. They each have a high weight in the Tibotec ETR genotypic susceptibility score."
+    "comment": "Y181I/V are 2-base pair non-polymorphic mutations selected by NVP and ETR. They cause high-level resistance to NVP, ETR, and RPV. They each have a weight of 3.0 in the Tibotec ETR genotypic susceptibility score. Their effects on DOR have not been well-characterized."
   },
   {
     "commentName": "RT184ACDEFGHKLNPQRSTWY_-",
@@ -2170,7 +2170,7 @@
       "pos": 188.0,
       "aas": "H"
     },
-    "comment": "Y188H is a non-polymorphic mutation selected in patients receiving NVP and EFV. It causes about intermediate-level reductions in NVP and EFV susceptibility."
+    "comment": "Y188H is a non-polymorphic mutation selected in patients receiving NVP and EFV. It causes about 5 to 10-fold reduced susceptibility to NVP and EFV."
   },
   {
     "commentName": "RT188L",
@@ -2181,7 +2181,7 @@
       "pos": 188.0,
       "aas": "L"
     },
-    "comment": "Y188L is a non-polymorphic mutation that causes high-level resistance to NVP, EFV, and RPV and potentially low-level resistance to ETR."
+    "comment": "Y188L is a non-polymorphic mutation that causes high-level resistance to NVP, EFV, RPV, and DOR, and potentially low-level resistance to ETR."
   },
   {
     "commentName": "RT190A",
@@ -2192,7 +2192,7 @@
       "pos": 190.0,
       "aas": "A"
     },
-    "comment": "G190A is a non-polymorphic mutation that causes high-level resistance to NVP and intermediate resistance to EFV. It has a low weight in the Tibotec ETR genotypic susceptibility score but does not appear to be selected by ETR or RPV or to reduce their in vitro susceptibility in the absence of other NNRTI-resistance mutations."
+    "comment": "G190A is a non-polymorphic mutation that causes high-level resistance to NVP and intermediate resistance to EFV. It has a weight of 1.0 in the Tibotec ETR genotypic susceptibility score but does not appear to be selected by ETR or RPV or to reduce their in vitro susceptibility in the absence of other NNRTI-resistance mutations. It also does not appear to reduce DOR susceptibility."
   },
   {
     "commentName": "RT190CTV",
@@ -2203,18 +2203,18 @@
       "pos": 190.0,
       "aas": "CTV"
     },
-    "comment": "G190C/T/V are rare non-polymorphic mutations that cause high-level resistance to NVP and EFV. Their effects on ETR and RPV susceptibility are not known."
+    "comment": "G190C/T/V are rare non-polymorphic mutations that cause high-level resistance to NVP and EFV. Their effects on ETR, RPV, and DOR susceptibility are not known."
   },
   {
-    "commentName": "RT190DFHIKLMNPRWY_-",
+    "commentName": "RT190DFHIKLMNPWY_-",
     "drugClass": "NNRTI",
     "conditionType": "MUTATION",
     "conditionValue": {
       "gene": "RT",
       "pos": 190.0,
-      "aas": "DFHIKLMNPRWY_-"
+      "aas": "DFHIKLMNPWY_-"
     },
-    "comment": "G190A causes high-level resistance to NVP and intermediate resistance to EFV. G190S causes high-level resistance to NVP and EFV. G190E causes high-level resistance to NVP, EFV, ETR and RPV. $listMutsIn{190(NOT ACEQSTV)} is a highly unusual mutation at this position."
+    "comment": "G190A/S/E/Q/C/T/V are each associated with reduced susceptibility to one or more NNRTIs. $listMutsIn{190(NOT ACEQRSTV)} is a highly unusual mutation at this position."
   },
   {
     "commentName": "RT190EQ",
@@ -2225,7 +2225,18 @@
       "pos": 190.0,
       "aas": "EQ"
     },
-    "comment": "G190E is a non-polymorphic mutation that causes high-level resistance to each of the NNRTIs. G190Q is a less common non-polymorphic NNRTI-selected mutation that is associated with high-level NVP and EFV resistance and probable intermediate / high-level resistance to ETR and RPV."
+    "comment": "G190E is a non-polymorphic mutation that causes high-level resistance to each of the NNRTIs including DOR. G190Q is a less common non-polymorphic NNRTI-selected mutation that is associated with high-level NVP and EFV resistance. Its effects on RPV, ETR, and DOR susceptibility is not known."
+  },
+  {
+    "commentName": "RT190R",
+    "drugClass": "NNRTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "gene": "RT",
+      "pos": 190.0,
+      "aas": "R"
+    },
+    "comment": "G190R is strongly suspicious for being an artifact of APOBEC-mediated G-to-A hypermutation. It has not been associated with reduced NNRTI susceptibility."
   },
   {
     "commentName": "RT190S",
@@ -2236,7 +2247,7 @@
       "pos": 190.0,
       "aas": "S"
     },
-    "comment": "G190S is a non-polymorphic mutation that causes high-level resistance to NVP and EFV. It has a low weight in the Tibotec ETR genotypic susceptibility score but does not appear to be selected by ETR or RPV or to reduce their in vitro susceptibility in the absence of other NNRTI-resistance mutations."
+    "comment": "G190S is a non-polymorphic mutation that causes high-level resistance to NVP and EFV. It has a weight of 1.5 in the Tibotec ETR genotypic susceptibility score but does not appear to be selected by ETR or RPV or to reduce their in vitro susceptibility in the absence of other NNRTI-resistance mutations. Preliminary data suggests it is associated with low/intermediate reductions in DOR susceptibility."
   },
   {
     "commentName": "RT210W",
@@ -2357,7 +2368,7 @@
       "pos": 225.0,
       "aas": "ACDEFGIKLMNQRSTVWY_-"
     },
-    "comment": "P225H is a non-polymorphic EFV-selected mutation that usually occurs in combination with K103N. The combination of P225H and K103N synergistically reduces EFV and NVP susceptibility. $listMutsIn{225(NOT H)} is a highly unusual mutation at this position."
+    "comment": "P225H is a non-polymorphic EFV-selected mutation that usually occurs in combination with K103N. The combination of P225H and K103N synergistically reduces NVP, EFV and DOR susceptibility. $listMutsIn{225(NOT H)} is a highly unusual mutation at this position."
   },
   {
     "commentName": "RT225H",
@@ -2368,18 +2379,18 @@
       "pos": 225.0,
       "aas": "H"
     },
-    "comment": "P225H is a non-polymorphic EFV-selected mutation that usually occurs in combination with K103N. The combination of P225H and K103N synergistically reduces EFV susceptibility."
+    "comment": "P225H is a non-polymorphic EFV-selected mutation that usually occurs in combination with K103N. The combination of P225H and K103N synergistically reduces NVP, EFV and DOR susceptibility."
   },
   {
-    "commentName": "RT227ADEGHIKMNPQRSTVWY_-",
+    "commentName": "RT227ADEGHKMNPQRSTWY_-",
     "drugClass": "NNRTI",
     "conditionType": "MUTATION",
     "conditionValue": {
       "gene": "RT",
       "pos": 227.0,
-      "aas": "ADEGHIKMNPQRSTVWY_-"
+      "aas": "ADEGHKMNPQRSTWY_-"
     },
-    "comment": "F227L usually occurs together with V106A. This combination is associated with high-level resistance to NVP and EFV. F227C is an extremely rare non-polymorphic mutation that usually occurs in combination with other NNRTI-resistance mutations. In this context it causes high-level resistance to each of the NNRTIs. $listMutsIn{227(NOT CL)} is a highly unusual mutation at this position."
+    "comment": "F227L usually occurs together with V106A. This combination is associated with high-level resistance to NVP and EFV. F227C is a rare non-polymorphic mutation that usually occurs in combination with other NNRTI-resistance mutations. In this context it causes high-level resistance to each of the NNRTIs. $listMutsIn{227(NOT CILV)} is a highly unusual mutation at this position."
   },
   {
     "commentName": "RT227C",
@@ -2390,18 +2401,18 @@
       "pos": 227.0,
       "aas": "C"
     },
-    "comment": "F227C is an extremely rare non-polymorphic mutation selected by ETR and RPV. It usually occurs in combination with other NNRTI-resistance mutations and in this context it is associated with high-level resistance to each of the NNRTIs."
+    "comment": "F227C is a nonpolymorphic mutation selected in persons receiving DOR and rarely in persons receiving ETR and RPV. It usually occurs in combination with other DRMs and in this setting has consistently been associated with the highest possible levels of DOR resistance. It is also usually associated with intermediate or higher reductions in susceptibility to NVP, EFV, ETR, and RPV. "
   },
   {
-    "commentName": "RT227L",
+    "commentName": "RT227ILV",
     "drugClass": "NNRTI",
     "conditionType": "MUTATION",
     "conditionValue": {
       "gene": "RT",
       "pos": 227.0,
-      "aas": "L"
+      "aas": "ILV"
     },
-    "comment": "F227L is a non-polymorphic mutation that usually occurs in combination with V106A. In this context it is associated with high-level resistance to NVP and EFV."
+    "comment": "F227L is a non-polymorphic mutation that usually occurs in combination with V106A. It is selected in vivo and in vitro with both NVP and DOR. In this context it is associated with high-level reductions in NVP and DOR susceptibility and intermediate reductions in EFV susceptibility. F227I/V are extremely rare mutations that have been selected in vitro by DOR."
   },
   {
     "commentName": "RT230ACDEFGHKNPQRSTVWY_-",
@@ -2434,7 +2445,29 @@
       "pos": 230.0,
       "aas": "L"
     },
-    "comment": "M230L is an uncommon non-polymorphic mutation selected in patients receiving EFV, NVP, and RPV. It causes intermediate to high-level resistance to each of the NNRTIs."
+    "comment": "M230L is an uncommon non-polymorphic mutation selected in persons receiving EFV, NVP, and RPV. It causes intermediate to high-level resistance to each of the NNRTIs."
+  },
+  {
+    "commentName": "RT234ACDEFGHKLMNPQRSTWY_-",
+    "drugClass": "NNRTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "gene": "RT",
+      "pos": 234.0,
+      "aas": "ACDEFGHKLMNPQRSTWY_-"
+    },
+    "comment": "L234I is a nonpolymorphic mutation selected in persons receiving NVP and EFV. It is also selected in vitro by ETR and DOR. In combination with V106A, it is associated with high-level DOR resistance. Its effect on susceptibility when it occurs alone has not been studied. $listMutsIn{108(NOT I)} is a highly unusual mutation at this position."
+  },
+  {
+    "commentName": "RT234I",
+    "drugClass": "NNRTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "gene": "RT",
+      "pos": 234.0,
+      "aas": "I"
+    },
+    "comment": "L234I is a nonpolymorphic mutation selected in persons receiving NVP and EFV. It is also selected in vitro by ETR and DOR. In combination with V106A, it is associated with high-level DOR resistance. Its effect on susceptibility when it occurs alone has not been studied."
   },
   {
     "commentName": "RT236ACDEFGHIKMNQRSTVWY_-",
@@ -2489,7 +2522,7 @@
       "pos": 238.0,
       "aas": "TN"
     },
-    "comment": "K238T is a non-polymorphic mutation selected in patients receiving NVP and EFV. It usually occurs in combination with K103N. Alone it confers low/intermediate reductions in NVP and EFV susceptibility. K238N is a non-polymorphic accessory mutation that is also selected by NVP and EFV. It appears to have minimal, if any, effect on NNRTI susceptibility."
+    "comment": "K238T is a non-polymorphic mutation selected in patients receiving NVP and EFV. It usually occurs in combination with K103N. It reduces susceptibility to NVP and EFV by about 5-fold. It may also reduce susceptibility to ETR and RPV. K238N is a non-polymorphic accessory mutation that is also selected by NVP and EFV. It appears to have minimal, if any, effects on NNRTI susceptibility."
   },
   {
     "commentName": "RT318ACDEGHIKLMNPQRSTVW_-",
@@ -2511,7 +2544,7 @@
       "pos": 318.0,
       "aas": "F"
     },
-    "comment": "Y318F is an uncommon mutation that causes intermediate NVP resistance and potentially low-level EFV resistance."
+    "comment": "Y318F is an uncommon mutation that causes intermediate NVP resistance and potentially low-level EFV resistance. It has been selected in vivo by DOR but its effect on DOR susceptibility has not been studied."
   },
   {
     "commentName": "RT348ACDEFGHKLMPQRSTVWY_-",
@@ -2533,7 +2566,7 @@
       "pos": 348.0,
       "aas": "I"
     },
-    "comment": "N348I is a non-polymorphic accessory mutation selected by NVP and EFV and the NRTIs AZT and D4T. Alone it confers low-level reductions in AZT and NVP susceptibility."
+    "comment": "N348I is a non-polymorphic accessory mutation selected by NVP and EFV and the NRTIs AZT and D4T. Alone it reduces AZT and NVP susceptibility by about 3-fold and EFV susceptibility by 2-fold."
   },
   {
     "commentName": "RT40F",
@@ -2940,7 +2973,7 @@
       "pos": 90.0,
       "aas": "I"
     },
-    "comment": "V90I is a polymorphic accessory mutation weakly selected by each of the NNRTIs. It has a low weight in the Tibotec ETR genotypic susceptibility score but is associated with minimal, if any, detectable reduction in NNRTI susceptibility."
+    "comment": "V90I is a polymorphic accessory mutation weakly selected by each of the NNRTIs. It has a weight of 1.0 in the Tibotec ETR genotypic susceptibility score but is associated with minimal, if any, detectable reduction in NNRTI susceptibility."
   },
   {
     "commentName": "RT98G",
