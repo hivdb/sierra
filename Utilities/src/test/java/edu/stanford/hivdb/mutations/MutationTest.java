@@ -435,11 +435,51 @@ public class MutationTest {
 	}
 
 	@Test
-	public void testParseString() {
-		Mutation.parseString(Gene.RT, "T69Insertion");
+	public void testParseString() {		
 		assertEquals(
-			new Mutation(Gene.RT, 77, 'V'),
-			Mutation.parseString("RT:77V"));
+				new Mutation(Gene.RT, 69, '_'),
+				Mutation.parseString(Gene.RT, "T69Insertion"));	
+		assertEquals(
+				new Mutation(Gene.RT, 69, '_'),
+				Mutation.parseString(Gene.RT, "T69insertion"));
+		assertEquals(
+				new Mutation(Gene.RT, 69, '_'),
+				Mutation.parseString(Gene.RT, "T69ins"));
+		assertEquals(
+				new Mutation(Gene.RT, 69, '_'),
+				Mutation.parseString(Gene.RT, "T69i"));
+		assertEquals(
+				new Mutation(Gene.RT, 69, '_'),
+				Mutation.parseString(Gene.RT, "T69#"));
+		assertEquals(
+				new Mutation(Gene.RT, 69, '_'),
+				Mutation.parseString(Gene.RT, "T69_"));
+		assertEquals(
+				new Mutation(Gene.RT, 69, "T_D"),
+				Mutation.parseString(Gene.RT, "T69T#D"));
+		assertEquals(
+				new Mutation(Gene.RT, 69, "INS"),
+				Mutation.parseString(Gene.RT, "T69INS"));
+		
+		assertEquals(
+				new Mutation(Gene.RT, 69, '-'),
+				Mutation.parseString(Gene.RT, "T69Deletion"));	
+		assertEquals(
+				new Mutation(Gene.RT, 69, '-'),
+				Mutation.parseString(Gene.RT, "T69deletion"));
+		assertEquals(
+				new Mutation(Gene.RT, 69, '-'),
+				Mutation.parseString(Gene.RT, "T69del"));
+		assertEquals(
+				new Mutation(Gene.RT, 69, '-'),
+				Mutation.parseString(Gene.RT, "T69d"));
+		assertEquals(
+				new Mutation(Gene.RT, 69, '-'),
+				Mutation.parseString(Gene.RT, "T69~"));
+		assertEquals(
+				new Mutation(Gene.RT, 69, "DEL"),
+				Mutation.parseString(Gene.RT, "T69DEL"));
+		
 		assertEquals(
 				new Mutation(Gene.RT, 77, 'V'),
 				Mutation.parseString("  RT:77V"));
@@ -458,17 +498,111 @@ public class MutationTest {
 		assertEquals(
 			"*FLY",
 			Mutation.parseString("RT:Y188ZFLY").getAAs());
-
+		
+		try {
+			Mutation.parseString(Gene.RT, "S68Delet");
+		} catch (InvalidMutationStringException e) {
+			// pass
+		}
+		
+		try {
+			Mutation.parseString(Gene.RT, "S68delet");
+		} catch (InvalidMutationStringException e) {
+			// pass
+		}
+		
+		try {
+			Mutation.parseString(Gene.RT, "S68Inser");
+		} catch (InvalidMutationStringException e) {
+			// pass
+		}
+		
+		try {
+			Mutation.parseString(Gene.RT, "S68inser");
+		} catch (InvalidMutationStringException e) {
+			// pass
+		}
+		
+		try {
+			Mutation.parseString(Gene.RT, "T69~ACD");
+		} catch (InvalidMutationStringException e) {
+			// pass
+		}
+		
+		try {
+			Mutation.parseString(Gene.RT, "T69#ACD");
+		} catch (InvalidMutationStringException e) {
+			// pass
+		}
+		
+		try {
+			Mutation.parseString(Gene.RT, "T69T#");
+		} catch (InvalidMutationStringException e) {
+			// pass
+		}
+		
+		try {
+			Mutation.parseString(Gene.RT, "T69T_");
+		} catch (InvalidMutationStringException e) {
+			// pass
+		}
+		
+		try {
+			Mutation.parseString(Gene.RT, "T69~T");
+		} catch (InvalidMutationStringException e) {
+			// pass
+		}
+		
+		try {
+			Mutation.parseString(Gene.RT, "T69T~");
+		} catch (InvalidMutationStringException e) {
+			// pass
+		}
+		
+		try {
+			Mutation.parseString(Gene.RT, "T69iT");
+		} catch (InvalidMutationStringException e) {
+			// pass
+		}
+			
+		try {
+			Mutation.parseString(Gene.RT, "T69Tinsins");
+		} catch (InvalidMutationStringException e) {
+			// pass
+		}
+		
+		try {
+			Mutation.parseString(Gene.RT, "T69Tdeletiondeletion");
+		} catch (InvalidMutationStringException e) {
+			// pass
+		}
+		
+		try {
+			Mutation.parseString(Gene.RT, "T69TinsD");
+		} catch (InvalidMutationStringException e) {
+			// pass
+		}
+		
+		try {
+			Mutation.parseString(Gene.RT, "T69TdelD");
+		} catch (InvalidMutationStringException e) {
+			// pass
+		}
+		
+		try {
+			Mutation.parseString(Gene.RT, "T69T#T#");
+		} catch (InvalidMutationStringException e) {
+			// pass
+		}
+		
 		try {
 			Mutation.parseString(null, "77V");
-			assertTrue(false);
 		} catch (InvalidMutationStringException e) {
 			// pass
 		}
 
 		try {
 			Mutation.parseString(Gene.RT, "77V`");
-			assertTrue(false);
 		} catch (InvalidMutationStringException e) {
 			// pass
 		}
@@ -623,7 +757,7 @@ public class MutationTest {
 	@Test
 	public void testGetHighestMutPrevalance() {
 		// Since we update prevalence data periodically, we  
-		// expect the following assertions to ultimately fail. 
+		// expects the following assertions to ultimately fail. 
 		// Hence we must manually update these assertions every time
 		// we upload new prevalence data. 
 		final Mutation prevMut = new Mutation(Gene.IN, 45, "G");

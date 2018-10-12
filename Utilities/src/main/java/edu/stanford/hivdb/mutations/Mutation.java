@@ -36,13 +36,12 @@ public class Mutation implements Comparable<Mutation> {
 	
 	private static Pattern mutationPattern = Pattern.compile(
 		"^\\s*" +
-		"(PR|RT|IN)?[:_-]?" +
+		"((?i:PR|RT|IN))?[:_-]?" +
 		"([AC-IK-NP-TV-Y])?" + 
 		"(\\d{1,3})" +
-		"((?:[AC-IK-NP-TV-Z.~#_*-]|ins(?:ertion)|del(?:etion))+)" +
+		"([AC-IK-NP-TV-Z.*]+(?:[#_]?[AC-IK-NP-TV-Z.*]+)?|[id_#~-]|[iI]ns(?:ertion)?|[dD]el(?:etion)?)" +
 		"(?::([ACGTRYMWSKBDHVN-]{3})?)?" +
-		"\\s*$",
-		Pattern.CASE_INSENSITIVE);
+		"\\s*$");
 		
 	private Gene gene;
 	private String cons;
@@ -136,12 +135,12 @@ public class Mutation implements Comparable<Mutation> {
 	 * The code explains the normalization rules.
 	 */
 	public static String normalizeAAs(String aas) {
-		if (aas == null) return null;
+		if (aas == null) return null;	
 		
-		aas = aas.replaceAll("[dD]eletion|d(el)?|~", "-")
-			     .replaceAll("[iI]nsertion|i(ns)?|#", "_")
+		aas = aas.replaceAll("^[dD]elet(e|ion)|d(el)?|~$", "-")
+			     .replaceAll("^[iI]nsert(ion)?|i(ns)?$|#", "_")
 			     .replaceAll("[.Z]", "*");
-			
+		
 		if (aas.length() > 1 && !aas.contains("_")) {
 			return MyStringUtils.sortAlphabetically(aas).toUpperCase();
 		}
@@ -282,7 +281,6 @@ public class Mutation implements Comparable<Mutation> {
 		Gene gene = null;
 		Matcher m = mutationPattern.matcher(mutText);
 		if (m.matches()) {
-			System.out.println(m.group(0));
 			try {
 				gene = Gene.valueOf(m.group(1).toUpperCase());
 			} catch (NullPointerException e) {
@@ -295,7 +293,7 @@ public class Mutation implements Comparable<Mutation> {
 		}
 		return gene;
 	}
-
+	
 	/**
 	 * Converts gene and mutText string into a Mutation object
 	 * mutText may or may not have a preceding consensus
@@ -316,7 +314,7 @@ public class Mutation implements Comparable<Mutation> {
 						"for an input mutation string is, for example, " +
 						"RT:215Y.", e);
 				}
-			}
+			}	
 			int pos = Integer.parseInt(m.group(3));
 			String aas = normalizeAAs(m.group(4)); 
 			String triplet = m.group(5);
