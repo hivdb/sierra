@@ -36,13 +36,13 @@ public class Mutation implements Comparable<Mutation> {
 	
 	private static Pattern mutationPattern = Pattern.compile(
 		"^\\s*" +
-		"([pP][rR]|[rR][tT]|[iI][nN])?[:_-]?" +
+		"((?i:PR|RT|IN))?[:_-]?" +
 		"([AC-IK-NP-TV-Y])?" + 
-		"(\\d+)" +
-		"([AC-IK-NP-TV-Y_*-]+)" +
+		"(\\d{1,3})" +
+		"([AC-IK-NP-TV-Z.*]+(?:[#_]?[AC-IK-NP-TV-Z.*]+)?|[id_#~-]|[iI]ns(?:ertion)?|[dD]el(?:etion)?)" +
 		"(?::([ACGTRYMWSKBDHVN-]{3})?)?" +
 		"\\s*$");
-	
+		
 	private Gene gene;
 	private String cons;
 	private int pos;
@@ -135,28 +135,19 @@ public class Mutation implements Comparable<Mutation> {
 	 * The code explains the normalization rules.
 	 */
 	public static String normalizeAAs(String aas) {
-		if (aas == null) {
-			return null;
+		if (aas == null) return null;	
+		
+		aas = aas.replaceAll("^[dD]elet(e|ion)|d(el)?|~$", "-")
+			     .replaceAll("^[iI]nsert(ion)?|i(ns)?$|#", "_")
+			     .replaceAll("[.Z]", "*");
+		
+		if (aas.length() > 1 && !aas.contains("_")) {
+			return MyStringUtils.sortAlphabetically(aas).toUpperCase();
 		}
-		aas = aas
-			.replace('#', '_')
-			.replace('~', '-')
-			.replace('Z', '*')
-			.replace('.', '*');
-		if (aas.equals("Insertion")) {
-			aas = "_";
-		}
-		else if (aas.equals("Deletion")) {
-			aas = "-";
-		}
-		if (aas.length() > 1 &&
-			   	!aas.contains("_")) {
-			// sort mixture
-			aas = MyStringUtils.sortAlphabetically(aas).toUpperCase();
-		}
-		return aas;
+		
+		return aas.toUpperCase();
 	}
-	
+		
 	public Set<Mutation> split() {
 		Set<Mutation> r = new HashSet<>();
 		if (isInsertion()) {
@@ -288,13 +279,6 @@ public class Mutation implements Comparable<Mutation> {
 	 */
 	public static Gene extractGene(String mutText) {
 		Gene gene = null;
-		mutText = mutText
-			.replaceAll("[iI]nsertion", "_")
-			.replaceAll("[dD]eletion", "-")
-			.replaceAll("#|i(ns)?", "_")
-			.replaceAll("~|d(el)?", "-")
-			.replace('Z', '*')
-			.toUpperCase();
 		Matcher m = mutationPattern.matcher(mutText);
 		if (m.matches()) {
 			try {
@@ -309,7 +293,7 @@ public class Mutation implements Comparable<Mutation> {
 		}
 		return gene;
 	}
-
+	
 	/**
 	 * Converts gene and mutText string into a Mutation object
 	 * mutText may or may not have a preceding consensus
@@ -317,13 +301,6 @@ public class Mutation implements Comparable<Mutation> {
 	 * @return a Mutation object
 	 */
 	public static Mutation parseString(Gene gene, String mutText) {
-		mutText = mutText
-			.replaceAll("[iI]nsertion", "_")
-			.replaceAll("[dD]eletion", "-")
-			.replaceAll("#|i(ns)?", "_")
-			.replaceAll("~|d(el)?", "-")
-			.replace('Z', '*');
-		mutText = mutText.toUpperCase();
 		Matcher m = mutationPattern.matcher(mutText);
 		Mutation mut = null;
 		if (m.matches()) {
@@ -337,22 +314,19 @@ public class Mutation implements Comparable<Mutation> {
 						"for an input mutation string is, for example, " +
 						"RT:215Y.", e);
 				}
-			}
+			}	
 			int pos = Integer.parseInt(m.group(3));
-			String aas = m.group(4); // normalizeAA(m.group)
+			String aas = normalizeAAs(m.group(4)); 
 			String triplet = m.group(5);
-			if (triplet == null) {
-				triplet = "";
-			}
+			if (triplet == null) triplet = "";
 			mut = new Mutation(gene, pos, aas, triplet);
-		}
-		else {
+		} else {
 			throw new InvalidMutationStringException(
 				"Tried to parse mutation string using invalid parameters: " + mutText);
 		}
 		return mut;
 	}
-
+	
 	public static Mutation parseString(String mutText) {
 		return parseString(null, mutText);
 	}
