@@ -498,116 +498,93 @@ public class MutationTest {
 		assertEquals(
 			"*FLY",
 			Mutation.parseString("RT:Y188ZFLY").getAAs());
-		
-		try {
-			Mutation.parseString(Gene.RT, "S68Delet");
-		} catch (InvalidMutationStringException e) {
-			// pass
-		}
-		
-		try {
-			Mutation.parseString(Gene.RT, "S68delet");
-		} catch (InvalidMutationStringException e) {
-			// pass
-		}
-		
-		try {
-			Mutation.parseString(Gene.RT, "S68Inser");
-		} catch (InvalidMutationStringException e) {
-			// pass
-		}
-		
-		try {
-			Mutation.parseString(Gene.RT, "S68inser");
-		} catch (InvalidMutationStringException e) {
-			// pass
-		}
-		
-		try {
-			Mutation.parseString(Gene.RT, "T69~ACD");
-		} catch (InvalidMutationStringException e) {
-			// pass
-		}
-		
-		try {
-			Mutation.parseString(Gene.RT, "T69#ACD");
-		} catch (InvalidMutationStringException e) {
-			// pass
-		}
-		
-		try {
-			Mutation.parseString(Gene.RT, "T69T#");
-		} catch (InvalidMutationStringException e) {
-			// pass
-		}
-		
-		try {
-			Mutation.parseString(Gene.RT, "T69T_");
-		} catch (InvalidMutationStringException e) {
-			// pass
-		}
-		
-		try {
-			Mutation.parseString(Gene.RT, "T69~T");
-		} catch (InvalidMutationStringException e) {
-			// pass
-		}
-		
-		try {
-			Mutation.parseString(Gene.RT, "T69T~");
-		} catch (InvalidMutationStringException e) {
-			// pass
-		}
-		
-		try {
-			Mutation.parseString(Gene.RT, "T69iT");
-		} catch (InvalidMutationStringException e) {
-			// pass
-		}
-			
-		try {
-			Mutation.parseString(Gene.RT, "T69Tinsins");
-		} catch (InvalidMutationStringException e) {
-			// pass
-		}
-		
-		try {
-			Mutation.parseString(Gene.RT, "T69Tdeletiondeletion");
-		} catch (InvalidMutationStringException e) {
-			// pass
-		}
-		
-		try {
-			Mutation.parseString(Gene.RT, "T69TinsD");
-		} catch (InvalidMutationStringException e) {
-			// pass
-		}
-		
-		try {
-			Mutation.parseString(Gene.RT, "T69TdelD");
-		} catch (InvalidMutationStringException e) {
-			// pass
-		}
-		
-		try {
-			Mutation.parseString(Gene.RT, "T69T#T#");
-		} catch (InvalidMutationStringException e) {
-			// pass
-		}
-		
-		try {
-			Mutation.parseString(null, "77V");
-		} catch (InvalidMutationStringException e) {
-			// pass
-		}
-
-		try {
-			Mutation.parseString(Gene.RT, "77V`");
-		} catch (InvalidMutationStringException e) {
-			// pass
-		}
 	}
 
+	@Test(expected=InvalidMutationStringException.class)
+	public void testDelet() {
+		Mutation.parseString(Gene.RT, "S68Delet");
+	}
+	
+	@Test(expected=InvalidMutationStringException.class)
+	public void testDeletLowercase() {
+		Mutation.parseString(Gene.RT, "S68delet");
+	}
+	
+	@Test(expected=InvalidMutationStringException.class)
+	public void testInser() {
+		Mutation.parseString(Gene.RT, "S68Insert");
+	}
+	
+	@Test(expected=InvalidMutationStringException.class)
+	public void testInserLowercase() {
+		Mutation.parseString(Gene.RT, "S68insert");
+	}
+		
+	@Test(expected=InvalidMutationStringException.class)
+	public void testLeadingPoundInAA() {
+		Mutation.parseString(Gene.RT, "T69#ACD");
+	}
+	
+	@Test(expected=InvalidMutationStringException.class)
+	public void testTrailingPoundInAA() {
+		Mutation.parseString(Gene.RT, "T69T#");
+	}
+	
+	@Test(expected=InvalidMutationStringException.class)
+	public void testAAWithUnderscore() {
+		Mutation.parseString(Gene.RT, "T69T_");
+	}
+	
+	@Test(expected=InvalidMutationStringException.class)
+	public void testLeadingTildeInAA() {
+		Mutation.parseString(Gene.RT, "T69~T");
+	}
+	
+	@Test(expected=InvalidMutationStringException.class)
+	public void testTrailingTildeInAA() {
+		Mutation.parseString(Gene.RT, "T69T~");
+	}
+	
+	@Test(expected=InvalidMutationStringException.class)
+	public void testInsertionAbbreviationWithAA() {
+		Mutation.parseString(Gene.RT, "T69iT");
+	}
+	
+	@Test(expected=InvalidMutationStringException.class)
+	public void testDoubleInsertionAbbreviationInAA() {
+		Mutation.parseString(Gene.RT, "T69insins");
+	}
+	
+	@Test(expected=InvalidMutationStringException.class)
+	public void testDoubleDeletionAbbreviationInAA() {
+		Mutation.parseString(Gene.RT, "T69Tdeletiondeletion");
+	}
+	
+	@Test(expected=InvalidMutationStringException.class)
+	public void testInsertionAbbreviationBetweenAAs() {
+		Mutation.parseString(Gene.RT, "T69TinsD");
+	}
+	
+	@Test(expected=InvalidMutationStringException.class)
+	public void testDeletionAbbreviationBetweenAAs() {
+		Mutation.parseString(Gene.RT, "T69TdelD");
+	}
+	
+	@Test(expected=InvalidMutationStringException.class)
+	public void testTrailingPoundWithMultipleAAs() {
+		Mutation.parseString(Gene.RT, "T69T#T#");
+	}
+	
+	@Test(expected=InvalidMutationStringException.class)
+	public void testParseStringWithNullGene() {
+		Mutation.parseString(null, "77V");
+	}
+	
+	@Test(expected=InvalidMutationStringException.class)
+	public void testParseStringWithGeneAndMalformedAA() {
+		Mutation.parseString(Gene.RT, "77V`");
+	}
+	
 	@Test
 	public void testTripletAndInsertedNAs() {
 		assertEquals(
