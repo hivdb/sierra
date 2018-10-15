@@ -28,29 +28,25 @@ import java.util.List;
 import java.util.Map;
 
 public class MutationMapUtils {
+	
 	public enum SortOrder {ASC, DESC};
+	
 	/**
 	 * @param unsortedMap
 	 * @return sorted map
 	 */
-	public static<T> Map<T, Double> sortByComparator (Map<T, Double> unsortedMap, SortOrder sortOrder) {
+	public static<T> Map<T, Double> sortByComparator(Map<T, Double> unsortedMap, SortOrder sortOrder) {
 		List<Map.Entry<T, Double>> list = new LinkedList<Map.Entry<T, Double>>(unsortedMap.entrySet());
 
-		// Sort list with comparator; Sort in descending order
-		if (sortOrder.equals(SortOrder.DESC)) {
-			Collections.sort(list, new Comparator<Map.Entry<T, Double>>(){
-				public int compare(Map.Entry<T, Double> o1, Map.Entry<T, Double> o2) {
+		// Sort list with comparator
+		Collections.sort(list, new Comparator<Map.Entry<T, Double>>(){
+			public int compare(Map.Entry<T, Double> o1, Map.Entry<T, Double> o2) {
+				if (sortOrder.equals(SortOrder.DESC)) {
 					return (o2.getValue()).compareTo(o1.getValue());
-				}
-			});
-		} else {
-			Collections.sort(list, new Comparator<Map.Entry<T, Double>>(){
-				public int compare(Map.Entry<T, Double> o1, Map.Entry<T, Double> o2) {
-					return (o1.getValue()).compareTo(o2.getValue());
-				}
-			});
-		}
-
+				} else return (o1.getValue()).compareTo(o2.getValue());
+			}
+		});
+		
 		// Convert sorted map back to a Map
 		Map<T, Double> sortedMap = new LinkedHashMap<>();
 		for (Iterator<Map.Entry<T, Double>> it = list.iterator(); it.hasNext();) {
@@ -90,10 +86,6 @@ public class MutationMapUtils {
 		return output.toString();
 	}
 
-
-
-
-
 	public static String printMutSetScoresAsInts(Map<MutationSet, Double> comboMutsSortedByScore) {
 		StringBuffer output = new StringBuffer();
 		for (MutationSet mutList : comboMutsSortedByScore.keySet()) {
@@ -125,5 +117,4 @@ public class MutationMapUtils {
 		output.setLength(output.length() - 2);
 		return output.toString();
 	}
-
 }

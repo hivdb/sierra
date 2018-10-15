@@ -18,9 +18,12 @@
 
 package edu.stanford.hivdb.mutations;
 
+import static org.junit.Assert.assertEquals;
+
 import java.util.HashMap;
 import java.util.Map;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import edu.stanford.hivdb.mutations.Gene;
@@ -30,31 +33,49 @@ import edu.stanford.hivdb.mutations.MutationMapUtils.SortOrder;
 
 public class MutationMapUtilsTest {
 
-	@Test
-	public void test() {
-		Mutation mut2 = new Mutation(Gene.RT, 69, "KS");
-		Mutation mut1 = new Mutation(Gene.RT, 67, "N");
-		Mutation mut3 = new Mutation(Gene.RT, 65, "R");
-		Mutation mut4 = new Mutation(Gene.RT, 184, "V");
-		Mutation mut5 = new Mutation(Gene.RT, 41, "L");
-		Mutation mut6 = new Mutation(Gene.RT, 151, "M");
-
-		Map <Mutation, Double>mutationScores = new HashMap<>();
+	private Map<Mutation, Double> mutationScores = new HashMap<>();
+	final private Mutation mut2 = new Mutation(Gene.RT, 69, "KS");
+	final private Mutation mut1 = new Mutation(Gene.RT, 67, "N");
+	final private Mutation mut3 = new Mutation(Gene.RT, 65, "R");
+	final private Mutation mut4 = new Mutation(Gene.RT, 184, "V");
+	final private Mutation mut5 = new Mutation(Gene.RT, 41, "L");
+	final private Mutation mut6 = new Mutation(Gene.RT, 151, "M");
+	
+	@Before
+	public void setUp() {
+		mutationScores.clear();
 		mutationScores.put(mut1, 5.0);
 		mutationScores.put(mut2, 0.0);
 		mutationScores.put(mut3, 45.0);
 		mutationScores.put(mut4, 15.0);
 		mutationScores.put(mut5, 10.0);
-		mutationScores.put(mut6,  60.0);
-
-		String mutScoresUnsorted = MutationMapUtils.printMutScoresAsInts(mutationScores);
-		System.out.println("Unsorted:" + mutScoresUnsorted);
-
-		Map<Mutation, Double> sortedMutationStringScores = MutationMapUtils.sortByComparator(mutationScores, SortOrder.DESC);
-		String mutScoresSorted = MutationMapUtils.printMutScoresAsInts(sortedMutationStringScores);
-		System.out.println("Sorted:" + mutScoresSorted);
-
-
+		mutationScores.put(mut6, 60.0); 	
 	}
-
+	
+	@Test
+	public void testSortByComperatorAsc() {
+		mutationScores = MutationMapUtils.sortByComparator(mutationScores, SortOrder.ASC);
+		final String scoresSortedByAsc = "T69KS (0), D67N (5), M41L (10), M184V (15), K65R (45), Q151M (60)";
+		assertEquals(scoresSortedByAsc, MutationMapUtils.printMutScoresAsInts(mutationScores));
+	}
+	
+	@Test
+	public void testSortByComperatorDesc() {
+		mutationScores = MutationMapUtils.sortByComparator(mutationScores, SortOrder.DESC);		
+		final String scoresSortedByDesc = "Q151M (60.0), K65R (45.0), M184V (15.0), M41L (10.0), D67N (5.0), T69KS (0.0)";
+		assertEquals(scoresSortedByDesc, MutationMapUtils.printMutScoresAsDouble(mutationScores));
+	}	
+	
+	@Test
+	public void testconvertMutScoresToInts() {
+		Map<Mutation, Integer> mutationScoresAsInts = new HashMap<>();	
+		mutationScoresAsInts.put(mut1, 5);
+		mutationScoresAsInts.put(mut2, 0);
+		mutationScoresAsInts.put(mut3, 45);
+		mutationScoresAsInts.put(mut4, 15);
+		mutationScoresAsInts.put(mut5, 10);
+		mutationScoresAsInts.put(mut6, 60); 
+		assertEquals(mutationScoresAsInts,
+					 MutationMapUtils.convertMutScoresToInts(mutationScores));
+	}
 }

@@ -441,7 +441,7 @@ public class MutationTest {
 	}
 	
 	@Test
-	public void testGetHumanFormat1() {
+	public void testGetHumanFormatWithGene	() {
 		Mutation mut1 = new Mutation(Gene.RT, 65, "KN");
 		Mutation mut2 = new Mutation(Gene.RT, 65, "NK");
 		Mutation mut3 = new Mutation(Gene.RT, 118, "_");
