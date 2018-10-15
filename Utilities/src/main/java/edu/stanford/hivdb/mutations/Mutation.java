@@ -380,7 +380,7 @@ public class Mutation implements Comparable<Mutation> {
 	public MutType getPrimaryType() {
 		return getTypes().get(0);
 	}
-
+	
 	/**
 	 * Retrieve all mutation types of current mutation.
 	 *
