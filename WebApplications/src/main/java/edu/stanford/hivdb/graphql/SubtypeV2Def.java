@@ -23,6 +23,7 @@ import graphql.schema.*;
 import static graphql.Scalars.*;
 import static graphql.schema.GraphQLObjectType.newObject;
 
+import edu.stanford.hivdb.genotyper.BoundGenotype;
 import edu.stanford.hivdb.genotyper.HIVClassificationLevel;
 
 public class SubtypeV2Def {
@@ -42,7 +43,7 @@ public class SubtypeV2Def {
 		oSubtypeLevel = oSubtypeLevelBuilder.build();
 
 		oSubtype = newObject()
-		.name("HIVGenotype")
+		.name("HIVSubtype")
 		.field(
 			field -> field
 			.type(GraphQLString)
@@ -69,7 +70,7 @@ public class SubtypeV2Def {
 		.build();
 
 		oBoundSubtypeV2 = newObject()
-		.name("HIVBoundGenotype")
+		.name("HIVBoundSubtype")
 		.field(
 			field -> field
 			.type(GraphQLString)
@@ -85,7 +86,8 @@ public class SubtypeV2Def {
 		.field(
 			field -> field
 			.type(oSubtype)
-			.name("genotype")
+			.name("subtype")
+			.dataFetcher(env -> ((BoundGenotype) env.getSource()).getGenotype())
 			.description(
 				"The original subtype found by comparison. The value of this " +
 				"field is UNPROCESSED. You probably want to use field `display` " +
@@ -93,12 +95,25 @@ public class SubtypeV2Def {
 		)
 		.field(
 			field -> field
+			.type(oSubtype)
+			.name("genotype")
+			.deprecate("Use field `subtype` instead.")
+		)
+		.field(
+			field -> field
 			.type(new GraphQLList(oSubtype))
-			.name("displayGenotypes")
+			.name("displaySubtypes")
+			.dataFetcher(env -> ((BoundGenotype) env.getSource()).getDisplayGenotypes())
 			.description(
 				"There are several rules applied for subtype displaying. " +
 				"This field lists subtypes that were used in constructing " +
 				"the final result in `display` and `displayWithoutDistance`.")
+		)
+		.field(
+			field -> field
+			.type(new GraphQLList(oSubtype))
+			.name("displayGenotypes")
+			.deprecate("Use field `displaySubtypes` instead.")
 		)
 		.field(
 			field -> field

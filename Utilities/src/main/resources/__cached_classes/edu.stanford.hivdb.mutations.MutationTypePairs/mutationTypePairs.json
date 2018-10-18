@@ -922,7 +922,7 @@
     "drugClass": "NNRTI",
     "position": 190,
     "consensus": "G",
-    "aas": "DFHIKLMNPRWY_-",
+    "aas": "DFHIKLMNPWY_-",
     "type": "NNRTI",
     "isUnusual": true
   },
@@ -942,6 +942,15 @@
     "consensus": "G",
     "aas": "S",
     "type": "NNRTI",
+    "isUnusual": false
+  },
+  {
+    "gene": "RT",
+    "drugClass": "NNRTI",
+    "position": 190,
+    "consensus": "G",
+    "aas": "R",
+    "type": "Other",
     "isUnusual": false
   },
   {
@@ -985,7 +994,7 @@
     "drugClass": "NNRTI",
     "position": 227,
     "consensus": "F",
-    "aas": "L",
+    "aas": "ILV",
     "type": "NNRTI",
     "isUnusual": false
   },
@@ -994,7 +1003,7 @@
     "drugClass": "NNRTI",
     "position": 227,
     "consensus": "F",
-    "aas": "ADEGHIKMNPQRSTVWY_-",
+    "aas": "ADEGHKMNPQRSTWY_-",
     "type": "Other",
     "isUnusual": true
   },
@@ -1022,6 +1031,24 @@
     "position": 230,
     "consensus": "M",
     "aas": "ACDEFGHKNPQRSTVWY_-",
+    "type": "Other",
+    "isUnusual": true
+  },
+  {
+    "gene": "RT",
+    "drugClass": "NNRTI",
+    "position": 234,
+    "consensus": "L",
+    "aas": "I",
+    "type": "NNRTI",
+    "isUnusual": false
+  },
+  {
+    "gene": "RT",
+    "drugClass": "NNRTI",
+    "position": 234,
+    "consensus": "L",
+    "aas": "ACDEFGHKLMNPQRSTWY_-",
     "type": "Other",
     "isUnusual": true
   },

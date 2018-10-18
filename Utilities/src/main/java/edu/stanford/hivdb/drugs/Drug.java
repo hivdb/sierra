@@ -40,6 +40,7 @@ public enum Drug {
 	SQV("saquinavir/r", "SQV/r", DrugClass.PI, true),
 	TPV("tipranavir/r", "TPV/r", DrugClass.PI, true),
 
+	DOR("doravirine", "DOR", DrugClass.NNRTI, true),
 	EFV("efavirenz", "EFV", DrugClass.NNRTI, true),
 	ETR("etravirine", "ETR", DrugClass.NNRTI, true),
 	NVP("nevirapine", "NVP", DrugClass.NNRTI, true),

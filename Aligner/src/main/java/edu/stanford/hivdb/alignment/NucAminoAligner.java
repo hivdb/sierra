@@ -22,6 +22,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.nio.ByteBuffer;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -31,7 +33,17 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+import com.google.common.collect.Iterables;
+import com.google.common.collect.Streams;
 
+import com.amazonaws.services.lambda.AWSLambda;
+import com.amazonaws.services.lambda.AWSLambdaClientBuilder;
+import com.amazonaws.services.lambda.model.InvokeRequest;
+import com.amazonaws.services.lambda.model.InvokeResult;
 import com.google.gson.reflect.TypeToken;
 
 import edu.stanford.hivdb.mutations.Gene;
@@ -53,6 +65,7 @@ import edu.stanford.hivdb.utilities.Sequence;
  */
 public class NucAminoAligner {
 	private static final String NUCAMINO_PROGRAM_PATH = "NUCAMINO_PROGRAM";
+	private static final String NUCAMINO_AWS_LAMBDA = "NUCAMINO_AWS_LAMBDA";
 
 	private static final Map<Gene, Integer[]> GENE_AA_RANGE;
 
@@ -61,6 +74,7 @@ public class NucAminoAligner {
 	private static final Double SEQUENCE_SHRINKAGE_BAD_QUALITY_MUT_PREVALENCE = 0.01; // 1 in 10,000
 	private static final int SEQUENCE_SHRINKAGE_WINDOW = 15;
 	private static final int SEQUENCE_SHRINKAGE_CUTOFF_PCNT = 30;
+	private static final Executor executor = Executors.newFixedThreadPool(20);
 
 	static {
 		Map<Gene, Integer[]> geneAARange = new HashMap<>();
@@ -124,22 +138,15 @@ public class NucAminoAligner {
 	public static List<AlignedSequence> parallelAlign(Collection<Sequence> sequences) {
 		return parallelAlign(sequences, false);
 	}
-
-	private static List<AlignedSequence> parallelAlign(Collection<Sequence> sequences, boolean reversingSequence) {
+	
+	private static List<String> localNucamino(Collection<Sequence> sequences) {
 		String jsonString;
 		String[] cmd = NucAminoAligner.generateCmd();
-		Map<Sequence, StringBuilder> errors = new LinkedHashMap<>();
-		Collection<Sequence> preparedSeqs = sequences;
-		if (reversingSequence) {
-			preparedSeqs = preparedSeqs.stream()
-				.map(s -> s.reverseCompliment())
-				.collect(Collectors.toList());
-		}
 		try {
 			Process proc = Runtime.getRuntime().exec(cmd);
 			OutputStream stdin = proc.getOutputStream();
 			BufferedReader stdout = new BufferedReader(new InputStreamReader(proc.getInputStream()));
-			FastaUtils.writeStream(preparedSeqs, stdin);
+			FastaUtils.writeStream(sequences, stdin);
 			jsonString = stdout.lines().collect(Collectors.joining());
 			stdout.close();
 			proc.waitFor();
@@ -148,7 +155,64 @@ public class NucAminoAligner {
 		} catch (InterruptedException e) {
 			throw new RuntimeException(e);
 		}
-		List<AlignedSequence> results = processCommandOutput(sequences, jsonString, reversingSequence, errors);
+		List<String> result = new ArrayList<>();
+		result.add(jsonString);
+		return result;
+	}
+	
+	private static List<String> awsNucamino(Collection<Sequence> sequences, String awsFuncAndQual) {
+		String[] funcAndQual = awsFuncAndQual.split(":");
+		Iterable<List<Sequence>> partialSets = Iterables.partition(sequences, 5);
+		List<CompletableFuture<String>> futures = Streams.stream(partialSets).map(partialSet -> {
+			Map<String, String> payload = new HashMap<>();
+			payload.put("profile", "hiv1b");
+			payload.put("genes", "pol");
+			payload.put("fasta", FastaUtils.writeString(partialSet));
+			String payloadText = Json.dumps(payload);
+			AWSLambda client = AWSLambdaClientBuilder.standard().build();
+			InvokeRequest request = new InvokeRequest()
+				.withFunctionName(funcAndQual[0])
+				.withPayload(payloadText)
+				.withQualifier(funcAndQual[1]);
+			return CompletableFuture.supplyAsync(() -> {
+				InvokeResult response = client.invoke(request);
+				ByteBuffer respPayload = response.getPayload();
+				return new String(respPayload.array(), Charset.forName("UTF-8"));
+			}, executor);
+		}).collect(Collectors.toList());
+
+		CompletableFuture.allOf(futures.toArray(new CompletableFuture<?>[0])).join();
+
+		return futures.stream().map(f -> {
+			try {
+				return f.get();
+			} catch (InterruptedException e) {
+				throw new RuntimeException(e);
+			} catch (ExecutionException e) {
+				throw new RuntimeException(e);
+			}
+		}).collect(Collectors.toList());
+	}
+
+	private static List<AlignedSequence> parallelAlign(Collection<Sequence> sequences, boolean reversingSequence) {
+		Map<Sequence, StringBuilder> errors = new LinkedHashMap<>();
+		Collection<Sequence> preparedSeqs = sequences;
+		if (reversingSequence) {
+			preparedSeqs = preparedSeqs.stream()
+				.map(s -> s.reverseCompliment())
+				.collect(Collectors.toList());
+		}
+		List<String> jsonStrings;
+		String awsFunc = System.getenv(NUCAMINO_AWS_LAMBDA);
+		if (awsFunc == null || awsFunc.equals("")) {
+			jsonStrings = localNucamino(preparedSeqs);
+		} else {
+			jsonStrings = awsNucamino(preparedSeqs, awsFunc);
+		}
+		List<AlignedSequence> results = new ArrayList<>();
+		for (String jsonString : jsonStrings) {
+			results.addAll(processCommandOutput(sequences, jsonString, reversingSequence, errors));
+		}
 		if (!reversingSequence && !errors.isEmpty()) {
 			// a second run for reverse complement
 			List<Sequence> errorSeqs = new ArrayList<>(errors.keySet());

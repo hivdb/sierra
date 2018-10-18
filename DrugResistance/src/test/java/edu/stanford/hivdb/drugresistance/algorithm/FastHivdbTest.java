@@ -106,6 +106,7 @@ public class FastHivdbTest {
 		expected.get(DrugClass.NNRTI).put(Drug.RPV, 0.0);
 		expected.get(DrugClass.NNRTI).put(Drug.ETR, 0.0);
 		expected.get(DrugClass.NNRTI).put(Drug.EFV, 0.0);
+		expected.get(DrugClass.NNRTI).put(Drug.DOR, 0.0);
 		assertEquals(expected, asiObj.getDrugClassTotalDrugScores());
 		assertEquals(
 			expected.get(DrugClass.NRTI),

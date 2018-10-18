@@ -1,6 +1,6 @@
 FROM ubuntu:16.04
 
-ENV TOMCAT_VERSION=8.5.28
+ENV TOMCAT_VERSION=8.5.34
 ENV CATALINA_OPTS "-Xms512M -Xmx1024M"
 RUN apt-get update -qy && \
     apt-get install -qqy software-properties-common curl && \
@@ -20,9 +20,9 @@ RUN apt-get update -qy && \
     cp /usr/share/tomcat/conf/web.xml /root/web.dev.xml && \
     cp /usr/share/tomcat/conf/web.xml /root/web.prod.xml && \
     cp /root/web.prod.xml /usr/share/tomcat/conf/web.xml
-ENV NUCAMINO_VERSION=0.1.3
-# RUN curl -L https://github.com/hivdb/NucAmino/releases/download/v${NUCAMINO_VERSION}/nucamino-linux-amd64 -o /usr/bin/nucamino
-ADD nucamino-linux-amd64 /usr/bin/nucamino
+ENV NUCAMINO_VERSION=0.2.0-beta.2
+RUN curl -L https://github.com/hivdb/NucAmino/releases/download/${NUCAMINO_VERSION}/nucamino-linux-amd64 -o /usr/bin/nucamino
+# ADD nucamino-linux-amd64 /usr/bin/nucamino
 EXPOSE 8080
 ADD src/hivdb-tomcat-entrypoint.sh /usr/bin/entrypoint
 RUN chmod +x /usr/bin/entrypoint /usr/bin/nucamino

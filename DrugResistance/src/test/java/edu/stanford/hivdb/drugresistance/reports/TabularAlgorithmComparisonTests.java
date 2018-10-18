@@ -61,7 +61,7 @@ public class TabularAlgorithmComparisonTests {
 			"sequenceName\tgene\tdrugName\tANRS.drugLevel\tHIVDB.drugLevel\tREGA.drugLevel\tHIVDB70.drugLevel",
 			result.split("\n", 2)[0]
 		);
-		assertEquals(191, result.split("\n").length);
+		assertEquals(201, result.split("\n").length);
 	}
 
 }

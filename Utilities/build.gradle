@@ -6,7 +6,7 @@ plugins {
 }
 
 group = 'edu.stanford.hivdb'
-version = '2.2.7-1'
+version = '2.2.9a1'
 
 description = """Utilities"""
 
@@ -24,7 +24,7 @@ dependencies {
     compile 'org.apache.logging.log4j:log4j-api:2.5'
     compile 'org.apache.logging.log4j:log4j-core:2.5'
     compile 'mysql:mysql-connector-java:5.1.38'
-    compile 'com.google.guava:guava:19.0'
+    compile 'com.google.guava:guava:21.0'
     compile 'com.mchange:c3p0:0.9.5.2'
     compile 'com.google.code.gson:gson:2.6.2'
     compile 'commons-io:commons-io:2.4'
@@ -32,6 +32,8 @@ dependencies {
 	compile 'net.sf.jfasta:jfasta:2.1.1'
     compile 'junit:junit:4.12'
     compile 'org.mockito:mockito-core:1.9.5'
+    compile 'org.apache.httpcomponents:httpclient:4.5.6'
+    compile 'org.apache.httpcomponents:httpcore:4.4.10'
     compile 'com.mashape.unirest:unirest-java:1.4.9'
     compile project(':TestResources')
 }
