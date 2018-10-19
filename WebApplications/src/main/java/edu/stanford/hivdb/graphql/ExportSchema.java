@@ -43,6 +43,7 @@ public class ExportSchema {
 		"    directives {\n" +
 		"      name\n" +
 		"      description\n" +
+		"      locations\n" +
 		"      args {\n" +
 		"        ...InputValue\n" +
 		"      }\n" +
