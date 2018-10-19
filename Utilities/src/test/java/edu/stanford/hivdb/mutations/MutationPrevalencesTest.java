@@ -1,5 +1,4 @@
 /*
-    
     Copyright (C) 2017 Stanford HIVDB team
     
     Sierra is free software: you can redistribute it and/or modify
@@ -59,7 +58,7 @@ public class MutationPrevalencesTest {
 		}
 		
 		@Test
-		public void testsMutationPrevalanceConstruction() throws IOException {
+		public void testsMutationPrevalanceConstruction() {
 			Mutation m = new Mutation(Gene.RT, 554, "S");
 			MutationPrevalence mpFull = new MutationPrevalence(m, "Other", 736, 547, 74.3, 2, 0, 0.0);
 			MutationPrevalence mpBrief = new MutationPrevalence(m, "Other", 736, 2);
@@ -86,7 +85,7 @@ public class MutationPrevalencesTest {
 
 			/* mutation in the middle of PI file */
 			m = new Mutation(Gene.PR, 72, "T");
-			checkPrevalence(MutationPrevalences.getPrevalenceAtSamePosition(m), "T", "All", 98118, 3731, 3.8, 26364, 2105, 8.0);
+			checkPrevalence(MutationPrevalences.getPrevalenceAtSamePosition(m), "T", "All", 98144, 3731, 3.8, 26381, 2105, 8.0);
 		}
 		
 		@Test
@@ -108,7 +107,7 @@ public class MutationPrevalencesTest {
 				.orElse(null);
 			assertEquals(null, mp);
 		}
-
+		
 		private void checkPrevalence(
 				List<MutationPrevalence> mps, String aa, String subtype, int nNaive,
 				int frequencyNaive, double percentageNaive, int nTreated,
