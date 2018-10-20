@@ -342,22 +342,29 @@ public class MutationTest {
 	@Test
 	public void testGetTypes() {
 		Mutation mut1 = new Mutation(Gene.PR, 50, "VEF");
-		List<MutType> expecteds = new ArrayList<>();
-		expecteds.add(MutType.Major);
-		expecteds.add(MutType.Accessory);
-		assertEquals(expecteds, mut1.getTypes());
-		assertEquals(expecteds, mut1.getTypes());
 		Mutation mut2 = new Mutation(Gene.PR, 51, "VEF");
-		expecteds = new ArrayList<>();
-		expecteds.add(MutType.Other);
-		assertEquals(expecteds, mut2.getTypes());
-		assertEquals(expecteds, mut2.getTypes());
+		List<MutType> eTyoes1 = new ArrayList<>();
+		eTyoes1.add(MutType.Major);
+		eTyoes1.add(MutType.Accessory);
+		List<MutType>eTyoes2 = new ArrayList<>();
+		eTyoes2.add(MutType.Other);
+		assertEquals(eTyoes1, mut1.getTypes());
+		assertEquals(eTyoes1, mut1.getTypes()); // post instantiation of types
+		assertEquals(eTyoes2, mut2.getTypes());
 	}
 
 	@Test
+	public void testGetPrimaryType() {
+		final Mutation majorMut = new Mutation(Gene.PR, 50, "VEF");
+		final Mutation otherMut = new Mutation(Gene.PR, 51, "VEF");
+		assertEquals(MutType.Major, majorMut.getPrimaryType());
+		assertEquals(MutType.Other, otherMut.getPrimaryType());
+	}
+	
+	@Test
 	public void testEqualsAndHashCode() {
-		Mutation mut1 = new Mutation(Gene.RT, 69, "_");
-		Mutation mut2 = new Mutation(Gene.RT, 69, "_");
+		final Mutation mut1 = new Mutation(Gene.RT, 69, "_");
+		final Mutation mut2 = new Mutation(Gene.RT, 69, "_");
 		assertEquals(mut1, mut2);
 		assertEquals(mut1, mut1);
 		assertNotEquals(mut1, null);
@@ -366,7 +373,6 @@ public class MutationTest {
 	
 	@Test
 	public void testGetHumanFormat() {
-		System.out.println("\nMethod: MutationTest:test");
 		Mutation mut1 = new Mutation(Gene.RT, 65, "KN");
 		Mutation mut2 = new Mutation(Gene.RT, 65, "NK");
 		Mutation mut3 = new Mutation(Gene.RT, 118, "_");
@@ -433,7 +439,57 @@ public class MutationTest {
 		assertNotEquals(mut16, mut17);
 		assertNotEquals(mut16.hashCode(), mut17.hashCode());
 	}
-
+	
+	@Test
+	public void testGetHumanFormatWithGene	() {
+		Mutation mut1 = new Mutation(Gene.RT, 65, "KN");
+		Mutation mut2 = new Mutation(Gene.RT, 65, "NK");
+		Mutation mut3 = new Mutation(Gene.RT, 118, "_");
+		Mutation mut4 = new Mutation(Gene.RT, 118, "#");
+		Mutation mut5 = new Mutation(Gene.RT, 118, "Insertion");
+		Mutation mut6 = new Mutation(Gene.RT, 69, "-");
+		Mutation mut7 = new Mutation(Gene.RT, 69, "Deletion");
+		Mutation mut8 = new Mutation(Gene.IN, 155, "S");
+		Mutation mut9 = new Mutation(Gene.IN, 155, "NS");
+		Mutation mut10 = new Mutation(Gene.RT, 10, "S");
+		Mutation mut11 = new Mutation(Gene.PR, 10, "S");
+		Mutation mut12 = new Mutation(Gene.RT, 215, "FIST");
+		Mutation mut13 = new Mutation(Gene.RT, 215, "TSNY");
+		Mutation mut14 = new Mutation(Gene.RT, 188, "YL*");
+		Mutation mut15 = new Mutation(Gene.RT, 188, "*");
+		Mutation mut16 = new Mutation(Gene.IN, 263, "RKGY");
+		Mutation mut17 = new Mutation(Gene.IN, 263, "X");
+		Mutation mut18 = new Mutation(Gene.RT, 118, "V_V");
+		assertEquals("RT_K65KN", mut1.getHumanFormatWithGene());
+		assertEquals("RT_K65KN", mut2.getHumanFormatWithGene());
+		assertEquals("RT_V118Insertion", mut3.getHumanFormatWithGene());
+		assertEquals("RT_V118Insertion", mut4.getHumanFormatWithGene());
+		assertEquals("RT_V118Insertion", mut5.getHumanFormatWithGene());
+		assertEquals("RT_T69Deletion", mut6.getHumanFormatWithGene());
+		assertEquals("RT_T69Deletion", mut7.getHumanFormatWithGene());
+		assertEquals("IN_N155S", mut8.getHumanFormatWithGene());
+		assertEquals("IN_N155NS", mut9.getHumanFormatWithGene());
+		assertEquals("RT_V10S", mut10.getHumanFormatWithGene());
+		assertEquals("PR_L10S", mut11.getHumanFormatWithGene());
+		assertEquals("RT_T215TFIS", mut12.getHumanFormatWithGene());
+		assertEquals("RT_T215TNSY", mut13.getHumanFormatWithGene());
+		assertEquals("RT_Y188Y*L", mut14.getHumanFormatWithGene());
+		assertEquals("RT_Y188*", mut15.getHumanFormatWithGene());
+		assertEquals("IN_R263RGKY", mut16.getHumanFormatWithGene());
+		assertEquals("IN_R263X", mut17.getHumanFormatWithGene());
+		assertEquals("RT_V118V_V", mut18.getHumanFormatWithGene());
+	}
+	
+	@Test
+	public void testGetHumanFormatWithoutCons() {
+		assertEquals(
+			"69T_TT",
+			new Mutation(Gene.RT, 69, "T_TT").getHumanFormatWithoutCons());
+		assertEquals(
+			"67Deletion",
+			new Mutation(Gene.RT, 67, "-").getHumanFormatWithoutCons());
+	}
+	
 	@Test
 	public void testParseString() {		
 		assertEquals(
@@ -627,16 +683,6 @@ public class MutationTest {
 			new Mutation(Gene.RT, 69, "V_TT").hasConsensus());
 	}
 
-	@Test
-	public void testGetHumanFormatWithoutCons() {
-		assertEquals(
-			"69T_TT",
-			new Mutation(Gene.RT, 69, "T_TT").getHumanFormatWithoutCons());
-		assertEquals(
-			"67Deletion",
-			new Mutation(Gene.RT, 67, "-").getHumanFormatWithoutCons());
-	}
-	
 	@Test 
 	public void testIsUnsequenced() {
 		final Mutation mut = new Mutation(Gene.PR, 1, "X");
@@ -750,14 +796,4 @@ public class MutationTest {
 		assertEquals(3.535, prevMutsWCons.getHighestMutPrevalence(), 0.0);
 		assertEquals(3.535, prevMutsWConsAndStop.getHighestMutPrevalence(), 0.0);
 	}
-	
-//	@Test
-//	public void testGetPrimaryType() {
-//		// TODO
-//	}
-//	
-//	@Test
-//	public void testGetHumanFormatFromGene() {
-//		// TODO
-//	}
 }

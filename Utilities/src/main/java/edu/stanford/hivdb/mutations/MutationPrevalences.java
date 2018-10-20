@@ -49,7 +49,7 @@ public class MutationPrevalences {
 
 	/*
 	 * Class representing the frequency of mutations for treated and naive individuals
-	 * for one particular mutatoin and subtype.
+	 * for one particular mutation and subtype.
 	 */
 	public static class MutationPrevalence {
 		public final Mutation mutation;
@@ -79,7 +79,7 @@ public class MutationPrevalences {
 				Mutation mutation, String subtype, int totalNaive, int totalTreated) {
 			this(mutation, subtype, totalNaive, 0, 0.0, totalTreated, 0, 0.0);
 		}
-
+		
 		public String getAA() {
 			return mutation.getAAs();
 		}
@@ -106,7 +106,6 @@ public class MutationPrevalences {
 	private static transient
 		Map<Gene, Map<String, Integer[]>> numPatients;
 	private static transient List<String> allTypes;
-
 
 	static {
 		Cachable.setup(MutationPrevalences.class, () -> {
@@ -145,7 +144,7 @@ public class MutationPrevalences {
 	public static Map<Gene, Map<String, Integer[]>> getNumPatients() {
 		return numPatients;
 	}
-
+	
 	public static List<String> getAllTypes() {
 		return allTypes;
 	}
@@ -156,7 +155,7 @@ public class MutationPrevalences {
 		return mutationPrevalenceByGenePositions
 			.getOrDefault(mutation.getGenePosition(), new ArrayList<>());
 	}
-
+	
 	public static Map<Mutation, List<MutationPrevalence>>
 			groupPrevalenceByPositions(MutationSet mutations) {
 		return mutations
@@ -169,7 +168,7 @@ public class MutationPrevalences {
 			));
 	}
 
-	public static void readPrevalenceFile(URL prevalenceDb, Gene gene) throws IOException {
+	protected static void readPrevalenceFile(URL prevalenceDb, Gene gene) throws IOException {
 		Scanner scanner = new Scanner(prevalenceDb.openStream());
 		String[] colHeaders;
 		String firstLine = scanner.nextLine();
@@ -207,11 +206,10 @@ public class MutationPrevalences {
 	}
 
 	/* update the mutation prevalence store. */
-	public static void populateMutationPrevalenceStore() throws IOException {
+	protected static void populateMutationPrevalenceStore() throws IOException {
 		mutationPrevalences = new ArrayList<>();
 		readPrevalenceFile(new URL(PR_PREVALENCE_DB_URL), Gene.PR);
 		readPrevalenceFile(new URL(IN_PREVALENCE_DB_URL), Gene.IN);
 		readPrevalenceFile(new URL(RT_PREVALENCE_DB_URL), Gene.RT);
 	}
-
 }
