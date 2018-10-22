@@ -65,9 +65,14 @@ public class MutationPrevalencesTest {
 			assertEquals("A554S Other 736 2 547 0 74.300000 0.000000", mpFull.toString());
 			assertEquals("A554S Other 736 2 0 0 0.000000 0.000000", mpBrief.toString());
 		}
-		
+		 
 		@Test
 		public void testPrevalanceMatches() {
+			// Since we update prevalence data periodically, we  
+			// expects the following assertions to ultimately fail. 
+			// Hence we must manually update these assertions every time
+			// we upload new prevalence data. 
+			
 			/* 1st mutation in the INI file with 2 different subtypes */
 			Mutation m = new Mutation(Gene.IN, 1, "S");
 			checkNullPrevalence(MutationPrevalences.getPrevalenceAtSamePosition(m), "S", "A");

@@ -79,6 +79,17 @@ public class MutationSetTest {
 				"PR_31MK, RT67P ; RT69S_SS IN:210*, IN211d+RT211-...IN-212Deletion"));
 	}
 
+	@Test
+	public void testParseStringCollectionString() {
+		assertEquals(
+			new MutationSet(
+				Gene.RT,
+				Arrays.asList("", "31I", "31MK", "31MK", "31I", "67P", "69S_SS", "210*", "211d", "211Deletion", "212Deletion")
+			),
+			new MutationSet(
+				"RT_31MK, RT67P ; RT69S_SS RT:210*, RT211d+RT211-...RT-212Deletion"));
+	}
+	
 	@Test(expected=UnsupportedOperationException.class)
 	public void testPreventAddAll() {
 		MutationSet muts = new MutationSet();
@@ -157,7 +168,6 @@ public class MutationSetTest {
 				new Mutation(Gene.RT, 67, "P")),
 			new MutationSet(Gene.RT, "31M, 67P")
 			.mergesWith(new Mutation(Gene.RT, 31, "K")));
-
 	}
 
 	@Test
@@ -183,9 +193,12 @@ public class MutationSetTest {
 		assertEquals(
 			new MutationSet("RT:36K"),
 			another.intersectsWith(new Mutation(Gene.RT, 36, "AK")));
-
+		
+		assertEquals(
+			new MutationSet("RT:36K"),
+			another.intersectsWith(Arrays.asList(Mutation.parseString("RT:36K"))));
 	}
-
+	
 	@Test
 	public void testSubtractsBy() {
 		MutationSet self = new MutationSet("RT:48VER PR48VER PR:32E");
@@ -312,6 +325,11 @@ public class MutationSetTest {
 			).get(Gene.PR, 67));
 	}
 
+	@Test 
+	public void testGetByMutType() {
+		
+	}
+	
 	@Test
 	public void testCompareTwoSets() {
 		assertEquals(
@@ -341,7 +359,6 @@ public class MutationSetTest {
 
 	@Test
 	public void testAutoMerge() {
-
 		assertEquals(
 			new MutationSet(
 				new Mutation(Gene.RT, 31, "KM"),
@@ -367,7 +384,6 @@ public class MutationSetTest {
 
 	@Test
 	public void testGetGeneMutations() {
-
 		assertEquals(
 			new MutationSet(
 				new Mutation(Gene.RT, 31, "KM"),
@@ -386,7 +402,6 @@ public class MutationSetTest {
 
 	@Test
 	public void testGetInsertions() {
-
 		assertEquals(
 			new MutationSet(
 				new Mutation(Gene.RT, 67, "_A"),
@@ -403,7 +418,6 @@ public class MutationSetTest {
 
 	@Test
 	public void testGetDeletions() {
-
 		assertEquals(
 			new MutationSet(
 				new Mutation(Gene.IN, 31, "-")
@@ -419,7 +433,6 @@ public class MutationSetTest {
 
 	@Test
 	public void testGetStopCodons() {
-
 		assertEquals(
 			new MutationSet(
 				new Mutation(Gene.IN, 31, "*")
@@ -435,7 +448,6 @@ public class MutationSetTest {
 
 	@Test
 	public void testGetAmbiguousCodons() {
-
 		assertEquals(
 			new MutationSet(
 				new Mutation(Gene.IN, 31, "X"),
@@ -547,6 +559,21 @@ public class MutationSetTest {
 
 	@Test
 	public void testGetDRMs() {
+		final MutationSet drmMuts = new MutationSet(
+			new Mutation(Gene.RT, 103, "N"),
+			new Mutation(Gene.PR, 84, "KV"),
+			new Mutation(Gene.IN, 155, "S"));
+		assertEquals(drmMuts, drmMuts.getDRMs());
+		
+		final MutationSet muts = new MutationSet(
+			new Mutation(Gene.RT, 68, "A"),
+			new Mutation(Gene.RT, 118, "I"),
+			new Mutation(Gene.RT, 41, "P"));
+		assertEquals(new MutationSet(), muts.getDRMs());
+	}
+	
+	@Test
+	public void testGetDRMsByDrugClass() {
 		MutationSet sequenceMuts = new MutationSet(
 			new Mutation(Gene.RT, 68, "A"),
 			new Mutation(Gene.RT, 115, "FR"),
@@ -563,6 +590,8 @@ public class MutationSetTest {
 		assertEquals(expected, sequenceMuts.getDRMs(DrugClass.NNRTI));
 	}
 
+	
+		
 	@Test
 	public void testJoin() {
 		MutationSet sequenceMuts = new MutationSet(
@@ -624,7 +653,6 @@ public class MutationSetTest {
 
 	@Test
 	public void testHashCode() {
-
 		assertEquals(
 			new MutationSet(
 				new Mutation(Gene.PR, 31, "X"),
