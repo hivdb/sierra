@@ -18,25 +18,24 @@
 
 package edu.stanford.hivdb.mutations;
 
-import java.util.Set;
-import java.util.Map;
-import java.util.List;
-import java.util.Arrays;
-import java.util.TreeMap;
-import java.util.HashMap;
-import java.util.TreeSet;
-import java.util.HashSet;
-import java.util.LinkedHashMap;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
+import java.util.TreeSet;
+import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import edu.stanford.hivdb.drugs.DrugClass;
 import edu.stanford.hivdb.mutations.MutationPrevalences.MutationPrevalence;
-
-import java.util.function.Function;
-import java.util.function.Predicate;
 
 public class MutationSet extends TreeSet<Mutation> {
 
@@ -565,5 +564,4 @@ public class MutationSet extends TreeSet<Mutation> {
 	public List<String> toASIFormat() {
 		return toStringList(Mutation::getASIFormat);
 	}
-
 }

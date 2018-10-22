@@ -1,5 +1,4 @@
 /*
-    
     Copyright (C) 2017 Stanford HIVDB team
     
     Sierra is free software: you can redistribute it and/or modify
@@ -17,18 +16,58 @@
 */
 
 package edu.stanford.hivdb.mutations;
-import java.io.IOException;
-import java.util.List;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
-import org.junit.Assert;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.commons.collections4.CollectionUtils;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import edu.stanford.hivdb.mutations.MutationPrevalences.MutationPrevalence;
 
 public class MutationPrevalencesTest {
+	
+		// MutationPrevalences calls populateMutationPrevalenceStore
+		// in its static initializer. So calling it here is redundant.
+		// However, doing so increases code coverage metrics.
+		@BeforeClass
+		public static void manualInit() throws IOException {
+			MutationPrevalences.populateMutationPrevalenceStore();
+		}
+		
 		@Test
-		public void test() throws IOException {
-
+		public void testInitialization() {
+			List<String> eTypes = Arrays.asList("A", "B", "C", "D", "F", "G", "CRF01_AE", "CRF02_AG", "Other", "All");
+			assertEquals(eTypes, MutationPrevalences.getAllTypes());
+			
+			Map<Gene, Map<String, Integer[]>> numPatients = MutationPrevalences.getNumPatients();
+			List<Gene> eGenes = Arrays.asList(Gene.RT, Gene.IN, Gene.PR);
+			List<Gene> genes = new ArrayList<>(numPatients.keySet());
+			assertTrue(CollectionUtils.isEqualCollection(eGenes, genes));
+			
+			numPatients.values().forEach(typeMap -> {
+				List<String> types = new ArrayList<>(typeMap.keySet());
+				assertTrue(CollectionUtils.isEqualCollection(eTypes, types));
+			});
+		}
+		
+		@Test
+		public void testsMutationPrevalanceConstruction() {
+			Mutation m = new Mutation(Gene.RT, 554, "S");
+			MutationPrevalence mpFull = new MutationPrevalence(m, "Other", 736, 547, 74.3, 2, 0, 0.0);
+			MutationPrevalence mpBrief = new MutationPrevalence(m, "Other", 736, 2);
+			assertEquals("A554S Other 736 2 547 0 74.300000 0.000000", mpFull.toString());
+			assertEquals("A554S Other 736 2 0 0 0.000000 0.000000", mpBrief.toString());
+		}
+		
+		@Test
+		public void testPrevalanceMatches() {
 			/* 1st mutation in the INI file with 2 different subtypes */
 			Mutation m = new Mutation(Gene.IN, 1, "S");
 			checkNullPrevalence(MutationPrevalences.getPrevalenceAtSamePosition(m), "S", "A");
@@ -47,34 +86,42 @@ public class MutationPrevalencesTest {
 			/* mutation in the middle of PI file */
 			m = new Mutation(Gene.PR, 72, "T");
 			checkPrevalence(MutationPrevalences.getPrevalenceAtSamePosition(m), "T", "All", 98144, 3731, 3.8, 26381, 2105, 8.0);
-
 		}
-
+		
+		@Test
+		public void testGroupPrevalenceByPos() {
+			MutationSet muts = new MutationSet("IN1S IN1S IN286N PR72T RT554S");
+			Map<Mutation, List<MutationPrevalence>> mpByPos = MutationPrevalences.groupPrevalenceByPositions(muts);
+			muts.forEach(mut -> {
+				List<MutationPrevalence> prevsAtPos = MutationPrevalences.getPrevalenceAtSamePosition(mut);
+				assertEquals(prevsAtPos, mpByPos.get(mut));
+			});			
+		}
+		
 		private void checkNullPrevalence(
 				List<MutationPrevalence> mps, String aa, String subtype) {
 			MutationPrevalence mp = mps
 				.stream()
-				.filter(m -> m.subtype.equals(subtype) && m.mutation.getAAs().equals(aa))
+				.filter(m -> m.subtype.equals(subtype) && m.getAA().equals(aa))
 				.findFirst()
 				.orElse(null);
-			Assert.assertEquals(null, mp);
+			assertEquals(null, mp);
 		}
-
+		
 		private void checkPrevalence(
 				List<MutationPrevalence> mps, String aa, String subtype, int nNaive,
 				int frequencyNaive, double percentageNaive, int nTreated,
 				int frequencyTreated, double percentageTreated) {
 			MutationPrevalence mp = mps
 				.stream()
-				.filter(m -> m.subtype.equals(subtype) && m.mutation.getAAs().equals(aa))
+				.filter(m -> m.subtype.equals(subtype) && m.getAA().equals(aa))
 				.findFirst()
 				.orElse(null);
-			System.out.println(mp);
-			Assert.assertEquals(new Integer(nNaive), mp.totalNaive);
-			Assert.assertEquals(new Integer(frequencyNaive), mp.frequencyNaive);
-			Assert.assertEquals(new Double(percentageNaive), mp.percentageNaive);
-			Assert.assertEquals(new Integer(nTreated), mp.totalTreated);
-			Assert.assertEquals(new Integer(frequencyTreated), mp.frequencyTreated);
-			Assert.assertEquals(new Double(percentageTreated), mp.percentageTreated);
+			assertEquals(new Integer(nNaive), mp.totalNaive);
+			assertEquals(new Integer(frequencyNaive), mp.frequencyNaive);
+			assertEquals(new Double(percentageNaive), mp.percentageNaive);
+			assertEquals(new Integer(nTreated), mp.totalTreated);
+			assertEquals(new Integer(frequencyTreated), mp.frequencyTreated);
+			assertEquals(new Double(percentageTreated), mp.percentageTreated);
 		}
 }
