@@ -29,26 +29,26 @@ public class MutationTypePairsTest {
 		assertFalse(mutTypePair.isUnusual());
 	}
 		
-//	@Test
-//	public void testGetUniqueId() {
-//		final MutationTypePair mutTypePairPiMajor = new MutationTypePair(Gene.IN, DrugClass.INSTI, 66, "I", MutType.Major, false);
-//		String eID = "IN_POS66I_Major";
-//		assertEquals(eID, mutTypePairPiMajor.getUniqueID());
-//	}
-//	
-//	@Test
-//	public void testGetUniqueIdPiMajor() {
-//		final MutationTypePair mutTypePairPiMajor = new MutationTypePair(Gene.PR, DrugClass.PI, 32, "I", MutType.Major, false);
-//		String eID = "PR_POS32I_PIMajor";
-//		assertEquals(eID, mutTypePairPiMajor.getUniqueID());
-//	}
-//	
-//	@Test
-//	public void testGetUniqueIdPiMinor() {
-//		final MutationTypePair mutTypePairPiMinor = new MutationTypePair(Gene.PR, DrugClass.PI, 23, "I", MutType.Accessory, false);
-//		String eID = "PR_POS23I_PIMinor";
-//		assertEquals(eID, mutTypePairPiMinor.getUniqueID());
-//	}
+	@Test
+	public void testGetUniqueId() {
+		final MutationTypePair mutTypePairPiMajor = new MutationTypePair(Gene.IN, DrugClass.INSTI, 66, "I", MutType.Major, false);
+		String eID = "IN_POS66I_Major";
+		assertEquals(eID, mutTypePairPiMajor.getUniqueID());
+	}
+	
+	@Test
+	public void testGetUniqueIdPiMajor() {
+		final MutationTypePair mutTypePairPiMajor = new MutationTypePair(Gene.PR, DrugClass.PI, 32, "I", MutType.Major, false);
+		String eID = "PR_POS32I_PIMajor";
+		assertEquals(eID, mutTypePairPiMajor.getUniqueID());
+	}
+	
+	@Test
+	public void testGetUniqueIdPiMinor() {
+		final MutationTypePair mutTypePairPiMinor = new MutationTypePair(Gene.PR, DrugClass.PI, 23, "I", MutType.Accessory, false);
+		String eID = "PR_POS23I_PIMinor";
+		assertEquals(eID, mutTypePairPiMinor.getUniqueID());
+	}
 		
 	@Test
 	public void testIsMatched() {

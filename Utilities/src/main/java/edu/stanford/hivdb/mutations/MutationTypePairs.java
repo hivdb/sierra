@@ -85,16 +85,16 @@ public class MutationTypePairs {
 				MyStringUtils.hasSharedChar(mutAAs, aas);
 		}
 		
-//		public String getUniqueID() {
-//			String typeStr = type.toString();
-//			if (drugClass == DrugClass.PI) {
-//				if (type == MutType.Major) typeStr = "PIMajor";
-//				if (type == MutType.Accessory) typeStr = "PIMinor";
-//			}
-//			return String.format(
-//				"%s_POS%d%s_%s", gene.toString(), position,
-//				AA.toASIFormat(aas), typeStr);
-//		}
+		public String getUniqueID() {
+			String typeStr = type.toString();
+			if (drugClass == DrugClass.PI) {
+				if (type == MutType.Major) typeStr = "PIMajor";
+				if (type == MutType.Accessory) typeStr = "PIMinor";
+			}
+			return String.format(
+				"%s_POS%d%s_%s", gene.toString(), position,
+				AA.toASIFormat(aas), typeStr);
+		}
 	}
 
 	static {

@@ -609,8 +609,6 @@ public class MutationSetTest {
 		assertEquals(expected, sequenceMuts.getDRMs(DrugClass.NNRTI));
 	}
 
-	
-		
 	@Test
 	public void testJoin() {
 		MutationSet sequenceMuts = new MutationSet(
