@@ -510,7 +510,7 @@ public class MutationSet extends TreeSet<Mutation> {
 	public Map<Mutation, List<MutationPrevalence>> getPrevalences() {
 		return MutationPrevalences.groupPrevalenceByPositions(this);
 	}
-
+	
 	public String join(
 			CharSequence delimiter,
 			Function<Mutation, CharSequence> mutationToString) {

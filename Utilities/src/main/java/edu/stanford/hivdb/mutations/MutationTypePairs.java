@@ -35,7 +35,6 @@ import edu.stanford.hivdb.utilities.JdbcDatabase;
 import edu.stanford.hivdb.utilities.MyStringUtils;
 import edu.stanford.hivdb.utilities.Cachable;
 
-
 public class MutationTypePairs {
 
 	@SuppressWarnings("unused")
@@ -45,14 +44,14 @@ public class MutationTypePairs {
 	private static List<MutationTypePair> mutationTypePairs;
 
 	public static class MutationTypePair {
-		public final Gene gene;
-		public final DrugClass drugClass;
-		public final Integer position;
-		public final String consensus;
-		public final String aas;
-		public final MutType type;
+		private final Gene gene;
+		private final DrugClass drugClass;
+		private final Integer position;
+		private final String consensus;
+		private final String aas;
+		private final MutType type;
 		private final Boolean isUnusual;
-
+		
 		public MutationTypePair(
 				final Gene gene, final DrugClass drugClass,
 				final int position, final String aas,
@@ -85,14 +84,12 @@ public class MutationTypePairs {
 				mut.getPosition() == position &&
 				MyStringUtils.hasSharedChar(mutAAs, aas);
 		}
-
+		
 		public String getUniqueID() {
 			String typeStr = type.toString();
-			if (type == MutType.Major && drugClass == DrugClass.PI) {
-				typeStr = "PIMajor";
-			}
-			else if (type == MutType.Accessory && drugClass == DrugClass.PI) {
-				typeStr = "PIMinor";
+			if (drugClass == DrugClass.PI) {
+				if (type == MutType.Major) typeStr = "PIMajor";
+				if (type == MutType.Accessory) typeStr = "PIMinor";
 			}
 			return String.format(
 				"%s_POS%d%s_%s", gene.toString(), position,
@@ -124,10 +121,9 @@ public class MutationTypePairs {
 		Map<Mutation, List<MutType>> r = new TreeMap<>();
 		for (Mutation mut: geneMuts) {
 			List<MutType> types = lookupByMutation(mut);
-			if (types.size() == 0) {
-				continue;
+			if (types.size() > 0) {
+				r.put(mut, types);
 			}
-			r.put(mut, types);
 		}
 		return r;
 	}
@@ -142,8 +138,8 @@ public class MutationTypePairs {
 	public static Map<Mutation, List<MutType>> lookupByMutations(Gene gene, MutationSet mutations) {
 		MutationSet geneMuts = mutations.getGeneMutations(gene);
 		return lookupByMutations(geneMuts);
-	}
-
+	} 
+	
 	/**
 	 * Looks up mutation types for a single mutation.
 	 *
@@ -157,7 +153,7 @@ public class MutationTypePairs {
 			.map(mc -> mc.type)
 			.collect(Collectors.toList());
 	}
-
+	
 	/**
 	 * Looks up mutation types by a position.
 	 *
@@ -172,12 +168,11 @@ public class MutationTypePairs {
 			.map(mc -> mc.type)
 			.collect(Collectors.toList());
 	}
-
+	
 	/**
 	 * Populate types from HIVDB_Results database to static variable.
 	 */
-	private static void populateTypes() throws SQLException {
-
+	protected static void populateTypes() throws SQLException {
 		final JdbcDatabase db = JdbcDatabase.getResultsDB();
 
 		// TODO: The version is hard-coded here.

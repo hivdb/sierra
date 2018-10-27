@@ -18,8 +18,10 @@
 
 package edu.stanford.hivdb.mutations;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
+
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -28,24 +30,24 @@ import edu.stanford.hivdb.filetestutils.TestMutationsFiles.TestMutationsProperti
 import edu.stanford.hivdb.utilities.MutationFileReader;
 
 public class SdrmsTest {
-
+		
 	@Test
-	public void lookUpSdrms() {
+	public void testIsSdrmFromFile() throws IOException {
 		final InputStream testMutationsInputStream =
 			TestMutationsFiles.getTestMutationsInputStream(
 				TestMutationsProperties.SDRM_TEST_MUTATIONS);
 		final List<MutationSet> mutationLists =
 			MutationFileReader.readMutationLists(testMutationsInputStream);
-
+		
 		for (MutationSet mutSet : mutationLists) {
-			MutationSet sdrms = Sdrms.getSdrms(mutSet);
-			System.out.println("Submitted list: " + mutSet.join(",", Mutation::getHumanFormatWithGene));
-			System.out.println("SDRM list: " + sdrms.join(",", Mutation::getHumanFormatWithGene));
+			Sdrms.getSdrms(mutSet).forEach(mut -> assertTrue(Sdrms.isSDRM(mut)));
+			mutSet.subtractsBy(Sdrms.getSdrms(mutSet))
+				  .forEach(mut -> assertFalse(Sdrms.isSDRM(mut)));
 		}
 	}
 
 	@Test
-	public void lookUpSdrms2() {
+	public void testGetSdrms() {
 		assertSdrmsResult(
 			/*expects*/"", /*mutations*/"PR_L10I,PR_L33F,PR_V82I,RT_K65N");
 		assertSdrmsResult(
@@ -66,5 +68,4 @@ public class SdrmsTest {
 			new MutationSet(expects),
 			Sdrms.getSdrms(new MutationSet(sample)));
 	}
-
 }

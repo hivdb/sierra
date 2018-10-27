@@ -1,5 +1,4 @@
 /*
-    
     Copyright (C) 2017 Stanford HIVDB team
     
     Sierra is free software: you can redistribute it and/or modify
@@ -21,11 +20,14 @@ package edu.stanford.hivdb.mutations;
 import org.junit.Test;
 
 import edu.stanford.hivdb.drugs.DrugClass;
+import edu.stanford.hivdb.mutations.MutationPrevalences.MutationPrevalence;
+
 import static org.junit.Assert.*;
 
 import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class MutationSetTest {
@@ -327,7 +329,24 @@ public class MutationSetTest {
 
 	@Test 
 	public void testGetByMutType() {
-		
+		final MutationSet muts = new MutationSet(
+				new Mutation(Gene.RT, 65, "N"),
+				new Mutation(Gene.RT, 115, "FR"),
+				new Mutation(Gene.RT, 118, "I"),
+				new Mutation(Gene.RT, 103, "N"),
+				new Mutation(Gene.RT, 41, "P"),
+				new Mutation(Gene.PR, 84, "V"),
+				new Mutation(Gene.IN, 155, "S"));
+		MutationSet eMajorMuts = new MutationSet("PR:84V, IN:155S");
+		MutationSet eOtherMuts = new MutationSet("RT:41P, RT:118I");
+		MutationSet eAccessoryMuts = new MutationSet();
+		MutationSet eNRTIMuts = new MutationSet("RT:65N RT:115FR");
+		MutationSet eNNRTIMuts = new MutationSet("RT:103N");
+		assertEquals(eMajorMuts, muts.getByMutType(MutType.Major));
+		assertEquals(eOtherMuts, muts.getByMutType(MutType.Other));
+		assertEquals(eAccessoryMuts, muts.getByMutType(MutType.Accessory));
+		assertEquals(eNRTIMuts, muts.getByMutType(MutType.NRTI));
+		assertEquals(eNNRTIMuts, muts.getByMutType(MutType.NNRTI));
 	}
 	
 	@Test
@@ -590,8 +609,6 @@ public class MutationSetTest {
 		assertEquals(expected, sequenceMuts.getDRMs(DrugClass.NNRTI));
 	}
 
-	
-		
 	@Test
 	public void testJoin() {
 		MutationSet sequenceMuts = new MutationSet(
@@ -617,8 +634,12 @@ public class MutationSetTest {
 		assertEquals(
 			"PR_I84KV,RT_K65P,RT_D67Deletion,RT_T69Insertion,RT_Y115FR,IN_N155S",
 			sequenceMuts.join(Mutation::getHumanFormatWithGene));
+		assertEquals(
+			"I84KV,K65P,D67Deletion,T69Insertion,Y115FR,N155S",
+			sequenceMuts.join());
+		assertEquals("None", new MutationSet().join(' ', Mutation::getHumanFormatWithGene));
 	}
-
+	
 	@Test
 	public void testToStringList() {
 		MutationSet sequenceMuts = new MutationSet(
@@ -665,5 +686,30 @@ public class MutationSetTest {
 			new MutationSet(Gene.PR, "31X"),
 			new MutationSet(Gene.RT, "31X")
 		);
+	}
+	
+	@Test 
+	public void testHasSharedMutation() {
+		final Mutation mut1 = new Mutation(Gene.RT, 68, "A");
+		final Mutation mut2 = new Mutation(Gene.RT, 115, "FR");
+		final Mutation mut3 = new Mutation(Gene.RT, 118, "I");
+		final MutationSet muts = new MutationSet(mut1, mut2, mut3);
+		assertTrue(muts.hasSharedAAMutation(mut1));
+		assertTrue(muts.hasSharedAAMutation(mut2));
+		assertTrue(muts.hasSharedAAMutation(mut3));
+		assertFalse(muts.hasSharedAAMutation(new Mutation(Gene.RT, 116, "FR")));
+	}
+	
+	@Test 
+	public void testGetPrevalences() {
+		final Mutation mut1 = new Mutation(Gene.RT, 68, "A");
+		final Mutation mut2 = new Mutation(Gene.RT, 115, "FR");
+		final Mutation mut3 = new Mutation(Gene.RT, 118, "I");
+		final MutationSet muts = new MutationSet(mut1, mut2, mut3);
+		final Map<Mutation, List<MutationPrevalence>> mutPrevs = muts.getPrevalences();
+		muts.forEach(mut -> {
+			List<MutationPrevalence> eMutPrevs = MutationPrevalences.getPrevalenceAtSamePosition(mut);
+			assertEquals(eMutPrevs, mutPrevs.get(mut));
+		});
 	}
 }
