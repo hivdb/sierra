@@ -35,7 +35,7 @@ import edu.stanford.hivdb.testutils.MockDatabase;
 public class TabularRulesComparisonTest {
 
 	// This was intend to hard coded. Review the changes when you made an upgrade and change the version pair here
-	final static private String versionPair = "7.0:8.7a1";
+	final static private String versionPair = "7.0:8.7";
 
 	@Test
 	public void testGetInstance() {
