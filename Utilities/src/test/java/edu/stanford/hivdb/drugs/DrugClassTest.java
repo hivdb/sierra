@@ -72,6 +72,7 @@ public class DrugClassTest {
 			DrugClass.NRTI.getDrugsForHivdbTesting(), nrtiExpecteds);
 
 		List<Drug> nnrtiExpecteds = new ArrayList<>();
+		nnrtiExpecteds.add(Drug.DOR);
 		nnrtiExpecteds.add(Drug.EFV);
 		nnrtiExpecteds.add(Drug.ETR);
 		nnrtiExpecteds.add(Drug.NVP);
@@ -114,6 +115,7 @@ public class DrugClassTest {
 			DrugClass.NRTI.getAllDrugs(), nrtiExpecteds);
 
 		List<Drug> nnrtiExpecteds = new ArrayList<>();
+		nnrtiExpecteds.add(Drug.DOR);
 		nnrtiExpecteds.add(Drug.EFV);
 		nnrtiExpecteds.add(Drug.ETR);
 		nnrtiExpecteds.add(Drug.NVP);

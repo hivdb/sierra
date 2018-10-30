@@ -25,14 +25,16 @@ import edu.stanford.hivdb.mutations.Mutation.InvalidMutationStringException;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.IntStream;
 
 public class MutationTest {
-
+	
 	@Test
 	public void testFromNucAminoMut() {
 		final Map<String, Object> mutMap = new HashMap<>();
@@ -83,13 +85,21 @@ public class MutationTest {
 		assertEquals("_", Mutation.normalizeAAs("Insertion"));
 		assertEquals("-", Mutation.normalizeAAs("Deletion"));
 		assertEquals("ACDE", Mutation.normalizeAAs("DECA"));
-		assertEquals("ACDE", Mutation.normalizeAAs("deca"));
+		assertEquals("-ACE", Mutation.normalizeAAs("deca"));
 	}
 	
-//	@Test
-//	public void testExtractGene() {
-//		TODO: Refactor class to reduce redundancy between normalization logic. 
-//	}
+	@Test
+	public void testExtractGene() {
+		assertEquals(Gene.PR, Mutation.extractGene("PR100A"));
+		assertEquals(Gene.IN, Mutation.extractGene("IN100A"));
+		assertEquals(Gene.RT, Mutation.extractGene("RT100A"));
+		assertEquals(null, Mutation.extractGene("not a mutation"));
+	}
+	
+	@Test(expected=InvalidMutationStringException.class)
+	public void testExtractGeneWithMalformedMut() {
+		assertEquals(null, Mutation.extractGene("P100D"));
+	}
 
 	@Test(expected=IllegalArgumentException.class)
 	public void testPositionOutOfGene() {
@@ -332,22 +342,29 @@ public class MutationTest {
 	@Test
 	public void testGetTypes() {
 		Mutation mut1 = new Mutation(Gene.PR, 50, "VEF");
-		List<MutType> expecteds = new ArrayList<>();
-		expecteds.add(MutType.Major);
-		expecteds.add(MutType.Accessory);
-		assertEquals(expecteds, mut1.getTypes());
-		assertEquals(expecteds, mut1.getTypes());
 		Mutation mut2 = new Mutation(Gene.PR, 51, "VEF");
-		expecteds = new ArrayList<>();
-		expecteds.add(MutType.Other);
-		assertEquals(expecteds, mut2.getTypes());
-		assertEquals(expecteds, mut2.getTypes());
+		List<MutType> eTyoes1 = new ArrayList<>();
+		eTyoes1.add(MutType.Major);
+		eTyoes1.add(MutType.Accessory);
+		List<MutType>eTyoes2 = new ArrayList<>();
+		eTyoes2.add(MutType.Other);
+		assertEquals(eTyoes1, mut1.getTypes());
+		assertEquals(eTyoes1, mut1.getTypes()); // post instantiation of types
+		assertEquals(eTyoes2, mut2.getTypes());
 	}
 
 	@Test
+	public void testGetPrimaryType() {
+		final Mutation majorMut = new Mutation(Gene.PR, 50, "VEF");
+		final Mutation otherMut = new Mutation(Gene.PR, 51, "VEF");
+		assertEquals(MutType.Major, majorMut.getPrimaryType());
+		assertEquals(MutType.Other, otherMut.getPrimaryType());
+	}
+	
+	@Test
 	public void testEqualsAndHashCode() {
-		Mutation mut1 = new Mutation(Gene.RT, 69, "_");
-		Mutation mut2 = new Mutation(Gene.RT, 69, "_");
+		final Mutation mut1 = new Mutation(Gene.RT, 69, "_");
+		final Mutation mut2 = new Mutation(Gene.RT, 69, "_");
 		assertEquals(mut1, mut2);
 		assertEquals(mut1, mut1);
 		assertNotEquals(mut1, null);
@@ -356,7 +373,6 @@ public class MutationTest {
 	
 	@Test
 	public void testGetHumanFormat() {
-		System.out.println("\nMethod: MutationTest:test");
 		Mutation mut1 = new Mutation(Gene.RT, 65, "KN");
 		Mutation mut2 = new Mutation(Gene.RT, 65, "NK");
 		Mutation mut3 = new Mutation(Gene.RT, 118, "_");
@@ -423,12 +439,103 @@ public class MutationTest {
 		assertNotEquals(mut16, mut17);
 		assertNotEquals(mut16.hashCode(), mut17.hashCode());
 	}
-
+	
 	@Test
-	public void testParseString() {
+	public void testGetHumanFormatWithGene	() {
+		Mutation mut1 = new Mutation(Gene.RT, 65, "KN");
+		Mutation mut2 = new Mutation(Gene.RT, 65, "NK");
+		Mutation mut3 = new Mutation(Gene.RT, 118, "_");
+		Mutation mut4 = new Mutation(Gene.RT, 118, "#");
+		Mutation mut5 = new Mutation(Gene.RT, 118, "Insertion");
+		Mutation mut6 = new Mutation(Gene.RT, 69, "-");
+		Mutation mut7 = new Mutation(Gene.RT, 69, "Deletion");
+		Mutation mut8 = new Mutation(Gene.IN, 155, "S");
+		Mutation mut9 = new Mutation(Gene.IN, 155, "NS");
+		Mutation mut10 = new Mutation(Gene.RT, 10, "S");
+		Mutation mut11 = new Mutation(Gene.PR, 10, "S");
+		Mutation mut12 = new Mutation(Gene.RT, 215, "FIST");
+		Mutation mut13 = new Mutation(Gene.RT, 215, "TSNY");
+		Mutation mut14 = new Mutation(Gene.RT, 188, "YL*");
+		Mutation mut15 = new Mutation(Gene.RT, 188, "*");
+		Mutation mut16 = new Mutation(Gene.IN, 263, "RKGY");
+		Mutation mut17 = new Mutation(Gene.IN, 263, "X");
+		Mutation mut18 = new Mutation(Gene.RT, 118, "V_V");
+		assertEquals("RT_K65KN", mut1.getHumanFormatWithGene());
+		assertEquals("RT_K65KN", mut2.getHumanFormatWithGene());
+		assertEquals("RT_V118Insertion", mut3.getHumanFormatWithGene());
+		assertEquals("RT_V118Insertion", mut4.getHumanFormatWithGene());
+		assertEquals("RT_V118Insertion", mut5.getHumanFormatWithGene());
+		assertEquals("RT_T69Deletion", mut6.getHumanFormatWithGene());
+		assertEquals("RT_T69Deletion", mut7.getHumanFormatWithGene());
+		assertEquals("IN_N155S", mut8.getHumanFormatWithGene());
+		assertEquals("IN_N155NS", mut9.getHumanFormatWithGene());
+		assertEquals("RT_V10S", mut10.getHumanFormatWithGene());
+		assertEquals("PR_L10S", mut11.getHumanFormatWithGene());
+		assertEquals("RT_T215TFIS", mut12.getHumanFormatWithGene());
+		assertEquals("RT_T215TNSY", mut13.getHumanFormatWithGene());
+		assertEquals("RT_Y188Y*L", mut14.getHumanFormatWithGene());
+		assertEquals("RT_Y188*", mut15.getHumanFormatWithGene());
+		assertEquals("IN_R263RGKY", mut16.getHumanFormatWithGene());
+		assertEquals("IN_R263X", mut17.getHumanFormatWithGene());
+		assertEquals("RT_V118V_V", mut18.getHumanFormatWithGene());
+	}
+	
+	@Test
+	public void testGetHumanFormatWithoutCons() {
 		assertEquals(
-			new Mutation(Gene.RT, 77, 'V'),
-			Mutation.parseString("RT:77V"));
+			"69T_TT",
+			new Mutation(Gene.RT, 69, "T_TT").getHumanFormatWithoutCons());
+		assertEquals(
+			"67Deletion",
+			new Mutation(Gene.RT, 67, "-").getHumanFormatWithoutCons());
+	}
+	
+	@Test
+	public void testParseString() {		
+		assertEquals(
+				new Mutation(Gene.RT, 69, '_'),
+				Mutation.parseString(Gene.RT, "T69Insertion"));	
+		assertEquals(
+				new Mutation(Gene.RT, 69, '_'),
+				Mutation.parseString(Gene.RT, "T69insertion"));
+		assertEquals(
+				new Mutation(Gene.RT, 69, '_'),
+				Mutation.parseString(Gene.RT, "T69ins"));
+		assertEquals(
+				new Mutation(Gene.RT, 69, '_'),
+				Mutation.parseString(Gene.RT, "T69i"));
+		assertEquals(
+				new Mutation(Gene.RT, 69, '_'),
+				Mutation.parseString(Gene.RT, "T69#"));
+		assertEquals(
+				new Mutation(Gene.RT, 69, '_'),
+				Mutation.parseString(Gene.RT, "T69_"));
+		assertEquals(
+				new Mutation(Gene.RT, 69, "T_D"),
+				Mutation.parseString(Gene.RT, "T69T#D"));
+		assertEquals(
+				new Mutation(Gene.RT, 69, "INS"),
+				Mutation.parseString(Gene.RT, "T69INS"));
+		
+		assertEquals(
+				new Mutation(Gene.RT, 69, '-'),
+				Mutation.parseString(Gene.RT, "T69Deletion"));	
+		assertEquals(
+				new Mutation(Gene.RT, 69, '-'),
+				Mutation.parseString(Gene.RT, "T69deletion"));
+		assertEquals(
+				new Mutation(Gene.RT, 69, '-'),
+				Mutation.parseString(Gene.RT, "T69del"));
+		assertEquals(
+				new Mutation(Gene.RT, 69, '-'),
+				Mutation.parseString(Gene.RT, "T69d"));
+		assertEquals(
+				new Mutation(Gene.RT, 69, '-'),
+				Mutation.parseString(Gene.RT, "T69~"));
+		assertEquals(
+				new Mutation(Gene.RT, 69, "DEL"),
+				Mutation.parseString(Gene.RT, "T69DEL"));
+		
 		assertEquals(
 				new Mutation(Gene.RT, 77, 'V'),
 				Mutation.parseString("  RT:77V"));
@@ -447,22 +554,93 @@ public class MutationTest {
 		assertEquals(
 			"*FLY",
 			Mutation.parseString("RT:Y188ZFLY").getAAs());
-
-		try {
-			Mutation.parseString(null, "77V");
-			assertTrue(false);
-		} catch (InvalidMutationStringException e) {
-			// pass
-		}
-
-		try {
-			Mutation.parseString(Gene.RT, "77V`");
-			assertTrue(false);
-		} catch (InvalidMutationStringException e) {
-			// pass
-		}
 	}
 
+	@Test(expected=InvalidMutationStringException.class)
+	public void testDelet() {
+		Mutation.parseString(Gene.RT, "S68Delet");
+	}
+	
+	@Test(expected=InvalidMutationStringException.class)
+	public void testDeletLowercase() {
+		Mutation.parseString(Gene.RT, "S68delet");
+	}
+	
+	@Test(expected=InvalidMutationStringException.class)
+	public void testInser() {
+		Mutation.parseString(Gene.RT, "S68Insert");
+	}
+	
+	@Test(expected=InvalidMutationStringException.class)
+	public void testInserLowercase() {
+		Mutation.parseString(Gene.RT, "S68insert");
+	}
+		
+	@Test(expected=InvalidMutationStringException.class)
+	public void testLeadingPoundInAA() {
+		Mutation.parseString(Gene.RT, "T69#ACD");
+	}
+	
+	@Test(expected=InvalidMutationStringException.class)
+	public void testTrailingPoundInAA() {
+		Mutation.parseString(Gene.RT, "T69T#");
+	}
+	
+	@Test(expected=InvalidMutationStringException.class)
+	public void testAAWithUnderscore() {
+		Mutation.parseString(Gene.RT, "T69T_");
+	}
+	
+	@Test(expected=InvalidMutationStringException.class)
+	public void testLeadingTildeInAA() {
+		Mutation.parseString(Gene.RT, "T69~T");
+	}
+	
+	@Test(expected=InvalidMutationStringException.class)
+	public void testTrailingTildeInAA() {
+		Mutation.parseString(Gene.RT, "T69T~");
+	}
+	
+	@Test(expected=InvalidMutationStringException.class)
+	public void testInsertionAbbreviationWithAA() {
+		Mutation.parseString(Gene.RT, "T69iT");
+	}
+	
+	@Test(expected=InvalidMutationStringException.class)
+	public void testDoubleInsertionAbbreviationInAA() {
+		Mutation.parseString(Gene.RT, "T69insins");
+	}
+	
+	@Test(expected=InvalidMutationStringException.class)
+	public void testDoubleDeletionAbbreviationInAA() {
+		Mutation.parseString(Gene.RT, "T69Tdeletiondeletion");
+	}
+	
+	@Test(expected=InvalidMutationStringException.class)
+	public void testInsertionAbbreviationBetweenAAs() {
+		Mutation.parseString(Gene.RT, "T69TinsD");
+	}
+	
+	@Test(expected=InvalidMutationStringException.class)
+	public void testDeletionAbbreviationBetweenAAs() {
+		Mutation.parseString(Gene.RT, "T69TdelD");
+	}
+	
+	@Test(expected=InvalidMutationStringException.class)
+	public void testTrailingPoundWithMultipleAAs() {
+		Mutation.parseString(Gene.RT, "T69T#T#");
+	}
+	
+	@Test(expected=InvalidMutationStringException.class)
+	public void testParseStringWithNullGene() {
+		Mutation.parseString(null, "77V");
+	}
+	
+	@Test(expected=InvalidMutationStringException.class)
+	public void testParseStringWithGeneAndMalformedAA() {
+		Mutation.parseString(Gene.RT, "77V`");
+	}
+	
 	@Test
 	public void testTripletAndInsertedNAs() {
 		assertEquals(
@@ -505,23 +683,13 @@ public class MutationTest {
 			new Mutation(Gene.RT, 69, "V_TT").hasConsensus());
 	}
 
-	@Test
-	public void testGetHumanFormatWithoutCons() {
-		assertEquals(
-			"69T_TT",
-			new Mutation(Gene.RT, 69, "T_TT").getHumanFormatWithoutCons());
-		assertEquals(
-			"67Deletion",
-			new Mutation(Gene.RT, 67, "-").getHumanFormatWithoutCons());
-	}
-	
 	@Test 
 	public void testIsUnsequenced() {
-		final Mutation mut = new Mutation(Gene.PR, 1, "N");
-		final Mutation mutSeq = new Mutation(Gene.PR, 1, "_N", "NN-");
-		final Mutation mutUnseqNN = new Mutation(Gene.PR, 1, "N", "NN-");
-		final Mutation mutUnseqNNN = new Mutation(Gene.PR, 1, "N", "NNN");
-		final Mutation mutUnseqNNG = new Mutation(Gene.PR, 1, "N", "NNG");
+		final Mutation mut = new Mutation(Gene.PR, 1, "X");
+		final Mutation mutSeq = new Mutation(Gene.PR, 1, "_X", "NN-");
+		final Mutation mutUnseqNN = new Mutation(Gene.PR, 1, "X", "NN-");
+		final Mutation mutUnseqNNN = new Mutation(Gene.PR, 1, "X", "NNN");
+		final Mutation mutUnseqNNG = new Mutation(Gene.PR, 1, "X", "NNG");
 		assertFalse(mut.isUnsequenced());
 		assertFalse(mutSeq.isUnsequenced());
 		assertTrue(mutUnseqNN.isUnsequenced());
@@ -537,5 +705,95 @@ public class MutationTest {
 		assertEquals(mutPR68.getGenePosition(), new GenePosition(Gene.PR, 68));
 		assertEquals(mutRT67.getGenePosition(), new GenePosition(Gene.RT, 67));
 		assertEquals(mutIN155.getGenePosition(), new GenePosition(Gene.IN, 155));
+	}
+	
+	@Test
+	public void testIsDeletion() {
+		final Mutation del = new Mutation(Gene.PR, 68, "-");
+		final Mutation ins = new Mutation(Gene.PR, 68, "_");
+		final Mutation mut = new Mutation(Gene.PR, 68, "N");
+		final Mutation delMut = new Mutation(Gene.PR, 68, "N-");
+		final Mutation delIns = new Mutation(Gene.RT, 67, "_-");
+		assertTrue(del.isDeletion());
+		assertFalse(ins.isDeletion());
+		assertFalse(mut.isDeletion());
+		assertFalse(delMut.isDeletion());
+		assertFalse(delIns.isDeletion());
+	}
+	
+	@Test
+	public void testHasStop() {
+		final Mutation mut = new Mutation(Gene.PR, 68, "N");
+		final Mutation stop = new Mutation(Gene.RT, 67, "*");
+		final Mutation stopMut = new Mutation(Gene.IN, 155, "N*");
+		assertFalse(mut.hasStop());
+		assertTrue(stop.hasStop());
+		assertTrue(stopMut.hasStop());
+	}
+	
+	@Test
+	public void testIsUnusual() {
+		final Mutation unusualMut = new Mutation(Gene.RT, 1, "A");
+		final Mutation usualMut = new Mutation(Gene.RT, 1, "H");
+		final Mutation usualMuts = new Mutation(Gene.RT, 1, "HLPST");
+		final Mutation unusualMuts = new Mutation(Gene.RT, 1, "ACDEFG");
+		final Mutation mixedMuts = new Mutation(Gene.PR, 75, "AILMVSTY");
+		assertFalse(usualMut.isUnusual());
+		assertFalse(usualMuts.isUnusual());
+		assertTrue(unusualMut.isUnusual());
+		assertTrue(unusualMuts.isUnusual());
+		assertTrue(mixedMuts.isUnusual());
+	}
+	
+	@Test
+	public void testIsSDRM() {
+		final Mutation mut = new Mutation(Gene.PR, 24, "N");
+		final Mutation sdrmMut = new Mutation(Gene.PR, 24, "I");
+		final Mutation mixedMuts = new Mutation(Gene.RT, 230, "LI");
+		assertFalse(mut.isSDRM());
+		assertTrue(sdrmMut.isSDRM());
+		assertTrue(mixedMuts.isSDRM());
+	}
+	
+	@Test
+	public void testIsAmbiguous() {
+		final Mutation mut = new Mutation(Gene.PR, 24, "N");
+		final Mutation xMut = new Mutation(Gene.PR, 24, "X");
+		final Mutation tripMut = new Mutation(Gene.PR, 24, "N", "AAC");
+		final Mutation tripMutX = new Mutation(Gene.PR, 24, "X", "AAC");
+		final Mutation bTripMut = new Mutation(Gene.PR, 24, "N", "AAB");
+		final Mutation dTripMut = new Mutation(Gene.PR, 24, "N", "DAC");
+		final Mutation hTripMut = new Mutation(Gene.PR, 24, "S", "THT");
+		final Mutation vTripMut = new Mutation(Gene.PR, 24, "S", "TCV");
+		final Mutation nTripMut = new Mutation(Gene.PR, 24, "S", "TNA");
+		assertFalse(mut.isAmbiguous());
+		assertTrue(xMut.isAmbiguous());
+		assertFalse(tripMut.isAmbiguous());
+		assertTrue(tripMutX.isAmbiguous());
+		assertTrue(bTripMut.isAmbiguous());
+		assertTrue(dTripMut.isAmbiguous());
+		assertTrue(hTripMut.isAmbiguous());
+		assertTrue(vTripMut.isAmbiguous());
+		assertTrue(nTripMut.isAmbiguous());
+	}
+	
+	@Test
+	public void testGetHighestMutPrevalance() {
+		// Since we update prevalence data periodically, we  
+		// expects the following assertions to ultimately fail. 
+		// Hence we must manually update these assertions every time
+		// we upload new prevalence data. 
+		final Mutation prevMut = new Mutation(Gene.IN, 45, "G");
+		final Mutation prevMuts = new Mutation(Gene.IN, 45, "HKQ");
+		final Mutation prevMutZero = new Mutation(Gene.IN, 45, "C");
+		final Mutation prevMutsZero = new Mutation(Gene.IN, 45, "CDEFH");
+		final Mutation prevMutsWCons = new Mutation(Gene.IN, 45, "LHKQ");
+		final Mutation prevMutsWConsAndStop = new Mutation(Gene.IN, 45, "*LHKQ");
+		assertEquals(0.052, prevMut.getHighestMutPrevalence(), 0.0);
+		assertEquals(3.535, prevMuts.getHighestMutPrevalence(), 0.0);
+		assertEquals(0.0, prevMutZero.getHighestMutPrevalence(), 0.0);
+		assertEquals(0.0, prevMutsZero.getHighestMutPrevalence(), 0.0);
+		assertEquals(3.535, prevMutsWCons.getHighestMutPrevalence(), 0.0);
+		assertEquals(3.535, prevMutsWConsAndStop.getHighestMutPrevalence(), 0.0);
 	}
 }

@@ -18,11 +18,11 @@
 
 package edu.stanford.hivdb.mutations;
 
-import java.util.Set;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.HashSet;
-import java.util.Collections;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -35,11 +35,14 @@ import edu.stanford.hivdb.utilities.MyStringUtils;
 public class Mutation implements Comparable<Mutation> {
 	
 	private static Pattern mutationPattern = Pattern.compile(
-		"^\\s*([pP][rR]|[rR][tT]|[iI][nN])?[:_-]?" +
-		"([AC-IK-NP-TV-Y])?(\\d+)([AC-IK-NP-TV-Y_*-]+)" +
+		"^\\s*" +
+		"((?i:PR|RT|IN))?[:_-]?" +
+		"([AC-IK-NP-TV-Y])?" + 
+		"(\\d{1,3})" +
+		"([AC-IK-NP-TV-Z.*]+(?:[#_]?[AC-IK-NP-TV-Z.*]+)?|[id_#~-]|[iI]ns(?:ertion)?|[dD]el(?:etion)?)" +
 		"(?::([ACGTRYMWSKBDHVN-]{3})?)?" +
 		"\\s*$");
-	
+		
 	private Gene gene;
 	private String cons;
 	private int pos;
@@ -75,18 +78,15 @@ public class Mutation implements Comparable<Mutation> {
 		if (pos > gene.getLength()) {
 			throw new IllegalArgumentException("Length is out of bounds for this gene.");
 		}
-		this.aas = aas = normalizeAAs(aas);
 		
-		if (aas.contains("_")) {
-			isInsertion = true;
-		} else if (aas.equals("-")) {
-			isDeletion = true;
-		}
 		this.gene = gene;
-		this.cons = gene.getConsensus(pos);
+		this.cons = this.gene.getConsensus(pos);
 		this.pos = pos;
+		this.aas = normalizeAAs(aas);
 		this.triplet = triplet.toUpperCase();
 		this.insertedNAs = insertedNAs;
+		this.isInsertion = this.aas.contains("_");
+		this.isDeletion = this.aas.equals("-");
 	}
 
 	public Mutation(Gene gene, int pos, String aas, String triplet) {
@@ -135,28 +135,19 @@ public class Mutation implements Comparable<Mutation> {
 	 * The code explains the normalization rules.
 	 */
 	public static String normalizeAAs(String aas) {
-		if (aas == null) {
-			return null;
+		if (aas == null) return null;	
+		
+		aas = aas.replaceAll("^[dD]elet(e|ion)|d(el)?|~$", "-")
+			     .replaceAll("^[iI]nsert(ion)?|i(ns)?$|#", "_")
+			     .replaceAll("[.Z]", "*");
+		
+		if (aas.length() > 1 && !aas.contains("_")) {
+			return MyStringUtils.sortAlphabetically(aas).toUpperCase();
 		}
-		aas = aas
-			.replace('#', '_')
-			.replace('~', '-')
-			.replace('Z', '*')
-			.replace('.', '*');
-		if (aas.equals("Insertion")) {
-			aas = "_";
-		}
-		else if (aas.equals("Deletion")) {
-			aas = "-";
-		}
-		if (aas.length() > 1 &&
-			   	!aas.contains("_")) {
-			// sort mixture
-			aas = MyStringUtils.sortAlphabetically(aas).toUpperCase();
-		}
-		return aas;
+		
+		return aas.toUpperCase();
 	}
-	
+		
 	public Set<Mutation> split() {
 		Set<Mutation> r = new HashSet<>();
 		if (isInsertion()) {
@@ -288,13 +279,6 @@ public class Mutation implements Comparable<Mutation> {
 	 */
 	public static Gene extractGene(String mutText) {
 		Gene gene = null;
-		mutText = mutText
-			.replaceAll("[iI]nsertion", "_")
-			.replaceAll("[dD]eletion", "-")
-			.replaceAll("#|i(ns)?", "_")
-			.replaceAll("~|d(el)?", "-")
-			.replace('Z', '*')
-			.toUpperCase();
 		Matcher m = mutationPattern.matcher(mutText);
 		if (m.matches()) {
 			try {
@@ -321,13 +305,6 @@ public class Mutation implements Comparable<Mutation> {
 	 * @return a Mutation object
 	 */
 	public static Mutation parseString(Gene gene, String mutText) {
-		mutText = mutText
-			.replaceAll("[iI]nsertion", "_")
-			.replaceAll("[dD]eletion", "-")
-			.replaceAll("#|i(ns)?", "_")
-			.replaceAll("~|d(el)?", "-")
-			.replace('Z', '*');
-		mutText = mutText.toUpperCase();
 		Matcher m = mutationPattern.matcher(mutText);
 		Mutation mut = null;
 		if (m.matches()) {
@@ -341,22 +318,19 @@ public class Mutation implements Comparable<Mutation> {
 						"for an input mutation string is, for example, " +
 						"RT:215Y.", e);
 				}
-			}
+			}	
 			int pos = Integer.parseInt(m.group(3));
-			String aas = m.group(4); // normalizeAA(m.group)
+			String aas = normalizeAAs(m.group(4)); 
 			String triplet = m.group(5);
-			if (triplet == null) {
-				triplet = "";
-			}
+			if (triplet == null) triplet = "";
 			mut = new Mutation(gene, pos, aas, triplet);
-		}
-		else {
+		} else {
 			throw new InvalidMutationStringException(
 				"Tried to parse mutation string using invalid parameters: " + mutText);
 		}
 		return mut;
 	}
-
+	
 	public static Mutation parseString(String mutText) {
 		return parseString(null, mutText);
 	}
@@ -394,7 +368,6 @@ public class Mutation implements Comparable<Mutation> {
 		return UnusualMutations.getHighestMutPrevalence(this);
 	}
 
-
 	public String getAAsWithConsFirst() {
 		String aas = getAAs();
 		String cons = getConsensus();
@@ -411,7 +384,7 @@ public class Mutation implements Comparable<Mutation> {
 	public MutType getPrimaryType() {
 		return getTypes().get(0);
 	}
-
+	
 	/**
 	 * Retrieve all mutation types of current mutation.
 	 *
@@ -465,7 +438,7 @@ public class Mutation implements Comparable<Mutation> {
 			.append(aas)
 			.toHashCode();
 	}
-
+	
 	@Override
 	public String toString() {
 		return getHumanFormat();
@@ -505,7 +478,6 @@ public class Mutation implements Comparable<Mutation> {
 		}
 		return cmp;
 	}
-
 
 	/**
 	 * Compares two mutations to determine if they share a nonconsensus amino acid

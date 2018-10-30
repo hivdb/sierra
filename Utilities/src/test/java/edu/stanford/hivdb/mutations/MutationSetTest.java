@@ -75,7 +75,7 @@ public class MutationSetTest {
 			),
 			new MutationSet(
 				Gene.RT,
-				"31MK, 67P: ; 69s_ss 210*; 211d+211-...212Deletion"));
+				"31MK, 67P: ; 69S_SS 210*; 211d+211-...212Deletion"));
 
 		assertEquals(
 			new MutationSet(
@@ -103,7 +103,7 @@ public class MutationSetTest {
 				new Mutation(Gene.IN, 212, "-")
 			),
 			new MutationSet(
-				"PR_31MK, RT67P ; RT69s_ss IN:210*, IN211d+RT211-...IN-212Deletion"));
+				"PR_31MK, RT67P ; RT69S_SS IN:210*, IN211d+RT211-...IN-212Deletion"));
 	}
 
 	@Test(expected=UnsupportedOperationException.class)
@@ -165,7 +165,7 @@ public class MutationSetTest {
 				new Mutation(Gene.IN, 211, "-"),
 				new Mutation(Gene.IN, 212, "A")
 			),
-			new MutationSet(Gene.RT, "31M, 67P ; 69s_ss  ")
+			new MutationSet(Gene.RT, "31M, 67P ; 69S_SS  ")
 			.mergesWith(
 				new MutationSet(Gene.RT, "31K")
 			)

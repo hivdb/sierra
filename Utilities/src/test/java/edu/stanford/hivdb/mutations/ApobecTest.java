@@ -77,7 +77,7 @@ public class ApobecTest {
 	
 	@Test
 	public void testZeroMutsAtDRP() {
-		final MutationSet nonDRPmuts = new MutationSet("PR6* PR17k PR:D30N IN:G140S RT:M230I");
+		final MutationSet nonDRPmuts = new MutationSet("PR6* PR17K PR:D30N IN:G140S RT:M230I");
 		final Apobec a = new Apobec(nonDRPmuts);
 		assertEquals(new MutationSet(""), a.getApobecMutsAtDRP());
 	}
@@ -100,7 +100,7 @@ public class ApobecTest {
 	@Test
 	public void testSingleApobecMut() {
 		final String expected = "The following 1 APOBEC muts were present in the sequence: PR: G17K.";
-		final Apobec a = new Apobec(new MutationSet("PR17k"));
+		final Apobec a = new Apobec(new MutationSet("PR17K"));
 		assertEquals(expected, a.generateComment());
 	}
 	
@@ -114,7 +114,7 @@ public class ApobecTest {
 	@Test
 	public void testMultipleApobecMuts() {
 		final String expected = "The following 3 APOBEC muts were present in the sequence: PR: W6*, G17K; RT: W239*.";
-		final Apobec a = new Apobec(new MutationSet("PR6* PR17k RT239*"));
+		final Apobec a = new Apobec(new MutationSet("PR6* PR17K RT239*"));
 		assertEquals(3, a.getNumApobecMuts());
 		assertEquals(expected, a.generateComment());
 	}
@@ -142,7 +142,7 @@ public class ApobecTest {
 	@Test
 	public void testMixedMuts() {
 		final String expected = "The following 2 APOBEC muts were present in the sequence: PR: W6*, G17K. The following 3 DRMs in this sequence could reflect APOBEC activity: PR: D30N; RT: M230I; IN: G140S.";
-		final MutationSet muts = new MutationSet("PR6* PR17k");
+		final MutationSet muts = new MutationSet("PR6* PR17K");
 		final MutationSet drms = new MutationSet("PR:D30N IN:G140S RT:M230I");
 		final MutationSet mixedMuts = muts.mergesWith(drms);
 		final Apobec a = new Apobec(mixedMuts);

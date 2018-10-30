@@ -109,19 +109,19 @@ public class UnusualMutations {
 		if (aas.contains(cons)) {
 			aas = aas.replace(cons, "");
 		}
-
+		
 		// ignore stop codon when there's one or more other AAs
 		if (aas.contains("*") && aas.length() > 1) {
 			aas = aas.replace("*", "");
 		}
-
+		
 		for (char aa : aas.toCharArray()) {
 			double aaPrevalence = getMutPrevalence(mut.getGenePosition(), aa);
 			prevalence = Math.max(prevalence, aaPrevalence);
 		}
 		return prevalence;
 	}
-
+	
 	// Receives a single mutation. Looks up all of the non-consensus AA's in the HashMap usualMuts
 	// If any of the AAs are not in the HashMap, the mutation is considered to have an unusual mutation
 	public static boolean containsUnusualMut(Mutation mut) {
@@ -143,7 +143,6 @@ public class UnusualMutations {
 		return false;
 	}
 
-
 	// Receives a single amino acid at a position. Returns prevalence
 	private static Double getMutPrevalence(GenePosition gpos, char aa) {
 		AminoAcidPercent aaPcnt = aminoAcidPcntMap.get(gpos).get(aa);
@@ -152,5 +151,4 @@ public class UnusualMutations {
 		}
 		return 0.0;
 	}
-
 }

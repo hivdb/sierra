@@ -2,6 +2,13 @@
   {
     "gene": "RT",
     "drugClass": "NNRTI",
+    "rule": "100I+103N",
+    "drug": "DOR",
+    "score": 15.0
+  },
+  {
+    "gene": "RT",
+    "drugClass": "NNRTI",
     "rule": "101E+181C",
     "drug": "EFV",
     "score": 5.0
@@ -38,7 +45,21 @@
     "gene": "RT",
     "drugClass": "NNRTI",
     "rule": "101E+190A",
+    "drug": "DOR",
+    "score": 5.0
+  },
+  {
+    "gene": "RT",
+    "drugClass": "NNRTI",
+    "rule": "101E+190A",
     "drug": "ETR",
+    "score": 5.0
+  },
+  {
+    "gene": "RT",
+    "drugClass": "NNRTI",
+    "rule": "101E+190S",
+    "drug": "DOR",
     "score": 5.0
   },
   {
@@ -47,6 +68,13 @@
     "rule": "101E+190S",
     "drug": "ETR",
     "score": 5.0
+  },
+  {
+    "gene": "RT",
+    "drugClass": "NNRTI",
+    "rule": "103N+181C",
+    "drug": "DOR",
+    "score": 10.0
   },
   {
     "gene": "RT",
@@ -73,7 +101,28 @@
     "gene": "RT",
     "drugClass": "NNRTI",
     "rule": "106A+227L",
+    "drug": "DOR",
+    "score": 15.0
+  },
+  {
+    "gene": "RT",
+    "drugClass": "NNRTI",
+    "rule": "106A+227L",
     "drug": "EFV",
+    "score": 15.0
+  },
+  {
+    "gene": "RT",
+    "drugClass": "NNRTI",
+    "rule": "108I+181C",
+    "drug": "DOR",
+    "score": 10.0
+  },
+  {
+    "gene": "RT",
+    "drugClass": "NNRTI",
+    "rule": "108I+234I",
+    "drug": "DOR",
     "score": 15.0
   },
   {
@@ -135,6 +184,13 @@
   {
     "gene": "RT",
     "drugClass": "NNRTI",
+    "rule": "181C+190A",
+    "drug": "DOR",
+    "score": 20.0
+  },
+  {
+    "gene": "RT",
+    "drugClass": "NNRTI",
     "rule": "181C+190ACSTV",
     "drug": "ETR",
     "score": 10.0
@@ -144,6 +200,13 @@
     "drugClass": "NNRTI",
     "rule": "181C+190ACSTV",
     "drug": "RPV",
+    "score": 10.0
+  },
+  {
+    "gene": "RT",
+    "drugClass": "NNRTI",
+    "rule": "181C+190CSTV",
+    "drug": "DOR",
     "score": 10.0
   },
   {
@@ -710,6 +773,13 @@
     "gene": "RT",
     "drugClass": "NNRTI",
     "rule": "98G+181C",
+    "drug": "DOR",
+    "score": 5.0
+  },
+  {
+    "gene": "RT",
+    "drugClass": "NNRTI",
+    "rule": "98G+181C",
     "drug": "EFV",
     "score": 5.0
   },
@@ -733,6 +803,41 @@
     "rule": "98G+181C",
     "drug": "RPV",
     "score": 5.0
+  },
+  {
+    "gene": "RT",
+    "drugClass": "NNRTI",
+    "rule": "98G+227C",
+    "drug": "DOR",
+    "score": 15.0
+  },
+  {
+    "gene": "RT",
+    "drugClass": "NNRTI",
+    "rule": "98G+227C",
+    "drug": "EFV",
+    "score": 15.0
+  },
+  {
+    "gene": "RT",
+    "drugClass": "NNRTI",
+    "rule": "98G+227C",
+    "drug": "ETR",
+    "score": 15.0
+  },
+  {
+    "gene": "RT",
+    "drugClass": "NNRTI",
+    "rule": "98G+227C",
+    "drug": "NVP",
+    "score": 15.0
+  },
+  {
+    "gene": "RT",
+    "drugClass": "NNRTI",
+    "rule": "98G+227C",
+    "drug": "RPV",
+    "score": 15.0
   },
   {
     "gene": "PR",
@@ -1726,13 +1831,13 @@
     "drugClass": "INSTI",
     "rule": "97A+148HKR",
     "drug": "BIC",
-    "score": 10.0
+    "score": 15.0
   },
   {
     "gene": "IN",
     "drugClass": "INSTI",
     "rule": "97A+148HKR",
     "drug": "DTG",
-    "score": 10.0
+    "score": 15.0
   }
 ]
