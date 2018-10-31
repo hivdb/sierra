@@ -697,6 +697,7 @@ public class MutationSetTest {
 		assertTrue(muts.hasSharedAAMutation(mut1));
 		assertTrue(muts.hasSharedAAMutation(mut2));
 		assertTrue(muts.hasSharedAAMutation(mut3));
+		assertTrue(muts.hasSharedAAMutation(new Mutation(Gene.RT, 115, "F")));
 		assertFalse(muts.hasSharedAAMutation(new Mutation(Gene.RT, 116, "FR")));
 	}
 	

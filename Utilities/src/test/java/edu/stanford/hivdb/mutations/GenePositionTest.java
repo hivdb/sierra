@@ -60,6 +60,7 @@ public class GenePositionTest {
 		assertTrue(prGPFromStr.equals(prGP));
 		assertFalse(prGPFromStr.equals(null));
 		assertFalse(prGPFromStr.equals(rtGPFromStr));
+		assertFalse(prGPFromStr.equals(Gene.PR));
 	}
 	
 	@Test

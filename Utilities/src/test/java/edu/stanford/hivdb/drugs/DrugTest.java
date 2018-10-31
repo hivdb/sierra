@@ -26,7 +26,7 @@ public class DrugTest {
 
 	@Test
 	public void testDrugCount() {
-		// This test failed every time when a new drug is added.
+		// This test will fail every time we add a new drug.
 		// WARNING: Don't just fix this test case. Add the new drug
 		// to all following cases too.
 		assertEquals(Drug.values().length, 24);
@@ -34,7 +34,6 @@ public class DrugTest {
 
 	@Test
 	public void testGetDrugClass() {
-
 		final DrugClass PI = DrugClass.PI;
 		final DrugClass NRTI = DrugClass.NRTI;
 		final DrugClass NNRTI = DrugClass.NNRTI;
@@ -160,9 +159,14 @@ public class DrugTest {
 		assertEquals(Drug.getSynonym("DTG"), Drug.DTG);
 		assertEquals(Drug.getSynonym("EVG"), Drug.EVG);
 		assertEquals(Drug.getSynonym("RAL"), Drug.RAL);
-
 	}
 
+	@Test
+	public void testGetSynonymWithException() {
+		assertNull(Drug.getSynonym(""));
+		assertNull(Drug.getSynonym("EVH"));
+	}
+	
 	@Test
 	public void testValueOf() {
 		assertEquals(Drug.valueOf("ABC"), Drug.ABC);
@@ -190,7 +194,5 @@ public class DrugTest {
 		assertEquals(Drug.valueOf("DTG"), Drug.DTG);
 		assertEquals(Drug.valueOf("EVG"), Drug.EVG);
 		assertEquals(Drug.valueOf("RAL"), Drug.RAL);
-
 	}
-
 }

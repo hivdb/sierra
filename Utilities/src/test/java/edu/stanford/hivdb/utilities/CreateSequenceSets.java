@@ -25,9 +25,6 @@ import java.sql.SQLException;
 import java.sql.SQLWarning;
 import java.sql.Statement;
 
-import edu.stanford.hivdb.utilities.MyFileUtils;
-import edu.stanford.hivdb.utilities.ProgramProperties;
-
 /**
  * Create test datasets comprising multiple fasta sequences:
  * ">sequence_name" + additional optional information typically separated by pipe symbols
@@ -77,7 +74,6 @@ public class CreateSequenceSets {
 
 	}
 
-
 	private static void inSequences(String filePath, int numSequences) {
 		String sql = "SELECT d.AccNum, s.Sequence " +
 				"FROM GBSequenceData d, GBSequences s " +
@@ -95,9 +91,6 @@ public class CreateSequenceSets {
 		queryOutput += executeSqlStatement(sql);
 		MyFileUtils.writeFile(filePath, queryOutput);
 	}
-
-
-
 
 	private static void prRtIn(String filePath, int numSequences) {
 		String sql = "SELECT d.AccNum, s.Sequence " +
@@ -299,7 +292,4 @@ public class CreateSequenceSets {
 		//System.out.println(queryOutput.toString());
 		return queryOutput.toString();
 	}
-
-
-
 }

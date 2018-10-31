@@ -114,6 +114,9 @@ public class MutationSet extends TreeSet<Mutation> {
 			.stream()
 			.filter(mStr -> mStr.length() > 0)
 			.map(mStr -> Mutation.parseString(gene, mStr))
+//			Since parseString throws exceptions instead of returning 
+//			null mutations, the call to filter below may be redundant.
+//			.filter(mut -> mut != null) 	 
 			.collect(Collectors.toList());
 	}
 

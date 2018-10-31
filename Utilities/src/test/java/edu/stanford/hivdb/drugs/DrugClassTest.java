@@ -146,5 +146,4 @@ public class DrugClassTest {
 			"Integrase Strand Transfer Inhibitor",
 			DrugClass.INSTI.getFullName());
 	}
-
 }
