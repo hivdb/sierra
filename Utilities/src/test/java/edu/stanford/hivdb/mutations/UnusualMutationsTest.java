@@ -19,10 +19,17 @@
 package edu.stanford.hivdb.mutations;
 
 import static org.junit.Assert.*;
+
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class UnusualMutationsTest {
 
+	@BeforeClass
+	public static void testInit() {
+		assertFalse(UnusualMutations.getUnusualMuts().isEmpty());
+	}
+	
 	@Test
 	public void testGetHighestMutPrevalence() {
 
@@ -74,5 +81,4 @@ public class UnusualMutationsTest {
 		Mutation mut8 = new Mutation(Gene.PR, 67, "-");
 		assertTrue(UnusualMutations.containsUnusualMut(mut8));
 	}
-
 }

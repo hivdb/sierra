@@ -34,7 +34,6 @@ import java.lang.annotation.RetentionPolicy;
 
 import org.apache.commons.io.IOUtils;
 
-
 public class Cachable {
 
 	static final String STATIC_CACHE_TPL = "__cached_classes/%s/%s.json";
@@ -242,5 +241,4 @@ public class Cachable {
 					new File(RESOURCES_PATH, staticCachePath(f)), Json.dumps(cached));
 			});
 	}
-
 }
