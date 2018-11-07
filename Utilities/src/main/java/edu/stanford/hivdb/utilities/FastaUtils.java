@@ -43,17 +43,17 @@ import net.sf.jfasta.impl.FASTAFileWriter;
 
 public class FastaUtils {
 	private FastaUtils() {}
-
+	
 	/**
-	 * Cleans up the FASTA file so JFASTA can tolerant errors.
+	 * Cleans up the FASTA file so JFASTA can tolerate errors.
 	 *
 	 * This method:
-	 *  - Removes comment and additional identifier lines;
-	 *  - Adds identifier line if absence
+	 *  - Removes comments and additional identifier lines;
+	 *  - Adds identifier line if absent
 	 *
-	 * Normally, FASTA file (or string) can contains one comment line
+	 * Normally, a FASTA file (or string) can contain one comment line
 	 * at the beginning of the file (or string). Note this method removes
-	 * all comments but not only the first one.
+	 * all comments following the first one.
 	 *
 	 * @param stream
 	 * @return InputStream
@@ -63,7 +63,7 @@ public class FastaUtils {
 			new BufferedReader(new InputStreamReader(stream));
 		List<String> result = new ArrayList<>();
 		boolean isPrevIdentLine = false;
-
+			
 		for (String line : reader.lines().toArray(size -> new String[size])) {
 			if (line.startsWith("#")) {
 				continue;
@@ -108,7 +108,6 @@ public class FastaUtils {
 		}
 		return readStream(response.getBody());
 	}
-
 
 	/**
 	 * Reads in a file with FASTA sequences. Create a list of Sequences
@@ -197,5 +196,4 @@ public class FastaUtils {
 		writeStream(sequences, stream);
 		return stream.toString();
 	}
-
 }

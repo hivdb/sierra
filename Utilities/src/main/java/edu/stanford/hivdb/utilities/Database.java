@@ -65,5 +65,4 @@ public interface Database {
 	public Integer insert(
 			String sqlStatement, Object... sqlArguments)
 			throws SQLException;
-
 }

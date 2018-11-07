@@ -51,5 +51,4 @@ public class MyStringUtilsTest {
 		Constructor<MyStringUtils> c = MyStringUtils.class.getDeclaredConstructor();
 		assertFalse(c.isAccessible());
 	}
-
 }

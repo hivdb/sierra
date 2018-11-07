@@ -111,5 +111,4 @@ public class Json {
 	public static <T> T loads(Reader json, Type type) {
 		return gson.fromJson(json, type);
 	}
-
 }

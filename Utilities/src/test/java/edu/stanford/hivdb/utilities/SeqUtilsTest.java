@@ -32,7 +32,6 @@ public class SeqUtilsTest {
 		assertEquals("ABCEFGHIJ", SeqUtils.trimDownstreamNAs("ABCEFGHIJ"));
 	}
 
-
 	@Test
 	public void testTrimUpstreamNAs() {
 		assertEquals("ABCEFG", SeqUtils.trimUpstreamNAs("ABCEFG"));
@@ -67,10 +66,14 @@ public class SeqUtilsTest {
 		assertEquals(33.333, SeqUtils.mixturePcnt("AGTRYMKCGAGT"), 0.001);
 		assertEquals(6.25, SeqUtils.mixturePcnt("AGTRACGTACGTACGT"), 0.001);
 	}
+	
+	@Test
+	public void testMixturePcntWithNullSeq() {
+		assertEquals(0.0, SeqUtils.mixturePcnt(""), 0.001);
+	}
 
 	@Test(expected=RuntimeException.class)
 	public void TestConstructor() {
 		new SeqUtils();
 	}
-
 }

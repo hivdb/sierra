@@ -40,7 +40,7 @@ public class Cachable {
 	static final String RESOURCES_PATH = "src/main/resources";
 	static final String CACHABLE_PROPERTY = "hivdb.updateCachable";
 	static boolean forceUpdate = false;
-
+	
 	private final Class<?> cls;
 	private final Runnable _loadStatic;
 
@@ -49,12 +49,12 @@ public class Cachable {
 
 	@Retention(RetentionPolicy.RUNTIME)
 	public @interface CachableField {};
-
+	
 	public static interface DataLoader<T> {
 		public String getFieldName();
 		public T load() throws Throwable;
 	}
-
+	
 	public static final Cachable setup(final Class<?> cls, final Runnable loadData) {
 		Cachable cachable = new Cachable(cls, loadData);
 		cachable.loadStatic();
@@ -62,9 +62,7 @@ public class Cachable {
 	}
 
 	public static final Cachable setup(final Class<?> cls) {
-		Cachable cachable = new Cachable(cls);
-		cachable.loadStatic();
-		return cachable;
+		return setup(cls, null);
 	}
 
 	/**
@@ -106,16 +104,13 @@ public class Cachable {
 	}
 
 	public Cachable(final Class<?> cls) {
-		this.cls = cls;
-		this._loadStatic = null;
-		this.cachableStaticFields = getCachableStaticFields();
-		this.dataLoaders = getDataLoaders();
+		this(cls, null);
 	}
 
 	private String staticCachePath(Field field) {
 		return String.format(STATIC_CACHE_TPL, cls.getCanonicalName(), field.getName());
 	}
-
+	
 	/**
 	 * This method should be called in class initializer (static block).
 	 * @throws IllegalAccessException
@@ -159,7 +154,6 @@ public class Cachable {
 			}
 		})
 		.collect(Collectors.toList());
-
 	}
 
 	private void loadStaticFromLoaders() {
@@ -182,7 +176,6 @@ public class Cachable {
 			} catch (NoSuchFieldException|IllegalAccessException|IllegalArgumentException e) {
 				throw new ExceptionInInitializerError(e);
 			}
-
 		}
 	}
 
