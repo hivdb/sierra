@@ -18,8 +18,7 @@
 
 package edu.stanford.hivdb.ngs;
 
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Set;
 
 import edu.stanford.hivdb.mutations.Gene;
 import edu.stanford.hivdb.mutations.MutType;
@@ -39,9 +38,9 @@ public class MutationStats {
 	
 	public MutationStats(final double minPrevalence, final MutationSet mutations) {
 		this.minPrevalence = minPrevalence;
-		List<Mutation> filtered = (mutations.getSplitted().stream()
+		Set<Mutation> filtered = mutations.getSplitted();/*.stream()
 				.filter(mut -> !(mut.getGene() == Gene.RT && mut.getPosition() > 240))
-				.collect(Collectors.toList()));
+				.collect(Collectors.toList()));*/
 		numUsuals = (
 			filtered.stream()
 			.filter(m -> !m.isUnusual())
