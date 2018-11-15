@@ -149,13 +149,16 @@ public class Mutation implements Comparable<Mutation> {
 
 	public Set<Mutation> split() {
 		Set<Mutation> r = new HashSet<>();
+		char cons = this.cons.charAt(0);
 		if (isInsertion()) {
 			// prevent side-effect caused by insertion AAs
 			r.add(new Mutation(gene, pos, "_"));
 		}
 		else {
 			for (char aa : aas.toCharArray()) {
-				r.add(new Mutation(gene, pos, aa));
+				if (aa != cons) {
+					r.add(new Mutation(gene, pos, aa));
+				}
 			}
 		}
 		return r;
@@ -624,3 +627,5 @@ public class Mutation implements Comparable<Mutation> {
 		return mutationPattern;
 	}
 }
+
+	
