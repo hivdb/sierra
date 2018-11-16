@@ -40,12 +40,7 @@ public class SequenceTest {
 	
 	@Test
 	public void testConstructionFromGenBank_null() {
-		Sequence seq;
-		try { 
-			seq = Sequence.fromGenbank("null"); 
-		} catch(RuntimeException e) {
-			seq = null;
-		}
+		Sequence seq = Sequence.fromGenbank("//://"); 
 		assertNull(seq);
 	}
 	

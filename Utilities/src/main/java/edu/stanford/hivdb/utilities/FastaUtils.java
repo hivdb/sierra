@@ -80,10 +80,10 @@ public class FastaUtils {
 			result.add(line);
 		}
 		String resultStr = String.join("\n", result);
-		if (!resultStr.startsWith(">")) {
-			resultStr = ">UnamedSequence\n" + resultStr;
+		if (resultStr.startsWith(" Error")) resultStr = "";
+		if (!(resultStr.startsWith(">") || resultStr.isEmpty())) {
+			resultStr = ">UnnamedSequence\n" + resultStr;
 		}
-
 		return new ByteArrayInputStream(resultStr.getBytes());
 	}
 
@@ -131,7 +131,7 @@ public class FastaUtils {
 	 * Reads in a input stream with FASTA sequences. Create a list of Sequences
 	 * each containing a string of NAs and a header.
 	 * The NAs can be on multiple lines. Each line (absent whitespace) is added to
-	 *  the sequence until '>' is encountered
+	 * the sequence until '>' is encountered
 	 * @param filePath
 	 * @return List<Sequence>
 	 */

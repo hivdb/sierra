@@ -72,23 +72,11 @@ public class Sequence {
 	
 	public static Sequence fromGenbank(String accession) {
 		List<String> accessions = Arrays.asList(accession);
-		List<Sequence> result;
-		try {
-			result = FastaUtils.fetchGenbank(accessions);
-		} catch (RuntimeException e) {
-			throw new RuntimeException(e);
-		}
-		if (result.isEmpty() || result.get(0).isEmpty()) {
-			return null;
-		} 
+		List<Sequence> result = FastaUtils.fetchGenbank(accessions);
+		if (result.isEmpty()) return null;
 		return result.get(0);
 	}
-	
-	private boolean isEmpty() {
-		if (this.header.equals("UnamedSequence")) return true;
-		return false;
-	}
-	
+		
 	public Sequence(final FASTAElement el) {
 		this(el.getHeader(), el.getSequence());
 	}
@@ -108,7 +96,7 @@ public class Sequence {
 		}
 		return result;
 	}
-
+ 
 	public String getHeader() {
 		return header;
 	}
