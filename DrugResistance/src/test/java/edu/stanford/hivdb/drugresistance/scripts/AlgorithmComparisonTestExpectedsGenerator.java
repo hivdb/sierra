@@ -59,7 +59,7 @@ public class AlgorithmComparisonTestExpectedsGenerator {
 				AlgorithmComparison algorithmComparison =
 					new AlgorithmComparison(mutationSets, Arrays.asList(Algorithm.values()));
 				r.putIfAbsent(property.toString(), new LinkedHashMap<>());
-				r.get(property.toString()).put(sequence.getSHA512(), algorithmComparison);
+				r.get(property.toString()).put(sequence.getHeader() + "-" + sequence.getSHA512(), algorithmComparison);
 			}
 		}
 		final String result = Json.dumps(r);

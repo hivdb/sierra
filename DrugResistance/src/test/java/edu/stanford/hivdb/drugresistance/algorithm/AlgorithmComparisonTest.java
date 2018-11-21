@@ -79,11 +79,12 @@ public class AlgorithmComparisonTest {
 
 			for (AlignedSequence alignedSeq : allAligneds) {
 				Sequence sequence = alignedSeq.getInputSequence();
+				// System.out.println(sequence.getHeader());
 				Map<Gene, MutationSet> mutationSets = alignedSeq.getMutations().groupByGene();
 				List<ComparableDrugScore>
 					 actual = new AlgorithmComparison(mutationSets, Arrays.asList(Algorithm.values())).getComparisonResults();
 				List<ComparableDrugScore>
-					expected = expecteds.get(property.toString()).get(sequence.getSHA512()).getComparisonResults();
+					expected = expecteds.get(property.toString()).get(sequence.getHeader() + "-" + sequence.getSHA512()).getComparisonResults();
 				if (expected == null) {
 					// fix gson error
 					expected = Collections.emptyList();

@@ -109,6 +109,7 @@ public class AlgorithmComparison {
 
 	public AlgorithmComparison (Map<Gene, MutationSet> allMutations, Collection<Algorithm> algorithms) {
 		this.algorithms = algorithms.stream().map(Algorithm::name).toArray(String[]::new);
+		// System.out.println(allMutations);
 		this.asiListMap = new LinkedHashMap<>();
 		for (Gene gene : allMutations.keySet()) {
 			final MutationSet mutations = allMutations.get(gene);
