@@ -38,7 +38,7 @@ dependencies {
     compile 'org.apache.httpcomponents:httpclient:4.5.6'
     compile 'org.apache.httpcomponents:httpcore:4.4.10'
     compile 'com.mashape.unirest:unirest-java:1.4.9'
-    compile 'edu.stanford.hivdb.aapcnt:hiv-aapcnt-java:2018.11a1'
+    compile 'edu.stanford.hivdb.aapcnt:hiv-aapcnt-java:2018.11'
     compile project(':TestResources')
 }
 
