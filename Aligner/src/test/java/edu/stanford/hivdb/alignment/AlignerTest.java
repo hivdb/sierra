@@ -75,7 +75,6 @@ public class AlignerTest {
 			Type mapType = new TypeToken<Map<Gene, AlignedGeneSeq>>() {}.getType();
 
 			for (Sequence seq : sequences) {
-				LOGGER.debug("\nSequence:"  + seq.getHeader());
 				Map<Gene, AlignedGeneSeq> alignmentResults = allAligneds.get(seq);
 				final InputStream alignedGeneSeqJsonInputStream =
 					AlignerTest.class.getClassLoader().getResourceAsStream(testSequenceProperty.name() +

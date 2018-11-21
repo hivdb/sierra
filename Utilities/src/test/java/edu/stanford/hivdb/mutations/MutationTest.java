@@ -732,15 +732,15 @@ public class MutationTest {
 	@Test
 	public void testIsUnusual() {
 		final Mutation unusualMut = new Mutation(Gene.RT, 1, "A");
-		final Mutation usualMut = new Mutation(Gene.RT, 1, "H");
-		final Mutation usualMuts = new Mutation(Gene.RT, 1, "HLPST");
+		final Mutation usualMut = new Mutation(Gene.RT, 1, "L");
+		final Mutation usualMuts = new Mutation(Gene.RT, 1, "LPS");
 		final Mutation unusualMuts = new Mutation(Gene.RT, 1, "ACDEFG");
 		final Mutation mixedMuts = new Mutation(Gene.PR, 75, "AILMVSTY");
-		assertFalse(usualMut.isUnusual());
-		assertFalse(usualMuts.isUnusual());
-		assertTrue(unusualMut.isUnusual());
-		assertTrue(unusualMuts.isUnusual());
-		assertTrue(mixedMuts.isUnusual());
+		assertFalse(String.format("RT:%s should be usual", usualMut.toString()), usualMut.isUnusual());
+		assertFalse(String.format("RT:%s should be usual", usualMuts.toString()), usualMuts.isUnusual());
+		assertTrue(String.format("RT:%s should be unusual", unusualMut.toString()), unusualMut.isUnusual());
+		assertTrue(String.format("RT:%s should be unusual", unusualMuts.toString()), unusualMuts.isUnusual());
+		assertTrue(String.format("PR:%s should contain unusual mutation", mixedMuts.toString()), mixedMuts.isUnusual());
 	}
 	
 	@Test
@@ -787,11 +787,11 @@ public class MutationTest {
 		final Mutation prevMutsZero = new Mutation(Gene.IN, 45, "CDEFH");
 		final Mutation prevMutsWCons = new Mutation(Gene.IN, 45, "LHKQ");
 		final Mutation prevMutsWConsAndStop = new Mutation(Gene.IN, 45, "*LHKQ");
-		assertEquals(0.052, prevMut.getHighestMutPrevalence(), 0.0);
-		assertEquals(3.535, prevMuts.getHighestMutPrevalence(), 0.0);
-		assertEquals(0.0, prevMutZero.getHighestMutPrevalence(), 0.0);
-		assertEquals(0.0, prevMutsZero.getHighestMutPrevalence(), 0.0);
-		assertEquals(3.535, prevMutsWCons.getHighestMutPrevalence(), 0.0);
-		assertEquals(3.535, prevMutsWConsAndStop.getHighestMutPrevalence(), 0.0);
+		assertEquals(0.03587, prevMut.getHighestMutPrevalence(), 1e-5);
+		assertEquals(3.77107, prevMuts.getHighestMutPrevalence(), 1e-5);
+		assertEquals(0.0, prevMutZero.getHighestMutPrevalence(), 1e-5);
+		assertEquals(0.0, prevMutsZero.getHighestMutPrevalence(), 1e-5);
+		assertEquals(3.77107, prevMutsWCons.getHighestMutPrevalence(), 1e-5);
+		assertEquals(3.77107, prevMutsWConsAndStop.getHighestMutPrevalence(), 1e-5);
 	}
 }

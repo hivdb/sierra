@@ -92,10 +92,12 @@ public class MutationListValidatorTest {
 			/* expected result level(s) */
 			new ValidationLevel[] {
 				ValidationLevel.SEVERE_WARNING,
+				ValidationLevel.WARNING,
 			},
 			/* expected result message(s) */
 			new String[] {
 				"The submitted mutations contain 2 stop codons.",
+				"There are 2 unusual mutations: RT_K122*, IN_A23*."
 			});
 
 	}
