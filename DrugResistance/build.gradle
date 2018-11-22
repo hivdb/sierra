@@ -34,7 +34,7 @@ dependencies {
     compile 'com.google.code.gson:gson:2.6.2'
     compile project(':Aligner')
     compile 'org.fstrf.stanfordAsiInterpreter.resistance:resistance:1.0'
-    compile 'edu.stanford.hivdb.aapcnt:hiv-aapcnt-java:2018.11'
+    compile 'edu.stanford.hivdb.aapcnt:hiv-aapcnt-java:2018.11-2'
     testCompile 'junit:junit:4.12'
     testCompile 'org.mockito:mockito-core:1.9.5'
     testCompile project(':Utilities')

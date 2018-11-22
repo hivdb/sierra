@@ -132,6 +132,12 @@ public class MutationDef {
 				"If the mutation is from unsequenced region.")
 			.build())
 		.field(newFieldDefinition()
+				.type(GraphQLBoolean)
+				.name("isDRM")
+				.description(
+					"If the mutation is a drug resistance mutation (DRM) or not.")
+				.build())
+		.field(newFieldDefinition()
 			.type(GraphQLBoolean)
 			.name("hasStop")
 			.description(

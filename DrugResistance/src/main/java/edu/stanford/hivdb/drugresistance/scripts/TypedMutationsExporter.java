@@ -42,7 +42,7 @@ public class TypedMutationsExporter {
 	}
 
 	private static void exportUnusuals() {
-		HIVAminoAcidPercents allAAPcnts = HIVAminoAcidPercents.getInstance("naive", "All"); 
+		HIVAminoAcidPercents allAAPcnts = HIVAminoAcidPercents.getInstance("all", "All"); 
 
 		// Map<GenePosition, Map<Character, Boolean>>
 		// 	unusuals = UnusualMutations.getUnusualMuts();

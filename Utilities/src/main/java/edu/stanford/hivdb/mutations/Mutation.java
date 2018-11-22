@@ -43,7 +43,7 @@ public class Mutation implements Comparable<Mutation> {
 		"([AC-IK-NP-TV-Z.*]+(?:[#_]?[AC-IK-NP-TV-Z.*]+)?|[id_#~-]|[iI]ns(?:ertion)?|[dD]el(?:etion)?)" +
 		"(?::([ACGTRYMWSKBDHVN-]{3})?)?" +
 		"\\s*$");
-	private static final HIVAminoAcidPercents allAAPcnts = HIVAminoAcidPercents.getInstance("naive", "All");
+	private static final HIVAminoAcidPercents allAAPcnts = HIVAminoAcidPercents.getInstance("all", "All");
 
 	private Gene gene;
 	private String cons;
