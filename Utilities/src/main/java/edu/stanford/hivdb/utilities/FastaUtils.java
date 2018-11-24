@@ -60,34 +60,26 @@ public class FastaUtils {
 	 * @return InputStream
 	 */
 	private static InputStream cleanup(final InputStream stream) {
-		final BufferedReader reader =
-			new BufferedReader(new InputStreamReader(stream));
+		final BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
 		List<String> result = new ArrayList<>();
 		boolean isPrevIdentLine = false;
-			
 		for (String line : reader.lines().toArray(size -> new String[size])) {
-			if (line.startsWith("#")) {
-				continue;
-			}
-			if (line.startsWith(">")) {
-				if (isPrevIdentLine) {
-					result.remove(result.size() - 1);
-				}
-				isPrevIdentLine = true;
-			}
-			else {
-				isPrevIdentLine = false;
-			}
+			if (line.startsWith("#")) continue;
+			if (line.startsWith(">") && isPrevIdentLine) {
+				result.remove(result.size() - 1);
+			} else if (line.startsWith(">")) isPrevIdentLine = true;
+			else isPrevIdentLine = false;
 			result.add(line);
 		}
+				
 		String resultStr = String.join("\n", result);
 		if (resultStr.startsWith(" Error")) resultStr = "";
 		if (!(resultStr.startsWith(">") || resultStr.isEmpty())) {
 			resultStr = ">UnnamedSequence\n" + resultStr;
-		}
+		}	
 		return new ByteArrayInputStream(resultStr.getBytes());
 	}
-
+	
 	/**
 	 * Fetches a list of Genbank nucleotide sequences
 	 *
@@ -109,7 +101,7 @@ public class FastaUtils {
 		}
 		return readStream(response.getBody());
 	}
-
+	
 	/**
 	 * Reads in a file with FASTA sequences. Create a list of Sequences
 	 * each containing a string of NAs and a header.
@@ -150,7 +142,7 @@ public class FastaUtils {
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
-
+			
 		return sequences;
 	}
 
@@ -191,7 +183,7 @@ public class FastaUtils {
 		sequences.add(sequence);
 		writeFile(sequences, filePath);
 	}
-
+	
 	public static String writeString(Collection<Sequence> sequences) {
 		OutputStream stream = new ByteArrayOutputStream();
 		writeStream(sequences, stream);
