@@ -613,4 +613,8 @@ public class Mutation implements Comparable<Mutation> {
 	public String getHumanFormatWithGene() {
 		return gene.toString() + "_" + getHumanFormat();
 	}
+	
+	public static Pattern getPattern() {
+		return mutationPattern;
+	}
 }

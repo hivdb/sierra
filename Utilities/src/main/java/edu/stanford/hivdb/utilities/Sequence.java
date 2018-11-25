@@ -34,7 +34,7 @@ import net.sf.jfasta.FASTAElement;
 
 public class Sequence {
 	private static Map<Character, Character> COMPLEMENT_CODES;
-
+	
 	static {
 		Map<Character, Character> complement_codes = new HashMap<>();
 		complement_codes.put('A', 'T');

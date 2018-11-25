@@ -23,7 +23,7 @@ import edu.stanford.hivdb.drugs.DrugClass;
 
 /**
  * Converts each of the MutationPatternFiles to an input stream so that they can be used for
- * j-unit testin
+ * j-unit testing.
  *
  */
 public class TestMutationPatternFiles {
@@ -52,5 +52,4 @@ public class TestMutationPatternFiles {
 	public static InputStream getTestMutationPatternsInputStream(TestMutationPatterns testMutationPatterns) {
 		return TestMutationPatternFiles.class.getClassLoader().getResourceAsStream(testMutationPatterns.filePath);
 	}
-
 }
