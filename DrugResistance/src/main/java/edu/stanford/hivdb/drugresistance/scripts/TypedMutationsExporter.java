@@ -61,7 +61,7 @@ public class TypedMutationsExporter {
 					row.add("" + aaPcnt.aa);
 					rows.put(aaPcnt.aa, row);
 				}
-				rows.get(aaPcnt.aa).add(aaPcnt.isUnusual ? "0" : "1");
+				rows.get(aaPcnt.aa).add(aaPcnt.isUnusual ? "1" : "0");
 			}
 			String output = TSV.dumps(headers,  rows.values());
 			String outputFile = OUTPUT_FILE_PREFIX + "/unusual-mutations-" + gene + ".tsv";
