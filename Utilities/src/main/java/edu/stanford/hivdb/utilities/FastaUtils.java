@@ -29,6 +29,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import com.mashape.unirest.http.HttpResponse;
@@ -104,7 +105,7 @@ public class FastaUtils {
 				.field("id", String.join(",", accessions))
 				.asBinary();
 		} catch (UnirestException e) {
-			throw new RuntimeException(e);
+			return Collections.emptyList();
 		}
 		return readStream(response.getBody());
 	}
