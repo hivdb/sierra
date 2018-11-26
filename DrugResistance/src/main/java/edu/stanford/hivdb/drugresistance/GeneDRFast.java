@@ -57,7 +57,7 @@ public class GeneDRFast extends GeneDR {
 		}
 		return resistanceForSequence;
 	}
-
+	
 	public GeneDRFast(Gene gene, AlignedGeneSeq seq) {
 		this(gene, seq.getMutations());
 	}
@@ -104,5 +104,4 @@ public class GeneDRFast extends GeneDR {
 	public String getDrugLevelSIR(Drug drug) {
 		return fastHivdb.getDrugLevelSir(drug);
 	}
-
 }

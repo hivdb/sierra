@@ -259,7 +259,4 @@ public abstract class GeneDR {
 			}
 		}
 	}
-
 }
-
-
