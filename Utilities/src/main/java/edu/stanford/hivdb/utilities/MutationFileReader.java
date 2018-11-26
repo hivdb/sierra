@@ -19,7 +19,6 @@
 package edu.stanford.hivdb.utilities;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -28,8 +27,6 @@ import java.util.List;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
-import org.apache.commons.lang3.StringUtils;
 
 import edu.stanford.hivdb.drugs.DrugClass;
 import edu.stanford.hivdb.mutations.Gene;
@@ -57,8 +54,7 @@ public class MutationFileReader {
 			String line;
 			while ((line = br.readLine()) != null) {
 				if (shouldSkip(line)) continue;
-				line = StringUtils.strip(line);
-				List<Mutation> lineMuts = Stream.of(line.split(","))
+				List<Mutation> lineMuts = Stream.of(line.trim().split(","))
 					.filter(mutStr -> mutPattern.matcher(mutStr).find())
 					.map(mutStr -> Mutation.parseString(mutStr))
 					.collect(Collectors.toList());
@@ -89,9 +85,8 @@ public class MutationFileReader {
 			BufferedReader br = new BufferedReader(new InputStreamReader(fileInputStream));
 			String line;
 			while ((line = br.readLine()) != null) {
-				if (shouldSkip(line) || isHeader(line)) continue;
-				line = StringUtils.strip(line);
-				mutationLists.add(new MutationSet(gene, line));
+				if (isHeader(line) || shouldSkip(line)) continue;
+				mutationLists.add(new MutationSet(gene, line.trim()));
 			}
 			br.close();
 		} catch (IOException e) {

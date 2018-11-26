@@ -30,7 +30,7 @@ import edu.stanford.hivdb.filetestutils.TestMutationsFiles;
 import edu.stanford.hivdb.filetestutils.TestMutationsFiles.TestMutationsProperties;
 //import edu.stanford.hivdb.drugresistance.TestMutationPatternFiles;
 //import edu.stanford.hivdb.drugresistance.TestMutationPatternFiles.TestMutationPatterns;
-
+//import edu.stanford.hivdb.drugs.DrugClass;
 import edu.stanford.hivdb.mutations.MutationSet;
 
 public class MutationFileReaderTest {
@@ -53,8 +53,12 @@ public class MutationFileReaderTest {
 	public void testReadMutationListsForDrugClass() throws FileNotFoundException {
 //		final InputStream mutsStream =
 //				TestMutationPatternFiles.getTestMutationPatternsInputStream(TestMutationPatterns.INSTI_PATTERNS);
-//		final List<MutationSet> mutationLists = MutationFileReader.readMutationLists(mutsStream);
-//		System.out.println(mutationLists.toString());
+//		final DrugClass drugClass = DrugClass.INSTI;
+//		final List<MutationSet> mutationLists = MutationFileReader.readMutationListsForDrugClass(drugClass, mutsStream);
+//		final String eMutSet0 = "[E157Q]";
+//		final String eMutSet9 = "[E138A, G140S, Q148H]";
+//		assertEquals(eMutSet0, mutationLists.get(0).toString());
+//		assertEquals(eMutSet9, mutationLists.get(9).toString());
 	}
 	
 //	void printMutationListsFromFile() {
