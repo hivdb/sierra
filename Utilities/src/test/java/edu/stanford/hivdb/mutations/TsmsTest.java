@@ -22,6 +22,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import edu.stanford.hivdb.drugs.DrugClass;
+
 public class TsmsTest {
 
 	@Test
@@ -32,6 +34,7 @@ public class TsmsTest {
 		muts = new MutationSet(
 			"RT_M41L,RT_K65N,RT_D67S,RT_K70Q,RT_L74I,RT_V75M,RT_I94L,RT_K101H," +
 			"RT_K122E,RT_I135T,RT_V179F,RT_M184V,RT_G190Q,RT_H208Y,RT_H221Y");
+			
 		assertEquals(
 			new MutationSet(
 				"RT_M41L,RT_K65N,RT_D67S,RT_K70Q,RT_L74I,RT_V75M,RT_I94L," +
@@ -51,5 +54,17 @@ public class TsmsTest {
 			new MutationSet("PR48V,RT65N,RT67Deletion,RT103N,IN148H"),
 			new MutationSet(Tsms.getAllTsms(muts)));
 	}
-
+	
+	@Test
+	public void testGetAllTsmsByDrugClass() {
+		MutationSet muts = new MutationSet("RT:31L RT:44A RT:547R PR:47A PR:10R IN:51Y");
+		MutationSet eNRTIMuts = new MutationSet("RT:31L RT:44A RT:547R");
+		MutationSet eNNRTIMuts = new MutationSet();
+		MutationSet ePIMuts = new MutationSet("PR:47A PR:10R");
+		MutationSet eINSTIMuts = new MutationSet("IN:51Y");
+		assertEquals(eNRTIMuts, Tsms.getTsmsForDrugClass(DrugClass.NRTI, muts));
+		assertEquals(eNNRTIMuts, Tsms.getTsmsForDrugClass(DrugClass.NNRTI, muts));
+		assertEquals(ePIMuts, Tsms.getTsmsForDrugClass(DrugClass.PI, muts));
+		assertEquals(eINSTIMuts, Tsms.getTsmsForDrugClass(DrugClass.INSTI, muts));
+	}
 }

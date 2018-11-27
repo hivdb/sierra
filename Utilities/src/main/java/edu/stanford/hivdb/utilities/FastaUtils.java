@@ -29,6 +29,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import com.mashape.unirest.http.HttpResponse;
@@ -43,17 +44,17 @@ import net.sf.jfasta.impl.FASTAFileWriter;
 
 public class FastaUtils {
 	private FastaUtils() {}
-
+	
 	/**
-	 * Cleans up the FASTA file so JFASTA can tolerant errors.
+	 * Cleans up the FASTA file so JFASTA can tolerate errors.
 	 *
 	 * This method:
-	 *  - Removes comment and additional identifier lines;
-	 *  - Adds identifier line if absence
+	 *  - Removes comments and additional identifier lines;
+	 *  - Adds identifier line if absent
 	 *
-	 * Normally, FASTA file (or string) can contains one comment line
+	 * Normally, a FASTA file (or string) can contain one comment line
 	 * at the beginning of the file (or string). Note this method removes
-	 * all comments but not only the first one.
+	 * all comments following the first one.
 	 *
 	 * @param stream
 	 * @return InputStream
@@ -63,7 +64,7 @@ public class FastaUtils {
 			new BufferedReader(new InputStreamReader(stream));
 		List<String> result = new ArrayList<>();
 		boolean isPrevIdentLine = false;
-
+			
 		for (String line : reader.lines().toArray(size -> new String[size])) {
 			if (line.startsWith("#")) {
 				continue;
@@ -80,10 +81,10 @@ public class FastaUtils {
 			result.add(line);
 		}
 		String resultStr = String.join("\n", result);
-		if (!resultStr.startsWith(">")) {
-			resultStr = ">UnamedSequence\n" + resultStr;
+		if (resultStr.startsWith(" Error")) resultStr = "";
+		if (!(resultStr.startsWith(">") || resultStr.isEmpty())) {
+			resultStr = ">UnnamedSequence\n" + resultStr;
 		}
-
 		return new ByteArrayInputStream(resultStr.getBytes());
 	}
 
@@ -104,11 +105,10 @@ public class FastaUtils {
 				.field("id", String.join(",", accessions))
 				.asBinary();
 		} catch (UnirestException e) {
-			throw new RuntimeException(e);
+			return Collections.emptyList();
 		}
 		return readStream(response.getBody());
 	}
-
 
 	/**
 	 * Reads in a file with FASTA sequences. Create a list of Sequences
@@ -132,7 +132,7 @@ public class FastaUtils {
 	 * Reads in a input stream with FASTA sequences. Create a list of Sequences
 	 * each containing a string of NAs and a header.
 	 * The NAs can be on multiple lines. Each line (absent whitespace) is added to
-	 *  the sequence until '>' is encountered
+	 * the sequence until '>' is encountered
 	 * @param filePath
 	 * @return List<Sequence>
 	 */
@@ -197,5 +197,4 @@ public class FastaUtils {
 		writeStream(sequences, stream);
 		return stream.toString();
 	}
-
 }

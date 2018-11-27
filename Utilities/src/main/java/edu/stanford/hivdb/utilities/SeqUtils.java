@@ -24,12 +24,11 @@ import java.util.stream.Collectors;
 
 // TODO: all static method should be move to class Sequence
 
-
 public class SeqUtils {
 
 	private static final Set<Integer> RYMWKS_CODES;
 	private static final Set<Integer> BDHVN_CODES;
-
+	
 	static {
 		RYMWKS_CODES = Collections.unmodifiableSet(
 			"RYMWKS".chars().boxed().collect(Collectors.toSet()));
@@ -91,5 +90,4 @@ public class SeqUtils {
 		}
 		return seq;
 	}
-
 }

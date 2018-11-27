@@ -30,6 +30,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
+import edu.stanford.hivdb.aapcnt.HIVAminoAcidPercents;
 import edu.stanford.hivdb.utilities.MyStringUtils;
 
 public class Mutation implements Comparable<Mutation> {
@@ -42,7 +43,8 @@ public class Mutation implements Comparable<Mutation> {
 		"([AC-IK-NP-TV-Z.*]+(?:[#_]?[AC-IK-NP-TV-Z.*]+)?|[id_#~-]|[iI]ns(?:ertion)?|[dD]el(?:etion)?)" +
 		"(?::([ACGTRYMWSKBDHVN-]{3})?)?" +
 		"\\s*$");
-		
+	private static final HIVAminoAcidPercents allAAPcnts = HIVAminoAcidPercents.getInstance("all", "All");
+
 	private Gene gene;
 	private String cons;
 	private int pos;
@@ -351,7 +353,21 @@ public class Mutation implements Comparable<Mutation> {
 	public boolean isMixture() { return (aas.equals("X") || aas.length()>1); }
 	public boolean hasConsensus () { return aas.split("_", 2)[0].contains(gene.getConsensus(pos));}
 	public boolean hasStop() { return getAAs().contains("*"); }
-	public boolean isUnusual() { return UnusualMutations.containsUnusualMut(this); }
+
+	public boolean isUnusual() {
+		String mixture = aas;
+		if (isInsertion) {
+			mixture = "_";
+		}
+		else if (isDeletion) {
+			mixture = "-";
+		}
+		if (mixture.contains("X")) {
+			return true;
+		}
+		return allAAPcnts.containsUnusualAA(gene, pos, mixture);
+	}
+
 	public boolean isSDRM() { return Sdrms.isSDRM(this); }
 	public boolean hasBDHVN() {
 		// TODO: what if BDHVN doesn't affect the amimo acid?
@@ -368,7 +384,16 @@ public class Mutation implements Comparable<Mutation> {
 		return Apobec.isApobecDRM(this);
 	}
 	public double getHighestMutPrevalence() {
-		return UnusualMutations.getHighestMutPrevalence(this);
+		String mixture = aas;
+		if (isInsertion) {
+			mixture = "_";
+		}
+		else if (isDeletion) {
+			mixture = "-";
+		}
+		mixture = mixture.replace(cons, "").replaceAll("X", "");
+		
+		return allAAPcnts.getHighestAAPercentValue(gene, pos, mixture) * 100;
 	}
 
 	public String getAAsWithConsFirst() {

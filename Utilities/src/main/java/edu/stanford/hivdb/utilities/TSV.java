@@ -67,5 +67,4 @@ public abstract class TSV {
 			rows.stream().map(
 				row -> row.toArray(new String[0])).toArray(String[][]::new));
 	}
-
 }

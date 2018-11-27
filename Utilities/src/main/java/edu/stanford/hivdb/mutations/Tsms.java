@@ -29,8 +29,8 @@ import edu.stanford.hivdb.utilities.Cachable;
 public class Tsms {
 	@Cachable.CachableField
 	private static Map<DrugClass, Collection<Mutation>> tsmsByDrugClass;
-
 	private static Collection<Mutation> allTsms;
+	
 	static {
 		Cachable.setup(Tsms.class, () -> {
 			try {
@@ -40,9 +40,7 @@ public class Tsms {
 			}
 		});
 		allTsms = new ArrayList<>();
-		for (Collection<Mutation> muts : tsmsByDrugClass.values()) {
-			allTsms.addAll(muts);
-		}
+		tsmsByDrugClass.values().forEach(allTsms::addAll);
 	}
 
 	public static MutationSet getAllTsms(MutationSet muts) {
@@ -67,5 +65,4 @@ public class Tsms {
 			return null;
 		});
 	}
-
 }

@@ -22,12 +22,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import edu.stanford.hivdb.aapcnt.HIVAminoAcidPercent;
+import edu.stanford.hivdb.aapcnt.HIVAminoAcidPercents;
 import edu.stanford.hivdb.mutations.Apobec;
 import edu.stanford.hivdb.mutations.Gene;
-import edu.stanford.hivdb.mutations.GenePosition;
 import edu.stanford.hivdb.mutations.Mutation;
 import edu.stanford.hivdb.mutations.MutationSet;
-import edu.stanford.hivdb.mutations.UnusualMutations;
 import edu.stanford.hivdb.utilities.MyFileUtils;
 import edu.stanford.hivdb.utilities.TSV;
 
@@ -42,22 +42,26 @@ public class TypedMutationsExporter {
 	}
 
 	private static void exportUnusuals() {
-		Map<GenePosition, Map<Character, Boolean>>
-			unusuals = UnusualMutations.getUnusualMuts();
+		HIVAminoAcidPercents allAAPcnts = HIVAminoAcidPercents.getInstance("all", "All"); 
+
+		// Map<GenePosition, Map<Character, Boolean>>
+		// 	unusuals = UnusualMutations.getUnusualMuts();
+		
+		
 		for (Gene gene : Gene.values()) {
 			List<String> headers = new ArrayList<>();
 			Map<Character, List<String>> rows = new TreeMap<>();
 			headers.add("AA");
-			for (int pos=1; pos <= gene.getLength(); pos ++) {
+			for (int pos = 1; pos <= gene.getLength(); pos ++) {
 				headers.add("" + pos);
-				GenePosition gp = new GenePosition(gene, pos);
-				Map<Character, Boolean> aas = unusuals.get(gp);
-				for (char aa : aas.keySet()) {
+			}
+			for (HIVAminoAcidPercent aaPcnt : allAAPcnts.get(gene)) {
+				if (!rows.containsKey(aaPcnt.aa)) {
 					List<String> row = new ArrayList<>();
-					row.add("" + aa);
-					rows.putIfAbsent(aa, row);
-					rows.get(aa).add(aas.get(aa) ? "1" : "0");
+					row.add("" + aaPcnt.aa);
+					rows.put(aaPcnt.aa, row);
 				}
+				rows.get(aaPcnt.aa).add(aaPcnt.isUnusual ? "1" : "0");
 			}
 			String output = TSV.dumps(headers,  rows.values());
 			String outputFile = OUTPUT_FILE_PREFIX + "/unusual-mutations-" + gene + ".tsv";

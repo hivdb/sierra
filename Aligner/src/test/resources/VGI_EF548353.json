@@ -7,13 +7,13 @@
       "removedInvalidChars": ""
     },
     "firstAA": 4,
-    "lastAA": 99,
+    "lastAA": 98,
     "firstNA": 1,
-    "lastNA": 288,
+    "lastNA": 285,
     "leftTrimmed": 0,
-    "rightTrimmed": 0,
-    "matchPcnt": 98.958336,
-    "alignedNAs": "ACTCTTTGGCAACGACCCCTCGTCACAATAAAGATAGGGGGGCAACTAAAGGAAGCTTTATTAGATACAGGAGCAGATGATACAGTATTAGAAGAAATGAATTTGCCAGGAAGATGGAAACCAAAAATGATAGGAGGAATTGGAGGTTTTATCAAAGTAAGACAGTATGATCAAATACTCATAGAAATCTGTGGACATAAAGCTATAGGTACAGTATTAGTAGGACCTACACCTGTCAACATAATTGGAAGAAATCTGTTGACTCAGATTGGTTGCACTTTAAATKTN",
+    "rightTrimmed": 1,
+    "matchPcnt": 100.0,
+    "alignedNAs": "ACTCTTTGGCAACGACCCCTCGTCACAATAAAGATAGGGGGGCAACTAAAGGAAGCTTTATTAGATACAGGAGCAGATGATACAGTATTAGAAGAAATGAATTTGCCAGGAAGATGGAAACCAAAAATGATAGGAGGAATTGGAGGTTTTATCAAAGTAAGACAGTATGATCAAATACTCATAGAAATCTGTGGACATAAAGCTATAGGTACAGTATTAGTAGGACCTACACCTGTCAACATAATTGGAAGAAATCTGTTGACTCAGATTGGTTGCACTTTAAAT",
     "prettyPairwise": {
       "positionLine": [
         " 4 ",
@@ -110,8 +110,7 @@
         "95 ",
         "96 ",
         "97 ",
-        "98 ",
-        "99 "
+        "98 "
       ],
       "refAALine": [
         " T ",
@@ -208,8 +207,7 @@
         " C ",
         " T ",
         " L ",
-        " N ",
-        " F "
+        " N "
       ],
       "alignedNAsLine": [
         "ACT",
@@ -306,8 +304,7 @@
         "TGC",
         "ACT",
         "TTA",
-        "AAT",
-        "KTN"
+        "AAT"
       ],
       "mutationLine": [
         " - ",
@@ -404,24 +401,12 @@
         " - ",
         " - ",
         " - ",
-        " - ",
-        "FLV"
+        " - "
       ]
     },
-    "mutations": [
-      {
-        "gene": "PR",
-        "cons": "F",
-        "pos": 99,
-        "aas": "FLV",
-        "triplet": "KTN",
-        "insertedNAs": "",
-        "isInsertion": false,
-        "isDeletion": false
-      }
-    ],
+    "mutations": [],
     "frameShifts": [],
-    "mutationListString": "F99FLV"
+    "mutationListString": "None"
   },
   "RT": {
     "gene": "RT",

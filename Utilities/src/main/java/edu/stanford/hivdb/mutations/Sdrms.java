@@ -24,10 +24,11 @@ import edu.stanford.hivdb.utilities.JdbcDatabase;
 import edu.stanford.hivdb.utilities.Cachable;
 
 public class Sdrms {
+	
 	@Cachable.CachableField
 	private static MutationSet sdrms;
 	private static final JdbcDatabase db;
-
+	
 	static {
 		db = JdbcDatabase.getDefault();
 		Cachable.setup(Sdrms.class, () -> {
@@ -51,7 +52,7 @@ public class Sdrms {
 	public static boolean isSDRM(Mutation mut) {
 		return sdrms.hasSharedAAMutation(mut);
 	}
-
+	
 	private static void populateSDRMs() throws SQLException {
 		final String sqlStatement =
 			"SELECT Gene, Pos, AAs FROM tblSDRMs ORDER BY Gene, Pos, AAs";

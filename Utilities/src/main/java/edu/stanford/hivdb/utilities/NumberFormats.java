@@ -49,7 +49,5 @@ public class NumberFormats {
 
 	public static final Double prettyDecimal(double number) {
 		return Double.parseDouble(prettyDecimalAsString(number));
-
 	}
-
 }

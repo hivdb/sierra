@@ -34,7 +34,8 @@ public class MyFileUtils {
 		} catch (NullPointerException e) {
 			// pass
 		}
-		try {
+		
+		try { 
 			Files.write(
 				file.toPath(), output.getBytes(),
 				StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
@@ -46,7 +47,6 @@ public class MyFileUtils {
 	public static void writeFile(String filePath, String output) {
 		writeFile(new File(filePath), output);
 	}
-
 
 	public static void appendFile(String filePath, String output) {
 		File file = new File(filePath);
@@ -63,10 +63,9 @@ public class MyFileUtils {
 			throw new RuntimeException(e);
 		}
 	}
-
+	
 	public static BufferedReader readResource(Class<?> classObj, String resourcePath) {
 		InputStream stream = classObj.getClassLoader().getResourceAsStream(resourcePath);
 		return new BufferedReader(new InputStreamReader(stream));
 	}
-
 }

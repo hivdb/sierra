@@ -97,15 +97,14 @@ public enum Drug {
 	}
 
 	public static Drug getSynonym(String synonym) {
-		if (!drugSynonyms.containsKey(synonym)) {
+		if (drugSynonyms.containsKey(synonym)) {
+			return drugSynonyms.get(synonym);
+		} else {
 			try {
 				return Drug.valueOf(synonym);
 			} catch (IllegalArgumentException e) {
 				return null;
 			}
-		} else {
-			return drugSynonyms.get(synonym);
 		}
 	}
-
 }

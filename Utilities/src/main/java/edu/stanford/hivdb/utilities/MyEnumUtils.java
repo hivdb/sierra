@@ -58,5 +58,4 @@ public interface MyEnumUtils {
 			final Collection<T> enums, final Character delimiter) {
 		return join(enums, "" + delimiter, T::toString);
 	}
-
 }

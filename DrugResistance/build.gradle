@@ -6,7 +6,7 @@ plugins {
 }
 
 group = 'edu.stanford.hivdb'
-version = '2.2.9'
+version = '2.2.10'
 
 description = """DrugResistance"""
 
@@ -14,10 +14,13 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 repositories {
-     mavenCentral()
-     flatDir {
-         dirs 'lib'
-     }
+    mavenCentral()
+    maven {
+        url 'https://dl.bintray.com/hivdb/hivdb'
+    }
+    flatDir {
+        dirs 'lib'
+    }
 }
 
 dependencies {
@@ -26,11 +29,13 @@ dependencies {
     compile 'org.apache.logging.log4j:log4j-api:2.5'
     compile 'org.apache.logging.log4j:log4j-core:2.5'
     compile 'mysql:mysql-connector-java:5.1.38'
+    compile 'com.google.guava:guava:21.0'
     compile 'com.mchange:c3p0:0.9.5.2'
     compile 'com.google.code.gson:gson:2.6.2'
     compile project(':Aligner')
     compile project(':NGS')
     compile 'org.fstrf.stanfordAsiInterpreter.resistance:resistance:1.0'
+    compile 'edu.stanford.hivdb.aapcnt:hiv-aapcnt-java:2018.11-2'
     testCompile 'junit:junit:4.12'
     testCompile 'org.mockito:mockito-core:1.9.5'
     testCompile project(':Utilities')

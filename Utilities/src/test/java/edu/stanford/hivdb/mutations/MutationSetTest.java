@@ -1,5 +1,4 @@
 /*
-    
     Copyright (C) 2017 Stanford HIVDB team
     
     Sierra is free software: you can redistribute it and/or modify
@@ -21,12 +20,15 @@ package edu.stanford.hivdb.mutations;
 import org.junit.Test;
 
 import edu.stanford.hivdb.drugs.DrugClass;
+import edu.stanford.hivdb.mutations.MutationPrevalences.MutationPrevalence;
+
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class MutationSetTest {
@@ -106,6 +108,17 @@ public class MutationSetTest {
 				"PR_31MK, RT67P ; RT69S_SS IN:210*, IN211d+RT211-...IN-212Deletion"));
 	}
 
+	@Test
+	public void testParseStringCollectionString() {
+		assertEquals(
+			new MutationSet(
+				Gene.RT,
+				Arrays.asList("", "31I", "31MK", "31MK", "31I", "67P", "69S_SS", "210*", "211d", "211Deletion", "212Deletion")
+			),
+			new MutationSet(
+				"RT_31MK, RT67P ; RT69S_SS RT:210*, RT211d+RT211-...RT-212Deletion"));
+	}
+	
 	@Test(expected=UnsupportedOperationException.class)
 	public void testPreventAddAll() {
 		MutationSet muts = new MutationSet();
@@ -184,7 +197,6 @@ public class MutationSetTest {
 				new Mutation(Gene.RT, 67, "P")),
 			new MutationSet(Gene.RT, "31M, 67P")
 			.mergesWith(new Mutation(Gene.RT, 31, "K")));
-
 	}
 	
 	@Test
@@ -220,9 +232,12 @@ public class MutationSetTest {
 		assertEquals(
 			new MutationSet("RT:36K"),
 			another.intersectsWith(new Mutation(Gene.RT, 36, "AK")));
-
+		
+		assertEquals(
+			new MutationSet("RT:36K"),
+			another.intersectsWith(Arrays.asList(Mutation.parseString("RT:36K"))));
 	}
-
+	
 	@Test
 	public void testSubtractsBy() {
 		MutationSet self = new MutationSet("RT:48VER PR48VER PR:32E");
@@ -349,6 +364,28 @@ public class MutationSetTest {
 			).getMerged(Gene.PR, 67));
 	}
 
+	@Test 
+	public void testGetByMutType() {
+		final MutationSet muts = new MutationSet(
+				new Mutation(Gene.RT, 65, "N"),
+				new Mutation(Gene.RT, 115, "FR"),
+				new Mutation(Gene.RT, 118, "I"),
+				new Mutation(Gene.RT, 103, "N"),
+				new Mutation(Gene.RT, 41, "P"),
+				new Mutation(Gene.PR, 84, "V"),
+				new Mutation(Gene.IN, 155, "S"));
+		MutationSet eMajorMuts = new MutationSet("PR:84V, IN:155S");
+		MutationSet eOtherMuts = new MutationSet("RT:41P, RT:118I");
+		MutationSet eAccessoryMuts = new MutationSet();
+		MutationSet eNRTIMuts = new MutationSet("RT:65N RT:115FR");
+		MutationSet eNNRTIMuts = new MutationSet("RT:103N");
+		assertEquals(eMajorMuts, muts.getByMutType(MutType.Major));
+		assertEquals(eOtherMuts, muts.getByMutType(MutType.Other));
+		assertEquals(eAccessoryMuts, muts.getByMutType(MutType.Accessory));
+		assertEquals(eNRTIMuts, muts.getByMutType(MutType.NRTI));
+		assertEquals(eNNRTIMuts, muts.getByMutType(MutType.NNRTI));
+	}
+	
 	@Test
 	public void testCompareTwoSets() {
 		assertEquals(
@@ -378,7 +415,6 @@ public class MutationSetTest {
 
 	@Test
 	public void testAutoMerge() {
-
 		assertEquals(
 			new MutationSet(
 				new Mutation(Gene.RT, 31, "KM"),
@@ -404,7 +440,6 @@ public class MutationSetTest {
 
 	@Test
 	public void testGetGeneMutations() {
-
 		assertEquals(
 			new MutationSet(
 				new Mutation(Gene.RT, 31, "KM"),
@@ -423,7 +458,6 @@ public class MutationSetTest {
 
 	@Test
 	public void testGetInsertions() {
-
 		assertEquals(
 			new MutationSet(
 				new Mutation(Gene.RT, 67, "_A"),
@@ -440,7 +474,6 @@ public class MutationSetTest {
 
 	@Test
 	public void testGetDeletions() {
-
 		assertEquals(
 			new MutationSet(
 				new Mutation(Gene.IN, 31, "-")
@@ -456,7 +489,6 @@ public class MutationSetTest {
 
 	@Test
 	public void testGetStopCodons() {
-
 		assertEquals(
 			new MutationSet(
 				new Mutation(Gene.IN, 31, "*")
@@ -472,7 +504,6 @@ public class MutationSetTest {
 
 	@Test
 	public void testGetAmbiguousCodons() {
-
 		assertEquals(
 			new MutationSet(
 				new Mutation(Gene.IN, 31, "X"),
@@ -511,9 +542,9 @@ public class MutationSetTest {
 	public void testGetHighestMutPrevalences() {
 		MutationSet muts = new MutationSet("RT:67N,RT:69KS,PR:82VIA,RT68W");
 		Map<Mutation, Double> expected = new HashMap<>();
-		expected.put(new Mutation(Gene.RT, 67, "N"), 10.373);
-		expected.put(new Mutation(Gene.RT, 69, "KS"), 0.813);
-		expected.put(new Mutation(Gene.PR, 82, "VIA"), 5.33);
+		expected.put(new Mutation(Gene.RT, 67, "N"), 9.0147444549135450);
+		expected.put(new Mutation(Gene.RT, 69, "KS"), 0.8036226800178583);
+		expected.put(new Mutation(Gene.PR, 82, "VIA"), 4.7026691174567015);
 		expected.put(new Mutation(Gene.RT, 68, "W"), 0.0);
 		assertEquals(expected, muts.getHighestMutPrevalences());
 	}
@@ -584,6 +615,21 @@ public class MutationSetTest {
 
 	@Test
 	public void testGetDRMs() {
+		final MutationSet drmMuts = new MutationSet(
+			new Mutation(Gene.RT, 103, "N"),
+			new Mutation(Gene.PR, 84, "KV"),
+			new Mutation(Gene.IN, 155, "S"));
+		assertEquals(drmMuts, drmMuts.getDRMs());
+		
+		final MutationSet muts = new MutationSet(
+			new Mutation(Gene.RT, 68, "A"),
+			new Mutation(Gene.RT, 118, "I"),
+			new Mutation(Gene.RT, 41, "P"));
+		assertEquals(new MutationSet(), muts.getDRMs());
+	}
+	
+	@Test
+	public void testGetDRMsByDrugClass() {
 		MutationSet sequenceMuts = new MutationSet(
 			new Mutation(Gene.RT, 68, "A"),
 			new Mutation(Gene.RT, 115, "FR"),
@@ -625,8 +671,12 @@ public class MutationSetTest {
 		assertEquals(
 			"PR_I84KV,RT_K65P,RT_D67Deletion,RT_T69Insertion,RT_Y115FR,IN_N155S",
 			sequenceMuts.join(Mutation::getHumanFormatWithGene));
+		assertEquals(
+			"I84KV,K65P,D67Deletion,T69Insertion,Y115FR,N155S",
+			sequenceMuts.join());
+		assertEquals("None", new MutationSet().join(' ', Mutation::getHumanFormatWithGene));
 	}
-
+	
 	@Test
 	public void testToStringList() {
 		MutationSet sequenceMuts = new MutationSet(
@@ -661,7 +711,6 @@ public class MutationSetTest {
 
 	@Test
 	public void testHashCode() {
-
 		assertEquals(
 			new MutationSet(
 				new Mutation(Gene.PR, 31, "X"),
@@ -674,5 +723,31 @@ public class MutationSetTest {
 			new MutationSet(Gene.PR, "31X"),
 			new MutationSet(Gene.RT, "31X")
 		);
+	}
+	
+	@Test 
+	public void testHasSharedMutation() {
+		final Mutation mut1 = new Mutation(Gene.RT, 68, "A");
+		final Mutation mut2 = new Mutation(Gene.RT, 115, "FR");
+		final Mutation mut3 = new Mutation(Gene.RT, 118, "I");
+		final MutationSet muts = new MutationSet(mut1, mut2, mut3);
+		assertTrue(muts.hasSharedAAMutation(mut1));
+		assertTrue(muts.hasSharedAAMutation(mut2));
+		assertTrue(muts.hasSharedAAMutation(mut3));
+		assertTrue(muts.hasSharedAAMutation(new Mutation(Gene.RT, 115, "F")));
+		assertFalse(muts.hasSharedAAMutation(new Mutation(Gene.RT, 116, "FR")));
+	}
+	
+	@Test 
+	public void testGetPrevalences() {
+		final Mutation mut1 = new Mutation(Gene.RT, 68, "A");
+		final Mutation mut2 = new Mutation(Gene.RT, 115, "FR");
+		final Mutation mut3 = new Mutation(Gene.RT, 118, "I");
+		final MutationSet muts = new MutationSet(mut1, mut2, mut3);
+		final Map<Mutation, List<MutationPrevalence>> mutPrevs = muts.getPrevalences();
+		muts.forEach(mut -> {
+			List<MutationPrevalence> eMutPrevs = MutationPrevalences.getPrevalenceAtSamePosition(mut);
+			assertEquals(eMutPrevs, mutPrevs.get(mut));
+		});
 	}
 }

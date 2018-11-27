@@ -115,7 +115,9 @@ public class MutationSet extends TreeSet<Mutation> {
 			.stream()
 			.filter(mStr -> mStr.length() > 0)
 			.map(mStr -> Mutation.parseString(gene, mStr))
-			.filter(mut -> mut != null)
+//			Since parseString throws exceptions instead of returning 
+//			null mutations, the call to filter below may be redundant.
+//			.filter(mut -> mut != null) 	 
 			.collect(Collectors.toList());
 	}
 
@@ -154,7 +156,7 @@ public class MutationSet extends TreeSet<Mutation> {
 		super.add(mut);
 		return true;
 	}
-
+	
 	// Begin of all write methods
 	@Override
 	public boolean addAll(Collection<? extends Mutation> muts) {
@@ -457,7 +459,7 @@ public class MutationSet extends TreeSet<Mutation> {
 			return true;
 		});
 	}
-
+	
 	public MutationSet getDRMs() {
 		return filterBy(mut -> mut.getPrimaryType() != MutType.Other);
 	}
@@ -582,7 +584,7 @@ public class MutationSet extends TreeSet<Mutation> {
 	public Map<Mutation, List<MutationPrevalence>> getPrevalences() {
 		return MutationPrevalences.groupPrevalenceByPositions(this);
 	}
-
+	
 	public String join(
 			CharSequence delimiter,
 			Function<Mutation, CharSequence> mutationToString) {

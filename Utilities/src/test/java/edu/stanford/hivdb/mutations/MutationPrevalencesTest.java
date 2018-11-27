@@ -32,6 +32,8 @@ import org.junit.Test;
 import edu.stanford.hivdb.mutations.MutationPrevalences.MutationPrevalence;
 
 public class MutationPrevalencesTest {
+		
+		final private List<String> eTypes = Arrays.asList("A", "B", "C", "D", "F", "G", "CRF01_AE", "CRF02_AG", "Other", "All");
 	
 		// MutationPrevalences calls populateMutationPrevalenceStore
 		// in its static initializer. So calling it here is redundant.
@@ -42,16 +44,20 @@ public class MutationPrevalencesTest {
 		}
 		
 		@Test
-		public void testInitialization() {
-			List<String> eTypes = Arrays.asList("A", "B", "C", "D", "F", "G", "CRF01_AE", "CRF02_AG", "Other", "All");
+		public void testTypeInit() {
 			assertEquals(eTypes, MutationPrevalences.getAllTypes());
-			
-			Map<Gene, Map<String, Integer[]>> numPatients = MutationPrevalences.getNumPatients();
+		}
+		
+		@Test
+		public void testGeneInit() {			
 			List<Gene> eGenes = Arrays.asList(Gene.RT, Gene.IN, Gene.PR);
-			List<Gene> genes = new ArrayList<>(numPatients.keySet());
+			List<Gene> genes = new ArrayList<>(MutationPrevalences.getNumPatients().keySet());
 			assertTrue(CollectionUtils.isEqualCollection(eGenes, genes));
-			
-			numPatients.values().forEach(typeMap -> {
+		}
+		
+		@Test
+		public void testPatientsInit() {
+			MutationPrevalences.getNumPatients().values().forEach(typeMap -> {
 				List<String> types = new ArrayList<>(typeMap.keySet());
 				assertTrue(CollectionUtils.isEqualCollection(eTypes, types));
 			});
@@ -65,9 +71,14 @@ public class MutationPrevalencesTest {
 			assertEquals("A554S Other 736 2 547 0 74.300000 0.000000", mpFull.toString());
 			assertEquals("A554S Other 736 2 0 0 0.000000 0.000000", mpBrief.toString());
 		}
-		
+		 
 		@Test
 		public void testPrevalanceMatches() {
+			// Since we update prevalence data periodically, we  
+			// expects the following assertions to ultimately fail. 
+			// Hence we must manually update these assertions every time
+			// we upload new prevalence data. 
+			
 			/* 1st mutation in the INI file with 2 different subtypes */
 			Mutation m = new Mutation(Gene.IN, 1, "S");
 			checkNullPrevalence(MutationPrevalences.getPrevalenceAtSamePosition(m), "S", "A");
@@ -90,7 +101,7 @@ public class MutationPrevalencesTest {
 		
 		@Test
 		public void testGroupPrevalenceByPos() {
-			MutationSet muts = new MutationSet("IN1S IN1S IN286N PR72T RT554S");
+			MutationSet muts = new MutationSet("IN1S IN1S IN286N PR72T RT554S IN1S");
 			Map<Mutation, List<MutationPrevalence>> mpByPos = MutationPrevalences.groupPrevalenceByPositions(muts);
 			muts.forEach(mut -> {
 				List<MutationPrevalence> prevsAtPos = MutationPrevalences.getPrevalenceAtSamePosition(mut);

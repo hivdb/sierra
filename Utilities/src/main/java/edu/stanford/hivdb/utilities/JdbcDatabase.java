@@ -171,5 +171,4 @@ public class JdbcDatabase implements Database {
 			throws SQLException {
 		return update(sqlStatement, sqlArguments);
 	}
-
 }

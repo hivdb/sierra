@@ -46,7 +46,6 @@ public class MutationPrevalences {
 	private static final String IN_PREVALENCE_DB_URL = String.format(DB_URL_TPL, "INI");
 	private static final String RT_PREVALENCE_DB_URL = String.format(DB_URL_TPL, "RTI");
 
-
 	/*
 	 * Class representing the frequency of mutations for treated and naive individuals
 	 * for one particular mutation and subtype.
@@ -163,7 +162,7 @@ public class MutationPrevalences {
 			.collect(Collectors.toMap(
 				mut -> mut,
 				mut -> getPrevalenceAtSamePosition(mut),
-				(m1, m2) -> m1,
+				(m1, m2) -> m1, // MutationSet filters duplicates. So I don't believe this function will ever be called. 
 				TreeMap::new
 			));
 	}

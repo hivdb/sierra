@@ -64,7 +64,7 @@ public class FastaUtilsTest {
 			FastaUtils.readString(">EMPTY-SEQUENCE"));
 		List<Sequence> expecteds3 = new ArrayList<>();
 		expecteds3.add(new Sequence(
-			"UnamedSequence", "ACGTACGTACGT"));
+			"UnnamedSequence", "ACGTACGTACGT"));
 		assertEquals(
 			expecteds3,
 			FastaUtils.readString("ACGTACGTACGT"));

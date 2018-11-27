@@ -18,8 +18,7 @@
 
 package edu.stanford.hivdb.utilities;
 
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -32,7 +31,6 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import net.sf.jfasta.FASTAElement;
-
 
 public class Sequence {
 	private static Map<Character, Character> COMPLEMENT_CODES;
@@ -67,20 +65,17 @@ public class Sequence {
 		this.sequence = sanitizeSequence(sequence);
 	}
 
-	public static List<Sequence> fromGenbank(Collection<String> accessions) {
-		return FastaUtils.fetchGenbank(accessions);
-	}
-
+//	public static List<Sequence> fromGenbank(Collection<String> accessions) {
+//		return FastaUtils.fetchGenbank(accessions);
+//	}
+	
 	public static Sequence fromGenbank(String accession) {
-		List<String> accessions = new ArrayList<>();
-		accessions.add(accession);
+		List<String> accessions = Arrays.asList(accession);
 		List<Sequence> result = FastaUtils.fetchGenbank(accessions);
-		if (result.isEmpty()) {
-			return null;
-		}
+		if (result.isEmpty()) return null;
 		return result.get(0);
 	}
-
+		
 	public Sequence(final FASTAElement el) {
 		this(el.getHeader(), el.getSequence());
 	}
@@ -100,7 +95,7 @@ public class Sequence {
 		}
 		return result;
 	}
-
+ 
 	public String getHeader() {
 		return header;
 	}
@@ -120,17 +115,18 @@ public class Sequence {
 	public String getSHA512() {
 		return DigestUtils.sha512Hex(sequence);
 	}
-
-	public Sequence reverseCompliment() {
+	
+	public Sequence reverseCompliment() { 
 		StringBuilder reversed = new StringBuilder();
 		int seqLen = sequence.length();
-		for (int i = seqLen - 1; i > -1; i --) {
+			
+		for (int i = seqLen - 1; i >= 0; i--) {
 			char code = sequence.charAt(i);
 			reversed.append(COMPLEMENT_CODES.getOrDefault(code, code));
 		}
 		return new Sequence(header, reversed.toString());
 	}
-
+ 
 	@Override
 	public boolean equals(Object o) {
 		if (o == this) { return true; }

@@ -69,7 +69,6 @@ public class NucAminoAligner {
 
 	private static final Map<Gene, Integer> MIN_NUM_OF_SITES_PER_GENE;
 	private static final int MIN_MATCH_PCNT = 60;
-	private static final Double SEQUENCE_SHRINKAGE_BAD_QUALITY_MUT_PREVALENCE = 0.01; // 1 in 10,000
 	private static final int SEQUENCE_SHRINKAGE_WINDOW = 15;
 	private static final int SEQUENCE_SHRINKAGE_CUTOFF_PCNT = 30;
 	private static final Executor executor = Executors.newFixedThreadPool(20);
@@ -410,7 +409,7 @@ public class NucAminoAligner {
 		for (Mutation mut : mutations) {
 			int idx = mut.getPosition() - firstAA;
 			if (!mut.isUnsequenced() && (
-					mut.getHighestMutPrevalence() < SEQUENCE_SHRINKAGE_BAD_QUALITY_MUT_PREVALENCE
+					mut.isUnusual()
 					|| mut.getAAs().equals("X") || mut.isApobecMutation() || mut.hasStop())) {
 				invalidSites.set(idx, true);
 			}

@@ -57,6 +57,7 @@ public class AlignerTest {
 			if (!testSequenceProperty.forRoutineTesting) {
 				continue;
 			}
+			// System.out.println(testSequenceProperty.propertyName);
 			// if (!testSequenceProperty.equals(TestSequencesProperties.PROBLEM_SEQUENCES)) {
 			// 	continue;
 			// }

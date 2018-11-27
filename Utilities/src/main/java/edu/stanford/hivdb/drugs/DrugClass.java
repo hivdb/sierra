@@ -18,10 +18,11 @@
 
 package edu.stanford.hivdb.drugs;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import edu.stanford.hivdb.mutations.Gene;
 
@@ -39,26 +40,19 @@ public enum DrugClass {
 		this.fullName = fullName;
 	}
 
-	public List<Drug> getDrugsForHivdbTesting() {
-		List<Drug> drugs = new ArrayList<Drug>();
-		for (Drug d : Drug.values()) {
-			if (d.getDrugClass() == this && d.forHivdbResistanceTesting) {
-				drugs.add(d);
-			}
-		}
-		return drugs;
-	}
-
 	public List<Drug> getAllDrugs() {
-		List<Drug> drugs = new ArrayList<Drug>();
-		for (Drug d : Drug.values()) {
-			if (d.getDrugClass() == this) {
-				drugs.add(d);
-			}
-		}
-		return drugs;
+		return Stream.of(Drug.values())
+			   .filter(d -> d.getDrugClass() == this)
+			   .collect(Collectors.toList());
 	}
-
+	
+	public List<Drug> getDrugsForHivdbTesting() {
+		return this.getAllDrugs()
+				   .stream()
+				   .filter(d -> d.forHivdbResistanceTesting)
+				   .collect(Collectors.toList());
+	}
+	
 	public Gene gene() {
 		return this.gene;
 	}
@@ -76,5 +70,4 @@ public enum DrugClass {
 			return drugSynonyms.get(synonym);
 		}
 	}
-
 }
