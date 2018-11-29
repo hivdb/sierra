@@ -68,10 +68,10 @@ public class GeneDRTest {
 		doReturn(true).when(geneDR).drugClassHasScoredIndividualMuts(DrugClass.INSTI);
 		doReturn(true).when(geneDR).drugClassHasScoredComboMuts(DrugClass.INSTI);
 		assertTrue(geneDR.drugClassHasScoredMuts(DrugClass.INSTI));
-
+		
 		doReturn(false).when(geneDR).drugClassHasScoredComboMuts(DrugClass.INSTI);
 		assertTrue(geneDR.drugClassHasScoredMuts(DrugClass.INSTI));
-
+		
 		doReturn(false).when(geneDR).drugClassHasScoredIndividualMuts(DrugClass.INSTI);
 		doReturn(true).when(geneDR).drugClassHasScoredComboMuts(DrugClass.INSTI);
 		assertTrue(geneDR.drugClassHasScoredMuts(DrugClass.INSTI));

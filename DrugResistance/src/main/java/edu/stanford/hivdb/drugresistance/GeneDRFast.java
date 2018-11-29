@@ -65,12 +65,12 @@ public class GeneDRFast extends GeneDR {
 	public GeneDRFast(Gene gene, MutationSet mutations) {
 		super(gene, mutations);
 		fastHivdb = new FastHivdb(gene, mutations);
-
+		
 		drugClassDrugMutScores = fastHivdb.getDrugClassDrugMutScores();
 		drugClassDrugComboMutScores = fastHivdb.getDrugClassDrugComboMutScores();
 		postConstructor();
 	}
-
+		
 	public static Map<MutationSet, GeneDR> parallelConstructor(Gene gene, Set<MutationSet> allMuts) {
 		return allMuts
 			.parallelStream()

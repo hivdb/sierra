@@ -209,13 +209,4 @@ public class AlgorithmComparison {
 			}
 		}
 	}
-
-
-
-
-
-
 }
-
-
-

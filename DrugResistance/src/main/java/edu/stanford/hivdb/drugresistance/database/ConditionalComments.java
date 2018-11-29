@@ -43,7 +43,7 @@ import edu.stanford.hivdb.utilities.Json;
 public class ConditionalComments {
 
 	private static final String WILDCARD_REGEX = "\\$listMutsIn\\{.+?\\}";
-
+	
 	public static enum ConditionType {
 		MUTATION, DRUGLEVEL
 	}
@@ -54,8 +54,8 @@ public class ConditionalComments {
 		final private ConditionType conditionType;
 		final private Map<String, Object> conditionValue;
 		final private String comment;
-
-		private ConditionalComment(
+		
+		protected ConditionalComment(
 				String commentName, DrugClass drugClass,
 				ConditionType conditionType,
 				Map<String, Object> conditionValue, String comment) {
@@ -65,14 +65,14 @@ public class ConditionalComments {
 			this.conditionValue = conditionValue;
 			this.comment = comment;
 		}
-
+		
 		public Gene getMutationGene() {
 			if (conditionType != ConditionType.MUTATION) {
 				return null;
 			}
 			return Gene.valueOf((String) conditionValue.get("gene"));
 		}
-
+		
 		public Integer getMutationPosition() {
 			if (conditionType != ConditionType.MUTATION) {
 				return null;
@@ -83,16 +83,16 @@ public class ConditionalComments {
 		public String getMutationAAs() {
 			if (conditionType != ConditionType.MUTATION) {
 				return null;
-			}
+			}			
 			return (String) conditionValue.get("aas");
 		}
-
+		
 		private Map<Drug, List<Integer>> getDrugLevels() {
 			Map<Drug, List<Integer>> drugLevels = new LinkedHashMap<>();
 			if (conditionType != ConditionType.DRUGLEVEL) {
 				return drugLevels;
 			}
-			if (conditionValue.containsKey("and")) {
+			if (conditionValue.containsKey("and")) {				
 				for (Object dlevel : ((List<?>) conditionValue.get("and"))) {
 					Map<?, ?> dlevelMap = (Map<?, ?>) dlevel;
 					Drug drug = Drug.valueOf((String) dlevelMap.get("drug"));
@@ -120,7 +120,7 @@ public class ConditionalComments {
 			String delimiter = "";
 			for (Map.Entry<Drug, List<Integer>> e : drugLevels.entrySet()) {
 				Drug drug = e.getKey();
-				List<Integer> levels= e.getValue();
+				List<Integer> levels = e.getValue();
 				text.append(String.format(
 					"%s%s: %s", delimiter, drug,
 					levels.stream().map(l -> l.toString())
@@ -130,14 +130,14 @@ public class ConditionalComments {
 			}
 			return text.toString();
 		}
-
+		
 		public String getName() { return commentName; }
 		public String getText() { return comment; }
 		public DrugClass getDrugClass() { return drugClass; }
 		public ConditionType getConditionType() { return conditionType; }
 		public Gene getGene() { return drugClass.gene(); }
 	}
-
+	
 	public static class BoundComment {
 		final private Gene gene;
 		final private DrugClass drugClass;
@@ -146,8 +146,8 @@ public class ConditionalComments {
 		final private String comment;
 		final private Collection<String> highlightText;
 		final private Mutation mutation;
-
-		private BoundComment(
+		
+		protected BoundComment(
 				String commentName, DrugClass drugClass, CommentType commentType,
 				String comment, Collection<String> highlightText,
 				Mutation mutation) {
@@ -168,21 +168,21 @@ public class ConditionalComments {
 		public Gene getGene() { return gene; }
 		public DrugClass drugClass() { return drugClass; }
 
-		@Deprecated
-		public String getConsensus() {
-			if (mutation != null) {
-				return mutation.getConsensus();
-			}
-			return null;
-		}
+//		@Deprecated
+//		public String getConsensus() {
+//			if (mutation != null) {
+//				return mutation.getConsensus();
+//			}
+//			return null;
+//		}
 
-		@Deprecated
-		public String getTriggeredAAs() {
-			if (mutation != null) {
-				return mutation.getAAs();
-			}
-			return null;
-		}
+//		@Deprecated
+//		public String getTriggeredAAs() {
+//			if (mutation != null) {
+//				return mutation.getAAs();
+//			}
+//			return null;
+//		}
 	}
 
 	@Cachable.CachableField
@@ -205,7 +205,7 @@ public class ConditionalComments {
 			// skip if it's other gene
 			return null;
 		}
-
+		
 		int pos = cc.getMutationPosition();
 		Mutation mut = mutations.get(gene, pos);
 		if (mut == null) {
@@ -268,7 +268,7 @@ public class ConditionalComments {
 			null
 		);
 	}
-
+	
 	public static List<BoundComment> getComments(GeneDR geneDR) {
 		Gene gene = geneDR.getGene();
 		MutationSet mutations = geneDR.getMutations();
@@ -287,7 +287,7 @@ public class ConditionalComments {
 		}
 		return comments;
 	}
-
+	
 	public static List<BoundComment> getComments(Mutation mutation) {
 		Gene gene = mutation.getGene();
 		MutationSet mutations = new MutationSet(mutation);
@@ -308,20 +308,19 @@ public class ConditionalComments {
 		return Collections.unmodifiableList(conditionalComments);
 	}
 
-
 	/**
 	 * Populate comments from HIVDB_Results database to static variable.
 	 */
 	private static void populateComments() throws SQLException {
 
 		final JdbcDatabase db = JdbcDatabase.getResultsDB();
-
+		
 		// TODO: The version is hard-coded here.
 		final String sqlStatement =
 			"SELECT CommentName, DrugClass, ConditionType, ConditionValue, Comment " +
 			"FROM tblConditionalCommentsWithVersions WHERE Version=? " +
 			"ORDER BY CommentName";
-
+		
 		conditionalComments = db.iterate(sqlStatement, rs -> {
 			String name = rs.getString("CommentName");
 			DrugClass drugClass = DrugClass.valueOf(rs.getString("DrugClass"));
@@ -333,5 +332,4 @@ public class ConditionalComments {
 			return new ConditionalComment(name, drugClass, type, value, commentText);
 		}, HivdbVersion.getLatestVersion().name());
 	}
-
 }

@@ -67,7 +67,7 @@ public class Mutation implements Comparable<Mutation> {
 			super(message);
 		}
 	}
-
+	
 	/**
 	 *
 	 * @param gene
@@ -121,7 +121,7 @@ public class Mutation implements Comparable<Mutation> {
 		else {
 			codon = (String) mut.get("CodonText");
 			codon = codon.replace(' ', '-');
-			/*if (codon.length() > 0)*/ aas.append(CodonTranslation.translateNATriplet(codon));
+			aas.append(CodonTranslation.translateNATriplet(codon));
 			if (isInsertion) {       
 				aas.append('_');
 				insertedCodon = (String) mut.get("InsertedCodonsText");

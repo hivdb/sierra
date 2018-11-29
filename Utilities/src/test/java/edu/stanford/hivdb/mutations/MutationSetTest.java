@@ -31,7 +31,7 @@ import java.util.List;
 import java.util.Map;
 
 public class MutationSetTest {
-
+	
 	@Test
 	public void testParseMutationsString() {
 		String nullStr = null;

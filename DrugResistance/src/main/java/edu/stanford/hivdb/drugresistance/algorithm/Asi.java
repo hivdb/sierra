@@ -111,5 +111,4 @@ public interface Asi {
 	public Map<Drug, Map<Mutation, Double>> getDrugMutScores();
 
 	public Map<Drug, Map<MutationSet, Double>> getDrugComboMutScores();
-
 }

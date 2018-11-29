@@ -63,5 +63,4 @@ public class AsiAnrs extends AsiBase {
 	public String getAlgorithmName() {
 		return "ANRS";
 	}
-
 }
