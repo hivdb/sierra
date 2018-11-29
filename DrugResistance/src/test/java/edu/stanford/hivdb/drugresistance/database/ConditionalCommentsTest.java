@@ -146,7 +146,7 @@ public class ConditionalCommentsTest {
 	}
 	
 	@Test 
-	public void testGetCommentsofDrugClass() {
+	public void testGetCommentsofDrugResistance() {
 		final MutationSet mutSet = new MutationSet("RT67P");
 		final GeneDR dr = new GeneDRFast(Gene.RT, mutSet);
 		final List<BoundComment> cmts = ConditionalComments.getComments(dr);

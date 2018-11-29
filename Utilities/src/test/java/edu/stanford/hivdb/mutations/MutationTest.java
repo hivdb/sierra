@@ -50,7 +50,6 @@ public class MutationTest {
 	public void testFromNucAminoMutWithDeletion() {
 		final Map<String, Object> mutMap = new HashMap<>();
 		mutMap.put("Position", 1.0);
-		mutMap.put("CodonText", "AAC");
 		mutMap.put("IsInsertion", false);
 		mutMap.put("IsDeletion", true);
 		
@@ -70,6 +69,19 @@ public class MutationTest {
 		
 		final Mutation mut = Mutation.fromNucAminoMutation(Gene.PR, 1, mutMap);
 		final Mutation eMut = new Mutation(Gene.PR, 1, "N_N", "AAC", "AAC");			
+		assertTrue(mut.equals(eMut));
+	}
+	
+	@Test
+	public void testFromNucAminoMutWithSoleInsertion() {
+		final Map<String, Object> mutMap = new HashMap<>(); 
+		mutMap.put("Position", 1.0);
+		mutMap.put("InsertedCodonsText", "AAC");
+		mutMap.put("IsInsertion", true);
+		mutMap.put("IsDeletion", false);
+		
+		final Mutation mut = Mutation.fromNucAminoMutation(Gene.PR, 1, mutMap);
+		final Mutation eMut = new Mutation(Gene.PR, 1, "_N", "AAC", "AAC");			
 		assertTrue(mut.equals(eMut));
 	}
 	
