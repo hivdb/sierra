@@ -33,6 +33,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import edu.stanford.hivdb.drugs.DrugClass;
+import edu.stanford.hivdb.mutations.AAMutation;
 import edu.stanford.hivdb.mutations.Gene;
 import edu.stanford.hivdb.mutations.Mutation;
 import edu.stanford.hivdb.mutations.MutationSet;
@@ -76,9 +77,9 @@ public class MutationFileReader {
 						Gene gene = Gene.valueOf(m.group(1));
 						int pos = Integer.valueOf(m.group(2));
 						String mutAA = m.group(3);
-						mutAA = mutAA.replaceAll("#","_");
+						mutAA = mutAA.replaceAll("#", "_");
 						mutAA = mutAA.replaceAll("~", "-");
-						Mutation mut = new Mutation(gene,pos,mutAA);
+						Mutation mut = new AAMutation(gene, pos, mutAA.toCharArray());
 						seqMutList.add(mut);
 					}
 				}

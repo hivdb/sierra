@@ -28,6 +28,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import com.google.common.primitives.Chars;
 import com.google.gson.reflect.TypeToken;
 
 import edu.stanford.hivdb.drugresistance.GeneDR;
@@ -171,7 +172,7 @@ public class ConditionalComments {
 		@Deprecated
 		public String getConsensus() {
 			if (mutation != null) {
-				return mutation.getConsensus();
+				return mutation.getReference();
 			}
 			return null;
 		}
@@ -207,38 +208,16 @@ public class ConditionalComments {
 		}
 
 		int pos = cc.getMutationPosition();
-		Set<Mutation> posMuts = mutations.get(gene, pos);
-		if (posMuts == null) {
+		Mutation posMut = mutations.get(gene, pos);
+		if (posMut == null) {
 			// skip if there's no mutation for current condition
 			return null;
 		}
 
-		String aas = cc.getMutationAAs();
-		Mutation resultMut = null;
-		for (Mutation mut : posMuts) {
-			if (mut.isInsertion()) {
-				if (!aas.contains("_")) {
-					// skip if the corresponding mutation is insertion
-					// but not insertion in current condition
-					continue;
-				}
-				// remove details
-				resultMut = new Mutation(gene, pos, '_');
-				break;
-			}
-			else {
-				aas = aas.replace("_", "");
-				if (!mut.containsSharedAA(aas)) {
-					continue;
-				}
-				if (mut.isDeletion()) {
-					resultMut = mut;
-				} else {
-					resultMut = mut.intersectsWith(new Mutation(gene, pos, aas));
-				}
-				break;
-			}
-		}
+		List<Character> aaChars = Chars.asList(
+			cc.getMutationAAs().toCharArray()
+		);
+		Mutation resultMut = posMut.intersectsWith(aaChars);
 		if (resultMut == null) {
 			return null;
 		}

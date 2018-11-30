@@ -28,6 +28,7 @@ import edu.stanford.hivdb.drugresistance.database.MutationComboScores;
 import edu.stanford.hivdb.drugs.Drug;
 import edu.stanford.hivdb.drugs.DrugClass;
 import edu.stanford.hivdb.mutations.Gene;
+import edu.stanford.hivdb.mutations.IUPACMutation;
 import edu.stanford.hivdb.mutations.Mutation;
 import edu.stanford.hivdb.mutations.MutationSet;
 
@@ -35,13 +36,13 @@ public class MutationComboScoresTest {
 
 	@Test
 	public void test() {
-		Mutation mut1 = new Mutation(Gene.RT, 41, "L");
-		Mutation mut2 = new Mutation(Gene.RT, 215, "SY");
-		// Mutation mut3 = new Mutation(Gene.RT, 118, "VI");
-		Mutation mut4 = new Mutation(Gene.RT, 190, "E");
-		// Mutation mut5 = new Mutation(Gene.PR, 73, "SC");
-		// Mutation mut6 = new Mutation(Gene.PR, 90, "LM");
-		// Mutation mut7 = new Mutation(Gene.PR, 84, "V");
+		Mutation mut1 = new IUPACMutation(Gene.RT, 41, "L");
+		Mutation mut2 = new IUPACMutation(Gene.RT, 215, "SY");
+		// Mutation mut3 = new IUPACMutation(Gene.RT, 118, "VI");
+		Mutation mut4 = new IUPACMutation(Gene.RT, 190, "E");
+		// Mutation mut5 = new IUPACMutation(Gene.PR, 73, "SC");
+		// Mutation mut6 = new IUPACMutation(Gene.PR, 90, "LM");
+		// Mutation mut7 = new IUPACMutation(Gene.PR, 84, "V");
 
 		List<Mutation> mutList = new ArrayList<>();
 		mutList.add(mut1);

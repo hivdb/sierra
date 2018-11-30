@@ -84,7 +84,7 @@ public class AlgorithmComparisonTest {
 				List<ComparableDrugScore>
 					 actual = new AlgorithmComparison(mutationSets, Arrays.asList(Algorithm.values())).getComparisonResults();
 				List<ComparableDrugScore>
-					expected = expecteds.get(property.toString()).get(sequence.getHeader() + "-" + sequence.getSHA512()).getComparisonResults();
+					expected = expecteds.get((Object) property.toString()).get(sequence.getHeader() + "-" + sequence.getSHA512()).getComparisonResults();
 				if (expected == null) {
 					// fix gson error
 					expected = Collections.emptyList();

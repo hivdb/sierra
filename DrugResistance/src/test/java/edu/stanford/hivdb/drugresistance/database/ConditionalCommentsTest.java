@@ -26,21 +26,22 @@ import org.junit.Test;
 
 import edu.stanford.hivdb.drugresistance.database.ConditionalComments.BoundComment;
 import edu.stanford.hivdb.mutations.Gene;
+import edu.stanford.hivdb.mutations.IUPACMutation;
 import edu.stanford.hivdb.mutations.Mutation;
 
 public class ConditionalCommentsTest {
 
 	//@Test
 	public void test() {
-		Mutation mut1 = new Mutation(Gene.RT, 41, "LI");
-		Mutation mut2 = new Mutation(Gene.RT, 215, "P");
-		Mutation mut3 = new Mutation(Gene.RT, 118, "VI");
-		Mutation mut4 = new Mutation(Gene.RT, 190, "V");
-		Mutation mut5 = new Mutation(Gene.RT, 35, "I");
-		Mutation mut6 = new Mutation(Gene.RT, 100, "I");
-		Mutation mut7 = new Mutation(Gene.PR, 73, "SC");
-		Mutation mut8 = new Mutation(Gene.PR, 90, "LM");
-		Mutation mut9 = new Mutation(Gene.PR, 84, "Q");
+		Mutation mut1 = new IUPACMutation(Gene.RT, 41, "LI");
+		Mutation mut2 = new IUPACMutation(Gene.RT, 215, "P");
+		Mutation mut3 = new IUPACMutation(Gene.RT, 118, "VI");
+		Mutation mut4 = new IUPACMutation(Gene.RT, 190, "V");
+		Mutation mut5 = new IUPACMutation(Gene.RT, 35, "I");
+		Mutation mut6 = new IUPACMutation(Gene.RT, 100, "I");
+		Mutation mut7 = new IUPACMutation(Gene.PR, 73, "SC");
+		Mutation mut8 = new IUPACMutation(Gene.PR, 90, "LM");
+		Mutation mut9 = new IUPACMutation(Gene.PR, 84, "Q");
 
 		List<Mutation> mutList = new ArrayList<Mutation>();
 		mutList.add(mut1);
@@ -57,7 +58,7 @@ public class ConditionalCommentsTest {
 
 	@Test
 	public void testInsertion() {
-		Mutation mut = new Mutation(Gene.RT, 69, "_SS");
+		Mutation mut = new IUPACMutation(Gene.RT, 69, "_SS");
 		List<BoundComment> result = ConditionalComments.getComments(mut);
 		for (BoundComment cmt: result) {
 			assertEquals(cmt.getBoundMutation().getAAs(), "_");
@@ -66,7 +67,7 @@ public class ConditionalCommentsTest {
 
 	@Test
 	public void testDeletion() {
-		Mutation mut = new Mutation(Gene.RT, 67, "-");
+		Mutation mut = new IUPACMutation(Gene.RT, 67, "-");
 		List<BoundComment> result = ConditionalComments.getComments(mut);
 		for (BoundComment cmt: result) {
 			assertEquals(cmt.getBoundMutation().getAAs(), "-");

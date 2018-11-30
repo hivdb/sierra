@@ -32,7 +32,6 @@ import edu.stanford.hivdb.mutations.Gene;
 import edu.stanford.hivdb.mutations.MutType;
 import edu.stanford.hivdb.mutations.Mutation;
 import edu.stanford.hivdb.utilities.JdbcDatabase;
-import edu.stanford.hivdb.utilities.MyStringUtils;
 import edu.stanford.hivdb.utilities.Cachable;
 
 public class MutationTypePairs {
@@ -51,6 +50,7 @@ public class MutationTypePairs {
 		private final String aas;
 		private final MutType type;
 		private final Boolean isUnusual;
+		private transient Mutation mutObj;
 		
 		public MutationTypePair(
 				final Gene gene, final DrugClass drugClass,
@@ -59,7 +59,7 @@ public class MutationTypePairs {
 			this.gene = gene;
 			this.drugClass = drugClass;
 			this.position = position;
-			this.consensus = gene.getConsensus(position);
+			this.consensus = gene.getReference(position);
 			this.aas = aas;
 			this.type = mutType;
 			this.isUnusual = isUnusual;
@@ -72,17 +72,15 @@ public class MutationTypePairs {
 		public String getTriggeredAAs() { return aas; }
 		public MutType getType() { return type; }
 		public boolean isUnusual() { return isUnusual; }
-
-		public boolean isMutationMatched(Mutation mut) {
-			String mutAAs = mut.getAAsWithoutConsensus();
-			if (mut.isInsertion()) {
-				// remove the insertion AAs which could interfere the intersection
-				mutAAs = "_";
+		public Mutation getMutObj() {
+			if (mutObj == null) {
+				mutObj = new AAMutation(gene, position, aas.toCharArray(), 0xff);
 			}
-			return
-				mut.getGene() == gene &&
-				mut.getPosition() == position &&
-				MyStringUtils.hasSharedChar(mutAAs, aas);
+			return mutObj;
+		}
+
+		public boolean isMutationMatched(Mutation targetMut) {
+			return getMutObj().containsSharedAA(targetMut);
 		}
 		
 //		public String getUniqueID() {

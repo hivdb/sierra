@@ -49,7 +49,7 @@ import edu.stanford.hivdb.ngs.GeneSequenceReads;
  */
 public class GeneDRFast extends GeneDR {
 
-	protected final FastHivdb fastHivdb;
+	private final FastHivdb fastHivdb;
 
 	public static Map<Gene, GeneDR> getResistanceByGeneFromAlignedGeneSeqs(List<AlignedGeneSeq> alignedGeneSeqs) {
 		Map<Gene, GeneDR> resistanceForSequence = new EnumMap<>(Gene.class);

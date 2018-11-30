@@ -1,882 +1,888 @@
 [
   {
+    "type": "AA",
     "gene": "PR",
-    "cons": "L",
-    "pos": 10,
-    "aas": "F",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 10,
+    "aaChars": [
+      "F"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "PR",
-    "cons": "V",
-    "pos": 11,
-    "aas": "IL",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 11,
+    "aaChars": [
+      "I",
+      "L"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "PR",
-    "cons": "K",
-    "pos": 20,
-    "aas": "T",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 20,
+    "aaChars": [
+      "T"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "PR",
-    "cons": "L",
-    "pos": 23,
-    "aas": "I",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 23,
+    "aaChars": [
+      "I"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "PR",
-    "cons": "L",
-    "pos": 24,
-    "aas": "FIM",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 24,
+    "aaChars": [
+      "F",
+      "I",
+      "M"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "PR",
-    "cons": "D",
-    "pos": 30,
-    "aas": "N",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 30,
+    "aaChars": [
+      "N"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "PR",
-    "cons": "V",
-    "pos": 32,
-    "aas": "I",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 32,
+    "aaChars": [
+      "I"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "PR",
-    "cons": "L",
-    "pos": 33,
-    "aas": "F",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 33,
+    "aaChars": [
+      "F"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "PR",
-    "cons": "K",
-    "pos": 43,
-    "aas": "T",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 43,
+    "aaChars": [
+      "T"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "PR",
-    "cons": "M",
-    "pos": 46,
-    "aas": "ILV",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 46,
+    "aaChars": [
+      "I",
+      "L",
+      "V"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "PR",
-    "cons": "I",
-    "pos": 47,
-    "aas": "AV",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 47,
+    "aaChars": [
+      "A",
+      "V"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "PR",
-    "cons": "G",
-    "pos": 48,
-    "aas": "ALMQSTV",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 48,
+    "aaChars": [
+      "A",
+      "L",
+      "M",
+      "Q",
+      "S",
+      "T",
+      "V"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "PR",
-    "cons": "I",
-    "pos": 50,
-    "aas": "LV",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 50,
+    "aaChars": [
+      "L",
+      "V"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "PR",
-    "cons": "F",
-    "pos": 53,
-    "aas": "L",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 53,
+    "aaChars": [
+      "L"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "PR",
-    "cons": "I",
-    "pos": 54,
-    "aas": "ALMSTV",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 54,
+    "aaChars": [
+      "A",
+      "L",
+      "M",
+      "S",
+      "T",
+      "V"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "PR",
-    "cons": "Q",
-    "pos": 58,
-    "aas": "E",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 58,
+    "aaChars": [
+      "E"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "PR",
-    "cons": "G",
-    "pos": 73,
-    "aas": "ACDSTV",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 73,
+    "aaChars": [
+      "A",
+      "C",
+      "D",
+      "S",
+      "T",
+      "V"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "PR",
-    "cons": "T",
-    "pos": 74,
-    "aas": "P",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 74,
+    "aaChars": [
+      "P"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "PR",
-    "cons": "L",
-    "pos": 76,
-    "aas": "V",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 76,
+    "aaChars": [
+      "V"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "PR",
-    "cons": "V",
-    "pos": 82,
-    "aas": "ACFLMST",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 82,
+    "aaChars": [
+      "A",
+      "C",
+      "F",
+      "L",
+      "M",
+      "S",
+      "T"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "PR",
-    "cons": "N",
-    "pos": 83,
-    "aas": "D",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 83,
+    "aaChars": [
+      "D"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "PR",
-    "cons": "I",
-    "pos": 84,
-    "aas": "ACV",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 84,
+    "aaChars": [
+      "A",
+      "C",
+      "V"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "PR",
-    "cons": "N",
-    "pos": 88,
-    "aas": "DGST",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 88,
+    "aaChars": [
+      "D",
+      "G",
+      "S",
+      "T"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "PR",
-    "cons": "L",
-    "pos": 89,
-    "aas": "V",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 89,
+    "aaChars": [
+      "V"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "PR",
-    "cons": "L",
-    "pos": 90,
-    "aas": "M",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 90,
+    "aaChars": [
+      "M"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "RT",
-    "cons": "E",
-    "pos": 40,
-    "aas": "F",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 40,
+    "aaChars": [
+      "F"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "RT",
-    "cons": "M",
-    "pos": 41,
-    "aas": "L",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 41,
+    "aaChars": [
+      "L"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "RT",
-    "cons": "E",
-    "pos": 44,
-    "aas": "AD",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 44,
+    "aaChars": [
+      "A",
+      "D"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "RT",
-    "cons": "A",
-    "pos": 62,
-    "aas": "V",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 62,
+    "aaChars": [
+      "V"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "RT",
-    "cons": "K",
-    "pos": 65,
-    "aas": "ENR",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 65,
+    "aaChars": [
+      "E",
+      "N",
+      "R"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "RT",
-    "cons": "D",
-    "pos": 67,
-    "aas": "-",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": true
+    "position": 67,
+    "aaChars": [
+      "-",
+      "E",
+      "G",
+      "H",
+      "N",
+      "S",
+      "T"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "RT",
-    "cons": "D",
-    "pos": 67,
-    "aas": "EGHNST",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 68,
+    "aaChars": [
+      "-"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "RT",
-    "cons": "S",
-    "pos": 68,
-    "aas": "-",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": true
+    "position": 69,
+    "aaChars": [
+      "-",
+      "D",
+      "G",
+      "_"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "RT",
-    "cons": "T",
-    "pos": 69,
-    "aas": "-",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": true
+    "position": 70,
+    "aaChars": [
+      "-",
+      "E",
+      "G",
+      "N",
+      "Q",
+      "R",
+      "S",
+      "T"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "RT",
-    "cons": "T",
-    "pos": 69,
-    "aas": "DG",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 74,
+    "aaChars": [
+      "I",
+      "V"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "RT",
-    "cons": "T",
-    "pos": 69,
-    "aas": "_",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": true,
-    "isDeletion": false
+    "position": 75,
+    "aaChars": [
+      "A",
+      "I",
+      "M",
+      "S",
+      "T"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "RT",
-    "cons": "K",
-    "pos": 70,
-    "aas": "-",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": true
+    "position": 77,
+    "aaChars": [
+      "L"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "RT",
-    "cons": "K",
-    "pos": 70,
-    "aas": "EGNQRST",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 98,
+    "aaChars": [
+      "G"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "RT",
-    "cons": "L",
-    "pos": 74,
-    "aas": "IV",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 100,
+    "aaChars": [
+      "I",
+      "V"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "RT",
-    "cons": "V",
-    "pos": 75,
-    "aas": "AIMST",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 101,
+    "aaChars": [
+      "E",
+      "H",
+      "P"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "RT",
-    "cons": "F",
-    "pos": 77,
-    "aas": "L",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 103,
+    "aaChars": [
+      "H",
+      "N",
+      "R",
+      "S",
+      "T"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "RT",
-    "cons": "A",
-    "pos": 98,
-    "aas": "G",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 106,
+    "aaChars": [
+      "A",
+      "M"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "RT",
-    "cons": "L",
-    "pos": 100,
-    "aas": "IV",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 108,
+    "aaChars": [
+      "I"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "RT",
-    "cons": "K",
-    "pos": 101,
-    "aas": "EHP",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 115,
+    "aaChars": [
+      "F"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "RT",
-    "cons": "K",
-    "pos": 103,
-    "aas": "HNRST",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 116,
+    "aaChars": [
+      "Y"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "RT",
-    "cons": "V",
-    "pos": 106,
-    "aas": "AM",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 138,
+    "aaChars": [
+      "A",
+      "G",
+      "K",
+      "Q",
+      "R"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "RT",
-    "cons": "V",
-    "pos": 108,
-    "aas": "I",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 151,
+    "aaChars": [
+      "L",
+      "M"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "RT",
-    "cons": "Y",
-    "pos": 115,
-    "aas": "F",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 179,
+    "aaChars": [
+      "D",
+      "E",
+      "F",
+      "L",
+      "T"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "RT",
-    "cons": "F",
-    "pos": 116,
-    "aas": "Y",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 181,
+    "aaChars": [
+      "C",
+      "F",
+      "G",
+      "I",
+      "S",
+      "V"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "RT",
-    "cons": "E",
-    "pos": 138,
-    "aas": "AGKQR",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 184,
+    "aaChars": [
+      "I",
+      "V"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "RT",
-    "cons": "Q",
-    "pos": 151,
-    "aas": "LM",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 188,
+    "aaChars": [
+      "C",
+      "F",
+      "H",
+      "L"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "RT",
-    "cons": "V",
-    "pos": 179,
-    "aas": "DEFLT",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 190,
+    "aaChars": [
+      "A",
+      "C",
+      "E",
+      "Q",
+      "S",
+      "T",
+      "V"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "RT",
-    "cons": "Y",
-    "pos": 181,
-    "aas": "CFGISV",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 210,
+    "aaChars": [
+      "W"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "RT",
-    "cons": "M",
-    "pos": 184,
-    "aas": "IV",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 215,
+    "aaChars": [
+      "A",
+      "C",
+      "D",
+      "E",
+      "F",
+      "I",
+      "L",
+      "N",
+      "S",
+      "V",
+      "Y"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "RT",
-    "cons": "Y",
-    "pos": 188,
-    "aas": "CFHL",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 219,
+    "aaChars": [
+      "E",
+      "N",
+      "Q",
+      "R",
+      "W"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "RT",
-    "cons": "G",
-    "pos": 190,
-    "aas": "ACEQSTV",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 221,
+    "aaChars": [
+      "Y"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "RT",
-    "cons": "L",
-    "pos": 210,
-    "aas": "W",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 225,
+    "aaChars": [
+      "H"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "RT",
-    "cons": "T",
-    "pos": 215,
-    "aas": "ACDEFILNSVY",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 227,
+    "aaChars": [
+      "C",
+      "L"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "RT",
-    "cons": "K",
-    "pos": 219,
-    "aas": "ENQRW",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 230,
+    "aaChars": [
+      "I",
+      "L"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "RT",
-    "cons": "H",
-    "pos": 221,
-    "aas": "Y",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 238,
+    "aaChars": [
+      "N",
+      "T"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "RT",
-    "cons": "P",
-    "pos": 225,
-    "aas": "H",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 318,
+    "aaChars": [
+      "F"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "RT",
-    "cons": "F",
-    "pos": 227,
-    "aas": "CL",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 348,
+    "aaChars": [
+      "I"
+    ],
+    "maxDisplayAAs": 255
   },
   {
-    "gene": "RT",
-    "cons": "M",
-    "pos": 230,
-    "aas": "IL",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
-  },
-  {
-    "gene": "RT",
-    "cons": "K",
-    "pos": 238,
-    "aas": "NT",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
-  },
-  {
-    "gene": "RT",
-    "cons": "Y",
-    "pos": 318,
-    "aas": "F",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
-  },
-  {
-    "gene": "RT",
-    "cons": "N",
-    "pos": 348,
-    "aas": "I",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
-  },
-  {
+    "type": "AA",
     "gene": "IN",
-    "cons": "H",
-    "pos": 51,
-    "aas": "Y",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 51,
+    "aaChars": [
+      "Y"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "IN",
-    "cons": "T",
-    "pos": 66,
-    "aas": "AIK",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 66,
+    "aaChars": [
+      "A",
+      "I",
+      "K"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "IN",
-    "cons": "L",
-    "pos": 74,
-    "aas": "IM",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 74,
+    "aaChars": [
+      "I",
+      "M"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "IN",
-    "cons": "E",
-    "pos": 92,
-    "aas": "GQV",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 92,
+    "aaChars": [
+      "G",
+      "Q",
+      "V"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "IN",
-    "cons": "Q",
-    "pos": 95,
-    "aas": "K",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 95,
+    "aaChars": [
+      "K"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "IN",
-    "cons": "T",
-    "pos": 97,
-    "aas": "A",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 97,
+    "aaChars": [
+      "A"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "IN",
-    "cons": "G",
-    "pos": 118,
-    "aas": "R",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 118,
+    "aaChars": [
+      "R"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "IN",
-    "cons": "F",
-    "pos": 121,
-    "aas": "Y",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 121,
+    "aaChars": [
+      "Y"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "IN",
-    "cons": "E",
-    "pos": 138,
-    "aas": "AKT",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 138,
+    "aaChars": [
+      "A",
+      "K",
+      "T"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "IN",
-    "cons": "G",
-    "pos": 140,
-    "aas": "ACS",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 140,
+    "aaChars": [
+      "A",
+      "C",
+      "S"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "IN",
-    "cons": "Y",
-    "pos": 143,
-    "aas": "ACGHKRS",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 143,
+    "aaChars": [
+      "A",
+      "C",
+      "G",
+      "H",
+      "K",
+      "R",
+      "S"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "IN",
-    "cons": "P",
-    "pos": 145,
-    "aas": "S",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 145,
+    "aaChars": [
+      "S"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "IN",
-    "cons": "Q",
-    "pos": 146,
-    "aas": "P",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 146,
+    "aaChars": [
+      "P"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "IN",
-    "cons": "S",
-    "pos": 147,
-    "aas": "G",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 147,
+    "aaChars": [
+      "G"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "IN",
-    "cons": "Q",
-    "pos": 148,
-    "aas": "HKNR",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 148,
+    "aaChars": [
+      "H",
+      "K",
+      "N",
+      "R"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "IN",
-    "cons": "V",
-    "pos": 151,
-    "aas": "AL",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 151,
+    "aaChars": [
+      "A",
+      "L"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "IN",
-    "cons": "S",
-    "pos": 153,
-    "aas": "FY",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 153,
+    "aaChars": [
+      "F",
+      "Y"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "IN",
-    "cons": "N",
-    "pos": 155,
-    "aas": "HST",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 155,
+    "aaChars": [
+      "H",
+      "S",
+      "T"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "IN",
-    "cons": "E",
-    "pos": 157,
-    "aas": "Q",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 157,
+    "aaChars": [
+      "Q"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "IN",
-    "cons": "G",
-    "pos": 163,
-    "aas": "KR",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 163,
+    "aaChars": [
+      "K",
+      "R"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "IN",
-    "cons": "S",
-    "pos": 230,
-    "aas": "R",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 230,
+    "aaChars": [
+      "R"
+    ],
+    "maxDisplayAAs": 255
   },
   {
+    "type": "AA",
     "gene": "IN",
-    "cons": "R",
-    "pos": 263,
-    "aas": "K",
-    "triplet": "",
-    "insertedNAs": "",
-    "isInsertion": false,
-    "isDeletion": false
+    "position": 263,
+    "aaChars": [
+      "K"
+    ],
+    "maxDisplayAAs": 255
   }
 ]

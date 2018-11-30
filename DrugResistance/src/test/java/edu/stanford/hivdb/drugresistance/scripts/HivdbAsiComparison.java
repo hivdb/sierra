@@ -195,9 +195,9 @@ public class HivdbAsiComparison {
 			int value = map.get(mut).intValue();
 			String formattedMut = "";
 			if (mut.isDeletion()) {
-				formattedMut = mut.getConsensus() + mut.getPosition() + "Deletion";
+				formattedMut = mut.getReference() + mut.getPosition() + "Deletion";
 			} else if (mut.isInsertion()) {
-				formattedMut = mut.getConsensus() + mut.getPosition() + "Insertion";
+				formattedMut = mut.getReference() + mut.getPosition() + "Insertion";
 			} else {
 				formattedMut = mut.getHumanFormat();
 			}

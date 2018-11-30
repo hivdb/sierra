@@ -65,7 +65,7 @@ public class MutationPrevalencesTest {
 		
 		@Test
 		public void testsMutationPrevalanceConstruction() {
-			Mutation m = new Mutation(Gene.RT, 554, "S");
+			Mutation m = new IUPACMutation(Gene.RT, 554, "S");
 			MutationPrevalence mpFull = new MutationPrevalence(m, "Other", 736, 547, 74.3, 2, 0, 0.0);
 			MutationPrevalence mpBrief = new MutationPrevalence(m, "Other", 736, 2);
 			assertEquals("A554S Other 736 2 547 0 74.300000 0.000000", mpFull.toString());
@@ -80,23 +80,23 @@ public class MutationPrevalencesTest {
 			// we upload new prevalence data. 
 			
 			/* 1st mutation in the INI file with 2 different subtypes */
-			Mutation m = new Mutation(Gene.IN, 1, "S");
+			Mutation m = new IUPACMutation(Gene.IN, 1, "S");
 			checkNullPrevalence(MutationPrevalences.getPrevalenceAtSamePosition(m), "S", "A");
 			checkNullPrevalence(MutationPrevalences.getPrevalenceAtSamePosition(m), "S", "B");
 
 			/* mutation towards the end of INI file */
-			m = new Mutation(Gene.IN, 286, "N");
-			checkPrevalence(MutationPrevalences.getPrevalenceAtSamePosition(m), "N", "CRF01_AE", 1818, 66, 3.6, 1, 0, 0);
+			m = new IUPACMutation(Gene.IN, 286, "N");
+			checkPrevalence(MutationPrevalences.getPrevalenceAtSamePosition(m), "N", "CRF01_AE", 1820, 66, 3.6, 1, 0, 0);
 
 			/* mutations in the middle of RTI file*/
-			m = new Mutation(Gene.RT, 553, "I");
+			m = new IUPACMutation(Gene.RT, 553, "I");
 			checkNullPrevalence(MutationPrevalences.getPrevalenceAtSamePosition(m), "I", "G");
-			m = new Mutation(Gene.RT, 554, "S");
-			checkPrevalence(MutationPrevalences.getPrevalenceAtSamePosition(m), "S", "Other", 736, 547, 74.3, 2, 0, 0);
+			m = new IUPACMutation(Gene.RT, 554, "S");
+			checkPrevalence(MutationPrevalences.getPrevalenceAtSamePosition(m), "S", "Other", 737, 547, 74.2, 2, 0, 0);
 
 			/* mutation in the middle of PI file */
-			m = new Mutation(Gene.PR, 72, "T");
-			checkPrevalence(MutationPrevalences.getPrevalenceAtSamePosition(m), "T", "All", 98144, 3731, 3.8, 26381, 2105, 8.0);
+			m = new IUPACMutation(Gene.PR, 72, "T");
+			checkPrevalence(MutationPrevalences.getPrevalenceAtSamePosition(m), "T", "All", 98137, 3731, 3.8, 26382, 2106, 8.0);
 		}
 		
 		@Test

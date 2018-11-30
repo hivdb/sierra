@@ -35,6 +35,7 @@ import edu.stanford.hivdb.drugs.Drug;
 import edu.stanford.hivdb.drugs.DrugClass;
 import edu.stanford.hivdb.mutations.AA;
 import edu.stanford.hivdb.mutations.Gene;
+import edu.stanford.hivdb.mutations.AAMutation;
 import edu.stanford.hivdb.mutations.MutationSet;
 import edu.stanford.hivdb.utilities.JdbcDatabase;
 import edu.stanford.hivdb.utilities.Cachable;
@@ -68,7 +69,7 @@ public class MutationComboScores {
 
 		public MutationSet getRuleMutations() {
 			if (ruleMutations == null) {
-				ruleMutations = new MutationSet(gene, rule);
+				ruleMutations = new MutationSet(gene, rule).displayAmbiguities();
 			}
 			return ruleMutations;
 		}

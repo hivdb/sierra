@@ -20,8 +20,6 @@ package edu.stanford.hivdb.mutations;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.TreeMap;
-import java.util.TreeSet;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
@@ -45,7 +43,7 @@ public class MutationSet extends TreeSet<Mutation> {
 
 	private static final long serialVersionUID = -1835692164622753L;
 
-	private transient Map<GenePosition, Set<Mutation>> genePositionMap;
+	private transient Map<GenePosition, Mutation> genePositionMap;
 
 	public MutationSet(Collection<Mutation> mutations) {
 		genePositionMap = new TreeMap<>();
@@ -97,6 +95,16 @@ public class MutationSet extends TreeSet<Mutation> {
 	public MutationSet(String formattedMuts) {
 		this(parseString(null, formattedMuts));
 	}
+	
+	public MutationSet displayAmbiguities() {
+		List<Mutation> tmpMuts = new ArrayList<>();
+		for (Mutation mut : this) {
+			tmpMuts.add(new AAMutation(
+				mut.getGene(), mut.getPosition(),
+				mut.getAAChars(), 0xff));
+		}
+		return new MutationSet(tmpMuts);
+	}
 
 	private static List<Mutation>
 			parseString(Gene gene, String formattedMuts) {
@@ -114,7 +122,7 @@ public class MutationSet extends TreeSet<Mutation> {
 		return formattedMuts
 			.stream()
 			.filter(mStr -> mStr.length() > 0)
-			.map(mStr -> Mutation.parseString(gene, mStr))
+			.map(mStr -> IUPACMutation.parseString(gene, mStr))
 //			Since parseString throws exceptions instead of returning 
 //			null mutations, the call to filter below may be redundant.
 //			.filter(mut -> mut != null) 	 
@@ -134,26 +142,16 @@ public class MutationSet extends TreeSet<Mutation> {
 			return false;
 		}
 		GenePosition gp = new GenePosition(mut.getGene(), mut.getPosition());
-		Set<Mutation> posMuts = genePositionMap.get(gp);
-		if (posMuts == null) {
-			posMuts = new TreeSet<>();
-			genePositionMap.put(gp, posMuts);
-		}
-		if (posMuts.contains(mut)) {
+		Mutation origMut = genePositionMap.getOrDefault(gp, null);
+		if (mut.equals(origMut) || mut.getReference().equals(mut.getAAs())) {
 			return false;
 		}
-		if (!mut.isIndel()) {
-			for (Mutation origMut : posMuts) {
-				if (!origMut.isIndel()) {
-					mut = origMut.mergesWith(mut);
-					posMuts.remove(origMut);
-					super.remove(origMut);
-					break;
-				}
-			}
+		if (origMut != null) {
+			mut = origMut.mergesWith(mut);
+			super.remove(origMut);
 		}
-		posMuts.add(mut);
 		super.add(mut);
+		genePositionMap.put(gp, mut);
 		return true;
 	}
 	
@@ -240,22 +238,35 @@ public class MutationSet extends TreeSet<Mutation> {
 	 */
 	public MutationSet intersectsWith(Collection<Mutation> another) {
 		Set<GenePosition> gpKeys = new HashSet<>(genePositionMap.keySet());
-		MutationSet anotherSet;
+		Set<GenePosition> gpKeysAnother;
 		if (another instanceof MutationSet) {
-			anotherSet = (MutationSet) another;
+			gpKeysAnother = ((MutationSet) another).genePositionMap.keySet();
+		} else {
+			gpKeysAnother = another
+				.stream()
+				.map(m -> m.getGenePosition())
+				.collect(Collectors.toSet());
 		}
-		else {
-			anotherSet = new MutationSet(another);
-		}
-		gpKeys.retainAll(anotherSet.genePositionMap.keySet());
-		List<Mutation> resultMuts = new ArrayList<>();
+		gpKeys.retainAll(gpKeysAnother);
+		List<Mutation> mutations = new ArrayList<>();
 		for (GenePosition gp : gpKeys) {
-			Set<Mutation> thisMuts = this.getSplitted(gp.gene, gp.position);
-			Set<Mutation> otherMuts = anotherSet.getSplitted(gp.gene, gp.position);
-			thisMuts.retainAll(otherMuts);
-			resultMuts.addAll(thisMuts);
+			Mutation thisMut = genePositionMap.get(gp);
+			Set<Character> otherAAChars = new TreeSet<>();
+			if (another instanceof MutationSet) {
+				otherAAChars.addAll(
+					((MutationSet) another).genePositionMap.get(gp).getAAChars()
+				);
+			}
+			else {
+				for (Mutation mut : another) {
+					if (mut.getGenePosition().equals(gp)) {
+						otherAAChars.addAll(mut.getAAChars());
+					}
+				}
+			}
+			mutations.add(thisMut.intersectsWith(otherAAChars));
 		}
-		return new MutationSet(resultMuts);
+		return new MutationSet(mutations);
 	}
 
 	/**
@@ -269,7 +280,6 @@ public class MutationSet extends TreeSet<Mutation> {
 	 * New MutationSet with elements in this but not in another.
 	 */
 	public MutationSet subtractsBy(Collection<Mutation> another) {
-		Set<GenePosition> gpKeys = new HashSet<>(genePositionMap.keySet());
 		MutationSet anotherSet;
 		if (another instanceof MutationSet) {
 			anotherSet = (MutationSet) another;
@@ -277,16 +287,13 @@ public class MutationSet extends TreeSet<Mutation> {
 		else {
 			anotherSet = new MutationSet(another);
 		}
-		List<Mutation> resultMuts = new ArrayList<>(); 
-		for (GenePosition gp : gpKeys) {
-			Set<Mutation> thisMuts = this.getSplitted(gp.gene, gp.position);
-			Set<Mutation> otherMuts = anotherSet.getSplitted(gp.gene, gp.position);
-			if (otherMuts != null) {
-				thisMuts.removeAll(otherMuts);
-			}
-			resultMuts.addAll(thisMuts);
+		List<Mutation> mutations = new ArrayList<>();
+		for (GenePosition gp : genePositionMap.keySet()) {
+			Mutation thisMut = genePositionMap.get(gp);
+			Mutation anotherMut = anotherSet.genePositionMap.get(gp);
+			mutations.add(thisMut.subtractsBy(anotherMut));
 		}
-		return new MutationSet(resultMuts);
+		return new MutationSet(mutations);
 	}
 
 	public MutationSet subtractsBy(Mutation... mutations) {
@@ -464,41 +471,24 @@ public class MutationSet extends TreeSet<Mutation> {
 		return filterBy(mut -> mut.getPrimaryType() != MutType.Other);
 	}
 
-	/** Returns a set of mutations at specified gene position.
+	/** Returns a mutation at specified gene position.
 	 *
-	 * Note: Non-indel mutations were returned as a single mixture mutation
-	 * 
-	 * @param gene
-	 * @param pos
-	 * @return The matched mutations
+	 * @param gp a GenePosition object
+	 * @return The matched mutation
 	 */
-	public Set<Mutation> get(Gene gene, int pos) {
-		GenePosition gp = new GenePosition(gene, pos);
-		// make a copy to prevent side-effects
-		Set<Mutation> muts = genePositionMap.get(gp);
-		if (muts == null) {
-			return null;
-		}
-		return new TreeSet<>(muts);
+	public Mutation get(GenePosition gp) {
+		return genePositionMap.get(gp);
 	}
 
-	/** Returns a set of non-mixture mutations at specified gene position.
-	 * 
+	/** Returns a mutation at specified gene position.
+	 *
 	 * @param gene
 	 * @param pos
-	 * @return The matched mutations
+	 * @return The matched mutation
 	 */
-	public Set<Mutation> getSplitted(Gene gene, int pos) {
+	public Mutation get(Gene gene, int pos) {
 		GenePosition gp = new GenePosition(gene, pos);
-		Set<Mutation> muts = genePositionMap.get(gp);
-		if (muts == null) {
-			return null;
-		}
-		Set<Mutation> splittedMuts = new TreeSet<>();
-		for (Mutation mut : muts) {
-			splittedMuts.addAll(mut.split());
-		}
-		return splittedMuts;
+		return genePositionMap.get(gp);
 	}
 
 	/** Returns a set of non-mixture mutations for all mutations.
@@ -507,40 +497,12 @@ public class MutationSet extends TreeSet<Mutation> {
 	 */
 	public Set<Mutation> getSplitted() {
 		Set<Mutation> splittedMuts = new TreeSet<>();
-		for (Set<Mutation> posMuts : genePositionMap.values()) {
-			for (Mutation mut : posMuts) {
-				splittedMuts.addAll(mut.split());
-			}
+		for(Mutation mut : genePositionMap.values()) {
+			splittedMuts.addAll(mut.split());
 		}
 		return splittedMuts;
 	}
-	
-	/** Returns a mutation at specified gene position.
-	 * 
-	 * Warning: merge indel mutations with other mutations could result
-	 * UnsupportedOperationException.
-	 * 
-	 * @param gene
-	 * @param pos
-	 * @return The matched mutation
-	 */
-	public Mutation getMerged(Gene gene, int pos) {
-		GenePosition gp = new GenePosition(gene, pos);
-		Set<Mutation> muts = genePositionMap.get(gp);
-		if (muts == null) {
-			return null;
-		} else {
-			return muts.stream().reduce((m1, m2) -> {
-				if (m1.isIndel()) {
-					return m2;
-				} else if (m2.isIndel()) {
-					return m1;
-				}
-				return m1.mergesWith(m2);
-			}).get();
-		}
-	}
-	
+
 	/** Returns list of mutation positions
 	 * 
 	 * @return a list of mutation positions 
@@ -556,8 +518,8 @@ public class MutationSet extends TreeSet<Mutation> {
 	 * @return Boolean
 	 */
 	public boolean hasInsertionAt(Gene gene, int pos) {
-		Set<Mutation> muts = get(gene, pos);
-		return muts == null ? false : muts.stream().anyMatch(mut -> mut.isInsertion());
+		Mutation mut = get(gene, pos);
+		return mut == null ? false : mut.isInsertion();
 	}
 
 	/** Check if the given position is a deletion
@@ -567,18 +529,34 @@ public class MutationSet extends TreeSet<Mutation> {
 	 * @return Boolean
 	 */
 	public boolean hasDeletionAt(Gene gene, int pos) {
-		Set<Mutation> muts = get(gene, pos);
-		return muts == null ? false : muts.stream().anyMatch(mut -> mut.isDeletion());
+		Mutation mut = get(gene, pos);
+		return mut == null ? false : mut.isDeletion();
 	}
 
 	/**
 	 * Returns true if contains any mutation that its AAs shared with mutRef.
 	 *
-	 * @param mutation
+	 * @param anotherMut
 	 * @return boolean
 	 */
-	public boolean hasSharedAAMutation(Mutation mutRef) {
-		return ! (this.intersectsWith(mutRef).isEmpty());
+	public boolean hasSharedAAMutation(Mutation anotherMut) {
+		return hasSharedAAMutation(anotherMut, true);
+	}
+
+	/**
+	 * Returns true if contains any mutation that its AAs shared with mutRef.
+	 *
+	 * @param anotherMut
+	 * @param ignoreRefOrStops
+	 * @return boolean
+	 */
+	public boolean hasSharedAAMutation(Mutation anotherMut, boolean ignoreRefOrStops) {
+		GenePosition gp = anotherMut.getGenePosition();
+		Mutation selfMut = genePositionMap.get(gp);
+		if (selfMut == null) {
+			return false;
+		}
+		return selfMut.containsSharedAA(anotherMut.getAAChars(), ignoreRefOrStops);
 	}
 
 	public Map<Mutation, List<MutationPrevalence>> getPrevalences() {

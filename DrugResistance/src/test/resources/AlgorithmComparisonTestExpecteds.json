@@ -19726,6 +19726,435 @@
         }
       ]
     },
+    "Deletion9_Insertion18_Insertion50-46861fce3fab4de3d06e7b1866930dfbc4e87d58ca25982e887e4db545bb15343ef178207b103e6f3be9a2363f16052100e3a0dbf27eca1ee8e483addc684218": {
+      "algorithms": [
+        "HIVDB",
+        "ANRS",
+        "REGA"
+      ],
+      "comparisonResults": [
+        {
+          "drug": "ATV",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 85\nL90M (25), I54V (15), V82A (15) I54V + V82A (10), I54V + L90M (10), V82A + L90M (10)"
+        },
+        {
+          "drug": "DRV",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "FPV",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 75\nL90M (20), V82A (15), I54V (10) I54V + V82A (10), I54V + L90M (10), V82A + L90M (10)"
+        },
+        {
+          "drug": "IDV",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 105\nV82A (30), L90M (30), I54V (15) I54V + V82A (10), I54V + L90M (10), V82A + L90M (10)"
+        },
+        {
+          "drug": "LPV",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 80\nV82A (30), I54V (15), L90M (15) I54V + V82A (10), I54V + L90M (5), V82A + L90M (5)"
+        },
+        {
+          "drug": "NFV",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 140\nL90M (60), V82A (30), I54V (20) I54V + V82A (10), I54V + L90M (10), V82A + L90M (10)"
+        },
+        {
+          "drug": "SQV",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 105\nL90M (45), I54V (15), V82A (15) I54V + V82A (10), I54V + L90M (10), V82A + L90M (10)"
+        },
+        {
+          "drug": "TPV",
+          "algorithm": "HIVDB",
+          "SIR": "I",
+          "interpretation": "Low-Level Resistance",
+          "explanation": "Total score: 20\nI54V (20) "
+        },
+        {
+          "drug": "ATV",
+          "algorithm": "ANRS",
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "SELECT ATLEAST 3 FROM (10FIV, 16E, 33FIV, 46IL, 60E, 71VT, 84V, 85V, 90M) (Resistance)"
+        },
+        {
+          "drug": "DRV",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "FPV",
+          "algorithm": "ANRS",
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "SELECT ATLEAST 4 FROM (10FIV, 33F, 36I, 54ALMSTV, 62V, 82ACFG, 84V, 90M) (Resistance)"
+        },
+        {
+          "drug": "IDV",
+          "algorithm": "ANRS",
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "82AFMST (Resistance)\n90M AND SELECT ATLEAST 2 FROM (20MR, 24I, 32I, 36I, 54VLMT, 71VT, 73SA, 77I) (Resistance)\n90M (Possible resistance)"
+        },
+        {
+          "drug": "LPV",
+          "algorithm": "ANRS",
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "SELECT ATLEAST 4 FROM (10FIRV, 20MR, 24I, 33F, 46IL, 50V, 53L, 54MLTV, 63P, 71ILTV, 82AFST, 84V, 90M) (Resistance)"
+        },
+        {
+          "drug": "NFV",
+          "algorithm": "ANRS",
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "90M (Resistance)\n82AFST AND SELECT ATLEAST 2 FROM (10I, 36I, 46IL, 54VLMT, 71VT, 77I) (Possible resistance)"
+        },
+        {
+          "drug": "SQV",
+          "algorithm": "ANRS",
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "SELECT ATLEAST 3 FROM (10FIMRV, 15AV, 20IMRT, 24I, 62V, 73ST, 82AFST, 84V, 90M) (Resistance)"
+        },
+        {
+          "drug": "TPV",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "ATV",
+          "algorithm": "REGA",
+          "SIR": "I",
+          "interpretation": "Intermediate Resistant GSS 0.75",
+          "explanation": "Total score: 3\nI54V (1), L90M (1), V82A (0), L10I (0), A71V (0) "
+        },
+        {
+          "drug": "DRV",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1.5",
+          "explanation": "Total score: 0\nV82A (0) "
+        },
+        {
+          "drug": "FPV",
+          "algorithm": "REGA",
+          "SIR": "I",
+          "interpretation": "Intermediate Resistant GSS 0.75",
+          "explanation": "Total score: 2\nI54V (1), V82A (0), L10I (0), L90M (0) "
+        },
+        {
+          "drug": "IDV",
+          "algorithm": "REGA",
+          "SIR": "R",
+          "interpretation": "Resistant GSS 0",
+          "explanation": "Total score: 4\nV82A (2), I54V (1), L90M (1), L10I (0), A71V (0) "
+        },
+        {
+          "drug": "LPV",
+          "algorithm": "REGA",
+          "SIR": "I",
+          "interpretation": "Intermediate Resistant GSS 0.75",
+          "explanation": "Total score: 2\nI54V (1), V82A (0), L90M (0), L10I (0), I64V (0), A71V (0) "
+        },
+        {
+          "drug": "NFV",
+          "algorithm": "REGA",
+          "SIR": "R",
+          "interpretation": "Resistant GSS 0",
+          "explanation": "Total score: 4\nL90M (2), I54V (1), V82A (1), L10I (0), I64V (0), A71V (0) "
+        },
+        {
+          "drug": "SQV",
+          "algorithm": "REGA",
+          "SIR": "R",
+          "interpretation": "Resistant GSS 0",
+          "explanation": "Total score: 4\nL90M (2), I54V (1), A71V (1), L10I (0), V82A (0) "
+        },
+        {
+          "drug": "TPV",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1.5",
+          "explanation": "Total score: 1\nI54V (1), V82A (0), L90M (0) "
+        },
+        {
+          "drug": "ABC",
+          "algorithm": "HIVDB",
+          "SIR": "I",
+          "interpretation": "Intermediate Resistance",
+          "explanation": "Total score: 45\nT215F (10), D67N (5), K70R (5), K219Q (5) D67N + K70R + K219Q (10), D67N + T215F + K219Q (5), K70R + T215F (5)"
+        },
+        {
+          "drug": "AZT",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 115\nT215F (40), K70R (30), D67N (15), K219Q (10) D67N + K70R + K219Q (10), D67N + T215F + K219Q (5), K70R + T215F (5)"
+        },
+        {
+          "drug": "D4T",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 100\nT215F (40), D67N (15), K70R (15), K219Q (10) D67N + K70R + K219Q (10), D67N + T215F + K219Q (5), K70R + T215F (5)"
+        },
+        {
+          "drug": "DDI",
+          "algorithm": "HIVDB",
+          "SIR": "I",
+          "interpretation": "Intermediate Resistance",
+          "explanation": "Total score: 55\nT215F (15), K70R (10), D67N (5), K219Q (5) D67N + K70R + K219Q (10), D67N + T215F + K219Q (5), K70R + T215F (5)"
+        },
+        {
+          "drug": "FTC",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Potential Low-Level Resistance",
+          "explanation": "Total score: 10\n D67N + K70R + K219Q (10)"
+        },
+        {
+          "drug": "LMV",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Potential Low-Level Resistance",
+          "explanation": "Total score: 10\n D67N + K70R + K219Q (10)"
+        },
+        {
+          "drug": "TDF",
+          "algorithm": "HIVDB",
+          "SIR": "I",
+          "interpretation": "Intermediate Resistance",
+          "explanation": "Total score: 45\nT215F (10), D67N (5), K70R (5), K219Q (5) D67N + K70R + K219Q (10), D67N + T215F + K219Q (5), K70R + T215F (5)"
+        },
+        {
+          "drug": "DOR",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "EFV",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "ETR",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "NVP",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "RPV",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "ABC",
+          "algorithm": "ANRS",
+          "SIR": "I",
+          "interpretation": "Possible resistance",
+          "explanation": "SELECT ATLEAST 2 AND NOTMORETHAN 2 FROM (41L, 67N, 210W, 215YFACDEGHILNSV) (Possible resistance)"
+        },
+        {
+          "drug": "AZT",
+          "algorithm": "ANRS",
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "215YFACDEGHILNSV (Resistance)\nSELECT ATLEAST 3 FROM (41L, 67N, 70R, 210W, 219QE) (Resistance)"
+        },
+        {
+          "drug": "D4T",
+          "algorithm": "ANRS",
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "215YFACDEGHILNSV (Resistance)\nSELECT ATLEAST 3 FROM (41L, 67N, 70R, 210W, 219QE) (Resistance)"
+        },
+        {
+          "drug": "DDI",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "FTC",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "LMV",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "TDF",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "DOR",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "EFV",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "ETR",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "NVP",
+          "algorithm": "ANRS",
+          "SIR": "I",
+          "interpretation": "Possible resistance",
+          "explanation": "98S (Possible resistance)"
+        },
+        {
+          "drug": "RPV",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "ABC",
+          "algorithm": "REGA",
+          "SIR": "I",
+          "interpretation": "Intermediate Resistant GSS 0.5",
+          "explanation": "SELECT ATLEAST 3 FROM (41L, 67N, 70R, 210W, 215ACDEGHILNSVYF, 219QEHNR) (Intermediate Resistant GSS 0.5)"
+        },
+        {
+          "drug": "AZT",
+          "algorithm": "REGA",
+          "SIR": "R",
+          "interpretation": "Resistant GSS 0",
+          "explanation": "SELECT ATLEAST 4 FROM (41L, 67GN, 69AN, 70R, 210W, 215ACDEGHILNSVFY, 219EHNQR) (Resistant GSS 0)\nSELECT ATLEAST 3 FROM (67GN, 70R, 215F, 219EQ) (Resistant GSS 0)\n(215ACDEGHILNSVFY AND EXCLUDE 184IV) (Intermediate Resistant GSS 0.5)"
+        },
+        {
+          "drug": "D4T",
+          "algorithm": "REGA",
+          "SIR": "R",
+          "interpretation": "Resistant GSS 0",
+          "explanation": "SELECT ATLEAST 4 FROM (41L, 67N, 69ADGN, 70R, 210W, 215ACDEGHILNSVFY, 219EHNQR) (Resistant GSS 0)\n(215ACDEGHILNSVFY AND EXCLUDE 184IV) (Intermediate Resistant GSS 0.5)"
+        },
+        {
+          "drug": "DDI",
+          "algorithm": "REGA",
+          "SIR": "I",
+          "interpretation": "Intermediate Resistant GSS 0.5",
+          "explanation": "SELECT ATLEAST 3 AND NOTMORETHAN 4 FROM (41L, 67N, 70R, 210W, 215ACDEGHILNSVFY, 219EHNQR) (Intermediate Resistant GSS 0.5)"
+        },
+        {
+          "drug": "FTC",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "LMV",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "TDF",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "DOR",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "EFV",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "ETR",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "NVP",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "RPV",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
+        }
+      ]
+    },
     "FSIns-2-9_Insertion18_Insertion50_FSIns2-94-85a204dedd86bf7791645667bc83c538e020e9ea3baf08b7100bc2077435aff6b78351edd152506364a6fbe506f0e887ac8ae718ce77f2379e1d4981dc77d517": {
       "algorithms": [
         "HIVDB",
@@ -20518,6 +20947,2841 @@
         }
       ]
     },
+    "Deletion9_Insertion18_Deletion50-1041e8d0d70734f7308f71f736c5e96e0b3bde56bef0a89e6b518824b7c1e343a1339fe74bd6b6f05a9c1035acf18dc1cd1139e38b1cc8a990e4ed17256177f1": {
+      "algorithms": [
+        "HIVDB",
+        "ANRS",
+        "REGA"
+      ],
+      "comparisonResults": [
+        {
+          "drug": "ATV",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 85\nL90M (25), I54V (15), V82A (15) I54V + V82A (10), I54V + L90M (10), V82A + L90M (10)"
+        },
+        {
+          "drug": "DRV",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "FPV",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 75\nL90M (20), V82A (15), I54V (10) I54V + V82A (10), I54V + L90M (10), V82A + L90M (10)"
+        },
+        {
+          "drug": "IDV",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 105\nV82A (30), L90M (30), I54V (15) I54V + V82A (10), I54V + L90M (10), V82A + L90M (10)"
+        },
+        {
+          "drug": "LPV",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 80\nV82A (30), I54V (15), L90M (15) I54V + V82A (10), I54V + L90M (5), V82A + L90M (5)"
+        },
+        {
+          "drug": "NFV",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 140\nL90M (60), V82A (30), I54V (20) I54V + V82A (10), I54V + L90M (10), V82A + L90M (10)"
+        },
+        {
+          "drug": "SQV",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 105\nL90M (45), I54V (15), V82A (15) I54V + V82A (10), I54V + L90M (10), V82A + L90M (10)"
+        },
+        {
+          "drug": "TPV",
+          "algorithm": "HIVDB",
+          "SIR": "I",
+          "interpretation": "Low-Level Resistance",
+          "explanation": "Total score: 20\nI54V (20) "
+        },
+        {
+          "drug": "ATV",
+          "algorithm": "ANRS",
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "SELECT ATLEAST 3 FROM (10FIV, 16E, 33FIV, 46IL, 60E, 71VT, 84V, 85V, 90M) (Resistance)"
+        },
+        {
+          "drug": "DRV",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "FPV",
+          "algorithm": "ANRS",
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "SELECT ATLEAST 4 FROM (10FIV, 33F, 36I, 54ALMSTV, 62V, 82ACFG, 84V, 90M) (Resistance)"
+        },
+        {
+          "drug": "IDV",
+          "algorithm": "ANRS",
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "82AFMST (Resistance)\n90M AND SELECT ATLEAST 2 FROM (20MR, 24I, 32I, 36I, 54VLMT, 71VT, 73SA, 77I) (Resistance)\n90M (Possible resistance)"
+        },
+        {
+          "drug": "LPV",
+          "algorithm": "ANRS",
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "SELECT ATLEAST 4 FROM (10FIRV, 20MR, 24I, 33F, 46IL, 50V, 53L, 54MLTV, 63P, 71ILTV, 82AFST, 84V, 90M) (Resistance)"
+        },
+        {
+          "drug": "NFV",
+          "algorithm": "ANRS",
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "90M (Resistance)\n82AFST AND SELECT ATLEAST 2 FROM (10I, 36I, 46IL, 54VLMT, 71VT, 77I) (Possible resistance)"
+        },
+        {
+          "drug": "SQV",
+          "algorithm": "ANRS",
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "SELECT ATLEAST 3 FROM (10FIMRV, 15AV, 20IMRT, 24I, 62V, 73ST, 82AFST, 84V, 90M) (Resistance)"
+        },
+        {
+          "drug": "TPV",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "ATV",
+          "algorithm": "REGA",
+          "SIR": "I",
+          "interpretation": "Intermediate Resistant GSS 0.75",
+          "explanation": "Total score: 3\nI54V (1), L90M (1), V82A (0), L10I (0), A71V (0) "
+        },
+        {
+          "drug": "DRV",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1.5",
+          "explanation": "Total score: 0\nV82A (0) "
+        },
+        {
+          "drug": "FPV",
+          "algorithm": "REGA",
+          "SIR": "I",
+          "interpretation": "Intermediate Resistant GSS 0.75",
+          "explanation": "Total score: 2\nI54V (1), V82A (0), L10I (0), L90M (0) "
+        },
+        {
+          "drug": "IDV",
+          "algorithm": "REGA",
+          "SIR": "R",
+          "interpretation": "Resistant GSS 0",
+          "explanation": "Total score: 4\nV82A (2), I54V (1), L90M (1), L10I (0), A71V (0) "
+        },
+        {
+          "drug": "LPV",
+          "algorithm": "REGA",
+          "SIR": "I",
+          "interpretation": "Intermediate Resistant GSS 0.75",
+          "explanation": "Total score: 2\nI54V (1), V82A (0), L90M (0), L10I (0), I64V (0), A71V (0) "
+        },
+        {
+          "drug": "NFV",
+          "algorithm": "REGA",
+          "SIR": "R",
+          "interpretation": "Resistant GSS 0",
+          "explanation": "Total score: 4\nL90M (2), I54V (1), V82A (1), L10I (0), I64V (0), A71V (0) "
+        },
+        {
+          "drug": "SQV",
+          "algorithm": "REGA",
+          "SIR": "R",
+          "interpretation": "Resistant GSS 0",
+          "explanation": "Total score: 4\nL90M (2), I54V (1), A71V (1), L10I (0), V82A (0) "
+        },
+        {
+          "drug": "TPV",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1.5",
+          "explanation": "Total score: 1\nI54V (1), V82A (0), L90M (0) "
+        },
+        {
+          "drug": "ABC",
+          "algorithm": "HIVDB",
+          "SIR": "I",
+          "interpretation": "Intermediate Resistance",
+          "explanation": "Total score: 45\nT215F (10), D67N (5), K70R (5), K219Q (5) D67N + K70R + K219Q (10), D67N + T215F + K219Q (5), K70R + T215F (5)"
+        },
+        {
+          "drug": "AZT",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 115\nT215F (40), K70R (30), D67N (15), K219Q (10) D67N + K70R + K219Q (10), D67N + T215F + K219Q (5), K70R + T215F (5)"
+        },
+        {
+          "drug": "D4T",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 100\nT215F (40), D67N (15), K70R (15), K219Q (10) D67N + K70R + K219Q (10), D67N + T215F + K219Q (5), K70R + T215F (5)"
+        },
+        {
+          "drug": "DDI",
+          "algorithm": "HIVDB",
+          "SIR": "I",
+          "interpretation": "Intermediate Resistance",
+          "explanation": "Total score: 55\nT215F (15), K70R (10), D67N (5), K219Q (5) D67N + K70R + K219Q (10), D67N + T215F + K219Q (5), K70R + T215F (5)"
+        },
+        {
+          "drug": "FTC",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Potential Low-Level Resistance",
+          "explanation": "Total score: 10\n D67N + K70R + K219Q (10)"
+        },
+        {
+          "drug": "LMV",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Potential Low-Level Resistance",
+          "explanation": "Total score: 10\n D67N + K70R + K219Q (10)"
+        },
+        {
+          "drug": "TDF",
+          "algorithm": "HIVDB",
+          "SIR": "I",
+          "interpretation": "Intermediate Resistance",
+          "explanation": "Total score: 45\nT215F (10), D67N (5), K70R (5), K219Q (5) D67N + K70R + K219Q (10), D67N + T215F + K219Q (5), K70R + T215F (5)"
+        },
+        {
+          "drug": "DOR",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "EFV",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "ETR",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "NVP",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "RPV",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "ABC",
+          "algorithm": "ANRS",
+          "SIR": "I",
+          "interpretation": "Possible resistance",
+          "explanation": "SELECT ATLEAST 2 AND NOTMORETHAN 2 FROM (41L, 67N, 210W, 215YFACDEGHILNSV) (Possible resistance)"
+        },
+        {
+          "drug": "AZT",
+          "algorithm": "ANRS",
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "215YFACDEGHILNSV (Resistance)\nSELECT ATLEAST 3 FROM (41L, 67N, 70R, 210W, 219QE) (Resistance)"
+        },
+        {
+          "drug": "D4T",
+          "algorithm": "ANRS",
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "215YFACDEGHILNSV (Resistance)\nSELECT ATLEAST 3 FROM (41L, 67N, 70R, 210W, 219QE) (Resistance)"
+        },
+        {
+          "drug": "DDI",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "FTC",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "LMV",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "TDF",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "DOR",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "EFV",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "ETR",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "NVP",
+          "algorithm": "ANRS",
+          "SIR": "I",
+          "interpretation": "Possible resistance",
+          "explanation": "98S (Possible resistance)"
+        },
+        {
+          "drug": "RPV",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "ABC",
+          "algorithm": "REGA",
+          "SIR": "I",
+          "interpretation": "Intermediate Resistant GSS 0.5",
+          "explanation": "SELECT ATLEAST 3 FROM (41L, 67N, 70R, 210W, 215ACDEGHILNSVYF, 219QEHNR) (Intermediate Resistant GSS 0.5)"
+        },
+        {
+          "drug": "AZT",
+          "algorithm": "REGA",
+          "SIR": "R",
+          "interpretation": "Resistant GSS 0",
+          "explanation": "SELECT ATLEAST 4 FROM (41L, 67GN, 69AN, 70R, 210W, 215ACDEGHILNSVFY, 219EHNQR) (Resistant GSS 0)\nSELECT ATLEAST 3 FROM (67GN, 70R, 215F, 219EQ) (Resistant GSS 0)\n(215ACDEGHILNSVFY AND EXCLUDE 184IV) (Intermediate Resistant GSS 0.5)"
+        },
+        {
+          "drug": "D4T",
+          "algorithm": "REGA",
+          "SIR": "R",
+          "interpretation": "Resistant GSS 0",
+          "explanation": "SELECT ATLEAST 4 FROM (41L, 67N, 69ADGN, 70R, 210W, 215ACDEGHILNSVFY, 219EHNQR) (Resistant GSS 0)\n(215ACDEGHILNSVFY AND EXCLUDE 184IV) (Intermediate Resistant GSS 0.5)"
+        },
+        {
+          "drug": "DDI",
+          "algorithm": "REGA",
+          "SIR": "I",
+          "interpretation": "Intermediate Resistant GSS 0.5",
+          "explanation": "SELECT ATLEAST 3 AND NOTMORETHAN 4 FROM (41L, 67N, 70R, 210W, 215ACDEGHILNSVFY, 219EHNQR) (Intermediate Resistant GSS 0.5)"
+        },
+        {
+          "drug": "FTC",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "LMV",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "TDF",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "DOR",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "EFV",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "ETR",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "NVP",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "RPV",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
+        }
+      ]
+    },
+    "TruGeneDeletion-4d945bb28f22f3140e0cc61f90c63562fe7039ecfe5f3c986285c5fad04a4800225361a7764581e9c465e694b02b6b5179076d089e76499b54de72b905ed2034": {
+      "algorithms": [
+        "HIVDB",
+        "ANRS",
+        "REGA"
+      ],
+      "comparisonResults": [
+        {
+          "drug": "ATV",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Potential Low-Level Resistance",
+          "explanation": "Total score: 10\nF53FL (10) "
+        },
+        {
+          "drug": "DRV",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "FPV",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "IDV",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "LPV",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "NFV",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 70\nD30N (60), F53FL (10) "
+        },
+        {
+          "drug": "SQV",
+          "algorithm": "HIVDB",
+          "SIR": "I",
+          "interpretation": "Low-Level Resistance",
+          "explanation": "Total score: 15\nF53FL (15) "
+        },
+        {
+          "drug": "TPV",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "ATV",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "DRV",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "FPV",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "IDV",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "LPV",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "NFV",
+          "algorithm": "ANRS",
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "30N (Resistance)"
+        },
+        {
+          "drug": "SQV",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "TPV",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "ATV",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1.5",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "DRV",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1.5",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "FPV",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1.5",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "IDV",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1.5",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "LPV",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1.5",
+          "explanation": "Total score: 0\nF53FL (0) "
+        },
+        {
+          "drug": "NFV",
+          "algorithm": "REGA",
+          "SIR": "R",
+          "interpretation": "Resistant GSS 0",
+          "explanation": "Total score: 2\nD30N (2) "
+        },
+        {
+          "drug": "SQV",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1.5",
+          "explanation": "Total score: 1\nF53FL (1) "
+        },
+        {
+          "drug": "TPV",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1.5",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "ABC",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 60\nM184V (15), D67N (5), K70R (5), K219Q (5) D67N + K70R + M184V + K219Q (20), D67N + K70R + K219Q (10)"
+        },
+        {
+          "drug": "AZT",
+          "algorithm": "HIVDB",
+          "SIR": "I",
+          "interpretation": "Intermediate Resistance",
+          "explanation": "Total score: 55\nK70R (30), D67N (15), K219Q (10), M184V (-10) D67N + K70R + K219Q (10)"
+        },
+        {
+          "drug": "D4T",
+          "algorithm": "HIVDB",
+          "SIR": "I",
+          "interpretation": "Intermediate Resistance",
+          "explanation": "Total score: 40\nD67N (15), K70R (15), K219Q (10), M184V (-10) D67N + K70R + K219Q (10)"
+        },
+        {
+          "drug": "DDI",
+          "algorithm": "HIVDB",
+          "SIR": "I",
+          "interpretation": "Intermediate Resistance",
+          "explanation": "Total score: 40\nK70R (10), M184V (10), D67N (5), K219Q (5) D67N + K70R + K219Q (10)"
+        },
+        {
+          "drug": "FTC",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 70\nM184V (60) D67N + K70R + K219Q (10)"
+        },
+        {
+          "drug": "LMV",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 70\nM184V (60) D67N + K70R + K219Q (10)"
+        },
+        {
+          "drug": "TDF",
+          "algorithm": "HIVDB",
+          "SIR": "I",
+          "interpretation": "Low-Level Resistance",
+          "explanation": "Total score: 15\nD67N (5), K70R (5), K219Q (5), M184V (-10) D67N + K70R + K219Q (10)"
+        },
+        {
+          "drug": "DOR",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "EFV",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "ETR",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "NVP",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "RPV",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "ABC",
+          "algorithm": "ANRS",
+          "SIR": "I",
+          "interpretation": "Possible resistance",
+          "explanation": "184VI (Possible resistance)"
+        },
+        {
+          "drug": "AZT",
+          "algorithm": "ANRS",
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "SELECT ATLEAST 3 FROM (41L, 67N, 70R, 210W, 219QE) (Resistance)"
+        },
+        {
+          "drug": "D4T",
+          "algorithm": "ANRS",
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "SELECT ATLEAST 3 FROM (41L, 67N, 70R, 210W, 219QE) (Resistance)"
+        },
+        {
+          "drug": "DDI",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "FTC",
+          "algorithm": "ANRS",
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "184VI (Resistance)"
+        },
+        {
+          "drug": "LMV",
+          "algorithm": "ANRS",
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "184VI (Resistance)"
+        },
+        {
+          "drug": "TDF",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "DOR",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "EFV",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "ETR",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "NVP",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "RPV",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "ABC",
+          "algorithm": "REGA",
+          "SIR": "I",
+          "interpretation": "Intermediate Resistant GSS 0.5",
+          "explanation": "SELECT ATLEAST 1 FROM (65NR, 74IV, 115F, 184IV) AND SELECT ATLEAST 2 AND NOTMORETHAN 3 FROM (41L, 67N, 70R, 210W, 215ACDEGHILNSVFY, 219QEHNR) (Intermediate Resistant GSS 0.5)\nSELECT ATLEAST 3 FROM (41L, 67N, 70R, 210W, 215ACDEGHILNSVYF, 219QEHNR) (Intermediate Resistant GSS 0.5)"
+        },
+        {
+          "drug": "AZT",
+          "algorithm": "REGA",
+          "SIR": "R",
+          "interpretation": "Resistant GSS 0",
+          "explanation": "SELECT ATLEAST 3 FROM (67GN, 70R, 215F, 219EQ) (Resistant GSS 0)\nSELECT ATLEAST 2 AND NOTMORETHAN 3 FROM (41L, 67GN, 69AN, 70R, 210W, 215ACDEGHILNSVFY, 219EHNQR) (Intermediate Resistant GSS 0.5)"
+        },
+        {
+          "drug": "D4T",
+          "algorithm": "REGA",
+          "SIR": "I",
+          "interpretation": "Intermediate Resistant GSS 0.5",
+          "explanation": "SELECT ATLEAST 2 AND NOTMORETHAN 3 FROM (41L, 67N, 69ADGN, 70R, 210W, 215ACDEGHILNSVFY, 219EHNQR) (Intermediate Resistant GSS 0.5)"
+        },
+        {
+          "drug": "DDI",
+          "algorithm": "REGA",
+          "SIR": "I",
+          "interpretation": "Intermediate Resistant GSS 0.5",
+          "explanation": "SELECT ATLEAST 3 AND NOTMORETHAN 4 FROM (41L, 67N, 70R, 210W, 215ACDEGHILNSVFY, 219EHNQR) (Intermediate Resistant GSS 0.5)"
+        },
+        {
+          "drug": "FTC",
+          "algorithm": "REGA",
+          "SIR": "R",
+          "interpretation": "Resistant GSS 0",
+          "explanation": "184VI (Resistant GSS 0)"
+        },
+        {
+          "drug": "LMV",
+          "algorithm": "REGA",
+          "SIR": "R",
+          "interpretation": "Resistant GSS 0",
+          "explanation": "184VI (Resistant GSS 0)"
+        },
+        {
+          "drug": "TDF",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "DOR",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "EFV",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "ETR",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "NVP",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "RPV",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
+        }
+      ]
+    },
+    "MultipleFrameShifts_1-5634c9aa9f64d88288ac57be2d5b5a453e2b605a4f0e8d207f7a8c2ef220f98ad13e6930156d8f6bdfc514c494e19ee43e5a5e54570e5457222eda3b5e65abe1": {
+      "algorithms": [
+        "HIVDB",
+        "ANRS",
+        "REGA"
+      ],
+      "comparisonResults": [
+        {
+          "drug": "ATV",
+          "algorithm": "HIVDB",
+          "SIR": "I",
+          "interpretation": "Intermediate Resistance",
+          "explanation": "Total score: 45\nL90M (25), G73T (10) G73T + L90M (10)"
+        },
+        {
+          "drug": "DRV",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "FPV",
+          "algorithm": "HIVDB",
+          "SIR": "I",
+          "interpretation": "Intermediate Resistance",
+          "explanation": "Total score: 40\nL90M (20), G73T (10) G73T + L90M (10)"
+        },
+        {
+          "drug": "IDV",
+          "algorithm": "HIVDB",
+          "SIR": "I",
+          "interpretation": "Intermediate Resistance",
+          "explanation": "Total score: 55\nL90M (30), G73T (15) G73T + L90M (10)"
+        },
+        {
+          "drug": "LPV",
+          "algorithm": "HIVDB",
+          "SIR": "I",
+          "interpretation": "Low-Level Resistance",
+          "explanation": "Total score: 20\nL90M (15), G73T (5) "
+        },
+        {
+          "drug": "NFV",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 85\nL90M (60), G73T (15) G73T + L90M (10)"
+        },
+        {
+          "drug": "SQV",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 70\nL90M (45), G73T (15) G73T + L90M (10)"
+        },
+        {
+          "drug": "TPV",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "ATV",
+          "algorithm": "ANRS",
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "SELECT ATLEAST 3 FROM (10FIV, 16E, 33FIV, 46IL, 60E, 71VT, 84V, 85V, 90M) (Resistance)"
+        },
+        {
+          "drug": "DRV",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "FPV",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "IDV",
+          "algorithm": "ANRS",
+          "SIR": "I",
+          "interpretation": "Possible resistance",
+          "explanation": "90M (Possible resistance)"
+        },
+        {
+          "drug": "LPV",
+          "algorithm": "ANRS",
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "SELECT ATLEAST 4 FROM (10FIRV, 20MR, 24I, 33F, 46IL, 50V, 53L, 54MLTV, 63P, 71ILTV, 82AFST, 84V, 90M) (Resistance)"
+        },
+        {
+          "drug": "NFV",
+          "algorithm": "ANRS",
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "90M (Resistance)"
+        },
+        {
+          "drug": "SQV",
+          "algorithm": "ANRS",
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "SELECT ATLEAST 3 FROM (10FIMRV, 15AV, 20IMRT, 24I, 62V, 73ST, 82AFST, 84V, 90M) (Resistance)"
+        },
+        {
+          "drug": "TPV",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "ATV",
+          "algorithm": "REGA",
+          "SIR": "I",
+          "interpretation": "Intermediate Resistant GSS 0.75",
+          "explanation": "Total score: 2\nL90M (1), G73T (0), L10I (0), A71V (0) "
+        },
+        {
+          "drug": "DRV",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1.5",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "FPV",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1.5",
+          "explanation": "Total score: 0\nL10I (0), K43R (0), L90M (0) "
+        },
+        {
+          "drug": "IDV",
+          "algorithm": "REGA",
+          "SIR": "I",
+          "interpretation": "Intermediate Resistant GSS 0.75",
+          "explanation": "Total score: 2\nL90M (1), G73T (0), L10I (0), K43R (0), A71V (0) "
+        },
+        {
+          "drug": "LPV",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1.5",
+          "explanation": "Total score: 1\nG73T (0), L90M (0), L10I (0), K43R (0), A71V (0) "
+        },
+        {
+          "drug": "NFV",
+          "algorithm": "REGA",
+          "SIR": "R",
+          "interpretation": "Resistant GSS 0",
+          "explanation": "Total score: 3\nL90M (2), G73T (0), L10I (0), K43R (0), A71V (0) "
+        },
+        {
+          "drug": "SQV",
+          "algorithm": "REGA",
+          "SIR": "R",
+          "interpretation": "Resistant GSS 0",
+          "explanation": "Total score: 3\nL90M (2), A71V (1), G73T (0), L10I (0) "
+        },
+        {
+          "drug": "TPV",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1.5",
+          "explanation": "Total score: 0\nG73T (0), L90M (0) "
+        },
+        {
+          "drug": "ABC",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 100\nL74LI (30), T215F (10), M41L (5), D67N (5), K70R (5), K219Q (5) M41L + T215F (15), D67N + K70R + K219Q (10), M41L + D67N + T215F (5), D67N + T215F + K219Q (5), K70R + T215F (5)"
+        },
+        {
+          "drug": "AZT",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 145\nT215F (40), K70R (30), M41L (15), D67N (15), K219Q (10) D67N + K70R + K219Q (10), M41L + T215F (10), M41L + D67N + T215F (5), D67N + T215F + K219Q (5), K70R + T215F (5)"
+        },
+        {
+          "drug": "D4T",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 130\nT215F (40), M41L (15), D67N (15), K70R (15), K219Q (10) D67N + K70R + K219Q (10), M41L + T215F (10), M41L + D67N + T215F (5), D67N + T215F + K219Q (5), K70R + T215F (5)"
+        },
+        {
+          "drug": "DDI",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 140\nL74LI (60), T215F (15), M41L (10), K70R (10), D67N (5), K219Q (5) D67N + K70R + K219Q (10), M41L + T215F (10), M41L + D67N + T215F (5), D67N + T215F + K219Q (5), K70R + T215F (5)"
+        },
+        {
+          "drug": "FTC",
+          "algorithm": "HIVDB",
+          "SIR": "I",
+          "interpretation": "Low-Level Resistance",
+          "explanation": "Total score: 20\n D67N + K70R + K219Q (10), M41L + T215F (5), M41L + D67N + T215F (5)"
+        },
+        {
+          "drug": "LMV",
+          "algorithm": "HIVDB",
+          "SIR": "I",
+          "interpretation": "Low-Level Resistance",
+          "explanation": "Total score: 20\n D67N + K70R + K219Q (10), M41L + T215F (5), M41L + D67N + T215F (5)"
+        },
+        {
+          "drug": "TDF",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 70\nT215F (10), M41L (5), D67N (5), K70R (5), L74LI (5), K219Q (5) D67N + K70R + K219Q (10), M41L + T215F (10), M41L + D67N + T215F (5), D67N + T215F + K219Q (5), K70R + T215F (5)"
+        },
+        {
+          "drug": "DOR",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "EFV",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "ETR",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "NVP",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "RPV",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "ABC",
+          "algorithm": "ANRS",
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "SELECT ATLEAST 3 FROM (41L, 67N, 184VI, 210W, 215YFACDEGHILNSV) (Resistance)\n74VI (Resistance)"
+        },
+        {
+          "drug": "AZT",
+          "algorithm": "ANRS",
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "215YFACDEGHILNSV (Resistance)\nSELECT ATLEAST 3 FROM (41L, 67N, 70R, 210W, 219QE) (Resistance)"
+        },
+        {
+          "drug": "D4T",
+          "algorithm": "ANRS",
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "215YFACDEGHILNSV (Resistance)\nSELECT ATLEAST 3 FROM (41L, 67N, 70R, 210W, 219QE) (Resistance)"
+        },
+        {
+          "drug": "DDI",
+          "algorithm": "ANRS",
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "SELECT ATLEAST 1 AND NOTMORETHAN 1 FROM (70R, 184VI) AND SELECT ATLEAST 3 FROM (41L, 69D, 215FY, 219QE) (Resistance)\n74VI (Resistance)"
+        },
+        {
+          "drug": "FTC",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "LMV",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "TDF",
+          "algorithm": "ANRS",
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "SELECT ATLEAST 4 FROM (41L, 44D, 67N, 69DNS, 74VI, 210W, 215YFACDEGHILNSV) (Resistance)"
+        },
+        {
+          "drug": "DOR",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "EFV",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "ETR",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "NVP",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "RPV",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "ABC",
+          "algorithm": "REGA",
+          "SIR": "R",
+          "interpretation": "Resistant GSS 0",
+          "explanation": "SELECT ATLEAST 1 FROM (65NR, 74IV, 115F, 184VI) AND SELECT ATLEAST 4 FROM (41L, 67N, 70R, 210W, 215ACDEGHILNSVFY, 219QEHNR) (Resistant GSS 0)\nSELECT ATLEAST 3 FROM (41L, 67N, 70R, 210W, 215ACDEGHILNSVYF, 219QEHNR) (Intermediate Resistant GSS 0.5)"
+        },
+        {
+          "drug": "AZT",
+          "algorithm": "REGA",
+          "SIR": "R",
+          "interpretation": "Resistant GSS 0",
+          "explanation": "SELECT ATLEAST 4 FROM (41L, 67GN, 69AN, 70R, 210W, 215ACDEGHILNSVFY, 219EHNQR) (Resistant GSS 0)\nSELECT ATLEAST 3 FROM (67GN, 70R, 215F, 219EQ) (Resistant GSS 0)\n(215ACDEGHILNSVFY AND EXCLUDE 184IV) (Intermediate Resistant GSS 0.5)"
+        },
+        {
+          "drug": "D4T",
+          "algorithm": "REGA",
+          "SIR": "R",
+          "interpretation": "Resistant GSS 0",
+          "explanation": "SELECT ATLEAST 4 FROM (41L, 67N, 69ADGN, 70R, 210W, 215ACDEGHILNSVFY, 219EHNQR) (Resistant GSS 0)\n(215ACDEGHILNSVFY AND EXCLUDE 184IV) (Intermediate Resistant GSS 0.5)"
+        },
+        {
+          "drug": "DDI",
+          "algorithm": "REGA",
+          "SIR": "R",
+          "interpretation": "Resistant GSS 0",
+          "explanation": "SELECT ATLEAST 1 FROM (69DGN, 69i, 151M) (Resistant GSS 0)\nSELECT ATLEAST 5 FROM (41L, 67N, 70R, 74IV, 210W, 215ACDEGHILNSVFY, 219EHNQR) (Resistant GSS 0)\nSELECT ATLEAST 1 FROM (65NR, 70EG, 74IV, 75T) (Intermediate Resistant GSS 0.5)\n(41L AND 215FY) (Intermediate Resistant GSS 0.5)"
+        },
+        {
+          "drug": "FTC",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "LMV",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "TDF",
+          "algorithm": "REGA",
+          "SIR": "R",
+          "interpretation": "Resistant GSS 0",
+          "explanation": "SELECT ATLEAST 3 FROM (67N, 70R, 215ACDEGHILNSVYF, 219EHNQR) AND SELECT ATLEAST 1 FROM (41L, 210W) (Resistant GSS 0)\nSELECT ATLEAST 2 FROM (67N, 70R, 215ACDEGHILNSVFY, 219ENQHR) AND SELECT ATLEAST 1 FROM (41L, 210W) (Intermediate Resistant GSS 0.5)"
+        },
+        {
+          "drug": "DOR",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "EFV",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "ETR",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "NVP",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "RPV",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
+        }
+      ]
+    },
+    "BDHVN-1ae03f902c5747afcc0b44a6cd57c87e60b5a894bda1b8ddd655a607387c279bd8b9d5edb59edf4f8d54017d35edb5cf33dea53fb89b4deabe31aa4e1da9336b": {
+      "algorithms": [
+        "HIVDB",
+        "ANRS",
+        "REGA"
+      ],
+      "comparisonResults": [
+        {
+          "drug": "ATV",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 105\nI84V (60), L90M (25), G73S (10) G73S + L90M (10)"
+        },
+        {
+          "drug": "DRV",
+          "algorithm": "HIVDB",
+          "SIR": "I",
+          "interpretation": "Low-Level Resistance",
+          "explanation": "Total score: 15\nI84V (15) "
+        },
+        {
+          "drug": "FPV",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 100\nI84V (60), L90M (20), G73S (10) G73S + L90M (10)"
+        },
+        {
+          "drug": "IDV",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 115\nI84V (60), L90M (30), G73S (15) G73S + L90M (10)"
+        },
+        {
+          "drug": "LPV",
+          "algorithm": "HIVDB",
+          "SIR": "I",
+          "interpretation": "Intermediate Resistance",
+          "explanation": "Total score: 50\nI84V (30), L90M (15), G73S (5) "
+        },
+        {
+          "drug": "NFV",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 145\nI84V (60), L90M (60), G73S (15) G73S + L90M (10)"
+        },
+        {
+          "drug": "SQV",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 130\nI84V (60), L90M (45), G73S (15) G73S + L90M (10)"
+        },
+        {
+          "drug": "TPV",
+          "algorithm": "HIVDB",
+          "SIR": "I",
+          "interpretation": "Intermediate Resistance",
+          "explanation": "Total score: 30\nI84V (30) "
+        },
+        {
+          "drug": "ATV",
+          "algorithm": "ANRS",
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "SELECT ATLEAST 3 FROM (10FIV, 16E, 33FIV, 46IL, 60E, 71VT, 84V, 85V, 90M) (Resistance)"
+        },
+        {
+          "drug": "DRV",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "FPV",
+          "algorithm": "ANRS",
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "SELECT ATLEAST 4 FROM (10FIV, 33F, 36I, 54ALMSTV, 62V, 82ACFG, 84V, 90M) (Resistance)"
+        },
+        {
+          "drug": "IDV",
+          "algorithm": "ANRS",
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "84AV (Resistance)\n90M AND SELECT ATLEAST 2 FROM (20MR, 24I, 32I, 36I, 54VLMT, 71VT, 73SA, 77I) (Resistance)\n90M (Possible resistance)"
+        },
+        {
+          "drug": "LPV",
+          "algorithm": "ANRS",
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "SELECT ATLEAST 4 FROM (10FIRV, 20MR, 24I, 33F, 46IL, 50V, 53L, 54MLTV, 63P, 71ILTV, 82AFST, 84V, 90M) (Resistance)"
+        },
+        {
+          "drug": "NFV",
+          "algorithm": "ANRS",
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "84AV (Resistance)\n90M (Resistance)"
+        },
+        {
+          "drug": "SQV",
+          "algorithm": "ANRS",
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "SELECT ATLEAST 3 FROM (10FIMRV, 15AV, 20IMRT, 24I, 62V, 73ST, 82AFST, 84V, 90M) (Resistance)"
+        },
+        {
+          "drug": "TPV",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "ATV",
+          "algorithm": "REGA",
+          "SIR": "I",
+          "interpretation": "Intermediate Resistant GSS 0.75",
+          "explanation": "Total score: 3\nI84V (1), L90M (1), G73S (0), L10I (0), K20IM (0), A71V (0) "
+        },
+        {
+          "drug": "DRV",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1.5",
+          "explanation": "Total score: 1\nI84V (1) "
+        },
+        {
+          "drug": "FPV",
+          "algorithm": "REGA",
+          "SIR": "I",
+          "interpretation": "Intermediate Resistant GSS 0.75",
+          "explanation": "Total score: 2\nI84V (1), L10I (0), K20IM (0), L90M (0) "
+        },
+        {
+          "drug": "IDV",
+          "algorithm": "REGA",
+          "SIR": "R",
+          "interpretation": "Resistant GSS 0",
+          "explanation": "Total score: 4\nI84V (2), L90M (1), G73S (0), L10I (0), K20IM (0), I62IV (0), A71V (0) "
+        },
+        {
+          "drug": "LPV",
+          "algorithm": "REGA",
+          "SIR": "I",
+          "interpretation": "Intermediate Resistant GSS 0.75",
+          "explanation": "Total score: 2\nG73S (0), I84V (0), L90M (0), L10I (0), K20IM (0), A71V (0) "
+        },
+        {
+          "drug": "NFV",
+          "algorithm": "REGA",
+          "SIR": "R",
+          "interpretation": "Resistant GSS 0",
+          "explanation": "Total score: 4\nL90M (2), G73S (0), I84V (0), L10I (0), K20IM (0), I62IV (0), A71V (0) "
+        },
+        {
+          "drug": "SQV",
+          "algorithm": "REGA",
+          "SIR": "R",
+          "interpretation": "Resistant GSS 0",
+          "explanation": "Total score: 5\nL90M (2), A71V (1), I84V (1), G73S (0), L10I (0), K20IM (0), I62IV (0) "
+        },
+        {
+          "drug": "TPV",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1.5",
+          "explanation": "Total score: 1\nI84V (1), L90M (0) "
+        },
+        {
+          "drug": "ABC",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 95\nM184I (15), T215Y (10), M41L (5), D67N (5), L210W (5), K219R (5) M41L + T215Y (15), M41L + L210W (10), L210W + T215Y (10), M41L + L210W + T215Y (5), M41L + D67N + T215Y (5), D67N + T215Y + K219R (5)"
+        },
+        {
+          "drug": "AZT",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 125\nT215Y (40), M41L (15), D67N (15), L210W (15), K219R (10), M184I (-10) M41L + L210W (10), L210W + T215Y (10), M41L + T215Y (10), M41L + D67N + T215Y (5), D67N + T215Y + K219R (5)"
+        },
+        {
+          "drug": "D4T",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 125\nT215Y (40), M41L (15), D67N (15), L210W (15), K219R (10), M184I (-10) M41L + L210W (10), L210W + T215Y (10), M41L + T215Y (10), M41L + D67N + T215Y (5), D67N + T215Y + K219R (5)"
+        },
+        {
+          "drug": "DDI",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 95\nT215Y (15), M41L (10), M184I (10), L210W (10), D67N (5), K219R (5) M41L + L210W (10), L210W + T215Y (10), M41L + T215Y (10), M41L + D67N + T215Y (5), D67N + T215Y + K219R (5)"
+        },
+        {
+          "drug": "FTC",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 80\nM184I (60) L210W + T215Y (5), M41L + L210W + T215Y (5), M41L + T215Y (5), M41L + D67N + T215Y (5)"
+        },
+        {
+          "drug": "LMV",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 80\nM184I (60) L210W + T215Y (5), M41L + L210W + T215Y (5), M41L + T215Y (5), M41L + D67N + T215Y (5)"
+        },
+        {
+          "drug": "TDF",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 65\nT215Y (10), M41L (5), D67N (5), L210W (5), K219R (5), M184I (-10) M41L + L210W (10), L210W + T215Y (10), M41L + T215Y (10), M41L + L210W + T215Y (5), M41L + D67N + T215Y (5), D67N + T215Y + K219R (5)"
+        },
+        {
+          "drug": "DOR",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "EFV",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "ETR",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "NVP",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "RPV",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "ABC",
+          "algorithm": "ANRS",
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "SELECT ATLEAST 3 FROM (41L, 67N, 184VI, 210W, 215YFACDEGHILNSV) (Resistance)\n184VI (Possible resistance)"
+        },
+        {
+          "drug": "AZT",
+          "algorithm": "ANRS",
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "215YFACDEGHILNSV (Resistance)\nSELECT ATLEAST 3 FROM (41L, 67N, 70R, 210W, 219QE) (Resistance)"
+        },
+        {
+          "drug": "D4T",
+          "algorithm": "ANRS",
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "215YFACDEGHILNSV (Resistance)\nSELECT ATLEAST 3 FROM (41L, 67N, 70R, 210W, 219QE) (Resistance)"
+        },
+        {
+          "drug": "DDI",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "FTC",
+          "algorithm": "ANRS",
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "184VI (Resistance)"
+        },
+        {
+          "drug": "LMV",
+          "algorithm": "ANRS",
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "184VI (Resistance)"
+        },
+        {
+          "drug": "TDF",
+          "algorithm": "ANRS",
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "SELECT ATLEAST 4 FROM (41L, 44D, 67N, 69DNS, 74VI, 210W, 215YFACDEGHILNSV) (Resistance)"
+        },
+        {
+          "drug": "DOR",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "EFV",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "ETR",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "NVP",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "RPV",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "ABC",
+          "algorithm": "REGA",
+          "SIR": "R",
+          "interpretation": "Resistant GSS 0",
+          "explanation": "SELECT ATLEAST 1 FROM (65NR, 74IV, 115F, 184VI) AND SELECT ATLEAST 4 FROM (41L, 67N, 70R, 210W, 215ACDEGHILNSVFY, 219QEHNR) (Resistant GSS 0)\nSELECT ATLEAST 3 FROM (41L, 67N, 70R, 210W, 215ACDEGHILNSVYF, 219QEHNR) (Intermediate Resistant GSS 0.5)"
+        },
+        {
+          "drug": "AZT",
+          "algorithm": "REGA",
+          "SIR": "R",
+          "interpretation": "Resistant GSS 0",
+          "explanation": "SELECT ATLEAST 4 FROM (41L, 67GN, 69AN, 70R, 210W, 215ACDEGHILNSVFY, 219EHNQR) (Resistant GSS 0)"
+        },
+        {
+          "drug": "D4T",
+          "algorithm": "REGA",
+          "SIR": "R",
+          "interpretation": "Resistant GSS 0",
+          "explanation": "SELECT ATLEAST 4 FROM (41L, 67N, 69ADGN, 70R, 210W, 215ACDEGHILNSVFY, 219EHNQR) (Resistant GSS 0)\n(41L AND 210W AND 215Y) (Resistant GSS 0)"
+        },
+        {
+          "drug": "DDI",
+          "algorithm": "REGA",
+          "SIR": "R",
+          "interpretation": "Resistant GSS 0",
+          "explanation": "SELECT ATLEAST 5 FROM (41L, 67N, 70R, 74IV, 210W, 215ACDEGHILNSVFY, 219EHNQR) (Resistant GSS 0)\n(41L AND 215FY) (Intermediate Resistant GSS 0.5)"
+        },
+        {
+          "drug": "FTC",
+          "algorithm": "REGA",
+          "SIR": "R",
+          "interpretation": "Resistant GSS 0",
+          "explanation": "184VI (Resistant GSS 0)"
+        },
+        {
+          "drug": "LMV",
+          "algorithm": "REGA",
+          "SIR": "R",
+          "interpretation": "Resistant GSS 0",
+          "explanation": "184VI (Resistant GSS 0)"
+        },
+        {
+          "drug": "TDF",
+          "algorithm": "REGA",
+          "SIR": "R",
+          "interpretation": "Resistant GSS 0",
+          "explanation": "SELECT ATLEAST 3 FROM (67N, 70R, 215ACDEGHILNSVYF, 219EHNQR) AND SELECT ATLEAST 1 FROM (41L, 210W) (Resistant GSS 0)\n41L AND 210W AND 215Y AND 184IV (Intermediate Resistant GSS 0.5)\nSELECT ATLEAST 2 FROM (67N, 70R, 215ACDEGHILNSVFY, 219ENQHR) AND SELECT ATLEAST 1 FROM (41L, 210W) (Intermediate Resistant GSS 0.5)"
+        },
+        {
+          "drug": "DOR",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "EFV",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "ETR",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "NVP",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "RPV",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
+        }
+      ]
+    },
+    "APOBEC-77113f2f61888eb305ad7151d4f9950a1960e41d842fd5631517120a8c5a4ec2dacca161a2432308acd4d10b30c32e7101c065507abd727029c07b0adaefce3e": {
+      "algorithms": [
+        "HIVDB",
+        "ANRS",
+        "REGA"
+      ],
+      "comparisonResults": [
+        {
+          "drug": "ATV",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 105\nL90M (25), I54V (15), V82F (15), G73C (10) I54V + V82F (10), I54V + L90M (10), G73C + L90M (10), V82F + L90M (10)"
+        },
+        {
+          "drug": "DRV",
+          "algorithm": "HIVDB",
+          "SIR": "I",
+          "interpretation": "Low-Level Resistance",
+          "explanation": "Total score: 15\nV82F (15) "
+        },
+        {
+          "drug": "FPV",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 110\nV82F (30), L90M (20), I54V (10), G73C (10) I54V + V82F (10), I54V + L90M (10), G73C + L90M (10), V82F + L90M (10)"
+        },
+        {
+          "drug": "IDV",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 130\nV82F (30), L90M (30), I54V (15), G73C (15) I54V + V82F (10), I54V + L90M (10), G73C + L90M (10), V82F + L90M (10)"
+        },
+        {
+          "drug": "LPV",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 85\nV82F (30), I54V (15), L90M (15), G73C (5) I54V + V82F (10), I54V + L90M (5), V82F + L90M (5)"
+        },
+        {
+          "drug": "NFV",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 225\nD30N (60), L90M (60), V82F (30), I54V (20), G73C (15) I54V + V82F (10), I54V + L90M (10), G73C + L90M (10), V82F + L90M (10)"
+        },
+        {
+          "drug": "SQV",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 125\nL90M (45), I54V (15), G73C (15), V82F (10) I54V + V82F (10), I54V + L90M (10), G73C + L90M (10), V82F + L90M (10)"
+        },
+        {
+          "drug": "TPV",
+          "algorithm": "HIVDB",
+          "SIR": "I",
+          "interpretation": "Low-Level Resistance",
+          "explanation": "Total score: 20\nI54V (20) "
+        },
+        {
+          "drug": "ATV",
+          "algorithm": "ANRS",
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "SELECT ATLEAST 3 FROM (10FIV, 16E, 33FIV, 46IL, 60E, 71VT, 84V, 85V, 90M) (Resistance)"
+        },
+        {
+          "drug": "DRV",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "FPV",
+          "algorithm": "ANRS",
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "SELECT ATLEAST 4 FROM (10FIV, 33F, 36I, 54ALMSTV, 62V, 82ACFG, 84V, 90M) (Resistance)"
+        },
+        {
+          "drug": "IDV",
+          "algorithm": "ANRS",
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "82AFMST (Resistance)\n90M AND SELECT ATLEAST 2 FROM (20MR, 24I, 32I, 36I, 54VLMT, 71VT, 73SA, 77I) (Resistance)\n90M (Possible resistance)"
+        },
+        {
+          "drug": "LPV",
+          "algorithm": "ANRS",
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "SELECT ATLEAST 4 FROM (10FIRV, 20MR, 24I, 33F, 46IL, 50V, 53L, 54MLTV, 63P, 71ILTV, 82AFST, 84V, 90M) (Resistance)"
+        },
+        {
+          "drug": "NFV",
+          "algorithm": "ANRS",
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "30N (Resistance)\n90M (Resistance)\n82AFST AND SELECT ATLEAST 2 FROM (10I, 36I, 46IL, 54VLMT, 71VT, 77I) (Possible resistance)"
+        },
+        {
+          "drug": "SQV",
+          "algorithm": "ANRS",
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "SELECT ATLEAST 3 FROM (10FIMRV, 15AV, 20IMRT, 24I, 62V, 73ST, 82AFST, 84V, 90M) (Resistance)"
+        },
+        {
+          "drug": "TPV",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "ATV",
+          "algorithm": "REGA",
+          "SIR": "R",
+          "interpretation": "Resistant GSS 0",
+          "explanation": "Total score: 3\nI54V (1), L90M (1), G73C (0), V82F (0), L10I (0), K20I (0), T74S (0) "
+        },
+        {
+          "drug": "DRV",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1.5",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "FPV",
+          "algorithm": "REGA",
+          "SIR": "I",
+          "interpretation": "Intermediate Resistant GSS 0.75",
+          "explanation": "Total score: 2\nI54V (1), V82F (1), L10I (0), K20I (0), L90M (0) "
+        },
+        {
+          "drug": "IDV",
+          "algorithm": "REGA",
+          "SIR": "R",
+          "interpretation": "Resistant GSS 0",
+          "explanation": "Total score: 5\nV82F (2), I54V (1), L90M (1), G73C (0), L10I (0), K20I (0), I62V (0), T74S (0) "
+        },
+        {
+          "drug": "LPV",
+          "algorithm": "REGA",
+          "SIR": "R",
+          "interpretation": "Resistant GSS 0",
+          "explanation": "Total score: 3\nI54V (1), V82F (1), G73C (0), L90M (0), L10I (0), K20I (0) "
+        },
+        {
+          "drug": "NFV",
+          "algorithm": "REGA",
+          "SIR": "R",
+          "interpretation": "Resistant GSS 0",
+          "explanation": "Total score: 7\nD30N (2), L90M (2), I54V (1), V82F (1), G73C (0), L10I (0), K20I (0), I62V (0), T74S (0) "
+        },
+        {
+          "drug": "SQV",
+          "algorithm": "REGA",
+          "SIR": "R",
+          "interpretation": "Resistant GSS 0",
+          "explanation": "Total score: 5\nL90M (2), I54V (1), G73C (0), T74S (0), L10I (0), K20I (0), I62V (0), V82F (0) "
+        },
+        {
+          "drug": "TPV",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1.5",
+          "explanation": "Total score: 1\nI54V (1), V82F (0), L90M (0) "
+        },
+        {
+          "drug": "ABC",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 75\nM184V (15), T215Y (10), M41L (5), L210LW (5) M41L + T215Y (15), M41L + L210LW (10), L210LW + T215Y (10), M41L + L210LW + T215Y (5)"
+        },
+        {
+          "drug": "AZT",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 90\nT215Y (40), M41L (15), L210LW (15), M184V (-10) M41L + L210LW (10), L210LW + T215Y (10), M41L + T215Y (10)"
+        },
+        {
+          "drug": "D4T",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 90\nT215Y (40), M41L (15), L210LW (15), M184V (-10) M41L + L210LW (10), L210LW + T215Y (10), M41L + T215Y (10)"
+        },
+        {
+          "drug": "DDI",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 75\nT215Y (15), M41L (10), M184V (10), L210LW (10) M41L + L210LW (10), L210LW + T215Y (10), M41L + T215Y (10)"
+        },
+        {
+          "drug": "FTC",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 75\nM184V (60) L210LW + T215Y (5), M41L + L210LW + T215Y (5), M41L + T215Y (5)"
+        },
+        {
+          "drug": "LMV",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 75\nM184V (60) L210LW + T215Y (5), M41L + L210LW + T215Y (5), M41L + T215Y (5)"
+        },
+        {
+          "drug": "TDF",
+          "algorithm": "HIVDB",
+          "SIR": "I",
+          "interpretation": "Intermediate Resistance",
+          "explanation": "Total score: 45\nT215Y (10), M41L (5), L210LW (5), M184V (-10) M41L + L210LW (10), L210LW + T215Y (10), M41L + T215Y (10), M41L + L210LW + T215Y (5)"
+        },
+        {
+          "drug": "DOR",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "EFV",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "ETR",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "NVP",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "RPV",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "ABC",
+          "algorithm": "ANRS",
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "SELECT ATLEAST 3 FROM (41L, 67N, 184VI, 210W, 215YFACDEGHILNSV) (Resistance)\n184VI (Possible resistance)"
+        },
+        {
+          "drug": "AZT",
+          "algorithm": "ANRS",
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "215YFACDEGHILNSV (Resistance)"
+        },
+        {
+          "drug": "D4T",
+          "algorithm": "ANRS",
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "215YFACDEGHILNSV (Resistance)"
+        },
+        {
+          "drug": "DDI",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "FTC",
+          "algorithm": "ANRS",
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "184VI (Resistance)"
+        },
+        {
+          "drug": "LMV",
+          "algorithm": "ANRS",
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "184VI (Resistance)"
+        },
+        {
+          "drug": "TDF",
+          "algorithm": "ANRS",
+          "SIR": "I",
+          "interpretation": "Possible resistance",
+          "explanation": "SELECT ATLEAST 3 AND NOTMORETHAN 3 FROM (41L, 44D, 67N, 69DNS, 74VI, 210W, 215YFACDEGHILNSV) (Possible resistance)"
+        },
+        {
+          "drug": "DOR",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "EFV",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "ETR",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "NVP",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "RPV",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "ABC",
+          "algorithm": "REGA",
+          "SIR": "I",
+          "interpretation": "Intermediate Resistant GSS 0.5",
+          "explanation": "SELECT ATLEAST 1 FROM (65NR, 74IV, 115F, 184IV) AND SELECT ATLEAST 2 AND NOTMORETHAN 3 FROM (41L, 67N, 70R, 210W, 215ACDEGHILNSVFY, 219QEHNR) (Intermediate Resistant GSS 0.5)\nSELECT ATLEAST 3 FROM (41L, 67N, 70R, 210W, 215ACDEGHILNSVYF, 219QEHNR) (Intermediate Resistant GSS 0.5)"
+        },
+        {
+          "drug": "AZT",
+          "algorithm": "REGA",
+          "SIR": "I",
+          "interpretation": "Intermediate Resistant GSS 0.5",
+          "explanation": "SELECT ATLEAST 2 AND NOTMORETHAN 3 FROM (41L, 67GN, 69AN, 70R, 210W, 215ACDEGHILNSVFY, 219EHNQR) (Intermediate Resistant GSS 0.5)"
+        },
+        {
+          "drug": "D4T",
+          "algorithm": "REGA",
+          "SIR": "R",
+          "interpretation": "Resistant GSS 0",
+          "explanation": "(41L AND 210W AND 215Y) (Resistant GSS 0)\nSELECT ATLEAST 2 AND NOTMORETHAN 3 FROM (41L, 67N, 69ADGN, 70R, 210W, 215ACDEGHILNSVFY, 219EHNQR) (Intermediate Resistant GSS 0.5)"
+        },
+        {
+          "drug": "DDI",
+          "algorithm": "REGA",
+          "SIR": "I",
+          "interpretation": "Intermediate Resistant GSS 0.5",
+          "explanation": "(41L AND 215FY) (Intermediate Resistant GSS 0.5)\nSELECT ATLEAST 3 AND NOTMORETHAN 4 FROM (41L, 67N, 70R, 210W, 215ACDEGHILNSVFY, 219EHNQR) (Intermediate Resistant GSS 0.5)"
+        },
+        {
+          "drug": "FTC",
+          "algorithm": "REGA",
+          "SIR": "R",
+          "interpretation": "Resistant GSS 0",
+          "explanation": "184VI (Resistant GSS 0)"
+        },
+        {
+          "drug": "LMV",
+          "algorithm": "REGA",
+          "SIR": "R",
+          "interpretation": "Resistant GSS 0",
+          "explanation": "184VI (Resistant GSS 0)"
+        },
+        {
+          "drug": "TDF",
+          "algorithm": "REGA",
+          "SIR": "I",
+          "interpretation": "Intermediate Resistant GSS 0.5",
+          "explanation": "41L AND 210W AND 215Y AND 184IV (Intermediate Resistant GSS 0.5)"
+        },
+        {
+          "drug": "DOR",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "EFV",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "ETR",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "NVP",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "RPV",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
+        }
+      ]
+    },
+    "NC633-1997|AY030420-866dd53b762a8c9f47b39a814430735f5eab0d34c8917f2fb771a974bd572cc3619feb96eeab880a23cae86df884fe369bd24afb7a3bb31799de18e235752f07": {
+      "algorithms": [
+        "HIVDB",
+        "ANRS",
+        "REGA"
+      ],
+      "comparisonResults": [
+        {
+          "drug": "ABC",
+          "algorithm": "HIVDB",
+          "SIR": "I",
+          "interpretation": "Low-Level Resistance",
+          "explanation": "Total score: 15\nM184V (15) "
+        },
+        {
+          "drug": "AZT",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "Total score: -10\nM184V (-10) "
+        },
+        {
+          "drug": "D4T",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "Total score: -10\nM184V (-10) "
+        },
+        {
+          "drug": "DDI",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Potential Low-Level Resistance",
+          "explanation": "Total score: 10\nM184V (10) "
+        },
+        {
+          "drug": "FTC",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 60\nM184V (60) "
+        },
+        {
+          "drug": "LMV",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 60\nM184V (60) "
+        },
+        {
+          "drug": "TDF",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "Total score: -10\nM184V (-10) "
+        },
+        {
+          "drug": "DOR",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 60\nM230ML (60) "
+        },
+        {
+          "drug": "EFV",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 105\nK103N (60), M230ML (45) "
+        },
+        {
+          "drug": "ETR",
+          "algorithm": "HIVDB",
+          "SIR": "I",
+          "interpretation": "Intermediate Resistance",
+          "explanation": "Total score: 30\nM230ML (30) "
+        },
+        {
+          "drug": "NVP",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 120\nK103N (60), M230ML (60) "
+        },
+        {
+          "drug": "RPV",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 60\nM230ML (60) "
+        },
+        {
+          "drug": "ABC",
+          "algorithm": "ANRS",
+          "SIR": "I",
+          "interpretation": "Possible resistance",
+          "explanation": "184VI (Possible resistance)"
+        },
+        {
+          "drug": "AZT",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "D4T",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "DDI",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "FTC",
+          "algorithm": "ANRS",
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "184VI (Resistance)"
+        },
+        {
+          "drug": "LMV",
+          "algorithm": "ANRS",
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "184VI (Resistance)"
+        },
+        {
+          "drug": "TDF",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "DOR",
+          "algorithm": "ANRS",
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "230L (Resistance)"
+        },
+        {
+          "drug": "EFV",
+          "algorithm": "ANRS",
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "103HNST (Resistance)\n230L (Resistance)"
+        },
+        {
+          "drug": "ETR",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "NVP",
+          "algorithm": "ANRS",
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "103HNST (Resistance)\n230L (Resistance)"
+        },
+        {
+          "drug": "RPV",
+          "algorithm": "ANRS",
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "230ILV (Resistance)"
+        },
+        {
+          "drug": "ABC",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "AZT",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "D4T",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "DDI",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "FTC",
+          "algorithm": "REGA",
+          "SIR": "R",
+          "interpretation": "Resistant GSS 0",
+          "explanation": "184VI (Resistant GSS 0)"
+        },
+        {
+          "drug": "LMV",
+          "algorithm": "REGA",
+          "SIR": "R",
+          "interpretation": "Resistant GSS 0",
+          "explanation": "184VI (Resistant GSS 0)"
+        },
+        {
+          "drug": "TDF",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "DOR",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "EFV",
+          "algorithm": "REGA",
+          "SIR": "R",
+          "interpretation": "Resistant GSS 0",
+          "explanation": "Total score: 4\nK103N (2), M230ML (2) "
+        },
+        {
+          "drug": "ETR",
+          "algorithm": "REGA",
+          "SIR": "I",
+          "interpretation": "Intermediate Resistant GSS 0.5",
+          "explanation": "Total score: 1\nM230ML (1), K103N (0) "
+        },
+        {
+          "drug": "NVP",
+          "algorithm": "REGA",
+          "SIR": "R",
+          "interpretation": "Resistant GSS 0",
+          "explanation": "Total score: 4\nK103N (2), M230ML (2) "
+        },
+        {
+          "drug": "RPV",
+          "algorithm": "REGA",
+          "SIR": "I",
+          "interpretation": "Intermediate Resistant GSS 0.25",
+          "explanation": "Total score: 1\nM230ML (1) "
+        }
+      ]
+    },
+    "NC636-1997|AY030421-c9c8a5a90fabef36b6812be8492ec63d0670e5bd746c3c0795847bf628eef8d5f76b61fad4b522ad4672b0b47713b1f6c1d1e04ce77c7d647c3f9b42457dde38": {
+      "algorithms": [
+        "HIVDB",
+        "ANRS",
+        "REGA"
+      ],
+      "comparisonResults": [
+        {
+          "drug": "ATV",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "DRV",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "FPV",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "IDV",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "LPV",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "NFV",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "SQV",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "TPV",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "ATV",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "DRV",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "FPV",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "IDV",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "LPV",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "NFV",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "SQV",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "TPV",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "ATV",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1.5",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "DRV",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1.5",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "FPV",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1.5",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "IDV",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1.5",
+          "explanation": "Total score: 0\nI62V (0) "
+        },
+        {
+          "drug": "LPV",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1.5",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "NFV",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "Total score: 0\nI62V (0) "
+        },
+        {
+          "drug": "SQV",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1.5",
+          "explanation": "Total score: 0\nI62V (0) "
+        },
+        {
+          "drug": "TPV",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1.5",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "ABC",
+          "algorithm": "HIVDB",
+          "SIR": "I",
+          "interpretation": "Intermediate Resistance",
+          "explanation": "Total score: 30\nT215Y (10), M41L (5) M41L + T215Y (15)"
+        },
+        {
+          "drug": "AZT",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 65\nT215Y (40), M41L (15) M41L + T215Y (10)"
+        },
+        {
+          "drug": "D4T",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 65\nT215Y (40), M41L (15) M41L + T215Y (10)"
+        },
+        {
+          "drug": "DDI",
+          "algorithm": "HIVDB",
+          "SIR": "I",
+          "interpretation": "Intermediate Resistance",
+          "explanation": "Total score: 35\nT215Y (15), M41L (10) M41L + T215Y (10)"
+        },
+        {
+          "drug": "FTC",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "Total score: 5\n M41L + T215Y (5)"
+        },
+        {
+          "drug": "LMV",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "Total score: 5\n M41L + T215Y (5)"
+        },
+        {
+          "drug": "TDF",
+          "algorithm": "HIVDB",
+          "SIR": "I",
+          "interpretation": "Low-Level Resistance",
+          "explanation": "Total score: 25\nT215Y (10), M41L (5) M41L + T215Y (10)"
+        },
+        {
+          "drug": "DOR",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "EFV",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "ETR",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "NVP",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "RPV",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "ABC",
+          "algorithm": "ANRS",
+          "SIR": "I",
+          "interpretation": "Possible resistance",
+          "explanation": "SELECT ATLEAST 2 AND NOTMORETHAN 2 FROM (41L, 67N, 210W, 215YFACDEGHILNSV) (Possible resistance)"
+        },
+        {
+          "drug": "AZT",
+          "algorithm": "ANRS",
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "215YFACDEGHILNSV (Resistance)"
+        },
+        {
+          "drug": "D4T",
+          "algorithm": "ANRS",
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "215YFACDEGHILNSV (Resistance)"
+        },
+        {
+          "drug": "DDI",
+          "algorithm": "ANRS",
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "EXCLUDE 70R AND EXCLUDE 184VI AND SELECT ATLEAST 2 FROM (41L, 69D, 215FY, 219QE) (Resistance)"
+        },
+        {
+          "drug": "FTC",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "LMV",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "TDF",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "DOR",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "EFV",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "ETR",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "NVP",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "RPV",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "ABC",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "AZT",
+          "algorithm": "REGA",
+          "SIR": "I",
+          "interpretation": "Intermediate Resistant GSS 0.5",
+          "explanation": "SELECT ATLEAST 2 AND NOTMORETHAN 3 FROM (41L, 67GN, 69AN, 70R, 210W, 215ACDEGHILNSVFY, 219EHNQR) (Intermediate Resistant GSS 0.5)\n(215ACDEGHILNSVFY AND EXCLUDE 184IV) (Intermediate Resistant GSS 0.5)"
+        },
+        {
+          "drug": "D4T",
+          "algorithm": "REGA",
+          "SIR": "I",
+          "interpretation": "Intermediate Resistant GSS 0.5",
+          "explanation": "SELECT ATLEAST 2 AND NOTMORETHAN 3 FROM (41L, 67N, 69ADGN, 70R, 210W, 215ACDEGHILNSVFY, 219EHNQR) (Intermediate Resistant GSS 0.5)\n(215ACDEGHILNSVFY AND EXCLUDE 184IV) (Intermediate Resistant GSS 0.5)"
+        },
+        {
+          "drug": "DDI",
+          "algorithm": "REGA",
+          "SIR": "I",
+          "interpretation": "Intermediate Resistant GSS 0.5",
+          "explanation": "(41L AND 215FY) (Intermediate Resistant GSS 0.5)"
+        },
+        {
+          "drug": "FTC",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "LMV",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "TDF",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "DOR",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "EFV",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "ETR",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "NVP",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "RPV",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
+        }
+      ]
+    },
     "NC640-1997|AY030422-FSINS6-1BP,FS-INS21-4BP,INS25-47f9d0904fdfe8068bf3d5e79b934d38987e57cfb2e334b1230a1f3a5044af209903f1dda04d58b65d780adddd2561ab5c37ecd4bb98b4bdd74b32f4f65386aa": {
       "algorithms": [
         "HIVDB",
@@ -20944,6 +24208,435 @@
           "SIR": "R",
           "interpretation": "Resistant GSS 0",
           "explanation": "Total score: 2\nY181YC (1), V106VA (0), V179I (0) "
+        }
+      ]
+    },
+    "NC2197-1998|-79c207a24fab08cf93340c5398263dfdb5b43c76de03b63ecc48bbecb64bd532ef2ae719a2bc18373f5f88ab275430d9f2f370fc1c6b56bd7be619eba0068b17": {
+      "algorithms": [
+        "HIVDB",
+        "ANRS",
+        "REGA"
+      ],
+      "comparisonResults": [
+        {
+          "drug": "ATV",
+          "algorithm": "HIVDB",
+          "SIR": "I",
+          "interpretation": "Low-Level Resistance",
+          "explanation": "Total score: 25\nV82A (15), N88D (10) "
+        },
+        {
+          "drug": "DRV",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "FPV",
+          "algorithm": "HIVDB",
+          "SIR": "I",
+          "interpretation": "Low-Level Resistance",
+          "explanation": "Total score: 15\nV82A (15) "
+        },
+        {
+          "drug": "IDV",
+          "algorithm": "HIVDB",
+          "SIR": "I",
+          "interpretation": "Intermediate Resistance",
+          "explanation": "Total score: 30\nV82A (30) "
+        },
+        {
+          "drug": "LPV",
+          "algorithm": "HIVDB",
+          "SIR": "I",
+          "interpretation": "Intermediate Resistance",
+          "explanation": "Total score: 30\nV82A (30) "
+        },
+        {
+          "drug": "NFV",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 90\nN88D (60), V82A (30) "
+        },
+        {
+          "drug": "SQV",
+          "algorithm": "HIVDB",
+          "SIR": "I",
+          "interpretation": "Low-Level Resistance",
+          "explanation": "Total score: 25\nV82A (15), N88D (10) "
+        },
+        {
+          "drug": "TPV",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "ATV",
+          "algorithm": "ANRS",
+          "SIR": "I",
+          "interpretation": "Possible resistance",
+          "explanation": "SELECT ATLEAST 2 AND NOTMORETHAN 2 FROM (10FIV, 16E, 33FIV, 46IL, 60E, 71VT, 84V, 85V, 90M) (Possible resistance)"
+        },
+        {
+          "drug": "DRV",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "FPV",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "IDV",
+          "algorithm": "ANRS",
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "82AFMST (Resistance)"
+        },
+        {
+          "drug": "LPV",
+          "algorithm": "ANRS",
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "SELECT ATLEAST 4 FROM (10FIRV, 20MR, 24I, 33F, 46IL, 50V, 53L, 54MLTV, 63P, 71ILTV, 82AFST, 84V, 90M) (Resistance)"
+        },
+        {
+          "drug": "NFV",
+          "algorithm": "ANRS",
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "88SD (Resistance)\n82AFST AND SELECT ATLEAST 2 FROM (10I, 36I, 46IL, 54VLMT, 71VT, 77I) (Possible resistance)"
+        },
+        {
+          "drug": "SQV",
+          "algorithm": "ANRS",
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "SELECT ATLEAST 3 FROM (10FIMRV, 15AV, 20IMRT, 24I, 62V, 73ST, 82AFST, 84V, 90M) (Resistance)"
+        },
+        {
+          "drug": "TPV",
+          "algorithm": "ANRS",
+          "SIR": "I",
+          "interpretation": "Possible resistance",
+          "explanation": "EXCLUDE 53LWY AND SELECT ATLEAST 2 FROM (36ILV,  58E,  69IKNQRY,  89IMRTV) (Possible resistance)"
+        },
+        {
+          "drug": "ATV",
+          "algorithm": "REGA",
+          "SIR": "I",
+          "interpretation": "Intermediate Resistant GSS 0.75",
+          "explanation": "Total score: 2\nN88D (1), V82A (0), L10I (0), K20M (0), A71AV (0) "
+        },
+        {
+          "drug": "DRV",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1.5",
+          "explanation": "Total score: 0\nV82A (0) "
+        },
+        {
+          "drug": "FPV",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1.5",
+          "explanation": "Total score: 1\nV82A (0), L10I (0), K20M (0) "
+        },
+        {
+          "drug": "IDV",
+          "algorithm": "REGA",
+          "SIR": "R",
+          "interpretation": "Resistant GSS 0",
+          "explanation": "Total score: 3\nV82A (2), N88D (0), L10I (0), K20M (0), A71AV (0) "
+        },
+        {
+          "drug": "LPV",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1.5",
+          "explanation": "Total score: 1\nV82A (0), N88D (0), L10I (0), K20M (0), A71AV (0) "
+        },
+        {
+          "drug": "NFV",
+          "algorithm": "REGA",
+          "SIR": "R",
+          "interpretation": "Resistant GSS 0",
+          "explanation": "Total score: 2\nV82A (1), N88D (1), L10I (0), K20M (0), A71AV (0) "
+        },
+        {
+          "drug": "SQV",
+          "algorithm": "REGA",
+          "SIR": "I",
+          "interpretation": "Intermediate Resistant GSS 0.75",
+          "explanation": "Total score: 2\nA71AV (1), N88D (1), L10I (0), K20M (0), V82A (0) "
+        },
+        {
+          "drug": "TPV",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1.5",
+          "explanation": "Total score: 0\nV82A (0) "
+        },
+        {
+          "drug": "ABC",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 85\nT69Insertion (60), M184V (15), A62V (5), K70R (5) "
+        },
+        {
+          "drug": "AZT",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 85\nT69Insertion (60), K70R (30), A62V (5), M184V (-10) "
+        },
+        {
+          "drug": "D4T",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 70\nT69Insertion (60), K70R (15), A62V (5), M184V (-10) "
+        },
+        {
+          "drug": "DDI",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 85\nT69Insertion (60), K70R (10), M184V (10), A62V (5) "
+        },
+        {
+          "drug": "FTC",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 95\nM184V (60), T69Insertion (30), A62V (5) "
+        },
+        {
+          "drug": "LMV",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 95\nM184V (60), T69Insertion (30), A62V (5) "
+        },
+        {
+          "drug": "TDF",
+          "algorithm": "HIVDB",
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 60\nT69Insertion (60), A62V (5), K70R (5), M184V (-10) "
+        },
+        {
+          "drug": "DOR",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "EFV",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "ETR",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "NVP",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "RPV",
+          "algorithm": "HIVDB",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "ABC",
+          "algorithm": "ANRS",
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "69i (Resistance)\n184VI (Possible resistance)"
+        },
+        {
+          "drug": "AZT",
+          "algorithm": "ANRS",
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "69i (Resistance)"
+        },
+        {
+          "drug": "D4T",
+          "algorithm": "ANRS",
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "69i (Resistance)"
+        },
+        {
+          "drug": "DDI",
+          "algorithm": "ANRS",
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "69i (Resistance)"
+        },
+        {
+          "drug": "FTC",
+          "algorithm": "ANRS",
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "184VI (Resistance)\n69i (Resistance)"
+        },
+        {
+          "drug": "LMV",
+          "algorithm": "ANRS",
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "184VI (Resistance)\n69i (Resistance)"
+        },
+        {
+          "drug": "TDF",
+          "algorithm": "ANRS",
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "69i (Resistance)"
+        },
+        {
+          "drug": "DOR",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "EFV",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "ETR",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "NVP",
+          "algorithm": "ANRS",
+          "SIR": "I",
+          "interpretation": "Possible resistance",
+          "explanation": "98S (Possible resistance)"
+        },
+        {
+          "drug": "RPV",
+          "algorithm": "ANRS",
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "ABC",
+          "algorithm": "REGA",
+          "SIR": "R",
+          "interpretation": "Resistant GSS 0",
+          "explanation": "SELECT ATLEAST 2 FROM (65NR, 69i, 74IV, 115F, 151M, 184VI) (Resistant GSS 0)\nSELECT ATLEAST 1 AND NOTMORETHAN 1 FROM (69i, 70EG, 151M) (Intermediate Resistant GSS 0.5)"
+        },
+        {
+          "drug": "AZT",
+          "algorithm": "REGA",
+          "SIR": "R",
+          "interpretation": "Resistant GSS 0",
+          "explanation": "SELECT ATLEAST 1 FROM (151M, 69i) (Resistant GSS 0)"
+        },
+        {
+          "drug": "D4T",
+          "algorithm": "REGA",
+          "SIR": "R",
+          "interpretation": "Resistant GSS 0",
+          "explanation": "SELECT ATLEAST 1 FROM (65R, 67d, 69i, 75AMST, 151M) (Resistant GSS 0)"
+        },
+        {
+          "drug": "DDI",
+          "algorithm": "REGA",
+          "SIR": "R",
+          "interpretation": "Resistant GSS 0",
+          "explanation": "SELECT ATLEAST 1 FROM (69DGN, 69i, 151M) (Resistant GSS 0)"
+        },
+        {
+          "drug": "FTC",
+          "algorithm": "REGA",
+          "SIR": "R",
+          "interpretation": "Resistant GSS 0",
+          "explanation": "184VI (Resistant GSS 0)\nSELECT ATLEAST 1 FROM (67d, 69i, 65NR, 70EG) (Intermediate Resistant GSS 0.5)"
+        },
+        {
+          "drug": "LMV",
+          "algorithm": "REGA",
+          "SIR": "R",
+          "interpretation": "Resistant GSS 0",
+          "explanation": "184VI (Resistant GSS 0)\nSELECT ATLEAST 1 FROM (67d, 69i, 65NR, 70EG) (Intermediate Resistant GSS 0.5)"
+        },
+        {
+          "drug": "TDF",
+          "algorithm": "REGA",
+          "SIR": "R",
+          "interpretation": "Resistant GSS 0",
+          "explanation": "69i (Resistant GSS 0)"
+        },
+        {
+          "drug": "DOR",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "EFV",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "ETR",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "NVP",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
+        },
+        {
+          "drug": "RPV",
+          "algorithm": "REGA",
+          "SIR": "S",
+          "interpretation": "Susceptible GSS 1",
+          "explanation": "No rules were triggered"
         }
       ]
     }
@@ -25764,29 +29457,29 @@
           "drug": "EFV",
           "algorithm": "HIVDB",
           "SIR": "S",
-          "interpretation": "Susceptible",
-          "explanation": "No rules were triggered"
+          "interpretation": "Potential Low-Level Resistance",
+          "explanation": "Total score: 10\nE138EADGV (10) "
         },
         {
           "drug": "ETR",
           "algorithm": "HIVDB",
           "SIR": "S",
-          "interpretation": "Susceptible",
-          "explanation": "No rules were triggered"
+          "interpretation": "Potential Low-Level Resistance",
+          "explanation": "Total score: 10\nE138EADGV (10) "
         },
         {
           "drug": "NVP",
           "algorithm": "HIVDB",
           "SIR": "S",
-          "interpretation": "Susceptible",
-          "explanation": "No rules were triggered"
+          "interpretation": "Potential Low-Level Resistance",
+          "explanation": "Total score: 10\nE138EADGV (10) "
         },
         {
           "drug": "RPV",
           "algorithm": "HIVDB",
-          "SIR": "S",
-          "interpretation": "Susceptible",
-          "explanation": "No rules were triggered"
+          "SIR": "I",
+          "interpretation": "Low-Level Resistance",
+          "explanation": "Total score: 15\nE138EADGV (15) "
         },
         {
           "drug": "ABC",
@@ -25854,9 +29547,9 @@
         {
           "drug": "ETR",
           "algorithm": "ANRS",
-          "SIR": "S",
-          "interpretation": "Susceptible",
-          "explanation": "No rules were triggered"
+          "SIR": "I",
+          "interpretation": "Possible resistance",
+          "explanation": "138AGQRS (Possible resistance)"
         },
         {
           "drug": "NVP",
@@ -25868,9 +29561,9 @@
         {
           "drug": "RPV",
           "algorithm": "ANRS",
-          "SIR": "S",
-          "interpretation": "Susceptible",
-          "explanation": "No rules were triggered"
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "138AGKQRS (Resistance)"
         },
         {
           "drug": "ABC",
@@ -25940,7 +29633,7 @@
           "algorithm": "REGA",
           "SIR": "S",
           "interpretation": "Susceptible GSS 1",
-          "explanation": "No rules were triggered"
+          "explanation": "Total score: 0\nE138EADGV (0) "
         },
         {
           "drug": "NVP",
@@ -25952,9 +29645,9 @@
         {
           "drug": "RPV",
           "algorithm": "REGA",
-          "SIR": "S",
-          "interpretation": "Susceptible GSS 1",
-          "explanation": "Total score: 0\nV179VI (0) "
+          "SIR": "I",
+          "interpretation": "Intermediate Resistant GSS 0.25",
+          "explanation": "Total score: 2\nE138EADGV (1), V179VI (0) "
         }
       ]
     },

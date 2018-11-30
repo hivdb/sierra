@@ -43,16 +43,16 @@ public class ApobecTest {
 	
 	@Test
 	public void testBasicApobecMutVerification() {
-		final Mutation apocecMut = new Mutation(Gene.RT, 239, "*");
-		final Mutation drmMut = new Mutation(Gene.PR, 30, "N");
+		final Mutation apocecMut = new IUPACMutation(Gene.RT, 239, "*");
+		final Mutation drmMut = new IUPACMutation(Gene.PR, 30, "N");
 		assertFalse(Apobec.isApobecMutation(drmMut));
 		assertTrue(Apobec.isApobecMutation(apocecMut));
 	}
 	
 	@Test
 	public void testBasicDrmMutVerification() {
-		final Mutation drmMut = new Mutation(Gene.PR, 30, "N");
-		final Mutation apocecMut = new Mutation(Gene.RT, 239, "*");
+		final Mutation drmMut = new IUPACMutation(Gene.PR, 30, "N");
+		final Mutation apocecMut = new IUPACMutation(Gene.RT, 239, "*");
 		assertFalse(Apobec.isApobecDRM(apocecMut));
 		assertTrue(Apobec.isApobecDRM(drmMut));
 	}

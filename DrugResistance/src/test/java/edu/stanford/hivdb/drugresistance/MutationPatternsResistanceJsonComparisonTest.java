@@ -54,7 +54,6 @@ public class MutationPatternsResistanceJsonComparisonTest {
 
 	@Test
 	public void testDetermineResistanceForMutList() throws IOException {
-
 		for (TestMutationPatterns testMutationPatterns : TestMutationPatterns.values()) {
 			final InputStream mutationPatternsInputStream =
 					TestMutationPatternFiles.getTestMutationPatternsInputStream(testMutationPatterns);
@@ -101,8 +100,8 @@ public class MutationPatternsResistanceJsonComparisonTest {
 					int calculatedScore = mutPatternScoresCalculated.get(mutList).get(drug);
 					Assert.assertTrue(
 						String.format(
-							"Error in %s. %s doesn't equal to %s",
-							testMutationPatterns, expectedScore, calculatedScore),
+							"Error in %s (%s). %s doesn't equal to %s",
+							testMutationPatterns, mutList, expectedScore, calculatedScore),
 						expectedScore == calculatedScore);
 					//System.out.println(mutList + ":" + drug + " :exp:" + expectedScore + " :calc" + calculatedScore);
 				}
@@ -225,6 +224,7 @@ public class MutationPatternsResistanceJsonComparisonTest {
 				}
 			}
 		}
+
 	}
 
 }
