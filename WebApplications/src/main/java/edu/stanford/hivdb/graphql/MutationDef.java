@@ -68,6 +68,36 @@ public class MutationDef {
 			.name("percent")
 			.description("Percent (max: 100) of this amino acid in the mutation.")
 			.build())
+		.field(newFieldDefinition()
+			.type(GraphQLBoolean)
+			.name("isDRM")
+			.description(
+				"The mutated amino acid is a drug resistance mutation (DRM).")
+			.build())
+		.field(newFieldDefinition()
+			.type(GraphQLBoolean)
+			.name("isUnusual")
+			.description(
+				"The mutated amino acid is a low prevalence (unusual) mutation.")
+			.build())
+		.field(newFieldDefinition()
+			.type(GraphQLBoolean)
+			.name("isApobecMutation")
+			.description("The mutated amino acid is a signature APOBEC-mediated hypermutation.")
+			.build())
+		.field(newFieldDefinition()
+			.type(GraphQLBoolean)
+			.name("isApobecDRM")
+			.description(
+				"The mutated amino acid is a drug resistance mutation (DRM) might " +
+				"be caused by APOBEC-mediated G-to-A hypermutation.")
+			.build())
+		.field(newFieldDefinition()
+			.type(GraphQLBoolean)
+			.name("isStop")
+			.description(
+				"The mutation is a stop codon.")
+			.build())
 		.build();
 	
 	public static GraphQLObjectType oMutation = newObject()
@@ -175,12 +205,6 @@ public class MutationDef {
 			.description(
 				"If the mutation is from unsequenced region.")
 			.build())
-		.field(newFieldDefinition()
-				.type(GraphQLBoolean)
-				.name("isDRM")
-				.description(
-					"If the mutation is a drug resistance mutation (DRM) or not.")
-				.build())
 		.field(newFieldDefinition()
 			.type(GraphQLBoolean)
 			.name("isDRM")

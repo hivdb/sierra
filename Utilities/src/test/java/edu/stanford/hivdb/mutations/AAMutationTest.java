@@ -145,6 +145,9 @@ public class AAMutationTest {
 		expected = new HashSet<>();
 		expected.add(new AAMutation(Gene.RT, 69, '_'));
 		assertEquals(expected, new AAMutation(Gene.RT, 69, '_').split());
+		expected = new HashSet<>();
+		expected.add(new AAMutation(Gene.PR, 1, 'L'));
+		assertEquals(expected, new AAMutation(Gene.PR, 1, "PL".toCharArray()).split());
 	}
 
 	@Test
