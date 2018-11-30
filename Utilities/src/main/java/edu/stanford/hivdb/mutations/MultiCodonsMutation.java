@@ -23,19 +23,6 @@ public class MultiCodonsMutation extends AAMutation {
 
 	private transient String compatTriplet;
 	
-	public static class AAPercent {
-		private Character aa;
-		private Double percent;
-		
-		protected AAPercent(char aa, double percent) {
-			this.aa = aa;
-			this.percent = percent;
-		}
-		
-		public Character getAA() { return aa; }
-		public Double getPercent() { return percent; }
-	}
-	
 	public static MultiCodonsMutation initUnsequenced(Gene gene, int position) {
 		return new MultiCodonsMutation(
 			gene, position, Collections.emptyMap(), Collections.emptyMap(), 0
@@ -123,9 +110,19 @@ public class MultiCodonsMutation extends AAMutation {
 		List<AAPercent> aaPcnts = new ArrayList<>();
 		for (Map.Entry<Character, Long> entry : aaCounts.entrySet()) {
 			char aa = entry.getKey();
+			if (aa == getRefChar()) {
+				continue;
+			}
 			long count = entry.getValue();
 			double pcnt = count * 100.0 / totalCount;
-			aaPcnts.add(new AAPercent(aa, pcnt));
+			Mutation singleMut = new AAMutation(getGene(), getPosition(), aa);
+			aaPcnts.add(new AAPercent(
+				aa, pcnt,
+				singleMut.isDRM(),
+				singleMut.isUnusual(),
+				singleMut.isApobecMutation(),
+				singleMut.isApobecDRM()
+			));
 		}
 		aaPcnts.sort(new Comparator<AAPercent>() {
 
