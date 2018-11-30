@@ -18,6 +18,7 @@
 
 package edu.stanford.hivdb.ngs;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -30,8 +31,10 @@ import org.apache.commons.math3.stat.descriptive.rank.Median;
 
 import edu.stanford.hivdb.mutations.CodonTranslation;
 import edu.stanford.hivdb.mutations.Gene;
+import edu.stanford.hivdb.mutations.MultiCodonsMutation;
 import edu.stanford.hivdb.mutations.Mutation;
 import edu.stanford.hivdb.mutations.MutationSet;
+import edu.stanford.hivdb.mutations.PositionCodonReads;
 
 public class GeneSequenceReads {
 	
@@ -82,27 +85,32 @@ public class GeneSequenceReads {
 	public List<PositionCodonReads> getAllPositionCodonReads() { return this.posCodonReads; }
 	
 	public MutationSet getMutations(final double minPrevalence) {
-		MutationSet retMuts;
-		if (minPrevalence == this.minPrevalence && mutations != null) {
-			retMuts = mutations;
-		} else {
-			retMuts = new MutationSet();
+		if (minPrevalence != this.minPrevalence || mutations == null) {
+			List<Mutation> myMutations = new ArrayList<>();
 			long prevPos = firstAA - 1;
 			for (PositionCodonReads pcr : posCodonReads) {
 				long curPos = pcr.getPosition();
 				for (Long pos = prevPos; pos < curPos - 1; pos ++) {
 					// add unsequenced regions 
-					retMuts = retMuts.mergesWith(new Mutation(gene, pos.intValue(), "X", "NNN"));
+					myMutations.add(MultiCodonsMutation.initUnsequenced(
+						gene, pos.intValue()
+					));
 				}
 				prevPos = curPos;
-				MutationSet muts = pcr.getMutations(minPrevalence);
-				retMuts = retMuts.mergesWith(muts);
+				Mutation mut = MultiCodonsMutation
+					.fromPositionCodonReads(pcr, minPrevalence);
+				if (mut != null) {
+					myMutations.add(mut);
+				}
 			}
 			if (minPrevalence == this.minPrevalence) {
-				mutations = retMuts;
+				mutations = new MutationSet(myMutations);
+			}
+			else {
+				return new MutationSet(myMutations);
 			}
 		}
-		return retMuts;
+		return mutations;
 	}
 	
 	public Double getMedianReadDepth() {
@@ -187,7 +195,7 @@ public class GeneSequenceReads {
 	 */
 	public String getAlignedAAs() {
 		return CodonTranslation.simpleTranslate(
-			this.getAlignedNAs(false), firstAA, gene.getConsensus());
+			this.getAlignedNAs(false), firstAA, gene.getReference());
 	}
 	
 	public List<MutationStats> getMutationStats(Collection<Double> allMinPrevalence) {

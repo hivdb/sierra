@@ -10,6 +10,9 @@ subprojects {
         maven {
             url 'https://dl.bintray.com/hivdb/hivdb'
         }
+	    maven {
+	    	url 'https://artifactory.cronapp.io/public-release/'
+	    }
         flatDir {
             dirs '../DrugResistance/lib'
         }

@@ -18,6 +18,9 @@ repositories {
     maven {
         url 'https://dl.bintray.com/hivdb/hivdb'
     }
+    maven {
+    	url 'https://artifactory.cronapp.io/public-release/'
+    }
 }
 
 dependencies {
@@ -29,7 +32,8 @@ dependencies {
     compile 'mysql:mysql-connector-java:5.1.38'
     compile 'com.google.guava:guava:21.0'
     compile 'com.mchange:c3p0:0.9.5.2'
-    compile 'com.google.code.gson:gson:2.6.2'
+    compile 'com.google.code.gson:gson:2.8.5'
+    compile 'com.google.code.gson:gson-extras:2.8.5'
     compile 'commons-io:commons-io:2.4'
     compile 'com.codepoetics:protonpack:1.8'
 	compile 'net.sf.jfasta:jfasta:2.1.1'

@@ -42,12 +42,8 @@ public class TypedMutationsExporter {
 	}
 
 	private static void exportUnusuals() {
-		HIVAminoAcidPercents allAAPcnts = HIVAminoAcidPercents.getInstance("all", "All");
-
-		// Map<GenePosition, Map<Character, Boolean>>
-		// 	unusuals = UnusualMutations.getUnusualMuts();
-
-
+		HIVAminoAcidPercents allAAPcnts = HIVAminoAcidPercents.getInstance("all", "All"); 
+	
 		for (Gene gene : Gene.values()) {
 			List<String> headers = new ArrayList<>();
 			Map<Character, List<String>> rows = new TreeMap<>();
@@ -88,7 +84,7 @@ public class TypedMutationsExporter {
 		for (Mutation mut : mutSet) {
 			List<String> row = new ArrayList<>();
 			row.add(mut.getGene().toString());
-			row.add(mut.getConsensus());
+			row.add(mut.getReference());
 			row.add("" + mut.getPosition());
 			row.add(mut.getAAs());
 			rows.add(row);

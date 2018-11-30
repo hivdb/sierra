@@ -16,20 +16,13 @@
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package edu.stanford.hivdb.ngs;
+package edu.stanford.hivdb.mutations;
 
 import java.util.Comparator;
 import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.stream.Collectors;
-
-import edu.stanford.hivdb.mutations.CodonTranslation;
-import edu.stanford.hivdb.mutations.Gene;
-import edu.stanford.hivdb.mutations.Mutation;
-import edu.stanford.hivdb.mutations.MutationSet;
 
 public class PositionCodonReads {
 
@@ -41,12 +34,10 @@ public class PositionCodonReads {
 	public static class CodonReads {
 		public final String codon;
 		public final long reads;
-		public final String aminoAcids;
 		
 		public CodonReads(final String codon, final long reads) {
 			this.codon = codon;
 			this.reads = reads;
-			this.aminoAcids = CodonTranslation.translateNATriplet(codon);
 		}
 	}
 	
@@ -97,46 +88,5 @@ public class PositionCodonReads {
 			return "NNN";
 		}
 		return CodonTranslation.getMergedCodon(codons);
-	}
-	
-	public MutationSet getMutations(double minPrevalence) {
-		long minReads = Math.round(totalReads * minPrevalence + 0.5);
-		String refAA = gene.getConsensus(position);
-		String[] allAAs = allCodonReads.entrySet().stream()
-			.filter(e -> e.getValue() > minReads)
-			.map(e -> {
-				String codon = e.getKey();
-				if (codon.length() >= 6) {
-					return "_";  // insertion
-				}
-				else if (codon.equals("---") || codon.isEmpty()) {
-					return "-";  // deletion
-				}
-				codon = codon.replace("-", "");
-				if (codon.length() < 3) {
-					return "X"; // not a complete codon
-				}
-				codon = codon.substring(0, 3);
-				return CodonTranslation.translateNATriplet(codon);
-			})
-			.filter(a -> a != "X")
-			.toArray(String[]::new);
-		Set<String> uniAAs = new LinkedHashSet<>();
-		for (String aas : allAAs) {
-			for (Character aa : aas.toCharArray()) {
-				uniAAs.add(aa.toString());
-			}
-		}
-		if (uniAAs.size() == 1 && uniAAs.contains(refAA)) {
-			return new MutationSet();
-		} else {
-			return uniAAs
-				.stream()
-				.map(aa -> new Mutation(gene, position, aa))
-				.collect(Collectors.collectingAndThen(
-					Collectors.toList(),
-					MutationSet::new
-				));
-		}
 	}
 }

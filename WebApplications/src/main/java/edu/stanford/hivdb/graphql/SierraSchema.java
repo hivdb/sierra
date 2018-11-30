@@ -36,7 +36,7 @@ import java.util.stream.Collectors;
 import edu.stanford.hivdb.alignment.AlignedSequence;
 import edu.stanford.hivdb.alignment.Aligner;
 import edu.stanford.hivdb.mutations.Gene;
-import edu.stanford.hivdb.mutations.Mutation;
+import edu.stanford.hivdb.mutations.IUPACMutation;
 import edu.stanford.hivdb.mutations.MutationPrevalences;
 import edu.stanford.hivdb.mutations.MutationSet;
 import edu.stanford.hivdb.ngs.SequenceReads;
@@ -93,7 +93,7 @@ public class SierraSchema {
 		Set<Gene> knownGenes = EnumSet.noneOf(Gene.class);
 		int numGenes = Gene.values().length;
 		for (String mutText : mutations) {
-			Gene gene = Mutation.extractGene(mutText);
+			Gene gene = IUPACMutation.extractGene(mutText);
 			knownGenes.add(gene);
 			if (knownGenes.size() == numGenes) {
 				break;

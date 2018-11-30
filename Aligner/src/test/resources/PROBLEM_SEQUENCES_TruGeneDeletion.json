@@ -1,0 +1,224 @@
+{
+  "PR": {
+    "gene": "PR",
+    "sequence": {
+      "header": "TruGeneDeletion",
+      "sequence": "CCTCAAATCACTCTTTGGCAACGACCMCTCGTCACAGTAAAGATAGGRGGGCARCTAAAGGAAGCTCTATTAGATACAGGAGCAGATAATACAGTATTAGARGACATAAATTTACCAGGAAGATGGAAACCAAAAATGATAGGGGGAATTGGAGGTYTTATYAAAGTAAGACAGTATGATCAGATACCCATAGAAATTTGTGGACATAAGGCTATAGGTACAGTATTAGTAGGACCTACACCTGTCAACACCAGGAATGGATGGCCCAAAAGTTAAACAATGGCCATTGACAGAAGAAAAAATAAAAGCATTAGTAGAAATTTGTACAGAAATGGAAAAGGAAGGAAAAATTTCAAAAATTGGGCCTGAAAATCCATACAATACTCCAGTATTTGCCATAAAGAAAAAGAACAGTACTAGATGGAGAAAATTAGTAGATTTCAGAGAACTTAATAAGAGAACTCAAGAYTTCTGGGAAGTTCAATTAGGAATACCACATCCTGCAGGGTTAAAAAAGAAGAAATCAGTAACAGTACTGGATGTGGGTGATGCATATTTTTCAGTTCCCTTAGATAAAGACTTCAGGAAGTATACTGCATTTACCATACCTAGTAYAAACAATGAGACACCAGGGATTAGGTATCAGTACAATGTGCTTCCACAGGGATGGAAAGGATCACCAGCAATATTCCAAAGTAGCATGACAAAAATCTTAGAGCCTTTTAGAAAACAAAATCCAGACATAGTTATCTATCAATACGTGGATGATTTGTATGTAGGATCTGACTTAGAAATAGGGCAACATAGAGCAAAAATAGAGGAAYTGAGACGACATCTGTTGGAGTGGGGATTCACCACACCAGAACAAAAACATCAGAAAGAACCTCCATTCCTTTGGATGGGTTATGAACTCCATCCTGATAAATGGACAGTACAGCCTATAGTGCTGCCAGAAAAAGACAGCTGG",
+      "removedInvalidChars": ""
+    },
+    "firstAA": 1,
+    "lastAA": 83,
+    "firstNA": 1,
+    "lastNA": 202,
+    "leftTrimmed": 0,
+    "rightTrimmed": 0,
+    "matchPcnt": 91.08911,
+    "alignedNAs": "CCTCAAATCACTCTTTGGCAACGACCMCTCGTCACAGTAAAGATAGGRGGGCARCTAAAGGAAGCTCTATTAGATACAGGAGCAGATAATACAGTATTAGARGACATAAATTTACCAGGAAGATGGAAACCAAAAATGATAGGGGGAATTGGAGGTYTTATYAAAGTAAGACAGTATGATCAGATACCCATAGAAATTTGTGGACATAAGGCTATAGGTACAGTATTAGTAGGACCTACACCTGTCAAC",
+    "mutations": [
+      {
+        "type": "IUPAC",
+        "aas": "V",
+        "triplet": "GTA",
+        "insertedNAs": "",
+        "gene": "PR",
+        "position": 13,
+        "aaChars": [
+          "V"
+        ],
+        "maxDisplayAAs": 4
+      },
+      {
+        "type": "IUPAC",
+        "aas": "N",
+        "triplet": "AAT",
+        "insertedNAs": "",
+        "gene": "PR",
+        "position": 30,
+        "aaChars": [
+          "N"
+        ],
+        "maxDisplayAAs": 4
+      },
+      {
+        "type": "IUPAC",
+        "aas": "D",
+        "triplet": "GAC",
+        "insertedNAs": "",
+        "gene": "PR",
+        "position": 35,
+        "aaChars": [
+          "D"
+        ],
+        "maxDisplayAAs": 4
+      },
+      {
+        "type": "IUPAC",
+        "aas": "I",
+        "triplet": "ATA",
+        "insertedNAs": "",
+        "gene": "PR",
+        "position": 36,
+        "aaChars": [
+          "I"
+        ],
+        "maxDisplayAAs": 4
+      },
+      {
+        "type": "IUPAC",
+        "aas": "FL",
+        "triplet": "YTT",
+        "insertedNAs": "",
+        "gene": "PR",
+        "position": 53,
+        "aaChars": [
+          "F",
+          "L"
+        ],
+        "maxDisplayAAs": 4
+      },
+      {
+        "type": "IUPAC",
+        "aas": "P",
+        "triplet": "CCC",
+        "insertedNAs": "",
+        "gene": "PR",
+        "position": 63,
+        "aaChars": [
+          "P"
+        ],
+        "maxDisplayAAs": 4
+      }
+    ],
+    "frameShifts": [],
+    "mutationListString": "I13V,D30N,E35D,M36I,F53FL,L63P"
+  },
+  "RT": {
+    "gene": "RT",
+    "sequence": {
+      "header": "TruGeneDeletion",
+      "sequence": "CCTCAAATCACTCTTTGGCAACGACCMCTCGTCACAGTAAAGATAGGRGGGCARCTAAAGGAAGCTCTATTAGATACAGGAGCAGATAATACAGTATTAGARGACATAAATTTACCAGGAAGATGGAAACCAAAAATGATAGGGGGAATTGGAGGTYTTATYAAAGTAAGACAGTATGATCAGATACCCATAGAAATTTGTGGACATAAGGCTATAGGTACAGTATTAGTAGGACCTACACCTGTCAACACCAGGAATGGATGGCCCAAAAGTTAAACAATGGCCATTGACAGAAGAAAAAATAAAAGCATTAGTAGAAATTTGTACAGAAATGGAAAAGGAAGGAAAAATTTCAAAAATTGGGCCTGAAAATCCATACAATACTCCAGTATTTGCCATAAAGAAAAAGAACAGTACTAGATGGAGAAAATTAGTAGATTTCAGAGAACTTAATAAGAGAACTCAAGAYTTCTGGGAAGTTCAATTAGGAATACCACATCCTGCAGGGTTAAAAAAGAAGAAATCAGTAACAGTACTGGATGTGGGTGATGCATATTTTTCAGTTCCCTTAGATAAAGACTTCAGGAAGTATACTGCATTTACCATACCTAGTAYAAACAATGAGACACCAGGGATTAGGTATCAGTACAATGTGCTTCCACAGGGATGGAAAGGATCACCAGCAATATTCCAAAGTAGCATGACAAAAATCTTAGAGCCTTTTAGAAAACAAAATCCAGACATAGTTATCTATCAATACGTGGATGATTTGTATGTAGGATCTGACTTAGAAATAGGGCAACATAGAGCAAAAATAGAGGAAYTGAGACGACATCTGTTGGAGTGGGGATTCACCACACCAGAACAAAAACATCAGAAAGAACCTCCATTCCTTTGGATGGGTTATGAACTCCATCCTGATAAATGGACAGTACAGCCTATAGTGCTGCCAGAAAAAGACAGCTGG",
+      "removedInvalidChars": ""
+    },
+    "firstAA": 14,
+    "lastAA": 252,
+    "firstNA": 290,
+    "lastNA": 967,
+    "leftTrimmed": 0,
+    "rightTrimmed": 0,
+    "matchPcnt": 96.0177,
+    "alignedNAs": "CCAGGAATGGATGGCCCAAAAGTTAAACAATGGCCATTGACAGAAGAAAAAATAAAAGCATTAGTAGAAATTTGTACAGAAATGGAAAAGGAAGGAAAAATTTCAAAAATTGGGCCTGAAAATCCATACAATACTCCAGTATTTGCCATAAAGAAAAAGAACAGTACTAGATGGAGAAAATTAGTAGATTTCAGAGAACTTAATAAGAGAACTCAAGAYTTCTGGGAAGTTCAATTAGGAATACCACATCCTGCAGGGTTAAAAAAGAAGAAATCAGTAACAGTACTGGATGTGGGTGATGCATATTTTTCAGTTCCCTTAGATAAAGACTTCAGGAAGTATACTGCATTTACCATACCTAGTAYAAACAATGAGACACCAGGGATTAGGTATCAGTACAATGTGCTTCCACAGGGATGGAAAGGATCACCAGCAATATTCCAAAGTAGCATGACAAAAATCTTAGAGCCTTTTAGAAAACAAAATCCAGACATAGTTATCTATCAATACGTGGATGATTTGTATGTAGGATCTGACTTAGAAATAGGGCAACATAGAGCAAAAATAGAGGAAYTGAGACGACATCTGTTGGAGTGGGGATTCACCACACCAGAACAAAAACATCAGAAAGAACCTCCATTCCTTTGGATGGGTTATGAACTCCATCCTGATAAATGGACAGTACAGCCTATAGTGCTGCCAGAAAAAGACAGCTGG",
+    "mutations": [
+      {
+        "type": "IUPAC",
+        "aas": "N",
+        "triplet": "AAC",
+        "insertedNAs": "",
+        "gene": "RT",
+        "position": 67,
+        "aaChars": [
+          "N"
+        ],
+        "maxDisplayAAs": 4
+      },
+      {
+        "type": "IUPAC",
+        "aas": "R",
+        "triplet": "AGA",
+        "insertedNAs": "",
+        "gene": "RT",
+        "position": 70,
+        "aaChars": [
+          "R"
+        ],
+        "maxDisplayAAs": 4
+      },
+      {
+        "type": "IUPAC",
+        "aas": "IT",
+        "triplet": "AYA",
+        "insertedNAs": "",
+        "gene": "RT",
+        "position": 135,
+        "aaChars": [
+          "I",
+          "T"
+        ],
+        "maxDisplayAAs": 4
+      },
+      {
+        "type": "IUPAC",
+        "aas": "V",
+        "triplet": "GTG",
+        "insertedNAs": "",
+        "gene": "RT",
+        "position": 184,
+        "aaChars": [
+          "V"
+        ],
+        "maxDisplayAAs": 4
+      },
+      {
+        "type": "IUPAC",
+        "aas": "A",
+        "triplet": "GCA",
+        "insertedNAs": "",
+        "gene": "RT",
+        "position": 200,
+        "aaChars": [
+          "A"
+        ],
+        "maxDisplayAAs": 4
+      },
+      {
+        "type": "IUPAC",
+        "aas": "R",
+        "triplet": "CGA",
+        "insertedNAs": "",
+        "gene": "RT",
+        "position": 207,
+        "aaChars": [
+          "R"
+        ],
+        "maxDisplayAAs": 4
+      },
+      {
+        "type": "IUPAC",
+        "aas": "E",
+        "triplet": "GAG",
+        "insertedNAs": "",
+        "gene": "RT",
+        "position": 211,
+        "aaChars": [
+          "E"
+        ],
+        "maxDisplayAAs": 4
+      },
+      {
+        "type": "IUPAC",
+        "aas": "E",
+        "triplet": "GAA",
+        "insertedNAs": "",
+        "gene": "RT",
+        "position": 218,
+        "aaChars": [
+          "E"
+        ],
+        "maxDisplayAAs": 4
+      },
+      {
+        "type": "IUPAC",
+        "aas": "Q",
+        "triplet": "CAA",
+        "insertedNAs": "",
+        "gene": "RT",
+        "position": 219,
+        "aaChars": [
+          "Q"
+        ],
+        "maxDisplayAAs": 4
+      }
+    ],
+    "frameShifts": [],
+    "mutationListString": "D67N,K70R,I135IT,M184V,T200A,Q207R,R211E,D218E,K219Q"
+  }
+}

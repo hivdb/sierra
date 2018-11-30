@@ -56,7 +56,7 @@ public class MutationScores {
 				Character aa, Drug drug, Double score) {
 			this.gene = gene;
 			this.drugClass = drugClass;
-			this.cons = gene.getConsensus(pos);
+			this.cons = gene.getReference(pos);
 			this.pos = pos;
 			this.aa = aa;
 			this.drug = drug;
@@ -159,7 +159,7 @@ public class MutationScores {
 			.filter(ms ->
 				   	ms.gene == seqMut.getGene() &&
 					ms.pos == seqMut.getPosition() &&
-					seqMut.getAAsWithoutConsensus().contains(String.valueOf(ms.aa)))
+					seqMut.getAAsWithoutReference().contains(String.valueOf(ms.aa)))
 			.collect(Collectors.groupingBy(m -> m.drug));
 	}
 

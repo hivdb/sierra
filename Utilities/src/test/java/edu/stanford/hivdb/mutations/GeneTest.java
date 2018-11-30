@@ -75,8 +75,8 @@ public class GeneTest {
 
 	@Test
 	public void testGetConsensus() {
-		assertEquals("T", Gene.PR.getConsensus(4));
-		assertEquals("IDK", Gene.IN.getConsensus(5, 3));
-		assertEquals(560, Gene.RT.getConsensus().length());
+		assertEquals("T", Gene.PR.getReference(4));
+		assertEquals("IDK", Gene.IN.getReference(5, 3));
+		assertEquals(560, Gene.RT.getReference().length());
 	}
 }

@@ -38,6 +38,7 @@ import edu.stanford.hivdb.drugs.Drug;
 import edu.stanford.hivdb.drugs.DrugClass;
 import edu.stanford.hivdb.mutations.AA;
 import edu.stanford.hivdb.mutations.Gene;
+import edu.stanford.hivdb.mutations.IUPACMutation;
 import edu.stanford.hivdb.mutations.Mutation;
 import edu.stanford.hivdb.utilities.MyFileUtils;
 
@@ -118,7 +119,7 @@ public class MutationScoresImporter {
 		StringBuilder statements = new StringBuilder();
 		boolean noScores = true;
 		if ("Individual".equals(type)) {
-			Mutation mut = Mutation.parseString(gene, mutText);
+			Mutation mut = IUPACMutation.parseString(gene, mutText);
 			int pos = mut.getPosition();
 			String aa = AA.toHIVDBFormat(mut.getAAs());
 			String tblName = "tblScoresWithVersions";

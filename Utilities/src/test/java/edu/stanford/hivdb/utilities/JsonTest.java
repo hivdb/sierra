@@ -22,27 +22,25 @@ public class JsonTest {
 
 	@Test
 	public void testDumpsWithMutatinSet() {
-		String json = 	"[\n" +
+		String json = 	"[\n" + 
+						"  {\n" + 
+						"    \"type\": \"IUPAC\",\n" +
+						"    \"aas\": \"T\",\n" + 
+						"    \"triplet\": \"\",\n" + 
+						"    \"insertedNAs\": \"\",\n" + 
+						"    \"gene\": \"PR\",\n" + 
+						"    \"position\": 55,\n" + 
+						"    \"maxDisplayAAs\": 4\n" +
+						"  },\n" + 
 						"  {\n" +
-						"    \"gene\": \"PR\",\n" +
-						"    \"cons\": \"K\",\n" +
-						"    \"pos\": 55,\n" +
-						"    \"aas\": \"T\",\n" +
-						"    \"triplet\": \"\",\n" +
-						"    \"insertedNAs\": \"\",\n" +
-						"    \"isInsertion\": false,\n" +
-						"    \"isDeletion\": false\n" +
-						"  },\n" +
-						"  {\n" +
-						"    \"gene\": \"PR\",\n" +
-						"    \"cons\": \"V\",\n" +
-						"    \"pos\": 56,\n" +
-						"    \"aas\": \"T\",\n" +
-						"    \"triplet\": \"\",\n" +
-						"    \"insertedNAs\": \"\",\n" +
-						"    \"isInsertion\": false,\n" +
-						"    \"isDeletion\": false\n" +
-						"  }\n" +
+						"    \"type\": \"AA\",\n" +
+						"    \"gene\": \"PR\",\n" + 
+						"    \"position\": 56,\n" + 
+						"    \"aaChars\": [\n" +
+						"      \"T\"\n" +
+						"    ],\n" +
+						"    \"maxDisplayAAs\": 4\n" +
+						"  }\n" + 
 						"]";
 		MutationSet set = Json.loads(json, MutationSet.class);
 		String eJson = Json.dumps(set);

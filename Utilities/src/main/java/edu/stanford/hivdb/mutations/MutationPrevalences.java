@@ -179,7 +179,7 @@ public class MutationPrevalences {
 			String[] columns = line.split("\t");
 			int pos = Integer.parseInt(columns[0]);
 			String mut = columns[2];
-			Mutation mutation = new Mutation(gene, pos, mut);
+			Mutation mutation = new AAMutation(gene, pos, mut.toCharArray(), 0xff);
 
 			for (int col = 3; col < 3 + treatedOffset; col += 3) {
 				String[] colParts = colHeaders[col].split(":");

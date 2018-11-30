@@ -21,10 +21,10 @@ import org.junit.Test;
 
 import edu.stanford.hivdb.drugs.DrugClass;
 import edu.stanford.hivdb.mutations.MutationPrevalences.MutationPrevalence;
+import edu.stanford.hivdb.mutations.IUPACMutation;
 
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.HashMap;
@@ -36,25 +36,25 @@ public class MutationSetTest {
 	@Test
 	public void testMutationAndIndelAtSamePosition() {
 		MutationSet mutations = new MutationSet("RT69D, RT69D_K, RT69D_N, RT69del");
-		assertTrue(mutations.contains(new Mutation(Gene.RT, 69, "D")));
-		assertTrue(mutations.contains(new Mutation(Gene.RT, 69, "D_K")));
-		assertTrue(mutations.contains(new Mutation(Gene.RT, 69, "D_N")));
-		assertFalse(mutations.contains(new Mutation(Gene.RT, 69, "D_KK")));
-		assertFalse(mutations.contains(new Mutation(Gene.RT, 69, "_")));
-		assertTrue(mutations.contains(new Mutation(Gene.RT, 69, "-")));
-		assertFalse(mutations.contains(new Mutation(Gene.RT, 69, "del"))); // wrong format
+		assertTrue(mutations.contains(new IUPACMutation(Gene.RT, 69, "D")));
+		assertTrue(mutations.contains(new IUPACMutation(Gene.RT, 69, "D_K")));
+		assertTrue(mutations.contains(new IUPACMutation(Gene.RT, 69, "D_N")));
+		assertFalse(mutations.contains(new IUPACMutation(Gene.RT, 69, "D_KK")));
+		assertFalse(mutations.contains(new IUPACMutation(Gene.RT, 69, "_")));
+		assertTrue(mutations.contains(new IUPACMutation(Gene.RT, 69, "-")));
+		assertFalse(mutations.contains(new IUPACMutation(Gene.RT, 69, "del"))); // wrong format
 	}
 	
 	@Test
 	public void testMergeRefIntoMutation() {
 		MutationSet mutations = new MutationSet(
-			new Mutation(Gene.PR, 1, "P") // ref
+			new IUPACMutation(Gene.PR, 1, "P") // ref
 		);
-		assertTrue(mutations.contains(new Mutation(Gene.PR, 1, "P")));
+		assertTrue(mutations.contains(new IUPACMutation(Gene.PR, 1, "P")));
 		mutations = new MutationSet(
-			new Mutation(Gene.PR, 1, "P"), // ref
-			new Mutation(Gene.PR, 1, "S"),
-			new Mutation(Gene.PR, 1, "L")
+			new IUPACMutation(Gene.PR, 1, "P"), // ref
+			new IUPACMutation(Gene.PR, 1, "S"),
+			new IUPACMutation(Gene.PR, 1, "L")
 		);
 		assertEquals(new MutationSet("PR:P1PSL"), mutations);
 	}
@@ -68,12 +68,12 @@ public class MutationSetTest {
 
 		assertEquals(
 			new MutationSet(
-				new Mutation(Gene.RT, 31, "KM"),
-				new Mutation(Gene.RT, 67, "P"),
-				new Mutation(Gene.RT, 69, "S_SS"),
-				new Mutation(Gene.RT, 210, "*"),
-				new Mutation(Gene.RT, 211, "-"),
-				new Mutation(Gene.RT, 212, "-")
+				new IUPACMutation(Gene.RT, 31, "KM"),
+				new IUPACMutation(Gene.RT, 67, "P"),
+				new IUPACMutation(Gene.RT, 69, "S_SS"),
+				new IUPACMutation(Gene.RT, 210, "*"),
+				new IUPACMutation(Gene.RT, 211, "-"),
+				new IUPACMutation(Gene.RT, 212, "-")
 			),
 			new MutationSet(
 				Gene.RT,
@@ -81,28 +81,28 @@ public class MutationSetTest {
 
 		assertEquals(
 			new MutationSet(
-				new Mutation(Gene.RT, 31, "KM"),
-				new Mutation(Gene.RT, 69, "S_SS"),
-				new Mutation(Gene.RT, 210, "*"),
-				new Mutation(Gene.RT, 211, "-"),
-				new Mutation(Gene.RT, 212, "-")),
+				new IUPACMutation(Gene.RT, 31, "KM"),
+				new IUPACMutation(Gene.RT, 69, "S_SS"),
+				new IUPACMutation(Gene.RT, 210, "*"),
+				new IUPACMutation(Gene.RT, 211, "-"),
+				new IUPACMutation(Gene.RT, 212, "-")),
 			new MutationSet(
-				new Mutation(Gene.RT, 31, "KM"),
+				new IUPACMutation(Gene.RT, 31, "KM"),
 				null,
-				new Mutation(Gene.RT, 69, "S_SS"),
-				new Mutation(Gene.RT, 210, "*"),
-				new Mutation(Gene.RT, 211, "-"),
-				new Mutation(Gene.RT, 212, "-")));
+				new IUPACMutation(Gene.RT, 69, "S_SS"),
+				new IUPACMutation(Gene.RT, 210, "*"),
+				new IUPACMutation(Gene.RT, 211, "-"),
+				new IUPACMutation(Gene.RT, 212, "-")));
 
 		assertEquals(
 			new MutationSet(
-				new Mutation(Gene.PR, 31, "KM"),
-				new Mutation(Gene.RT, 67, "P"),
-				new Mutation(Gene.RT, 69, "S_SS"),
-				new Mutation(Gene.IN, 210, "*"),
-				new Mutation(Gene.IN, 211, "-"),
-				new Mutation(Gene.RT, 211, "-"),
-				new Mutation(Gene.IN, 212, "-")
+				new IUPACMutation(Gene.PR, 31, "KM"),
+				new IUPACMutation(Gene.RT, 67, "P"),
+				new IUPACMutation(Gene.RT, 69, "S_SS"),
+				new IUPACMutation(Gene.IN, 210, "*"),
+				new IUPACMutation(Gene.IN, 211, "-"),
+				new IUPACMutation(Gene.RT, 211, "-"),
+				new IUPACMutation(Gene.IN, 212, "-")
 			),
 			new MutationSet(
 				"PR_31MK, RT67P ; RT69S_SS IN:210*, IN211d+RT211-...IN-212Deletion"));
@@ -128,7 +128,7 @@ public class MutationSetTest {
 	@Test(expected=UnsupportedOperationException.class)
 	public void testPreventAdd() {
 		MutationSet muts = new MutationSet();
-		muts.add(new Mutation(Gene.PR, 31, "KM"));
+		muts.add(new IUPACMutation(Gene.PR, 31, "KM"));
 	}
 
 	@Test(expected=UnsupportedOperationException.class)
@@ -152,7 +152,7 @@ public class MutationSetTest {
 	@Test(expected=UnsupportedOperationException.class)
 	public void testPreventRemove() {
 		MutationSet muts = new MutationSet("PR:31KM");
-		muts.remove(new Mutation(Gene.PR, 31, "KM"));
+		muts.remove(new IUPACMutation(Gene.PR, 31, "KM"));
 	}
 
 	@Test(expected=UnsupportedOperationException.class)
@@ -171,12 +171,12 @@ public class MutationSetTest {
 	public void testMergesWith() {
 		assertEquals(
 			new MutationSet(
-				new Mutation(Gene.RT, 31, "KM"),
-				new Mutation(Gene.RT, 67, "P"),
-				new Mutation(Gene.RT, 69, "S_SS"),
-				new Mutation(Gene.IN, 210, "*"),
-				new Mutation(Gene.IN, 211, "-"),
-				new Mutation(Gene.IN, 212, "A")
+				new IUPACMutation(Gene.RT, 31, "KM"),
+				new IUPACMutation(Gene.RT, 67, "P"),
+				new IUPACMutation(Gene.RT, 69, "S_SS"),
+				new IUPACMutation(Gene.IN, 210, "*"),
+				new IUPACMutation(Gene.IN, 211, "-"),
+				new IUPACMutation(Gene.IN, 212, "A")
 			),
 			new MutationSet(Gene.RT, "31M, 67P ; 69S_SS  ")
 			.mergesWith(
@@ -187,23 +187,16 @@ public class MutationSetTest {
 			)
 			.mergesWith(
 				new MutationSet(
-					new Mutation(Gene.IN, 212, "A")
+					new IUPACMutation(Gene.IN, 212, "A")
 				)
 			));
 
 		assertEquals(
 			new MutationSet(
-				new Mutation(Gene.RT, 31, "KM"),
-				new Mutation(Gene.RT, 67, "P")),
+				new IUPACMutation(Gene.RT, 31, "KM"),
+				new IUPACMutation(Gene.RT, 67, "P")),
 			new MutationSet(Gene.RT, "31M, 67P")
-			.mergesWith(new Mutation(Gene.RT, 31, "K")));
-	}
-	
-	@Test
-	public void testHasSharedAAMutation() {
-		MutationSet self = new MutationSet(Gene.RT, "48VER");
-		assertTrue(self.hasSharedAAMutation(Mutation.parseString("RT:48V")));
-		assertFalse(self.hasSharedAAMutation(Mutation.parseString("RT:48T")));
+			.mergesWith(new IUPACMutation(Gene.RT, 31, "K")));
 	}
 
 	@Test
@@ -213,9 +206,6 @@ public class MutationSetTest {
 		assertEquals(
 			new MutationSet(Gene.RT, "48ER"),
 			self.intersectsWith(another));
-		assertEquals(
-			new MutationSet(Gene.RT, "48ER"),
-			self.intersectsWith(new ArrayList<>(another)));
 
 		assertEquals(
 			new MutationSet(Gene.RT, "48ER"),
@@ -223,19 +213,19 @@ public class MutationSetTest {
 
 		assertEquals(
 			new MutationSet(Gene.RT, "48RV"),
-			self.intersectsWith(new Mutation(Gene.RT, 48, "VR")));
+			self.intersectsWith(new IUPACMutation(Gene.RT, 48, "VR")));
 
 		assertEquals(
 			new MutationSet(),
-			self.intersectsWith(new Mutation(Gene.RT, 36, "AK")));
+			self.intersectsWith(new IUPACMutation(Gene.RT, 36, "AK")));
 
 		assertEquals(
 			new MutationSet("RT:36K"),
-			another.intersectsWith(new Mutation(Gene.RT, 36, "AK")));
-
+			another.intersectsWith(new IUPACMutation(Gene.RT, 36, "AK")));
+		
 		assertEquals(
 			new MutationSet("RT:36K"),
-			another.intersectsWith(Arrays.asList(Mutation.parseString("RT:36K"))));
+			another.intersectsWith(Arrays.asList(IUPACMutation.parseString("RT:36K"))));
 	}
 
 	@Test
@@ -253,21 +243,21 @@ public class MutationSetTest {
 		assertEquals(
 			new MutationSet("RT:48E PR:32E PR:48VER"),
 			self.subtractsBy(Arrays.asList(new Mutation[] {
-				new Mutation(Gene.RT, 48, "VR"),
-				new Mutation(Gene.RT, 32, "E")
+				new IUPACMutation(Gene.RT, 48, "VR"),
+				new IUPACMutation(Gene.RT, 32, "E")
 			})));
 
 		assertEquals(
 			new MutationSet("RT:48E PR:32E PR:48VER"),
-			self.subtractsBy(new Mutation(Gene.RT, 48, "VR")));
+			self.subtractsBy(new IUPACMutation(Gene.RT, 48, "VR")));
 
 		assertEquals(
 			new MutationSet("RT:48VER PR:48VER PR:32E"),
-			self.subtractsBy(new Mutation(Gene.RT, 36, "AK")));
+			self.subtractsBy(new IUPACMutation(Gene.RT, 36, "AK")));
 
 		assertEquals(
 			new MutationSet("RT:48ARE PR:33D"),
-			another.subtractsBy(new Mutation(Gene.RT, 36, "AK")));
+			another.subtractsBy(new IUPACMutation(Gene.RT, 36, "AK")));
 	}
 
 	@Test
@@ -280,14 +270,14 @@ public class MutationSetTest {
 
 		assertEquals(
 			new MutationSet(
-				new Mutation(Gene.RT, 65, "N"),
-				new Mutation(Gene.RT, 67, "S"),
-				new Mutation(Gene.RT, 70, "Q"),
-				new Mutation(Gene.RT, 94, "L"),
-				new Mutation(Gene.RT, 101, "H"),
-				new Mutation(Gene.RT, 190, "Q"),
-				new Mutation(Gene.RT, 208, "Y"),
-				new Mutation(Gene.RT, 221, "Y")),
+				new IUPACMutation(Gene.RT, 65, "N"),
+				new IUPACMutation(Gene.RT, 67, "S"),
+				new IUPACMutation(Gene.RT, 70, "Q"),
+				new IUPACMutation(Gene.RT, 94, "L"),
+				new IUPACMutation(Gene.RT, 101, "H"),
+				new IUPACMutation(Gene.RT, 190, "Q"),
+				new IUPACMutation(Gene.RT, 208, "Y"),
+				new IUPACMutation(Gene.RT, 221, "Y")),
 			tsms.subtractsBy(sdrms));
 	}
 
@@ -321,59 +311,59 @@ public class MutationSetTest {
 	}
 
 	@Test
-	public void testGetMerged() {
+	public void testGet() {
 		assertEquals(
-			new Mutation(Gene.RT, 69, "S_SS"),
+			new IUPACMutation(Gene.RT, 69, "S_SS"),
 			new MutationSet(
-				new Mutation(Gene.RT, 31, "KM"),
-				new Mutation(Gene.RT, 67, "P"),
-				new Mutation(Gene.RT, 69, "S_SS")
-			).getMerged(Gene.RT, 69));
+				new IUPACMutation(Gene.RT, 31, "KM"),
+				new IUPACMutation(Gene.RT, 67, "P"),
+				new IUPACMutation(Gene.RT, 69, "S_SS")
+			).get(Gene.RT, 69));
 
 		assertEquals(
-			new Mutation(Gene.RT, 31, "KM"),
+			new IUPACMutation(Gene.RT, 31, "KM"),
 			new MutationSet(
-				new Mutation(Gene.RT, 31, "KM"),
-				new Mutation(Gene.RT, 67, "P"),
-				new Mutation(Gene.RT, 69, "S_SS")
-			).getMerged(Gene.RT, 31));
-
-		assertEquals(
-			null,
-			new MutationSet(
-				new Mutation(Gene.RT, 31, "KM"),
-				new Mutation(Gene.RT, 67, "P"),
-				new Mutation(Gene.RT, 69, "S_SS")
-			).getMerged(Gene.RT, 37));
+				new IUPACMutation(Gene.RT, 31, "KM"),
+				new IUPACMutation(Gene.RT, 67, "P"),
+				new IUPACMutation(Gene.RT, 69, "S_SS")
+			).get(Gene.RT, 31));
 
 		assertEquals(
 			null,
 			new MutationSet(
-				new Mutation(Gene.RT, 31, "KM"),
-				new Mutation(Gene.PR, 67, "P"),
-				new Mutation(Gene.RT, 69, "S_SS")
-			).getMerged(Gene.RT, 67));
+				new IUPACMutation(Gene.RT, 31, "KM"),
+				new IUPACMutation(Gene.RT, 67, "P"),
+				new IUPACMutation(Gene.RT, 69, "S_SS")
+			).get(Gene.RT, 37));
 
 		assertEquals(
-			new Mutation(Gene.PR, 67, "P"),
+			null,
 			new MutationSet(
-				new Mutation(Gene.RT, 31, "KM"),
-				new Mutation(Gene.RT, 67, "K"),
-				new Mutation(Gene.PR, 67, "P"),
-				new Mutation(Gene.RT, 69, "S_SS")
-			).getMerged(Gene.PR, 67));
+				new IUPACMutation(Gene.RT, 31, "KM"),
+				new IUPACMutation(Gene.PR, 67, "P"),
+				new IUPACMutation(Gene.RT, 69, "S_SS")
+			).get(Gene.RT, 67));
+
+		assertEquals(
+			new IUPACMutation(Gene.PR, 67, "P"),
+			new MutationSet(
+				new IUPACMutation(Gene.RT, 31, "KM"),
+				new IUPACMutation(Gene.RT, 67, "K"),
+				new IUPACMutation(Gene.PR, 67, "P"),
+				new IUPACMutation(Gene.RT, 69, "S_SS")
+			).get(Gene.PR, 67));
 	}
 
 	@Test
 	public void testGetByMutType() {
 		final MutationSet muts = new MutationSet(
-				new Mutation(Gene.RT, 65, "N"),
-				new Mutation(Gene.RT, 115, "FR"),
-				new Mutation(Gene.RT, 118, "I"),
-				new Mutation(Gene.RT, 103, "N"),
-				new Mutation(Gene.RT, 41, "P"),
-				new Mutation(Gene.PR, 84, "V"),
-				new Mutation(Gene.IN, 155, "S"));
+				new IUPACMutation(Gene.RT, 65, "N"),
+				new IUPACMutation(Gene.RT, 115, "FR"),
+				new IUPACMutation(Gene.RT, 118, "I"),
+				new IUPACMutation(Gene.RT, 103, "N"),
+				new IUPACMutation(Gene.RT, 41, "P"),
+				new IUPACMutation(Gene.PR, 84, "V"),
+				new IUPACMutation(Gene.IN, 155, "S"));
 		MutationSet eMajorMuts = new MutationSet("PR:84V, IN:155S");
 		MutationSet eOtherMuts = new MutationSet("RT:41P, RT:118I");
 		MutationSet eAccessoryMuts = new MutationSet();
@@ -390,26 +380,26 @@ public class MutationSetTest {
 	public void testCompareTwoSets() {
 		assertEquals(
 			new MutationSet(
-				new Mutation(Gene.RT, 31, "KM"),
-				new Mutation(Gene.RT, 67, "P"),
-				new Mutation(Gene.RT, 69, "S_SS")
+				new IUPACMutation(Gene.RT, 31, "KM"),
+				new IUPACMutation(Gene.RT, 67, "P"),
+				new IUPACMutation(Gene.RT, 69, "S_SS")
 			),
 			new MutationSet(
-				new Mutation(Gene.RT, 31, "KM"),
-				new Mutation(Gene.RT, 67, "P"),
-				new Mutation(Gene.RT, 69, "S_SS")
+				new IUPACMutation(Gene.RT, 31, "KM"),
+				new IUPACMutation(Gene.RT, 67, "P"),
+				new IUPACMutation(Gene.RT, 69, "S_SS")
 			));
 
 		assertNotEquals(
 			new MutationSet(
-				new Mutation(Gene.RT, 31, "KM"),
-				new Mutation(Gene.RT, 67, "P"),
-				new Mutation(Gene.RT, 69, "S_SS")
+				new IUPACMutation(Gene.RT, 31, "KM"),
+				new IUPACMutation(Gene.RT, 67, "P"),
+				new IUPACMutation(Gene.RT, 69, "S_SS")
 			),
 			new MutationSet(
-				new Mutation(Gene.RT, 31, "KM"),
-				new Mutation(Gene.RT, 67, "I"),
-				new Mutation(Gene.RT, 69, "S_SS")
+				new IUPACMutation(Gene.RT, 31, "KM"),
+				new IUPACMutation(Gene.RT, 67, "I"),
+				new IUPACMutation(Gene.RT, 69, "S_SS")
 			));
 	}
 
@@ -417,42 +407,42 @@ public class MutationSetTest {
 	public void testAutoMerge() {
 		assertEquals(
 			new MutationSet(
-				new Mutation(Gene.RT, 31, "KM"),
-				new Mutation(Gene.RT, 67, "P"),
-				new Mutation(Gene.RT, 69, "S_SS")
+				new IUPACMutation(Gene.RT, 31, "KM"),
+				new IUPACMutation(Gene.RT, 67, "P"),
+				new IUPACMutation(Gene.RT, 69, "S_SS")
 			),
 			new MutationSet(
-				new Mutation(Gene.RT, 31, "K"),
-				new Mutation(Gene.RT, 31, "M"),
-				new Mutation(Gene.RT, 67, "P"),
-				new Mutation(Gene.RT, 69, "S_SS")
+				new IUPACMutation(Gene.RT, 31, "K"),
+				new IUPACMutation(Gene.RT, 31, "M"),
+				new IUPACMutation(Gene.RT, 67, "P"),
+				new IUPACMutation(Gene.RT, 69, "S_SS")
 			));
 
 		assertEquals(
-			new Mutation(Gene.RT, 31, "KM"),
+			new IUPACMutation(Gene.RT, 31, "KM"),
 			new MutationSet(
-				new Mutation(Gene.RT, 31, "K"),
-				new Mutation(Gene.RT, 31, "M"),
-				new Mutation(Gene.RT, 67, "P"),
-				new Mutation(Gene.RT, 69, "S_SS")
-			).getMerged(Gene.RT, 31));
+				new IUPACMutation(Gene.RT, 31, "K"),
+				new IUPACMutation(Gene.RT, 31, "M"),
+				new IUPACMutation(Gene.RT, 67, "P"),
+				new IUPACMutation(Gene.RT, 69, "S_SS")
+			).get(Gene.RT, 31));
 	}
 
 	@Test
 	public void testGetGeneMutations() {
 		assertEquals(
 			new MutationSet(
-				new Mutation(Gene.RT, 31, "KM"),
-				new Mutation(Gene.RT, 67, "P"),
-				new Mutation(Gene.RT, 69, "S_SS")
+				new IUPACMutation(Gene.RT, 31, "KM"),
+				new IUPACMutation(Gene.RT, 67, "P"),
+				new IUPACMutation(Gene.RT, 69, "S_SS")
 			),
 			new MutationSet(
-				new Mutation(Gene.RT, 31, "K"),
-				new Mutation(Gene.PR, 31, "K"),
-				new Mutation(Gene.RT, 31, "M"),
-				new Mutation(Gene.IN, 31, "M"),
-				new Mutation(Gene.RT, 67, "P"),
-				new Mutation(Gene.RT, 69, "S_SS")
+				new IUPACMutation(Gene.RT, 31, "K"),
+				new IUPACMutation(Gene.PR, 31, "K"),
+				new IUPACMutation(Gene.RT, 31, "M"),
+				new IUPACMutation(Gene.IN, 31, "M"),
+				new IUPACMutation(Gene.RT, 67, "P"),
+				new IUPACMutation(Gene.RT, 69, "S_SS")
 			).getGeneMutations(Gene.RT));
 	}
 
@@ -460,15 +450,15 @@ public class MutationSetTest {
 	public void testGetInsertions() {
 		assertEquals(
 			new MutationSet(
-				new Mutation(Gene.RT, 67, "_A"),
-				new Mutation(Gene.RT, 69, "S_SS")
+				new IUPACMutation(Gene.RT, 67, "_A"),
+				new IUPACMutation(Gene.RT, 69, "S_SS")
 			),
 			new MutationSet(
-				new Mutation(Gene.RT, 31, "K"),
-				new Mutation(Gene.RT, 31, "M"),
-				new Mutation(Gene.IN, 31, "-"),
-				new Mutation(Gene.RT, 67, "_A"),
-				new Mutation(Gene.RT, 69, "S_SS")
+				new IUPACMutation(Gene.RT, 31, "K"),
+				new IUPACMutation(Gene.RT, 31, "M"),
+				new IUPACMutation(Gene.IN, 31, "-"),
+				new IUPACMutation(Gene.RT, 67, "_A"),
+				new IUPACMutation(Gene.RT, 69, "S_SS")
 			).getInsertions());
 	}
 
@@ -476,14 +466,14 @@ public class MutationSetTest {
 	public void testGetDeletions() {
 		assertEquals(
 			new MutationSet(
-				new Mutation(Gene.IN, 31, "-")
+				new IUPACMutation(Gene.IN, 31, "-")
 			),
 			new MutationSet(
-				new Mutation(Gene.RT, 31, "K"),
-				new Mutation(Gene.RT, 31, "M"),
-				new Mutation(Gene.IN, 31, "-"),
-				new Mutation(Gene.RT, 67, "_A"),
-				new Mutation(Gene.RT, 69, "S_SS")
+				new IUPACMutation(Gene.RT, 31, "K"),
+				new IUPACMutation(Gene.RT, 31, "M"),
+				new IUPACMutation(Gene.IN, 31, "-"),
+				new IUPACMutation(Gene.RT, 67, "_A"),
+				new IUPACMutation(Gene.RT, 69, "S_SS")
 			).getDeletions());
 	}
 
@@ -491,14 +481,14 @@ public class MutationSetTest {
 	public void testGetStopCodons() {
 		assertEquals(
 			new MutationSet(
-				new Mutation(Gene.IN, 31, "*")
+				new IUPACMutation(Gene.IN, 31, "*")
 			),
 			new MutationSet(
-				new Mutation(Gene.RT, 31, "K"),
-				new Mutation(Gene.RT, 31, "M"),
-				new Mutation(Gene.IN, 31, "*"),
-				new Mutation(Gene.RT, 67, "-"),
-				new Mutation(Gene.RT, 69, "S_SS")
+				new IUPACMutation(Gene.RT, 31, "K"),
+				new IUPACMutation(Gene.RT, 31, "M"),
+				new IUPACMutation(Gene.IN, 31, "*"),
+				new IUPACMutation(Gene.RT, 67, "-"),
+				new IUPACMutation(Gene.RT, 69, "S_SS")
 			).getStopCodons());
 	}
 
@@ -506,35 +496,35 @@ public class MutationSetTest {
 	public void testGetAmbiguousCodons() {
 		assertEquals(
 			new MutationSet(
-				new Mutation(Gene.IN, 31, "X"),
-				new Mutation(Gene.PR, 77, "P") // TODO: should this be ambiguous?
+				new IUPACMutation(Gene.IN, 31, "X"),
+				new IUPACMutation(Gene.PR, 77, "P")
 			),
 			new MutationSet(
-				new Mutation(Gene.RT, 31, "K"),
-				new Mutation(Gene.RT, 31, "M"),
-				new Mutation(Gene.IN, 31, "X"),
-				new Mutation(Gene.PR, 77, "P", "CCV"),
-				new Mutation(Gene.RT, 67, "*"),
-				new Mutation(Gene.RT, 69, "S_SS")
+				new IUPACMutation(Gene.RT, 31, "K"),
+				new IUPACMutation(Gene.RT, 31, "M"),
+				new IUPACMutation(Gene.IN, 31, "X"),
+				new IUPACMutation(Gene.PR, 77, "P", "CCV"), // TODO: should this BDHVN be ambiguous?
+				new IUPACMutation(Gene.RT, 67, "*"),
+				new IUPACMutation(Gene.RT, 69, "S_SS")
 			).getAmbiguousCodons());
 	}
 
 	@Test
 	public void testGetUnusualMutations() {
 		MutationSet muts = new MutationSet(
-			new Mutation(Gene.RT, 69, "KS"),
-			new Mutation(Gene.PR, 82, "VIA"),
-			new Mutation(Gene.RT, 67, "NW"),
-			new Mutation(Gene.PR, 13, "F"),
-			new Mutation(Gene.PR, 14, "F"),
-			new Mutation(Gene.PR, 15, "F"),
-			new Mutation(Gene.PR, 16, "F"));
+			new IUPACMutation(Gene.RT, 69, "KS"),
+			new IUPACMutation(Gene.PR, 82, "VIA"),
+			new IUPACMutation(Gene.RT, 67, "NW"),
+			new IUPACMutation(Gene.PR, 13, "F"),
+			new IUPACMutation(Gene.PR, 14, "F"),
+			new IUPACMutation(Gene.PR, 15, "F"),
+			new IUPACMutation(Gene.PR, 16, "F"));
 		MutationSet expected = new MutationSet(
-			new Mutation(Gene.RT, 67, "NW"),
-			new Mutation(Gene.PR, 13, "F"),
-			new Mutation(Gene.PR, 14, "F"),
-			new Mutation(Gene.PR, 15, "F"),
-			new Mutation(Gene.PR, 16, "F"));
+			new IUPACMutation(Gene.RT, 67, "NW"),
+			new IUPACMutation(Gene.PR, 13, "F"),
+			new IUPACMutation(Gene.PR, 14, "F"),
+			new IUPACMutation(Gene.PR, 15, "F"),
+			new IUPACMutation(Gene.PR, 16, "F"));
 		assertEquals(expected, muts.getUnusualMutations());
 	}
 
@@ -542,23 +532,23 @@ public class MutationSetTest {
 	public void testGetHighestMutPrevalences() {
 		MutationSet muts = new MutationSet("RT:67N,RT:69KS,PR:82VIA,RT68W");
 		Map<Mutation, Double> expected = new HashMap<>();
-		expected.put(new Mutation(Gene.RT, 67, "N"), 9.0147444549135450);
-		expected.put(new Mutation(Gene.RT, 69, "KS"), 0.8036226800178583);
-		expected.put(new Mutation(Gene.PR, 82, "VIA"), 4.7026691174567015);
-		expected.put(new Mutation(Gene.RT, 68, "W"), 0.0);
+		expected.put(new IUPACMutation(Gene.RT, 67, "N"), 9.014744454913545);
+		expected.put(new IUPACMutation(Gene.RT, 69, "KS"), 0.8036226800178583);
+		expected.put(new IUPACMutation(Gene.PR, 82, "VIA"), 4.7026691174567015);
+		expected.put(new IUPACMutation(Gene.RT, 68, "W"), 0.0);
 		assertEquals(expected, muts.getHighestMutPrevalences());
 	}
 
 	@Test
 	public void testGroupByMutType() {
 		MutationSet sequenceMuts = new MutationSet(
-			new Mutation(Gene.RT, 65, "N"),
-			new Mutation(Gene.RT, 115, "FR"),
-			new Mutation(Gene.RT, 118, "I"),
-			new Mutation(Gene.RT, 103, "N"),
-			new Mutation(Gene.RT, 41, "P"),
-			new Mutation(Gene.PR, 84, "V"),
-			new Mutation(Gene.IN, 155, "S"));
+			new IUPACMutation(Gene.RT, 65, "N"),
+			new IUPACMutation(Gene.RT, 115, "FR"),
+			new IUPACMutation(Gene.RT, 118, "I"),
+			new IUPACMutation(Gene.RT, 103, "N"),
+			new IUPACMutation(Gene.RT, 41, "P"),
+			new IUPACMutation(Gene.PR, 84, "V"),
+			new IUPACMutation(Gene.IN, 155, "S"));
 		Map<MutType, MutationSet> expected = new EnumMap<>(MutType.class);
 		expected.put(MutType.Major, new MutationSet("PR84V"));
 		expected.put(MutType.Accessory, new MutationSet());
@@ -584,13 +574,13 @@ public class MutationSetTest {
 	@Test
 	public void testGroupByGene() {
 		MutationSet sequenceMuts = new MutationSet(
-			new Mutation(Gene.RT, 65, "N"),
-			new Mutation(Gene.RT, 115, "FR"),
-			new Mutation(Gene.RT, 118, "I"),
-			new Mutation(Gene.RT, 103, "N"),
-			new Mutation(Gene.RT, 41, "P"),
-			new Mutation(Gene.PR, 84, "V"),
-			new Mutation(Gene.IN, 155, "S"));
+			new IUPACMutation(Gene.RT, 65, "N"),
+			new IUPACMutation(Gene.RT, 115, "FR"),
+			new IUPACMutation(Gene.RT, 118, "I"),
+			new IUPACMutation(Gene.RT, 103, "N"),
+			new IUPACMutation(Gene.RT, 41, "P"),
+			new IUPACMutation(Gene.PR, 84, "V"),
+			new IUPACMutation(Gene.IN, 155, "S"));
 		Map<Gene, MutationSet> expected = new EnumMap<>(Gene.class);
 		expected.put(Gene.RT, new MutationSet("RT65N,RT115FR,RT118I,RT103N,RT41P"));
 		expected.put(Gene.PR, new MutationSet("PR84V"));
@@ -601,13 +591,13 @@ public class MutationSetTest {
 	@Test
 	public void testGetAtDRPMutations() {
 		MutationSet sequenceMuts = new MutationSet(
-			new Mutation(Gene.RT, 68, "A"),
-			new Mutation(Gene.RT, 115, "FR"),
-			new Mutation(Gene.RT, 118, "I"),
-			new Mutation(Gene.RT, 103, "N"),
-			new Mutation(Gene.RT, 41, "P"),
-			new Mutation(Gene.PR, 84, "K"),
-			new Mutation(Gene.IN, 155, "S"));
+			new IUPACMutation(Gene.RT, 68, "A"),
+			new IUPACMutation(Gene.RT, 115, "FR"),
+			new IUPACMutation(Gene.RT, 118, "I"),
+			new IUPACMutation(Gene.RT, 103, "N"),
+			new IUPACMutation(Gene.RT, 41, "P"),
+			new IUPACMutation(Gene.PR, 84, "K"),
+			new IUPACMutation(Gene.IN, 155, "S"));
 		MutationSet expected = new MutationSet(
 			"PR84K,RT41P,RT68A,RT103N,RT115FR,IN155S");
 		assertEquals(expected, sequenceMuts.getAtDRPMutations());
@@ -616,28 +606,28 @@ public class MutationSetTest {
 	@Test
 	public void testGetDRMs() {
 		final MutationSet drmMuts = new MutationSet(
-			new Mutation(Gene.RT, 103, "N"),
-			new Mutation(Gene.PR, 84, "KV"),
-			new Mutation(Gene.IN, 155, "S"));
+			new IUPACMutation(Gene.RT, 103, "N"),
+			new IUPACMutation(Gene.PR, 84, "KV"),
+			new IUPACMutation(Gene.IN, 155, "S"));
 		assertEquals(drmMuts, drmMuts.getDRMs());
 
 		final MutationSet muts = new MutationSet(
-			new Mutation(Gene.RT, 68, "A"),
-			new Mutation(Gene.RT, 118, "I"),
-			new Mutation(Gene.RT, 41, "P"));
+			new IUPACMutation(Gene.RT, 68, "A"),
+			new IUPACMutation(Gene.RT, 118, "I"),
+			new IUPACMutation(Gene.RT, 41, "P"));
 		assertEquals(new MutationSet(), muts.getDRMs());
 	}
 
 	@Test
 	public void testGetDRMsByDrugClass() {
 		MutationSet sequenceMuts = new MutationSet(
-			new Mutation(Gene.RT, 68, "A"),
-			new Mutation(Gene.RT, 115, "FR"),
-			new Mutation(Gene.RT, 118, "I"),
-			new Mutation(Gene.RT, 103, "N"),
-			new Mutation(Gene.RT, 41, "P"),
-			new Mutation(Gene.PR, 84, "KV"),
-			new Mutation(Gene.IN, 155, "S"));
+			new IUPACMutation(Gene.RT, 68, "A"),
+			new IUPACMutation(Gene.RT, 115, "FR"),
+			new IUPACMutation(Gene.RT, 118, "I"),
+			new IUPACMutation(Gene.RT, 103, "N"),
+			new IUPACMutation(Gene.RT, 41, "P"),
+			new IUPACMutation(Gene.PR, 84, "KV"),
+			new IUPACMutation(Gene.IN, 155, "S"));
 		MutationSet expected = new MutationSet("PR84KV");
 		assertEquals(expected, sequenceMuts.getDRMs(DrugClass.PI));
 		expected = new MutationSet("RT115FR");
@@ -649,12 +639,12 @@ public class MutationSetTest {
 	@Test
 	public void testJoin() {
 		MutationSet sequenceMuts = new MutationSet(
-			new Mutation(Gene.RT, 65, "P"),
-			new Mutation(Gene.RT, 115, "FR"),
-			new Mutation(Gene.RT, 67, "Deletion"),
-			new Mutation(Gene.RT, 69, "Insertion"),
-			new Mutation(Gene.PR, 84, "KV"),
-			new Mutation(Gene.IN, 155, "S"));
+			new IUPACMutation(Gene.RT, 65, "P"),
+			new IUPACMutation(Gene.RT, 115, "FR"),
+			new IUPACMutation(Gene.RT, 67, "Deletion"),
+			new IUPACMutation(Gene.RT, 69, "Insertion"),
+			new IUPACMutation(Gene.PR, 84, "KV"),
+			new IUPACMutation(Gene.IN, 155, "S"));
 		assertEquals(
 			"PR_I84KV, RT_K65P, RT_D67Deletion, " +
 			"RT_T69Insertion, RT_Y115FR, IN_N155S",
@@ -680,12 +670,12 @@ public class MutationSetTest {
 	@Test
 	public void testToStringList() {
 		MutationSet sequenceMuts = new MutationSet(
-			new Mutation(Gene.RT, 65, "P"),
-			new Mutation(Gene.RT, 115, "FR"),
-			new Mutation(Gene.RT, 67, "Deletion"),
-			new Mutation(Gene.RT, 69, "Insertion"),
-			new Mutation(Gene.PR, 84, "KV"),
-			new Mutation(Gene.IN, 155, "S"));
+			new IUPACMutation(Gene.RT, 65, "P"),
+			new IUPACMutation(Gene.RT, 115, "FR"),
+			new IUPACMutation(Gene.RT, 67, "Deletion"),
+			new IUPACMutation(Gene.RT, 69, "Insertion"),
+			new IUPACMutation(Gene.PR, 84, "KV"),
+			new IUPACMutation(Gene.IN, 155, "S"));
 		assertEquals(
 			Arrays.asList(new String[] {
 				"I84KV",
@@ -713,8 +703,8 @@ public class MutationSetTest {
 	public void testHashCode() {
 		assertEquals(
 			new MutationSet(
-				new Mutation(Gene.PR, 31, "X"),
-				new Mutation(Gene.PR, 77, "P")
+				new IUPACMutation(Gene.PR, 31, "X"),
+				new IUPACMutation(Gene.PR, 77, "P")
 			).hashCode(),
 			new MutationSet(Gene.PR, "31X 77P").hashCode()
 		);
@@ -727,22 +717,22 @@ public class MutationSetTest {
 
 	@Test
 	public void testHasSharedMutation() {
-		final Mutation mut1 = new Mutation(Gene.RT, 68, "A");
-		final Mutation mut2 = new Mutation(Gene.RT, 115, "FR");
-		final Mutation mut3 = new Mutation(Gene.RT, 118, "I");
+		final Mutation mut1 = new IUPACMutation(Gene.RT, 68, "A");
+		final Mutation mut2 = new IUPACMutation(Gene.RT, 115, "FR");
+		final Mutation mut3 = new IUPACMutation(Gene.RT, 118, "I");
 		final MutationSet muts = new MutationSet(mut1, mut2, mut3);
 		assertTrue(muts.hasSharedAAMutation(mut1));
 		assertTrue(muts.hasSharedAAMutation(mut2));
 		assertTrue(muts.hasSharedAAMutation(mut3));
-		assertTrue(muts.hasSharedAAMutation(new Mutation(Gene.RT, 115, "F")));
-		assertFalse(muts.hasSharedAAMutation(new Mutation(Gene.RT, 116, "FR")));
+		assertTrue(muts.hasSharedAAMutation(new IUPACMutation(Gene.RT, 115, "F")));
+		assertFalse(muts.hasSharedAAMutation(new IUPACMutation(Gene.RT, 116, "FR")));
 	}
 
 	@Test
 	public void testGetPrevalences() {
-		final Mutation mut1 = new Mutation(Gene.RT, 68, "A");
-		final Mutation mut2 = new Mutation(Gene.RT, 115, "FR");
-		final Mutation mut3 = new Mutation(Gene.RT, 118, "I");
+		final Mutation mut1 = new IUPACMutation(Gene.RT, 68, "A");
+		final Mutation mut2 = new IUPACMutation(Gene.RT, 115, "FR");
+		final Mutation mut3 = new IUPACMutation(Gene.RT, 118, "I");
 		final MutationSet muts = new MutationSet(mut1, mut2, mut3);
 		final Map<Mutation, List<MutationPrevalence>> mutPrevs = muts.getPrevalences();
 		muts.forEach(mut -> {

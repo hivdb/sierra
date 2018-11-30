@@ -25,9 +25,11 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+
 import edu.stanford.hivdb.drugresistance.database.HivdbVersion;
 import edu.stanford.hivdb.drugs.Drug;
 import edu.stanford.hivdb.drugs.DrugClass;
+import edu.stanford.hivdb.mutations.AAMutation;
 import edu.stanford.hivdb.mutations.Gene;
 import edu.stanford.hivdb.mutations.Mutation;
 import edu.stanford.hivdb.mutations.MutationSet;
@@ -197,7 +199,9 @@ public class TabularRulesComparison {
 					Drug drug = Drug.valueOf(rs.getString("Drug"));
 					String rule = new MutationSet(
 						drug.getDrugClass().gene(),
-						rs.getString("Rule")).join('+');
+						rs.getString("Rule"))
+						.displayAmbiguities()
+						.join('+');
 					int score = rs.getInt("Score");
 					HivdbVersion version = HivdbVersion.valueOf(rs.getString("Version"));
 					if (!rulesMap.containsKey(rule)) {
@@ -232,7 +236,7 @@ public class TabularRulesComparison {
 						.getString("AA")
 						.replaceAll("#", "_")
 						.replaceAll("~", "-");
-					Mutation mut = new Mutation(gene, pos, aa);
+					Mutation mut = new AAMutation(gene, pos, aa.toCharArray(), 0xff);
 					Drug drug = Drug.valueOf(rs.getString("Drug"));
 					int score = rs.getInt("Score");
 					HivdbVersion version = HivdbVersion.valueOf(rs.getString("Version"));

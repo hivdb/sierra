@@ -32,6 +32,7 @@ import edu.stanford.hivdb.drugresistance.database.MutationScores.MutScore;
 import edu.stanford.hivdb.drugs.Drug;
 import edu.stanford.hivdb.drugs.DrugClass;
 import edu.stanford.hivdb.mutations.Gene;
+import edu.stanford.hivdb.mutations.IUPACMutation;
 import edu.stanford.hivdb.mutations.Mutation;
 import edu.stanford.hivdb.mutations.MutationSet;
 
@@ -103,10 +104,10 @@ public class MutationScoresTest {
 	@Test
 	public void testMutScoreHash() throws SQLException {
 		Gene gene = Gene.RT;
-		Mutation mut1 = new Mutation(gene, 41, "L");
-		Mutation mut2 = new Mutation(gene, 215, "SY");
-		Mutation mut3 = new Mutation(gene, 35, "T");
-		Mutation mut4 = new Mutation(gene, 103, "N");
+		Mutation mut1 = new IUPACMutation(gene, 41, "L");
+		Mutation mut2 = new IUPACMutation(gene, 215, "SY");
+		Mutation mut3 = new IUPACMutation(gene, 35, "T");
+		Mutation mut4 = new IUPACMutation(gene, 103, "N");
 		MutationSet mutSet = new MutationSet(mut1, mut2, mut3, mut4);
 
 		Map<DrugClass, Map<Drug, Map<Mutation, Double>>> drugClassDrugMutScores =

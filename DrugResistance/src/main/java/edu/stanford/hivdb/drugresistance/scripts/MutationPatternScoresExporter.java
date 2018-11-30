@@ -57,7 +57,7 @@ public class MutationPatternScoresExporter {
 
 		public MutationElem(Gene gene, int pos, String aa) {
 			this.gene = gene;
-			this.cons = gene.getConsensus(pos);
+			this.cons = gene.getReference(pos);
 			this.pos = pos;
 			this.aa = aa;
 		}

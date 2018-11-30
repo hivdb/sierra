@@ -272,19 +272,19 @@ public class XmlOutput {
 		mutElem.appendChild(
 			newSimpleElement("mutationString", mut.getHumanFormat()));
 		// name="wildType" type="xs:string"
-		mutElem.appendChild(newSimpleElement("wildType", mut.getConsensus()));
+		mutElem.appendChild(newSimpleElement("wildType", mut.getReference()));
 		// name="position" type="xs:nonNegativeInteger"
 		mutElem.appendChild(newSimpleElement("position", mut.getPosition()));
 		// name="nucleicAcid" type="xs:string" minOccurs="0" maxOccurs="1"
 		mutElem.appendChild(newSimpleElement("nucleicAcid", mut.getTriplet()));
 		// name="translatedNA" type="xs:string"
 		mutElem.appendChild(
-			newSimpleElement("translatedNA", mut.getAAs().split("_")[0]));
+			newSimpleElement("translatedNA", mut.getDisplayAAs().split("_")[0]));
 
 		if (mut.isInsertion()) {
 			// name="insertionString" type="xs:string" minOccurs="0" maxOccurs="1"
 			mutElem.appendChild(
-				newSimpleElement("insertionString", mut.getAAs()));
+				newSimpleElement("insertionString", mut.getDisplayAAs()));
 			// name="insertionNucleicAcid" type="xs:string" minOccurs="0" maxOccurs="1"
 			mutElem.appendChild(
 				newSimpleElement(
@@ -292,7 +292,7 @@ public class XmlOutput {
 			// name="insertionTranslatedNA" type="xs:string" minOccurs="0" maxOccurs="1"
 			mutElem.appendChild(
 				newSimpleElement(
-					"insertionTranslatedNA", mut.getAAs().split("_")[1]));
+					"insertionTranslatedNA", mut.getDisplayAAs().split("_")[1]));
 		}
 
 		// name="atypical" type="xs:boolean" minOccurs="0" maxOccurs="1"
@@ -387,7 +387,7 @@ public class XmlOutput {
 
 		// name="consensus" type="xs:string" minOccurs="0" maxOccurs="1"
 		geneData.appendChild(
-			newSimpleElement("consensus", gene.getConsensus()));
+			newSimpleElement("consensus", gene.getReference()));
 
 		// name="alignedNASequence" type="xs:string" minOccurs="0" maxOccurs="1"
 		geneData.appendChild(newSimpleElement("alignedNASequence", naSeq));

@@ -50,10 +50,10 @@ public enum Gene {
 	   "VDIIATDIQTKELQKQITKIQNFRVYYRDSRDPLWKGPAKLLWKGEGAVV" +
 	   "IQDNSDIKVVPRRKAKIIRDYGKQMAGDDCVASRQDED");
 
-	private final String consensus;
+	private final String reference;
 
-	private Gene(String consensus) {
-		this.consensus = consensus;
+	private Gene(String reference) {
+		this.reference = reference;
 	}
 
 	/**
@@ -125,25 +125,25 @@ public enum Gene {
 
 
 	public int getLength() {
-		return this.consensus.length();
+		return this.reference.length();
 	}
 
 	/**
-	 * Get the consensus amino acid (AA) at a position in a gene
+	 * Get the reference amino acid (AA) at a position in a gene
 	 * Indexed starting from 1
 	 * @param pos
 	 * @return the AA at the submitted position
 	 */
-	public String getConsensus(int pos) {
-		return getConsensus(pos, 1);
+	public String getReference(int pos) {
+		return getReference(pos, 1);
 	}
 
-	public String getConsensus(int pos, int length) {
-		return this.consensus.substring(pos - 1, pos - 1 + length);
+	public String getReference(int pos, int length) {
+		return this.reference.substring(pos - 1, pos - 1 + length);
 	}
 
-	public String getConsensus() {
-		return this.consensus;
+	public String getReference() {
+		return this.reference;
 	}
 
 }

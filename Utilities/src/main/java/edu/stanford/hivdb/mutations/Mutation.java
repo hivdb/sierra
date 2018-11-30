@@ -18,151 +18,33 @@
 
 package edu.stanford.hivdb.mutations;
 
-import java.util.Collections;
-import java.util.HashSet;
+import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-
-import edu.stanford.hivdb.aapcnt.HIVAminoAcidPercents;
-import edu.stanford.hivdb.utilities.MyStringUtils;
-
-public class Mutation implements Comparable<Mutation> {
-
-	private static Pattern mutationPattern = Pattern.compile(
-		"^\\s*" +
-		"((?i:PR|RT|IN))?[:_-]?" +
-		"([AC-IK-NP-TV-Y])?" +
-		"(\\d{1,3})" +
-		"([AC-IK-NP-TV-Z.*]+(?:[#_]?[AC-IK-NP-TV-Z.*]+)?|[id_#~-]|[iI]ns(?:ertion)?|[dD]el(?:etion)?)" +
-		"(?::([ACGTRYMWSKBDHVN-]{3})?)?" +
-		"\\s*$");
-	private static final HIVAminoAcidPercents allAAPcnts = HIVAminoAcidPercents.getInstance("all", "All");
-
-	private Gene gene;
-	private String cons;
-	private int pos;
-	private String aas;
-	private String triplet;
-	private String insertedNAs;
-	private boolean isInsertion = false;
-	private boolean isDeletion = false;
-	private transient List<MutType> types;
-	private transient Boolean isAtDrugResistancePosition;
-
-	public static class InvalidMutationStringException extends RuntimeException {
+public interface Mutation extends Comparable<Mutation> {
+	
+	/**
+	 * Exception for invalid mutation
+	 */
+	public static class InvalidMutationException extends RuntimeException {
 		private static final long serialVersionUID = 4271016133470715497L;
 
-		public InvalidMutationStringException(String message, Exception e) {
+		public InvalidMutationException(String message, Exception e) {
 			super(message, e);
 		}
 
-		public InvalidMutationStringException(String message) {
+		public InvalidMutationException(String message) {
 			super(message);
 		}
 	}
 
-	/**
-	 *
-	 * @param gene
-	 * @param pos
-	 * @param aas
-	 * @param triplet
-	 * @param insertedNAs
-	 */
-	public Mutation(Gene gene, int pos, String aas, String triplet, String insertedNAs) {
-		if (pos > gene.getLength()) {
-			throw new IllegalArgumentException("Length is out of bounds for this gene.");
-		}
-
-		this.gene = gene;
-		this.cons = this.gene.getConsensus(pos);
-		this.pos = pos;
-		this.aas = normalizeAAs(aas);
-		this.triplet = triplet.toUpperCase();
-		this.insertedNAs = insertedNAs;
-		this.isInsertion = this.aas.contains("_");
-		this.isDeletion = this.aas.equals("-");
-	}
-
-	public Mutation(Gene gene, int pos, String aas, String triplet) {
-		this(gene, pos, aas, triplet, "");
-	}
-
-	public Mutation(Gene gene, int pos, String aas) {
-		this(gene, pos, aas, "", "");
-	}
-
-	public Mutation(Gene gene, int pos, Character aa) {
-		this(gene, pos, "" + aa, "", "");
-	}
-
-   	public static Mutation fromNucAminoMutation(Gene gene, int aaStart, Map<?, ?> mut) {
-		int pos = ((Double) mut.get("Position")).intValue() - aaStart + 1;
-
-		String codon = "";
-		String insertedCodon = "";
-		boolean isInsertion = (Boolean) mut.get("IsInsertion");
-		boolean isDeletion = (Boolean) mut.get("IsDeletion");
-
-		StringBuilder aas = new StringBuilder();
-		if (isDeletion) {
-			aas.append('-');
-		}
-		else {
-			codon = (String) mut.get("CodonText");
-			codon = codon.replace(' ', '-');
-			aas.append(CodonTranslation.translateNATriplet(codon));
-			if (isInsertion) {
-				aas.append('_');
-				insertedCodon = (String) mut.get("InsertedCodonsText");
-				aas.append(CodonTranslation.simpleTranslate(insertedCodon));
-			}
-		}
-		return new Mutation(gene, pos, aas.toString(), codon, insertedCodon);
-	}
-
-	/**
-	 * Normalize the input AAs.
-	 *
-	 * The code explains the normalization rules.
-	 */
-	public static String normalizeAAs(String aas) {
-		if (aas == null) return null;
-
-		aas = aas.replaceAll("^[dD]elet(e|ion)|d(el)?|~$", "-")
-			     .replaceAll("^[iI]nsert(ion)?|i(ns)?$|#", "_")
-			     .replaceAll("[.Z]", "*");
-
-		if (aas.length() > 1 && !aas.contains("_")) {
-			return MyStringUtils.sortAlphabetically(aas).toUpperCase();
-		}
-
-		return aas.toUpperCase();
-	}
-
-	public Set<Mutation> split() {
-		Set<Mutation> r = new HashSet<>();
-		char cons = this.cons.charAt(0);
-		if (isInsertion()) {
-			// prevent side-effect caused by insertion AAs
-			r.add(new Mutation(gene, pos, "_"));
-		}
-		else {
-			for (char aa : aas.toCharArray()) {
-				if (aa != cons) {
-					r.add(new Mutation(gene, pos, aa));
-				}
-			}
-		}
-		return r;
-	}
+	// /**
+	//  * Split a mixture into a set of mutations.
+	//  * 
+	//  * @return A set of mutations
+	//  */
+	// public Set<Mutation> split();
 
 	/**
 	 * Merges with another Mutation object and returns the merged mutation.
@@ -171,55 +53,34 @@ public class Mutation implements Comparable<Mutation> {
 	 * @return A new merged Mutation object
 	 * @throws IllegalArgumentException, UnsupportedOperationException
 	 */
-	public Mutation mergesWith(Mutation another) {
-		if (gene != another.getGene() || pos != another.getPosition()) {
-			throw new IllegalArgumentException(String.format(
-				"The other mutation must be at this position: %d (%s)",
-				pos, gene.toString()));
-		}
-		if (isIndel() || another.isIndel()) {
-			throw new UnsupportedOperationException(String.format(
-				"Can not merge indel mutations (%s with %s)",
-				toString(), another.toString()));
-		}
-		StringBuilder newAAs = new StringBuilder();
-		String anotherAAs = another.getAAs();
-		newAAs.append(aas);
-		for (char newAA : anotherAAs.toCharArray()) {
-			if (aas.indexOf(newAA) == -1) {
-				newAAs.append(newAA);
-			}
-		}
-
-		return new Mutation(gene, pos, newAAs.toString());
-	}
+	public Mutation mergesWith(Mutation another);
+	
+	/**
+	 * Merges with another Collection<Character> of
+	 * AAs and returns the merged mutation.
+	 * 
+	 * @param otherAAChars
+	 * @return A new merged Mutation object
+	 */
+	public Mutation mergesWith(Collection<Character> otherAAChars);
+	
 
 	/**
-	 * Substracts by another Mutation object and returns the result mutation.
+	 * Subtracts by another Mutation object and returns the result mutation.
 	 *
 	 * @param another
 	 * @return A new Mutation object
 	 */
-	public Mutation subtractsBy(Mutation another) {
-		if (another == null ||
-				gene != another.getGene() ||
-				pos != another.getPosition()) {
-			return new Mutation(gene, pos, aas);
-		}
-		StringBuilder newAAs = new StringBuilder();
-		String anotherAAs = another.aas;
-		for (char newAA : aas.toCharArray()) {
-			if (anotherAAs.indexOf(newAA) == -1) {
-				newAAs.append(newAA);
-			}
-		}
+	public Mutation subtractsBy(Mutation another);
 
-		if (newAAs.length() == 0) {
-			return null;
-		}
-
-		return new Mutation(gene, pos, newAAs.toString());
-	}
+	/**
+	 * Subtracts by another Collection<Character> of
+	 * AAs and returns the result mutation.
+	 *
+	 * @param otherAAChars
+	 * @return A new Mutation object
+	 */
+	public Mutation subtractsBy(Collection<Character> otherAAChars);
 
 	/**
 	 * Intersects with another Mutation object and returns the result mutation.
@@ -228,261 +89,267 @@ public class Mutation implements Comparable<Mutation> {
 	 * @return A new merged Mutation object
 	 * @throws IllegalArgumentException
 	 */
-	public Mutation intersectsWith(Mutation another) {
-		if (gene != another.getGene() || pos != another.getPosition()) {
-			throw new IllegalArgumentException(String.format(
-				"The other mutation must be at this position: %d (%s)",
-				pos, gene.toString()));
-		}
-		return unsafeIntersectsWith(another);
-	}
+	public Mutation intersectsWith(Mutation another);
 
 	/**
-	 * Similar to intersectsWith but spare all assertions.
-	 * Maybe useful when those assertions are not necessary.
+	 * Intersects with another Collection<Character> of
+	 * AAs and returns the result mutation.
+	 *
+	 * @param otherAAChars
+	 * @return A new merged Mutation object
 	 */
-	protected Mutation unsafeIntersectsWith(Mutation... others) {
-		StringBuilder newAAs = new StringBuilder();
-		for (Mutation another : others) {
-			String anotherAAs = another.aas;
-			for (char newAA : anotherAAs.toCharArray()) {
-				if (aas.indexOf(newAA) > -1) {
-					newAAs.append(newAA);
-				}
-			}
-		}
-		
-		if (newAAs.length() == 0) {
-			return null;
-		}
-		
-		return new Mutation(gene, pos, newAAs.toString());
-	}
-
-	public boolean isAtDrugResistancePosition() {
-		if (isAtDrugResistancePosition == null) {
-			isAtDrugResistancePosition =
-				MutationTypePairs.lookupByPosition(gene, pos)
-				.parallelStream().anyMatch(mt -> mt.isDRMType());
-		}
-		return isAtDrugResistancePosition;
-	}
-
-	public boolean isUnsequenced() {
-		// "NNN", "NN-", "NNG" should be considered as unsequenced region
-		return !isInsertion &&
-			StringUtils.countMatches(triplet.replace('-', 'N'),	"N") > 1;
-	}
+	public Mutation intersectsWith(Collection<Character> otherAAChars);
 
 	/**
-	 * Extracts gene from mutText string
-	 * @param mutText
-	 * @return a Gene enum object
+	 * Checks if the mutation is at a drug resistance position
+	 * 
+	 * @return true if the mutation is at DRM position
 	 */
-	public static Gene extractGene(String mutText) {
-		Gene gene = null;
-		Matcher m = mutationPattern.matcher(mutText);
-		if (m.matches()) {
-			try {
-				gene = Gene.valueOf(m.group(1).toUpperCase());
-			} catch (NullPointerException e) {
-				throw new InvalidMutationStringException(
-					"Gene is not specified and also not found in the " +
-					"given text: " + mutText + ". The correct format " +
-					"for an input mutation string is, for example, " +
-					"RT:215Y.", e);
-			}
-		}
-		return gene;
-	}
-
-	public boolean isDRM() {
-		return DRMs.isDRM(this);
-	}
+	public boolean isAtDrugResistancePosition();
 
 	/**
-	 * Converts gene and mutText string into a Mutation object
-	 * mutText may or may not have a preceding consensus
-	 * @param gene, mutText
-	 * @return a Mutation object
+	 * Checks if the position is unsequenced.
+	 * 
+	 * @return true if the position is unsequenced.
 	 */
-	public static Mutation parseString(Gene gene, String mutText) {
-		Matcher m = mutationPattern.matcher(mutText);
-		Mutation mut = null;
-		if (m.matches()) {
-			if (gene == null) {
-				try {
-					gene = Gene.valueOf(m.group(1).toUpperCase());
-				} catch (NullPointerException e) {
-					throw new InvalidMutationStringException(
-						"Gene is not specified and also not found in the " +
-						"given text: " + mutText + ". The correct format " +
-						"for an input mutation string is, for example, " +
-						"RT:215Y.", e);
-				}
-			}
-			int pos = Integer.parseInt(m.group(3));
-			String aas = normalizeAAs(m.group(4));
-			String triplet = m.group(5);
-			if (triplet == null) triplet = "";
-			mut = new Mutation(gene, pos, aas, triplet);
-		} else {
-			throw new InvalidMutationStringException(
-				"Tried to parse mutation string using invalid parameters: " + mutText);
-		}
-		return mut;
-	}
+	public boolean isUnsequenced();
+	
+	/**
+	 * Checks if the mutation is a DRM
+	 * 
+	 * @return true if the mutation is a DRM
+	 */
+	public boolean isDRM();
+	
+	/**
+	 * Gets gene of this mutation.
+	 * 
+	 * @return A Gene
+	 */
+	public Gene getGene();
+	
+	/**
+	 * Gets the subtype B reference at this position.
+	 * 
+	 * TODO: We should probably return Character instead.
+	 * 
+	 * @return A single character string
+	 */
+	public String getReference();
+	
+	/**
+	 * Gets the position number of this mutation.
+	 *
+	 * @return An integer >= 1
+	 */
+	public int getPosition();
+	
+	/**
+	 * Gets the GenePosition object of this mutation.
+	 *
+	 * @return A GenePosition object
+	 */
+	public GenePosition getGenePosition();
+	
+	/**
+	 * Gets the amino acids string of this mutation.
+	 *
+	 * @return A String of amino acids (include insertion/deletion)
+	 */
+	public String getDisplayAAs();
+	
+	/**
+	 * Gets a set of amino acid characters.
+	 *
+	 * - "_" represents an insertion;
+	 * - "-" represents a deletion;
+	 * - "*" represents a stop codon.
+	 * 
+	 * @return A Set<Character> of amino acids/insertion/deletion/stop codons
+	 */
+	public Set<Character> getDisplayAAChars();
+	
+	/**
+	 * Gets original amino acids string of this mutation.
+	 *
+	 * @return A String of amino acids (include insertion/deletion)
+	 */
+	public String getAAs();
+	
+	/**
+	 * Gets the original set of amino acid characters.
+	 *
+	 * - "_" represents an insertion;
+	 * - "-" represents a deletion;
+	 * - "*" represents a stop codon.
+	 * 
+	 * @return A Set<Character> of amino acids/insertion/deletion/stop codons
+	 */
+	public Set<Character> getAAChars();
+	
+	/**
+	 * Gets a set of single amino acid mutations.
+	 * 
+	 * @return A Set<Mutation>
+	 */
+	public Set<Mutation> split();
+	
+	/**
+	 * Gets the triplet (codon) of this mutation.
+	 *
+	 * @return A string contains three characters (ACGT...) 
+	 */
+	public String getTriplet();
+	
+	/**
+	 * Gets the inserted NAs of this mutation.
+	 * 
+	 * @return A string contains multiples of three characters (ACGT...)
+	 */
+	public String getInsertedNAs();
+	
+	/**
+	 * Checks if the mutation contains an insertion.
+	 *
+	 * @return true if the mutation contains an insertion.
+	 */
+	public boolean isInsertion();
+	
+	/**
+	 * Checks if the mutation contains a deletion.
+	 *
+	 * @return true if the mutation contains a deletion.
+	 */
+	public boolean isDeletion();
+	
+	/**
+	 * Checks if the mutation contains an insertion or a deletion.
+	 *
+	 * @return true if the mutation contains an insertion or a deletion.
+	 */
+	public boolean isIndel();
+	
+	/**
+	 * Checks if the Mutation object is a mixture of
+	 * multiple amino acids / insertion / deletion / stop codon
+	 *
+	 * @return true if the mutation is a mixture
+	 */
+	public boolean isMixture();
 
-	public static Mutation parseString(String mutText) {
-		return parseString(null, mutText);
-	}
+	/**
+	 * Checks if the Mutation object is a mixture with
+	 * subtype B reference amino acid presents
+	 *
+	 * @return true if AAs contains subtype B reference
+	 */
+	public boolean hasReference();
+	
+	/**
+	 * Checks if the mutation contains a stop codon
+	 *
+	 * @return true if the mutation contains a stop codon
+	 */
+	public boolean hasStop();
 
-	public Gene getGene() { return gene; }
-	public String getConsensus() { return cons; }
-	public int getPosition() {return pos; }
-	public GenePosition getGenePosition() {return new GenePosition(gene, pos);}
-	public String getAAs() { return aas; }
-	public String getTriplet() { return triplet; }
-	public String getInsertedNAs() { return insertedNAs; }
-	public boolean isInsertion() { return isInsertion; }
-	public boolean isDeletion() { return isDeletion; }
-	public boolean isIndel() { return isInsertion || isDeletion; }
-	public boolean isMixture() { return (aas.equals("X") || aas.length()>1); }
-	public boolean hasConsensus () { return aas.split("_", 2)[0].contains(gene.getConsensus(pos));}
-	public boolean hasStop() { return getAAs().contains("*"); }
+	/**
+	 * Checks if the mutation is considered unusual
+	 *
+	 * @return true if the mutation is considered unusual
+	 */
+	public boolean isUnusual();
 
-	public boolean isUnusual() {
-		String mixture = aas;
-		if (isInsertion) {
-			mixture = "_";
-		}
-		else if (isDeletion) {
-			mixture = "-";
-		}
-		if (mixture.contains("X")) {
-			return true;
-		}
-		return allAAPcnts.containsUnusualAA(gene, pos, mixture);
-	}
+	/**
+	 * Checks if the mutation is an SDRM mutation
+	 *
+	 * @return true if the mutation is an SDRM mutation 
+	 */
+	public boolean isSDRM();
+	
+	/**
+	 * Checks if the mutation codon contains BDHVN
+	 *
+	 * @return true if the codon contains BDHVN
+	 */
+	public boolean hasBDHVN();
+	
+	/**
+	 * Checks if the mutation is highly ambiguous
+	 *
+	 * @return true if the mutation is highly ambiguous
+	 */
+	public boolean isAmbiguous();
 
-	public boolean isSDRM() { return Sdrms.isSDRM(this); }
-	public boolean hasBDHVN() {
-		// TODO: what if BDHVN doesn't affect the amimo acid?
-		return triplet.contains("B") || triplet.contains("D") || triplet.contains("H") ||
-			triplet.contains("V") || triplet.contains("N");
-	}
-	public boolean isAmbiguous() {
-		return hasBDHVN() || aas.equals("X");
-	}
-	public boolean isApobecMutation() {
-		return Apobec.isApobecMutation(this);
-	}
-	public boolean isApobecDRM() {
-		return Apobec.isApobecDRM(this);
-	}
-	public double getHighestMutPrevalence() {
-		String mixture = aas;
-		if (isInsertion) {
-			mixture = "_";
-		}
-		else if (isDeletion) {
-			mixture = "-";
-		}
-		mixture = mixture.replace(cons, "").replaceAll("X", "");
+	/**
+	 * Checks if the mutation is considered APOBEC-mediated (non-DRM)
+	 *
+	 * @return true if the mutation is considered APOBEC-mediated
+	 */
+	public boolean isApobecMutation();
+	
+	/**
+	 * Checks if the mutation is a DRM considered APOBEC-mediated
+	 *
+	 * @return true if the mutation is a DRM considered APBOEC-mediated
+	 */
+	public boolean isApobecDRM();
+	
+	/**
+	 * Gets the highest AA prevalence of this mutation.
+	 *
+	 * @return A double number of the prevalence (max: 100)
+	 */
+	public double getHighestMutPrevalence();
 
-		return allAAPcnts.getHighestAAPercentValue(gene, pos, mixture) * 100;
-	}
+	/**
+	 * Re-ordering AAs to place subtype B
+	 * reference (if presented) at the first
+	 *
+	 * @return a string of AAs
+	 */
+	public String getAAsWithRefFirst();
 
-	public String getAAsWithConsFirst() {
-		String aas = getAAs();
-		String cons = getConsensus();
-		if (aas.contains(cons)) {
-			return cons + aas.replaceAll(cons,"");
-		} else {
-			return aas;
-		}
-	}
+	/**
+	 * Gets AAs without subtype B reference (if presented)
+	 *
+	 * @return a string of AAs
+	 */
+	public String getAAsWithoutReference ();
 
 	/**
 	 * Retrieve the primary mutation type of current mutation.
+	 * 
+	 * @return a MutType object
 	 */
-	public MutType getPrimaryType() {
-		return getTypes().get(0);
-	}
-
+	public MutType getPrimaryType();
+	
 	/**
 	 * Retrieve all mutation types of current mutation.
 	 *
 	 * The reason we return a List here is because some mixture,
 	 * for example, RT215SWY has multiple types.
+	 * 
+	 * @return a List of MutType objects
 	 */
-	public List<MutType> getTypes() {
-		if (types == null) {
-			List<MutType> r = MutationTypePairs.lookupByMutation(this);
-			if (r.isEmpty()) {
-				r.add(MutType.Other);
-			}
-			types = Collections.unmodifiableList(r);
-		}
-		return types;
-	}
+	public List<MutType> getTypes();
 
-	/*public List<MutationComment> getComments() {
-		return MutationComments.lookupByMutation(this);
-	}*/
+	public boolean equals(Object o);
 
-	public String getAAsWithoutConsensus () {
-		String aas = getAAs();
-		String cons = getConsensus();
-		if (aas.contains(cons)) {
-			aas = StringUtils.replace(aas, cons, "");
-		}
-		return aas;
-	}
-
-	@Override
-	public boolean equals(Object o) {
-		if (o == this) { return true; }
-		if (o == null) { return false; }
-		if (!(o instanceof Mutation)) { return false;}
-		Mutation m = (Mutation) o;
-
-		// isDeletion and isInsertion is related to aas
-		return new EqualsBuilder()
-			.append(gene, m.gene)
-			.append(pos, m.pos)
-			.append(aas, m.aas)
-			.isEquals();
-	}
-
-	@Override
-	public int hashCode() {
-		return new HashCodeBuilder(4541, 83345463)
-			.append(gene)
-			.append(pos)
-			.append(aas)
-			.toHashCode();
-	}
-
-	@Override
-	public String toString() {
-		return getHumanFormat();
-	}
-	
-	public String getText() {
-		// same as `toString()`, only for GraphQL
-		return getHumanFormat();
-	}
+	public int hashCode();
 
 	/**
-	 * This method is just an alias name of getShortHumanFormat
-	 * since in GraphQL the same thing is named as "shortText".
+	 * Standard method to convert this mutation to a string.
+	 *
+	 * @return a String to represent this mutation.
+	 */
+	public String toString();
+
+	/**
+	 * Method to convert this mutation to a short version string.
 	 *
 	 * @return String
 	 */
-	public String getShortText() {
-		return getShortHumanFormat();
-	}
+	public String getShortText();
 
 	/**
 	 * Sort by gene, position and aas.
@@ -492,140 +359,58 @@ public class Mutation implements Comparable<Mutation> {
 	 *   SELECT * FROM mutations ORDER BY gene, pos, aas;
 	 *
 	 */
-	@Override
-	public int compareTo (Mutation mut) {
-		int cmp = gene.compareTo(mut.getGene());
-		if (cmp == 0) {
-			cmp = new Integer(pos).compareTo(mut.getPosition());
-		}
-		if (cmp == 0) {
-			cmp = aas.compareTo(mut.getAAs());
-		}
-		return cmp;
-	}
+	public int compareTo (Mutation mut);
 
 	/**
-	 * Compares two mutations to determine if they share a nonconsensus amino acid
-	 * TODO: Need to enforce the manner in which insertions and deletions are submitted. For now
-	 * all insertions should be '_' and all deletions should be '-'. However, each has several synonyms
-	 * TODO: can probably be replaced by comparing the sorted aas
+	 * Compares two mutations to determine if they share a non-reference amino acid
+	 * 
+	 * Reference and stop codon are not be responsible for a match.
+	 * 
 	 * @param queryMut
-	 * @return true if the Mutation and queryMut share at least one nonconsensus amino acid
+	 * @return true if the Mutation and queryMut share at least one non-reference amino acid
 	 */
-	public boolean containsSharedAA (Mutation queryMut) {
-		if (this.gene.equals(queryMut.gene) && this.pos == queryMut.pos) {
-			return containsSharedAA(queryMut.getAAsWithoutConsensus());
-		}
-		return false;
-	}
-
-	public boolean containsSharedAA(String queryAAs) {
-		// Replace consensus and stop codons so that they are not responsible for a match
-		String myMutAAs = getAAsWithoutConsensus();
-		myMutAAs = StringUtils.replace(myMutAAs, "*", "");
-		String queryMutAAs = queryAAs;
-		for (int i=0; i<myMutAAs.length(); i++) {
-			for (int j=0; j<queryMutAAs.length(); j++) {
-			if (myMutAAs.substring(i, i+1).equals(queryMutAAs.substring(j, j+1))) {
-					return true;
-				}
-			}
-		}
-		return false;
-	}
+	public boolean containsSharedAA(Mutation queryMut);
+	
+	/**
+	 * Compares with given queryAAChars to determine if they shared at least an amino acid
+	 * 
+	 * Reference and stop codon are not be responsible for a match.
+	 * 
+	 * @param queryMut
+	 * @param ignoreRefOrStops
+	 * @return true if the Mutation and queryMut share at least one amino acid
+	 */
+	public boolean containsSharedAA(Set<Character> queryAAChars, boolean ignoreRefOrStops);
 
 	/**
-	 * The ASI format consists of an optional consensus aa and a position followed by one or more
+	 * The ASI format consists of an optional reference aa and a position followed by one or more
 	 * upper case amino acids. Insertions are represented by 'i', deletions by 'd', and stops by 'Z;
 	 */
-	public String getASIFormat() {
-		String fmtAAs;
-		if (isInsertion) {
-			fmtAAs = "i";
-		} else if (isDeletion) {
-			fmtAAs = "d";
-		} else {
-			fmtAAs = aas.replaceAll("\\*","Z");
-			fmtAAs = fmtAAs.replaceAll("X","Z");
-		}
-		return gene.getConsensus(pos) + pos + fmtAAs;
-	}
+	public String getASIFormat();
 
 	/**
 	 * In HIVDB_Rules, insertions are denoted by '#' and deletions by '~'
 	 * This differs from Insertion, _, and i and from Deletion, '-', and d
 	 * @returns HIVDBformat
 	 */
-	public String getHIVDBFormat() {
-		String fmtAAs = aas;
-		if (isInsertion) {
-			fmtAAs = "#";
-		} else if (isDeletion) {
-			fmtAAs = "~";
-		}
-		return pos + fmtAAs;
-	}
+	public String getHIVDBFormat();
 
 	/**
 	 * If the insertion is known, report it out in the following format T69S_SS
 	 * If the insertion is not known report it out as T69Insertion
 	 * Report deletions as T69Deletion
-	 * If there is a mixture that contains the consensus aa, move the cons to
+	 * If there is a mixture that contains the reference aa, move the ref to
 	 * the beginning of the mixture.
-	 * Report the consensus before the position (i.e. M184V)
+	 * Report the reference before the position (i.e. M184V)
 	 */
-	public String getHumanFormat() {
-		String fmtAAs;
-		String cons = getConsensus();
-		if (isInsertion) {
-			if (aas.equals("_")) {
-				fmtAAs = "Insertion";
-			} else {
-				fmtAAs = aas;
-			}
-		} else if (isDeletion) {
-			fmtAAs = "Deletion";
-		} else {
-			if (aas.contains(cons)) {
-				fmtAAs = cons + aas.replaceAll(cons,"");
-			} else {
-				fmtAAs = aas;
-			}
-		}
-		return cons + pos + fmtAAs;
-	}
+	public String getHumanFormat();
 
-	public String getShortHumanFormat() {
-		String fmtAAs;
-		String cons = getConsensus();
-		if (isInsertion) {
-			if (aas.equals("_")) {
-				fmtAAs = "i";
-			} else {
-				fmtAAs = aas;
-			}
-		} else if (isDeletion) {
-			fmtAAs = "d";
-		} else {
-			fmtAAs = getAAsWithConsFirst();
-		}
-		return cons + pos + fmtAAs;
-	}
+	public String getShortHumanFormat();
 
 	/**
-	 * Similar to getHumanFormat() except that the preceding consensus is removed.
+	 * Similar to getHumanFormat() except that the preceding reference is removed.
 	 */
-	public String getHumanFormatWithoutCons() {
-		return (getHumanFormat().substring(1));
-	}
+	public String getHumanFormatWithoutLeadingRef();
 
-	public String getHumanFormatWithGene() {
-		return gene.toString() + "_" + getHumanFormat();
-	}
-
-	public static Pattern getPattern() {
-		return mutationPattern;
-	}
+	public String getHumanFormatWithGene();
 }
-
-	

@@ -22,15 +22,20 @@ import java.io.IOException;
 import java.io.Reader;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.TypeAdapter;
 import com.google.gson.TypeAdapterFactory;
+import com.google.gson.typeadapters.RuntimeTypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
+import edu.stanford.hivdb.mutations.AAMutation;
 import edu.stanford.hivdb.mutations.GenePosition;
+import edu.stanford.hivdb.mutations.IUPACMutation;
+import edu.stanford.hivdb.mutations.MultiCodonsMutation;
 import edu.stanford.hivdb.mutations.Mutation;
 import edu.stanford.hivdb.mutations.MutationSet;
 
@@ -40,6 +45,7 @@ public class Json {
 
 	private static class ExtendedTypeAdapterFactory implements TypeAdapterFactory {
 
+		@Override
 		public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
 
 			final TypeAdapter<T> delegate = gson.getDelegateAdapter(this, type);
@@ -56,11 +62,13 @@ public class Json {
 		private <T> TypeAdapter<T> mutationSetAdapter(TypeAdapter<T> delegate) {
 
 			return new TypeAdapter<T>() {
+				@Override
 				public void write(JsonWriter out, T value) throws IOException {
 					delegate.write(out, value);
 				}
 
 				@SuppressWarnings("unchecked")
+				@Override
 				public T read(JsonReader reader) throws IOException {
 					final TypeAdapter<ArrayList<Mutation>> arrayListAdapter =
 						gson.getAdapter(new TypeToken<ArrayList<Mutation>>(){});
@@ -68,15 +76,17 @@ public class Json {
 				}
 			};
 		}
-
+		
 		private <T> TypeAdapter<T> genePositionAdapter(TypeAdapter<T> delegate) {
 
 			return new TypeAdapter<T>() {
+				@Override
 				public void write(JsonWriter out, T value) throws IOException {
 					delegate.write(out, value);
 				}
 
 				@SuppressWarnings("unchecked")
+				@Override
 				public T read(JsonReader reader) throws IOException {
 					final TypeAdapter<String> stringAdapter =
 						gson.getAdapter(new TypeToken<String>(){});
@@ -85,9 +95,16 @@ public class Json {
 			};
 		}
 	}
+	
+	final static RuntimeTypeAdapterFactory<Mutation> typeFactory = RuntimeTypeAdapterFactory
+		.of(Mutation.class, "type")
+		.registerSubtype(AAMutation.class, "AA")
+		.registerSubtype(IUPACMutation.class, "IUPAC")
+		.registerSubtype(MultiCodonsMutation.class, "MultiCodons");
 
 	static {
 		gson = new GsonBuilder()
+			.registerTypeAdapterFactory(typeFactory)
 			.registerTypeAdapterFactory(new ExtendedTypeAdapterFactory())
 			.serializeNulls().setPrettyPrinting().create();
 	}

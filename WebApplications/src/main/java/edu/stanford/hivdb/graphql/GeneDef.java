@@ -48,8 +48,13 @@ public class GeneDef {
 			.dataFetcher(pipeLineDataFetcher))
 		.field(field -> field
 			.type(GraphQLString)
+			.name("reference")
+			.description("(Subtype B) reference sequence of the gene."))
+		.field(field -> field
+			.type(GraphQLString)
 			.name("consensus")
-			.description("(Type B) consensus sequence of the gene."))
+			.dataFetcher(env -> ((Gene) env.getSource()).getReference())
+			.deprecate("Use field `reference` instead."))
 		.field(field -> field
 			.type(GraphQLInt)
 			.name("length")
