@@ -22,6 +22,7 @@ import static org.junit.Assert.*;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -52,7 +53,7 @@ public class TabularAlgorithmComparisonTests {
 		algorithms.add(Algorithm.REGA);
 		final Map<String, String> customAlgs = new HashMap<>();
 		final InputStream v7 = HivdbVersion.V7_0.getResource();
-		customAlgs.put("HIVDB70", IOUtils.toString(v7));
+		customAlgs.put("HIVDB70", IOUtils.toString(v7, StandardCharsets.UTF_8));
 
 		final List<AlignedSequence> alignedSeqs = Aligner.parallelAlign(sequences);
 		TabularAlgorithmsComparison cmp = new TabularAlgorithmsComparison(alignedSeqs, algorithms, customAlgs);

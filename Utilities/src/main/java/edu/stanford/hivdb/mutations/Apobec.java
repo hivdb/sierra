@@ -44,11 +44,11 @@ public class Apobec {
 	}
 
 	public static boolean isApobecMutation(Mutation mutation) {
-		return apobecMutsLU.hasSharedAAMutation(mutation);
+		return apobecMutsLU.hasSharedAAMutation(mutation, /* ignoreRefOrStops = */false);
 	}
 
 	public static boolean isApobecDRM(Mutation mutation) {
-		return apobecDRMsLU.hasSharedAAMutation(mutation);
+		return apobecDRMsLU.hasSharedAAMutation(mutation, /* ignoreRefOrStops = */false);
 	}
 
 	public static MutationSet getApobecMutsLU() {
@@ -127,19 +127,21 @@ public class Apobec {
 
 		apobecMutsLU = new MutationSet(
 			db.iterate(sqlStatementApobecMuts, rs -> {
-				return new Mutation(
+				return new AAMutation(
 					Gene.valueOf(rs.getString("Gene")),
 					rs.getInt("Pos"),
-					rs.getString("AA"));
+					rs.getString("AA").toCharArray(),
+					0xff);
 			})
 		);
 		
 		apobecDRMsLU = new MutationSet(
 			db.iterate(sqlStatementApobecDRMs, rs -> {
-				return new Mutation(
+				return new AAMutation(
 					Gene.valueOf(rs.getString("Gene")),
 					rs.getInt("Pos"),
-					rs.getString("AA"));
+					rs.getString("AA").toCharArray(),
+					0xff);
 			})
 		);
 	}

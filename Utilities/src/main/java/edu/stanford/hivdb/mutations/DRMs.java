@@ -20,8 +20,8 @@ package edu.stanford.hivdb.mutations;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import edu.stanford.hivdb.utilities.JdbcDatabase;
 import edu.stanford.hivdb.utilities.Cachable;
@@ -52,7 +52,13 @@ public class DRMs {
 	}
 	
 	public static boolean isDRM(Mutation mut) {
-		return drms.hasSharedAAMutation(mut);
+		return drms.hasSharedAAMutation(mut, /* ignoreRefOrStops = */false);
+	}
+	
+	public static boolean isAtDRPosition(Mutation mut) {
+		GenePosition gp = mut.getGenePosition();
+		return drms.get(gp) != null;
+		
 	}
 
 	private static void populateDRMs() throws SQLException {
@@ -65,28 +71,18 @@ public class DRMs {
 			"FROM tblCombinationScores " +
 			"Group BY Gene, Rule ORDER BY Gene, Rule";
 		
-		List<List<Mutation>> allDrms = db.iterate(sqlStatement1, rs -> {
+		List<Collection<Mutation>> allDrms = new ArrayList<>();
+		allDrms.add(db.iterate(sqlStatement1, rs -> {
 			Gene gene = Gene.valueOf(rs.getString("Gene"));
 			int pos = rs.getInt("Pos");
 			String aa = rs.getString("AA");
-			return (
-			 aa.chars()
-			 .mapToObj(a -> new Mutation(gene, pos, (char) a))
-			 .collect(Collectors.toList()));
-		});
+			return new AAMutation(gene, pos, aa.toCharArray(), 0xff);
+		}));
 		allDrms.addAll(db.iterate(sqlStatement2, rs -> {
 			Gene gene = Gene.valueOf(rs.getString("Gene"));
 			String rule = rs.getString("Rule");
 			rule = AA.toInternalFormat(rule);
-			return new ArrayList<>(
-				new MutationSet(gene, rule)
-				.stream()
-				.map(mut -> mut.split())
-				.reduce((m1, m2) -> {
-					m1.addAll(m2);
-					return m1;
-				})
-				.get());
+			return new MutationSet(gene, rule).displayAmbiguities();
 		}));
 		drms = new MutationSet(allDrms
 		.stream()

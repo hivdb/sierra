@@ -55,7 +55,7 @@ public class MutationPrevalenceDef {
 						f -> f.getKey(),
 						f -> {
 							Map<String, Object> r = new HashMap<>();
-							r.put("AA", f.getKey().getAAs());
+							r.put("AA", f.getKey().getDisplayAAs());
 							r.put("subtypes", f.getValue());
 							return r;
 						}

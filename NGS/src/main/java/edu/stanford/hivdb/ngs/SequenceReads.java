@@ -34,6 +34,7 @@ import edu.stanford.hivdb.genotyper.HIVGenotypeReference;
 import edu.stanford.hivdb.genotyper.HIVGenotypeResult;
 import edu.stanford.hivdb.mutations.Gene;
 import edu.stanford.hivdb.mutations.MutationSet;
+import edu.stanford.hivdb.mutations.PositionCodonReads;
 import edu.stanford.hivdb.utilities.SeqUtils;
 
 public class SequenceReads {

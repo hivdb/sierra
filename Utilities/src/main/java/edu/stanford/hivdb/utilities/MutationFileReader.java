@@ -28,12 +28,19 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.apache.commons.lang3.StringUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import edu.stanford.hivdb.drugs.DrugClass;
+import edu.stanford.hivdb.mutations.IUPACMutation;
+import edu.stanford.hivdb.mutations.Gene;
 import edu.stanford.hivdb.mutations.Mutation;
 import edu.stanford.hivdb.mutations.MutationSet;
 
 public class MutationFileReader {
 	
-	private static final Pattern MUT_PATTERN = Mutation.getPattern();
+	private static final Pattern MUT_PATTERN = IUPACMutation.getPattern();
 
 	/**
 	 * Reads lists of mutations, one line at a time, from a comma-delimited file
@@ -54,7 +61,7 @@ public class MutationFileReader {
 				if (shouldSkip(line)) continue;
 				List<Mutation> lineMuts = Stream.of(line.trim().split(","))
 					.filter(mutStr -> MUT_PATTERN.matcher(mutStr).find())
-					.map(mutStr -> Mutation.parseString(mutStr))
+					.map(mutStr -> IUPACMutation.parseString(mutStr))
 					.collect(Collectors.toList());
 				if (!lineMuts.isEmpty()) {
 					fileMuts.add(new MutationSet(lineMuts));

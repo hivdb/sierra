@@ -37,6 +37,7 @@ import edu.stanford.hivdb.drugs.DrugClass;
 import edu.stanford.hivdb.mutations.Gene;
 import edu.stanford.hivdb.mutations.Mutation;
 import edu.stanford.hivdb.mutations.MutationSet;
+import edu.stanford.hivdb.mutations.IUPACMutation;
 
 public class ConditionalCommentsTest {
 
@@ -133,7 +134,7 @@ public class ConditionalCommentsTest {
 	public void testBndCmtConstructor() {
 		final CommentType eCmtType = CommentType.NRTI;
 		final List<String> eHighlightText = Arrays.asList("D67P");
-		final Mutation eMut = Mutation.parseString("RT67P");
+		final Mutation eMut = IUPACMutation.parseString("RT67P");
 		final BoundComment cmt = 
 			new BoundComment(eName, eDrugClassNRTI, eCmtType, eComment, eHighlightText, eMut);
 		assertEquals(eName, cmt.getName());

@@ -31,7 +31,7 @@ import edu.stanford.hivdb.drugresistance.algorithm.FastHivdb;
 import edu.stanford.hivdb.drugs.Drug;
 import edu.stanford.hivdb.drugs.DrugClass;
 import edu.stanford.hivdb.mutations.Gene;
-import edu.stanford.hivdb.mutations.Mutation;
+import edu.stanford.hivdb.mutations.AAMutation;
 import edu.stanford.hivdb.mutations.MutationSet;
 import edu.stanford.hivdb.utilities.JdbcDatabase;
 import edu.stanford.hivdb.utilities.Cachable;
@@ -253,7 +253,7 @@ public class MutationPatterns {
 						Integer pos = rs.getInt("Pos");
 						String aa = rs.getString("AA");
 						MutationSet muts = map.getOrDefault(seqId, new MutationSet());
-						muts = muts.mergesWith(new Mutation(gene, pos, aa));
+						muts = muts.mergesWith(new AAMutation(gene, pos, aa.toCharArray()));
 						map.put(seqId, muts);
 						return null;
 					},

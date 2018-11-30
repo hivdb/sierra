@@ -51,6 +51,7 @@ public class GenePositionTest {
 		assertEquals("IN:288", inGP.toString());
 	}
 	
+	@SuppressWarnings("unlikely-arg-type")
 	@Test
 	public void testEquals() {
 		final GenePosition prGP = new GenePosition(Gene.PR, MAX_PR_POS);

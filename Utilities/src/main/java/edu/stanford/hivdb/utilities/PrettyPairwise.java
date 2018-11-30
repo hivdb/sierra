@@ -64,9 +64,9 @@ public class PrettyPairwise {
 			} else {
 				fmtAAPos = String.format("%3d", aaPos);
 			}
-			String fmtAACons = String.format(" %1s ", gene.getConsensus(aaPos));
+			String fmtAACons = String.format(" %1s ", gene.getReference(aaPos));
 			String codon = alignedNAs.substring(i*3, (i*3) + 3);
-			Mutation mut = mutations.getMerged(gene, aaPos);
+			Mutation mut = mutations.get(gene, aaPos);
 
 			if (mut == null) {
 				this.positionLine.add(fmtAAPos);
@@ -79,7 +79,7 @@ public class PrettyPairwise {
 
 				// Get information about the insertion
 				String insertedNAs = mut.getInsertedNAs();
-				String[] insertionAAText = mut.getAAs().split("_", 2);
+				String[] insertionAAText = mut.getDisplayAAs().split("_", 2);
 				String preInsertionAA = insertionAAText[0];
 				String fmtPreInsertionAA;
 
@@ -123,7 +123,7 @@ public class PrettyPairwise {
 				this.positionLine.add(fmtAAPos);
 				this.refAALine.add(fmtAACons);
 				this.alignedNAsLine.add(codon);
-				String mutAAs = mut.getAAsWithConsFirst();
+				String mutAAs = mut.getAAsWithRefFirst();
 				String fmtMutAAs;
 				if (mutAAs.length() == 1) {
 					fmtMutAAs = " " + mutAAs + " ";

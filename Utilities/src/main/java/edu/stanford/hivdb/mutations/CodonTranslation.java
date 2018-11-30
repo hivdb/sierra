@@ -42,7 +42,6 @@ import com.google.common.base.Splitter;
 public class CodonTranslation {
 	private CodonTranslation() {};
 
-	private static final int DEFAULT_AAS_LIMIT = 4;
 	private static final String [] nas = {
 		"A", "C", "G", "T", "R", "Y", "M", "W",
 		"S", "K", "B", "D", "H", "V", "N"
@@ -400,12 +399,8 @@ public class CodonTranslation {
 						uniqueAAs.add(codonToAminoAcidMap.get(codon));
 					}
 					String aas = "";
-					if (uniqueAAs.size()>DEFAULT_AAS_LIMIT) {
-						aas = "X";
-					} else {
-						for (String uniqueAA : uniqueAAs) {
-							aas += uniqueAA;
-						}
+					for (String uniqueAA : uniqueAAs) {
+						aas += uniqueAA;
 					}
 					tripletsTable.put(triplet, aas);
 				}

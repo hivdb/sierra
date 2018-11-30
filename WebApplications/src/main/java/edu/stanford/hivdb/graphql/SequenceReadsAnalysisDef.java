@@ -34,8 +34,8 @@ import edu.stanford.hivdb.drugresistance.GeneDR;
 import edu.stanford.hivdb.drugresistance.GeneDRFast;
 import edu.stanford.hivdb.genotyper.BoundGenotype;
 import edu.stanford.hivdb.genotyper.HIVGenotypeResult;
+import edu.stanford.hivdb.mutations.PositionCodonReads;
 import edu.stanford.hivdb.ngs.GeneSequenceReads;
-import edu.stanford.hivdb.ngs.PositionCodonReads;
 import edu.stanford.hivdb.ngs.SequenceReads;
 
 import static edu.stanford.hivdb.graphql.MutationSetDef.*;

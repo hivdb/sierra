@@ -64,7 +64,7 @@ public class PrettyAlignments {
 		int lastAA = getLastAA();
 
 		List<String> consRow = new ArrayList<>();
-		String cons = gene.getConsensus();
+		String cons = gene.getReference();
 		consRow.add("Consensus");
 
 		for (int pos=firstAA; pos <= lastAA; pos ++) {
@@ -109,11 +109,11 @@ public class PrettyAlignments {
 				if (pos < seqFirstPos || pos > seqLastPos) {
 					aas = ".";
 				} else {
-					Mutation mut = mutations.getMerged(gene, pos);
+					Mutation mut = mutations.get(gene, pos);
 					if (mut == null) {
 						aas = "-";
 					} else {
-						aas = mut.getAAs().replace("-", "del");
+						aas = mut.getDisplayAAs().replace("-", "del");
 					}
 				}
 				sequenceAllPosAAs.get(seqName).put(pos, aas);

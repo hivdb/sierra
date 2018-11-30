@@ -48,6 +48,7 @@ import com.google.gson.reflect.TypeToken;
 
 import edu.stanford.hivdb.mutations.FrameShift;
 import edu.stanford.hivdb.mutations.Gene;
+import edu.stanford.hivdb.mutations.IUPACMutation;
 import edu.stanford.hivdb.mutations.Mutation;
 import edu.stanford.hivdb.utilities.FastaUtils;
 import edu.stanford.hivdb.utilities.Json;
@@ -275,7 +276,7 @@ public class NucAminoAligner {
 				int posAA = ((Double) m.get("Position")).intValue();
 				return posAA >= aaStart && posAA <= aaEnd;
 			})
-			.map(m -> Mutation.fromNucAminoMutation(gene, aaStart, m))
+			.map(m -> IUPACMutation.fromNucAminoMutation(gene, aaStart, m))
 			.collect(Collectors.toList());
 
 		List<?> polFrameShifts = (List<?>) report.get("FrameShifts");
@@ -410,7 +411,7 @@ public class NucAminoAligner {
 			int idx = mut.getPosition() - firstAA;
 			if (!mut.isUnsequenced() && (
 					mut.isUnusual()
-					|| mut.getAAs().equals("X") || mut.isApobecMutation() || mut.hasStop())) {
+					|| mut.getDisplayAAs().equals("X") || mut.isApobecMutation() || mut.hasStop())) {
 				invalidSites.set(idx, true);
 			}
 		}

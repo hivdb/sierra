@@ -46,11 +46,12 @@ public class Sdrms {
 	 * @return just those mutations that are SDRMs
 	 */
 	public static MutationSet getSdrms(MutationSet seqMuts) {
+		// System.out.println(((AAMutation) sdrms.get(Gene.RT, 69)).getMaxDisplayAAs());
 		return seqMuts.intersectsWith(sdrms);
 	}
 	
 	public static boolean isSDRM(Mutation mut) {
-		return sdrms.hasSharedAAMutation(mut);
+		return sdrms.hasSharedAAMutation(mut, /* ignoreRefOrStops = */false);
 	}
 	
 	private static void populateSDRMs() throws SQLException {
@@ -59,10 +60,11 @@ public class Sdrms {
 
 		sdrms = new MutationSet(
 			db.iterate(sqlStatement, rs -> {
-				return new Mutation(
+				return new AAMutation(
 						Gene.valueOf(rs.getString("Gene")),
 						rs.getInt("Pos"),
-						rs.getString("AAs"));
+						rs.getString("AAs").toCharArray(),
+						0xff);
 			})
 		);
 	}

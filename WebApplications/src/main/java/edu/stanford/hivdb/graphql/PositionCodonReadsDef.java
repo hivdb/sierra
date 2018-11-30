@@ -31,7 +31,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import edu.stanford.hivdb.mutations.Gene;
-import edu.stanford.hivdb.ngs.PositionCodonReads;
+import edu.stanford.hivdb.mutations.PositionCodonReads;
 
 public class PositionCodonReadsDef {
 	

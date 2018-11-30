@@ -30,8 +30,6 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.google.common.primitives.Chars;
-
 import edu.stanford.hivdb.drugresistance.database.MutationComboScores;
 import edu.stanford.hivdb.drugresistance.database.MutationComboScores.ComboScore;
 import edu.stanford.hivdb.drugresistance.database.MutationScores;
@@ -39,8 +37,8 @@ import edu.stanford.hivdb.drugresistance.database.MutationScores.MutScore;
 import edu.stanford.hivdb.drugresistance.scripts.HivdbLevelDefinitions;
 import edu.stanford.hivdb.drugs.Drug;
 import edu.stanford.hivdb.drugs.DrugClass;
+import edu.stanford.hivdb.mutations.AAMutation;
 import edu.stanford.hivdb.mutations.Gene;
-import edu.stanford.hivdb.mutations.GenePosition;
 import edu.stanford.hivdb.mutations.Mutation;
 import edu.stanford.hivdb.mutations.MutationSet;
 
@@ -51,6 +49,11 @@ public class FastHivdb {
 
 		public PositionNode() {
 			childAAs = new LinkedHashMap<>();
+		}
+		
+		@Override
+		public String toString() {
+			return childAAs.toString();
 		}
 	}
 
@@ -67,6 +70,11 @@ public class FastHivdb {
 		public void setLeaf(Rule rule) {
 			isLeaf = true;
 			this.scores.put(rule.drug, rule.score);
+		}
+		
+		@Override
+		public String toString() {
+			return childPositions.toString();
 		}
 	}
 
@@ -182,7 +190,9 @@ public class FastHivdb {
 			}
 			AANode childAA = node.childAAs.get(aa);
 			String curKey = prevKey + "+" + pos;
-			MutationSet curMuts = prevMuts.mergesWith(new Mutation(gene, pos, "" + aa));
+			MutationSet curMuts = prevMuts.mergesWith(
+				new AAMutation(gene, pos, aa)
+			);
 
 			if (childAA.isLeaf) {
 				for (Drug drug : childAA.scores.keySet()) {
@@ -218,27 +228,15 @@ public class FastHivdb {
 	private final Map<Drug, Map<String, Double>> separatedScores;
 	private final Map<Drug, Map<String, MutationSet>> triggeredMuts;
 
-	public FastHivdb (Gene gene, MutationSet mutations) {
+	public FastHivdb(Gene gene, MutationSet mutations) {
 		this.gene = gene;
 		separatedScores = new EnumMap<>(Drug.class);
 		triggeredMuts = new EnumMap<>(Drug.class);
 		List<Integer> sortedPositions = new ArrayList<>();
 		List<Set<Character>> sortedAAs = new ArrayList<>();
-		for (GenePosition gp : mutations.getPositions()) {
-			Set<Mutation> posMuts = mutations.get(gp.gene, gp.position);
-			sortedPositions.add(gp.position);
-			Set<Character> setAAs = new TreeSet<>();
-			for (Mutation mut : posMuts) {
-				if (mut.isInsertion()) {
-					setAAs.add('_');
-				}
-				else if (mut.isDeletion()) {
-					setAAs.add('-');
-				}
-				else {
-					setAAs.addAll(Chars.asList(mut.getAAs().toCharArray()));
-				}
-			}
+		for (Mutation mut : mutations) {
+			sortedPositions.add(mut.getPosition());
+			Set<Character> setAAs = new TreeSet<>(mut.getDisplayAAChars());
 			sortedAAs.add(setAAs);
 		}
 		calcScores(

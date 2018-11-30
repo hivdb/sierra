@@ -256,6 +256,7 @@ abstract public class AsiBase implements Asi {
 					allMuts = allMuts.mergesWith(muts);
 				}
 			}
+			allMuts.displayAmbiguities();
 			triggeredMutations = allMuts;
 		}
 		return triggeredMutations;
@@ -273,6 +274,7 @@ abstract public class AsiBase implements Asi {
 					allMuts = allMuts.mergesWith(muts);
 				}
 			}
+			allMuts = allMuts.displayAmbiguities();
 			triggeredMutationsByDrugClass.put(drugClass, allMuts);
 		}
 		return triggeredMutationsByDrugClass.get(drugClass);
@@ -434,7 +436,8 @@ abstract public class AsiBase implements Asi {
 							MutationSet mutations = new MutationSet(
 								gene, muts.stream()
 								.map(m -> (String) m)
-								.collect(Collectors.toSet()));
+								.collect(Collectors.toSet()))
+								.displayAmbiguities();
 							this.scoreHandler(drugClass, drug, scoredItem.getScore(), mutations);
 						}
 					}

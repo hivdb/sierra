@@ -51,7 +51,7 @@ public class MutationScoresExporter {
 		public MutationElem(
 				Gene gene, int pos, String aas) {
 			this.gene = gene;
-			this.cons = gene.getConsensus(pos);
+			this.cons = gene.getReference(pos);
 			this.pos = pos;
 			this.aas =
 			   	MyStringUtils.sortAlphabetically(aas).toUpperCase()
@@ -133,7 +133,7 @@ public class MutationScoresExporter {
 
 	private static MutationElem[] parseCombo(Gene gene, String rule) {
 		List<MutationElem> rList = new ArrayList<>();
-		for (Mutation mut : new MutationSet(gene, rule)) {
+		for (Mutation mut : new MutationSet(gene, rule).displayAmbiguities()) {
 			int pos = mut.getPosition();
 			String aas = mut.getAAs();
 			rList.add(new MutationElem(gene, pos, aas));
