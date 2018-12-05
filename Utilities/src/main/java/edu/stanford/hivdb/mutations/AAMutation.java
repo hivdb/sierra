@@ -34,7 +34,8 @@ import edu.stanford.hivdb.aapcnt.HIVAminoAcidPercents;
 
 public class AAMutation implements Mutation {
 	
-	private static final HIVAminoAcidPercents allAAPcnts = HIVAminoAcidPercents.getInstance("all", "All");
+	private static final HIVAminoAcidPercents ALL_AA_PCNTS = HIVAminoAcidPercents.getInstance("all", "All");
+	protected static final int DEFAULT_MAX_DISPLAY_AAS = 6;
 
 	private final Gene gene;
 	private final int position;
@@ -64,14 +65,13 @@ public class AAMutation implements Mutation {
 		}
 		return Collections.unmodifiableSet(aaChars);
 	}
-	
+
 	public AAMutation(Gene gene, int position, char aa) {
-		this(gene, position, new char[] {aa}, 4);
-		
+		this(gene, position, new char[] {aa}, DEFAULT_MAX_DISPLAY_AAS);
 	}
-	
+
 	public AAMutation(Gene gene, int position, char[] aaCharArray) {
-		this(gene, position, new TreeSet<>(Chars.asList(aaCharArray)), 4);
+		this(gene, position, new TreeSet<>(Chars.asList(aaCharArray)), DEFAULT_MAX_DISPLAY_AAS);
 	}
 
 	public AAMutation(Gene gene, int position, char[] aaCharArray, int maxDisplayAAs) {
@@ -79,7 +79,7 @@ public class AAMutation implements Mutation {
 	}
 
 	public AAMutation(Gene gene, int position, Set<Character> aaChars) {
-		this(gene, position, aaChars, 4);
+		this(gene, position, aaChars, DEFAULT_MAX_DISPLAY_AAS);
 	}
 	
 	public AAMutation(Gene gene, int position, Set<Character> aaChars, int maxDisplayAAs) {
@@ -96,7 +96,9 @@ public class AAMutation implements Mutation {
 
 	@Override
 	public Mutation mergesWith(Mutation another) {
-		if (gene != another.getGene() || position != another.getPosition()) {
+		if (another == null ||
+			gene != another.getGene() ||
+			position != another.getPosition()) {
 			throw new IllegalArgumentException(String.format(
 				"The other mutation must be at this position: %d (%s)",
 				position, gene.toString()));
@@ -117,8 +119,9 @@ public class AAMutation implements Mutation {
 			gene != another.getGene() ||
 			position != another.getPosition()
 		) {
-			// duplicate self
-			return new AAMutation(gene, position, getAAChars(), maxDisplayAAs);
+			throw new IllegalArgumentException(String.format(
+				"The other mutation must be at this position: %d (%s)",
+				position, gene.toString()));
 		}
 		return subtractsBy(another.getAAChars());
 	}
@@ -135,7 +138,8 @@ public class AAMutation implements Mutation {
 
 	@Override
 	public Mutation intersectsWith(Mutation another) {
-		if (gene != another.getGene() ||
+		if (another == null ||
+			gene != another.getGene() ||
 			position != another.getPosition()
 		) {
 			throw new IllegalArgumentException(String.format(
@@ -182,7 +186,7 @@ public class AAMutation implements Mutation {
 	}
 
 	@Override
-	public final int getPosition() {return position; }
+	public final int getPosition() { return position; }
 
 	@Override
 	public final GenePosition getGenePosition() {
@@ -266,7 +270,7 @@ public class AAMutation implements Mutation {
 		if (myAAChars.contains('X')) {
 			return true;
 		}
-		return allAAPcnts.containsUnusualAA(gene, position, StringUtils.join(myAAChars.toArray()));
+		return ALL_AA_PCNTS.containsUnusualAA(gene, position, StringUtils.join(myAAChars.toArray()));
 	}
 
 	@Override
@@ -302,7 +306,7 @@ public class AAMutation implements Mutation {
 			return .0;
 		}
 		
-		return allAAPcnts.getHighestAAPercentValue(
+		return ALL_AA_PCNTS.getHighestAAPercentValue(
 			gene, position, StringUtils.join(myAAChars.toArray())) * 100;
 	}
 
