@@ -16,6 +16,8 @@ import edu.stanford.hivdb.mutations.PositionCodonReads.CodonReads;
  * restricted to non-ambiguous nucleotide code (ACGT).
  */
 public class MultiCodonsMutation extends AAMutation {
+	
+	private static final int DEFAULT_MAX_DISPLAY_AAS = 6;
 
 	private final Map<String, Long> codonCounts;
 	private final Map<Character, Long> aaCounts;
@@ -88,7 +90,7 @@ public class MultiCodonsMutation extends AAMutation {
 		Map<String, Long> codonCounts, 
 		long totalCount
 	) {
-		super(gene, position, aaCounts.keySet(), /* maxDisplayAAs = */6);
+		super(gene, position, aaCounts.keySet(), DEFAULT_MAX_DISPLAY_AAS);
 		this.aaCounts = aaCounts;
 		this.codonCounts = codonCounts;
 		this.totalCount = totalCount;
