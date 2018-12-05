@@ -141,7 +141,7 @@ public class IUPACMutation extends AAMutation {
 			String aas = normalizeAAs(m.group(4)); 
 			String triplet = m.group(5);
 			if (triplet == null) triplet = "";
-			mut = new IUPACMutation(gene, pos, aas, triplet);
+			mut = new IUPACMutation(gene, pos, aas, triplet, "", 0xff);
 		} else {
 			throw new InvalidMutationException(
 				"Tried to parse mutation string using invalid parameters: " + mutText);
@@ -151,6 +151,26 @@ public class IUPACMutation extends AAMutation {
 	
 	public static IUPACMutation parseString(String mutText) {
 		return parseString(null, mutText);
+	}
+	
+	/**
+	 *
+	 * @param gene
+	 * @param pos
+	 * @param aas
+	 * @param triplet
+	 * @param insertedNAs
+	 * @param maxDisplayAAs
+	 */
+	public IUPACMutation(
+		Gene gene, int position, String aas,
+		String triplet, String insertedNAs,
+		int maxDisplayAAs
+	) {
+		super(gene, position, calcAACharArray(aas), maxDisplayAAs);
+		this.aas = normalizeAAs(aas);
+		this.triplet = triplet.toUpperCase();
+		this.insertedNAs = insertedNAs;
 	}
 
 
@@ -162,11 +182,14 @@ public class IUPACMutation extends AAMutation {
 	 * @param triplet
 	 * @param insertedNAs
 	 */
-	public IUPACMutation(Gene gene, int position, String aas, String triplet, String insertedNAs) {
-		super(gene, position, calcAACharArray(aas));
-		this.aas = normalizeAAs(aas);
-		this.triplet = triplet.toUpperCase();
-		this.insertedNAs = insertedNAs;
+	public IUPACMutation(
+		Gene gene, int position, String aas,
+		String triplet, String insertedNAs
+	) {
+		this(
+			gene, position, aas, triplet, insertedNAs,
+			AAMutation.DEFAULT_MAX_DISPLAY_AAS
+		);
 	}
 
 	public IUPACMutation(Gene gene, int position, String aas, String triplet) {
