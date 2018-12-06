@@ -24,7 +24,6 @@ import static graphql.schema.GraphQLObjectType.newObject;
 
 import edu.stanford.hivdb.drugresistance.database.CommentType;
 import edu.stanford.hivdb.drugresistance.database.ConditionalComments.BoundComment;
-import edu.stanford.hivdb.drugresistance.database.ConditionalComments.ConditionalComment;
 import edu.stanford.hivdb.mutations.Mutation;
 
 import static edu.stanford.hivdb.graphql.GeneDef.oGene;

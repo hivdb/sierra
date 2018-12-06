@@ -52,6 +52,7 @@ public class MutationPatternFilesCreator {
 				output.append(">" + drugClass + patternNo + " count:" + count + "\n");
 				output.append(pattern + "\n");
 			}
+			output.append("#comment for testing\n" + ">blank line for testing\n");
 			MyFileUtils.writeFile(filePath, output.toString());
 		}
 	}

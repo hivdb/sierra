@@ -155,7 +155,9 @@ jacocoTestReport {
     }
     afterEvaluate {
         classDirectories = files(classDirectories.files.collect {
-            fileTree(dir: it, exclude: 'edu/stanford/hivdb/drugresistance/scripts/**')
+            fileTree(dir: it, 
+                    exclude: ['edu/stanford/hivdb/drugresistance/scripts/**',
+                              'edu/stanford/hivdb/drugresistance/GeneDRAsi.java'])
         })
     }
 }

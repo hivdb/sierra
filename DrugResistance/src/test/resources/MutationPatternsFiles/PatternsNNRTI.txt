@@ -5188,3 +5188,5 @@ Y188L,H221Y,F227L
 Y188L,H221Y,L234I
 >NNRTI2595 count:1
 Y188L,K238T,N348I
+#comment for testing
+>blank line for testing
