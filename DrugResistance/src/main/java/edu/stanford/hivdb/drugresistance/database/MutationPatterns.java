@@ -262,7 +262,5 @@ public class MutationPatterns {
 			}
 			return allResult;
 		}
-
 	}
-
 }

@@ -34,13 +34,12 @@ import edu.stanford.hivdb.drugresistance.GeneDRFast;
 import edu.stanford.hivdb.drugresistance.TestMutationPatternFiles;
 import edu.stanford.hivdb.drugresistance.TestMutationPatternFiles.TestMutationPatterns;
 import edu.stanford.hivdb.drugresistance.database.ConditionalComments;
+import edu.stanford.hivdb.drugresistance.database.MutationPatternFileReader;
 import edu.stanford.hivdb.drugs.Drug;
 import edu.stanford.hivdb.drugs.DrugClass;
 import edu.stanford.hivdb.mutations.MutType;
 import edu.stanford.hivdb.mutations.MutationSet;
 import edu.stanford.hivdb.utilities.Json;
-import edu.stanford.hivdb.utilities.MutationFileReader;
-
 
 public class MutationPatternsResistanceToJson {
 	private static final String PATH_PATTERN =
@@ -54,8 +53,8 @@ public class MutationPatternsResistanceToJson {
 			DrugClass drugClass = testMutationPatterns.getDrugClass();
 			System.out.println("In MutationPatternsResistanceToJson:" + testMutationPatterns.toString());
 			final List<MutationSet> mutationLists =
-					MutationFileReader.readMutationListsForDrugClass(drugClass, mutationPatternsInputStream);
-
+					MutationPatternFileReader.readMutationListsForDrugClass(drugClass, mutationPatternsInputStream);
+			
 			Map<String, Map<Drug, Integer>> totalDrugScores = new TreeMap<>();
 			Map<String, Map<Drug, Integer>> totalDrugLevels = new TreeMap<>();
 			Map<String, Map<MutType, String>> mutationTypes = new TreeMap<>();
@@ -115,8 +114,6 @@ public class MutationPatternsResistanceToJson {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-
 		}
 	}
-
 }

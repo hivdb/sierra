@@ -33,7 +33,6 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import edu.stanford.hivdb.graphql.SierraSchema;
-import edu.stanford.hivdb.mutations.Mutation.InvalidMutationStringException;
 import edu.stanford.hivdb.utilities.Json;
 import graphql.ExceptionWhileDataFetching;
 import graphql.ExecutionResult;
@@ -109,5 +108,4 @@ public class GraphQLService {
 		}
 		return errors;
 	}
-
 }

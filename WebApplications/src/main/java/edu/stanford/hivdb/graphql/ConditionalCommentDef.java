@@ -23,12 +23,14 @@ import static graphql.Scalars.*;
 import static graphql.schema.GraphQLObjectType.newObject;
 
 import edu.stanford.hivdb.drugresistance.database.CommentType;
+import edu.stanford.hivdb.drugresistance.database.ConditionalComments.BoundComment;
+import edu.stanford.hivdb.drugresistance.database.ConditionalComments.ConditionalComment;
+import edu.stanford.hivdb.mutations.Mutation;
 
 import static edu.stanford.hivdb.graphql.GeneDef.oGene;
 import static edu.stanford.hivdb.graphql.DrugClassDef.*;
 
 public class ConditionalCommentDef {
-
 
 	private static GraphQLEnumType.Builder newCommentType() {
 		GraphQLEnumType.Builder commentTypeBuilder = GraphQLEnumType.newEnum()
@@ -39,10 +41,10 @@ public class ConditionalCommentDef {
 		}
 		return commentTypeBuilder;
 	}
-
+	
 	public static GraphQLEnumType oCommentType = newCommentType()
 		.build();
-
+	
 	public static GraphQLObjectType oBoundComment = newObject()
 		.name("BoundMutationComment")
 		.description("Comment bound to a certain mutation object.")
@@ -64,6 +66,11 @@ public class ConditionalCommentDef {
 		.field(field -> field
 			.type(GraphQLString)
 			.name("consensus")
+			.dataFetcher(env -> {
+				Mutation mut = ((BoundComment) env.getSource()).getBoundMutation();
+				if (mut == null) { return null; }
+				return mut.getConsensus(); 
+			})
 			.deprecate("Use `boundMutation { consensus }` instead.")
 			.description(
 				"Consensus amino acid at gene sequence position.")
@@ -71,6 +78,11 @@ public class ConditionalCommentDef {
 		.field(field -> field
 			.type(GraphQLString)
 			.name("triggeredAAs")
+			.dataFetcher(env -> {
+				Mutation mut = ((BoundComment) env.getSource()).getBoundMutation();
+				if (mut == null) { return null; }
+				return mut.getAAs(); 
+			})
 			.deprecate("Use `boundMutation { aas }` instead.")
 			.description("Mutated amino acid(s) that triggered the comment.")
 		)
@@ -115,5 +127,4 @@ public class ConditionalCommentDef {
 			.description("Comments belong to this type.")
 		)
 		.build();
-
 }

@@ -28,14 +28,12 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import edu.stanford.hivdb.drugs.DrugClass;
-import edu.stanford.hivdb.mutations.Gene;
 import edu.stanford.hivdb.mutations.Mutation;
 import edu.stanford.hivdb.mutations.MutationSet;
 
 public class MutationFileReader {
 	
-	private static final Pattern mutPattern = Mutation.getPattern();
+	private static final Pattern MUT_PATTERN = Mutation.getPattern();
 
 	/**
 	 * Reads lists of mutations, one line at a time, from a comma-delimited file
@@ -55,7 +53,7 @@ public class MutationFileReader {
 			while ((line = br.readLine()) != null) {
 				if (shouldSkip(line)) continue;
 				List<Mutation> lineMuts = Stream.of(line.trim().split(","))
-					.filter(mutStr -> mutPattern.matcher(mutStr).find())
+					.filter(mutStr -> MUT_PATTERN.matcher(mutStr).find())
 					.map(mutStr -> Mutation.parseString(mutStr))
 					.collect(Collectors.toList());
 				if (!lineMuts.isEmpty()) {
@@ -70,37 +68,7 @@ public class MutationFileReader {
 		return fileMuts;
 	}
 
-	/**
-	 * Reads in a list of mutations on a single line. This is used primarily for testing purposes
-	 * The expected mutation format for this reader an optional consensus followed by Pos . AAs separated by commas
-	 * The gene is known because the drugClass is passed in as a parameter
-	 * @param filePath Path to the file to read in
-	 * @return List of MutationSets
-	 */
-	public static List<MutationSet> readMutationListsForDrugClass(DrugClass drugClass, InputStream fileInputStream) {
-		Gene gene = drugClass.gene();
-		List<MutationSet> mutationLists = new ArrayList<>();
-		
-		try {
-			BufferedReader br = new BufferedReader(new InputStreamReader(fileInputStream));
-			String line;
-			while ((line = br.readLine()) != null) {
-				if (isHeader(line) || shouldSkip(line)) continue;
-				mutationLists.add(new MutationSet(gene, line.trim()));
-			}
-			br.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-		return mutationLists;
-	}
-	
-	private static boolean shouldSkip(String line) {
+	protected static boolean shouldSkip(String line) {
 		return line.isEmpty() || line.startsWith("#");
-	}
-	
-	private static boolean isHeader(String line) {
-		return line.startsWith(">");
 	}
 }

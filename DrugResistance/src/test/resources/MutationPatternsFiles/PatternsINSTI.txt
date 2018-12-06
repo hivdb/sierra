@@ -396,5 +396,5 @@ Y143R,G163R
 Y143S,N155H,G163K,S230R
 >INSTI199 count:1
 Y143S,S230R
->Blank Space for testing
+>blank space for test
 

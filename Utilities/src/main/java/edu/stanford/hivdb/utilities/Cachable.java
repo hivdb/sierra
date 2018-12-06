@@ -29,6 +29,7 @@ import java.io.IOException;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
+import java.nio.charset.StandardCharsets;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
@@ -188,7 +189,7 @@ public class Cachable {
 					InputStream stream = cls
 						.getClassLoader().getResourceAsStream(staticCachePath(f));
 				) {
-					String raw = IOUtils.toString(stream);
+					String raw = IOUtils.toString(stream, StandardCharsets.UTF_8);
 					boolean isAccessible = f.isAccessible();
 					if (!isAccessible) { f.setAccessible(true); }
 					Object obj = Json.loads(raw, f.getGenericType());

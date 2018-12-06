@@ -167,22 +167,22 @@ public class ConditionalComments {
 		public Mutation getBoundMutation() { return mutation; }
 		public Gene getGene() { return gene; }
 		public DrugClass drugClass() { return drugClass; }
-
-//		@Deprecated
-//		public String getConsensus() {
-//			if (mutation != null) {
-//				return mutation.getConsensus();
-//			}
-//			return null;
-//		}
-
-//		@Deprecated
-//		public String getTriggeredAAs() {
-//			if (mutation != null) {
-//				return mutation.getAAs();
-//			}
-//			return null;
-//		}
+		
+		@Deprecated
+		public String getConsensus() {
+			if (mutation != null) {
+				return mutation.getConsensus();
+			}
+			return null;
+		}
+		
+		@Deprecated
+		public String getTriggeredAAs() {
+			if (mutation != null) {
+				return mutation.getAAs();
+			}
+			return null;
+		}
 	}
 
 	@Cachable.CachableField

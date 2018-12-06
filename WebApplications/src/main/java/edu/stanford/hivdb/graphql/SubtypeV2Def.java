@@ -68,7 +68,7 @@ public class SubtypeV2Def {
 			.description("Classification level of the subtype.")
 		)
 		.build();
-
+		
 		oBoundSubtypeV2 = newObject()
 		.name("HIVBoundSubtype")
 		.field(
@@ -178,6 +178,5 @@ public class SubtypeV2Def {
 			)
 		)
 		.build();
-
 	}
 }

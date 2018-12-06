@@ -36,10 +36,10 @@ public class TestMutationPatternFiles {
 
 		private final DrugClass drugClass;
 	    private final String filePath;
-
+	    
 	    private TestMutationPatterns(final DrugClass drugClass, final String filePath) {
 	    	this.drugClass = drugClass;
-	    	this.filePath = filePath;;
+	    	this.filePath = filePath;
 	    }
 
 	    public DrugClass getDrugClass() {

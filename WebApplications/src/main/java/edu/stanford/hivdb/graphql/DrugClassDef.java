@@ -37,7 +37,6 @@ public class DrugClassDef {
 		public Object get(DataFetchingEnvironment environment) {
 			return ((DrugClass) environment.getSource()).getDrugsForHivdbTesting();
 		}
-
 	};
 
 	static {
@@ -76,5 +75,4 @@ public class DrugClassDef {
 				.build())
 			.build();
 	}
-
 }

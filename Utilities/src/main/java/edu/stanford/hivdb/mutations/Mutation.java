@@ -103,21 +103,23 @@ public class Mutation implements Comparable<Mutation> {
 		this(gene, pos, "" + aa, "", "");
 	}
 	
-	public static Mutation fromNucAminoMutation(Gene gene, int aaStart, Map<?, ?> mut) {
+   	public static Mutation fromNucAminoMutation(Gene gene, int aaStart, Map<?, ?> mut) {
 		int pos = ((Double) mut.get("Position")).intValue() - aaStart + 1;
+			
 		String codon = "";
 		String insertedCodon = "";
 		boolean isInsertion = (Boolean) mut.get("IsInsertion");
 		boolean isDeletion = (Boolean) mut.get("IsDeletion");
+			
 		StringBuilder aas = new StringBuilder();
-		if (isDeletion) aas.append('-');
+		if (isDeletion) {
+			aas.append('-');
+		}
 		else {
-			if (mut.containsKey("CodonText")) {
-				codon = (String) mut.get("CodonText");
-				codon = codon.replace(' ', '-');
-				aas.append(CodonTranslation.translateNATriplet(codon));
-			} 
-			if (isInsertion) {
+			codon = (String) mut.get("CodonText");
+			codon = codon.replace(' ', '-');
+			aas.append(CodonTranslation.translateNATriplet(codon));
+			if (isInsertion) {       
 				aas.append('_');
 				insertedCodon = (String) mut.get("InsertedCodonsText");
 				aas.append(CodonTranslation.simpleTranslate(insertedCodon));

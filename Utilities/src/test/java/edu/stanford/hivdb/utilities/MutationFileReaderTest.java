@@ -20,7 +20,6 @@ package edu.stanford.hivdb.utilities;
 
 import static org.junit.Assert.assertEquals;
 
-import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.List;
 
@@ -28,15 +27,12 @@ import org.junit.Test;
 
 import edu.stanford.hivdb.filetestutils.TestMutationsFiles;
 import edu.stanford.hivdb.filetestutils.TestMutationsFiles.TestMutationsProperties;
-//import edu.stanford.hivdb.drugresistance.TestMutationPatternFiles;
-//import edu.stanford.hivdb.drugresistance.TestMutationPatternFiles.TestMutationPatterns;
-//import edu.stanford.hivdb.drugs.DrugClass;
 import edu.stanford.hivdb.mutations.MutationSet;
 
 public class MutationFileReaderTest {
 
 	@Test
-	public void  testReadMutationLists() {
+	public void testReadMutationLists() {
 		final InputStream mutsStream =
 				TestMutationsFiles.getTestMutationsInputStream(TestMutationsProperties.SIMPLE_MUTATIONS_TEST);
 		final List<MutationSet> mutationLists = MutationFileReader.readMutationLists(mutsStream);
@@ -47,18 +43,6 @@ public class MutationFileReaderTest {
 		assertEquals(6, mutationLists.size());
 		assertEquals(eMutSet0, mutSet0);
 		assertEquals(eMutSet5, mutSet5);
-	}
-		
-	@Test
-	public void testReadMutationListsForDrugClass() throws FileNotFoundException {
-//		final InputStream mutsStream =
-//				TestMutationPatternFiles.getTestMutationPatternsInputStream(TestMutationPatterns.INSTI_PATTERNS);
-//		final DrugClass drugClass = DrugClass.INSTI;
-//		final List<MutationSet> mutationLists = MutationFileReader.readMutationListsForDrugClass(drugClass, mutsStream);
-//		final String eMutSet0 = "[E157Q]";
-//		final String eMutSet9 = "[E138A, G140S, Q148H]";
-//		assertEquals(eMutSet0, mutationLists.get(0).toString());
-//		assertEquals(eMutSet9, mutationLists.get(9).toString());
 	}
 	
 //	void printMutationListsFromFile() {

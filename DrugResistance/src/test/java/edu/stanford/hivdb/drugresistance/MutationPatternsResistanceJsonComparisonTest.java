@@ -36,13 +36,12 @@ import com.google.gson.reflect.TypeToken;
 
 import edu.stanford.hivdb.drugresistance.TestMutationPatternFiles.TestMutationPatterns;
 import edu.stanford.hivdb.drugresistance.database.ConditionalComments;
+import edu.stanford.hivdb.drugresistance.database.MutationPatternFileReader;
 import edu.stanford.hivdb.drugs.Drug;
 import edu.stanford.hivdb.drugs.DrugClass;
 import edu.stanford.hivdb.mutations.MutType;
 import edu.stanford.hivdb.mutations.MutationSet;
 import edu.stanford.hivdb.utilities.Json;
-import edu.stanford.hivdb.utilities.MutationFileReader;
-
 
 /**
  * 1. Read each of the files containing lists of mutation files from src/test/resources/MutationPatternsFiles
@@ -61,8 +60,8 @@ public class MutationPatternsResistanceJsonComparisonTest {
 			DrugClass drugClass = testMutationPatterns.getDrugClass();
 			//System.out.println("In MutationPatternsResistanceToJson:" + testMutationPatterns.toString());
 			final List<MutationSet> mutationLists =
-					MutationFileReader.readMutationListsForDrugClass(drugClass, mutationPatternsInputStream);
-
+					MutationPatternFileReader.readMutationListsForDrugClass(drugClass, mutationPatternsInputStream);
+			
 			final Map<MutationSet, GeneDR> allResistanceResults =
 				GeneDRFast.parallelConstructor(drugClass.gene(), new HashSet<>(mutationLists));
 			// Test the totalScore files
@@ -226,5 +225,4 @@ public class MutationPatternsResistanceJsonComparisonTest {
 			}
 		}
 	}
-
 }

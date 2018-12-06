@@ -131,5 +131,4 @@ public class SierraSchemaTest {
 			result.getErrors().isEmpty());
 		System.out.println(Json.dumps(result.getData()));
 	}
-
 }
