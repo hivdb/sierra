@@ -39,7 +39,7 @@ dependencies {
     compile 'org.apache.httpcomponents:httpcore:4.4.10'
     compile 'com.mashape.unirest:unirest-java:1.4.9'
     compile 'edu.stanford.hivdb.aapcnt:hiv-aapcnt-java:2018.11-2'
-    testcompile project(':TestResources')
+    compile project(':TestResources')
 }
 
 task clearCachable(type: Exec, group: 'Generator', description: 'Clean files created by Cachable.') {
