@@ -103,13 +103,25 @@ public class AAMutationTest {
 	
 	@Test
 	public void testSubtractsByEdgeCases() {
-		Mutation pr67AMut = new AAMutation(Gene.PR, 67, 'A');
 		Mutation pr68AMut = new AAMutation(Gene.PR, 68, 'A');
-		Mutation rt67AMut = new AAMutation(Gene.RT, 68, 'A');
 		assertEquals(null, new AAMutation(Gene.PR, 68, 'A').subtractsBy(pr68AMut));
-		assertEquals(pr67AMut, new AAMutation(Gene.PR, 67, 'A').subtractsBy((Mutation) null));
-		assertEquals(pr68AMut, new AAMutation(Gene.PR, 68, 'A').subtractsBy(pr67AMut));
-		assertEquals(pr67AMut, new AAMutation(Gene.PR, 67, 'A').subtractsBy(rt67AMut));	
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testSubtractsByNull() {
+		new AAMutation(Gene.PR, 67, 'A').subtractsBy((Mutation) null);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testSubtractsByNotSamePos() {
+		Mutation pr67AMut = new AAMutation(Gene.PR, 67, 'A');
+		new AAMutation(Gene.PR, 68, 'A').subtractsBy(pr67AMut);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testSubtractsByNotSameGene() {
+		Mutation rt67AMut = new AAMutation(Gene.RT, 68, 'A');
+		new AAMutation(Gene.PR, 67, 'A').subtractsBy(rt67AMut);	
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
@@ -574,7 +586,7 @@ public class AAMutationTest {
 	public void testIsAmbiguous() {
 		final Mutation mut = new AAMutation(Gene.PR, 24, 'N');
 		final Mutation xMut = new AAMutation(Gene.PR, 24, 'X');
-		final Mutation haMut = new AAMutation(Gene.PR, 24, "ACDEFG".toCharArray());
+		final Mutation haMut = new AAMutation(Gene.PR, 24, "ABDEFGH".toCharArray());
 		assertFalse(mut.isAmbiguous());
 		assertTrue(xMut.isAmbiguous());
 		assertTrue(haMut.isAmbiguous());

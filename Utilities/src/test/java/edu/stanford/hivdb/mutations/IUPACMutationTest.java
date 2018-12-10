@@ -139,9 +139,9 @@ public class IUPACMutationTest {
 	@Test
 	public void testGetAAs() {
 		assertEquals("AG", new IUPACMutation(Gene.PR, 1, "AG").getDisplayAAs());
-		assertEquals("X", new IUPACMutation(Gene.PR, 1, "ABCEFG").getDisplayAAs());
+		assertEquals("X", new IUPACMutation(Gene.PR, 1, "ABDEFGH").getDisplayAAs());
 		assertEquals("T_T", new IUPACMutation(Gene.RT, 69, "T_T").getDisplayAAs());
-		assertEquals("X_T", new IUPACMutation(Gene.RT, 69, "ABCEFG_T").getDisplayAAs());
+		assertEquals("X_T", new IUPACMutation(Gene.RT, 69, "ABDEFGH_T").getDisplayAAs());
 	}
 	
 	@Test
