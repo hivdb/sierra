@@ -291,7 +291,12 @@ public class MutationSet extends TreeSet<Mutation> {
 		for (GenePosition gp : genePositionMap.keySet()) {
 			Mutation thisMut = genePositionMap.get(gp);
 			Mutation anotherMut = anotherSet.genePositionMap.get(gp);
-			mutations.add(thisMut.subtractsBy(anotherMut));
+			if (anotherMut == null) {
+				mutations.add(thisMut);
+			}
+			else {
+				mutations.add(thisMut.subtractsBy(anotherMut));
+			}
 		}
 		return new MutationSet(mutations);
 	}
