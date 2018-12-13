@@ -51,8 +51,9 @@ public interface Mutation extends Comparable<Mutation> {
 	 *
 	 * @param another
 	 * @return A new merged Mutation object
-	 * @throws IllegalArgumentException, UnsupportedOperationException
+	 * @throws IllegalArgumentException if another is null or the gene/position didn't match.
 	 */
+	@Deprecated
 	public Mutation mergesWith(Mutation another);
 	
 	/**
@@ -70,7 +71,9 @@ public interface Mutation extends Comparable<Mutation> {
 	 *
 	 * @param another
 	 * @return A new Mutation object
+	 * @throws IllegalArgumentException if another is null or the gene/position didn't match.
 	 */
+	@Deprecated
 	public Mutation subtractsBy(Mutation another);
 
 	/**
@@ -87,8 +90,9 @@ public interface Mutation extends Comparable<Mutation> {
 	 *
 	 * @param another
 	 * @return A new merged Mutation object
-	 * @throws IllegalArgumentException
+	 * @throws IllegalArgumentException if another is null or the gene/position didn't match.
 	 */
+	@Deprecated
 	public Mutation intersectsWith(Mutation another);
 
 	/**
