@@ -50,7 +50,7 @@ public class GenePositionTest {
 		assertEquals("RT:560", rtGP.toString());
 		assertEquals("IN:288", inGP.toString());
 	}
-	
+
 	@SuppressWarnings("unlikely-arg-type")
 	@Test
 	public void testEquals() {

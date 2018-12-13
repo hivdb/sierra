@@ -76,7 +76,7 @@ public class Json {
 				}
 			};
 		}
-		
+
 		private <T> TypeAdapter<T> genePositionAdapter(TypeAdapter<T> delegate) {
 
 			return new TypeAdapter<T>() {
@@ -95,7 +95,7 @@ public class Json {
 			};
 		}
 	}
-	
+
 	final static RuntimeTypeAdapterFactory<Mutation> typeFactory = RuntimeTypeAdapterFactory
 		.of(Mutation.class, "type")
 		.registerSubtype(AAMutation.class, "AA")

@@ -44,7 +44,7 @@ import edu.stanford.hivdb.utilities.Json;
 public class ConditionalComments {
 
 	private static final String WILDCARD_REGEX = "\\$listMutsIn\\{.+?\\}";
-	
+
 	public static enum ConditionType {
 		MUTATION, DRUGLEVEL
 	}
@@ -114,7 +114,7 @@ public class ConditionalComments {
 			}
 			return drugLevels;
 		}
-		
+
 		public String getDrugLevelsText() {
 			StringBuilder text = new StringBuilder();
 			Map<Drug, List<Integer>> drugLevels = getDrugLevels();
@@ -190,7 +190,7 @@ public class ConditionalComments {
 			// skip if it's other gene
 			return null;
 		}
-		
+
 		int pos = cc.getMutationPosition();
 		Mutation posMut = mutations.get(gene, pos);
 		if (posMut == null) {

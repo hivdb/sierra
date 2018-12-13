@@ -232,7 +232,7 @@ public class SierraSchema {
 			.description("List all supported HIV-1 subtypes by mutation prevalence.")
 			.dataFetcher(mutationPrevalenceSubtypesDataFetcher)
 			.build());
-	
+
 	public static GraphQLObjectType oViewer = oViewerBuilder.name("Viewer").build();
 
 	public static GraphQLObjectType oRoot = oViewerBuilder

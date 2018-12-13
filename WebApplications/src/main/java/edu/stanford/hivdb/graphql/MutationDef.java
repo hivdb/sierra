@@ -55,7 +55,7 @@ public class MutationDef {
 			return ConditionalComments.getComments(mut);
 		}
 	};
-	
+
 	public static GraphQLObjectType oAAPercent = newObject()
 		.name("AAPercent")
 		.field(newFieldDefinition()
@@ -99,7 +99,7 @@ public class MutationDef {
 				"The mutation is a stop codon.")
 			.build())
 		.build();
-	
+
 	public static GraphQLObjectType oMutation = newObject()
 		.name("Mutation")
 		.field(newFieldDefinition()

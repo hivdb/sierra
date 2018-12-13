@@ -100,7 +100,7 @@ public class FrameShift implements Comparable<FrameShift> {
 	public Type getType() {return type;}
 	public int getSize() {return size;}
 	public String getNAs() {return nas;}
-	
+
 	public String getText() {
 		// same as `toString()`, only for GraphQL
 		return getHumanReadable(this);

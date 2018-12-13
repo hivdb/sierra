@@ -86,7 +86,7 @@ public class Aligner
 	public static List<AlignedSequence> parallelAlign(List<Sequence> sequences) {
 		return NucAminoAligner.parallelAlign(sequences);
 	}
-	
+
 	public static AlignedSequence align(Sequence sequence) {
 		return NucAminoAligner.align(sequence);
 	}

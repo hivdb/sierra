@@ -1,6 +1,5 @@
 /*
 
-
     Copyright (C) 2017 Stanford HIVDB team
 
     Sierra is free software: you can redistribute it and/or modify

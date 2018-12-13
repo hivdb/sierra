@@ -1,17 +1,17 @@
 /*
-    
+
     Copyright (C) 2017 Stanford HIVDB team
-    
+
     Sierra is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
-    
+
     Sierra is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-    
+
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
@@ -33,7 +33,7 @@ import com.google.common.primitives.Chars;
 import edu.stanford.hivdb.aapcnt.HIVAminoAcidPercents;
 
 public class AAMutation implements Mutation {
-	
+
 	private static final HIVAminoAcidPercents ALL_AA_PCNTS = HIVAminoAcidPercents.getInstance("all", "All");
 	protected static final int DEFAULT_MAX_DISPLAY_AAS = 6;
 
@@ -44,7 +44,7 @@ public class AAMutation implements Mutation {
 	private transient Character ref;
 	private transient List<MutType> types;
 	private transient Boolean isAtDrugResistancePosition;
-	
+
 	public static Set<Character> normalizeAAChars(Set<Character> aaChars) {
 		if (aaChars == null) { return null; }
 		aaChars = new TreeSet<>(aaChars);
@@ -81,7 +81,7 @@ public class AAMutation implements Mutation {
 	public AAMutation(Gene gene, int position, Set<Character> aaChars) {
 		this(gene, position, aaChars, DEFAULT_MAX_DISPLAY_AAS);
 	}
-	
+
 	public AAMutation(Gene gene, int position, Set<Character> aaChars, int maxDisplayAAs) {
 		if (position > gene.getLength()) {
 			throw new IllegalArgumentException("Length is out of bounds for this gene.");
@@ -91,7 +91,7 @@ public class AAMutation implements Mutation {
 		this.position = position;
 		this.maxDisplayAAs = maxDisplayAAs;
 	}
-	
+
 	protected int getMaxDisplayAAs() { return maxDisplayAAs; }
 
 	@Override
@@ -106,7 +106,7 @@ public class AAMutation implements Mutation {
 		}
 		return mergesWith(another.getAAChars());
 	}
-	
+
 	@Override
 	public Mutation mergesWith(Collection<Character> otherAAChars) {
 		Set<Character> newAAChars = getAAChars();
@@ -127,7 +127,7 @@ public class AAMutation implements Mutation {
 		}
 		return subtractsBy(another.getAAChars());
 	}
-	
+
 	@Override
 	public Mutation subtractsBy(Collection<Character> otherAAChars) {
 		Set<Character> newAAChars = getAAChars();
@@ -151,7 +151,7 @@ public class AAMutation implements Mutation {
 		}
 		return intersectsWith(another.getAAChars());
 	}
-	
+
 	@Override
 	public Mutation intersectsWith(Collection<Character> otherAAChars) {
 		Set<Character> newAAChars = getAAChars();
@@ -172,7 +172,7 @@ public class AAMutation implements Mutation {
 
 	@Override
 	public boolean isUnsequenced() { return false; }
-	
+
 	@Override
 	public final Gene getGene() { return gene; }
 
@@ -180,7 +180,7 @@ public class AAMutation implements Mutation {
 	public final String getReference() {
 		return String.valueOf(getRefChar());
 	}
-	
+
 	protected final char getRefChar() {
 		if (ref == null) {
 			ref = gene.getReference(position).charAt(0);
@@ -213,12 +213,12 @@ public class AAMutation implements Mutation {
 		}
 		return myAAChars;
 	}
-	
+
 	@Override
 	public String getAAs() {
 		return StringUtils.join(aaChars.toArray());
 	}
-	
+
 	@Override
 	public final Set<Character> getAAChars() {
 		return new TreeSet<>(aaChars);
@@ -236,25 +236,25 @@ public class AAMutation implements Mutation {
 		}
 		return r;
 	}
-	
+
 	@Override
 	public String getTriplet() { return ""; }
-	
+
 	@Override
 	public String getInsertedNAs() { return ""; }
-	
+
 	@Override
 	public final boolean isInsertion() { return getAAChars().contains('_'); }
-	
+
 	@Override
 	public final boolean isDeletion() { return getAAChars().contains('-'); }
-	
+
 	@Override
 	public final boolean isIndel() {
 		Set<Character> myAAChars = getAAChars();
 		return myAAChars.contains('_') || myAAChars.contains('-');
 	}
-	
+
 	@Override
 	public final boolean isMixture() {
 		Set<Character> myAAChars = getAAChars();
@@ -281,7 +281,7 @@ public class AAMutation implements Mutation {
 
 	@Override
 	public final boolean isDRM() { return DRMs.isDRM(this); }
-	
+
 	@Override
 	public boolean hasBDHVN() {
 		// no way to tell in BasicMutation
@@ -308,7 +308,7 @@ public class AAMutation implements Mutation {
 		if (myAAChars.isEmpty()) {
 			return .0;
 		}
-		
+
 		return ALL_AA_PCNTS.getHighestAAPercentValue(
 			gene, position, StringUtils.join(myAAChars.toArray())) * 100;
 	}
@@ -328,7 +328,7 @@ public class AAMutation implements Mutation {
 	public final MutType getPrimaryType() {
 		return getTypes().get(0);
 	}
-	
+
 	@Override
 	public final List<MutType> getTypes() {
 		if (types == null) {
@@ -371,7 +371,7 @@ public class AAMutation implements Mutation {
 			.append(getAAChars())
 			.toHashCode();
 	}
-	
+
 	@Override
 	public final String toString() {
 		return getHumanFormat();

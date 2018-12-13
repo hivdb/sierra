@@ -62,7 +62,7 @@ public enum HivdbVersion {
 	public String toString() {
 		return this.readableVersion;
 	}
-	
+
 	public String getText() {
 		// same as `toString()`, only for GraphQL
 		return this.readableVersion;

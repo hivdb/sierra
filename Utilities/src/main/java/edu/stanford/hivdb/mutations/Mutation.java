@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.Set;
 
 public interface Mutation extends Comparable<Mutation> {
-	
+
 	/**
 	 * Exception for invalid mutation
 	 */
@@ -41,7 +41,7 @@ public interface Mutation extends Comparable<Mutation> {
 
 	// /**
 	//  * Split a mixture into a set of mutations.
-	//  * 
+	//  *
 	//  * @return A set of mutations
 	//  */
 	// public Set<Mutation> split();
@@ -55,16 +55,16 @@ public interface Mutation extends Comparable<Mutation> {
 	 */
 	@Deprecated
 	public Mutation mergesWith(Mutation another);
-	
+
 	/**
 	 * Merges with another Collection<Character> of
 	 * AAs and returns the merged mutation.
-	 * 
+	 *
 	 * @param otherAAChars
 	 * @return A new merged Mutation object
 	 */
 	public Mutation mergesWith(Collection<Character> otherAAChars);
-	
+
 
 	/**
 	 * Subtracts by another Mutation object and returns the result mutation.
@@ -106,133 +106,133 @@ public interface Mutation extends Comparable<Mutation> {
 
 	/**
 	 * Checks if the mutation is at a drug resistance position
-	 * 
+	 *
 	 * @return true if the mutation is at DRM position
 	 */
 	public boolean isAtDrugResistancePosition();
 
 	/**
 	 * Checks if the position is unsequenced.
-	 * 
+	 *
 	 * @return true if the position is unsequenced.
 	 */
 	public boolean isUnsequenced();
-	
+
 	/**
 	 * Checks if the mutation is a DRM
-	 * 
+	 *
 	 * @return true if the mutation is a DRM
 	 */
 	public boolean isDRM();
-	
+
 	/**
 	 * Gets gene of this mutation.
-	 * 
+	 *
 	 * @return A Gene
 	 */
 	public Gene getGene();
-	
+
 	/**
 	 * Gets the subtype B reference at this position.
-	 * 
+	 *
 	 * TODO: We should probably return Character instead.
-	 * 
+	 *
 	 * @return A single character string
 	 */
 	public String getReference();
-	
+
 	/**
 	 * Gets the position number of this mutation.
 	 *
 	 * @return An integer >= 1
 	 */
 	public int getPosition();
-	
+
 	/**
 	 * Gets the GenePosition object of this mutation.
 	 *
 	 * @return A GenePosition object
 	 */
 	public GenePosition getGenePosition();
-	
+
 	/**
 	 * Gets the amino acids string of this mutation.
 	 *
 	 * @return A String of amino acids (include insertion/deletion)
 	 */
 	public String getDisplayAAs();
-	
+
 	/**
 	 * Gets a set of amino acid characters.
 	 *
 	 * - "_" represents an insertion;
 	 * - "-" represents a deletion;
 	 * - "*" represents a stop codon.
-	 * 
+	 *
 	 * @return A Set<Character> of amino acids/insertion/deletion/stop codons
 	 */
 	public Set<Character> getDisplayAAChars();
-	
+
 	/**
 	 * Gets original amino acids string of this mutation.
 	 *
 	 * @return A String of amino acids (include insertion/deletion)
 	 */
 	public String getAAs();
-	
+
 	/**
 	 * Gets the original set of amino acid characters.
 	 *
 	 * - "_" represents an insertion;
 	 * - "-" represents a deletion;
 	 * - "*" represents a stop codon.
-	 * 
+	 *
 	 * @return A Set<Character> of amino acids/insertion/deletion/stop codons
 	 */
 	public Set<Character> getAAChars();
-	
+
 	/**
 	 * Gets a set of single amino acid mutations.
-	 * 
+	 *
 	 * @return A Set<Mutation>
 	 */
 	public Set<Mutation> split();
-	
+
 	/**
 	 * Gets the triplet (codon) of this mutation.
 	 *
-	 * @return A string contains three characters (ACGT...) 
+	 * @return A string contains three characters (ACGT...)
 	 */
 	public String getTriplet();
-	
+
 	/**
 	 * Gets the inserted NAs of this mutation.
-	 * 
+	 *
 	 * @return A string contains multiples of three characters (ACGT...)
 	 */
 	public String getInsertedNAs();
-	
+
 	/**
 	 * Checks if the mutation contains an insertion.
 	 *
 	 * @return true if the mutation contains an insertion.
 	 */
 	public boolean isInsertion();
-	
+
 	/**
 	 * Checks if the mutation contains a deletion.
 	 *
 	 * @return true if the mutation contains a deletion.
 	 */
 	public boolean isDeletion();
-	
+
 	/**
 	 * Checks if the mutation contains an insertion or a deletion.
 	 *
 	 * @return true if the mutation contains an insertion or a deletion.
 	 */
 	public boolean isIndel();
-	
+
 	/**
 	 * Checks if the Mutation object is a mixture of
 	 * multiple amino acids / insertion / deletion / stop codon
@@ -248,7 +248,7 @@ public interface Mutation extends Comparable<Mutation> {
 	 * @return true if AAs contains subtype B reference
 	 */
 	public boolean hasReference();
-	
+
 	/**
 	 * Checks if the mutation contains a stop codon
 	 *
@@ -266,17 +266,17 @@ public interface Mutation extends Comparable<Mutation> {
 	/**
 	 * Checks if the mutation is an SDRM mutation
 	 *
-	 * @return true if the mutation is an SDRM mutation 
+	 * @return true if the mutation is an SDRM mutation
 	 */
 	public boolean isSDRM();
-	
+
 	/**
 	 * Checks if the mutation codon contains BDHVN
 	 *
 	 * @return true if the codon contains BDHVN
 	 */
 	public boolean hasBDHVN();
-	
+
 	/**
 	 * Checks if the mutation is highly ambiguous
 	 *
@@ -290,14 +290,14 @@ public interface Mutation extends Comparable<Mutation> {
 	 * @return true if the mutation is considered APOBEC-mediated
 	 */
 	public boolean isApobecMutation();
-	
+
 	/**
 	 * Checks if the mutation is a DRM considered APOBEC-mediated
 	 *
 	 * @return true if the mutation is a DRM considered APBOEC-mediated
 	 */
 	public boolean isApobecDRM();
-	
+
 	/**
 	 * Gets the highest AA prevalence of this mutation.
 	 *
@@ -322,17 +322,17 @@ public interface Mutation extends Comparable<Mutation> {
 
 	/**
 	 * Retrieve the primary mutation type of current mutation.
-	 * 
+	 *
 	 * @return a MutType object
 	 */
 	public MutType getPrimaryType();
-	
+
 	/**
 	 * Retrieve all mutation types of current mutation.
 	 *
 	 * The reason we return a List here is because some mixture,
 	 * for example, RT215SWY has multiple types.
-	 * 
+	 *
 	 * @return a List of MutType objects
 	 */
 	public List<MutType> getTypes();
@@ -367,19 +367,19 @@ public interface Mutation extends Comparable<Mutation> {
 
 	/**
 	 * Compares two mutations to determine if they share a non-reference amino acid
-	 * 
+	 *
 	 * Reference and stop codon are not be responsible for a match.
-	 * 
+	 *
 	 * @param queryMut
 	 * @return true if the Mutation and queryMut share at least one non-reference amino acid
 	 */
 	public boolean containsSharedAA(Mutation queryMut);
-	
+
 	/**
 	 * Compares with given queryAAChars to determine if they shared at least an amino acid
-	 * 
+	 *
 	 * Reference and stop codon are not be responsible for a match.
-	 * 
+	 *
 	 * @param queryMut
 	 * @param ignoreRefOrStops
 	 * @return true if the Mutation and queryMut share at least one amino acid

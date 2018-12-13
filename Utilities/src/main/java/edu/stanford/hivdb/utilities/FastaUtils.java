@@ -63,6 +63,7 @@ public class FastaUtils {
 		final BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
 		List<String> result = new ArrayList<>();
 		boolean isPrevIdentLine = false;
+
 		for (String line : reader.lines().toArray(size -> new String[size])) {
 			if (line.startsWith("#")) continue;
 			if (line.startsWith(">") && isPrevIdentLine) {

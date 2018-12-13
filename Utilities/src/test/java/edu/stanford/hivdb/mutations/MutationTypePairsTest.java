@@ -146,7 +146,7 @@ public class MutationTypePairsTest {
 		final MutationSet muts = new MutationSet("IN:74A");
 		final Map<Mutation, List<MutType>> mutTypes = MutationTypePairs.lookupByMutations(muts);
 		assertNull(mutTypes.get(IUPACMutation.parseString("IN:74A")));
-	} 
+	}
 
 	@Test
 	public void testLookupByMutationsOfGene() {

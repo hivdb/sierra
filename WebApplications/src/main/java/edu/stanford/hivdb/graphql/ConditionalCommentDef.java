@@ -68,7 +68,7 @@ public class ConditionalCommentDef {
 			.dataFetcher(env -> {
 				Mutation mut = ((BoundComment) env.getSource()).getBoundMutation();
 				if (mut == null) { return null; }
-				return mut.getConsensus();
+				return mut.getReference();
 			})
 			.deprecate("Use `boundMutation { consensus }` instead.")
 			.description(

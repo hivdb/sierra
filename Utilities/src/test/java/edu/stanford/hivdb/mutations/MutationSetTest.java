@@ -222,7 +222,7 @@ public class MutationSetTest {
 		assertEquals(
 			new MutationSet("RT:36K"),
 			another.intersectsWith(new IUPACMutation(Gene.RT, 36, "AK")));
-		
+
 		assertEquals(
 			new MutationSet("RT:36K"),
 			another.intersectsWith(Arrays.asList(IUPACMutation.parseString("RT:36K"))));

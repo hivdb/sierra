@@ -1,17 +1,17 @@
 /*
-    
+
     Copyright (C) 2017 Stanford HIVDB team
-    
+
     Sierra is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
-    
+
     Sierra is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-    
+
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
@@ -28,7 +28,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class IUPACMutationTest {
-	
+
 	@Test
 	public void testFromNucAminoMut() {
 		final Map<String, Object> mutMap = new HashMap<>();
@@ -36,12 +36,12 @@ public class IUPACMutationTest {
 		mutMap.put("CodonText", "AAC");
 		mutMap.put("IsInsertion", false);
 		mutMap.put("IsDeletion", false);
-		
+
 		final Mutation mut = IUPACMutation.fromNucAminoMutation(Gene.PR, 1, mutMap);
 		final Mutation eMut = new IUPACMutation(Gene.PR, 1, "N");
 		assertTrue(mut.equals(eMut));
 	}
-	
+
 	@Test
 	public void testFromNucAminoMutWithDeletion() {
 		final Map<String, Object> mutMap = new HashMap<>();
@@ -49,26 +49,26 @@ public class IUPACMutationTest {
 		mutMap.put("CodonText", "AAC");
 		mutMap.put("IsInsertion", false);
 		mutMap.put("IsDeletion", true);
-		
+
 		final Mutation mut = IUPACMutation.fromNucAminoMutation(Gene.PR, 1, mutMap);
 		final Mutation eMut = new IUPACMutation(Gene.PR, 1, "-");
 		assertTrue(mut.equals(eMut));
 	}
-	
+
 	@Test
 	public void testFromNucAminoMutWithInsertion() {
-		final Map<String, Object> mutMap = new HashMap<>(); 
+		final Map<String, Object> mutMap = new HashMap<>();
 		mutMap.put("Position", 1.0);
 		mutMap.put("CodonText", "AAC");
 		mutMap.put("InsertedCodonsText", "AAC");
 		mutMap.put("IsInsertion", true);
 		mutMap.put("IsDeletion", false);
-		
+
 		final Mutation mut = IUPACMutation.fromNucAminoMutation(Gene.PR, 1, mutMap);
-		final Mutation eMut = new IUPACMutation(Gene.PR, 1, "N_N", "AAC", "AAC");			
+		final Mutation eMut = new IUPACMutation(Gene.PR, 1, "N_N", "AAC", "AAC");
 		assertTrue(mut.equals(eMut));
 	}
-	
+
 	@Test
 	public void testNormalizeAAs() {
 		assertEquals(null, IUPACMutation.normalizeAAs(null));
@@ -81,7 +81,7 @@ public class IUPACMutationTest {
 		assertEquals("ACDE", IUPACMutation.normalizeAAs("DECA"));
 		assertEquals("-ACE", IUPACMutation.normalizeAAs("deca"));
 	}
-	
+
 	@Test
 	public void testExtractGene() {
 		assertEquals(Gene.PR, IUPACMutation.extractGene("PR100A"));
@@ -89,7 +89,7 @@ public class IUPACMutationTest {
 		assertEquals(Gene.RT, IUPACMutation.extractGene("RT100A"));
 		assertEquals(null, IUPACMutation.extractGene("not a mutation"));
 	}
-	
+
 	@Test(expected=InvalidMutationException.class)
 	public void testExtractGeneWithMalformedMut() {
 		assertEquals(null, IUPACMutation.extractGene("P100D"));
@@ -99,7 +99,7 @@ public class IUPACMutationTest {
 	public void testPositionOutOfGene() {
 		new IUPACMutation(Gene.PR, 100, 'A');
 	}
-	
+
 	@Test(expected=IllegalArgumentException.class)
 	public void testMergesWithNotSameGene() {
 		new IUPACMutation(Gene.PR, 68, 'A')
@@ -135,7 +135,7 @@ public class IUPACMutationTest {
 			new IUPACMutation(Gene.RT, 67, "AC")
 				.mergesWith(new IUPACMutation(Gene.RT, 67, "C")));
 	}
-	
+
 	@Test
 	public void testGetAAs() {
 		assertEquals("AG", new IUPACMutation(Gene.PR, 1, "AG").getDisplayAAs());
@@ -143,7 +143,7 @@ public class IUPACMutationTest {
 		assertEquals("T_T", new IUPACMutation(Gene.RT, 69, "T_T").getDisplayAAs());
 		assertEquals("X_T", new IUPACMutation(Gene.RT, 69, "ABDEFGH_T").getDisplayAAs());
 	}
-	
+
 	@Test
 	public void testGetOriginalAAs() {
 		assertEquals("ABCEFG", new IUPACMutation(Gene.PR, 1, "ABCEFG").getAAs());
@@ -203,7 +203,7 @@ public class IUPACMutationTest {
 		assertNotEquals(mut1, null);
 		assertNotEquals(mut1, "T69_");
 	}
-	
+
 	@Test
 	public void testGetHumanFormat() {
 		Mutation mut1 = new IUPACMutation(Gene.RT, 65, "KN");
@@ -273,7 +273,7 @@ public class IUPACMutationTest {
 		assertNotEquals(mut16, mut17);
 		assertNotEquals(mut16.hashCode(), mut17.hashCode());
 	}
-	
+
 	@Test
 	public void testGetHumanFormatWithGene	() {
 		Mutation mut1 = new IUPACMutation(Gene.RT, 65, "KN");
@@ -313,7 +313,7 @@ public class IUPACMutationTest {
 		assertEquals("IN_R263X", mut17.getHumanFormatWithGene());
 		assertEquals("RT_V118V_V", mut18.getHumanFormatWithGene());
 	}
-	
+
 	@Test
 	public void testGetHumanFormatWithoutCons() {
 		assertEquals(
@@ -323,12 +323,12 @@ public class IUPACMutationTest {
 			"67Deletion",
 			new IUPACMutation(Gene.RT, 67, "-").getHumanFormatWithoutLeadingRef());
 	}
-	
+
 	@Test
-	public void testParseString() {		
+	public void testParseString() {
 		assertEquals(
 				new IUPACMutation(Gene.RT, 69, '_'),
-				IUPACMutation.parseString(Gene.RT, "T69Insertion"));	
+				IUPACMutation.parseString(Gene.RT, "T69Insertion"));
 		assertEquals(
 				new IUPACMutation(Gene.RT, 69, '_'),
 				IUPACMutation.parseString(Gene.RT, "T69insertion"));
@@ -350,10 +350,10 @@ public class IUPACMutationTest {
 		assertEquals(
 				new IUPACMutation(Gene.RT, 69, "INS"),
 				IUPACMutation.parseString(Gene.RT, "T69INS"));
-		
+
 		assertEquals(
 				new IUPACMutation(Gene.RT, 69, '-'),
-				IUPACMutation.parseString(Gene.RT, "T69Deletion"));	
+				IUPACMutation.parseString(Gene.RT, "T69Deletion"));
 		assertEquals(
 				new IUPACMutation(Gene.RT, 69, '-'),
 				IUPACMutation.parseString(Gene.RT, "T69deletion"));
@@ -369,7 +369,7 @@ public class IUPACMutationTest {
 		assertEquals(
 				new IUPACMutation(Gene.RT, 69, "DEL"),
 				IUPACMutation.parseString(Gene.RT, "T69DEL"));
-		
+
 		assertEquals(
 				new IUPACMutation(Gene.RT, 77, 'V'),
 				IUPACMutation.parseString("  RT:77V"));
@@ -394,32 +394,32 @@ public class IUPACMutationTest {
 	public void testDelet() {
 		IUPACMutation.parseString(Gene.RT, "S68Delet");
 	}
-	
+
 	@Test(expected=InvalidMutationException.class)
 	public void testDeletLowercase() {
 		IUPACMutation.parseString(Gene.RT, "S68delet");
 	}
-	
+
 	@Test(expected=InvalidMutationException.class)
 	public void testInser() {
 		IUPACMutation.parseString(Gene.RT, "S68Insert");
 	}
-	
+
 	@Test(expected=InvalidMutationException.class)
 	public void testInserLowercase() {
 		IUPACMutation.parseString(Gene.RT, "S68insert");
 	}
-		
+
 	@Test(expected=InvalidMutationException.class)
 	public void testLeadingPoundInAA() {
 		IUPACMutation.parseString(Gene.RT, "T69#ACD");
 	}
-	
+
 	@Test(expected=InvalidMutationException.class)
 	public void testTrailingPoundInAA() {
 		IUPACMutation.parseString(Gene.RT, "T69T#");
 	}
-	
+
 	@Test(expected=InvalidMutationException.class)
 	public void testAAWithUnderscore() {
 		IUPACMutation.parseString(Gene.RT, "T69T_");
@@ -428,57 +428,57 @@ public class IUPACMutationTest {
 	public void testInsWithDel() {
 		IUPACMutation.parseString(Gene.RT, "T69-_");
 	}
-	
+
 	@Test(expected=InvalidMutationException.class)
 	public void testLeadingTildeInAA() {
 		IUPACMutation.parseString(Gene.RT, "T69~T");
 	}
-	
+
 	@Test(expected=InvalidMutationException.class)
 	public void testTrailingTildeInAA() {
 		IUPACMutation.parseString(Gene.RT, "T69T~");
 	}
-	
+
 	@Test(expected=InvalidMutationException.class)
 	public void testInsertionAbbreviationWithAA() {
 		IUPACMutation.parseString(Gene.RT, "T69iT");
 	}
-	
+
 	@Test(expected=InvalidMutationException.class)
 	public void testDoubleInsertionAbbreviationInAA() {
 		IUPACMutation.parseString(Gene.RT, "T69insins");
 	}
-	
+
 	@Test(expected=InvalidMutationException.class)
 	public void testDoubleDeletionAbbreviationInAA() {
 		IUPACMutation.parseString(Gene.RT, "T69Tdeletiondeletion");
 	}
-	
+
 	@Test(expected=InvalidMutationException.class)
 	public void testInsertionAbbreviationBetweenAAs() {
 		IUPACMutation.parseString(Gene.RT, "T69TinsD");
 	}
-	
+
 	@Test(expected=InvalidMutationException.class)
 	public void testDeletionAbbreviationBetweenAAs() {
 		IUPACMutation.parseString(Gene.RT, "T69TdelD");
 	}
-	
+
 	@Test(expected=InvalidMutationException.class)
 	public void testTrailingPoundWithMultipleAAs() {
 		IUPACMutation.parseString(Gene.RT, "T69T#T#");
 	}
-	
+
 	@Test(expected=InvalidMutationException.class)
 	public void testParseStringWithNullGene() {
 		IUPACMutation.parseString(null, "77V");
 	}
-	
+
 	@Test(expected=InvalidMutationException.class)
 	public void testParseStringWithGeneAndMalformedAA() {
 		IUPACMutation.parseString(Gene.RT, "77V`");
 	}
-	
+
 	@Test
 	public void testTripletAndInsertedNAs() {
 		assertEquals(
@@ -503,7 +503,7 @@ public class IUPACMutationTest {
 			new IUPACMutation(Gene.RT, 69, "V_TT").hasReference());
 	}
 
-	@Test 
+	@Test
 	public void testIsUnsequenced() {
 		final Mutation mut = new IUPACMutation(Gene.PR, 1, "X");
 		final Mutation mutSeq = new IUPACMutation(Gene.PR, 1, "_X", "NN-");
@@ -516,8 +516,8 @@ public class IUPACMutationTest {
 		assertTrue(mutUnseqNNN.isUnsequenced());
 		assertTrue(mutUnseqNNG.isUnsequenced());
 	}
-	
-	
+
+
 	@Test
 	public void testIsAmbiguous() {
 		final Mutation tripMut = new IUPACMutation(Gene.PR, 24, "N", "AAC");
@@ -535,5 +535,5 @@ public class IUPACMutationTest {
 		assertTrue(vTripMut.isAmbiguous());
 		assertTrue(nTripMut.isAmbiguous());
 	}
-	
+
 }

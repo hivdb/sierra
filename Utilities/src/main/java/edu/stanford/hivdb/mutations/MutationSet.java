@@ -29,8 +29,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.TreeMap;
-import java.util.TreeSet;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -97,7 +95,7 @@ public class MutationSet extends TreeSet<Mutation> {
 	public MutationSet(String formattedMuts) {
 		this(parseString(null, formattedMuts));
 	}
-	
+
 	public MutationSet displayAmbiguities() {
 		List<Mutation> tmpMuts = new ArrayList<>();
 		for (Mutation mut : this) {
@@ -125,7 +123,7 @@ public class MutationSet extends TreeSet<Mutation> {
 			.stream()
 			.filter(mStr -> mStr.length() > 0)
 			.map(mStr -> IUPACMutation.parseString(gene, mStr))
-//			Since parseString throws exceptions instead of returning 
+//			Since parseString throws exceptions instead of returning
 //			null mutations, the call to filter below may be redundant.
 //			.filter(mut -> mut != null)
 			.collect(Collectors.toList());
@@ -499,7 +497,7 @@ public class MutationSet extends TreeSet<Mutation> {
 	}
 
 	/** Returns a set of non-mixture mutations for all mutations.
-	 * 
+	 *
 	 * @return The mutation set
 	 */
 	public Set<Mutation> getSplitted() {
@@ -511,8 +509,8 @@ public class MutationSet extends TreeSet<Mutation> {
 	}
 
 	/** Returns list of mutation positions
-	 * 
-	 * @return a list of mutation positions 
+	 *
+	 * @return a list of mutation positions
 	 */
 	public List<GenePosition> getPositions() {
 		return new ArrayList<>(genePositionMap.keySet());

@@ -51,7 +51,7 @@ public class MutationTypePairs {
 		private final MutType type;
 		private final Boolean isUnusual;
 		private transient Mutation mutObj;
-		
+
 		public MutationTypePair(
 				final Gene gene, final DrugClass drugClass,
 				final int position, final String aas,

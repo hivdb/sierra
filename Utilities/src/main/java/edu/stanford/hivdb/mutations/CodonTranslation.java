@@ -424,8 +424,8 @@ public class CodonTranslation {
 	}
 
 	/** Returns merged codon may or may not contained IUPAC ambiguity codes.
-	 * 
-	 * @param codons a collection of codons; should be sorted by percent in descending order 
+	 *
+	 * @param codons a collection of codons; should be sorted by percent in descending order
 	 * @return String merged codon
 	 */
 	public static String getMergedCodon(Collection<String> codons) {

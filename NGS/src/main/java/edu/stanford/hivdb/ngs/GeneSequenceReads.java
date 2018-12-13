@@ -1,17 +1,17 @@
 /*
-	
+
 	Copyright (C) 2017 Stanford HIVDB team
-	
+
 	Sierra is free software: you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
 	the Free Software Foundation, either version 3 of the License, or
 	(at your option) any later version.
-	
+
 	Sierra is distributed in the hope that it will be useful,
 	but WITHOUT ANY WARRANTY; without even the implied warranty of
 	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 	GNU General Public License for more details.
-	
+
 	You should have received a copy of the GNU General Public License
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
@@ -37,14 +37,14 @@ import edu.stanford.hivdb.mutations.MutationSet;
 import edu.stanford.hivdb.mutations.PositionCodonReads;
 
 public class GeneSequenceReads {
-	
+
 	private final Gene gene;
 	private final int firstAA;
 	private final int lastAA;
 	private final List<PositionCodonReads> posCodonReads;
 	private final double minPrevalence;
 	private MutationSet mutations;
-	
+
 	public GeneSequenceReads(
 			final Gene gene,
 			final List<PositionCodonReads> posCodonReads,
@@ -56,7 +56,7 @@ public class GeneSequenceReads {
 		this.posCodonReads = Collections.unmodifiableList(
 			posCodonReads
 			.stream()
-			// remove illegal positions 
+			// remove illegal positions
 			.filter(pcr -> {
 				long pos = pcr.getPosition();
 				return pos >= this.firstAA && pos <= this.lastAA;
@@ -64,11 +64,11 @@ public class GeneSequenceReads {
 			.collect(Collectors.toList())
 		);
 	}
-	
+
 	/** initializes GeneSequence without specify gene
-	 * 
+	 *
 	 * Warning: This constructor is only intended to use internally
-	 * 
+	 *
 	 * @param posCodonReads
 	 * @param minPrevalence
 	 */
@@ -77,13 +77,13 @@ public class GeneSequenceReads {
 			final double minPrevalence) {
 		this(posCodonReads.get(0).getGene(), posCodonReads, minPrevalence);
 	}
-	
+
 	public Gene getGene() { return gene; }
 	public int getFirstAA() { return firstAA; }
 	public int getLastAA() { return lastAA; }
 	public int getSize() { return lastAA - firstAA + 1; }
 	public List<PositionCodonReads> getAllPositionCodonReads() { return this.posCodonReads; }
-	
+
 	public MutationSet getMutations(final double minPrevalence) {
 		if (minPrevalence != this.minPrevalence || mutations == null) {
 			List<Mutation> myMutations = new ArrayList<>();
@@ -91,7 +91,7 @@ public class GeneSequenceReads {
 			for (PositionCodonReads pcr : posCodonReads) {
 				long curPos = pcr.getPosition();
 				for (Long pos = prevPos; pos < curPos - 1; pos ++) {
-					// add unsequenced regions 
+					// add unsequenced regions
 					myMutations.add(MultiCodonsMutation.initUnsequenced(
 						gene, pos.intValue()
 					));
@@ -112,7 +112,7 @@ public class GeneSequenceReads {
 		}
 		return mutations;
 	}
-	
+
 	public Double getMedianReadDepth() {
 		Median median = new Median();
 		double[] ReadDepths = (
@@ -126,13 +126,13 @@ public class GeneSequenceReads {
 		}
 		return medianReadDepth;
 	}
-	
+
 	public MutationSet getMutations() {
 		return getMutations(this.minPrevalence);
 	}
-	
+
 	/** Returns prevalence points where mutation(s) got pruned
-	 * 
+	 *
 	 * @return all prevalence points
 	 */
 	public Set<Double> getPrevalencePoints() {
@@ -148,10 +148,10 @@ public class GeneSequenceReads {
 			.map(p -> p / 100.0)
 			.collect(Collectors.toSet());
 	}
-	
+
 	/** Returns consensus sequence aligned to subtype B reference.
 	 *  All insertions are removed from the result.
-	 * 
+	 *
 	 * @param autoComplete specify <tt>true</tt> to prepend and/or append
 	 * wildcard "." to incomplete sequence
 	 * @return the aligned consensus sequence
@@ -180,9 +180,9 @@ public class GeneSequenceReads {
 	 *  initial and trailing "." for incomplete sequence. All insertions are
 	 *  removed from the result. The result is equivalent to the result of
 	 *  <tt>getAlignedSequence(false)</tt>.
-	 * 
+	 *
 	 * @return the aligned consensus NA sequence
-	 */ 
+	 */
 	public String getAlignedNAs() {
 		return getAlignedNAs(false);
 	}
@@ -197,7 +197,7 @@ public class GeneSequenceReads {
 		return CodonTranslation.simpleTranslate(
 			this.getAlignedNAs(false), firstAA, gene.getReference());
 	}
-	
+
 	public List<MutationStats> getMutationStats(Collection<Double> allMinPrevalence) {
 		return allMinPrevalence.stream().map(
 			mp -> new MutationStats(mp, getMutations(mp))

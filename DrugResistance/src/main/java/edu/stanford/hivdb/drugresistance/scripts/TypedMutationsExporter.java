@@ -42,8 +42,8 @@ public class TypedMutationsExporter {
 	}
 
 	private static void exportUnusuals() {
-		HIVAminoAcidPercents allAAPcnts = HIVAminoAcidPercents.getInstance("all", "All"); 
-	
+		HIVAminoAcidPercents allAAPcnts = HIVAminoAcidPercents.getInstance("all", "All");
+
 		for (Gene gene : Gene.values()) {
 			List<String> headers = new ArrayList<>();
 			Map<Character, List<String>> rows = new TreeMap<>();

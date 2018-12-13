@@ -50,7 +50,7 @@ public class FastHivdb {
 		public PositionNode() {
 			childAAs = new LinkedHashMap<>();
 		}
-		
+
 		@Override
 		public String toString() {
 			return childAAs.toString();
@@ -71,7 +71,7 @@ public class FastHivdb {
 			isLeaf = true;
 			this.scores.put(rule.drug, rule.score);
 		}
-		
+
 		@Override
 		public String toString() {
 			return childPositions.toString();

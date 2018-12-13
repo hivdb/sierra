@@ -40,7 +40,7 @@ public class MutationMapUtilsTest {
 	final private Mutation mut4 = new IUPACMutation(Gene.RT, 184, "V");
 	final private Mutation mut5 = new IUPACMutation(Gene.RT, 41, "L");
 	final private Mutation mut6 = new IUPACMutation(Gene.RT, 151, "M");
-	
+
 	@Before
 	public void setUp() {
 		mutationScores.clear();

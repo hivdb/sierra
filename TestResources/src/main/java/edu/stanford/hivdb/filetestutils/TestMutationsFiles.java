@@ -46,4 +46,5 @@ public class TestMutationsFiles {
 	{
 		return TestMutationsFiles.class.getClassLoader().getResourceAsStream(testMutationsProperties.propertyName);
 	}
+
 }

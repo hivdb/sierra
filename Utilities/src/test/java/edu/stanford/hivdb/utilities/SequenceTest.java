@@ -29,29 +29,18 @@ public class SequenceTest {
 
 	@Test
 	public void testConstructionFromGenBank() {
-		Sequence seq;
-		try {
-			seq = Sequence.fromGenbank("186416");
-			assertEquals(Integer.valueOf(1966), seq.getLength());
-			assertEquals("M13437.1 Human ovarian beta-B inhibin mRNA", seq.getHeader());
-			assertEquals("d0b264921eec89f8ab2a57c11bad292c", seq.getMD5());
-			assertEquals("35af5703862dd708a8ac1edc6b740e272e2ea85ee77643e5f0" +
-						 "46e283d5eb2823e44f9772ab8f4d9d356f0e8ffc484d916b43" +
-						 "0dec1db960c48125a528f859f97d", seq.getSHA512());
-		} catch(RuntimeException e) {
-			seq = null;
-			assertNull(seq);
-		}
+		Sequence seq = Sequence.fromGenbank("186416");
+		assertEquals(Integer.valueOf(1966), seq.getLength());
+		assertEquals("M13437.1 Human ovarian beta-B inhibin mRNA", seq.getHeader());
+		assertEquals("d0b264921eec89f8ab2a57c11bad292c", seq.getMD5());
+		assertEquals("35af5703862dd708a8ac1edc6b740e272e2ea85ee77643e5f0" +
+					 "46e283d5eb2823e44f9772ab8f4d9d356f0e8ffc484d916b43" +
+					 "0dec1db960c48125a528f859f97d", seq.getSHA512());
 	}
 
 	@Test
 	public void testConstructionFromGenBank_null() {
-		Sequence seq;
-		try {
-			seq = Sequence.fromGenbank("//://");
-		} catch(RuntimeException e) {
-			seq = null;
-		}
+		Sequence seq = Sequence.fromGenbank("//://");
 		assertNull(seq);
 	}
 

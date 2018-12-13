@@ -61,7 +61,7 @@ public class ConditionalCommentsTest {
 	}
 	
 	// ConditionalComment Tests
-	
+
 	@Test
 	public void testConCmtConstructor() {
 		final ConditionalComment cmt
@@ -140,7 +140,7 @@ public class ConditionalCommentsTest {
 		final String dlText = cmt.getDrugLevelsText();
 		assertEquals("", dlText);
 	}
-	
+
 	// BoundComment Tests
 
 	@Test
@@ -148,7 +148,7 @@ public class ConditionalCommentsTest {
 		final CommentType eCmtType = CommentType.NRTI;
 		final List<String> eHighlightText = Arrays.asList("D67P");
 		final Mutation eMut = IUPACMutation.parseString("RT67P");
-		final BoundComment cmt = 
+		final BoundComment cmt =
 			new BoundComment(eName, eDrugClassNRTI, eCmtType, eComment, eHighlightText, eMut);
 		assertEquals(eName, cmt.getName());
 		assertEquals(eDrugClassNRTI, cmt.drugClass());
@@ -158,9 +158,9 @@ public class ConditionalCommentsTest {
 		assertEquals(eMut, cmt.getBoundMutation());
 		assertEquals(Gene.RT, cmt.getGene());
 	}
-	
+
 	@Test
-	public void testGetCommentsDrugResistanceComment() {
+	public void testGetCommentsofDrugResistance() {
 		final MutationSet mutSet = new MutationSet("PR84A");
 		final GeneDR dr = new GeneDRFast(Gene.PR, mutSet);
 		final List<BoundComment> cmts = ConditionalComments.getComments(dr);
@@ -168,19 +168,19 @@ public class ConditionalCommentsTest {
 		final String textPrefix = cmts.get(0).getText();
 		assertTrue(textPrefix.startsWith(eTextPrefix));
 	}
-	
+
 	@Test
-	public void testGetMutationComment() {
-		final Mutation mut = new Mutation(Gene.RT, 69, "_SS");
+	public void testGetCommentsFromMutOfInsertion() {
+		final Mutation mut = new IUPACMutation(Gene.RT, 69, "_SS");
 		final List<BoundComment> result = ConditionalComments.getComments(mut);
 		for (BoundComment cmt : result) {
 			assertEquals(cmt.getBoundMutation().getAAs(), "_");
 		}
 	}
-	
+
 	@Test
 	public void testGetCommentsFromMutOfDeletion() {
-		final Mutation mut = new Mutation(Gene.RT, 67, "-");
+		final Mutation mut = new IUPACMutation(Gene.RT, 67, "-");
 		final List<BoundComment> result = ConditionalComments.getComments(mut);
 		for (BoundComment cmt : result) {
 			assertEquals(cmt.getBoundMutation().getAAs(), "-");
