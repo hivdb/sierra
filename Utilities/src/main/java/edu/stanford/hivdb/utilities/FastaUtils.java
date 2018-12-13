@@ -1,17 +1,17 @@
 /*
-    
+
     Copyright (C) 2017 Stanford HIVDB team
-    
+
     Sierra is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
-    
+
     Sierra is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-    
+
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
@@ -44,7 +44,7 @@ import net.sf.jfasta.impl.FASTAFileWriter;
 
 public class FastaUtils {
 	private FastaUtils() {}
-	
+
 	/**
 	 * Cleans up the FASTA file so JFASTA can tolerate errors.
 	 *
@@ -64,7 +64,7 @@ public class FastaUtils {
 			new BufferedReader(new InputStreamReader(stream));
 		List<String> result = new ArrayList<>();
 		boolean isPrevIdentLine = false;
-			
+
 		for (String line : reader.lines().toArray(size -> new String[size])) {
 			if (line.startsWith("#")) {
 				continue;
@@ -158,7 +158,7 @@ public class FastaUtils {
 		InputStream stream = new ByteArrayInputStream(inputString.getBytes());
 		return readStream(stream);
 	}
-	
+
 	public static void writeStream(Collection<Sequence> sequences, OutputStream stream) {
 		try (
 			FASTAFileWriter writer = new FASTAFileWriter(stream);

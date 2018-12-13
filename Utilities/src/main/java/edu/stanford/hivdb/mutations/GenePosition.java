@@ -1,16 +1,16 @@
 /*
     Copyright (C) 2017 Stanford HIVDB team
-    
+
     Sierra is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
-    
+
     Sierra is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-    
+
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
@@ -30,12 +30,12 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 public class GenePosition implements Comparable<GenePosition> {
 	public final Gene gene;
 	public final Integer position;
-	
+
 	public GenePosition(final Gene gene, final int pos) {
 		this.gene = gene;
 		this.position = pos;
 	}
-	
+
 	public GenePosition(final String text) {
 		String[] genePos = text.split(":", 2);
 		this.gene = Gene.valueOf(genePos[0]);
@@ -53,7 +53,7 @@ public class GenePosition implements Comparable<GenePosition> {
 			.append(position, gp.position)
 			.isEquals();
 	}
-	
+
 	@Override
 	public int compareTo(GenePosition o) {
 		if (o == null) throw new NullPointerException("Null is incomprable.");
@@ -63,12 +63,12 @@ public class GenePosition implements Comparable<GenePosition> {
 		}
 		return cmp;
 	}
-	
+
 	@Override
 	public String toString() {
 		return String.format("%s:%d", gene, position);
 	}
-	
+
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder(63261, 362788935)

@@ -1,17 +1,17 @@
 /*
-    
+
     Copyright (C) 2017 Stanford HIVDB team
-    
+
     Sierra is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
-    
+
     Sierra is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-    
+
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
@@ -68,14 +68,14 @@ public class Sequence {
 //	public static List<Sequence> fromGenbank(Collection<String> accessions) {
 //		return FastaUtils.fetchGenbank(accessions);
 //	}
-	
+
 	public static Sequence fromGenbank(String accession) {
 		List<String> accessions = Arrays.asList(accession);
 		List<Sequence> result = FastaUtils.fetchGenbank(accessions);
 		if (result.isEmpty()) return null;
 		return result.get(0);
 	}
-		
+
 	public Sequence(final FASTAElement el) {
 		this(el.getHeader(), el.getSequence());
 	}
@@ -95,7 +95,7 @@ public class Sequence {
 		}
 		return result;
 	}
- 
+
 	public String getHeader() {
 		return header;
 	}
@@ -115,18 +115,18 @@ public class Sequence {
 	public String getSHA512() {
 		return DigestUtils.sha512Hex(sequence);
 	}
-	
-	public Sequence reverseCompliment() { 
+
+	public Sequence reverseCompliment() {
 		StringBuilder reversed = new StringBuilder();
 		int seqLen = sequence.length();
-			
+
 		for (int i = seqLen - 1; i >= 0; i--) {
 			char code = sequence.charAt(i);
 			reversed.append(COMPLEMENT_CODES.getOrDefault(code, code));
 		}
 		return new Sequence(header, reversed.toString());
 	}
- 
+
 	@Override
 	public boolean equals(Object o) {
 		if (o == this) { return true; }

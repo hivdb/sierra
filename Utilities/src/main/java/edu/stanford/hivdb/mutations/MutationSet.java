@@ -1,17 +1,17 @@
 /*
-    
+
     Copyright (C) 2017 Stanford HIVDB team
-    
+
     Sierra is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
-    
+
     Sierra is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-    
+
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
@@ -95,7 +95,7 @@ public class MutationSet extends TreeSet<Mutation> {
 	public MutationSet(String formattedMuts) {
 		this(parseString(null, formattedMuts));
 	}
-	
+
 	public MutationSet displayAmbiguities() {
 		List<Mutation> tmpMuts = new ArrayList<>();
 		for (Mutation mut : this) {
@@ -123,9 +123,9 @@ public class MutationSet extends TreeSet<Mutation> {
 			.stream()
 			.filter(mStr -> mStr.length() > 0)
 			.map(mStr -> IUPACMutation.parseString(gene, mStr))
-//			Since parseString throws exceptions instead of returning 
+//			Since parseString throws exceptions instead of returning
 //			null mutations, the call to filter below may be redundant.
-//			.filter(mut -> mut != null) 	 
+//			.filter(mut -> mut != null)
 			.collect(Collectors.toList());
 	}
 
@@ -154,7 +154,7 @@ public class MutationSet extends TreeSet<Mutation> {
 		genePositionMap.put(gp, mut);
 		return true;
 	}
-	
+
 	// Begin of all write methods
 	@Override
 	public boolean addAll(Collection<? extends Mutation> muts) {
@@ -471,7 +471,7 @@ public class MutationSet extends TreeSet<Mutation> {
 			return true;
 		});
 	}
-	
+
 	public MutationSet getDRMs() {
 		return filterBy(mut -> mut.getPrimaryType() != MutType.Other);
 	}
@@ -497,7 +497,7 @@ public class MutationSet extends TreeSet<Mutation> {
 	}
 
 	/** Returns a set of non-mixture mutations for all mutations.
-	 * 
+	 *
 	 * @return The mutation set
 	 */
 	public Set<Mutation> getSplitted() {
@@ -509,8 +509,8 @@ public class MutationSet extends TreeSet<Mutation> {
 	}
 
 	/** Returns list of mutation positions
-	 * 
-	 * @return a list of mutation positions 
+	 *
+	 * @return a list of mutation positions
 	 */
 	public List<GenePosition> getPositions() {
 		return new ArrayList<>(genePositionMap.keySet());
@@ -567,7 +567,7 @@ public class MutationSet extends TreeSet<Mutation> {
 	public Map<Mutation, List<MutationPrevalence>> getPrevalences() {
 		return MutationPrevalences.groupPrevalenceByPositions(this);
 	}
-	
+
 	public String join(
 			CharSequence delimiter,
 			Function<Mutation, CharSequence> mutationToString) {

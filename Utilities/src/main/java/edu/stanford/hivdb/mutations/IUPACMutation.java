@@ -1,17 +1,17 @@
 /*
-    
+
     Copyright (C) 2017 Stanford HIVDB team
-    
+
     Sierra is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
-    
+
     Sierra is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-    
+
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
@@ -27,11 +27,11 @@ import org.apache.commons.lang3.StringUtils;
 import edu.stanford.hivdb.utilities.MyStringUtils;
 
 public class IUPACMutation extends AAMutation {
-	
+
 	private static Pattern mutationPattern = Pattern.compile(
 		"^\\s*" +
 		"((?i:PR|RT|IN))?[:_-]?" +
-		"([AC-IK-NP-TV-Y])?" + 
+		"([AC-IK-NP-TV-Y])?" +
 		"(\\d{1,3})" +
 		"([AC-IK-NP-TV-Z.*]+(?:[#_]?[AC-IK-NP-TV-Z.*]+)?|[id_#~-]|[iI]ns(?:ertion)?|[dD]el(?:etion)?)" +
 		"(?::([ACGTRYMWSKBDHVN-]{3})?)?" +
@@ -48,15 +48,15 @@ public class IUPACMutation extends AAMutation {
 		}
 		return aas.toCharArray();
 	}
-	
+
 	public static IUPACMutation fromNucAminoMutation(Gene gene, int aaStart, Map<?, ?> mut) {
 		int pos = ((Double) mut.get("Position")).intValue() - aaStart + 1;
-		
+
 		String codon = "";
 		String insertedCodon = "";
 		boolean isInsertion = (Boolean) mut.get("IsInsertion");
 		boolean isDeletion = (Boolean) mut.get("IsDeletion");
-		
+
 		StringBuilder aas = new StringBuilder();
 		if (isDeletion) {
 			aas.append('-');
@@ -81,16 +81,16 @@ public class IUPACMutation extends AAMutation {
 	 * The code explains the normalization rules.
 	 */
 	public static String normalizeAAs(String aas) {
-		if (aas == null) return null;	
-		
+		if (aas == null) return null;
+
 		aas = aas.replaceAll("^[dD]elet(e|ion)|d(el)?|~$", "-")
 			     .replaceAll("^[iI]nsert(ion)?|i(ns)?$|#", "_")
 			     .replaceAll("[.Z]", "*");
-		
+
 		if (aas.length() > 1 && !aas.contains("_")) {
 			return MyStringUtils.sortAlphabetically(aas).toUpperCase();
 		}
-		
+
 		return aas.toUpperCase();
 	}
 
@@ -115,7 +115,7 @@ public class IUPACMutation extends AAMutation {
 		}
 		return gene;
 	}
-	
+
 	/**
 	 * Converts gene and mutText string into a Mutation object
 	 * mutText may or may not have a preceding consensus
@@ -136,9 +136,9 @@ public class IUPACMutation extends AAMutation {
 						"for an input mutation string is, for example, " +
 						"RT:215Y.", e);
 				}
-			}	
+			}
 			int pos = Integer.parseInt(m.group(3));
-			String aas = normalizeAAs(m.group(4)); 
+			String aas = normalizeAAs(m.group(4));
 			String triplet = m.group(5);
 			if (triplet == null) triplet = "";
 			mut = new IUPACMutation(gene, pos, aas, triplet, "", 0xff);
@@ -148,11 +148,11 @@ public class IUPACMutation extends AAMutation {
 		}
 		return mut;
 	}
-	
+
 	public static IUPACMutation parseString(String mutText) {
 		return parseString(null, mutText);
 	}
-	
+
 	/**
 	 *
 	 * @param gene
@@ -203,7 +203,7 @@ public class IUPACMutation extends AAMutation {
 	public IUPACMutation(Gene gene, int position, Character aa) {
 		this(gene, position, "" + aa, "", "");
 	}
-		
+
 	@Override
 	@Deprecated
 	public Mutation mergesWith(Mutation another) {
@@ -221,7 +221,7 @@ public class IUPACMutation extends AAMutation {
 		return !isInsertion() &&
 			StringUtils.countMatches(triplet.replace('-', 'N'), "N") > 1;
 	}
-	
+
 	@Override
 	public String getDisplayAAs() {
 		String[] splited = aas.split("_", 2);
@@ -230,16 +230,16 @@ public class IUPACMutation extends AAMutation {
 		}
 		return StringUtils.join(splited, '_');
 	}
-	
+
 	@Override
 	public String getAAs() { return aas; }
-	
+
 	@Override
 	public String getTriplet() { return triplet; }
 
 	@Override
 	public String getInsertedNAs() { return insertedNAs; }
-	
+
 	@Override
 	public boolean hasBDHVN() {
 		// TODO: what if BDHVN doesn't affect the amimo acid?
@@ -250,13 +250,13 @@ public class IUPACMutation extends AAMutation {
 	public String getAAsWithRefFirst() {
 		String[] aas = getDisplayAAs().split("_", 2);
 		String ref = getReference();
-		
+
 		if (aas[0].contains(ref)) {
 			aas[0] = ref + aas[0].replaceAll(ref, "");
 		}
 		return String.join("_", aas);
 	}
-	
+
 	@Override
 	public String getAAsWithoutReference () {
 		String[] aas = getDisplayAAs().split("_", 2);
