@@ -95,6 +95,7 @@ public class AAMutation implements Mutation {
 	protected int getMaxDisplayAAs() { return maxDisplayAAs; }
 
 	@Override
+	@Deprecated
 	public Mutation mergesWith(Mutation another) {
 		if (another == null ||
 			gene != another.getGene() ||
@@ -114,6 +115,7 @@ public class AAMutation implements Mutation {
 	}
 
 	@Override
+	@Deprecated
 	public Mutation subtractsBy(Mutation another) {
 		if (another == null ||
 			gene != another.getGene() ||
@@ -137,6 +139,7 @@ public class AAMutation implements Mutation {
 	}
 
 	@Override
+	@Deprecated
 	public Mutation intersectsWith(Mutation another) {
 		if (another == null ||
 			gene != another.getGene() ||
@@ -175,7 +178,7 @@ public class AAMutation implements Mutation {
 
 	@Override
 	public final String getReference() {
-		return "" + getRefChar();
+		return String.valueOf(getRefChar());
 	}
 	
 	protected final char getRefChar() {
@@ -349,10 +352,10 @@ public class AAMutation implements Mutation {
 	public boolean equals(Object o) {
 		if (o == this) { return true; }
 		if (o == null) { return false; }
-		if (!(o instanceof AAMutation)) { return false;}
+		if (!(o instanceof AAMutation)) { return false; }
 		AAMutation m = (AAMutation) o;
 
-		// isDeletion and isInsertion is related to aas
+		// isDeletion and isInsertion is related to AAs
 		return new EqualsBuilder()
 			.append(gene, m.gene)
 			.append(position, m.position)
