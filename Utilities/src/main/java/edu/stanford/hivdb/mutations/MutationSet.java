@@ -141,13 +141,13 @@ public class MutationSet extends TreeSet<Mutation> {
 		if (mut == null) {
 			return false;
 		}
-		GenePosition gp = new GenePosition(mut.getGene(), mut.getPosition());
+		GenePosition gp = mut.getGenePosition();
 		Mutation origMut = genePositionMap.getOrDefault(gp, null);
 		if (mut.equals(origMut) || mut.getReference().equals(mut.getAAs())) {
 			return false;
 		}
 		if (origMut != null) {
-			mut = origMut.mergesWith(mut);
+			mut = origMut.mergesWith(mut.getAAChars());
 			super.remove(origMut);
 		}
 		super.add(mut);
@@ -295,7 +295,7 @@ public class MutationSet extends TreeSet<Mutation> {
 				mutations.add(thisMut);
 			}
 			else {
-				mutations.add(thisMut.subtractsBy(anotherMut));
+				mutations.add(thisMut.subtractsBy(anotherMut.getAAChars()));
 			}
 		}
 		return new MutationSet(mutations);

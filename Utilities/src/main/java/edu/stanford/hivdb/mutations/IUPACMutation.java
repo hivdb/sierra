@@ -205,6 +205,7 @@ public class IUPACMutation extends AAMutation {
 	}
 		
 	@Override
+	@Deprecated
 	public Mutation mergesWith(Mutation another) {
 		if (isIndel() || another.isIndel()) {
 			throw new UnsupportedOperationException(String.format(
@@ -218,7 +219,7 @@ public class IUPACMutation extends AAMutation {
 	public boolean isUnsequenced() {
 		// "NNN", "NN-", "NNG" should be considered as unsequenced region
 		return !isInsertion() &&
-			StringUtils.countMatches(triplet.replace('-', 'N'),	"N") > 1;
+			StringUtils.countMatches(triplet.replace('-', 'N'), "N") > 1;
 	}
 	
 	@Override
