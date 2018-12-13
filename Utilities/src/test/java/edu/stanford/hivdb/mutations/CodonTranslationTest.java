@@ -1,17 +1,17 @@
 /*
-    
+
     Copyright (C) 2017 Stanford HIVDB team
-    
+
     Sierra is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
-    
+
     Sierra is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-    
+
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
@@ -39,16 +39,16 @@ public class CodonTranslationTest {
 	public void testGenerateControlString() {
 		assertEquals(
 			"  .", CodonTranslation.generateControlString("TTT", "Asn"));
-		
+
 		assertEquals(
 			"  .", CodonTranslation.generateControlString("TTTT", "Asn"));
-		
+
 		assertEquals(
 			"  .", CodonTranslation.generateControlString("TTTTT", "Asn"));
-		
+
 		assertEquals(
 			"  .", CodonTranslation.generateControlString("TTTTTT", "Asn"));
-		
+
 		assertEquals(
 			":::", CodonTranslation.generateControlString("ATG", "Met"));
 
@@ -70,9 +70,9 @@ public class CodonTranslationTest {
 		assertEquals(
 			". .", CodonTranslation.generateControlString("TGA", "Leu"));
 	}
-	
-	@Test 
-	public void testSimpleTranslate() {	
+
+	@Test
+	public void testSimpleTranslate() {
 		assertEquals("", CodonTranslation.simpleTranslate(""));
 		assertEquals("S", CodonTranslation.simpleTranslate("AGT"));
 		assertEquals("S", CodonTranslation.simpleTranslate("AGTC"));
@@ -86,9 +86,9 @@ public class CodonTranslationTest {
 		assertEquals("XX", CodonTranslation.simpleTranslate("ABCDEF"));
 		assertEquals("HXH", CodonTranslation.simpleTranslate("CATABCCAC"));
 	}
-	
+
 	@Test
-	public void testSimpleTranslateWithConAA() {	
+	public void testSimpleTranslateWithConAA() {
 		assertEquals("P", CodonTranslation.simpleTranslate("SCN", 1, "A"));
 		assertEquals("A", CodonTranslation.simpleTranslate("SCN", 1, "P"));
 	}

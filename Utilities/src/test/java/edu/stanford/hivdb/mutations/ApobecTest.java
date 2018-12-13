@@ -1,17 +1,17 @@
 /*
-    
+
     Copyright (C) 2017 Stanford HIVDB team
-    
+
     Sierra is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
-    
+
     Sierra is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-    
+
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
@@ -33,14 +33,14 @@ import edu.stanford.hivdb.utilities.MutationFileReader;
 public class ApobecTest {
 	// Initialization
 //	@Test
-//	public void testApobecMapPopulation() {	
+//	public void testApobecMapPopulation() {
 //		try {
 //			Apobec.populateApobecMaps();
 //		} catch (SQLException e) {
 //			e.printStackTrace();
 //		}
 //	}
-	
+
 	@Test
 	public void testBasicApobecMutVerification() {
 		final Mutation apocecMut = new IUPACMutation(Gene.RT, 239, "*");
@@ -48,7 +48,7 @@ public class ApobecTest {
 		assertFalse(Apobec.isApobecMutation(drmMut));
 		assertTrue(Apobec.isApobecMutation(apocecMut));
 	}
-	
+
 	@Test
 	public void testBasicDrmMutVerification() {
 		final Mutation drmMut = new IUPACMutation(Gene.PR, 30, "N");
@@ -56,7 +56,7 @@ public class ApobecTest {
 		assertFalse(Apobec.isApobecDRM(apocecMut));
 		assertTrue(Apobec.isApobecDRM(drmMut));
 	}
-	
+
 	@Test
 	public void testExhaustiveApobecMutVerification() {
 		final MutationSet apobecMuts = Apobec.getApobecMutsLU();
@@ -65,7 +65,7 @@ public class ApobecTest {
 			assertTrue(Apobec.isApobecMutation(mut));
 		});
 	}
-	
+
 	@Test
 	public void testExhaustiveDrmMutVerification() {
 		final MutationSet drms = Apobec.getApobecDRMsLU();
@@ -74,21 +74,21 @@ public class ApobecTest {
 			assertTrue(Apobec.isApobecDRM(mut));
 		});
 	}
-	
+
 	@Test
 	public void testZeroMutsAtDRP() {
 		final MutationSet nonDRPmuts = new MutationSet("PR6* PR17K PR:D30N IN:G140S RT:M230I");
 		final Apobec a = new Apobec(nonDRPmuts);
 		assertEquals(new MutationSet(""), a.getApobecMutsAtDRP());
 	}
-	
+
 	@Test
 	public void testMultipleMutsAtDRP() {
 		final MutationSet eMutsAtDR = new MutationSet("PR48R IN140E RT190R");
 		final Apobec a = new Apobec(eMutsAtDR);
 		assertEquals(eMutsAtDR, a.getApobecMutsAtDRP());
 	}
-		
+
 	@Test
 	public void testZeroMuts() {
 		final String expected = "There are no mutations present in this sequence.";
@@ -96,21 +96,21 @@ public class ApobecTest {
 		assertEquals(0, a.getNumApobecMuts());
 		assertEquals(expected, a.generateComment());
 	}
-	
+
 	@Test
 	public void testSingleApobecMut() {
 		final String expected = "The following 1 APOBEC muts were present in the sequence: PR: G17K.";
 		final Apobec a = new Apobec(new MutationSet("PR17K"));
 		assertEquals(expected, a.generateComment());
 	}
-	
+
 	@Test
 	public void testSingleApobecMutWithStopCodon() {
 		final String expected = "The following 1 APOBEC muts were present in the sequence: PR: W6*.";
 		final Apobec a = new Apobec(new MutationSet("PR6*"));
 		assertEquals(expected, a.generateComment());
 	}
-	
+
 	@Test
 	public void testMultipleApobecMuts() {
 		final String expected = "The following 3 APOBEC muts were present in the sequence: PR: W6*, G17K; RT: W239*.";
@@ -118,7 +118,7 @@ public class ApobecTest {
 		assertEquals(3, a.getNumApobecMuts());
 		assertEquals(expected, a.generateComment());
 	}
-	
+
 	@Test
 	public void testSingleDRM() {
 		final String expected = "The following 0 APOBEC muts were present in the sequence: . The following 1 DRMs in this sequence could reflect APOBEC activity: PR: D30N.";
@@ -128,7 +128,7 @@ public class ApobecTest {
 		assertEquals(drm.getDRMs(), a.getApobecDRMs());
 		assertEquals(expected, a.generateComment());
 	}
-	
+
 	@Test
 	public void testMultipleDRMs() {
 		final String expected = "The following 0 APOBEC muts were present in the sequence: . The following 3 DRMs in this sequence could reflect APOBEC activity: PR: D30N; RT: M230I; IN: G140S.";
@@ -138,7 +138,7 @@ public class ApobecTest {
 		assertEquals(drms.getDRMs(), a.getApobecDRMs());
 		assertEquals(expected, a.generateComment());
 	}
-	
+
 	@Test
 	public void testMixedMuts() {
 		final String expected = "The following 2 APOBEC muts were present in the sequence: PR: W6*, G17K. The following 3 DRMs in this sequence could reflect APOBEC activity: PR: D30N; RT: M230I; IN: G140S.";
@@ -151,7 +151,7 @@ public class ApobecTest {
 		assertEquals(mixedMuts.getDRMs(), a.getApobecDRMs());
 		assertEquals(expected, a.generateComment());
 	}
-	
+
 	@Test
 	public void testMixMutsFromFile() {
 		final String eComment = "The following 4 APOBEC muts were present in the sequence: PR: G48ER, G52R; RT: M41I, G190R. The following 3 DRMs in this sequence could reflect APOBEC activity: PR: G73S; RT: D67N, M184I.";
@@ -165,5 +165,5 @@ public class ApobecTest {
 		assertEquals("Apobec mutations not as expected.", eMuts, muts);
 		assertEquals("DRMs not as expected.", eDRMs, drms);
 		assertEquals(eComment, a.generateComment());
-	}		
+	}
 }

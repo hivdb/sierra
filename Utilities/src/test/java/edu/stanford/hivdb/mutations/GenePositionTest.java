@@ -10,9 +10,9 @@ public class GenePositionTest {
 	static final int MAX_RT_POS = 560;
 	static final int MAX_IN_POS = 288;
 	static final int TOTAL_POS = MAX_PR_POS + MAX_RT_POS + MAX_IN_POS;
-	
-	// Potential issues: 
-	// 1. Doesn't throw out of bounds exceptions. 
+
+	// Potential issues:
+	// 1. Doesn't throw out of bounds exceptions.
 	@Test
 	public void testConstruction() {
 		final GenePosition prGP = new GenePosition(Gene.PR, MAX_PR_POS);
@@ -29,12 +29,12 @@ public class GenePositionTest {
 		assertEquals(inGPMax.position, Integer.valueOf(Integer.MAX_VALUE));
 		assertEquals(inGPMin.position, Integer.valueOf(Integer.MIN_VALUE));
 	}
-	
-	// Potential issues: 
+
+	// Potential issues:
 	// 1. Case sensitive
 	// 2. Doesn't throw exceptions for malformed strings.
-	//	  Perhaps this method could parse the string with a regex and  
-	//	  throw an exception if the input doesn't match it. 
+	//	  Perhaps this method could parse the string with a regex and
+	//	  throw an exception if the input doesn't match it.
 	@Test
 	public void testConstructionFromString() {
 		final GenePosition prGP = new GenePosition("PR:99");
@@ -50,7 +50,7 @@ public class GenePositionTest {
 		assertEquals("RT:560", rtGP.toString());
 		assertEquals("IN:288", inGP.toString());
 	}
-	
+
 	@SuppressWarnings("unlikely-arg-type")
 	@Test
 	public void testEquals() {
@@ -63,7 +63,7 @@ public class GenePositionTest {
 		assertFalse(prGPFromStr.equals(rtGPFromStr));
 		assertFalse(prGPFromStr.equals(Gene.PR));
 	}
-	
+
 	@Test
 	public void testCompareTo() {
 		final GenePosition prGPMin = new GenePosition(Gene.PR, 1);
@@ -75,15 +75,15 @@ public class GenePositionTest {
 		assertEquals(prGPMin.compareTo(prGPMid), -1);
 		assertEquals(prGPMax.compareTo(prGPMid), 1);
 	}
-	
+
 	@Test(expected = NullPointerException.class)
 	public void testCompareToException() {
 		final GenePosition gp = new GenePosition(Gene.PR, 1);
 		assertEquals(gp.compareTo(null), 1);
 	}
-	
+
 	@Test
-	public void testHash() {		
+	public void testHash() {
 		Set<Integer> hashCodes = new HashSet<Integer>();
 		for (int pos = 1; pos <= MAX_RT_POS; pos++) {
 			if (pos <= MAX_PR_POS) hashCodes.add(new GenePosition(Gene.PR, pos).hashCode());

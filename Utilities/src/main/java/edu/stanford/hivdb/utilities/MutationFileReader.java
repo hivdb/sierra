@@ -1,17 +1,17 @@
 /*
-    
+
     Copyright (C) 2017 Stanford HIVDB team
-    
+
     Sierra is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
-    
+
     Sierra is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-    
+
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
@@ -28,18 +28,12 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import org.apache.commons.lang3.StringUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-import edu.stanford.hivdb.drugs.DrugClass;
 import edu.stanford.hivdb.mutations.IUPACMutation;
-import edu.stanford.hivdb.mutations.Gene;
 import edu.stanford.hivdb.mutations.Mutation;
 import edu.stanford.hivdb.mutations.MutationSet;
 
 public class MutationFileReader {
-	
+
 	private static final Pattern MUT_PATTERN = IUPACMutation.getPattern();
 
 	/**
@@ -53,7 +47,7 @@ public class MutationFileReader {
 	 */
 	public static List<MutationSet> readMutationLists(InputStream fileInputStream) {
 		List<MutationSet> fileMuts = new ArrayList<>();
-		
+
 		try {
 			BufferedReader br = new BufferedReader(new InputStreamReader(fileInputStream));
 			String line;
@@ -71,7 +65,7 @@ public class MutationFileReader {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		return fileMuts;
 	}
 

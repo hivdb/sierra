@@ -1,17 +1,17 @@
 /*
-    
+
     Copyright (C) 2017 Stanford HIVDB team
-    
+
     Sierra is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
-    
+
     Sierra is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-    
+
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
@@ -34,7 +34,7 @@ import edu.stanford.hivdb.mutations.Gene;
 import edu.stanford.hivdb.mutations.PositionCodonReads;
 
 public class PositionCodonReadsDef {
-	
+
 	public static PositionCodonReads toPositionCodonReads(Map<?, ?> input) {
 		Map<String, Long> allCodonReads = (
 			((List<?>) input.get("allCodonReads"))
@@ -56,7 +56,7 @@ public class PositionCodonReadsDef {
 			totalReads,
 			allCodonReads);
 	}
-	
+
 	public static GraphQLInputObjectType iOneCodonReads = newInputObject()
 		.name("OneCodonReadsInput")
 		.description("A single codon reads.")
@@ -71,7 +71,7 @@ public class PositionCodonReadsDef {
 			.name("reads")
 			.description("Number of reads for this codon."))
 		.build();
-	
+
 	public static GraphQLObjectType oOneCodonReads = newObject()
 		.name("OneCodonReads")
 		.description("A single codon reads.")
@@ -116,7 +116,7 @@ public class PositionCodonReadsDef {
 			.name("allCodonReads")
 			.description("All codon reads at this position."))
 		.build();
-	
+
 	public static GraphQLObjectType oPositionCodonReads = newObject()
 		.name("PositionCodonReads")
 		.description("Codon reads at a single position.")
@@ -139,6 +139,6 @@ public class PositionCodonReadsDef {
 			.name("codonReads")
 			.description("All codon reads at this position."))
 		.build();
-		
+
 
 }

@@ -1,17 +1,17 @@
 /*
-	
+
 	Copyright (C) 2017 Stanford HIVDB team
-	
+
 	Sierra is free software: you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
 	the Free Software Foundation, either version 3 of the License, or
 	(at your option) any later version.
-	
+
 	Sierra is distributed in the hope that it will be useful,
 	but WITHOUT ANY WARRANTY; without even the implied warranty of
 	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 	GNU General Public License for more details.
-	
+
 	You should have received a copy of the GNU General Public License
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
@@ -49,7 +49,7 @@ public class SequenceReads {
 	private Double minPrevalence;
 	private Double medianReadDepth;
 	private Long minReadDepth;
-	
+
 	public static SequenceReads fromCodonReadsTable(
 			String name, List<PositionCodonReads> allReads,
 			Double minPrevalence, Long minReadDepth) {
@@ -81,13 +81,13 @@ public class SequenceReads {
 		if (ReadDepths.length > 0) {
 			medianReadDepth = median.evaluate(ReadDepths);
 		}
-		
+
 		return new SequenceReads(
 				name, geneSequences,
 				finalMinPrevalence, finalMinReadDepth,
 				medianReadDepth);
 	}
-	
+
 	public SequenceReads(
 			final String name,
 			final EnumMap<Gene, GeneSequenceReads> allGeneSequenceReads,
@@ -99,35 +99,35 @@ public class SequenceReads {
 		this.minReadDepth = minReadDepth;
 		this.medianReadDepth = medianReadDepth;
 	}
-	
+
 	public String getName() { return name; }
-	
+
 	public boolean isEmpty() { return allGeneSequenceReads.isEmpty(); }
-	
+
 	public double getMinPrevalence() { return minPrevalence; }
-	
+
 	public long getMinReadDepth() { return minReadDepth; }
 
 	public Double getMedianReadDepth() { return medianReadDepth; }
-	
+
 	public List<GeneSequenceReads> getAllGeneSequenceReads() {
 		return new ArrayList<>(allGeneSequenceReads.values());
 	}
-	
+
 	public GeneSequenceReads getGeneSequenceReads(Gene gene) {
 		return allGeneSequenceReads.get(gene);
 	}
-	
+
 	public List<Gene> getAvailableGenes() {
 		return new ArrayList<>(allGeneSequenceReads.keySet());
 	}
-	
+
 	public List<MutationStats> getMutationStats(Collection<Double> allMinPrevalence) {
 		return allMinPrevalence.stream().map(
 			mp -> new MutationStats(mp, getMutations(mp))
 		).collect(Collectors.toList());
 	}
-	
+
 	public List<MutationStats> getAllMutationStats() {
 		Set<Double> allMinPrevalence = allGeneSequenceReads.values().stream()
 			.map(gs -> gs.getPrevalencePoints())
@@ -136,7 +136,7 @@ public class SequenceReads {
 			});
 		return getMutationStats(allMinPrevalence);
 	}
-	
+
 	public String getConcatenatedSeq() {
 		if (concatenatedSeq == null) {
 			StringBuilder concatSeq = new StringBuilder();
@@ -152,7 +152,7 @@ public class SequenceReads {
 		}
 		return concatenatedSeq;
 	}
-	
+
 	public MutationSet getMutations(final double minPrevalence) {
 		if (!isEmpty()) {
 			return allGeneSequenceReads.values().stream()

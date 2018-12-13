@@ -8,7 +8,7 @@ public class AAPercent {
 	private final Boolean isUnusual;
 	private final Boolean isApobecMutation;
 	private final Boolean isApobecDRM;
-	
+
 	public AAPercent(
 		char aa, double percent, Boolean isDRM,
 		Boolean isUnusual, Boolean isApobecMutation,
@@ -21,7 +21,7 @@ public class AAPercent {
 		this.isApobecMutation = isApobecMutation;
 		this.isApobecDRM = isApobecDRM;
 	}
-	
+
 	public Character getAA() { return aa; }
 	public Double getPercent() { return percent; }
 	public Boolean isDRM() { return isDRM; }

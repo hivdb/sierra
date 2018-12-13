@@ -1,17 +1,17 @@
 /*
-	
+
 	Copyright (C) 2017 Stanford HIVDB team
-	
+
 	Sierra is free software: you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
 	the Free Software Foundation, either version 3 of the License, or
 	(at your option) any later version.
-	
+
 	Sierra is distributed in the hope that it will be useful,
 	but WITHOUT ANY WARRANTY; without even the implied warranty of
 	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 	GNU General Public License for more details.
-	
+
 	You should have received a copy of the GNU General Public License
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
@@ -30,17 +30,17 @@ public class PositionCodonReads {
 	private final int position;
 	private final long totalReads;
 	private final Map<String, Long> allCodonReads;
-	
+
 	public static class CodonReads {
 		public final String codon;
 		public final long reads;
-		
+
 		public CodonReads(final String codon, final long reads) {
 			this.codon = codon;
 			this.reads = reads;
 		}
 	}
-	
+
 	public PositionCodonReads(
 		final Gene gene,
 		final int position,
@@ -57,7 +57,7 @@ public class PositionCodonReads {
 				(e1, e2) -> e1,
 				LinkedHashMap::new));
 	}
-	
+
 	public Gene getGene() { return gene; }
 	public long getPosition() { return position; }
 	public long getTotalReads() { return totalReads; }
@@ -77,7 +77,7 @@ public class PositionCodonReads {
 				(e1, e2) -> e1,
 				LinkedHashMap::new));
 	}
-	
+
 	public String getCodonConsensus(double minPrevalence) {
 		List<String> codons = (
 			getCodonWithPrevalence(minPrevalence).keySet().stream()

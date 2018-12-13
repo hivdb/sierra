@@ -16,21 +16,21 @@ import edu.stanford.hivdb.mutations.PositionCodonReads.CodonReads;
  * restricted to non-ambiguous nucleotide code (ACGT).
  */
 public class MultiCodonsMutation extends AAMutation {
-	
+
 	private static final int DEFAULT_MAX_DISPLAY_AAS = 6;
 
 	private final Map<Character, Long> aaCounts;
 	private final long totalCount;
 	private final String compatTriplet;
-	
+
 	public static MultiCodonsMutation initUnsequenced(Gene gene, int position) {
 		return new MultiCodonsMutation(gene, position, Collections.emptyMap(), 0, "NNN");
 	}
-	
+
 	private static Map<Character, Long>
 	getAACounts(PositionCodonReads posCodonReads, long minReads) {
 		Map<Character, Long> aaCounts = new TreeMap<>();
-		
+
 		for (CodonReads codonReads : posCodonReads.getCodonReads()) {
 			// Tolerant spaces and dashes
 			String codon = codonReads.codon.replaceAll("[ -]", "");
@@ -64,7 +64,7 @@ public class MultiCodonsMutation extends AAMutation {
 		}
 		return aaCounts;
 	}
-	
+
 	private static String getCompatTriplet(
 		PositionCodonReads posCodonReads, long minReads
 	) {
@@ -90,7 +90,7 @@ public class MultiCodonsMutation extends AAMutation {
 		}
 		return CodonTranslation.getMergedCodon(cleanCodons);
 	}
-	
+
 	public static MultiCodonsMutation fromPositionCodonReads(
 		PositionCodonReads posCodonReads, double minPrevalence
 	) {
@@ -109,7 +109,7 @@ public class MultiCodonsMutation extends AAMutation {
 		return new MultiCodonsMutation(
 			gene, position, aaCounts, totalCount, compatTriplet);
 	}
-	
+
 	private MultiCodonsMutation(
 		Gene gene, int position,
 		Map<Character, Long> aaCounts,
@@ -123,14 +123,14 @@ public class MultiCodonsMutation extends AAMutation {
 
 	/**
 	 * Gets total read count of all codons (include codons of reference AA)
-	 *  
+	 *
 	 * @return a Long number
 	 */
 	public Long getTotalCount() { return totalCount; }
-	
+
 	/**
 	 * Gets amino acid percent (max: 100.0)
-	 * 
+	 *
 	 * @return a List<AAPercent> object
 	 */
 	public List<AAPercent> getAAPercents() {
@@ -158,11 +158,11 @@ public class MultiCodonsMutation extends AAMutation {
 				// Descending sort
 				return o2.getPercent().compareTo(o1.getPercent());
 			}
-			
+
 		});
 		return aaPcnts;
 	}
-	
+
 	@Override
 	public boolean isUnsequenced() { return this.totalCount == 0; }
 

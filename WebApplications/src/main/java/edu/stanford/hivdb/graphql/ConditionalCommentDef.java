@@ -1,17 +1,17 @@
 /*
-    
+
     Copyright (C) 2017 Stanford HIVDB team
-    
+
     Sierra is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
-    
+
     Sierra is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-    
+
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
@@ -40,10 +40,10 @@ public class ConditionalCommentDef {
 		}
 		return commentTypeBuilder;
 	}
-	
+
 	public static GraphQLEnumType oCommentType = newCommentType()
 		.build();
-	
+
 	public static GraphQLObjectType oBoundComment = newObject()
 		.name("BoundMutationComment")
 		.description("Comment bound to a certain mutation object.")
@@ -68,7 +68,7 @@ public class ConditionalCommentDef {
 			.dataFetcher(env -> {
 				Mutation mut = ((BoundComment) env.getSource()).getBoundMutation();
 				if (mut == null) { return null; }
-				return mut.getConsensus(); 
+				return mut.getReference();
 			})
 			.deprecate("Use `boundMutation { consensus }` instead.")
 			.description(
@@ -80,7 +80,7 @@ public class ConditionalCommentDef {
 			.dataFetcher(env -> {
 				Mutation mut = ((BoundComment) env.getSource()).getBoundMutation();
 				if (mut == null) { return null; }
-				return mut.getAAs(); 
+				return mut.getAAs();
 			})
 			.deprecate("Use `boundMutation { aas }` instead.")
 			.description("Mutated amino acid(s) that triggered the comment.")

@@ -1,17 +1,17 @@
 /*
-    
+
     Copyright (C) 2017 Stanford HIVDB team
-    
+
     Sierra is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
-    
+
     Sierra is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-    
+
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
@@ -29,7 +29,7 @@ import java.util.List;
 import java.util.Set;
 
 public class AAMutationTest {
-	
+
 	@Test
 	public void testNormalizeAAChars() {
 		assertEquals(null, AAMutation.normalizeAAChars(null));
@@ -40,12 +40,12 @@ public class AAMutationTest {
 		assertEquals(Sets.newSet('*'), AAMutation.normalizeAAChars(Sets.newSet('Z')));
 		assertEquals(Sets.newSet('*'), AAMutation.normalizeAAChars(Sets.newSet('.')));
 	}
-	
+
 	@Test(expected=IllegalArgumentException.class)
 	public void testPositionOutOfGene() {
 		new AAMutation(Gene.PR, 100, 'A');
 	}
-	
+
 	@Test(expected=IllegalArgumentException.class)
 	public void testMergesWithNotSameGene() {
 		new AAMutation(Gene.PR, 68, 'A')
@@ -100,30 +100,30 @@ public class AAMutationTest {
 		assertEquals(eDiffAD, pr67ANXDMut.subtractsBy(pr67ADMut));
 		assertEquals(eDiffADX, pr67ANXDMut.subtractsBy(pr67ADXMut));
 	}
-	
+
 	@Test
 	public void testSubtractsByEdgeCases() {
 		Mutation pr68AMut = new AAMutation(Gene.PR, 68, 'A');
 		assertEquals(null, new AAMutation(Gene.PR, 68, 'A').subtractsBy(pr68AMut));
 	}
-	
+
 	@Test(expected=IllegalArgumentException.class)
 	public void testSubtractsByNull() {
 		new AAMutation(Gene.PR, 67, 'A').subtractsBy((Mutation) null);
 	}
-	
+
 	@Test(expected=IllegalArgumentException.class)
 	public void testSubtractsByNotSamePos() {
 		Mutation pr67AMut = new AAMutation(Gene.PR, 67, 'A');
 		new AAMutation(Gene.PR, 68, 'A').subtractsBy(pr67AMut);
 	}
-	
+
 	@Test(expected=IllegalArgumentException.class)
 	public void testSubtractsByNotSameGene() {
 		Mutation rt67AMut = new AAMutation(Gene.RT, 68, 'A');
-		new AAMutation(Gene.PR, 67, 'A').subtractsBy(rt67AMut);	
+		new AAMutation(Gene.PR, 67, 'A').subtractsBy(rt67AMut);
 	}
-	
+
 	@Test(expected=IllegalArgumentException.class)
 	public void testIntersectsWithNotSameGene() {
 		new AAMutation(Gene.PR, 68, "AC".toCharArray())
@@ -199,14 +199,14 @@ public class AAMutationTest {
 		Mutation mutRT99Other = new AAMutation(Gene.RT, 99, 'G');
 		assertFalse(mutRT99Other.isAtDrugResistancePosition());
 	}
-	
+
 	@Test
 	public void testGetDisplayAAs() {
 		assertEquals("N", new AAMutation(Gene.RT, 65, 'N').getDisplayAAs());
 		assertEquals("X", new AAMutation(Gene.RT, 65, "ACDEFG".toCharArray(), 4).getDisplayAAs());
 		assertEquals("ACDEFG", new AAMutation(Gene.RT, 65, "ACDEFG".toCharArray(), 7).getDisplayAAs());
 	}
-	
+
 	@Test
 	public void testGetAAs() {
 		assertEquals("N", new AAMutation(Gene.RT, 65, 'N').getAAs());
@@ -218,13 +218,13 @@ public class AAMutationTest {
 	public void testGetAAsWithoutConsensus() {
 		assertEquals("N", new AAMutation(Gene.RT, 65, "KN".toCharArray()).getAAsWithoutReference());
 	}
-	
+
 	@Test
 	public void testGetTriplet() {
 		// not support for an AAMutation
 		assertEquals("", new AAMutation(Gene.RT, 65, 'A').getTriplet());
 	}
-	
+
 	@Test
 	public void testGetInsertedNAs() {
 		// not support for an AAMutation
@@ -338,7 +338,7 @@ public class AAMutationTest {
 		assertEquals(MutType.Major, majorMut.getPrimaryType());
 		assertEquals(MutType.Other, otherMut.getPrimaryType());
 	}
-	
+
 	@Test
 	public void testEqualsAndHashCode() {
 		final Mutation mut1 = new AAMutation(Gene.RT, 69, '_');
@@ -348,7 +348,7 @@ public class AAMutationTest {
 		assertNotEquals(mut1, null);
 		assertNotEquals(mut1, "T69_");
 	}
-	
+
 	@Test
 	public void testGetHumanFormat() {
 		Mutation mut1 = new AAMutation(Gene.RT, 65, "KN".toCharArray());
@@ -407,7 +407,7 @@ public class AAMutationTest {
 		assertNotEquals(mut16, mut17);
 		assertNotEquals(mut16.hashCode(), mut17.hashCode());
 	}
-	
+
 	@Test
 	public void testGetHumanFormatWithGene() {
 		Mutation mut1 = new AAMutation(Gene.RT, 65, "KN".toCharArray());
@@ -441,7 +441,7 @@ public class AAMutationTest {
 		assertEquals("IN_R263RGKY", mut16.getHumanFormatWithGene());
 		assertEquals("IN_R263X", mut17.getHumanFormatWithGene());
 	}
-	
+
 	@Test
 	public void testGetHumanFormatWithoutCons() {
 		assertEquals(
@@ -486,13 +486,13 @@ public class AAMutationTest {
 			new AAMutation(Gene.RT, 69, 'V').hasReference());
 	}
 
-	@Test 
+	@Test
 	public void testIsUnsequenced() {
 		final Mutation mut = new AAMutation(Gene.PR, 1, 'X');
 		// always false in AAMutation
 		assertFalse(mut.isUnsequenced());
 	}
-	
+
 	@Test
 	public void testGenePosition() {
 		final Mutation mutPR68 = new AAMutation(Gene.PR, 68, 'N');
@@ -502,7 +502,7 @@ public class AAMutationTest {
 		assertEquals(mutRT67.getGenePosition(), new GenePosition(Gene.RT, 67));
 		assertEquals(mutIN155.getGenePosition(), new GenePosition(Gene.IN, 155));
 	}
-	
+
 	@Test
 	public void testIsInsertion() {
 		final Mutation ins = new AAMutation(Gene.PR, 68, '_');
@@ -530,7 +530,7 @@ public class AAMutationTest {
 		assertTrue(delMut.isDeletion());
 		assertTrue(delIns.isDeletion());
 	}
-	
+
 	@Test
 	public void testHasStop() {
 		final Mutation mut = new AAMutation(Gene.PR, 68, 'N');
@@ -540,7 +540,7 @@ public class AAMutationTest {
 		assertTrue(stop.hasStop());
 		assertTrue(stopMut.hasStop());
 	}
-	
+
 	@Test
 	public void testIsUnusual() {
 		final Mutation unusualMut = new AAMutation(Gene.RT, 1, 'A');
@@ -556,7 +556,7 @@ public class AAMutationTest {
 		assertTrue(String.format("PR:%s should contain unusual mutation", mixedMuts.toString()), mixedMuts.isUnusual());
 		assertTrue(String.format("RT:%s should be unusual", unusualMutX.toString()), unusualMutX.isUnusual());
 	}
-	
+
 	@Test
 	public void testIsSDRM() {
 		final Mutation mut = new AAMutation(Gene.PR, 24, 'N');
@@ -566,7 +566,7 @@ public class AAMutationTest {
 		assertTrue(sdrmMut.isSDRM());
 		assertTrue(mixedMuts.isSDRM());
 	}
-	
+
 	@Test
 	public void testIsDRM() {
 		final Mutation RT69ins = new AAMutation(Gene.RT, 69, 'i');
@@ -574,14 +574,14 @@ public class AAMutationTest {
 		assertTrue(RT69ins.isDRM());
 		assertTrue(IN263NK.isDRM());
 	}
-	
+
 	@Test
 	public void testHasBDHVN() {
 		final Mutation mut = new AAMutation(Gene.PR, 24, 'N');
 		// always false
 		assertFalse(mut.hasBDHVN());
 	}
-	
+
 	@Test
 	public void testIsAmbiguous() {
 		final Mutation mut = new AAMutation(Gene.PR, 24, 'N');
@@ -591,13 +591,13 @@ public class AAMutationTest {
 		assertTrue(xMut.isAmbiguous());
 		assertTrue(haMut.isAmbiguous());
 	}
-	
+
 	@Test
 	public void testGetHighestMutPrevalance() {
-		// Since we update prevalence data periodically, we  
-		// expects the following assertions to ultimately fail. 
+		// Since we update prevalence data periodically, we
+		// expects the following assertions to ultimately fail.
 		// Hence we must manually update these assertions every time
-		// we upload new prevalence data. 
+		// we upload new prevalence data.
 		final Mutation prevMut = new AAMutation(Gene.IN, 45, 'G');
 		final Mutation prevMuts = new AAMutation(Gene.IN, 45, "HKQ".toCharArray());
 		final Mutation prevMutZero = new AAMutation(Gene.IN, 45, 'C');
