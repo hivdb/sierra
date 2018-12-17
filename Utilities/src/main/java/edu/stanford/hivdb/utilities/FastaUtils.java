@@ -1,17 +1,17 @@
 /*
-    
+
     Copyright (C) 2017 Stanford HIVDB team
-    
+
     Sierra is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
-    
+
     Sierra is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-    
+
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
@@ -44,7 +44,7 @@ import net.sf.jfasta.impl.FASTAFileWriter;
 
 public class FastaUtils {
 	private FastaUtils() {}
-	
+
 	/**
 	 * Cleans up the FASTA file so JFASTA can tolerate errors.
 	 *
@@ -71,15 +71,15 @@ public class FastaUtils {
 			else isPrevIdentLine = false;
 			result.add(line);
 		}
-				
+
 		String resultStr = String.join("\n", result);
 		if (resultStr.startsWith(" Error")) resultStr = "";
 		if (!(resultStr.startsWith(">") || resultStr.isEmpty())) {
 			resultStr = ">UnnamedSequence\n" + resultStr;
-		}	
+		}
 		return new ByteArrayInputStream(resultStr.getBytes());
 	}
-	
+
 	/**
 	 * Fetches a list of Genbank nucleotide sequences
 	 *
@@ -101,7 +101,7 @@ public class FastaUtils {
 		}
 		return readStream(response.getBody());
 	}
-	
+
 	/**
 	 * Reads in a file with FASTA sequences. Create a list of Sequences
 	 * each containing a string of NAs and a header.
@@ -142,7 +142,7 @@ public class FastaUtils {
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
-			
+
 		return sequences;
 	}
 
@@ -150,7 +150,7 @@ public class FastaUtils {
 		InputStream stream = new ByteArrayInputStream(inputString.getBytes());
 		return readStream(stream);
 	}
-	
+
 	public static void writeStream(Collection<Sequence> sequences, OutputStream stream) {
 		try (
 			FASTAFileWriter writer = new FASTAFileWriter(stream);
@@ -183,7 +183,7 @@ public class FastaUtils {
 		sequences.add(sequence);
 		writeFile(sequences, filePath);
 	}
-	
+
 	public static String writeString(Collection<Sequence> sequences) {
 		OutputStream stream = new ByteArrayOutputStream();
 		writeStream(sequences, stream);

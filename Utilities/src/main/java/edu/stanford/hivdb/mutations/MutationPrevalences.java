@@ -1,17 +1,17 @@
 /*
-    
+
     Copyright (C) 2017 Stanford HIVDB team
-    
+
     Sierra is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
-    
+
     Sierra is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-    
+
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
@@ -78,7 +78,7 @@ public class MutationPrevalences {
 				Mutation mutation, String subtype, int totalNaive, int totalTreated) {
 			this(mutation, subtype, totalNaive, 0, 0.0, totalTreated, 0, 0.0);
 		}
-		
+
 		public String getAA() {
 			return mutation.getAAs();
 		}
@@ -143,7 +143,7 @@ public class MutationPrevalences {
 	public static Map<Gene, Map<String, Integer[]>> getNumPatients() {
 		return numPatients;
 	}
-	
+
 	public static List<String> getAllTypes() {
 		return allTypes;
 	}
@@ -154,7 +154,7 @@ public class MutationPrevalences {
 		return mutationPrevalenceByGenePositions
 			.getOrDefault(mutation.getGenePosition(), new ArrayList<>());
 	}
-	
+
 	public static Map<Mutation, List<MutationPrevalence>>
 			groupPrevalenceByPositions(MutationSet mutations) {
 		return mutations
@@ -162,7 +162,7 @@ public class MutationPrevalences {
 			.collect(Collectors.toMap(
 				mut -> mut,
 				mut -> getPrevalenceAtSamePosition(mut),
-				(m1, m2) -> m1, // MutationSet filters duplicates. So I don't believe this function will ever be called. 
+				(m1, m2) -> m1, // MutationSet filters duplicates. So I don't believe this function will ever be called.
 				TreeMap::new
 			));
 	}

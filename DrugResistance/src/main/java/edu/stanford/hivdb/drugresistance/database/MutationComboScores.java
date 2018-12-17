@@ -1,17 +1,17 @@
 /*
-    
+
     Copyright (C) 2017 Stanford HIVDB team
-    
+
     Sierra is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
-    
+
     Sierra is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-    
+
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
@@ -47,6 +47,7 @@ public class MutationComboScores {
 
 	@SuppressWarnings("unused")
 	private static final Logger LOGGER = LogManager.getLogger();
+	private static double DEFAULT_MIN_SCORE = -99.0;
 
 	public static class ComboScore {
 		public final Gene gene;
@@ -76,10 +77,10 @@ public class MutationComboScores {
 		public List<Integer> getPositions() {
 			return Collections.unmodifiableList(
 				getRuleMutations()
-				.stream()
-				.map(mut -> mut.getPosition())
-				.sorted()
-				.collect(Collectors.toList())
+					.stream()
+					.map(mut -> mut.getPosition())
+					.sorted()
+					.collect(Collectors.toList())
 			);
 		}
 	}
@@ -107,11 +108,11 @@ public class MutationComboScores {
 
 	public static Map<List<Integer>, List<ComboScore>> groupComboScoresByPositions(Drug drug) {
 		return combinationScores
-		.stream()
-		.filter(cs -> cs.drug == drug)
-		.collect(Collectors.groupingBy(
-			cs -> cs.getPositions(),
-			LinkedHashMap::new, Collectors.toList()));
+			.stream()
+			.filter(cs -> cs.drug == drug)
+			.collect(Collectors.groupingBy(
+				cs -> cs.getPositions(),
+				LinkedHashMap::new, Collectors.toList()));
 	}
 
 	/**
@@ -141,10 +142,10 @@ public class MutationComboScores {
 		Map<Drug, List<ComboScore>> matchesMap =
 			matchComboScore(gene, geneSeqMuts, matchedMutsListMap);
 
-		for (Drug drug: matchesMap.keySet()) {
+		for (Drug drug : matchesMap.keySet()) {
 			List<ComboScore> matches = matchesMap.get(drug);
 			List<MutationSet> matchedMutsList = matchedMutsListMap.get(drug);
-			for (int i=0; i < matches.size(); i ++) {
+			for (int i = 0; i < matches.size(); i++) {
 				ComboScore matched = matches.get(i);
 				MutationSet matchedMuts = matchedMutsList.get(i);
 
@@ -159,7 +160,7 @@ public class MutationComboScores {
 				Double origScore = comboMutDrugScores
 					.get(matched.drugClass)
 					.get(matched.drug)
-					.getOrDefault(matchedMuts, -99.0);
+					.getOrDefault(matchedMuts, DEFAULT_MIN_SCORE);
 
 				comboMutDrugScores
 					.get(matched.drugClass)
@@ -173,7 +174,6 @@ public class MutationComboScores {
 		return comboMutDrugScores;
 	}
 
-
 	private static Map<Drug, List<ComboScore>> matchComboScore(
 			Gene gene, MutationSet geneSeqMuts,
 			Map<Drug, List<MutationSet>> matchedMutsListMap) {
@@ -186,25 +186,25 @@ public class MutationComboScores {
 
 				// TODO: can be optimized if mutation support "roughlyEquals",
 				// since actually this is just finding intersection items
-				MutationSet matchedMuts = cs.getRuleMutations()
-					.intersectsWith(geneSeqMuts);
 
-				if (matchedMuts.size() < cs.getRuleMutations().size()) {
-					// match all or fail
+				// match all or fail
+				if (!cs.getRuleMutations().equals(geneSeqMuts)) {
 					return false;
 				}
+
+
+				// misleading to mutate argument, especially in this lambda
 				matchedMutsListMap
 					.putIfAbsent(cs.drug, new ArrayList<>());
 
 				matchedMutsListMap
 					.get(cs.drug)
-					.add(matchedMuts);
+					.add(geneSeqMuts);
 
 				return true;
 			})
 			.collect(Collectors.groupingBy(cs -> cs.drug));
 	}
-
 
 	// Query HIVDB_Scores to obtain all the mutation combination scores
 	private static void populateComboMutDrugScores() throws SQLException {

@@ -1,17 +1,17 @@
 /*
-    
+
     Copyright (C) 2017 Stanford HIVDB team
-    
+
     Sierra is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
-    
+
     Sierra is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-    
+
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
@@ -56,7 +56,7 @@ public class AlignedSequence {
 	private Double mixturePcnt;
 	private Apobec apobec;
 	private transient List<FrameShift> frameShifts;
-	private final Boolean isReverseComplement; 
+	private final Boolean isReverseComplement;
 	private final Boolean isEmpty;
 
 	private static final Logger LOGGER = LogManager.getLogger();
@@ -90,7 +90,7 @@ public class AlignedSequence {
 	public boolean isEmpty() {
 		return isEmpty;
 	}
-	
+
 	public boolean isReverseComplement() {
 		return isReverseComplement;
 	}

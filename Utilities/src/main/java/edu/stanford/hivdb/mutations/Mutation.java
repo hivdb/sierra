@@ -1,17 +1,17 @@
 /*
-    
+
     Copyright (C) 2017 Stanford HIVDB team
-    
+
     Sierra is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
-    
+
     Sierra is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-    
+
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
@@ -34,11 +34,11 @@ import edu.stanford.hivdb.aapcnt.HIVAminoAcidPercents;
 import edu.stanford.hivdb.utilities.MyStringUtils;
 
 public class Mutation implements Comparable<Mutation> {
-	
+
 	private static Pattern mutationPattern = Pattern.compile(
 		"^\\s*" +
 		"((?i:PR|RT|IN))?[:_-]?" +
-		"([AC-IK-NP-TV-Y])?" + 
+		"([AC-IK-NP-TV-Y])?" +
 		"(\\d{1,3})" +
 		"([AC-IK-NP-TV-Z.*]+(?:[#_]?[AC-IK-NP-TV-Z.*]+)?|[id_#~-]|[iI]ns(?:ertion)?|[dD]el(?:etion)?)" +
 		"(?::([ACGTRYMWSKBDHVN-]{3})?)?" +
@@ -55,19 +55,19 @@ public class Mutation implements Comparable<Mutation> {
 	private boolean isDeletion = false;
 	private transient List<MutType> types;
 	private transient Boolean isAtDrugResistancePosition;
-	
+
 	public static class InvalidMutationStringException extends RuntimeException {
 		private static final long serialVersionUID = 4271016133470715497L;
 
 		public InvalidMutationStringException(String message, Exception e) {
 			super(message, e);
 		}
-		
+
 		public InvalidMutationStringException(String message) {
 			super(message);
 		}
 	}
-	
+
 	/**
 	 *
 	 * @param gene
@@ -76,11 +76,11 @@ public class Mutation implements Comparable<Mutation> {
 	 * @param triplet
 	 * @param insertedNAs
 	 */
-	public Mutation(Gene gene, int pos, String aas, String triplet, String insertedNAs) {		
+	public Mutation(Gene gene, int pos, String aas, String triplet, String insertedNAs) {
 		if (pos > gene.getLength()) {
 			throw new IllegalArgumentException("Length is out of bounds for this gene.");
 		}
-		
+
 		this.gene = gene;
 		this.cons = this.gene.getConsensus(pos);
 		this.pos = pos;
@@ -102,15 +102,15 @@ public class Mutation implements Comparable<Mutation> {
 	public Mutation(Gene gene, int pos, Character aa) {
 		this(gene, pos, "" + aa, "", "");
 	}
-	
+
    	public static Mutation fromNucAminoMutation(Gene gene, int aaStart, Map<?, ?> mut) {
 		int pos = ((Double) mut.get("Position")).intValue() - aaStart + 1;
-			
+
 		String codon = "";
 		String insertedCodon = "";
 		boolean isInsertion = (Boolean) mut.get("IsInsertion");
 		boolean isDeletion = (Boolean) mut.get("IsDeletion");
-			
+
 		StringBuilder aas = new StringBuilder();
 		if (isDeletion) {
 			aas.append('-');
@@ -119,7 +119,7 @@ public class Mutation implements Comparable<Mutation> {
 			codon = (String) mut.get("CodonText");
 			codon = codon.replace(' ', '-');
 			aas.append(CodonTranslation.translateNATriplet(codon));
-			if (isInsertion) {       
+			if (isInsertion) {
 				aas.append('_');
 				insertedCodon = (String) mut.get("InsertedCodonsText");
 				aas.append(CodonTranslation.simpleTranslate(insertedCodon));
@@ -134,19 +134,19 @@ public class Mutation implements Comparable<Mutation> {
 	 * The code explains the normalization rules.
 	 */
 	public static String normalizeAAs(String aas) {
-		if (aas == null) return null;	
-		
+		if (aas == null) return null;
+
 		aas = aas.replaceAll("^[dD]elet(e|ion)|d(el)?|~$", "-")
 			     .replaceAll("^[iI]nsert(ion)?|i(ns)?$|#", "_")
 			     .replaceAll("[.Z]", "*");
-		
+
 		if (aas.length() > 1 && !aas.contains("_")) {
 			return MyStringUtils.sortAlphabetically(aas).toUpperCase();
 		}
-		
+
 		return aas.toUpperCase();
 	}
-		
+
 	public Set<Mutation> split() {
 		Set<Mutation> r = new HashSet<>();
 		if (isInsertion()) {
@@ -214,7 +214,7 @@ public class Mutation implements Comparable<Mutation> {
 		if (newAAs.length() == 0) {
 			return null;
 		}
-		
+
 		return new Mutation(gene, pos, newAAs.toString());
 	}
 
@@ -270,7 +270,7 @@ public class Mutation implements Comparable<Mutation> {
 		return !isInsertion &&
 			StringUtils.countMatches(triplet.replace('-', 'N'),	"N") > 1;
 	}
-	
+
 	/**
 	 * Extracts gene from mutText string
 	 * @param mutText
@@ -292,7 +292,7 @@ public class Mutation implements Comparable<Mutation> {
 		}
 		return gene;
 	}
-	
+
 	/**
 	 * Converts gene and mutText string into a Mutation object
 	 * mutText may or may not have a preceding consensus
@@ -313,9 +313,9 @@ public class Mutation implements Comparable<Mutation> {
 						"for an input mutation string is, for example, " +
 						"RT:215Y.", e);
 				}
-			}	
+			}
 			int pos = Integer.parseInt(m.group(3));
-			String aas = normalizeAAs(m.group(4)); 
+			String aas = normalizeAAs(m.group(4));
 			String triplet = m.group(5);
 			if (triplet == null) triplet = "";
 			mut = new Mutation(gene, pos, aas, triplet);
@@ -325,7 +325,7 @@ public class Mutation implements Comparable<Mutation> {
 		}
 		return mut;
 	}
-	
+
 	public static Mutation parseString(String mutText) {
 		return parseString(null, mutText);
 	}
@@ -382,7 +382,7 @@ public class Mutation implements Comparable<Mutation> {
 			mixture = "-";
 		}
 		mixture = mixture.replace(cons, "").replaceAll("X", "");
-		
+
 		return allAAPcnts.getHighestAAPercentValue(gene, pos, mixture) * 100;
 	}
 
@@ -402,7 +402,7 @@ public class Mutation implements Comparable<Mutation> {
 	public MutType getPrimaryType() {
 		return getTypes().get(0);
 	}
-	
+
 	/**
 	 * Retrieve all mutation types of current mutation.
 	 *
@@ -456,7 +456,7 @@ public class Mutation implements Comparable<Mutation> {
 			.append(aas)
 			.toHashCode();
 	}
-	
+
 	@Override
 	public String toString() {
 		return getHumanFormat();
@@ -610,7 +610,7 @@ public class Mutation implements Comparable<Mutation> {
 	public String getHumanFormatWithGene() {
 		return gene.toString() + "_" + getHumanFormat();
 	}
-	
+
 	public static Pattern getPattern() {
 		return mutationPattern;
 	}

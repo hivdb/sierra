@@ -1,17 +1,17 @@
 /*
-    
+
     Copyright (C) 2017 Stanford HIVDB team
-    
+
     Sierra is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
-    
+
     Sierra is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-    
+
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
@@ -43,7 +43,7 @@ import edu.stanford.hivdb.utilities.Json;
 public class ConditionalComments {
 
 	private static final String WILDCARD_REGEX = "\\$listMutsIn\\{.+?\\}";
-	
+
 	public static enum ConditionType {
 		MUTATION, DRUGLEVEL
 	}
@@ -54,7 +54,7 @@ public class ConditionalComments {
 		final private ConditionType conditionType;
 		final private Map<String, Object> conditionValue;
 		final private String comment;
-		
+
 		protected ConditionalComment(
 				String commentName, DrugClass drugClass,
 				ConditionType conditionType,
@@ -65,14 +65,14 @@ public class ConditionalComments {
 			this.conditionValue = conditionValue;
 			this.comment = comment;
 		}
-		
+
 		public Gene getMutationGene() {
 			if (conditionType != ConditionType.MUTATION) {
 				return null;
 			}
 			return Gene.valueOf((String) conditionValue.get("gene"));
 		}
-		
+
 		public Integer getMutationPosition() {
 			if (conditionType != ConditionType.MUTATION) {
 				return null;
@@ -83,16 +83,16 @@ public class ConditionalComments {
 		public String getMutationAAs() {
 			if (conditionType != ConditionType.MUTATION) {
 				return null;
-			}			
+			}
 			return (String) conditionValue.get("aas");
 		}
-		
+
 		private Map<Drug, List<Integer>> getDrugLevels() {
 			Map<Drug, List<Integer>> drugLevels = new LinkedHashMap<>();
 			if (conditionType != ConditionType.DRUGLEVEL) {
 				return drugLevels;
 			}
-			if (conditionValue.containsKey("and")) {				
+			if (conditionValue.containsKey("and")) {
 				for (Object dlevel : ((List<?>) conditionValue.get("and"))) {
 					Map<?, ?> dlevelMap = (Map<?, ?>) dlevel;
 					Drug drug = Drug.valueOf((String) dlevelMap.get("drug"));
@@ -113,7 +113,7 @@ public class ConditionalComments {
 			}
 			return drugLevels;
 		}
-		
+
 		public String getDrugLevelsText() {
 			StringBuilder text = new StringBuilder();
 			Map<Drug, List<Integer>> drugLevels = getDrugLevels();
@@ -130,14 +130,14 @@ public class ConditionalComments {
 			}
 			return text.toString();
 		}
-		
+
 		public String getName() { return commentName; }
 		public String getText() { return comment; }
 		public DrugClass getDrugClass() { return drugClass; }
 		public ConditionType getConditionType() { return conditionType; }
 		public Gene getGene() { return drugClass.gene(); }
 	}
-	
+
 	public static class BoundComment {
 		final private Gene gene;
 		final private DrugClass drugClass;
@@ -146,7 +146,7 @@ public class ConditionalComments {
 		final private String comment;
 		final private Collection<String> highlightText;
 		final private Mutation mutation;
-		
+
 		protected BoundComment(
 				String commentName, DrugClass drugClass, CommentType commentType,
 				String comment, Collection<String> highlightText,
@@ -189,7 +189,7 @@ public class ConditionalComments {
 			// skip if it's other gene
 			return null;
 		}
-		
+
 		int pos = cc.getMutationPosition();
 		Mutation mut = mutations.get(gene, pos);
 		if (mut == null) {
@@ -252,7 +252,7 @@ public class ConditionalComments {
 			null
 		);
 	}
-	
+
 	public static List<BoundComment> getComments(GeneDR geneDR) {
 		Gene gene = geneDR.getGene();
 		MutationSet mutations = geneDR.getMutations();
@@ -271,7 +271,7 @@ public class ConditionalComments {
 		}
 		return comments;
 	}
-	
+
 	public static List<BoundComment> getComments(Mutation mutation) {
 		Gene gene = mutation.getGene();
 		MutationSet mutations = new MutationSet(mutation);
@@ -298,13 +298,13 @@ public class ConditionalComments {
 	private static void populateComments() throws SQLException {
 
 		final JdbcDatabase db = JdbcDatabase.getResultsDB();
-		
+
 		// TODO: The version is hard-coded here.
 		final String sqlStatement =
 			"SELECT CommentName, DrugClass, ConditionType, ConditionValue, Comment " +
 			"FROM tblConditionalCommentsWithVersions WHERE Version=? " +
 			"ORDER BY CommentName";
-		
+
 		conditionalComments = db.iterate(sqlStatement, rs -> {
 			String name = rs.getString("CommentName");
 			DrugClass drugClass = DrugClass.valueOf(rs.getString("DrugClass"));

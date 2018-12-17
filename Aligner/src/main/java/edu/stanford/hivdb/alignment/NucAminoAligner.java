@@ -137,7 +137,7 @@ public class NucAminoAligner {
 	public static List<AlignedSequence> parallelAlign(Collection<Sequence> sequences) {
 		return parallelAlign(sequences, false);
 	}
-	
+
 	private static List<String> localNucamino(Collection<Sequence> sequences) {
 		String jsonString;
 		String[] cmd = NucAminoAligner.generateCmd();
@@ -158,7 +158,7 @@ public class NucAminoAligner {
 		result.add(jsonString);
 		return result;
 	}
-	
+
 	private static List<String> awsNucamino(Collection<Sequence> sequences, String awsFuncAndQual) {
 		String[] funcAndQual = awsFuncAndQual.split(":");
 		Iterable<List<Sequence>> partialSets = Iterables.partition(sequences, 5);
@@ -534,7 +534,7 @@ public class NucAminoAligner {
 			"align", 		// sub-command: use built-in alignment profile
 			"hiv1b", 		// specify built-in profile choice
 			"pol", 			// specify gene to align against
-			
+
 			/* Flags */
 			"-q", 			// quiet mode
 			"-f", "json", 	// return output format as json
