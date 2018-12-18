@@ -18,6 +18,12 @@ public class MutationTypePairsTest {
 	}
 
 	@Test
+	public void testDefaultConstructor() {
+		final MutationTypePairs mutTypePairs = new MutationTypePairs(); 
+		assertEquals(MutationTypePairs.class, mutTypePairs.getClass());
+	}
+	
+	@Test
 	public void testMutTypePairConstruction() {
 		final MutationTypePair mutTypePair = new MutationTypePair(Gene.RT, DrugClass.NNRTI, 234, "I", MutType.NNRTI, false);
 		assertEquals(Gene.RT, mutTypePair.getGene());

@@ -34,6 +34,12 @@ import edu.stanford.hivdb.drugs.DrugClass;
 public class MutationPatternFileReaderTest {
 
 	@Test
+	public void testDefaultConstructor() {
+		final MutationPatternFileReader mutFileReader = new MutationPatternFileReader();
+		assertEquals(MutationPatternFileReader.class, mutFileReader.getClass());
+	}
+	
+	@Test
 	public void testReadMutationListsForDrugClass() throws FileNotFoundException {
 		final InputStream mutsStream =
 				TestMutationPatternFiles.getTestMutationPatternsInputStream(TestMutationPatterns.INSTI_PATTERNS);

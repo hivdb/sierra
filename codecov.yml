@@ -1,6 +1,8 @@
 codecov:
   branch: master
-  bot: philiptzou
+  bot: arodcasanova
+
+  # philiptzou
 
 ignore:
   - "edu/stanford/hivdb/drugresistance/GeneDRAsi.java"

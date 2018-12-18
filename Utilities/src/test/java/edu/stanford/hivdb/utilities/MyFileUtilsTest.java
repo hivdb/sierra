@@ -29,6 +29,12 @@ public class MyFileUtilsTest {
 	}
 
 	@Test
+	public void testDefaultConstructor() {
+		final MyFileUtils fileUtils = new MyFileUtils();
+		assertEquals(MyFileUtils.class, fileUtils.getClass());
+	}
+	
+	@Test
 	public void testWriteFile() throws IOException {
 		MyFileUtils.writeFile(file, fileContent);
 		assertEquals(file.getParentFile(), folder.getRoot());
@@ -61,7 +67,7 @@ public class MyFileUtilsTest {
 		Files.lines(file.toPath())
 			 .forEach(line -> assertEquals(fileContent + fileContent, line));
 	}
-
+	
 	@Test(expected=RuntimeException.class)
 	public void testAppendFileFailure() {
 		MyFileUtils.appendFile("", fileContent);

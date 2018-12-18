@@ -31,7 +31,7 @@ import edu.stanford.hivdb.mutations.MutationSet;
 import edu.stanford.hivdb.utilities.MutationFileReader;
 
 public class MutationPatternFileReader extends MutationFileReader {
-
+	
 	/**
 	 * Reads in a list of mutations on a single line. This is used primarily for testing purposes
 	 * The expected mutation format for this reader an optional consensus followed by Pos . AAs separated by commas
@@ -42,7 +42,7 @@ public class MutationPatternFileReader extends MutationFileReader {
 	public static List<MutationSet> readMutationListsForDrugClass(DrugClass drugClass, InputStream fileInputStream) {
 		Gene gene = drugClass.gene();
 		List<MutationSet> mutationLists = new ArrayList<>();
-
+		
 		try {
 			BufferedReader br = new BufferedReader(new InputStreamReader(fileInputStream));
 			String line;

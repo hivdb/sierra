@@ -15,6 +15,12 @@ import edu.stanford.hivdb.mutations.MutationSet;
 public class JsonTest {
 
 	@Test
+	public void testDefaultConstructor() {
+		final Json jsonInstance = new Json();
+		assertEquals(Json.class, jsonInstance.getClass());
+	}
+	
+	@Test
 	public void testDumpsWithMutatinSet() {
 		String json = 	"[\n" +
 						"  {\n" +

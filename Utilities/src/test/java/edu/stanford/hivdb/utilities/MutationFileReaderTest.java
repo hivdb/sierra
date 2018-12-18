@@ -32,6 +32,12 @@ import edu.stanford.hivdb.mutations.MutationSet;
 public class MutationFileReaderTest {
 
 	@Test
+	public void testDefaultConstructor() {
+		final MutationFileReader mutFileReader = new MutationFileReader();
+		assertEquals(MutationFileReader.class, mutFileReader.getClass());
+	}
+	
+	@Test
 	public void testReadMutationLists() {
 		final InputStream mutsStream =
 				TestMutationsFiles.getTestMutationsInputStream(TestMutationsProperties.SIMPLE_MUTATIONS_TEST);

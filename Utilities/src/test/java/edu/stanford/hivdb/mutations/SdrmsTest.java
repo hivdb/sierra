@@ -32,6 +32,12 @@ import edu.stanford.hivdb.utilities.MutationFileReader;
 public class SdrmsTest {
 
 	@Test
+	public void testDefaultConstructor() {
+		final Sdrms sdrmInstance = new Sdrms();
+		assertEquals(Sdrms.class, sdrmInstance.getClass());
+	}
+	
+	@Test
 	public void testIsSdrmFromFile() throws IOException {
 		final InputStream testMutationsInputStream =
 			TestMutationsFiles.getTestMutationsInputStream(

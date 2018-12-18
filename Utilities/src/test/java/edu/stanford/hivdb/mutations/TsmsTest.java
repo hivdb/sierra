@@ -27,6 +27,12 @@ import edu.stanford.hivdb.drugs.DrugClass;
 public class TsmsTest {
 
 	@Test
+	public void testDefaultConstructor() {
+		final Tsms tsmsInstance = new Tsms();
+		assertEquals(Tsms.class, tsmsInstance.getClass());
+	}
+	
+	@Test
 	public void testGetAllTsms() {
 		MutationSet muts;
 
