@@ -31,7 +31,7 @@ public class TsmsTest {
 		final Tsms tsmsInstance = new Tsms();
 		assertEquals(Tsms.class, tsmsInstance.getClass());
 	}
-	
+
 	@Test
 	public void testGetAllTsms() {
 		MutationSet muts;

@@ -43,7 +43,7 @@ import edu.stanford.hivdb.utilities.Database;
  *   HivdbVersion (in HIVDB_Scores)
  */
 public class MutationPatterns {
-	
+
 	public static class MutationPattern {
 		public final String pattern;
 		public final Integer count;

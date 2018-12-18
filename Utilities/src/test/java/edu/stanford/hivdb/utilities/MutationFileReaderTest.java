@@ -36,7 +36,7 @@ public class MutationFileReaderTest {
 		final MutationFileReader mutFileReader = new MutationFileReader();
 		assertEquals(MutationFileReader.class, mutFileReader.getClass());
 	}
-	
+
 	@Test
 	public void testReadMutationLists() {
 		final InputStream mutsStream =

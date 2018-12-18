@@ -42,7 +42,7 @@ public class MutationPrevalencesTest {
 		public static void manualInit() throws IOException {
 			MutationPrevalences.populateMutationPrevalenceStore();
 		}
-		
+
 		@Test
 		public void testDefaultConstructor() {
 			final MutationPrevalences mutPrevs = new MutationPrevalences();

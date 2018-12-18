@@ -40,7 +40,7 @@ public class MutationMapUtilsTest {
 	final private Mutation mut4 = new Mutation(Gene.RT, 184, "V");
 	final private Mutation mut5 = new Mutation(Gene.RT, 41, "L");
 	final private Mutation mut6 = new Mutation(Gene.RT, 151, "M");
-	
+
 	@Before
 	public void setUp() {
 		mutationScores.clear();
@@ -57,7 +57,7 @@ public class MutationMapUtilsTest {
 		final MutationMapUtils mutMapUtils = new MutationMapUtils();
 		assertEquals(MutationMapUtils.class, mutMapUtils.getClass());
 	}
-	
+
 	@Test
 	public void testSortByComperatorAsc() {
 		mutationScores = MutationMapUtils.sortByComparator(mutationScores, SortOrder.ASC);

@@ -8,7 +8,7 @@ import java.util.List;
 import org.junit.Test;
 
 public class TSVTest {
-	
+
 	@Test
 	public void testDumpHeader() {
 		String[] header = {"this", "is", "a", "test"};

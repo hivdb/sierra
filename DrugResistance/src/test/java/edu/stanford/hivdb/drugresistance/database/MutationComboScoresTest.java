@@ -35,7 +35,7 @@ import edu.stanford.hivdb.mutations.Gene;
 import edu.stanford.hivdb.mutations.MutationSet;
 
 public class MutationComboScoresTest {
-	
+
 	static final int TOTAL_COMBO_SCORES = 263;
 
 	final Gene eGene = Gene.RT;

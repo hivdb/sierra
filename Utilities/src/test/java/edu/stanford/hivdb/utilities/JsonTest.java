@@ -19,7 +19,7 @@ public class JsonTest {
 		final Json jsonInstance = new Json();
 		assertEquals(Json.class, jsonInstance.getClass());
 	}
-	
+
 	@Test
 	public void testDumpsWithMutatinSet() {
 		String json = 	"[\n" +

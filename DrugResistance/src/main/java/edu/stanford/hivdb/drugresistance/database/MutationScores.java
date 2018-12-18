@@ -41,7 +41,7 @@ import edu.stanford.hivdb.utilities.Cachable;
 public class MutationScores {
 	@SuppressWarnings("unused")
 	private static final Logger LOGGER = LogManager.getLogger();
-	
+
 	public static class MutScore {
 		public final Gene gene;
 		public final DrugClass drugClass;
@@ -50,7 +50,7 @@ public class MutationScores {
 		public final Character aa;
 		public final Drug drug;
 		public final Double score;
-		
+
 		public MutScore(
 				Gene gene, DrugClass drugClass, Integer pos,
 				Character aa, Drug drug, Double score) {
@@ -66,7 +66,7 @@ public class MutationScores {
 
 	@Cachable.CachableField
 	private static List<MutScore> mutScores;
-	
+
 	static {
 		Cachable.setup(MutationScores.class, () -> {
 			try {
@@ -78,13 +78,13 @@ public class MutationScores {
 	}
 
 	public static List<MutScore> getMutScores() { return mutScores; }
-	
+
 	public static List<MutScore> getMutScores(DrugClass drugClass) {
 		return mutScores.stream()
 			.filter(m -> m.drugClass == drugClass)
 			.collect(Collectors.toList());
 	}
-	
+
 	public static Map<Integer, List<MutScore>> groupMutScoresByPos(Drug drug) {
 		return mutScores
 		.stream()
@@ -107,7 +107,7 @@ public class MutationScores {
 	public static Map<DrugClass, Map<Drug, Map<Mutation, Double>>>
 			getDrugClassMutScoresForMutSet
 			(Gene gene, MutationSet mutations) throws SQLException {
-		
+
 		// Filter the mutation list to those found in the submitted gene
 		MutationSet geneSeqMutList = mutations.getGeneMutations(gene);
 

@@ -36,7 +36,7 @@ public class SdrmsTest {
 		final Sdrms sdrmInstance = new Sdrms();
 		assertEquals(Sdrms.class, sdrmInstance.getClass());
 	}
-	
+
 	@Test
 	public void testIsSdrmFromFile() throws IOException {
 		final InputStream testMutationsInputStream =

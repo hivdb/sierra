@@ -38,7 +38,7 @@ public class MutationPatternFileReaderTest {
 		final MutationPatternFileReader mutFileReader = new MutationPatternFileReader();
 		assertEquals(MutationPatternFileReader.class, mutFileReader.getClass());
 	}
-	
+
 	@Test
 	public void testReadMutationListsForDrugClass() throws FileNotFoundException {
 		final InputStream mutsStream =

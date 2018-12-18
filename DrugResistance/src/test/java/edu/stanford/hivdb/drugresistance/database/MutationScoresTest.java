@@ -37,19 +37,19 @@ import edu.stanford.hivdb.mutations.MutationSet;
 
 // TODO How to test mutation that are not scored (e.g. 35T) or that have a score of 0 (103N for ETR)
 public class MutationScoresTest {
-	
+
 	@Test
 	public void testDefaultConstructor() {
 		final MutationScores mutScores = new MutationScores();
 		assertEquals(MutationScores.class, mutScores.getClass());
 	}
-	
-	@Test 
+
+	@Test
 	public void testMutScoreConstructor() {
-		final Gene eGene = Gene.RT; 
+		final Gene eGene = Gene.RT;
 		final DrugClass eDrugClass = DrugClass.NRTI;
 		final Integer ePos = 41;
-		final Character eAA = 'L'; 
+		final Character eAA = 'L';
 		final Drug eDrug = Drug.ABC;
 		final Double eScore = 5.0;
 		final MutScore mutScore = new MutScore(eGene, eDrugClass, ePos, eAA, eDrug, eScore);
@@ -60,7 +60,7 @@ public class MutationScoresTest {
 		assertEquals(eDrug, mutScore.drug);
 		assertEquals(eScore, mutScore.score);
 	}
-	
+
 	@Test
 	public void testGetMutScores() {
 		final Gene eGene = Gene.RT;
@@ -74,7 +74,7 @@ public class MutationScoresTest {
 			}
 		}
 	}
-	
+
 	@Test
 	public void testGetMutScoresForDrugClass() {
 		final int ePos = 88;
@@ -89,17 +89,17 @@ public class MutationScoresTest {
 		}
 		assertEquals(eNumScoresAtEPos, mutScoreCounter);
 	}
-	
+
 	@Test
 	public void testGroupMutationsByPos() {
 		final Integer ePos = 67;
 		final int eNumABCScoresAtEPos = 7;
-		final Map<Integer, List<MutScore>> mutScores 
+		final Map<Integer, List<MutScore>> mutScores
 			= MutationScores.groupMutScoresByPos(Drug.ABC);
 		final int numABCScoresAtEPos = mutScores.get(ePos).size();
 		assertEquals(eNumABCScoresAtEPos, numABCScoresAtEPos);
 	}
-	
+
 	@Test
 	public void testMutScoreHash() throws SQLException {
 		Gene gene = Gene.RT;
