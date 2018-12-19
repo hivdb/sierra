@@ -46,7 +46,7 @@ import edu.stanford.hivdb.mutations.MutationSet;
  * GeneDRHivdb
  */
 public class GeneDRFast extends GeneDR {
-
+	
 	protected final FastHivdb fastHivdb;
 
 	public static Map<Gene, GeneDR> getResistanceByGene (Map<Gene, AlignedGeneSeq> alignedGeneSeqs) {
@@ -65,7 +65,7 @@ public class GeneDRFast extends GeneDR {
 	public GeneDRFast(Gene gene, MutationSet mutations) {
 		super(gene, mutations);
 		fastHivdb = new FastHivdb(gene, mutations);
-
+		
 		drugClassDrugMutScores = fastHivdb.getDrugClassDrugMutScores();
 		drugClassDrugComboMutScores = fastHivdb.getDrugClassDrugComboMutScores();
 		postConstructor();

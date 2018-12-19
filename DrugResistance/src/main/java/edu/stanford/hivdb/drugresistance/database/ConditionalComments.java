@@ -113,7 +113,7 @@ public class ConditionalComments {
 			}
 			return drugLevels;
 		}
-
+		
 		public String getDrugLevelsText() {
 			StringBuilder text = new StringBuilder();
 			Map<Drug, List<Integer>> drugLevels = getDrugLevels();
@@ -182,14 +182,14 @@ public class ConditionalComments {
 		});
 	}
 
-	private static BoundComment findMutationComment(
+	protected static BoundComment findMutationComment(
 			Gene gene, MutationSet mutations, ConditionalComment cc) {
 		Gene ccgene = cc.getMutationGene();
 		if (!ccgene.equals(gene)) {
 			// skip if it's other gene
 			return null;
 		}
-
+		
 		int pos = cc.getMutationPosition();
 		Mutation mut = mutations.get(gene, pos);
 		if (mut == null) {
@@ -225,12 +225,17 @@ public class ConditionalComments {
 			mut
 		);
 	}
-
-	private static BoundComment findDrugLevelComment(
+	
+	protected static BoundComment findDrugLevelComment(
 			GeneDR geneDR, ConditionalComment cc) {
 		Map<Drug, List<Integer>> drugLevels = cc.getDrugLevels();
-		for (Map.Entry<Drug, List<Integer>> e : drugLevels.entrySet()) {
+		for (Map.Entry<Drug, List<Integer>> e : drugLevels.entrySet()) {	
 			Integer level = geneDR.getDrugLevel(e.getKey());
+			
+			System.out.println("key: " + e.getKey().toString());
+			System.out.println("val: " + e.getValue().toString());
+			System.out.println("lev: " + level);
+			
 			if (!e.getValue().contains(level)) {
 				return null;
 			}
@@ -262,7 +267,7 @@ public class ConditionalComments {
 			if (cc.conditionType == ConditionType.MUTATION) {
 				comment = findMutationComment(gene, mutations, cc);
 			}
-			else if (cc.conditionType == ConditionType.DRUGLEVEL) {
+			if (cc.conditionType == ConditionType.DRUGLEVEL) {
 				comment = findDrugLevelComment(geneDR, cc);
 			}
 			if (comment != null) {
