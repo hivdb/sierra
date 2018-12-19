@@ -165,7 +165,6 @@ public class ConditionalCommentsTest {
 		final List<BoundComment> cmts = ConditionalComments.getComments(dr);
 		final String eTextPrefix = "There is evidence for intermediate DRV resistance.";
 		final String textPrefix = cmts.get(0).getText();
-		System.out.println(textPrefix);
 		assertTrue(textPrefix.startsWith(eTextPrefix));
 	}
 	

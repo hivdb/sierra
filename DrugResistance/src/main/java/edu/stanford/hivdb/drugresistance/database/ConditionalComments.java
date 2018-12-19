@@ -43,7 +43,7 @@ import edu.stanford.hivdb.utilities.Json;
 public class ConditionalComments {
 
 	private static final String WILDCARD_REGEX = "\\$listMutsIn\\{.+?\\}";
-
+	
 	public static enum ConditionType {
 		MUTATION, DRUGLEVEL
 	}
@@ -182,7 +182,7 @@ public class ConditionalComments {
 		});
 	}
 
-	protected static BoundComment findMutationComment(
+	private static BoundComment findMutationComment(
 			Gene gene, MutationSet mutations, ConditionalComment cc) {
 		Gene ccgene = cc.getMutationGene();
 		if (!ccgene.equals(gene)) {
@@ -226,16 +226,11 @@ public class ConditionalComments {
 		);
 	}
 	
-	protected static BoundComment findDrugLevelComment(
+	private static BoundComment findDrugLevelComment(
 			GeneDR geneDR, ConditionalComment cc) {
 		Map<Drug, List<Integer>> drugLevels = cc.getDrugLevels();
 		for (Map.Entry<Drug, List<Integer>> e : drugLevels.entrySet()) {	
-			Integer level = geneDR.getDrugLevel(e.getKey());
-			
-			System.out.println("key: " + e.getKey().toString());
-			System.out.println("val: " + e.getValue().toString());
-			System.out.println("lev: " + level);
-			
+			Integer level = geneDR.getDrugLevel(e.getKey());			
 			if (!e.getValue().contains(level)) {
 				return null;
 			}
@@ -267,7 +262,7 @@ public class ConditionalComments {
 			if (cc.conditionType == ConditionType.MUTATION) {
 				comment = findMutationComment(gene, mutations, cc);
 			}
-			if (cc.conditionType == ConditionType.DRUGLEVEL) {
+			else /* if (cc.conditionType == ConditionType.DRUGLEVEL) */ {
 				comment = findDrugLevelComment(geneDR, cc);
 			}
 			if (comment != null) {
