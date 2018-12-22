@@ -24,10 +24,12 @@ import static org.junit.Assert.assertTrue;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.junit.Test;
 
 import edu.stanford.hivdb.drugresistance.database.MutationComboScores;
+
 import static edu.stanford.hivdb.drugresistance.database.MutationComboScores.ComboScore;
 import edu.stanford.hivdb.drugs.Drug;
 import edu.stanford.hivdb.drugs.DrugClass;
@@ -37,7 +39,7 @@ import edu.stanford.hivdb.mutations.MutationSet;
 public class MutationComboScoresTest {
 
 	static final int TOTAL_COMBO_SCORES = 263;
-
+	
 	final Gene eGene = Gene.RT;
 	final DrugClass eDrugClass = DrugClass.NNRTI;
 	final String eRule = "100I+103N";
@@ -47,13 +49,13 @@ public class MutationComboScoresTest {
 		= new ComboScore(eGene, eDrugClass, eRule, eDrug, eScore);
 	final List<ComboScore> comboScores
 		= MutationComboScores.getCombinationScores();
-
+	
 	@Test
 	public void testDefaultConstructor() {
 		final MutationComboScores mutComboScores = new MutationComboScores();
 		assertEquals(MutationComboScores.class, mutComboScores.getClass());
 	}
-
+	
 	@Test
 	public void testComboScoreConstructor() {
 		assertEquals(eGene, comboScore.gene);
@@ -98,15 +100,7 @@ public class MutationComboScoresTest {
 				});
 		}
 	}
-
-	@Test
-	public void testGetComboMutDrugScoresForMutSetForSingleMut() {
-		final MutationSet muts = new MutationSet(Gene.RT, "41L");
-		final Map<DrugClass, Map<Drug, Map<MutationSet, Double>>> mutComboScores =
-				MutationComboScores.getComboMutDrugScoresForMutSet(Gene.RT, new MutationSet(muts));
-		printMatchingRules(mutComboScores);
-	}
-
+	
 	@Test
 	public void testGetComboMutDrugScores() {
 		final double eComboScoreABC = 15.0;
@@ -141,24 +135,60 @@ public class MutationComboScoresTest {
 		assertEquals(Double.valueOf(eComboScoreLMV), Double.valueOf(comboScoreLMV));
 		assertEquals(Double.valueOf(eComboScoreTDF), Double.valueOf(comboScoreTDF));
 	}
-
+	
 	@Test
-	public void testGetComboMutDrugScoresForSingleMut() {
+	public void testGetComboMutDrugScoresForSingleMutSet_OfEmptySet() {
+		final MutationSet muts = new MutationSet(Gene.RT, "");
+		final Map<DrugClass, Map<Drug, Map<MutationSet, Double>>> mutComboScores =
+			MutationComboScores.getComboMutDrugScoresForMutSet(Gene.RT, new MutationSet(muts));
+		assertTrue(mutComboScores.isEmpty());
+	}
+	
+	@Test
+	public void testGetComboMutDrugScoresForSingleMutSet_OfSingleMut() {
 		final MutationSet muts = new MutationSet(Gene.RT, "41L");
 		final Map<DrugClass, Map<Drug, Map<MutationSet, Double>>> mutComboScores =
-				MutationComboScores.getComboMutDrugScoresForMutSet(Gene.RT, new MutationSet(muts));
+			MutationComboScores.getComboMutDrugScoresForMutSet(Gene.RT, new MutationSet(muts));
 		assertTrue(mutComboScores.isEmpty());
 	}
-
+	
 	@Test
-	public void testGetComboMutDrugScoresForUnfoundMuts() {
-		final MutationSet muts = new MutationSet(Gene.RT, "41L, 210W, 179T");
+	public void testGetComboMutDrugScoresOfMutSet_OfUnmatchedMuts() {
+		final MutationSet muts = new MutationSet(Gene.RT, "41E+215L");
 		final Map<DrugClass, Map<Drug, Map<MutationSet, Double>>> mutComboScores =
-				MutationComboScores.getComboMutDrugScoresForMutSet(Gene.RT, new MutationSet(muts));
+			MutationComboScores.getComboMutDrugScoresForMutSet(Gene.RT, new MutationSet(muts));
 		assertTrue(mutComboScores.isEmpty());
 	}
-
+	
+	@Test
+	public void testGetComboMutDrugScoresOfMutSet_OfPartiallyMatchedMuts() {
+		final DrugClass eDrugClass = DrugClass.NRTI;
+		final MutationSet eMutSet = new MutationSet(Gene.RT, "41L+44D+210W+215Q");
+		final Double eScore = 10.0;
+		final Map<DrugClass, Map<Drug, Map<MutationSet, Double>>> mutComboScores =
+			MutationComboScores.getComboMutDrugScoresForMutSet(Gene.RT, new MutationSet(eMutSet));
+		for (Entry<Drug, Map<MutationSet, Double>> drugScorePair : mutComboScores.get(eDrugClass).entrySet()) {
+			Double score = drugScorePair.getValue().get(eMutSet);
+			assertEquals(eScore, score);
+		}
+	}
+	
+	@Test
+	public void testGetComboMutDrugScoresOfMutSet_OfPartialScrambledMatch() {
+		final DrugClass eDrugClass = DrugClass.NRTI;
+		final MutationSet eMutSet = new MutationSet(Gene.RT, "210W+215Q+44D+41L");
+		final Double eScore = 10.0;
+		final Map<DrugClass, Map<Drug, Map<MutationSet, Double>>> mutComboScores =
+			MutationComboScores.getComboMutDrugScoresForMutSet(Gene.RT, new MutationSet(eMutSet));
+		printMatchingRules(mutComboScores);
+		for (Entry<Drug, Map<MutationSet, Double>> drugScorePair : mutComboScores.get(eDrugClass).entrySet()) {
+			Double score = drugScorePair.getValue().get(eMutSet);
+			assertEquals(eScore, score);
+		}
+	}
+	
 	// print the results obtained when getRulesDrugsAndScoresForMutList is called
+	@SuppressWarnings("unused")
 	private static void printMatchingRules(Map<DrugClass, Map<Drug, Map<MutationSet, Double>>> matchingRTRulesDrugScores) {
 		for (DrugClass drugClass : matchingRTRulesDrugScores.keySet()) {
 			for (Drug drug : matchingRTRulesDrugScores.get(drugClass).keySet()) {

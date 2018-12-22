@@ -248,11 +248,11 @@ public class Mutation implements Comparable<Mutation> {
 				}
 			}
 		}
-
+		
 		if (newAAs.length() == 0) {
 			return null;
 		}
-
+		
 		return new Mutation(gene, pos, newAAs.toString());
 	}
 

@@ -130,29 +130,29 @@ public class MutationComboScores {
 	 */
 	public static Map<DrugClass, Map<Drug, Map<MutationSet, Double>>>
 			getComboMutDrugScoresForMutSet (Gene gene, MutationSet mutations) {
-
+		
 		// Filter the mutation list to those found in the submitted gene
 		MutationSet geneSeqMuts = mutations.getGeneMutations(gene);
-
+		
 		// The map to be returned
 		Map<DrugClass, Map<Drug, Map<MutationSet, Double>>>
 			comboMutDrugScores = new EnumMap<>(DrugClass.class);
-
+		
 		Map<Drug, List<MutationSet>> matchedMutsListMap = new EnumMap<>(Drug.class);
 		Map<Drug, List<ComboScore>> matchesMap =
 			matchComboScore(gene, geneSeqMuts, matchedMutsListMap);
-
+		
 		for (Drug drug : matchesMap.keySet()) {
 			List<ComboScore> matches = matchesMap.get(drug);
 			List<MutationSet> matchedMutsList = matchedMutsListMap.get(drug);
 			for (int i = 0; i < matches.size(); i++) {
 				ComboScore matched = matches.get(i);
 				MutationSet matchedMuts = matchedMutsList.get(i);
-
+				
 				comboMutDrugScores.putIfAbsent(
 					matched.drugClass,
 					new EnumMap<>(Drug.class));
-
+				
 				comboMutDrugScores
 					.get(matched.drugClass)
 					.putIfAbsent(matched.drug, new HashMap<>());
@@ -173,7 +173,7 @@ public class MutationComboScores {
 
 		return comboMutDrugScores;
 	}
-
+	
 	private static Map<Drug, List<ComboScore>> matchComboScore(
 			Gene gene, MutationSet geneSeqMuts,
 			Map<Drug, List<MutationSet>> matchedMutsListMap) {
@@ -183,20 +183,21 @@ public class MutationComboScores {
 				if (gene != cs.gene) {
 					return false;
 				}
-
+				
 				// TODO: can be optimized if mutation support "roughlyEquals",
 				// since actually this is just finding intersection items
-
-				// match all or fail
-				if (!cs.getRuleMutations().equals(geneSeqMuts)) {
+				MutationSet csMuts = cs.getRuleMutations();
+				MutationSet matchedMuts = csMuts.intersectsWith(geneSeqMuts);
+				
+				// Every mutation in csMuts must match to trigger rule
+				if (matchedMuts.size() < csMuts.size()) {
 					return false;
 				}
-
-
+							
 				// misleading to mutate argument, especially in this lambda
 				matchedMutsListMap
 					.putIfAbsent(cs.drug, new ArrayList<>());
-
+				
 				matchedMutsListMap
 					.get(cs.drug)
 					.add(geneSeqMuts);
@@ -205,7 +206,7 @@ public class MutationComboScores {
 			})
 			.collect(Collectors.groupingBy(cs -> cs.drug));
 	}
-
+	
 	// Query HIVDB_Scores to obtain all the mutation combination scores
 	private static void populateComboMutDrugScores() throws SQLException {
 		final JdbcDatabase db = JdbcDatabase.getResultsDB();
