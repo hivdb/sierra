@@ -1,17 +1,17 @@
 /*
-    
+
     Copyright (C) 2017 Stanford HIVDB team
-    
+
     Sierra is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
-    
+
     Sierra is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-    
+
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
@@ -51,7 +51,7 @@ public class MutationTypePairs {
 		private final String aas;
 		private final MutType type;
 		private final Boolean isUnusual;
-		
+
 		public MutationTypePair(
 				final Gene gene, final DrugClass drugClass,
 				final int position, final String aas,
@@ -84,7 +84,7 @@ public class MutationTypePairs {
 				mut.getPosition() == position &&
 				MyStringUtils.hasSharedChar(mutAAs, aas);
 		}
-		
+
 //		public String getUniqueID() {
 //			String typeStr = type.toString();
 //			if (drugClass == DrugClass.PI) {
@@ -138,8 +138,8 @@ public class MutationTypePairs {
 	public static Map<Mutation, List<MutType>> lookupByMutations(Gene gene, MutationSet mutations) {
 		MutationSet geneMuts = mutations.getGeneMutations(gene);
 		return lookupByMutations(geneMuts);
-	} 
-	
+	}
+
 	/**
 	 * Looks up mutation types for a single mutation.
 	 *
@@ -153,7 +153,7 @@ public class MutationTypePairs {
 			.map(mc -> mc.type)
 			.collect(Collectors.toList());
 	}
-	
+
 	/**
 	 * Looks up mutation types by a position.
 	 *
@@ -168,7 +168,7 @@ public class MutationTypePairs {
 			.map(mc -> mc.type)
 			.collect(Collectors.toList());
 	}
-	
+
 	/**
 	 * Populate types from HIVDB_Results database to static variable.
 	 */

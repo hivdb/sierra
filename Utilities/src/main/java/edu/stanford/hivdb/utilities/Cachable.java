@@ -1,17 +1,17 @@
 /*
-    
+
     Copyright (C) 2017 Stanford HIVDB team
-    
+
     Sierra is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
-    
+
     Sierra is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-    
+
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
@@ -41,7 +41,7 @@ public class Cachable {
 	static final String RESOURCES_PATH = "src/main/resources";
 	static final String CACHABLE_PROPERTY = "hivdb.updateCachable";
 	static boolean forceUpdate = false;
-	
+
 	private final Class<?> cls;
 	private final Runnable _loadStatic;
 
@@ -50,12 +50,12 @@ public class Cachable {
 
 	@Retention(RetentionPolicy.RUNTIME)
 	public @interface CachableField {};
-	
+
 	public static interface DataLoader<T> {
 		public String getFieldName();
 		public T load() throws Throwable;
 	}
-	
+
 	public static final Cachable setup(final Class<?> cls, final Runnable loadData) {
 		Cachable cachable = new Cachable(cls, loadData);
 		cachable.loadStatic();
@@ -111,7 +111,7 @@ public class Cachable {
 	private String staticCachePath(Field field) {
 		return String.format(STATIC_CACHE_TPL, cls.getCanonicalName(), field.getName());
 	}
-	
+
 	/**
 	 * This method should be called in class initializer (static block).
 	 * @throws IllegalAccessException

@@ -1,17 +1,17 @@
 /*
-    
+
     Copyright (C) 2017 Stanford HIVDB team
-    
+
     Sierra is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
-    
+
     Sierra is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-    
+
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
@@ -30,7 +30,13 @@ import edu.stanford.hivdb.filetestutils.TestMutationsFiles.TestMutationsProperti
 import edu.stanford.hivdb.utilities.MutationFileReader;
 
 public class SdrmsTest {
-		
+
+	@Test
+	public void testDefaultConstructor() {
+		final Sdrms sdrmInstance = new Sdrms();
+		assertEquals(Sdrms.class, sdrmInstance.getClass());
+	}
+
 	@Test
 	public void testIsSdrmFromFile() throws IOException {
 		final InputStream testMutationsInputStream =
@@ -38,7 +44,7 @@ public class SdrmsTest {
 				TestMutationsProperties.SDRM_TEST_MUTATIONS);
 		final List<MutationSet> mutationLists =
 			MutationFileReader.readMutationLists(testMutationsInputStream);
-		
+
 		for (MutationSet mutSet : mutationLists) {
 			Sdrms.getSdrms(mutSet).forEach(mut -> assertTrue(Sdrms.isSDRM(mut)));
 			mutSet.subtractsBy(Sdrms.getSdrms(mutSet))

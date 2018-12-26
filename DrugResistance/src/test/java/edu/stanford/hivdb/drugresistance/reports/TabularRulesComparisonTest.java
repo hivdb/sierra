@@ -1,17 +1,17 @@
 /*
-    
+
     Copyright (C) 2017 Stanford HIVDB team
-    
+
     Sierra is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
-    
+
     Sierra is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-    
+
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
@@ -114,7 +114,7 @@ public class TabularRulesComparisonTest {
 				{"210W+215FY", "AZT", "V8_7", 10}
 			});
 		Map<DrugClass, List<List<String>>> result = dl.load().get(versionPair);
-		// For IndexOutOfBoundsException: Did you just update the HIVdb version? Update all the versions above 
+		// For IndexOutOfBoundsException: Did you just update the HIVdb version? Update all the versions above
 		assertEquals("E40F, 5, 0, 0, 0, 0, 0, 0, 0, 0", String.join(", ", result.get(DrugClass.NRTI).get(0)));
 		assertEquals("Y115F+M184IV, 0, 0, 0, 0, 0, 0, 10 => 0, 1, 10", String.join(", ", result.get(DrugClass.NRTI).get(1)));
 		assertEquals("L74IV+M184IV, 15, 0, 0, 0, 0, 0, 0, 0, 0", String.join(", ", result.get(DrugClass.NRTI).get(2)));

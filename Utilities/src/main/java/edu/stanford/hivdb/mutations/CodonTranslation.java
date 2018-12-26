@@ -1,17 +1,17 @@
 /*
-    
+
     Copyright (C) 2017 Stanford HIVDB team
-    
+
     Sierra is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
-    
+
     Sierra is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-    
+
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
@@ -87,14 +87,14 @@ public class CodonTranslation {
 		aaThreeToOneLetter.put("Val","V");
 		aaThreeToOneLetter.put("Trp","W");
 		aaThreeToOneLetter.put("Tyr","Y");
-		
+
 		aaOneToThreeLetter = aaThreeToOneLetter
 			.entrySet()
 			.stream()
 			.collect(Collectors.toMap(
 				e -> e.getValue().charAt(0),
 				e -> e.getKey()));
-		
+
 		codonToAminoAcidMap = new HashMap<String, String>();
 		codonToAminoAcidMap.put("TTT","F");
 		codonToAminoAcidMap.put("TTC","F");
@@ -175,7 +175,7 @@ public class CodonTranslation {
 		codonToAminoAcidMap.put("GGC","G");
 		codonToAminoAcidMap.put("GGA","G");
 		codonToAminoAcidMap.put("GGG","G");
-		
+
 		aminoAcidToCodonsMap = new HashMap<String, List<String>>();
 
 		for (String aa: aaThreeToOneLetter.values()) {
@@ -252,7 +252,7 @@ public class CodonTranslation {
 		.collect(Collectors.joining());
 	}
 
-	protected static String generateTripletControl(String nas, String aas) {	
+	protected static String generateTripletControl(String nas, String aas) {
 		aas = aaThreeToOneLetter.get(aas);
 		int maxMatched = -1;
 		String maxMatchedControlString = "   ";
@@ -282,7 +282,7 @@ public class CodonTranslation {
 		}
 		return maxMatchedControlString;
 	}
-	
+
 //	public static int getMinimalNAChanges(String codon, String aa) {
 //		int maxMatched = -1;
 //		for (String cmp: aminoAcidToCodonsMap.get(aa)) {
@@ -307,9 +307,9 @@ public class CodonTranslation {
 //				maxMatched = matched;
 //			}
 //		}
-//		
+//
 //		return 3 - maxMatched;
-//	
+//
 //	}
 
 	/**
@@ -322,7 +322,7 @@ public class CodonTranslation {
 	public static String simpleTranslate(String nas) {
 		return simpleTranslate(nas, null, null);
 	}
-	
+
 	/**
 	 * Translate a string of nucleotides into a string of amino acids. Nucleotide triplets that
 	 * encode more than one amino acid are translated to an "X". If `consAAs` is specified, the

@@ -10,13 +10,19 @@ import java.util.Map;
 import edu.stanford.hivdb.drugs.DrugClass;
 import edu.stanford.hivdb.mutations.MutationTypePairs.MutationTypePair;
 
-public class MutationTypePairsTest {	
-	
+public class MutationTypePairsTest {
+
 	@BeforeClass
 	public static void testInit() {
 		assertFalse(MutationTypePairs.getMutationTypes().isEmpty());
 	}
-	
+
+	@Test
+	public void testDefaultConstructor() {
+		final MutationTypePairs mutTypePairs = new MutationTypePairs();
+		assertEquals(MutationTypePairs.class, mutTypePairs.getClass());
+	}
+
 	@Test
 	public void testMutTypePairConstruction() {
 		final MutationTypePair mutTypePair = new MutationTypePair(Gene.RT, DrugClass.NNRTI, 234, "I", MutType.NNRTI, false);
@@ -28,56 +34,56 @@ public class MutationTypePairsTest {
 		assertEquals(MutType.NNRTI, mutTypePair.getType());
 		assertFalse(mutTypePair.isUnusual());
 	}
-		
+
 //	@Test
 //	public void testGetUniqueId() {
 //		final MutationTypePair mutTypePairPiMajor = new MutationTypePair(Gene.IN, DrugClass.INSTI, 66, "I", MutType.Major, false);
 //		String eID = "IN_POS66I_Major";
 //		assertEquals(eID, mutTypePairPiMajor.getUniqueID());
 //	}
-//	
+//
 //	@Test
 //	public void testGetUniqueIdPiMajor() {
 //		final MutationTypePair mutTypePairPiMajor = new MutationTypePair(Gene.PR, DrugClass.PI, 32, "I", MutType.Major, false);
 //		String eID = "PR_POS32I_PIMajor";
 //		assertEquals(eID, mutTypePairPiMajor.getUniqueID());
 //	}
-//	
+//
 //	@Test
 //	public void testGetUniqueIdPiMinor() {
 //		final MutationTypePair mutTypePairPiMinor = new MutationTypePair(Gene.PR, DrugClass.PI, 23, "I", MutType.Accessory, false);
 //		String eID = "PR_POS23I_PIMinor";
 //		assertEquals(eID, mutTypePairPiMinor.getUniqueID());
 //	}
-		
+
 	@Test
 	public void testIsMatched() {
 		final Mutation mut = Mutation.parseString("PR:23I");
 		final MutationTypePair mutTypePair = new MutationTypePair(Gene.PR, DrugClass.PI, 23, "I", MutType.Accessory, false);
 		assertTrue(mutTypePair.isMutationMatched(mut));
 	}
-	
+
 	@Test
 	public void testIsUnmatchedByGene() {
 		final Mutation mut = Mutation.parseString("RT:23I");
 		final MutationTypePair mutTypePair = new MutationTypePair(Gene.PR, DrugClass.PI, 23, "I", MutType.Accessory, false);
 		assertFalse(mutTypePair.isMutationMatched(mut));
 	}
-	
+
 	@Test
 	public void testIsUnmatchedByPos() {
 		final Mutation mut = Mutation.parseString("PR:22I");
 		final MutationTypePair mutTypePair = new MutationTypePair(Gene.PR, DrugClass.PI, 23, "I", MutType.Accessory, false);
 		assertFalse(mutTypePair.isMutationMatched(mut));
 	}
-	
+
 	@Test
 	public void testIsUnmatchedByAAs() {
 		final Mutation mut = Mutation.parseString("PR:23A");
 		final MutationTypePair mutTypePair = new MutationTypePair(Gene.PR, DrugClass.PI, 23, "I", MutType.Accessory, false);
 		assertFalse(mutTypePair.isMutationMatched(mut));
 	}
-	
+
 	@Test
 	public void testIsMatchedWithInsertion() {
 		final MutationTypePair mutTypePair = new MutationTypePair(Gene.RT, DrugClass.NRTI, 70, "ACDFHILMPVWY_", MutType.NRTI, true);
@@ -86,14 +92,14 @@ public class MutationTypePairsTest {
 		assertTrue(mutTypePair.isMutationMatched(matchedMut));
 		assertFalse(mutTypePair.isMutationMatched(unmatchedMutPos));
 	}
-	
+
 	@Test
 	public void testLookupByPosition() {
 		final List<MutType> mutTypes = MutationTypePairs.lookupByPosition(Gene.PR, 90);
 		final List<MutType> eMutTypes = Arrays.asList(MutType.Major, MutType.Other);
 		assertEquals(eMutTypes, mutTypes);
 	}
-	
+
 	@Test
 	public void testLookupByMutationWithSingleMutType() {
 		final Mutation mut = Mutation.parseString("IN:66CDEFGHL");
@@ -101,7 +107,7 @@ public class MutationTypePairsTest {
 		final List<MutType> eMutType = Arrays.asList(MutType.Major);
 		assertEquals(eMutType, mutType);
 	}
-	
+
 	@Test
 	public void testLookupByMutationWithTwoMutTypes() {
 		final Mutation mut = Mutation.parseString("RT:106MC");
@@ -109,7 +115,7 @@ public class MutationTypePairsTest {
 		List<MutType> eMutTypes = Arrays.asList(MutType.NNRTI, MutType.Other);
 		assertEquals(eMutTypes, mutTypes);
 	}
-	
+
 	@Test
 	public void testLookupByMutationWithRepeatedMutTypes() {
 		final Mutation mut = Mutation.parseString("IN:66ADIK");
@@ -133,15 +139,15 @@ public class MutationTypePairsTest {
 		assertEquals(eMut1Types, mutTypes.get(mut1));
 		assertEquals(eMut2Types, mutTypes.get(mut2));
 		assertEquals(eMut3Types, mutTypes.get(mut3));
-	} 
-	
+	}
+
 	@Test
 	public void testLookupByMutationsWithNullMutType() {
 		final MutationSet muts = new MutationSet("IN:74A");
 		final Map<Mutation, List<MutType>> mutTypes = MutationTypePairs.lookupByMutations(muts);
 		assertNull(mutTypes.get(Mutation.parseString("IN:74A")));
-	} 
-	
+	}
+
 	@Test
 	public void testLookupByMutationsOfGene() {
 		final Mutation rtMut = Mutation.parseString("RT:106M");

@@ -1,16 +1,16 @@
 /*
     Copyright (C) 2017 Stanford HIVDB team
-    
+
     Sierra is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
-    
+
     Sierra is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-    
+
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
@@ -31,7 +31,7 @@ import java.util.List;
 import java.util.Map;
 
 public class MutationSetTest {
-	
+
 	@Test
 	public void testParseMutationsString() {
 		String nullStr = null;
@@ -91,7 +91,7 @@ public class MutationSetTest {
 			new MutationSet(
 				"RT_31MK, RT67P ; RT69S_SS RT:210*, RT211d+RT211-...RT-212Deletion"));
 	}
-	
+
 	@Test(expected=UnsupportedOperationException.class)
 	public void testPreventAddAll() {
 		MutationSet muts = new MutationSet();
@@ -195,12 +195,12 @@ public class MutationSetTest {
 		assertEquals(
 			new MutationSet("RT:36K"),
 			another.intersectsWith(new Mutation(Gene.RT, 36, "AK")));
-		
+
 		assertEquals(
 			new MutationSet("RT:36K"),
 			another.intersectsWith(Arrays.asList(Mutation.parseString("RT:36K"))));
 	}
-	
+
 	@Test
 	public void testSubtractsBy() {
 		MutationSet self = new MutationSet("RT:48VER PR48VER PR:32E");
@@ -327,7 +327,7 @@ public class MutationSetTest {
 			).get(Gene.PR, 67));
 	}
 
-	@Test 
+	@Test
 	public void testGetByMutType() {
 		final MutationSet muts = new MutationSet(
 				new Mutation(Gene.RT, 65, "N"),
@@ -348,7 +348,7 @@ public class MutationSetTest {
 		assertEquals(eNRTIMuts, muts.getByMutType(MutType.NRTI));
 		assertEquals(eNNRTIMuts, muts.getByMutType(MutType.NNRTI));
 	}
-	
+
 	@Test
 	public void testCompareTwoSets() {
 		assertEquals(
@@ -583,14 +583,14 @@ public class MutationSetTest {
 			new Mutation(Gene.PR, 84, "KV"),
 			new Mutation(Gene.IN, 155, "S"));
 		assertEquals(drmMuts, drmMuts.getDRMs());
-		
+
 		final MutationSet muts = new MutationSet(
 			new Mutation(Gene.RT, 68, "A"),
 			new Mutation(Gene.RT, 118, "I"),
 			new Mutation(Gene.RT, 41, "P"));
 		assertEquals(new MutationSet(), muts.getDRMs());
 	}
-	
+
 	@Test
 	public void testGetDRMsByDrugClass() {
 		MutationSet sequenceMuts = new MutationSet(
@@ -639,7 +639,7 @@ public class MutationSetTest {
 			sequenceMuts.join());
 		assertEquals("None", new MutationSet().join(' ', Mutation::getHumanFormatWithGene));
 	}
-	
+
 	@Test
 	public void testToStringList() {
 		MutationSet sequenceMuts = new MutationSet(
@@ -687,8 +687,8 @@ public class MutationSetTest {
 			new MutationSet(Gene.RT, "31X")
 		);
 	}
-	
-	@Test 
+
+	@Test
 	public void testHasSharedMutation() {
 		final Mutation mut1 = new Mutation(Gene.RT, 68, "A");
 		final Mutation mut2 = new Mutation(Gene.RT, 115, "FR");
@@ -700,8 +700,8 @@ public class MutationSetTest {
 		assertTrue(muts.hasSharedAAMutation(new Mutation(Gene.RT, 115, "F")));
 		assertFalse(muts.hasSharedAAMutation(new Mutation(Gene.RT, 116, "FR")));
 	}
-	
-	@Test 
+
+	@Test
 	public void testGetPrevalences() {
 		final Mutation mut1 = new Mutation(Gene.RT, 68, "A");
 		final Mutation mut2 = new Mutation(Gene.RT, 115, "FR");
