@@ -1,5 +1,5 @@
 plugins {
-    id "org.gradle.eclipse"
+    id "eclipse"
 }
 
 subprojects {
@@ -13,6 +13,14 @@ subprojects {
         flatDir {
             dirs '../DrugResistance/lib'
         }
+    }
+
+    compileJava {
+        options.compilerArgs += '-proc:none'
+    }
+
+    compileTestJava {
+        options.compilerArgs += '-proc:none'
     }
 
     dependencies {
@@ -36,7 +44,6 @@ subprojects {
 project(':WebApplications') {
     apply plugin: 'war'
 }
-
 
 ext {
     isTravisBuild = System.getenv().get("TRAVIS") == 'true'
