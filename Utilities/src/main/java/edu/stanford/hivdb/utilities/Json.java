@@ -89,7 +89,7 @@ public class Json {
 	static {
 		gson = new GsonBuilder()
 			.registerTypeAdapterFactory(new ExtendedTypeAdapterFactory())
-			.setPrettyPrinting().create();
+			.serializeNulls().setPrettyPrinting().create();
 	}
 
 	public static String dumps(Object object) {
