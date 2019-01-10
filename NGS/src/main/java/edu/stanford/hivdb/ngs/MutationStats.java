@@ -30,6 +30,8 @@ public class MutationStats {
 	private final double minPrevalence;
 	private final long numUsuals;
 	private final long numUnusuals;
+	private final long numBinUsuals;
+	private final long numBinUnusuals;
 	private final long numDRMs;
 	private final long numSDRMs;
 	private final long numStops;
@@ -52,6 +54,21 @@ public class MutationStats {
 				!m.isApobecMutation() && !m.isApobecDRM()
 			)
 			.count());
+		numBinUsuals = (
+			filtered.stream()
+			.filter(m -> !m.isUnusual())
+			.map(m -> m.getGenePosition())
+			.distinct()
+			.count());
+		numBinUnusuals = (
+			filtered.stream()
+			.filter(
+				m -> m.isUnusual() && !m.isIndel() &&
+				!m.isApobecMutation() && !m.isApobecDRM()
+			)
+			.map(m -> m.getGenePosition())
+			.distinct()
+			.count());
 		numDRMs = filtered.stream().filter(m -> m.isDRM()).count();
 		numSDRMs = filtered.stream().filter(m -> (
 			(m.getGene() != Gene.IN && m.isSDRM()) ||
@@ -65,6 +82,8 @@ public class MutationStats {
 	public double getMinPrevalence() { return minPrevalence; }
 	public long getNumUsualMutations() { return numUsuals; }
 	public long getNumUnusualMutations() { return numUnusuals; }
+	public long getNumBinUsualMutations() { return numBinUsuals; }
+	public long getNumBinUnusualMutations() { return numBinUnusuals; }
 	public long getNumDRMs() { return numDRMs; }
 	public long getNumSDRMs() { return numSDRMs; }
 	public long getNumStopCodons() { return numStops; }
