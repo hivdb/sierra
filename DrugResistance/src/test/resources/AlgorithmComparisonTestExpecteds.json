@@ -3577,7 +3577,7 @@
           "algorithm": "ANRS",
           "SIR": "R",
           "interpretation": "Resistance",
-          "explanation": "106A (Resistance)"
+          "explanation": "106AM (Resistance)"
         },
         {
           "drug": "EFV",
@@ -6907,9 +6907,9 @@
         {
           "drug": "BIC",
           "algorithm": "ANRS",
-          "SIR": "S",
-          "interpretation": "Susceptible",
-          "explanation": "No rules were triggered"
+          "SIR": "I",
+          "interpretation": "Possible resistance",
+          "explanation": "157Q (Possible resistance)"
         },
         {
           "drug": "DTG",
@@ -10455,9 +10455,9 @@
         {
           "drug": "DOR",
           "algorithm": "ANRS",
-          "SIR": "I",
-          "interpretation": "Possible resistance",
-          "explanation": "181C AND 190A (Possible resistance)"
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
         },
         {
           "drug": "EFV",
@@ -11145,9 +11145,9 @@
         {
           "drug": "DOR",
           "algorithm": "ANRS",
-          "SIR": "S",
-          "interpretation": "Susceptible",
-          "explanation": "No rules were triggered"
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "106AM (Resistance)"
         },
         {
           "drug": "EFV",
@@ -14345,9 +14345,9 @@
         {
           "drug": "DOR",
           "algorithm": "ANRS",
-          "SIR": "I",
-          "interpretation": "Possible resistance",
-          "explanation": "100I AND 103N (Possible resistance)"
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "100I AND 103N (Resistance)"
         },
         {
           "drug": "EFV",
@@ -15037,7 +15037,7 @@
           "algorithm": "ANRS",
           "SIR": "R",
           "interpretation": "Resistance",
-          "explanation": "103N AND 181C (Resistance)\n181C AND 190A (Possible resistance)"
+          "explanation": "103N AND 181C (Resistance)"
         },
         {
           "drug": "EFV",
@@ -15296,9 +15296,9 @@
         {
           "drug": "DOR",
           "algorithm": "ANRS",
-          "SIR": "I",
-          "interpretation": "Possible resistance",
-          "explanation": "100I AND 103N (Possible resistance)"
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "100I AND 103N (Resistance)"
         },
         {
           "drug": "EFV",
@@ -20831,7 +20831,7 @@
           "algorithm": "ANRS",
           "SIR": "R",
           "interpretation": "Resistance",
-          "explanation": "106A (Resistance)"
+          "explanation": "106AM (Resistance)"
         },
         {
           "drug": "EFV",
@@ -21359,9 +21359,9 @@
         {
           "drug": "BIC",
           "algorithm": "ANRS",
-          "SIR": "S",
-          "interpretation": "Susceptible",
-          "explanation": "No rules were triggered"
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "155H (Resistance)"
         },
         {
           "drug": "DTG",
@@ -21452,9 +21452,9 @@
         {
           "drug": "BIC",
           "algorithm": "ANRS",
-          "SIR": "S",
-          "interpretation": "Susceptible",
-          "explanation": "No rules were triggered"
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "155H (Resistance)"
         },
         {
           "drug": "DTG",
@@ -21545,9 +21545,9 @@
         {
           "drug": "BIC",
           "algorithm": "ANRS",
-          "SIR": "S",
-          "interpretation": "Susceptible",
-          "explanation": "No rules were triggered"
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "155H (Resistance)"
         },
         {
           "drug": "DTG",
@@ -21638,9 +21638,9 @@
         {
           "drug": "BIC",
           "algorithm": "ANRS",
-          "SIR": "S",
-          "interpretation": "Susceptible",
-          "explanation": "No rules were triggered"
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "155H (Resistance)"
         },
         {
           "drug": "DTG",
@@ -21731,9 +21731,9 @@
         {
           "drug": "BIC",
           "algorithm": "ANRS",
-          "SIR": "S",
-          "interpretation": "Susceptible",
-          "explanation": "No rules were triggered"
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "155H (Resistance)"
         },
         {
           "drug": "DTG",
@@ -21824,9 +21824,9 @@
         {
           "drug": "BIC",
           "algorithm": "ANRS",
-          "SIR": "S",
-          "interpretation": "Susceptible",
-          "explanation": "No rules were triggered"
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "155H (Resistance)"
         },
         {
           "drug": "DTG",
@@ -21917,9 +21917,9 @@
         {
           "drug": "BIC",
           "algorithm": "ANRS",
-          "SIR": "S",
-          "interpretation": "Susceptible",
-          "explanation": "No rules were triggered"
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "140ACS (Resistance)\n148HKR (Resistance)"
         },
         {
           "drug": "DTG",
@@ -22010,9 +22010,9 @@
         {
           "drug": "BIC",
           "algorithm": "ANRS",
-          "SIR": "S",
-          "interpretation": "Susceptible",
-          "explanation": "No rules were triggered"
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "140ACS (Resistance)\n148HKR (Resistance)"
         },
         {
           "drug": "DTG",
@@ -22103,9 +22103,9 @@
         {
           "drug": "BIC",
           "algorithm": "ANRS",
-          "SIR": "S",
-          "interpretation": "Susceptible",
-          "explanation": "No rules were triggered"
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "148HKR (Resistance)\n155H (Resistance)"
         },
         {
           "drug": "DTG",
@@ -22196,9 +22196,9 @@
         {
           "drug": "BIC",
           "algorithm": "ANRS",
-          "SIR": "S",
-          "interpretation": "Susceptible",
-          "explanation": "No rules were triggered"
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "140ACS (Resistance)\n148HKR (Resistance)"
         },
         {
           "drug": "DTG",
@@ -22289,9 +22289,9 @@
         {
           "drug": "BIC",
           "algorithm": "ANRS",
-          "SIR": "S",
-          "interpretation": "Susceptible",
-          "explanation": "No rules were triggered"
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "155H (Resistance)"
         },
         {
           "drug": "DTG",
@@ -22382,9 +22382,9 @@
         {
           "drug": "BIC",
           "algorithm": "ANRS",
-          "SIR": "S",
-          "interpretation": "Susceptible",
-          "explanation": "No rules were triggered"
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "140ACS (Resistance)\n148HKR (Resistance)"
         },
         {
           "drug": "DTG",
@@ -22475,9 +22475,9 @@
         {
           "drug": "BIC",
           "algorithm": "ANRS",
-          "SIR": "S",
-          "interpretation": "Susceptible",
-          "explanation": "No rules were triggered"
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "140ACS (Resistance)"
         },
         {
           "drug": "DTG",
@@ -22568,9 +22568,9 @@
         {
           "drug": "BIC",
           "algorithm": "ANRS",
-          "SIR": "S",
-          "interpretation": "Susceptible",
-          "explanation": "No rules were triggered"
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "140ACS (Resistance)"
         },
         {
           "drug": "DTG",
@@ -22661,9 +22661,9 @@
         {
           "drug": "BIC",
           "algorithm": "ANRS",
-          "SIR": "S",
-          "interpretation": "Susceptible",
-          "explanation": "No rules were triggered"
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "140ACS (Resistance)\n148HKR (Resistance)"
         },
         {
           "drug": "DTG",
@@ -22754,9 +22754,9 @@
         {
           "drug": "BIC",
           "algorithm": "ANRS",
-          "SIR": "S",
-          "interpretation": "Susceptible",
-          "explanation": "No rules were triggered"
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "140ACS (Resistance)\n148HKR (Resistance)"
         },
         {
           "drug": "DTG",
@@ -22847,9 +22847,9 @@
         {
           "drug": "BIC",
           "algorithm": "ANRS",
-          "SIR": "S",
-          "interpretation": "Susceptible",
-          "explanation": "No rules were triggered"
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "140ACS (Resistance)\n148HKR (Resistance)"
         },
         {
           "drug": "DTG",
@@ -22940,9 +22940,9 @@
         {
           "drug": "BIC",
           "algorithm": "ANRS",
-          "SIR": "S",
-          "interpretation": "Susceptible",
-          "explanation": "No rules were triggered"
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "155H (Resistance)"
         },
         {
           "drug": "DTG",
@@ -23033,9 +23033,9 @@
         {
           "drug": "BIC",
           "algorithm": "ANRS",
-          "SIR": "S",
-          "interpretation": "Susceptible",
-          "explanation": "No rules were triggered"
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "155H (Resistance)"
         },
         {
           "drug": "DTG",
@@ -23126,9 +23126,9 @@
         {
           "drug": "BIC",
           "algorithm": "ANRS",
-          "SIR": "S",
-          "interpretation": "Susceptible",
-          "explanation": "No rules were triggered"
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "155H (Resistance)"
         },
         {
           "drug": "DTG",
@@ -23219,9 +23219,9 @@
         {
           "drug": "BIC",
           "algorithm": "ANRS",
-          "SIR": "S",
-          "interpretation": "Susceptible",
-          "explanation": "No rules were triggered"
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "155H (Resistance)"
         },
         {
           "drug": "DTG",
@@ -23498,9 +23498,9 @@
         {
           "drug": "BIC",
           "algorithm": "ANRS",
-          "SIR": "S",
-          "interpretation": "Susceptible",
-          "explanation": "No rules were triggered"
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "138AKT (Resistance)\n148HKR (Resistance)"
         },
         {
           "drug": "DTG",
@@ -23777,9 +23777,9 @@
         {
           "drug": "BIC",
           "algorithm": "ANRS",
-          "SIR": "S",
-          "interpretation": "Susceptible",
-          "explanation": "No rules were triggered"
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "155H (Resistance)"
         },
         {
           "drug": "DTG",
@@ -23870,9 +23870,9 @@
         {
           "drug": "BIC",
           "algorithm": "ANRS",
-          "SIR": "S",
-          "interpretation": "Susceptible",
-          "explanation": "No rules were triggered"
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "140ACS (Resistance)\n148HKR (Resistance)\n155H (Resistance)"
         },
         {
           "drug": "DTG",
@@ -23963,9 +23963,9 @@
         {
           "drug": "BIC",
           "algorithm": "ANRS",
-          "SIR": "S",
-          "interpretation": "Susceptible",
-          "explanation": "No rules were triggered"
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "140ACS (Resistance)\n148HKR (Resistance)"
         },
         {
           "drug": "DTG",
@@ -24056,9 +24056,9 @@
         {
           "drug": "BIC",
           "algorithm": "ANRS",
-          "SIR": "S",
-          "interpretation": "Susceptible",
-          "explanation": "No rules were triggered"
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "138AKT (Resistance)\n140ACS (Resistance)\n148HKR (Resistance)"
         },
         {
           "drug": "DTG",
@@ -24149,9 +24149,9 @@
         {
           "drug": "BIC",
           "algorithm": "ANRS",
-          "SIR": "S",
-          "interpretation": "Susceptible",
-          "explanation": "No rules were triggered"
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "140ACS (Resistance)\n148HKR (Resistance)"
         },
         {
           "drug": "DTG",
@@ -24242,9 +24242,9 @@
         {
           "drug": "BIC",
           "algorithm": "ANRS",
-          "SIR": "S",
-          "interpretation": "Susceptible",
-          "explanation": "No rules were triggered"
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "138AKT (Resistance)\n140ACS (Resistance)\n148HKR (Resistance)"
         },
         {
           "drug": "DTG",
@@ -24335,9 +24335,9 @@
         {
           "drug": "BIC",
           "algorithm": "ANRS",
-          "SIR": "S",
-          "interpretation": "Susceptible",
-          "explanation": "No rules were triggered"
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "138AKT (Resistance)\n140ACS (Resistance)\n148HKR (Resistance)"
         },
         {
           "drug": "DTG",
@@ -24428,9 +24428,9 @@
         {
           "drug": "BIC",
           "algorithm": "ANRS",
-          "SIR": "S",
-          "interpretation": "Susceptible",
-          "explanation": "No rules were triggered"
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "138AKT (Resistance)\n140ACS (Resistance)\n148HKR (Resistance)"
         },
         {
           "drug": "DTG",
@@ -24521,9 +24521,9 @@
         {
           "drug": "BIC",
           "algorithm": "ANRS",
-          "SIR": "S",
-          "interpretation": "Susceptible",
-          "explanation": "No rules were triggered"
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "138AKT (Resistance)\n140ACS (Resistance)\n148HKR (Resistance)"
         },
         {
           "drug": "DTG",
@@ -24614,9 +24614,9 @@
         {
           "drug": "BIC",
           "algorithm": "ANRS",
-          "SIR": "S",
-          "interpretation": "Susceptible",
-          "explanation": "No rules were triggered"
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "140ACS (Resistance)\n148HKR (Resistance)\n155H (Resistance)"
         },
         {
           "drug": "DTG",
@@ -26269,9 +26269,9 @@
         {
           "drug": "DOR",
           "algorithm": "ANRS",
-          "SIR": "I",
-          "interpretation": "Possible resistance",
-          "explanation": "100I AND 103N (Possible resistance)"
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "100I AND 103N (Resistance)"
         },
         {
           "drug": "EFV",

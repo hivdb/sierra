@@ -670,6 +670,15 @@
     "drugClass": "NNRTI",
     "position": 106,
     "consensus": "V",
+    "aas": "I",
+    "type": "NNRTI",
+    "isUnusual": false
+  },
+  {
+    "gene": "RT",
+    "drugClass": "NNRTI",
+    "position": 106,
+    "consensus": "V",
     "aas": "M",
     "type": "NNRTI",
     "isUnusual": false
@@ -682,15 +691,6 @@
     "aas": "CDEFGHKLNPQRSTWY_-",
     "type": "Other",
     "isUnusual": true
-  },
-  {
-    "gene": "RT",
-    "drugClass": "NNRTI",
-    "position": 106,
-    "consensus": "V",
-    "aas": "I",
-    "type": "Other",
-    "isUnusual": false
   },
   {
     "gene": "RT",
