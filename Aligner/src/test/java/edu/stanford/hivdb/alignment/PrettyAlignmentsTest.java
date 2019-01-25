@@ -29,6 +29,7 @@ import org.junit.Test;
 import edu.stanford.hivdb.filetestutils.TestSequencesFiles;
 import edu.stanford.hivdb.filetestutils.TestSequencesFiles.TestSequencesProperties;
 import edu.stanford.hivdb.mutations.Gene;
+import edu.stanford.hivdb.mutations.Strain;
 import edu.stanford.hivdb.utilities.MyFileUtils;
 import edu.stanford.hivdb.utilities.FastaUtils;
 import edu.stanford.hivdb.utilities.Sequence;
@@ -47,7 +48,7 @@ public class PrettyAlignmentsTest {
 			Aligner.parallelAlign(sequences)
 			.stream().collect(Collectors.toMap(as -> as.getInputSequence(), as -> as))
 		);
-		for (Gene gene : Gene.values()) {
+		for (Gene gene : Gene.values(Strain.HIV1)) {
 			List<AlignedGeneSeq> alignmentResults = new ArrayList<>();
 
 			for (Sequence seq : sequences) {
@@ -83,7 +84,7 @@ public class PrettyAlignmentsTest {
 			}
 			output.append(row + "\n");
 		}
-		MyFileUtils.writeFile(gene.toString() + "PrettyAlignmentTestOutput.txt", output.toString());
+		MyFileUtils.writeFile(gene.getShortName() + "PrettyAlignmentTestOutput.txt", output.toString());
 	}
 
 }

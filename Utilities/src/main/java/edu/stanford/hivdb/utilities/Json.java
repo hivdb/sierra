@@ -33,6 +33,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 import edu.stanford.hivdb.mutations.AAMutation;
+import edu.stanford.hivdb.mutations.Gene;
 import edu.stanford.hivdb.mutations.GenePosition;
 import edu.stanford.hivdb.mutations.IUPACMutation;
 import edu.stanford.hivdb.mutations.MultiCodonsMutation;
@@ -55,6 +56,9 @@ public class Json {
 			}
 			else if (classType == GenePosition.class) {
 				return genePositionAdapter(delegate);
+			}
+			else if (classType == Gene.class) {
+				return geneAdapter(delegate);
 			}
 			return delegate;
 		}
@@ -91,6 +95,24 @@ public class Json {
 					final TypeAdapter<String> stringAdapter =
 						gson.getAdapter(new TypeToken<String>(){});
 					return (T) new GenePosition(stringAdapter.read(reader));
+				}
+			};
+		}
+
+		private <T> TypeAdapter<T> geneAdapter(TypeAdapter<T> delegate) {
+
+			return new TypeAdapter<T>() {
+				@Override
+				public void write(JsonWriter out, T value) throws IOException {
+					out.value(value.toString());
+				}
+
+				@SuppressWarnings("unchecked")
+				@Override
+				public T read(JsonReader reader) throws IOException {
+					final TypeAdapter<String> stringAdapter =
+						gson.getAdapter(new TypeToken<String>(){});
+					return (T) Gene.valueOf(stringAdapter.read(reader));
 				}
 			};
 		}

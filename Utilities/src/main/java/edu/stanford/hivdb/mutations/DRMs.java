@@ -73,13 +73,13 @@ public class DRMs {
 
 		List<Collection<Mutation>> allDrms = new ArrayList<>();
 		allDrms.add(db.iterate(sqlStatement1, rs -> {
-			Gene gene = Gene.valueOf(rs.getString("Gene"));
+			Gene gene = Gene.valueOf(Strain.HIV1, rs.getString("Gene"));
 			int pos = rs.getInt("Pos");
 			String aa = rs.getString("AA");
 			return new AAMutation(gene, pos, aa.toCharArray(), 0xff);
 		}));
 		allDrms.addAll(db.iterate(sqlStatement2, rs -> {
-			Gene gene = Gene.valueOf(rs.getString("Gene"));
+			Gene gene = Gene.valueOf(Strain.HIV1, rs.getString("Gene"));
 			String rule = rs.getString("Rule");
 			rule = AA.toInternalFormat(rule);
 			return new MutationSet(gene, rule).displayAmbiguities();

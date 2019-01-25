@@ -1,6 +1,6 @@
 {
-  "IN": {
-    "gene": "IN",
+  "HIV1IN": {
+    "gene": "HIV1IN",
     "sequence": {
       "header": "GU121699",
       "sequence": "TTYTTGGATGGAATAGAYAAGGCCCAAGAAGAACATGAAAAATATCACAGTAATTGGAGAGCAATGGCTAGTGAYTTTAAYCTGCCRCCTGTGGTAGCAAAAGAAATAGTAGCYAGTTGTGATAAATGTCARCTAAAAGGAGAAGCCATGYATGGRCAAGTAGACTGYAGTCCAGGGATATGGCAACTRGATTGTRCACATTTAGAAGGAAAAATTATCCTGGTAGCAGTTCATGTAGCCAGTGGATATATAGAAGCAGAAGTYATTCCAGCAGAGACAGGGCAGGAAACAGCATACTTTATCTTAAAATTAGCAGGWAGATGGCCAGTAAAAATTATACATACAGACAATGGCAGCAATTTCACCAGTACTACAGTTAAGGCCGCCTGTTGGTGGGCAGGGATCAAGCAGGAATTTGGCATTCCCTACAATCCCCAGAGTCAAGGAGTAGTAGAATCYATGMATAAAGAATTAAAGAARATTATAGGRCAGGTAAGAGATCAGGCTGAACAYCTTAAGACAGCAGTACAAATGGCAGTATTCATCCACAATTTTAAAAGAAAAGGGGGGATTGGGGGGTACAGTGCAGGGGAAAGAATARTAGACATAATAGCAACAGACATACAAACTCAAGAATTACARAAACAAGTTACAAAAATTCAAAATTTTCGGGTTTATTACAGAGACAGCAGAGACCCACTTTGGAAAGGACCAGCAARACTTCTCTGGAAAGGTGAAGGGGCAGTAGTAATACAAGAYAATAGTGACATAAARGTAGTGCCAAGAAGAAAAGCAARGATCATTAGGGATTATGGAAAACAGATGGCAGGTGATGATTGTGTGGCAAGTAGACAGGATGAGGAT",
@@ -20,126 +20,126 @@
         "aas": "HY",
         "triplet": "YAT",
         "insertedNAs": "",
-        "gene": "IN",
+        "gene": "HIV1IN",
         "position": 51,
         "aaChars": [
           "H",
           "Y"
         ],
-        "maxDisplayAAs": 4
+        "maxDisplayAAs": 6
       },
       {
         "type": "IUPAC",
         "aas": "AT",
         "triplet": "RCA",
         "insertedNAs": "",
-        "gene": "IN",
+        "gene": "HIV1IN",
         "position": 66,
         "aaChars": [
           "A",
           "T"
         ],
-        "maxDisplayAAs": 4
+        "maxDisplayAAs": 6
       },
       {
         "type": "IUPAC",
         "aas": "I",
         "triplet": "ATC",
         "insertedNAs": "",
-        "gene": "IN",
+        "gene": "HIV1IN",
         "position": 101,
         "aaChars": [
           "I"
         ],
-        "maxDisplayAAs": 4
+        "maxDisplayAAs": 6
       },
       {
         "type": "IUPAC",
         "aas": "I",
         "triplet": "ATT",
         "insertedNAs": "",
-        "gene": "IN",
+        "gene": "HIV1IN",
         "position": 112,
         "aaChars": [
           "I"
         ],
-        "maxDisplayAAs": 4
+        "maxDisplayAAs": 6
       },
       {
         "type": "IUPAC",
         "aas": "HN",
         "triplet": "MAT",
         "insertedNAs": "",
-        "gene": "IN",
+        "gene": "HIV1IN",
         "position": 155,
         "aaChars": [
           "H",
           "N"
         ],
-        "maxDisplayAAs": 4
+        "maxDisplayAAs": 6
       },
       {
         "type": "IUPAC",
         "aas": "IV",
         "triplet": "RTA",
         "insertedNAs": "",
-        "gene": "IN",
+        "gene": "HIV1IN",
         "position": 201,
         "aaChars": [
           "I",
           "V"
         ],
-        "maxDisplayAAs": 4
+        "maxDisplayAAs": 6
       },
       {
         "type": "IUPAC",
         "aas": "Q",
         "triplet": "CAA",
         "insertedNAs": "",
-        "gene": "IN",
+        "gene": "HIV1IN",
         "position": 211,
         "aaChars": [
           "Q"
         ],
-        "maxDisplayAAs": 4
+        "maxDisplayAAs": 6
       },
       {
         "type": "IUPAC",
         "aas": "V",
         "triplet": "GTT",
         "insertedNAs": "",
-        "gene": "IN",
+        "gene": "HIV1IN",
         "position": 217,
         "aaChars": [
           "V"
         ],
-        "maxDisplayAAs": 4
+        "maxDisplayAAs": 6
       },
       {
         "type": "IUPAC",
         "aas": "KR",
         "triplet": "ARA",
         "insertedNAs": "",
-        "gene": "IN",
+        "gene": "HIV1IN",
         "position": 240,
         "aaChars": [
           "K",
           "R"
         ],
-        "maxDisplayAAs": 4
+        "maxDisplayAAs": 6
       },
       {
         "type": "IUPAC",
         "aas": "KR",
         "triplet": "ARG",
         "insertedNAs": "",
-        "gene": "IN",
+        "gene": "HIV1IN",
         "position": 266,
         "aaChars": [
           "K",
           "R"
         ],
-        "maxDisplayAAs": 4
+        "maxDisplayAAs": 6
       }
     ],
     "frameShifts": [],

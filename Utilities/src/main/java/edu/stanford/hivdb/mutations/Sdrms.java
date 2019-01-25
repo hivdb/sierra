@@ -61,7 +61,8 @@ public class Sdrms {
 		sdrms = new MutationSet(
 			db.iterate(sqlStatement, rs -> {
 				return new AAMutation(
-						Gene.valueOf(rs.getString("Gene")),
+						// TODO: we only have data for HIV1
+						Gene.valueOf("HIV1", rs.getString("Gene")),
 						rs.getInt("Pos"),
 						rs.getString("AAs").toCharArray(),
 						0xff);

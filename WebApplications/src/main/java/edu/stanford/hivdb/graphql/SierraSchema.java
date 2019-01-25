@@ -31,6 +31,7 @@ import java.util.EnumSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 import edu.stanford.hivdb.alignment.AlignedSequence;
@@ -39,6 +40,7 @@ import edu.stanford.hivdb.mutations.Gene;
 import edu.stanford.hivdb.mutations.IUPACMutation;
 import edu.stanford.hivdb.mutations.MutationPrevalences;
 import edu.stanford.hivdb.mutations.MutationSet;
+import edu.stanford.hivdb.mutations.Strain;
 import edu.stanford.hivdb.ngs.SequenceReads;
 import edu.stanford.hivdb.utilities.Sequence;
 
@@ -90,8 +92,9 @@ public class SierraSchema {
 	}
 
 	private static Set<Gene> extractKnownGenes(List<String> mutations) {
-		Set<Gene> knownGenes = EnumSet.noneOf(Gene.class);
-		int numGenes = Gene.values().length;
+		Set<Gene> knownGenes = new TreeSet<>();
+		// TODO: support HIV2
+		int numGenes = Gene.values(Strain.HIV1).length;
 		for (String mutText : mutations) {
 			Gene gene = IUPACMutation.extractGene(mutText);
 			knownGenes.add(gene);
@@ -133,7 +136,7 @@ public class SierraSchema {
 		public List<Gene> get(DataFetchingEnvironment environment) {
 			List<Gene> genes = environment.getArgument("names");
 			if (genes == null || genes.isEmpty()) {
-				return Arrays.asList(Gene.values());
+				return Arrays.asList(Gene.values(Strain.HIV1));
 			}
 			else {
 				return genes;

@@ -20,8 +20,8 @@ package edu.stanford.hivdb.alignment;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.EnumMap;
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.Collections;
 
 import org.apache.commons.lang3.StringUtils;
@@ -36,6 +36,7 @@ import edu.stanford.hivdb.mutations.FrameShift;
 import edu.stanford.hivdb.mutations.Gene;
 import edu.stanford.hivdb.mutations.MutationSet;
 import edu.stanford.hivdb.mutations.Sdrms;
+import edu.stanford.hivdb.mutations.Strain;
 import edu.stanford.hivdb.utilities.SeqUtils;
 import edu.stanford.hivdb.utilities.Sequence;
 
@@ -44,6 +45,7 @@ public class AlignedSequence {
 	private static final Map<Gene, Integer> NUM_NAS_BY_GENE;
 	private static final String WILDCARD = ".";
 
+	private final Strain strain;
 	private final Sequence inputSequence;
 
 	private List<ValidationResult> validationResults;
@@ -63,16 +65,17 @@ public class AlignedSequence {
 	private static final Logger LOGGER = LogManager.getLogger();
 
 	static {
-		Map<Gene, Integer> firstNAByGene = new EnumMap<Gene, Integer>(Gene.class);
-		firstNAByGene.put(Gene.PR, new Integer(2253));
-		firstNAByGene.put(Gene.RT, new Integer(2550));
-		firstNAByGene.put(Gene.IN, new Integer(4230));
+		// TODO: HIV2 support
+		Map<Gene, Integer> firstNAByGene = new TreeMap<>();
+		firstNAByGene.put(Gene.valueOf("HIV1PR"), new Integer(2253));
+		firstNAByGene.put(Gene.valueOf("HIV1RT"), new Integer(2550));
+		firstNAByGene.put(Gene.valueOf("HIV1IN"), new Integer(4230));
 		FIRST_NA_BY_GENE = Collections.unmodifiableMap(firstNAByGene);
 
-		Map<Gene, Integer> numNAsByGene = new EnumMap<Gene, Integer>(Gene.class);
-		numNAsByGene.put(Gene.PR, new Integer(297));
-		numNAsByGene.put(Gene.RT, new Integer(1680));
-		numNAsByGene.put(Gene.IN, new Integer(864));
+		Map<Gene, Integer> numNAsByGene = new TreeMap<>();
+		numNAsByGene.put(Gene.valueOf("HIV1PR"), new Integer(297));
+		numNAsByGene.put(Gene.valueOf("HIV1RT"), new Integer(1680));
+		numNAsByGene.put(Gene.valueOf("HIV1IN"), new Integer(864));
 		NUM_NAS_BY_GENE = Collections.unmodifiableMap(numNAsByGene);
 	}
 
@@ -82,6 +85,8 @@ public class AlignedSequence {
 			final Map<Gene, String> discardedGenes,
 			final boolean sequenceReversed) {
 		inputSequence = unalignedSequence;
+		// TODO: add HIV2 support
+		this.strain = Strain.HIV1;
 		this.alignedGeneSequenceMap = alignedGeneSequenceMap;
 		this.discardedGenes = discardedGenes;
 		isReverseComplement = sequenceReversed;
@@ -90,6 +95,10 @@ public class AlignedSequence {
 
 	public boolean isEmpty() {
 		return isEmpty;
+	}
+	
+	public Strain getStrain() {
+		return strain;
 	}
 
 	public boolean isReverseComplement() {

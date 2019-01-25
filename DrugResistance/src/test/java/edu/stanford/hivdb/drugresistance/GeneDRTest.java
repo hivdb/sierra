@@ -35,26 +35,26 @@ public class GeneDRTest {
 
 	@Test
 	public void testGetGene() {
-		GeneDR geneDR = new GeneDRFast(Gene.IN, new MutationSet());
-		assertEquals(Gene.IN, geneDR.getGene());
+		GeneDR geneDR = new GeneDRFast(Gene.valueOf("HIV1IN"), new MutationSet());
+		assertEquals(Gene.valueOf("HIV1IN"), geneDR.getGene());
 	}
 
 	@Test
 	public void testGetMutationByType() {
-		GeneDR geneDR = new GeneDRFast(Gene.IN, new MutationSet());
+		GeneDR geneDR = new GeneDRFast(Gene.valueOf("HIV1IN"), new MutationSet());
 		assertEquals(Collections.emptySet(), geneDR.getMutationsByType(MutType.Major));
 
-		geneDR = new GeneDRFast(Gene.RT, new MutationSet("RT69T_TT, RT43E"));
+		geneDR = new GeneDRFast(Gene.valueOf("HIV1RT"), new MutationSet("RT69T_TT, RT43E"));
 		assertEquals(new MutationSet("RT69T_TT"), geneDR.getMutationsByType(MutType.NRTI));
 		assertEquals(new MutationSet("RT43E"), geneDR.getMutationsByType(MutType.Other));
 	}
 
 	@Test
 	public void testGetCommentsByType() {
-		GeneDR geneDR = new GeneDRFast(Gene.IN, new MutationSet());
+		GeneDR geneDR = new GeneDRFast(Gene.valueOf("HIV1IN"), new MutationSet());
 		assertEquals(Collections.emptyList(), geneDR.getCommentsByType(CommentType.Major));
 
-		geneDR = new GeneDRFast(Gene.RT, new MutationSet("RT69T_TT, RT138D"));
+		geneDR = new GeneDRFast(Gene.valueOf("HIV1RT"), new MutationSet("RT69T_TT, RT138D"));
 		assertEquals(Collections.emptyList(), geneDR.getCommentsByType(CommentType.Major));
 		assertEquals(1, geneDR.getCommentsByType(CommentType.NRTI).size());
 		assertNotEquals(Collections.emptyList(), geneDR.getCommentsByType(CommentType.NRTI));
@@ -64,7 +64,7 @@ public class GeneDRTest {
 
 	@Test
 	public void testDrugClassHasScoredMuts() {
-		GeneDR geneDR = spy(new GeneDRFast(Gene.IN, new MutationSet()));
+		GeneDR geneDR = spy(new GeneDRFast(Gene.valueOf("HIV1IN"), new MutationSet()));
 		doReturn(true).when(geneDR).drugClassHasScoredIndividualMuts(DrugClass.INSTI);
 		doReturn(true).when(geneDR).drugClassHasScoredComboMuts(DrugClass.INSTI);
 		assertTrue(geneDR.drugClassHasScoredMuts(DrugClass.INSTI));
@@ -82,7 +82,7 @@ public class GeneDRTest {
 
 	@Test
 	public void testDrugHasScoredMuts() {
-		GeneDR geneDR = spy(new GeneDRFast(Gene.IN, new MutationSet()));
+		GeneDR geneDR = spy(new GeneDRFast(Gene.valueOf("HIV1IN"), new MutationSet()));
 		doReturn(true).when(geneDR).drugHasScoredIndividualMuts(Drug.RAL);
 		doReturn(true).when(geneDR).drugHasScoredComboMuts(Drug.RAL);
 		assertTrue(geneDR.drugHasScoredMuts(Drug.RAL));

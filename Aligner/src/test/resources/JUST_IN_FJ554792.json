@@ -1,6 +1,6 @@
 {
-  "IN": {
-    "gene": "IN",
+  "HIV1IN": {
+    "gene": "HIV1IN",
     "sequence": {
       "header": "FJ554792",
       "sequence": "TTTCTGGATGGCATTGATCAGGCGCAGGAAGAACATGAAAAATATCATAGCAACTGGCGTGCGATGGCGAGCGATTTTAACCTGCCGCCGGTGGTGGCGAAAGAAATTGTGGCGAGCTGCGATAAATGCCAGCTGAAAGGCGAAGCGATGCATGGCCAGGTGGATTGCAGCCCGGGCATTTGGCAGCTGGATTGCACCCATCTGGAAGGCAAAGTGATTCTGGTGGCGGTGCATGTGGCGAGCGGCTATATTGAAGCGGAAGTGATTCCGGCGGAAACCGGCCAGGAAACCGCGTATTTTCTGCTGAAACTGGCGGGCCGTTGGCCGGTGAAAACCCTGCATACCGATAACGGCAGCAACTTTACCAGCGCGACCGTGAAAGCGGCGTGCTGGTGGGCGGGCATTAAACAGGAATTTAGCATTCCGTATAACCCGCAGAGCCAGGGCGTGGTGAAAAGCATGAACAAAGAACTGAAAAAAATTATTGGCCAGGTGCGTGATCAGGCGGAACATCTGAAAACCGCGGTGCAGATGGCGGTGTTTATTCATAACTTTAAACGTAAAGGCGGCATTGGCGGCTATAGCGCGGGCGAACGTATTGTGGATATTATTGCGACCGATATTCAGACCAAAGAACTGCAGAAACAGATTACCAAAATTCAGAACTTTCGTGTGTATTATCGTGATAGCCGTGATCCGCTGTGGAAAGGCCCGGCGAAACTGCTGTGGAAAGGCGAAGGCGCGGTGGTGATTCAGGATAACAGCGATATTAAAGTGGTGCCGCGTCGTAAAGCGAAAATTATTCGTGATTATGGCAAACAGATGGCGGGCGATGATTGCGTGGCGAGCCGTCAGGATGAAGAT",
@@ -20,72 +20,72 @@
         "aas": "Q",
         "triplet": "CAG",
         "insertedNAs": "",
-        "gene": "IN",
+        "gene": "HIV1IN",
         "position": 7,
         "aaChars": [
           "Q"
         ],
-        "maxDisplayAAs": 4
+        "maxDisplayAAs": 6
       },
       {
         "type": "IUPAC",
         "aas": "V",
         "triplet": "GTG",
         "insertedNAs": "",
-        "gene": "IN",
+        "gene": "HIV1IN",
         "position": 72,
         "aaChars": [
           "V"
         ],
-        "maxDisplayAAs": 4
+        "maxDisplayAAs": 6
       },
       {
         "type": "IUPAC",
         "aas": "L",
         "triplet": "CTG",
         "insertedNAs": "",
-        "gene": "IN",
+        "gene": "HIV1IN",
         "position": 113,
         "aaChars": [
           "L"
         ],
-        "maxDisplayAAs": 4
+        "maxDisplayAAs": 6
       },
       {
         "type": "IUPAC",
         "aas": "A",
         "triplet": "GCG",
         "insertedNAs": "",
-        "gene": "IN",
+        "gene": "HIV1IN",
         "position": 124,
         "aaChars": [
           "A"
         ],
-        "maxDisplayAAs": 4
+        "maxDisplayAAs": 6
       },
       {
         "type": "IUPAC",
         "aas": "S",
         "triplet": "AGC",
         "insertedNAs": "",
-        "gene": "IN",
+        "gene": "HIV1IN",
         "position": 140,
         "aaChars": [
           "S"
         ],
-        "maxDisplayAAs": 4
+        "maxDisplayAAs": 6
       },
       {
         "type": "IUPAC",
         "aas": "K",
         "triplet": "AAA",
         "insertedNAs": "",
-        "gene": "IN",
+        "gene": "HIV1IN",
         "position": 152,
         "aaChars": [
           "K"
         ],
-        "maxDisplayAAs": 4
+        "maxDisplayAAs": 6
       }
     ],
     "frameShifts": [],

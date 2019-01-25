@@ -33,6 +33,7 @@ import edu.stanford.hivdb.drugs.DrugClass;
 import edu.stanford.hivdb.mutations.Gene;
 import edu.stanford.hivdb.mutations.AAMutation;
 import edu.stanford.hivdb.mutations.MutationSet;
+import edu.stanford.hivdb.mutations.Strain;
 import edu.stanford.hivdb.utilities.JdbcDatabase;
 import edu.stanford.hivdb.utilities.Cachable;
 import edu.stanford.hivdb.utilities.Cachable.DataLoader;
@@ -245,7 +246,8 @@ public class MutationPatterns {
 				"AND AA != '.' ORDER BY SequenceID, Pos, AA";
 
 			Map<DrugClass, List<MutationPattern>> allResult = new EnumMap<>(DrugClass.class);
-			for (Gene gene : Gene.values()) {
+			// TODO: we don't have data for HIV2
+			for (Gene gene : Gene.values(Strain.HIV1)) {
 				Map<Integer, MutationSet> allMutations = db.iterateMap(
 					sql,
 					(rs, map) -> {
@@ -257,7 +259,7 @@ public class MutationPatterns {
 						map.put(seqId, muts);
 						return null;
 					},
-					gene.toString());
+					gene.getShortName());
 				allResult.putAll(calcGenePatterns(gene, allMutations.values()));
 			}
 			return allResult;

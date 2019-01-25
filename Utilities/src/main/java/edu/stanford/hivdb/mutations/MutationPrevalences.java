@@ -207,8 +207,8 @@ public class MutationPrevalences {
 	/* update the mutation prevalence store. */
 	protected static void populateMutationPrevalenceStore() throws IOException {
 		mutationPrevalences = new ArrayList<>();
-		readPrevalenceFile(new URL(PR_PREVALENCE_DB_URL), Gene.PR);
-		readPrevalenceFile(new URL(IN_PREVALENCE_DB_URL), Gene.IN);
-		readPrevalenceFile(new URL(RT_PREVALENCE_DB_URL), Gene.RT);
+		readPrevalenceFile(new URL(PR_PREVALENCE_DB_URL), Gene.valueOf("HIV1PR"));
+		readPrevalenceFile(new URL(IN_PREVALENCE_DB_URL), Gene.valueOf("HIV1IN"));
+		readPrevalenceFile(new URL(RT_PREVALENCE_DB_URL), Gene.valueOf("HIV1RT"));
 	}
 }

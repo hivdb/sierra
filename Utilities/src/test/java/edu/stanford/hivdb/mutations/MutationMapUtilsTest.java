@@ -26,7 +26,7 @@ import java.util.Map;
 import org.junit.Before;
 import org.junit.Test;
 
-import edu.stanford.hivdb.mutations.Gene;
+import edu.stanford.hivdb.mutations.GeneEnum;
 import edu.stanford.hivdb.mutations.Mutation;
 import edu.stanford.hivdb.mutations.MutationMapUtils;
 import edu.stanford.hivdb.mutations.MutationMapUtils.SortOrder;
@@ -34,12 +34,12 @@ import edu.stanford.hivdb.mutations.MutationMapUtils.SortOrder;
 public class MutationMapUtilsTest {
 
 	private Map<Mutation, Double> mutationScores = new HashMap<>();
-	final private Mutation mut1 = new IUPACMutation(Gene.RT, 67, "N");
-	final private Mutation mut2 = new IUPACMutation(Gene.RT, 69, "KS");
-	final private Mutation mut3 = new IUPACMutation(Gene.RT, 65, "R");
-	final private Mutation mut4 = new IUPACMutation(Gene.RT, 184, "V");
-	final private Mutation mut5 = new IUPACMutation(Gene.RT, 41, "L");
-	final private Mutation mut6 = new IUPACMutation(Gene.RT, 151, "M");
+	final private Mutation mut1 = new IUPACMutation(Gene.valueOf("HIV1RT"), 67, "N");
+	final private Mutation mut2 = new IUPACMutation(Gene.valueOf("HIV1RT"), 69, "KS");
+	final private Mutation mut3 = new IUPACMutation(Gene.valueOf("HIV1RT"), 65, "R");
+	final private Mutation mut4 = new IUPACMutation(Gene.valueOf("HIV1RT"), 184, "V");
+	final private Mutation mut5 = new IUPACMutation(Gene.valueOf("HIV1RT"), 41, "L");
+	final private Mutation mut6 = new IUPACMutation(Gene.valueOf("HIV1RT"), 151, "M");
 
 	@Before
 	public void setUp() {

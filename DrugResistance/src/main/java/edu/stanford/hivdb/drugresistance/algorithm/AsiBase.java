@@ -113,7 +113,7 @@ abstract public class AsiBase implements Asi {
 		this.gene = submittedGene;
 		this.mutations = mutations.toASIFormat();
 
-		asiGene = geneMap.get(submittedGene.name());
+		asiGene = geneMap.get(submittedGene.getShortName());
 
 		MutationComparator mutationComparator = new StringMutationComparator(false);
 		if (!mutationComparator.areMutationsValid(this.mutations)){

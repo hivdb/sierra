@@ -35,7 +35,7 @@ import org.apache.logging.log4j.Logger;
 
 import edu.stanford.hivdb.drugresistance.database.HivdbVersion;
 import edu.stanford.hivdb.drugs.DrugClass;
-import edu.stanford.hivdb.mutations.Gene;
+import edu.stanford.hivdb.mutations.GeneEnum;
 import edu.stanford.hivdb.mutations.MutType;
 import edu.stanford.hivdb.utilities.MyFileUtils;
 
@@ -97,7 +97,7 @@ public class MutationCommentsImporter {
 	private static String insertRowIntoDB(String rowLine) {
 		List<String> rowFields =
 			new ArrayList<String>(Arrays.asList(rowLine.split("\t")));
-		Gene gene = Gene.valueOf(rowFields.remove(0));
+		GeneEnum gene = GeneEnum.valueOf(rowFields.remove(0));
 		DrugClass drugClass = DrugClass.valueOf(rowFields.remove(0));
 		int pos = Integer.parseInt(rowFields.remove(0));
 		int rank = Integer.parseInt(rowFields.remove(0));

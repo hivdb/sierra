@@ -85,7 +85,7 @@ public class Apobec {
 			.map(e -> {
 				final Gene gene = e.getKey();
 				final MutationSet subset = e.getValue();
-				return String.format("%s: %s", gene, subset.join(", "));
+				return String.format("%s: %s", gene.getShortName(), subset.join(", "));
 			})
 			.collect(Collectors.joining("; ")));
 		comment.append(".");
@@ -128,7 +128,7 @@ public class Apobec {
 		apobecMutsLU = new MutationSet(
 			db.iterate(sqlStatementApobecMuts, rs -> {
 				return new AAMutation(
-					Gene.valueOf(rs.getString("Gene")),
+					Gene.valueOf(Strain.HIV1, rs.getString("Gene")),
 					rs.getInt("Pos"),
 					rs.getString("AA").toCharArray(),
 					0xff);
@@ -138,7 +138,7 @@ public class Apobec {
 		apobecDRMsLU = new MutationSet(
 			db.iterate(sqlStatementApobecDRMs, rs -> {
 				return new AAMutation(
-					Gene.valueOf(rs.getString("Gene")),
+					Gene.valueOf(Strain.HIV1, rs.getString("Gene")),
 					rs.getInt("Pos"),
 					rs.getString("AA").toCharArray(),
 					0xff);

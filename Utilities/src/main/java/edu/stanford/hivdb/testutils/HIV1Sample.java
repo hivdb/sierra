@@ -41,7 +41,7 @@ public class HIV1Sample {
 			Gene gene, int startPos, int endPos, String replaceTo) {
 		SampleSubstitution sub =
 			new SampleSubstitution(startPos, endPos, replaceTo);
-		switch (gene) {
+		switch (gene.getGeneEnum()) {
 			case PR:
 				subPR.add(sub);
 				break;
@@ -64,7 +64,7 @@ public class HIV1Sample {
 	}
 
 	public void cleanSubstitutionRules(Gene gene) {
-		switch (gene) {
+		switch (gene.getGeneEnum()) {
 			case PR:
 				subPR.clear();
 				break;
@@ -107,7 +107,7 @@ public class HIV1Sample {
 
 	public String getByGene(Gene gene) {
 		String r = null;
-		switch (gene) {
+		switch (gene.getGeneEnum()) {
 			case PR:
 				r = getPR();
 				break;

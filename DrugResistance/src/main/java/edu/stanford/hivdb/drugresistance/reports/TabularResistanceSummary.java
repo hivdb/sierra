@@ -34,6 +34,7 @@ import edu.stanford.hivdb.drugs.DrugClass;
 import edu.stanford.hivdb.mutations.Gene;
 import edu.stanford.hivdb.mutations.MutType;
 import edu.stanford.hivdb.mutations.MutationSet;
+import edu.stanford.hivdb.mutations.Strain;
 import edu.stanford.hivdb.utilities.Sequence;
 import edu.stanford.hivdb.utilities.TSV;
 
@@ -100,7 +101,8 @@ public class TabularResistanceSummary {
 			tabularResults.put(seqName, new TreeMap<String, String>());
 
 			List<Gene> geneList = new ArrayList<>();
-			for (Gene gene : Gene.values()) {
+			// TODO: Support HIV2
+			for (Gene gene : Gene.values(Strain.HIV1)) {
 				if (resistanceResults.containsKey(gene)) {
 					geneList.add(gene);
 				}
@@ -141,8 +143,8 @@ public class TabularResistanceSummary {
 
 	private static List<String> getScoresIN(Map<Gene, GeneDR> resistanceResults) {
 		List<String> resistanceScoresAndLevels = new ArrayList<>();
-		if (resistanceResults.containsKey(Gene.IN)) {
-			GeneDR geneDR = resistanceResults.get(Gene.IN);
+		if (resistanceResults.containsKey(Gene.valueOf("HIV1IN"))) {
+			GeneDR geneDR = resistanceResults.get(Gene.valueOf("HIV1IN"));
 			for (Drug drug : instis) {
 				int score = geneDR.getTotalDrugScore(drug).intValue();
 				int level = geneDR.getDrugLevel(drug);
@@ -161,8 +163,8 @@ public class TabularResistanceSummary {
 		List<String> scoredMutations = new ArrayList<>();
 		String prMajor = "NA";
 		String prAccessory = "NA";
-		if (resistanceResults.containsKey(Gene.PR)) {
-			GeneDR prResults = resistanceResults.get(Gene.PR);
+		if (resistanceResults.containsKey(Gene.valueOf("HIV1PR"))) {
+			GeneDR prResults = resistanceResults.get(Gene.valueOf("HIV1PR"));
 			if (prResults.groupMutationsByTypes().containsKey(MutType.Major)) {
 				MutationSet majorMuts = prResults.groupMutationsByTypes().get(MutType.Major);
 				prMajor = majorMuts.join();
@@ -183,8 +185,8 @@ public class TabularResistanceSummary {
 
 	private static List<String> getScoresPR(Map<Gene, GeneDR> resistanceResults) {
 		List<String> resistanceScoresAndLevels = new ArrayList<>();
-		if (resistanceResults.containsKey(Gene.PR)) {
-			GeneDR geneDR = resistanceResults.get(Gene.PR);
+		if (resistanceResults.containsKey(Gene.valueOf("HIV1PR"))) {
+			GeneDR geneDR = resistanceResults.get(Gene.valueOf("HIV1PR"));
 			for (Drug drug : pis) {
 				int score = geneDR.getTotalDrugScore(drug).intValue();
 				int level = geneDR.getDrugLevel(drug);
@@ -200,8 +202,8 @@ public class TabularResistanceSummary {
 
 	private static List<String> getScoresRT(Map<Gene, GeneDR> resistanceResults) {
 		List<String> resistanceScoresAndLevels = new ArrayList<>();
-		if (resistanceResults.containsKey(Gene.RT)) {
-			GeneDR geneDR = resistanceResults.get(Gene.RT);
+		if (resistanceResults.containsKey(Gene.valueOf("HIV1RT"))) {
+			GeneDR geneDR = resistanceResults.get(Gene.valueOf("HIV1RT"));
 			for (Drug drug : nrtis) {
 				int score = geneDR.getTotalDrugScore(drug).intValue();
 				int level = geneDR.getDrugLevel(drug);
@@ -228,8 +230,8 @@ public class TabularResistanceSummary {
 		List<String> scoredMutations = new ArrayList<>();
 		String nrti = "NA";
 		String nnrti = "NA";
-		if (resistanceResults.containsKey(Gene.RT)) {
-			GeneDR rtResults = resistanceResults.get(Gene.RT);
+		if (resistanceResults.containsKey(Gene.valueOf("HIV1RT"))) {
+			GeneDR rtResults = resistanceResults.get(Gene.valueOf("HIV1RT"));
 			if (rtResults.groupMutationsByTypes().containsKey(MutType.NRTI)) {
 				MutationSet nrtiMuts = rtResults.groupMutationsByTypes().get(MutType.NRTI);
 				nrti = nrtiMuts.join();
@@ -252,8 +254,8 @@ public class TabularResistanceSummary {
 		List<String> scoredMutations = new ArrayList<>();
 		String inMajor = "NA";
 		String inAccessory = "NA";
-		if (resistanceResults.containsKey(Gene.IN)) {
-			GeneDR inResults = resistanceResults.get(Gene.IN);
+		if (resistanceResults.containsKey(Gene.valueOf("HIV1IN"))) {
+			GeneDR inResults = resistanceResults.get(Gene.valueOf("HIV1IN"));
 			if (inResults.groupMutationsByTypes().containsKey(MutType.Major)) {
 				MutationSet major = inResults.groupMutationsByTypes().get(MutType.Major);
 				inMajor = major.join();

@@ -193,12 +193,13 @@ public class TabularSequenceSummary {
 		Map<Gene, AlignedGeneSeq> seqResult = alignedSeq.getAlignedGeneSequenceMap();
 		String prSdrms = "NA";
 		String rtSdrms = "NA";
-		if (seqResult.containsKey(Gene.PR)) {
-			MutationSet sdrms = seqResult.get(Gene.PR).getSdrms();
+		// TODO: HIV2 Support
+		if (seqResult.containsKey(Gene.valueOf("HIV1PR"))) {
+			MutationSet sdrms = seqResult.get(Gene.valueOf("HIV1PR")).getSdrms();
 			prSdrms = sdrms.join();
 		}
-		if (seqResult.containsKey(Gene.RT)) {
-			MutationSet sdrms = seqResult.get(Gene.RT).getSdrms();
+		if (seqResult.containsKey(Gene.valueOf("HIV1RT"))) {
+			MutationSet sdrms = seqResult.get(Gene.valueOf("HIV1RT")).getSdrms();
 			rtSdrms = sdrms.join();
 		}
 		sdrmList.add(prSdrms);
@@ -211,7 +212,8 @@ public class TabularSequenceSummary {
 		List<String> mutListStrings = new ArrayList<>();
 		Map<Gene, AlignedGeneSeq> seqResult = alignedSeq.getAlignedGeneSequenceMap();
 
-		for (Gene gene : Gene.values()) {
+		// TODO: HIV2 Support
+		for (Gene gene : Gene.values(alignedSeq.getStrain())) {
 			if (!seqResult.containsKey(gene)) {
 				mutListStrings.add("NA");
 				mutListStrings.add("NA");
@@ -237,9 +239,10 @@ public class TabularSequenceSummary {
 		List<String> nonDrmTsmsList = new ArrayList<>();
 		Map<Gene, AlignedGeneSeq> seqResult = alignedSeq.getAlignedGeneSequenceMap();
 
-		for (Gene gene : Gene.values()) {
+		// TODO: HIV2 Support
+		for (Gene gene : Gene.values(alignedSeq.getStrain())) {
 			if (!seqResult.containsKey(gene)) {
-				if (gene.equals(Gene.RT)) {
+				if (gene.equals(Gene.valueOf("HIV1RT"))) {
 					nonDrmTsmsList.add("NA");
 					nonDrmTsmsList.add("NA");
 				} else {
@@ -270,17 +273,17 @@ public class TabularSequenceSummary {
 		String firstAAPR, lastAAPR, firstAART, lastAART, firstAAIN, lastAAIN;
 		firstAAPR = lastAAPR = firstAART = lastAART = firstAAIN = lastAAIN = "NA";
 		Map<Gene, AlignedGeneSeq> seqResult = alignedSeq.getAlignedGeneSequenceMap();
-		if (seqResult.containsKey(Gene.PR)) {
-			firstAAPR = "" + seqResult.get(Gene.PR).getFirstAA();
-			lastAAPR = "" + seqResult.get(Gene.PR).getLastAA();
+		if (seqResult.containsKey(Gene.valueOf("HIV1PR"))) {
+			firstAAPR = "" + seqResult.get(Gene.valueOf("HIV1PR")).getFirstAA();
+			lastAAPR = "" + seqResult.get(Gene.valueOf("HIV1PR")).getLastAA();
 		}
-		if (seqResult.containsKey(Gene.RT)) {
-			firstAART = "" + seqResult.get(Gene.RT).getFirstAA();
-			lastAART = "" + seqResult.get(Gene.RT).getLastAA();
+		if (seqResult.containsKey(Gene.valueOf("HIV1RT"))) {
+			firstAART = "" + seqResult.get(Gene.valueOf("HIV1RT")).getFirstAA();
+			lastAART = "" + seqResult.get(Gene.valueOf("HIV1RT")).getLastAA();
 		}
-		if (seqResult.containsKey(Gene.IN)) {
-			firstAAIN = "" + seqResult.get(Gene.IN).getFirstAA();
-			lastAAIN = "" + seqResult.get(Gene.IN).getLastAA();
+		if (seqResult.containsKey(Gene.valueOf("HIV1IN"))) {
+			firstAAIN = "" + seqResult.get(Gene.valueOf("HIV1IN")).getFirstAA();
+			lastAAIN = "" + seqResult.get(Gene.valueOf("HIV1IN")).getLastAA();
 		}
 		geneBoundaries.addAll(Arrays.asList(new String[] {
 			firstAAPR, lastAAPR, firstAART, lastAART, firstAAIN, lastAAIN}));

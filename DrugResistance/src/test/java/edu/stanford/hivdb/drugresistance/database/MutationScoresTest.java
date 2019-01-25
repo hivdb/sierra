@@ -47,7 +47,7 @@ public class MutationScoresTest {
 
 	@Test
 	public void testMutScoreConstructor() {
-		final Gene eGene = Gene.RT;
+		final Gene eGene = Gene.valueOf("HIV1RT");
 		final DrugClass eDrugClass = DrugClass.NRTI;
 		final Integer ePos = 41;
 		final Character eAA = 'L';
@@ -64,7 +64,7 @@ public class MutationScoresTest {
 
 	@Test
 	public void testGetMutScores() {
-		final Gene eGene = Gene.RT;
+		final Gene eGene = Gene.valueOf("HIV1RT");
 		final Integer ePos = 41;
 		final Character eAA = 'L';
 		final List<MutScore> mutScoresList = MutationScores.getMutScores();
@@ -103,7 +103,7 @@ public class MutationScoresTest {
 
 	@Test
 	public void testMutScoreHash() throws SQLException {
-		Gene gene = Gene.RT;
+		Gene gene = Gene.valueOf("HIV1RT");
 		Mutation mut1 = new IUPACMutation(gene, 41, "L");
 		Mutation mut2 = new IUPACMutation(gene, 215, "SY");
 		Mutation mut3 = new IUPACMutation(gene, 35, "T");

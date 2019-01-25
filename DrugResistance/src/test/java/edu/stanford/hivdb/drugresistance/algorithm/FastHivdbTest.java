@@ -33,32 +33,32 @@ public class FastHivdbTest {
 
 	@Test
 	public void testGetGene() {
-		FastHivdb asiObj = new FastHivdb(Gene.RT, new MutationSet("RT184V"));
-		assertEquals(Gene.RT, asiObj.getGene());
+		FastHivdb asiObj = new FastHivdb(Gene.valueOf("HIV1RT"), new MutationSet("RT184V"));
+		assertEquals(Gene.valueOf("HIV1RT"), asiObj.getGene());
 
-		asiObj = new FastHivdb(Gene.PR, new MutationSet("PR24I,PR46L,PR54V"));
-		assertEquals(Gene.PR, asiObj.getGene());
+		asiObj = new FastHivdb(Gene.valueOf("HIV1PR"), new MutationSet("PR24I,PR46L,PR54V"));
+		assertEquals(Gene.valueOf("HIV1PR"), asiObj.getGene());
 
-		asiObj = new FastHivdb(Gene.IN, new MutationSet("IN140S,IN148H"));
-		assertEquals(Gene.IN, asiObj.getGene());
+		asiObj = new FastHivdb(Gene.valueOf("HIV1IN"), new MutationSet("IN140S,IN148H"));
+		assertEquals(Gene.valueOf("HIV1IN"), asiObj.getGene());
 	}
 
 	@Test
 	public void testGetDrugLevel() {
-		FastHivdb asiObj = new FastHivdb(Gene.RT, new MutationSet("RT67N,RT70R,RT184V,RT219Q"));
+		FastHivdb asiObj = new FastHivdb(Gene.valueOf("HIV1RT"), new MutationSet("RT67N,RT70R,RT184V,RT219Q"));
 		assertEquals(3, asiObj.getDrugLevel(Drug.TDF));
 
-		asiObj = new FastHivdb(Gene.IN, new MutationSet("IN184A"));
+		asiObj = new FastHivdb(Gene.valueOf("HIV1IN"), new MutationSet("IN184A"));
 		assertEquals(1, asiObj.getDrugLevel(Drug.DTG));
 		assertEquals(1, asiObj.getDrugLevel(Drug.ABC));
 	}
 
 	@Test
 	public void testGetDrugLevelText() {
-		FastHivdb asiObj = new FastHivdb(Gene.RT, new MutationSet("RT67N,RT70R,RT184V,RT219Q"));
+		FastHivdb asiObj = new FastHivdb(Gene.valueOf("HIV1RT"), new MutationSet("RT67N,RT70R,RT184V,RT219Q"));
 		assertEquals("Low-Level Resistance", asiObj.getDrugLevelText(Drug.TDF));
 
-		asiObj = new FastHivdb(Gene.IN, new MutationSet("IN184A"));
+		asiObj = new FastHivdb(Gene.valueOf("HIV1IN"), new MutationSet("IN184A"));
 		assertEquals("Susceptible", asiObj.getDrugLevelText(Drug.DTG));
 		assertEquals("Susceptible", asiObj.getDrugLevelText(Drug.ABC));
 	}
@@ -67,13 +67,13 @@ public class FastHivdbTest {
 	public void testGetDrugLevelSir() {
 		FastHivdb asiObj;
 
-		asiObj = new FastHivdb(Gene.PR, new MutationSet("PR73V,PR76V,PR84V,PR88S"));
+		asiObj = new FastHivdb(Gene.valueOf("HIV1PR"), new MutationSet("PR73V,PR76V,PR84V,PR88S"));
 		assertEquals("R", asiObj.getDrugLevelSir(Drug.FPV));
 
-		asiObj = new FastHivdb(Gene.RT, new MutationSet("RT67N,RT70R,RT184V,RT219Q"));
+		asiObj = new FastHivdb(Gene.valueOf("HIV1RT"), new MutationSet("RT67N,RT70R,RT184V,RT219Q"));
 		assertEquals("I", asiObj.getDrugLevelSir(Drug.TDF));
 
-		asiObj = new FastHivdb(Gene.IN, new MutationSet("IN184A"));
+		asiObj = new FastHivdb(Gene.valueOf("HIV1IN"), new MutationSet("IN184A"));
 		assertEquals("S", asiObj.getDrugLevelSir(Drug.DTG));
 		assertEquals("S", asiObj.getDrugLevelSir(Drug.ABC));
 
@@ -81,17 +81,17 @@ public class FastHivdbTest {
 
 	@Test
 	public void testGetTotalScore() {
-		FastHivdb asiObj = new FastHivdb(Gene.RT, new MutationSet("RT67N,RT70R,RT184V,RT219Q"));
+		FastHivdb asiObj = new FastHivdb(Gene.valueOf("HIV1RT"), new MutationSet("RT67N,RT70R,RT184V,RT219Q"));
 		assertEquals(15.0, asiObj.getTotalScore(Drug.TDF), 1e-6);
 
-		asiObj = new FastHivdb(Gene.IN, new MutationSet("IN184A"));
+		asiObj = new FastHivdb(Gene.valueOf("HIV1IN"), new MutationSet("IN184A"));
 		assertEquals(0.0, asiObj.getTotalScore(Drug.DTG), 1e-6);
 		assertEquals(0.0, asiObj.getTotalScore(Drug.ABC), 1e-6);
 	}
 
 	@Test
 	public void testGetDrugClassTotalDrugScores() {
-		FastHivdb asiObj = new FastHivdb(Gene.RT, new MutationSet("RT67N,RT70R,RT184V,RT219Q"));
+		FastHivdb asiObj = new FastHivdb(Gene.valueOf("HIV1RT"), new MutationSet("RT67N,RT70R,RT184V,RT219Q"));
 		Map<DrugClass, Map<Drug, Double>> expected = new EnumMap<>(DrugClass.class);
 		expected.put(DrugClass.NRTI, new EnumMap<>(Drug.class));
 		expected.put(DrugClass.NNRTI, new EnumMap<>(Drug.class));
@@ -119,7 +119,7 @@ public class FastHivdbTest {
 	@Test
 	public void testGetTriggeredMutations() {
 		FastHivdb asiObj = new FastHivdb(
-			Gene.RT, new MutationSet("RT67AN,RT71R,RT100I,RT101E,RT181C,RT184V,RT219Q"));
+			Gene.valueOf("HIV1RT"), new MutationSet("RT67AN,RT71R,RT100I,RT101E,RT181C,RT184V,RT219Q"));
 		// RT67A is not a DRM
 		MutationSet expected = new MutationSet("RT67N,RT100I,RT101E,RT181C,RT184V,RT219Q");
 		assertEquals(expected, asiObj.getTriggeredMutations());

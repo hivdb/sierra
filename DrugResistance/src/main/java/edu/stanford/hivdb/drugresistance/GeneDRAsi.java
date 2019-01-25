@@ -18,9 +18,9 @@
 
 package edu.stanford.hivdb.drugresistance;
 
-import java.util.EnumMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 import edu.stanford.hivdb.alignment.AlignedGeneSeq;
@@ -49,7 +49,7 @@ public class GeneDRAsi extends GeneDR {
 	protected final AsiHivdb asiObject;
 
 	public static Map<Gene, GeneDR> getResistanceByGene(Map<Gene, AlignedGeneSeq> alignedGeneSeqs) {
-		Map<Gene, GeneDR> resistanceForSequence = new EnumMap<>(Gene.class);
+		Map<Gene, GeneDR> resistanceForSequence = new TreeMap<>();
 		for (Gene gene : alignedGeneSeqs.keySet()) {
 			final GeneDR geneDR = new GeneDRAsi(gene, alignedGeneSeqs.get(gene));
 			resistanceForSequence.put(gene, geneDR);

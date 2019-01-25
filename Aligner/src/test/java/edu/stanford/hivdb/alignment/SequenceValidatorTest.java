@@ -19,9 +19,9 @@
 package edu.stanford.hivdb.alignment;
 
 import java.io.InputStream;
-import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import org.junit.Test;
 
@@ -83,13 +83,13 @@ public class SequenceValidatorTest {
 		SequenceValidator validator = spy(new SequenceValidator(alignedSeq));
 		assertFalse(validator.validateLongGap());
 		verify(validator, times(1))
-		.addValidationResult("overlap", Gene.RT, "CAGMTTGGTTGC...");
+		.addValidationResult("overlap", Gene.valueOf("HIV1RT"), "CAGMTTGGTTGC...");
 
 		alignedSeq = Aligner.align(seq2);
 		validator = spy(new SequenceValidator(alignedSeq));
 		assertFalse(validator.validateLongGap());
 		verify(validator, times(1))
-		.addValidationResult("overlap", Gene.RT, "ACTTTAAATTTT");
+		.addValidationResult("overlap", Gene.valueOf("HIV1RT"), "ACTTTAAATTTT");
 	}
 
 	@Test
@@ -210,10 +210,10 @@ public class SequenceValidatorTest {
 			String stopCodonsStr, ValidationLevel level) {
 		AlignedSequence alignedSeq = mock(AlignedSequence.class);
 		AlignedGeneSeq geneSeq = mock(AlignedGeneSeq.class);
-		Map<Gene, AlignedGeneSeq> geneSeqs = new EnumMap<>(Gene.class);
-		geneSeqs.put(Gene.PR, geneSeq);
+		Map<Gene, AlignedGeneSeq> geneSeqs = new TreeMap<>();
+		geneSeqs.put(Gene.valueOf("HIV1PR"), geneSeq);
 		when(geneSeq.getStopCodons())
-		.thenReturn(new MutationSet(Gene.PR, stopCodonsStr));
+		.thenReturn(new MutationSet(Gene.valueOf("HIV1PR"), stopCodonsStr));
 		when(alignedSeq.getAlignedGeneSequenceMap()).thenReturn(geneSeqs);
 		SequenceValidator validator = new SequenceValidator(alignedSeq);
 		if (level == null) {
@@ -233,12 +233,12 @@ public class SequenceValidatorTest {
 			String unusualMutsStr, String unusualMutsAtDRP, ValidationLevel level) {
 		AlignedSequence alignedSeq = mock(AlignedSequence.class);
 		AlignedGeneSeq geneSeq = mock(AlignedGeneSeq.class);
-		Map<Gene, AlignedGeneSeq> geneSeqs = new EnumMap<>(Gene.class);
-		geneSeqs.put(Gene.PR, geneSeq);
+		Map<Gene, AlignedGeneSeq> geneSeqs = new TreeMap<>();
+		geneSeqs.put(Gene.valueOf("HIV1PR"), geneSeq);
 		when(geneSeq.getUnusualMutations())
-		.thenReturn(new MutationSet(Gene.PR, unusualMutsStr));
+		.thenReturn(new MutationSet(Gene.valueOf("HIV1PR"), unusualMutsStr));
 		when(geneSeq.getUnusualMutationsAtDrugResistancePositions())
-		.thenReturn(new MutationSet(Gene.PR, unusualMutsAtDRP));
+		.thenReturn(new MutationSet(Gene.valueOf("HIV1PR"), unusualMutsAtDRP));
 		when(alignedSeq.getAlignedGeneSequenceMap()).thenReturn(geneSeqs);
 		SequenceValidator validator = new SequenceValidator(alignedSeq);
 		if (level == null) {

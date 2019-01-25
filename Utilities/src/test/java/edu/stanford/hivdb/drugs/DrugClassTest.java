@@ -25,16 +25,16 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import edu.stanford.hivdb.mutations.Gene;
+import edu.stanford.hivdb.mutations.GeneEnum;
 
 public class DrugClassTest {
 
 	@Test
 	public void testGetGene() {
-		assertEquals(DrugClass.PI.gene(), Gene.PR);
-		assertEquals(DrugClass.NRTI.gene(), Gene.RT);
-		assertEquals(DrugClass.NNRTI.gene(), Gene.RT);
-		assertEquals(DrugClass.INSTI.gene(), Gene.IN);
+		assertEquals(DrugClass.PI.gene(), GeneEnum.PR);
+		assertEquals(DrugClass.NRTI.gene(), GeneEnum.RT);
+		assertEquals(DrugClass.NNRTI.gene(), GeneEnum.RT);
+		assertEquals(DrugClass.INSTI.gene(), GeneEnum.IN);
 	}
 
 	@Test

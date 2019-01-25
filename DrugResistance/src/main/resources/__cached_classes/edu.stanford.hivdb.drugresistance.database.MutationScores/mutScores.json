@@ -1,6 +1,6 @@
 [
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "M",
     "pos": 41,
@@ -9,7 +9,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "M",
     "pos": 41,
@@ -18,7 +18,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "M",
     "pos": 41,
@@ -27,7 +27,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "M",
     "pos": 41,
@@ -36,7 +36,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "M",
     "pos": 41,
@@ -45,7 +45,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "A",
     "pos": 62,
@@ -54,7 +54,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "A",
     "pos": 62,
@@ -63,7 +63,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "A",
     "pos": 62,
@@ -72,7 +72,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "A",
     "pos": 62,
@@ -81,7 +81,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "A",
     "pos": 62,
@@ -90,7 +90,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "A",
     "pos": 62,
@@ -99,7 +99,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "A",
     "pos": 62,
@@ -108,7 +108,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 65,
@@ -117,7 +117,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 65,
@@ -126,7 +126,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 65,
@@ -135,7 +135,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 65,
@@ -144,7 +144,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 65,
@@ -153,7 +153,7 @@
     "score": 30.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 65,
@@ -162,7 +162,7 @@
     "score": -10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 65,
@@ -171,7 +171,7 @@
     "score": 30.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 65,
@@ -180,7 +180,7 @@
     "score": 30.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 65,
@@ -189,7 +189,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 65,
@@ -198,7 +198,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 65,
@@ -207,7 +207,7 @@
     "score": 30.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 65,
@@ -216,7 +216,7 @@
     "score": 45.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 65,
@@ -225,7 +225,7 @@
     "score": -15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 65,
@@ -234,7 +234,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 65,
@@ -243,7 +243,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 65,
@@ -252,7 +252,7 @@
     "score": 30.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 65,
@@ -261,7 +261,7 @@
     "score": 30.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 65,
@@ -270,7 +270,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "D",
     "pos": 67,
@@ -279,7 +279,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "D",
     "pos": 67,
@@ -288,7 +288,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "D",
     "pos": 67,
@@ -297,7 +297,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "D",
     "pos": 67,
@@ -306,7 +306,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "D",
     "pos": 67,
@@ -315,7 +315,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "D",
     "pos": 67,
@@ -324,7 +324,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "D",
     "pos": 67,
@@ -333,7 +333,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "D",
     "pos": 67,
@@ -342,7 +342,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "D",
     "pos": 67,
@@ -351,7 +351,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "D",
     "pos": 67,
@@ -360,7 +360,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "D",
     "pos": 67,
@@ -369,7 +369,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "D",
     "pos": 67,
@@ -378,7 +378,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "D",
     "pos": 67,
@@ -387,7 +387,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "D",
     "pos": 67,
@@ -396,7 +396,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "D",
     "pos": 67,
@@ -405,7 +405,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "D",
     "pos": 67,
@@ -414,7 +414,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "D",
     "pos": 67,
@@ -423,7 +423,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "D",
     "pos": 67,
@@ -432,7 +432,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "D",
     "pos": 67,
@@ -441,7 +441,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "D",
     "pos": 67,
@@ -450,7 +450,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "D",
     "pos": 67,
@@ -459,7 +459,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "D",
     "pos": 67,
@@ -468,7 +468,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "D",
     "pos": 67,
@@ -477,7 +477,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "D",
     "pos": 67,
@@ -486,7 +486,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "D",
     "pos": 67,
@@ -495,7 +495,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "D",
     "pos": 67,
@@ -504,7 +504,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "D",
     "pos": 67,
@@ -513,7 +513,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "D",
     "pos": 67,
@@ -522,7 +522,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "D",
     "pos": 67,
@@ -531,7 +531,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "D",
     "pos": 67,
@@ -540,7 +540,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "D",
     "pos": 67,
@@ -549,7 +549,7 @@
     "score": 30.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "D",
     "pos": 67,
@@ -558,7 +558,7 @@
     "score": 30.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "D",
     "pos": 67,
@@ -567,7 +567,7 @@
     "score": 30.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "D",
     "pos": 67,
@@ -576,7 +576,7 @@
     "score": 30.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "D",
     "pos": 67,
@@ -585,7 +585,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "D",
     "pos": 67,
@@ -594,7 +594,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "D",
     "pos": 67,
@@ -603,7 +603,7 @@
     "score": 30.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "S",
     "pos": 68,
@@ -612,7 +612,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "S",
     "pos": 68,
@@ -621,7 +621,7 @@
     "score": 30.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "S",
     "pos": 68,
@@ -630,7 +630,7 @@
     "score": 30.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "S",
     "pos": 68,
@@ -639,7 +639,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "S",
     "pos": 68,
@@ -648,7 +648,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "S",
     "pos": 68,
@@ -657,7 +657,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 69,
@@ -666,7 +666,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 69,
@@ -675,7 +675,7 @@
     "score": 30.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 69,
@@ -684,7 +684,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 69,
@@ -693,7 +693,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 69,
@@ -702,7 +702,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 69,
@@ -711,7 +711,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 69,
@@ -720,7 +720,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 69,
@@ -729,7 +729,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 69,
@@ -738,7 +738,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 69,
@@ -747,7 +747,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 69,
@@ -756,7 +756,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 69,
@@ -765,7 +765,7 @@
     "score": 30.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 69,
@@ -774,7 +774,7 @@
     "score": 30.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 69,
@@ -783,7 +783,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 69,
@@ -792,7 +792,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 69,
@@ -801,7 +801,7 @@
     "score": 30.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 69,
@@ -810,7 +810,7 @@
     "score": 30.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 69,
@@ -819,7 +819,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 69,
@@ -828,7 +828,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 69,
@@ -837,7 +837,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 70,
@@ -846,7 +846,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 70,
@@ -855,7 +855,7 @@
     "score": -10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 70,
@@ -864,7 +864,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 70,
@@ -873,7 +873,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 70,
@@ -882,7 +882,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 70,
@@ -891,7 +891,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 70,
@@ -900,7 +900,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 70,
@@ -909,7 +909,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 70,
@@ -918,7 +918,7 @@
     "score": -10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 70,
@@ -927,7 +927,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 70,
@@ -936,7 +936,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 70,
@@ -945,7 +945,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 70,
@@ -954,7 +954,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 70,
@@ -963,7 +963,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 70,
@@ -972,7 +972,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 70,
@@ -981,7 +981,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 70,
@@ -990,7 +990,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 70,
@@ -999,7 +999,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 70,
@@ -1008,7 +1008,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 70,
@@ -1017,7 +1017,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 70,
@@ -1026,7 +1026,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 70,
@@ -1035,7 +1035,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 70,
@@ -1044,7 +1044,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 70,
@@ -1053,7 +1053,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 70,
@@ -1062,7 +1062,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 70,
@@ -1071,7 +1071,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 70,
@@ -1080,7 +1080,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 70,
@@ -1089,7 +1089,7 @@
     "score": 30.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 70,
@@ -1098,7 +1098,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 70,
@@ -1107,7 +1107,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 70,
@@ -1116,7 +1116,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 70,
@@ -1125,7 +1125,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 70,
@@ -1134,7 +1134,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 70,
@@ -1143,7 +1143,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 70,
@@ -1152,7 +1152,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 70,
@@ -1161,7 +1161,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 70,
@@ -1170,7 +1170,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 70,
@@ -1179,7 +1179,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 70,
@@ -1188,7 +1188,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 70,
@@ -1197,7 +1197,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 70,
@@ -1206,7 +1206,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 70,
@@ -1215,7 +1215,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 70,
@@ -1224,7 +1224,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 70,
@@ -1233,7 +1233,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 70,
@@ -1242,7 +1242,7 @@
     "score": 30.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 70,
@@ -1251,7 +1251,7 @@
     "score": 30.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 70,
@@ -1260,7 +1260,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 70,
@@ -1269,7 +1269,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 70,
@@ -1278,7 +1278,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "L",
     "pos": 74,
@@ -1287,7 +1287,7 @@
     "score": 30.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "L",
     "pos": 74,
@@ -1296,7 +1296,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "L",
     "pos": 74,
@@ -1305,7 +1305,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "L",
     "pos": 74,
@@ -1314,7 +1314,7 @@
     "score": 30.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "L",
     "pos": 74,
@@ -1323,7 +1323,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "V",
     "pos": 75,
@@ -1332,7 +1332,7 @@
     "score": 30.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "V",
     "pos": 75,
@@ -1341,7 +1341,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "V",
     "pos": 75,
@@ -1350,7 +1350,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "V",
     "pos": 75,
@@ -1359,7 +1359,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "V",
     "pos": 75,
@@ -1368,7 +1368,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "V",
     "pos": 75,
@@ -1377,7 +1377,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "V",
     "pos": 75,
@@ -1386,7 +1386,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "V",
     "pos": 75,
@@ -1395,7 +1395,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "V",
     "pos": 75,
@@ -1404,7 +1404,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "V",
     "pos": 75,
@@ -1413,7 +1413,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "V",
     "pos": 75,
@@ -1422,7 +1422,7 @@
     "score": 30.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "V",
     "pos": 75,
@@ -1431,7 +1431,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "V",
     "pos": 75,
@@ -1440,7 +1440,7 @@
     "score": 30.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "V",
     "pos": 75,
@@ -1449,7 +1449,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "V",
     "pos": 75,
@@ -1458,7 +1458,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "V",
     "pos": 75,
@@ -1467,7 +1467,7 @@
     "score": 30.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "F",
     "pos": 77,
@@ -1476,7 +1476,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "F",
     "pos": 77,
@@ -1485,7 +1485,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "F",
     "pos": 77,
@@ -1494,7 +1494,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "F",
     "pos": 77,
@@ -1503,7 +1503,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "F",
     "pos": 77,
@@ -1512,7 +1512,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "F",
     "pos": 77,
@@ -1521,7 +1521,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "F",
     "pos": 77,
@@ -1530,7 +1530,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "A",
     "pos": 98,
@@ -1539,7 +1539,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "A",
     "pos": 98,
@@ -1548,7 +1548,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "A",
     "pos": 98,
@@ -1557,7 +1557,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "A",
     "pos": 98,
@@ -1566,7 +1566,7 @@
     "score": 30.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "A",
     "pos": 98,
@@ -1575,7 +1575,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "L",
     "pos": 100,
@@ -1584,7 +1584,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "L",
     "pos": 100,
@@ -1593,7 +1593,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "L",
     "pos": 100,
@@ -1602,7 +1602,7 @@
     "score": 30.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "L",
     "pos": 100,
@@ -1611,7 +1611,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "L",
     "pos": 100,
@@ -1620,7 +1620,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "L",
     "pos": 100,
@@ -1629,7 +1629,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "L",
     "pos": 100,
@@ -1638,7 +1638,7 @@
     "score": 30.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "L",
     "pos": 100,
@@ -1647,7 +1647,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "L",
     "pos": 100,
@@ -1656,7 +1656,7 @@
     "score": 30.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "L",
     "pos": 100,
@@ -1665,7 +1665,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "K",
     "pos": 101,
@@ -1674,7 +1674,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "K",
     "pos": 101,
@@ -1683,7 +1683,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "K",
     "pos": 101,
@@ -1692,7 +1692,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "K",
     "pos": 101,
@@ -1701,7 +1701,7 @@
     "score": 30.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "K",
     "pos": 101,
@@ -1710,7 +1710,7 @@
     "score": 45.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "K",
     "pos": 101,
@@ -1719,7 +1719,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "K",
     "pos": 101,
@@ -1728,7 +1728,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "K",
     "pos": 101,
@@ -1737,7 +1737,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "K",
     "pos": 101,
@@ -1746,7 +1746,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "K",
     "pos": 101,
@@ -1755,7 +1755,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "K",
     "pos": 101,
@@ -1764,7 +1764,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "K",
     "pos": 101,
@@ -1773,7 +1773,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "K",
     "pos": 101,
@@ -1782,7 +1782,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "K",
     "pos": 101,
@@ -1791,7 +1791,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "K",
     "pos": 103,
@@ -1800,7 +1800,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "K",
     "pos": 103,
@@ -1809,7 +1809,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "K",
     "pos": 103,
@@ -1818,7 +1818,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "K",
     "pos": 103,
@@ -1827,7 +1827,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "K",
     "pos": 103,
@@ -1836,7 +1836,7 @@
     "score": 45.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "K",
     "pos": 103,
@@ -1845,7 +1845,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "K",
     "pos": 103,
@@ -1854,7 +1854,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "K",
     "pos": 103,
@@ -1863,7 +1863,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "V",
     "pos": 106,
@@ -1872,7 +1872,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "V",
     "pos": 106,
@@ -1881,7 +1881,7 @@
     "score": 45.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "V",
     "pos": 106,
@@ -1890,7 +1890,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "V",
     "pos": 106,
@@ -1899,7 +1899,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "V",
     "pos": 106,
@@ -1908,7 +1908,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "V",
     "pos": 106,
@@ -1917,7 +1917,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "V",
     "pos": 106,
@@ -1926,7 +1926,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "V",
     "pos": 106,
@@ -1935,7 +1935,7 @@
     "score": 30.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "V",
     "pos": 106,
@@ -1944,7 +1944,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "V",
     "pos": 106,
@@ -1953,7 +1953,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "V",
     "pos": 108,
@@ -1962,7 +1962,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "V",
     "pos": 108,
@@ -1971,7 +1971,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "V",
     "pos": 108,
@@ -1980,7 +1980,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "Y",
     "pos": 115,
@@ -1989,7 +1989,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "Y",
     "pos": 115,
@@ -1998,7 +1998,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "F",
     "pos": 116,
@@ -2007,7 +2007,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "F",
     "pos": 116,
@@ -2016,7 +2016,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "F",
     "pos": 116,
@@ -2025,7 +2025,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "F",
     "pos": 116,
@@ -2034,7 +2034,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "F",
     "pos": 116,
@@ -2043,7 +2043,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "F",
     "pos": 116,
@@ -2052,7 +2052,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "F",
     "pos": 116,
@@ -2061,7 +2061,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "E",
     "pos": 138,
@@ -2070,7 +2070,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "E",
     "pos": 138,
@@ -2079,7 +2079,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "E",
     "pos": 138,
@@ -2088,7 +2088,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "E",
     "pos": 138,
@@ -2097,7 +2097,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "E",
     "pos": 138,
@@ -2106,7 +2106,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "E",
     "pos": 138,
@@ -2115,7 +2115,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "E",
     "pos": 138,
@@ -2124,7 +2124,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "E",
     "pos": 138,
@@ -2133,7 +2133,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "E",
     "pos": 138,
@@ -2142,7 +2142,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "E",
     "pos": 138,
@@ -2151,7 +2151,7 @@
     "score": 45.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "E",
     "pos": 138,
@@ -2160,7 +2160,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "E",
     "pos": 138,
@@ -2169,7 +2169,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "E",
     "pos": 138,
@@ -2178,7 +2178,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "E",
     "pos": 138,
@@ -2187,7 +2187,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "E",
     "pos": 138,
@@ -2196,7 +2196,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "E",
     "pos": 138,
@@ -2205,7 +2205,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "E",
     "pos": 138,
@@ -2214,7 +2214,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "E",
     "pos": 138,
@@ -2223,7 +2223,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "Q",
     "pos": 151,
@@ -2232,7 +2232,7 @@
     "score": 30.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "Q",
     "pos": 151,
@@ -2241,7 +2241,7 @@
     "score": 30.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "Q",
     "pos": 151,
@@ -2250,7 +2250,7 @@
     "score": 30.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "Q",
     "pos": 151,
@@ -2259,7 +2259,7 @@
     "score": 30.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "Q",
     "pos": 151,
@@ -2268,7 +2268,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "Q",
     "pos": 151,
@@ -2277,7 +2277,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "Q",
     "pos": 151,
@@ -2286,7 +2286,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "Q",
     "pos": 151,
@@ -2295,7 +2295,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "Q",
     "pos": 151,
@@ -2304,7 +2304,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "Q",
     "pos": 151,
@@ -2313,7 +2313,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "Q",
     "pos": 151,
@@ -2322,7 +2322,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "Q",
     "pos": 151,
@@ -2331,7 +2331,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "Q",
     "pos": 151,
@@ -2340,7 +2340,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "Q",
     "pos": 151,
@@ -2349,7 +2349,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "V",
     "pos": 179,
@@ -2358,7 +2358,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "V",
     "pos": 179,
@@ -2367,7 +2367,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "V",
     "pos": 179,
@@ -2376,7 +2376,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "V",
     "pos": 179,
@@ -2385,7 +2385,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "V",
     "pos": 179,
@@ -2394,7 +2394,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "V",
     "pos": 179,
@@ -2403,7 +2403,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "V",
     "pos": 179,
@@ -2412,7 +2412,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "V",
     "pos": 179,
@@ -2421,7 +2421,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "V",
     "pos": 179,
@@ -2430,7 +2430,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "V",
     "pos": 179,
@@ -2439,7 +2439,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "V",
     "pos": 179,
@@ -2448,7 +2448,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "V",
     "pos": 179,
@@ -2457,7 +2457,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "V",
     "pos": 179,
@@ -2466,7 +2466,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "V",
     "pos": 179,
@@ -2475,7 +2475,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "V",
     "pos": 179,
@@ -2484,7 +2484,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "V",
     "pos": 179,
@@ -2493,7 +2493,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "Y",
     "pos": 181,
@@ -2502,7 +2502,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "Y",
     "pos": 181,
@@ -2511,7 +2511,7 @@
     "score": 30.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "Y",
     "pos": 181,
@@ -2520,7 +2520,7 @@
     "score": 30.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "Y",
     "pos": 181,
@@ -2529,7 +2529,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "Y",
     "pos": 181,
@@ -2538,7 +2538,7 @@
     "score": 45.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "Y",
     "pos": 181,
@@ -2547,7 +2547,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "Y",
     "pos": 181,
@@ -2556,7 +2556,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "Y",
     "pos": 181,
@@ -2565,7 +2565,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "Y",
     "pos": 181,
@@ -2574,7 +2574,7 @@
     "score": 30.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "Y",
     "pos": 181,
@@ -2583,7 +2583,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "Y",
     "pos": 181,
@@ -2592,7 +2592,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "Y",
     "pos": 181,
@@ -2601,7 +2601,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "Y",
     "pos": 181,
@@ -2610,7 +2610,7 @@
     "score": 30.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "Y",
     "pos": 181,
@@ -2619,7 +2619,7 @@
     "score": 20.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "Y",
     "pos": 181,
@@ -2628,7 +2628,7 @@
     "score": 30.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "Y",
     "pos": 181,
@@ -2637,7 +2637,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "Y",
     "pos": 181,
@@ -2646,7 +2646,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "Y",
     "pos": 181,
@@ -2655,7 +2655,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "Y",
     "pos": 181,
@@ -2664,7 +2664,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "Y",
     "pos": 181,
@@ -2673,7 +2673,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "Y",
     "pos": 181,
@@ -2682,7 +2682,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "Y",
     "pos": 181,
@@ -2691,7 +2691,7 @@
     "score": 30.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "Y",
     "pos": 181,
@@ -2700,7 +2700,7 @@
     "score": 20.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "Y",
     "pos": 181,
@@ -2709,7 +2709,7 @@
     "score": 30.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "Y",
     "pos": 181,
@@ -2718,7 +2718,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "Y",
     "pos": 181,
@@ -2727,7 +2727,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "Y",
     "pos": 181,
@@ -2736,7 +2736,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "M",
     "pos": 184,
@@ -2745,7 +2745,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "M",
     "pos": 184,
@@ -2754,7 +2754,7 @@
     "score": -10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "M",
     "pos": 184,
@@ -2763,7 +2763,7 @@
     "score": -10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "M",
     "pos": 184,
@@ -2772,7 +2772,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "M",
     "pos": 184,
@@ -2781,7 +2781,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "M",
     "pos": 184,
@@ -2790,7 +2790,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "M",
     "pos": 184,
@@ -2799,7 +2799,7 @@
     "score": -10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "M",
     "pos": 184,
@@ -2808,7 +2808,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "M",
     "pos": 184,
@@ -2817,7 +2817,7 @@
     "score": -10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "M",
     "pos": 184,
@@ -2826,7 +2826,7 @@
     "score": -10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "M",
     "pos": 184,
@@ -2835,7 +2835,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "M",
     "pos": 184,
@@ -2844,7 +2844,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "M",
     "pos": 184,
@@ -2853,7 +2853,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "M",
     "pos": 184,
@@ -2862,7 +2862,7 @@
     "score": -10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "Y",
     "pos": 188,
@@ -2871,7 +2871,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "Y",
     "pos": 188,
@@ -2880,7 +2880,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "Y",
     "pos": 188,
@@ -2889,7 +2889,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "Y",
     "pos": 188,
@@ -2898,7 +2898,7 @@
     "score": 30.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "Y",
     "pos": 188,
@@ -2907,7 +2907,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "Y",
     "pos": 188,
@@ -2916,7 +2916,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "Y",
     "pos": 188,
@@ -2925,7 +2925,7 @@
     "score": 30.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "Y",
     "pos": 188,
@@ -2934,7 +2934,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "Y",
     "pos": 188,
@@ -2943,7 +2943,7 @@
     "score": 30.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "Y",
     "pos": 188,
@@ -2952,7 +2952,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "Y",
     "pos": 188,
@@ -2961,7 +2961,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "Y",
     "pos": 188,
@@ -2970,7 +2970,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "Y",
     "pos": 188,
@@ -2979,7 +2979,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "Y",
     "pos": 188,
@@ -2988,7 +2988,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "Y",
     "pos": 188,
@@ -2997,7 +2997,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "G",
     "pos": 190,
@@ -3006,7 +3006,7 @@
     "score": 45.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "G",
     "pos": 190,
@@ -3015,7 +3015,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "G",
     "pos": 190,
@@ -3024,7 +3024,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "G",
     "pos": 190,
@@ -3033,7 +3033,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "G",
     "pos": 190,
@@ -3042,7 +3042,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "G",
     "pos": 190,
@@ -3051,7 +3051,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "G",
     "pos": 190,
@@ -3060,7 +3060,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "G",
     "pos": 190,
@@ -3069,7 +3069,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "G",
     "pos": 190,
@@ -3078,7 +3078,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "G",
     "pos": 190,
@@ -3087,7 +3087,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "G",
     "pos": 190,
@@ -3096,7 +3096,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "G",
     "pos": 190,
@@ -3105,7 +3105,7 @@
     "score": 45.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "G",
     "pos": 190,
@@ -3114,7 +3114,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "G",
     "pos": 190,
@@ -3123,7 +3123,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "G",
     "pos": 190,
@@ -3132,7 +3132,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "G",
     "pos": 190,
@@ -3141,7 +3141,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "G",
     "pos": 190,
@@ -3150,7 +3150,7 @@
     "score": 45.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "G",
     "pos": 190,
@@ -3159,7 +3159,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "G",
     "pos": 190,
@@ -3168,7 +3168,7 @@
     "score": 45.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "G",
     "pos": 190,
@@ -3177,7 +3177,7 @@
     "score": 30.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "G",
     "pos": 190,
@@ -3186,7 +3186,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "G",
     "pos": 190,
@@ -3195,7 +3195,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "G",
     "pos": 190,
@@ -3204,7 +3204,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "G",
     "pos": 190,
@@ -3213,7 +3213,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "G",
     "pos": 190,
@@ -3222,7 +3222,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "G",
     "pos": 190,
@@ -3231,7 +3231,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "G",
     "pos": 190,
@@ -3240,7 +3240,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "G",
     "pos": 190,
@@ -3249,7 +3249,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "G",
     "pos": 190,
@@ -3258,7 +3258,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "G",
     "pos": 190,
@@ -3267,7 +3267,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "G",
     "pos": 190,
@@ -3276,7 +3276,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "G",
     "pos": 190,
@@ -3285,7 +3285,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "G",
     "pos": 190,
@@ -3294,7 +3294,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "G",
     "pos": 190,
@@ -3303,7 +3303,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "L",
     "pos": 210,
@@ -3312,7 +3312,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "L",
     "pos": 210,
@@ -3321,7 +3321,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "L",
     "pos": 210,
@@ -3330,7 +3330,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "L",
     "pos": 210,
@@ -3339,7 +3339,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "L",
     "pos": 210,
@@ -3348,7 +3348,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 215,
@@ -3357,7 +3357,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 215,
@@ -3366,7 +3366,7 @@
     "score": 20.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 215,
@@ -3375,7 +3375,7 @@
     "score": 20.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 215,
@@ -3384,7 +3384,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 215,
@@ -3393,7 +3393,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 215,
@@ -3402,7 +3402,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 215,
@@ -3411,7 +3411,7 @@
     "score": 20.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 215,
@@ -3420,7 +3420,7 @@
     "score": 20.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 215,
@@ -3429,7 +3429,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 215,
@@ -3438,7 +3438,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 215,
@@ -3447,7 +3447,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 215,
@@ -3456,7 +3456,7 @@
     "score": 20.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 215,
@@ -3465,7 +3465,7 @@
     "score": 20.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 215,
@@ -3474,7 +3474,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 215,
@@ -3483,7 +3483,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 215,
@@ -3492,7 +3492,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 215,
@@ -3501,7 +3501,7 @@
     "score": 20.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 215,
@@ -3510,7 +3510,7 @@
     "score": 20.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 215,
@@ -3519,7 +3519,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 215,
@@ -3528,7 +3528,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 215,
@@ -3537,7 +3537,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 215,
@@ -3546,7 +3546,7 @@
     "score": 40.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 215,
@@ -3555,7 +3555,7 @@
     "score": 40.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 215,
@@ -3564,7 +3564,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 215,
@@ -3573,7 +3573,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 215,
@@ -3582,7 +3582,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 215,
@@ -3591,7 +3591,7 @@
     "score": 20.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 215,
@@ -3600,7 +3600,7 @@
     "score": 20.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 215,
@@ -3609,7 +3609,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 215,
@@ -3618,7 +3618,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 215,
@@ -3627,7 +3627,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 215,
@@ -3636,7 +3636,7 @@
     "score": 20.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 215,
@@ -3645,7 +3645,7 @@
     "score": 20.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 215,
@@ -3654,7 +3654,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 215,
@@ -3663,7 +3663,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 215,
@@ -3672,7 +3672,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 215,
@@ -3681,7 +3681,7 @@
     "score": 20.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 215,
@@ -3690,7 +3690,7 @@
     "score": 20.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 215,
@@ -3699,7 +3699,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 215,
@@ -3708,7 +3708,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 215,
@@ -3717,7 +3717,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 215,
@@ -3726,7 +3726,7 @@
     "score": 20.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 215,
@@ -3735,7 +3735,7 @@
     "score": 20.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 215,
@@ -3744,7 +3744,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 215,
@@ -3753,7 +3753,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 215,
@@ -3762,7 +3762,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 215,
@@ -3771,7 +3771,7 @@
     "score": 20.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 215,
@@ -3780,7 +3780,7 @@
     "score": 20.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 215,
@@ -3789,7 +3789,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 215,
@@ -3798,7 +3798,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 215,
@@ -3807,7 +3807,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 215,
@@ -3816,7 +3816,7 @@
     "score": 40.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 215,
@@ -3825,7 +3825,7 @@
     "score": 40.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 215,
@@ -3834,7 +3834,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "T",
     "pos": 215,
@@ -3843,7 +3843,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 219,
@@ -3852,7 +3852,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 219,
@@ -3861,7 +3861,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 219,
@@ -3870,7 +3870,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 219,
@@ -3879,7 +3879,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 219,
@@ -3888,7 +3888,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 219,
@@ -3897,7 +3897,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 219,
@@ -3906,7 +3906,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 219,
@@ -3915,7 +3915,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 219,
@@ -3924,7 +3924,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 219,
@@ -3933,7 +3933,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 219,
@@ -3942,7 +3942,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 219,
@@ -3951,7 +3951,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 219,
@@ -3960,7 +3960,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 219,
@@ -3969,7 +3969,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 219,
@@ -3978,7 +3978,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 219,
@@ -3987,7 +3987,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 219,
@@ -3996,7 +3996,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 219,
@@ -4005,7 +4005,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 219,
@@ -4014,7 +4014,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 219,
@@ -4023,7 +4023,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 219,
@@ -4032,7 +4032,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 219,
@@ -4041,7 +4041,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "cons": "K",
     "pos": 219,
@@ -4050,7 +4050,7 @@
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "H",
     "pos": 221,
@@ -4059,7 +4059,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "H",
     "pos": 221,
@@ -4068,7 +4068,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "H",
     "pos": 221,
@@ -4077,7 +4077,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "H",
     "pos": 221,
@@ -4086,7 +4086,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "H",
     "pos": 221,
@@ -4095,7 +4095,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "P",
     "pos": 225,
@@ -4104,7 +4104,7 @@
     "score": 30.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "P",
     "pos": 225,
@@ -4113,7 +4113,7 @@
     "score": 45.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "P",
     "pos": 225,
@@ -4122,7 +4122,7 @@
     "score": 45.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "F",
     "pos": 227,
@@ -4131,7 +4131,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "F",
     "pos": 227,
@@ -4140,7 +4140,7 @@
     "score": 45.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "F",
     "pos": 227,
@@ -4149,7 +4149,7 @@
     "score": 30.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "F",
     "pos": 227,
@@ -4158,7 +4158,7 @@
     "score": 45.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "F",
     "pos": 227,
@@ -4167,7 +4167,7 @@
     "score": 45.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "F",
     "pos": 227,
@@ -4176,7 +4176,7 @@
     "score": 30.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "F",
     "pos": 227,
@@ -4185,7 +4185,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "F",
     "pos": 227,
@@ -4194,7 +4194,7 @@
     "score": 30.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "F",
     "pos": 227,
@@ -4203,7 +4203,7 @@
     "score": 30.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "F",
     "pos": 227,
@@ -4212,7 +4212,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "F",
     "pos": 227,
@@ -4221,7 +4221,7 @@
     "score": 30.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "F",
     "pos": 227,
@@ -4230,7 +4230,7 @@
     "score": 30.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "F",
     "pos": 227,
@@ -4239,7 +4239,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "F",
     "pos": 227,
@@ -4248,7 +4248,7 @@
     "score": 30.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "M",
     "pos": 230,
@@ -4257,7 +4257,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "M",
     "pos": 230,
@@ -4266,7 +4266,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "M",
     "pos": 230,
@@ -4275,7 +4275,7 @@
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "M",
     "pos": 230,
@@ -4284,7 +4284,7 @@
     "score": 30.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "M",
     "pos": 230,
@@ -4293,7 +4293,7 @@
     "score": 30.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "M",
     "pos": 230,
@@ -4302,7 +4302,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "M",
     "pos": 230,
@@ -4311,7 +4311,7 @@
     "score": 45.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "M",
     "pos": 230,
@@ -4320,7 +4320,7 @@
     "score": 30.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "M",
     "pos": 230,
@@ -4329,7 +4329,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "M",
     "pos": 230,
@@ -4338,7 +4338,7 @@
     "score": 60.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "L",
     "pos": 234,
@@ -4347,7 +4347,7 @@
     "score": 30.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "K",
     "pos": 238,
@@ -4356,7 +4356,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "K",
     "pos": 238,
@@ -4365,7 +4365,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "K",
     "pos": 238,
@@ -4374,7 +4374,7 @@
     "score": 30.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "K",
     "pos": 238,
@@ -4383,7 +4383,7 @@
     "score": 30.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "Y",
     "pos": 318,
@@ -4392,7 +4392,7 @@
     "score": 30.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "Y",
     "pos": 318,
@@ -4401,7 +4401,7 @@
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "Y",
     "pos": 318,
@@ -4410,7 +4410,7 @@
     "score": 30.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "cons": "N",
     "pos": 348,
@@ -4419,7 +4419,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "L",
     "pos": 10,
@@ -4428,7 +4428,7 @@
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "L",
     "pos": 10,
@@ -4437,7 +4437,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "L",
     "pos": 10,
@@ -4446,7 +4446,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "L",
     "pos": 10,
@@ -4455,7 +4455,7 @@
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "L",
     "pos": 10,
@@ -4464,7 +4464,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "K",
     "pos": 20,
@@ -4473,7 +4473,7 @@
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "K",
     "pos": 20,
@@ -4482,7 +4482,7 @@
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "K",
     "pos": 20,
@@ -4491,7 +4491,7 @@
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "K",
     "pos": 20,
@@ -4500,7 +4500,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "K",
     "pos": 20,
@@ -4509,7 +4509,7 @@
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "L",
     "pos": 23,
@@ -4518,7 +4518,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "L",
     "pos": 24,
@@ -4527,7 +4527,7 @@
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "L",
     "pos": 24,
@@ -4536,7 +4536,7 @@
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "L",
     "pos": 24,
@@ -4545,7 +4545,7 @@
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "L",
     "pos": 24,
@@ -4554,7 +4554,7 @@
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "L",
     "pos": 24,
@@ -4563,7 +4563,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "L",
     "pos": 24,
@@ -4572,7 +4572,7 @@
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "L",
     "pos": 24,
@@ -4581,7 +4581,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "L",
     "pos": 24,
@@ -4590,7 +4590,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "L",
     "pos": 24,
@@ -4599,7 +4599,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "L",
     "pos": 24,
@@ -4608,7 +4608,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "L",
     "pos": 24,
@@ -4617,7 +4617,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "L",
     "pos": 24,
@@ -4626,7 +4626,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "L",
     "pos": 24,
@@ -4635,7 +4635,7 @@
     "score": -5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "L",
     "pos": 24,
@@ -4644,7 +4644,7 @@
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "L",
     "pos": 24,
@@ -4653,7 +4653,7 @@
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "L",
     "pos": 24,
@@ -4662,7 +4662,7 @@
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "L",
     "pos": 24,
@@ -4671,7 +4671,7 @@
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "L",
     "pos": 24,
@@ -4680,7 +4680,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "L",
     "pos": 24,
@@ -4689,7 +4689,7 @@
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "D",
     "pos": 30,
@@ -4698,7 +4698,7 @@
     "score": 60.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "V",
     "pos": 32,
@@ -4707,7 +4707,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "V",
     "pos": 32,
@@ -4716,7 +4716,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "V",
     "pos": 32,
@@ -4725,7 +4725,7 @@
     "score": 30.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "V",
     "pos": 32,
@@ -4734,7 +4734,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "V",
     "pos": 32,
@@ -4743,7 +4743,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "V",
     "pos": 32,
@@ -4752,7 +4752,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "V",
     "pos": 32,
@@ -4761,7 +4761,7 @@
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "L",
     "pos": 33,
@@ -4770,7 +4770,7 @@
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "L",
     "pos": 33,
@@ -4779,7 +4779,7 @@
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "L",
     "pos": 33,
@@ -4788,7 +4788,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "L",
     "pos": 33,
@@ -4797,7 +4797,7 @@
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "L",
     "pos": 33,
@@ -4806,7 +4806,7 @@
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "L",
     "pos": 33,
@@ -4815,7 +4815,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "L",
     "pos": 33,
@@ -4824,7 +4824,7 @@
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "L",
     "pos": 33,
@@ -4833,7 +4833,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "K",
     "pos": 43,
@@ -4842,7 +4842,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "K",
     "pos": 43,
@@ -4851,7 +4851,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "M",
     "pos": 46,
@@ -4860,7 +4860,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "M",
     "pos": 46,
@@ -4869,7 +4869,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "M",
     "pos": 46,
@@ -4878,7 +4878,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "M",
     "pos": 46,
@@ -4887,7 +4887,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "M",
     "pos": 46,
@@ -4896,7 +4896,7 @@
     "score": 30.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "M",
     "pos": 46,
@@ -4905,7 +4905,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "M",
     "pos": 46,
@@ -4914,7 +4914,7 @@
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "M",
     "pos": 46,
@@ -4923,7 +4923,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "M",
     "pos": 46,
@@ -4932,7 +4932,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "M",
     "pos": 46,
@@ -4941,7 +4941,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "M",
     "pos": 46,
@@ -4950,7 +4950,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "M",
     "pos": 46,
@@ -4959,7 +4959,7 @@
     "score": 20.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "M",
     "pos": 46,
@@ -4968,7 +4968,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "M",
     "pos": 46,
@@ -4977,7 +4977,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "M",
     "pos": 46,
@@ -4986,7 +4986,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "M",
     "pos": 46,
@@ -4995,7 +4995,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "M",
     "pos": 46,
@@ -5004,7 +5004,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "M",
     "pos": 46,
@@ -5013,7 +5013,7 @@
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "M",
     "pos": 46,
@@ -5022,7 +5022,7 @@
     "score": 20.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "M",
     "pos": 46,
@@ -5031,7 +5031,7 @@
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "M",
     "pos": 46,
@@ -5040,7 +5040,7 @@
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 47,
@@ -5049,7 +5049,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 47,
@@ -5058,7 +5058,7 @@
     "score": 60.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 47,
@@ -5067,7 +5067,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 47,
@@ -5076,7 +5076,7 @@
     "score": 60.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 47,
@@ -5085,7 +5085,7 @@
     "score": 30.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 47,
@@ -5094,7 +5094,7 @@
     "score": 30.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 47,
@@ -5103,7 +5103,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 47,
@@ -5112,7 +5112,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 47,
@@ -5121,7 +5121,7 @@
     "score": 35.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 47,
@@ -5130,7 +5130,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 47,
@@ -5139,7 +5139,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 47,
@@ -5148,7 +5148,7 @@
     "score": 20.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 47,
@@ -5157,7 +5157,7 @@
     "score": 30.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "G",
     "pos": 48,
@@ -5166,7 +5166,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "G",
     "pos": 48,
@@ -5175,7 +5175,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "G",
     "pos": 48,
@@ -5184,7 +5184,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "G",
     "pos": 48,
@@ -5193,7 +5193,7 @@
     "score": 30.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "G",
     "pos": 48,
@@ -5202,7 +5202,7 @@
     "score": 60.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "G",
     "pos": 48,
@@ -5211,7 +5211,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "G",
     "pos": 48,
@@ -5220,7 +5220,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "G",
     "pos": 48,
@@ -5229,7 +5229,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "G",
     "pos": 48,
@@ -5238,7 +5238,7 @@
     "score": 30.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "G",
     "pos": 48,
@@ -5247,7 +5247,7 @@
     "score": 60.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "G",
     "pos": 48,
@@ -5256,7 +5256,7 @@
     "score": 30.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "G",
     "pos": 48,
@@ -5265,7 +5265,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "G",
     "pos": 48,
@@ -5274,7 +5274,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "G",
     "pos": 48,
@@ -5283,7 +5283,7 @@
     "score": 30.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "G",
     "pos": 48,
@@ -5292,7 +5292,7 @@
     "score": 60.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "G",
     "pos": 48,
@@ -5301,7 +5301,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "G",
     "pos": 48,
@@ -5310,7 +5310,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "G",
     "pos": 48,
@@ -5319,7 +5319,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "G",
     "pos": 48,
@@ -5328,7 +5328,7 @@
     "score": 30.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "G",
     "pos": 48,
@@ -5337,7 +5337,7 @@
     "score": 60.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "G",
     "pos": 48,
@@ -5346,7 +5346,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "G",
     "pos": 48,
@@ -5355,7 +5355,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "G",
     "pos": 48,
@@ -5364,7 +5364,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "G",
     "pos": 48,
@@ -5373,7 +5373,7 @@
     "score": 30.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "G",
     "pos": 48,
@@ -5382,7 +5382,7 @@
     "score": 60.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "G",
     "pos": 48,
@@ -5391,7 +5391,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "G",
     "pos": 48,
@@ -5400,7 +5400,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "G",
     "pos": 48,
@@ -5409,7 +5409,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "G",
     "pos": 48,
@@ -5418,7 +5418,7 @@
     "score": 30.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "G",
     "pos": 48,
@@ -5427,7 +5427,7 @@
     "score": 60.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "G",
     "pos": 48,
@@ -5436,7 +5436,7 @@
     "score": 30.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "G",
     "pos": 48,
@@ -5445,7 +5445,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "G",
     "pos": 48,
@@ -5454,7 +5454,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "G",
     "pos": 48,
@@ -5463,7 +5463,7 @@
     "score": 30.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "G",
     "pos": 48,
@@ -5472,7 +5472,7 @@
     "score": 60.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 50,
@@ -5481,7 +5481,7 @@
     "score": 60.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 50,
@@ -5490,7 +5490,7 @@
     "score": -10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 50,
@@ -5499,7 +5499,7 @@
     "score": -5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 50,
@@ -5508,7 +5508,7 @@
     "score": -5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 50,
@@ -5517,7 +5517,7 @@
     "score": -10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 50,
@@ -5526,7 +5526,7 @@
     "score": -5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 50,
@@ -5535,7 +5535,7 @@
     "score": -5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 50,
@@ -5544,7 +5544,7 @@
     "score": 20.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 50,
@@ -5553,7 +5553,7 @@
     "score": 60.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 50,
@@ -5562,7 +5562,7 @@
     "score": 30.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 50,
@@ -5571,7 +5571,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 50,
@@ -5580,7 +5580,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 50,
@@ -5589,7 +5589,7 @@
     "score": -5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "F",
     "pos": 53,
@@ -5598,7 +5598,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "F",
     "pos": 53,
@@ -5607,7 +5607,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "F",
     "pos": 53,
@@ -5616,7 +5616,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 54,
@@ -5625,7 +5625,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 54,
@@ -5634,7 +5634,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 54,
@@ -5643,7 +5643,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 54,
@@ -5652,7 +5652,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 54,
@@ -5661,7 +5661,7 @@
     "score": 20.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 54,
@@ -5670,7 +5670,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 54,
@@ -5679,7 +5679,7 @@
     "score": 20.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 54,
@@ -5688,7 +5688,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 54,
@@ -5697,7 +5697,7 @@
     "score": 20.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 54,
@@ -5706,7 +5706,7 @@
     "score": 60.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 54,
@@ -5715,7 +5715,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 54,
@@ -5724,7 +5724,7 @@
     "score": 20.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 54,
@@ -5733,7 +5733,7 @@
     "score": 20.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 54,
@@ -5742,7 +5742,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 54,
@@ -5751,7 +5751,7 @@
     "score": -10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 54,
@@ -5760,7 +5760,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 54,
@@ -5769,7 +5769,7 @@
     "score": 20.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 54,
@@ -5778,7 +5778,7 @@
     "score": 60.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 54,
@@ -5787,7 +5787,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 54,
@@ -5796,7 +5796,7 @@
     "score": 20.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 54,
@@ -5805,7 +5805,7 @@
     "score": 20.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 54,
@@ -5814,7 +5814,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 54,
@@ -5823,7 +5823,7 @@
     "score": 20.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 54,
@@ -5832,7 +5832,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 54,
@@ -5841,7 +5841,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 54,
@@ -5850,7 +5850,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 54,
@@ -5859,7 +5859,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 54,
@@ -5868,7 +5868,7 @@
     "score": 20.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 54,
@@ -5877,7 +5877,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 54,
@@ -5886,7 +5886,7 @@
     "score": 20.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 54,
@@ -5895,7 +5895,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 54,
@@ -5904,7 +5904,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 54,
@@ -5913,7 +5913,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 54,
@@ -5922,7 +5922,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 54,
@@ -5931,7 +5931,7 @@
     "score": 20.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 54,
@@ -5940,7 +5940,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 54,
@@ -5949,7 +5949,7 @@
     "score": 20.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 54,
@@ -5958,7 +5958,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 54,
@@ -5967,7 +5967,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 54,
@@ -5976,7 +5976,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 54,
@@ -5985,7 +5985,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 54,
@@ -5994,7 +5994,7 @@
     "score": 20.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 54,
@@ -6003,7 +6003,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 54,
@@ -6012,7 +6012,7 @@
     "score": 20.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "Q",
     "pos": 58,
@@ -6021,7 +6021,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "Q",
     "pos": 58,
@@ -6030,7 +6030,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "G",
     "pos": 73,
@@ -6039,7 +6039,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "G",
     "pos": 73,
@@ -6048,7 +6048,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "G",
     "pos": 73,
@@ -6057,7 +6057,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "G",
     "pos": 73,
@@ -6066,7 +6066,7 @@
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "G",
     "pos": 73,
@@ -6075,7 +6075,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "G",
     "pos": 73,
@@ -6084,7 +6084,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "G",
     "pos": 73,
@@ -6093,7 +6093,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "G",
     "pos": 73,
@@ -6102,7 +6102,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "G",
     "pos": 73,
@@ -6111,7 +6111,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "G",
     "pos": 73,
@@ -6120,7 +6120,7 @@
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "G",
     "pos": 73,
@@ -6129,7 +6129,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "G",
     "pos": 73,
@@ -6138,7 +6138,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "G",
     "pos": 73,
@@ -6147,7 +6147,7 @@
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "G",
     "pos": 73,
@@ -6156,7 +6156,7 @@
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "G",
     "pos": 73,
@@ -6165,7 +6165,7 @@
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "G",
     "pos": 73,
@@ -6174,7 +6174,7 @@
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "G",
     "pos": 73,
@@ -6183,7 +6183,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "G",
     "pos": 73,
@@ -6192,7 +6192,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "G",
     "pos": 73,
@@ -6201,7 +6201,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "G",
     "pos": 73,
@@ -6210,7 +6210,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "G",
     "pos": 73,
@@ -6219,7 +6219,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "G",
     "pos": 73,
@@ -6228,7 +6228,7 @@
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "G",
     "pos": 73,
@@ -6237,7 +6237,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "G",
     "pos": 73,
@@ -6246,7 +6246,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "G",
     "pos": 73,
@@ -6255,7 +6255,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "G",
     "pos": 73,
@@ -6264,7 +6264,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "G",
     "pos": 73,
@@ -6273,7 +6273,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "G",
     "pos": 73,
@@ -6282,7 +6282,7 @@
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "G",
     "pos": 73,
@@ -6291,7 +6291,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "G",
     "pos": 73,
@@ -6300,7 +6300,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "G",
     "pos": 73,
@@ -6309,7 +6309,7 @@
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "G",
     "pos": 73,
@@ -6318,7 +6318,7 @@
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "G",
     "pos": 73,
@@ -6327,7 +6327,7 @@
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "G",
     "pos": 73,
@@ -6336,7 +6336,7 @@
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "G",
     "pos": 73,
@@ -6345,7 +6345,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "G",
     "pos": 73,
@@ -6354,7 +6354,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "T",
     "pos": 74,
@@ -6363,7 +6363,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "T",
     "pos": 74,
@@ -6372,7 +6372,7 @@
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "T",
     "pos": 74,
@@ -6381,7 +6381,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "T",
     "pos": 74,
@@ -6390,7 +6390,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "T",
     "pos": 74,
@@ -6399,7 +6399,7 @@
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "T",
     "pos": 74,
@@ -6408,7 +6408,7 @@
     "score": 20.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "T",
     "pos": 74,
@@ -6417,7 +6417,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "T",
     "pos": 74,
@@ -6426,7 +6426,7 @@
     "score": 25.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "L",
     "pos": 76,
@@ -6435,7 +6435,7 @@
     "score": 20.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "L",
     "pos": 76,
@@ -6444,7 +6444,7 @@
     "score": 60.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "L",
     "pos": 76,
@@ -6453,7 +6453,7 @@
     "score": 30.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "L",
     "pos": 76,
@@ -6462,7 +6462,7 @@
     "score": 30.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "L",
     "pos": 76,
@@ -6471,7 +6471,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "L",
     "pos": 76,
@@ -6480,7 +6480,7 @@
     "score": -5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "V",
     "pos": 82,
@@ -6489,7 +6489,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "V",
     "pos": 82,
@@ -6498,7 +6498,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "V",
     "pos": 82,
@@ -6507,7 +6507,7 @@
     "score": 30.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "V",
     "pos": 82,
@@ -6516,7 +6516,7 @@
     "score": 30.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "V",
     "pos": 82,
@@ -6525,7 +6525,7 @@
     "score": 30.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "V",
     "pos": 82,
@@ -6534,7 +6534,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "V",
     "pos": 82,
@@ -6543,7 +6543,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "V",
     "pos": 82,
@@ -6552,7 +6552,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "V",
     "pos": 82,
@@ -6561,7 +6561,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "V",
     "pos": 82,
@@ -6570,7 +6570,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "V",
     "pos": 82,
@@ -6579,7 +6579,7 @@
     "score": 30.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "V",
     "pos": 82,
@@ -6588,7 +6588,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "V",
     "pos": 82,
@@ -6597,7 +6597,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "V",
     "pos": 82,
@@ -6606,7 +6606,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "V",
     "pos": 82,
@@ -6615,7 +6615,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "V",
     "pos": 82,
@@ -6624,7 +6624,7 @@
     "score": 30.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "V",
     "pos": 82,
@@ -6633,7 +6633,7 @@
     "score": 30.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "V",
     "pos": 82,
@@ -6642,7 +6642,7 @@
     "score": 30.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "V",
     "pos": 82,
@@ -6651,7 +6651,7 @@
     "score": 30.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "V",
     "pos": 82,
@@ -6660,7 +6660,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "V",
     "pos": 82,
@@ -6669,7 +6669,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "V",
     "pos": 82,
@@ -6678,7 +6678,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "V",
     "pos": 82,
@@ -6687,7 +6687,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "V",
     "pos": 82,
@@ -6696,7 +6696,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "V",
     "pos": 82,
@@ -6705,7 +6705,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "V",
     "pos": 82,
@@ -6714,7 +6714,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "V",
     "pos": 82,
@@ -6723,7 +6723,7 @@
     "score": 45.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "V",
     "pos": 82,
@@ -6732,7 +6732,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "V",
     "pos": 82,
@@ -6741,7 +6741,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "V",
     "pos": 82,
@@ -6750,7 +6750,7 @@
     "score": 30.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "V",
     "pos": 82,
@@ -6759,7 +6759,7 @@
     "score": 25.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "V",
     "pos": 82,
@@ -6768,7 +6768,7 @@
     "score": 30.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "V",
     "pos": 82,
@@ -6777,7 +6777,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "V",
     "pos": 82,
@@ -6786,7 +6786,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "V",
     "pos": 82,
@@ -6795,7 +6795,7 @@
     "score": 30.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "V",
     "pos": 82,
@@ -6804,7 +6804,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "V",
     "pos": 82,
@@ -6813,7 +6813,7 @@
     "score": 30.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "V",
     "pos": 82,
@@ -6822,7 +6822,7 @@
     "score": 30.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "V",
     "pos": 82,
@@ -6831,7 +6831,7 @@
     "score": 30.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "V",
     "pos": 82,
@@ -6840,7 +6840,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "V",
     "pos": 82,
@@ -6849,7 +6849,7 @@
     "score": 30.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "V",
     "pos": 82,
@@ -6858,7 +6858,7 @@
     "score": 30.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "V",
     "pos": 82,
@@ -6867,7 +6867,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "V",
     "pos": 82,
@@ -6876,7 +6876,7 @@
     "score": 30.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "V",
     "pos": 82,
@@ -6885,7 +6885,7 @@
     "score": 30.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "V",
     "pos": 82,
@@ -6894,7 +6894,7 @@
     "score": 30.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "V",
     "pos": 82,
@@ -6903,7 +6903,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "V",
     "pos": 82,
@@ -6912,7 +6912,7 @@
     "score": 45.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "N",
     "pos": 83,
@@ -6921,7 +6921,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "N",
     "pos": 83,
@@ -6930,7 +6930,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "N",
     "pos": 83,
@@ -6939,7 +6939,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "N",
     "pos": 83,
@@ -6948,7 +6948,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "N",
     "pos": 83,
@@ -6957,7 +6957,7 @@
     "score": 25.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 84,
@@ -6966,7 +6966,7 @@
     "score": 60.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 84,
@@ -6975,7 +6975,7 @@
     "score": 30.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 84,
@@ -6984,7 +6984,7 @@
     "score": 60.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 84,
@@ -6993,7 +6993,7 @@
     "score": 60.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 84,
@@ -7002,7 +7002,7 @@
     "score": 60.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 84,
@@ -7011,7 +7011,7 @@
     "score": 60.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 84,
@@ -7020,7 +7020,7 @@
     "score": 60.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 84,
@@ -7029,7 +7029,7 @@
     "score": 60.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 84,
@@ -7038,88 +7038,88 @@
     "score": 60.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 84,
     "aa": "C",
-    "drug": "DRV",
-    "score": 15.0
-  },
-  {
-    "gene": "PR",
-    "drugClass": "PI",
-    "cons": "I",
-    "pos": 84,
-    "aa": "C",
-    "drug": "FPV",
-    "score": 60.0
-  },
-  {
-    "gene": "PR",
-    "drugClass": "PI",
-    "cons": "I",
-    "pos": 84,
-    "aa": "C",
-    "drug": "IDV",
-    "score": 60.0
-  },
-  {
-    "gene": "PR",
-    "drugClass": "PI",
-    "cons": "I",
-    "pos": 84,
-    "aa": "C",
-    "drug": "LPV",
-    "score": 30.0
-  },
-  {
-    "gene": "PR",
-    "drugClass": "PI",
-    "cons": "I",
-    "pos": 84,
-    "aa": "C",
-    "drug": "NFV",
-    "score": 60.0
-  },
-  {
-    "gene": "PR",
-    "drugClass": "PI",
-    "cons": "I",
-    "pos": 84,
-    "aa": "C",
-    "drug": "SQV",
-    "score": 60.0
-  },
-  {
-    "gene": "PR",
-    "drugClass": "PI",
-    "cons": "I",
-    "pos": 84,
-    "aa": "C",
-    "drug": "TPV",
-    "score": 30.0
-  },
-  {
-    "gene": "PR",
-    "drugClass": "PI",
-    "cons": "I",
-    "pos": 84,
-    "aa": "V",
-    "drug": "ATV",
-    "score": 60.0
-  },
-  {
-    "gene": "PR",
-    "drugClass": "PI",
-    "cons": "I",
-    "pos": 84,
-    "aa": "V",
     "drug": "DRV",
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
+    "drugClass": "PI",
+    "cons": "I",
+    "pos": 84,
+    "aa": "C",
+    "drug": "FPV",
+    "score": 60.0
+  },
+  {
+    "gene": "HIV1PR",
+    "drugClass": "PI",
+    "cons": "I",
+    "pos": 84,
+    "aa": "C",
+    "drug": "IDV",
+    "score": 60.0
+  },
+  {
+    "gene": "HIV1PR",
+    "drugClass": "PI",
+    "cons": "I",
+    "pos": 84,
+    "aa": "C",
+    "drug": "LPV",
+    "score": 30.0
+  },
+  {
+    "gene": "HIV1PR",
+    "drugClass": "PI",
+    "cons": "I",
+    "pos": 84,
+    "aa": "C",
+    "drug": "NFV",
+    "score": 60.0
+  },
+  {
+    "gene": "HIV1PR",
+    "drugClass": "PI",
+    "cons": "I",
+    "pos": 84,
+    "aa": "C",
+    "drug": "SQV",
+    "score": 60.0
+  },
+  {
+    "gene": "HIV1PR",
+    "drugClass": "PI",
+    "cons": "I",
+    "pos": 84,
+    "aa": "C",
+    "drug": "TPV",
+    "score": 30.0
+  },
+  {
+    "gene": "HIV1PR",
+    "drugClass": "PI",
+    "cons": "I",
+    "pos": 84,
+    "aa": "V",
+    "drug": "ATV",
+    "score": 60.0
+  },
+  {
+    "gene": "HIV1PR",
+    "drugClass": "PI",
+    "cons": "I",
+    "pos": 84,
+    "aa": "V",
+    "drug": "DRV",
+    "score": 15.0
+  },
+  {
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 84,
@@ -7128,7 +7128,7 @@
     "score": 60.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 84,
@@ -7137,7 +7137,7 @@
     "score": 60.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 84,
@@ -7146,7 +7146,7 @@
     "score": 30.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 84,
@@ -7155,7 +7155,7 @@
     "score": 60.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 84,
@@ -7164,7 +7164,7 @@
     "score": 60.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "I",
     "pos": 84,
@@ -7173,7 +7173,7 @@
     "score": 30.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "N",
     "pos": 88,
@@ -7182,7 +7182,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "N",
     "pos": 88,
@@ -7191,7 +7191,7 @@
     "score": 60.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "N",
     "pos": 88,
@@ -7200,7 +7200,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "N",
     "pos": 88,
@@ -7209,7 +7209,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "N",
     "pos": 88,
@@ -7218,7 +7218,7 @@
     "score": 30.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "N",
     "pos": 88,
@@ -7227,7 +7227,7 @@
     "score": 60.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "N",
     "pos": 88,
@@ -7236,7 +7236,7 @@
     "score": -5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "N",
     "pos": 88,
@@ -7245,7 +7245,7 @@
     "score": -10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "N",
     "pos": 88,
@@ -7254,7 +7254,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "N",
     "pos": 88,
@@ -7263,7 +7263,7 @@
     "score": 60.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "N",
     "pos": 88,
@@ -7272,7 +7272,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "N",
     "pos": 88,
@@ -7281,7 +7281,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "N",
     "pos": 88,
@@ -7290,7 +7290,7 @@
     "score": 30.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "L",
     "pos": 89,
@@ -7299,7 +7299,7 @@
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "L",
     "pos": 89,
@@ -7308,7 +7308,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "L",
     "pos": 89,
@@ -7317,7 +7317,7 @@
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "L",
     "pos": 89,
@@ -7326,7 +7326,7 @@
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "L",
     "pos": 90,
@@ -7335,7 +7335,7 @@
     "score": 25.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "L",
     "pos": 90,
@@ -7344,7 +7344,7 @@
     "score": 20.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "L",
     "pos": 90,
@@ -7353,7 +7353,7 @@
     "score": 30.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "L",
     "pos": 90,
@@ -7362,7 +7362,7 @@
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "L",
     "pos": 90,
@@ -7371,7 +7371,7 @@
     "score": 60.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "cons": "L",
     "pos": 90,
@@ -7380,7 +7380,7 @@
     "score": 45.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "H",
     "pos": 51,
@@ -7389,7 +7389,7 @@
     "score": 10.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "H",
     "pos": 51,
@@ -7398,7 +7398,7 @@
     "score": 10.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "H",
     "pos": 51,
@@ -7407,7 +7407,7 @@
     "score": 15.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "H",
     "pos": 51,
@@ -7416,7 +7416,7 @@
     "score": 15.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "T",
     "pos": 66,
@@ -7425,7 +7425,7 @@
     "score": 60.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "T",
     "pos": 66,
@@ -7434,7 +7434,7 @@
     "score": 15.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "T",
     "pos": 66,
@@ -7443,7 +7443,7 @@
     "score": 5.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "T",
     "pos": 66,
@@ -7452,7 +7452,7 @@
     "score": 5.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "T",
     "pos": 66,
@@ -7461,7 +7461,7 @@
     "score": 60.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "T",
     "pos": 66,
@@ -7470,7 +7470,7 @@
     "score": 15.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "T",
     "pos": 66,
@@ -7479,7 +7479,7 @@
     "score": 15.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "T",
     "pos": 66,
@@ -7488,7 +7488,7 @@
     "score": 15.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "T",
     "pos": 66,
@@ -7497,7 +7497,7 @@
     "score": 60.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "T",
     "pos": 66,
@@ -7506,7 +7506,7 @@
     "score": 60.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "E",
     "pos": 92,
@@ -7515,7 +7515,7 @@
     "score": 30.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "E",
     "pos": 92,
@@ -7524,7 +7524,7 @@
     "score": 15.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "E",
     "pos": 92,
@@ -7533,7 +7533,7 @@
     "score": 10.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "E",
     "pos": 92,
@@ -7542,7 +7542,7 @@
     "score": 10.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "E",
     "pos": 92,
@@ -7551,7 +7551,7 @@
     "score": 60.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "E",
     "pos": 92,
@@ -7560,7 +7560,7 @@
     "score": 30.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "E",
     "pos": 92,
@@ -7569,7 +7569,7 @@
     "score": 60.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "E",
     "pos": 92,
@@ -7578,7 +7578,7 @@
     "score": 30.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "Q",
     "pos": 95,
@@ -7587,7 +7587,7 @@
     "score": 10.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "Q",
     "pos": 95,
@@ -7596,7 +7596,7 @@
     "score": 10.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "T",
     "pos": 97,
@@ -7605,7 +7605,7 @@
     "score": 10.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "T",
     "pos": 97,
@@ -7614,7 +7614,7 @@
     "score": 10.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "G",
     "pos": 118,
@@ -7623,7 +7623,7 @@
     "score": 15.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "G",
     "pos": 118,
@@ -7632,7 +7632,7 @@
     "score": 15.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "G",
     "pos": 118,
@@ -7641,7 +7641,7 @@
     "score": 30.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "G",
     "pos": 118,
@@ -7650,7 +7650,7 @@
     "score": 30.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "F",
     "pos": 121,
@@ -7659,7 +7659,7 @@
     "score": 10.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "F",
     "pos": 121,
@@ -7668,7 +7668,7 @@
     "score": 10.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "F",
     "pos": 121,
@@ -7677,7 +7677,7 @@
     "score": 60.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "F",
     "pos": 121,
@@ -7686,7 +7686,7 @@
     "score": 60.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "E",
     "pos": 138,
@@ -7695,7 +7695,7 @@
     "score": 10.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "E",
     "pos": 138,
@@ -7704,7 +7704,7 @@
     "score": 10.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "E",
     "pos": 138,
@@ -7713,7 +7713,7 @@
     "score": 15.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "E",
     "pos": 138,
@@ -7722,7 +7722,7 @@
     "score": 15.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "E",
     "pos": 138,
@@ -7731,7 +7731,7 @@
     "score": 10.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "E",
     "pos": 138,
@@ -7740,7 +7740,7 @@
     "score": 10.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "E",
     "pos": 138,
@@ -7749,7 +7749,7 @@
     "score": 15.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "E",
     "pos": 138,
@@ -7758,7 +7758,7 @@
     "score": 15.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "E",
     "pos": 138,
@@ -7767,7 +7767,7 @@
     "score": 10.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "E",
     "pos": 138,
@@ -7776,7 +7776,7 @@
     "score": 10.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "E",
     "pos": 138,
@@ -7785,7 +7785,7 @@
     "score": 15.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "E",
     "pos": 138,
@@ -7794,7 +7794,7 @@
     "score": 15.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "G",
     "pos": 140,
@@ -7803,7 +7803,7 @@
     "score": 10.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "G",
     "pos": 140,
@@ -7812,7 +7812,7 @@
     "score": 10.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "G",
     "pos": 140,
@@ -7821,7 +7821,7 @@
     "score": 30.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "G",
     "pos": 140,
@@ -7830,7 +7830,7 @@
     "score": 30.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "G",
     "pos": 140,
@@ -7839,7 +7839,7 @@
     "score": 10.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "G",
     "pos": 140,
@@ -7848,7 +7848,7 @@
     "score": 10.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "G",
     "pos": 140,
@@ -7857,7 +7857,7 @@
     "score": 30.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "G",
     "pos": 140,
@@ -7866,7 +7866,7 @@
     "score": 30.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "G",
     "pos": 140,
@@ -7875,7 +7875,7 @@
     "score": 10.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "G",
     "pos": 140,
@@ -7884,7 +7884,7 @@
     "score": 10.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "G",
     "pos": 140,
@@ -7893,7 +7893,7 @@
     "score": 30.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "G",
     "pos": 140,
@@ -7902,7 +7902,7 @@
     "score": 30.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "Y",
     "pos": 143,
@@ -7911,7 +7911,7 @@
     "score": 5.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "Y",
     "pos": 143,
@@ -7920,7 +7920,7 @@
     "score": 5.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "Y",
     "pos": 143,
@@ -7929,7 +7929,7 @@
     "score": 10.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "Y",
     "pos": 143,
@@ -7938,7 +7938,7 @@
     "score": 60.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "Y",
     "pos": 143,
@@ -7947,7 +7947,7 @@
     "score": 5.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "Y",
     "pos": 143,
@@ -7956,7 +7956,7 @@
     "score": 5.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "Y",
     "pos": 143,
@@ -7965,7 +7965,7 @@
     "score": 10.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "Y",
     "pos": 143,
@@ -7974,7 +7974,7 @@
     "score": 60.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "Y",
     "pos": 143,
@@ -7983,7 +7983,7 @@
     "score": 5.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "Y",
     "pos": 143,
@@ -7992,7 +7992,7 @@
     "score": 5.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "Y",
     "pos": 143,
@@ -8001,7 +8001,7 @@
     "score": 10.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "Y",
     "pos": 143,
@@ -8010,7 +8010,7 @@
     "score": 60.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "Y",
     "pos": 143,
@@ -8019,7 +8019,7 @@
     "score": 5.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "Y",
     "pos": 143,
@@ -8028,7 +8028,7 @@
     "score": 5.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "Y",
     "pos": 143,
@@ -8037,7 +8037,7 @@
     "score": 10.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "Y",
     "pos": 143,
@@ -8046,7 +8046,7 @@
     "score": 60.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "Y",
     "pos": 143,
@@ -8055,7 +8055,7 @@
     "score": 5.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "Y",
     "pos": 143,
@@ -8064,7 +8064,7 @@
     "score": 5.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "Y",
     "pos": 143,
@@ -8073,7 +8073,7 @@
     "score": 10.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "Y",
     "pos": 143,
@@ -8082,7 +8082,7 @@
     "score": 60.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "Y",
     "pos": 143,
@@ -8091,7 +8091,7 @@
     "score": 5.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "Y",
     "pos": 143,
@@ -8100,7 +8100,7 @@
     "score": 5.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "Y",
     "pos": 143,
@@ -8109,7 +8109,7 @@
     "score": 10.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "Y",
     "pos": 143,
@@ -8118,7 +8118,7 @@
     "score": 60.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "Y",
     "pos": 143,
@@ -8127,7 +8127,7 @@
     "score": 5.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "Y",
     "pos": 143,
@@ -8136,7 +8136,7 @@
     "score": 5.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "Y",
     "pos": 143,
@@ -8145,7 +8145,7 @@
     "score": 10.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "Y",
     "pos": 143,
@@ -8154,7 +8154,7 @@
     "score": 60.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "P",
     "pos": 145,
@@ -8163,7 +8163,7 @@
     "score": 60.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "Q",
     "pos": 146,
@@ -8172,7 +8172,7 @@
     "score": 60.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "S",
     "pos": 147,
@@ -8181,7 +8181,7 @@
     "score": 60.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "Q",
     "pos": 148,
@@ -8190,7 +8190,7 @@
     "score": 25.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "Q",
     "pos": 148,
@@ -8199,7 +8199,7 @@
     "score": 25.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "Q",
     "pos": 148,
@@ -8208,7 +8208,7 @@
     "score": 60.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "Q",
     "pos": 148,
@@ -8217,7 +8217,7 @@
     "score": 60.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "Q",
     "pos": 148,
@@ -8226,7 +8226,7 @@
     "score": 30.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "Q",
     "pos": 148,
@@ -8235,7 +8235,7 @@
     "score": 30.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "Q",
     "pos": 148,
@@ -8244,7 +8244,7 @@
     "score": 60.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "Q",
     "pos": 148,
@@ -8253,7 +8253,7 @@
     "score": 60.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "Q",
     "pos": 148,
@@ -8262,7 +8262,7 @@
     "score": 15.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "Q",
     "pos": 148,
@@ -8271,7 +8271,7 @@
     "score": 10.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "Q",
     "pos": 148,
@@ -8280,7 +8280,7 @@
     "score": 25.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "Q",
     "pos": 148,
@@ -8289,7 +8289,7 @@
     "score": 25.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "Q",
     "pos": 148,
@@ -8298,7 +8298,7 @@
     "score": 60.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "Q",
     "pos": 148,
@@ -8307,7 +8307,7 @@
     "score": 60.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "V",
     "pos": 151,
@@ -8316,7 +8316,7 @@
     "score": 30.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "V",
     "pos": 151,
@@ -8325,7 +8325,7 @@
     "score": 15.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "V",
     "pos": 151,
@@ -8334,7 +8334,7 @@
     "score": 15.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "V",
     "pos": 151,
@@ -8343,7 +8343,7 @@
     "score": 15.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "V",
     "pos": 151,
@@ -8352,7 +8352,7 @@
     "score": 60.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "V",
     "pos": 151,
@@ -8361,7 +8361,7 @@
     "score": 30.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "S",
     "pos": 153,
@@ -8370,7 +8370,7 @@
     "score": 15.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "S",
     "pos": 153,
@@ -8379,7 +8379,7 @@
     "score": 15.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "S",
     "pos": 153,
@@ -8388,7 +8388,7 @@
     "score": 15.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "S",
     "pos": 153,
@@ -8397,7 +8397,7 @@
     "score": 15.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "S",
     "pos": 153,
@@ -8406,7 +8406,7 @@
     "score": 15.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "S",
     "pos": 153,
@@ -8415,7 +8415,7 @@
     "score": 15.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "N",
     "pos": 155,
@@ -8424,7 +8424,7 @@
     "score": 10.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "N",
     "pos": 155,
@@ -8433,7 +8433,7 @@
     "score": 10.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "N",
     "pos": 155,
@@ -8442,7 +8442,7 @@
     "score": 60.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "N",
     "pos": 155,
@@ -8451,7 +8451,7 @@
     "score": 60.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "N",
     "pos": 155,
@@ -8460,7 +8460,7 @@
     "score": 30.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "N",
     "pos": 155,
@@ -8469,7 +8469,7 @@
     "score": 30.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "N",
     "pos": 155,
@@ -8478,7 +8478,7 @@
     "score": 30.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "N",
     "pos": 155,
@@ -8487,7 +8487,7 @@
     "score": 30.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "E",
     "pos": 157,
@@ -8496,7 +8496,7 @@
     "score": 10.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "E",
     "pos": 157,
@@ -8505,7 +8505,7 @@
     "score": 10.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "G",
     "pos": 163,
@@ -8514,7 +8514,7 @@
     "score": 15.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "G",
     "pos": 163,
@@ -8523,7 +8523,7 @@
     "score": 15.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "G",
     "pos": 163,
@@ -8532,7 +8532,7 @@
     "score": 15.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "G",
     "pos": 163,
@@ -8541,7 +8541,7 @@
     "score": 15.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "S",
     "pos": 230,
@@ -8550,7 +8550,7 @@
     "score": 10.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "S",
     "pos": 230,
@@ -8559,7 +8559,7 @@
     "score": 20.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "S",
     "pos": 230,
@@ -8568,7 +8568,7 @@
     "score": 20.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "S",
     "pos": 230,
@@ -8577,7 +8577,7 @@
     "score": 20.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "R",
     "pos": 263,
@@ -8586,7 +8586,7 @@
     "score": 25.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "R",
     "pos": 263,
@@ -8595,7 +8595,7 @@
     "score": 25.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "R",
     "pos": 263,
@@ -8604,7 +8604,7 @@
     "score": 30.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "cons": "R",
     "pos": 263,

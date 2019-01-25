@@ -70,9 +70,10 @@ public class MutationStats {
 			.distinct()
 			.count());
 		numDRMs = filtered.stream().filter(m -> m.isDRM()).count();
+		// TODO: support for HIV2
 		numSDRMs = filtered.stream().filter(m -> (
-			(m.getGene() != Gene.IN && m.isSDRM()) ||
-			(m.getGene() == Gene.IN && m.getPrimaryType() == MutType.Major)
+			(m.getGene() != Gene.valueOf("HIV1IN") && m.isSDRM()) ||
+			(m.getGene() == Gene.valueOf("HIV1IN") && m.getPrimaryType() == MutType.Major)
 		)).count();
 		numStops = filtered.stream().filter(m -> m.hasStop()).count();
 		numApobecMutations = filtered.stream().filter(m -> m.isApobecMutation()).count();

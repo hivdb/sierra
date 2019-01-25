@@ -1,1840 +1,1840 @@
 [
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "rule": "100I+103N",
     "drug": "DOR",
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "rule": "101E+181C",
     "drug": "EFV",
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "rule": "101E+181C",
     "drug": "ETR",
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "rule": "101E+181C",
     "drug": "NVP",
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "rule": "101E+184I",
     "drug": "RPV",
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "rule": "101E+188L",
     "drug": "ETR",
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "rule": "101E+190A",
     "drug": "DOR",
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "rule": "101E+190A",
     "drug": "ETR",
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "rule": "101E+190S",
     "drug": "DOR",
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "rule": "101E+190S",
     "drug": "ETR",
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "rule": "103N+181C",
     "drug": "DOR",
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "rule": "103R+179D",
     "drug": "EFV",
     "score": 20.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "rule": "103R+179D",
     "drug": "NVP",
     "score": 20.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "rule": "103R+179D",
     "drug": "RPV",
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "rule": "106A+227L",
     "drug": "DOR",
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "rule": "106A+227L",
     "drug": "EFV",
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "rule": "108I+181C",
     "drug": "DOR",
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "rule": "108I+234I",
     "drug": "DOR",
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "rule": "138K+184I",
     "drug": "RPV",
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "151M+184IV",
     "drug": "AZT",
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "151M+184IV",
     "drug": "D4T",
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "151M+184IV",
     "drug": "TDF",
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "rule": "179F+181C",
     "drug": "ETR",
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "rule": "179F+181C",
     "drug": "RPV",
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "rule": "179T+181C",
     "drug": "ETR",
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "rule": "179T+181C",
     "drug": "RPV",
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "rule": "181C+190A",
     "drug": "DOR",
     "score": 20.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "rule": "181C+190ACSTV",
     "drug": "ETR",
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "rule": "181C+190ACSTV",
     "drug": "RPV",
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "rule": "181C+190CSTV",
     "drug": "DOR",
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "210W+215ACDEILNSV",
     "drug": "ABC",
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "210W+215ACDEILNSV",
     "drug": "AZT",
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "210W+215ACDEILNSV",
     "drug": "D4T",
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "210W+215ACDEILNSV",
     "drug": "DDI",
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "210W+215ACDEILNSV",
     "drug": "TDF",
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "210W+215FY",
     "drug": "ABC",
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "210W+215FY",
     "drug": "AZT",
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "210W+215FY",
     "drug": "D4T",
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "210W+215FY",
     "drug": "DDI",
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "210W+215FY",
     "drug": "FTC",
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "210W+215FY",
     "drug": "LMV",
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "210W+215FY",
     "drug": "TDF",
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "40F+41L+210W+215FY",
     "drug": "ABC",
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "40F+41L+210W+215FY",
     "drug": "AZT",
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "40F+41L+210W+215FY",
     "drug": "D4T",
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "40F+41L+210W+215FY",
     "drug": "DDI",
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "40F+41L+210W+215FY",
     "drug": "TDF",
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "41L+210W",
     "drug": "ABC",
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "41L+210W",
     "drug": "AZT",
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "41L+210W",
     "drug": "D4T",
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "41L+210W",
     "drug": "DDI",
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "41L+210W",
     "drug": "TDF",
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "41L+210W+215FY",
     "drug": "ABC",
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "41L+210W+215FY",
     "drug": "FTC",
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "41L+210W+215FY",
     "drug": "LMV",
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "41L+210W+215FY",
     "drug": "TDF",
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "41L+215ACDEILNSV",
     "drug": "ABC",
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "41L+215ACDEILNSV",
     "drug": "AZT",
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "41L+215ACDEILNSV",
     "drug": "D4T",
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "41L+215ACDEILNSV",
     "drug": "DDI",
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "41L+215ACDEILNSV",
     "drug": "TDF",
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "41L+215FY",
     "drug": "ABC",
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "41L+215FY",
     "drug": "AZT",
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "41L+215FY",
     "drug": "D4T",
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "41L+215FY",
     "drug": "DDI",
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "41L+215FY",
     "drug": "FTC",
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "41L+215FY",
     "drug": "LMV",
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "41L+215FY",
     "drug": "TDF",
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "41L+44AD+210W+215FY",
     "drug": "ABC",
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "41L+44AD+210W+215FY",
     "drug": "AZT",
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "41L+44AD+210W+215FY",
     "drug": "D4T",
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "41L+44AD+210W+215FY",
     "drug": "DDI",
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "41L+44AD+210W+215FY",
     "drug": "TDF",
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "41L+67EGN+215FY",
     "drug": "ABC",
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "41L+67EGN+215FY",
     "drug": "AZT",
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "41L+67EGN+215FY",
     "drug": "D4T",
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "41L+67EGN+215FY",
     "drug": "DDI",
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "41L+67EGN+215FY",
     "drug": "FTC",
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "41L+67EGN+215FY",
     "drug": "LMV",
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "41L+67EGN+215FY",
     "drug": "TDF",
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "65R+151M",
     "drug": "AZT",
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "65R+151M",
     "drug": "TDF",
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "67EGN+215FY+219ENQR",
     "drug": "ABC",
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "67EGN+215FY+219ENQR",
     "drug": "AZT",
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "67EGN+215FY+219ENQR",
     "drug": "D4T",
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "67EGN+215FY+219ENQR",
     "drug": "DDI",
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "67EGN+215FY+219ENQR",
     "drug": "TDF",
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "67EGN+70R+184IV+219ENQR",
     "drug": "ABC",
     "score": 20.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "67EGN+70R+219ENQR",
     "drug": "ABC",
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "67EGN+70R+219ENQR",
     "drug": "AZT",
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "67EGN+70R+219ENQR",
     "drug": "D4T",
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "67EGN+70R+219ENQR",
     "drug": "DDI",
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "67EGN+70R+219ENQR",
     "drug": "FTC",
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "67EGN+70R+219ENQR",
     "drug": "LMV",
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "67EGN+70R+219ENQR",
     "drug": "TDF",
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "70EGNQST+184IV",
     "drug": "D4T",
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "70EGNQST+184IV",
     "drug": "TDF",
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "70R+215FY",
     "drug": "ABC",
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "70R+215FY",
     "drug": "AZT",
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "70R+215FY",
     "drug": "D4T",
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "70R+215FY",
     "drug": "DDI",
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "70R+215FY",
     "drug": "TDF",
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "74IV+184IV",
     "drug": "ABC",
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "77L+116Y+151M",
     "drug": "ABC",
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "77L+116Y+151M",
     "drug": "AZT",
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "77L+116Y+151M",
     "drug": "D4T",
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "77L+116Y+151M",
     "drug": "DDI",
     "score": 10.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "77L+116Y+151M",
     "drug": "FTC",
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "77L+116Y+151M",
     "drug": "LMV",
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "rule": "77L+116Y+151M",
     "drug": "TDF",
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "rule": "98G+181C",
     "drug": "DOR",
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "rule": "98G+181C",
     "drug": "EFV",
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "rule": "98G+181C",
     "drug": "ETR",
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "rule": "98G+181C",
     "drug": "NVP",
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "rule": "98G+181C",
     "drug": "RPV",
     "score": 5.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "rule": "98G+227C",
     "drug": "DOR",
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "rule": "98G+227C",
     "drug": "EFV",
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "rule": "98G+227C",
     "drug": "ETR",
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "rule": "98G+227C",
     "drug": "NVP",
     "score": 15.0
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "rule": "98G+227C",
     "drug": "RPV",
     "score": 15.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "11IL+32I",
     "drug": "DRV",
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "11IL+32I",
     "drug": "FPV",
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "11IL+32I",
     "drug": "IDV",
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "11IL+32I",
     "drug": "LPV",
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "11IL+32I",
     "drug": "NFV",
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "11IL+54LM",
     "drug": "DRV",
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "11IL+54LM",
     "drug": "FPV",
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "11IL+54LM",
     "drug": "IDV",
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "11IL+54LM",
     "drug": "LPV",
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "11IL+54LM",
     "drug": "NFV",
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "32I+47AV",
     "drug": "ATV",
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "32I+47AV",
     "drug": "DRV",
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "32I+47AV",
     "drug": "FPV",
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "32I+47AV",
     "drug": "IDV",
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "32I+47AV",
     "drug": "LPV",
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "32I+47AV",
     "drug": "NFV",
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "32I+54LM",
     "drug": "ATV",
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "32I+54LM",
     "drug": "DRV",
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "32I+54LM",
     "drug": "FPV",
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "32I+54LM",
     "drug": "IDV",
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "32I+54LM",
     "drug": "LPV",
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "32I+54LM",
     "drug": "NFV",
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "32I+76V",
     "drug": "DRV",
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "32I+76V",
     "drug": "FPV",
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "32I+76V",
     "drug": "IDV",
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "32I+76V",
     "drug": "LPV",
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "32I+76V",
     "drug": "NFV",
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "32I+84V",
     "drug": "DRV",
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "32I+84V",
     "drug": "FPV",
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "32I+84V",
     "drug": "IDV",
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "32I+84V",
     "drug": "LPV",
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "32I+84V",
     "drug": "NFV",
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "32I+89V",
     "drug": "DRV",
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "32I+89V",
     "drug": "FPV",
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "32I+89V",
     "drug": "IDV",
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "32I+89V",
     "drug": "LPV",
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "32I+89V",
     "drug": "NFV",
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "46IL+84V+90M",
     "drug": "ATV",
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "46IL+84V+90M",
     "drug": "FPV",
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "46IL+84V+90M",
     "drug": "IDV",
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "46IL+84V+90M",
     "drug": "LPV",
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "46IL+84V+90M",
     "drug": "NFV",
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "46IL+84V+90M",
     "drug": "SQV",
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "46IL+84V+90M",
     "drug": "TPV",
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "46ILV+76V",
     "drug": "FPV",
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "46ILV+76V",
     "drug": "IDV",
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "46ILV+76V",
     "drug": "LPV",
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "46ILV+76V",
     "drug": "NFV",
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "46ILV+82ACFLMST",
     "drug": "ATV",
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "46ILV+82ACFLMST",
     "drug": "FPV",
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "46ILV+82ACFLMST",
     "drug": "IDV",
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "46ILV+82ACFLMST",
     "drug": "LPV",
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "46ILV+82ACFLMST",
     "drug": "NFV",
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "46ILV+82ACFLMST",
     "drug": "SQV",
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "46ILV+90M",
     "drug": "ATV",
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "46ILV+90M",
     "drug": "FPV",
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "46ILV+90M",
     "drug": "IDV",
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "46ILV+90M",
     "drug": "NFV",
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "46ILV+90M",
     "drug": "SQV",
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "47AV+54LM",
     "drug": "ATV",
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "47AV+54LM",
     "drug": "DRV",
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "47AV+54LM",
     "drug": "FPV",
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "47AV+54LM",
     "drug": "IDV",
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "47AV+54LM",
     "drug": "LPV",
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "47AV+54LM",
     "drug": "NFV",
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "47AV+84V",
     "drug": "DRV",
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "47AV+84V",
     "drug": "FPV",
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "47AV+84V",
     "drug": "IDV",
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "47AV+84V",
     "drug": "LPV",
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "47AV+84V",
     "drug": "NFV",
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "53L+90M",
     "drug": "ATV",
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "53L+90M",
     "drug": "FPV",
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "53L+90M",
     "drug": "IDV",
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "53L+90M",
     "drug": "NFV",
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "53L+90M",
     "drug": "SQV",
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "54ALMSTV+82ACFLMST",
     "drug": "ATV",
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "54ALMSTV+82ACFLMST",
     "drug": "FPV",
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "54ALMSTV+82ACFLMST",
     "drug": "IDV",
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "54ALMSTV+82ACFLMST",
     "drug": "LPV",
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "54ALMSTV+82ACFLMST",
     "drug": "NFV",
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "54ALMSTV+82ACFLMST",
     "drug": "SQV",
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "54ALMSTV+90M",
     "drug": "ATV",
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "54ALMSTV+90M",
     "drug": "FPV",
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "54ALMSTV+90M",
     "drug": "IDV",
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "54ALMSTV+90M",
     "drug": "LPV",
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "54ALMSTV+90M",
     "drug": "NFV",
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "54ALMSTV+90M",
     "drug": "SQV",
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "54LM+84V",
     "drug": "DRV",
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "54LM+84V",
     "drug": "FPV",
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "54LM+84V",
     "drug": "IDV",
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "54LM+84V",
     "drug": "LPV",
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "54LM+84V",
     "drug": "NFV",
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "54LM+89V",
     "drug": "DRV",
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "54LM+89V",
     "drug": "FPV",
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "54LM+89V",
     "drug": "IDV",
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "54LM+89V",
     "drug": "LPV",
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "54LM+89V",
     "drug": "NFV",
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "73ACSTV+90M",
     "drug": "ATV",
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "73ACSTV+90M",
     "drug": "FPV",
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "73ACSTV+90M",
     "drug": "IDV",
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "73ACSTV+90M",
     "drug": "NFV",
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "73ACSTV+90M",
     "drug": "SQV",
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "82ACFLMST+90M",
     "drug": "ATV",
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "82ACFLMST+90M",
     "drug": "FPV",
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "82ACFLMST+90M",
     "drug": "IDV",
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "82ACFLMST+90M",
     "drug": "LPV",
     "score": 5.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "82ACFLMST+90M",
     "drug": "NFV",
     "score": 10.0
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "rule": "82ACFLMST+90M",
     "drug": "SQV",
     "score": 10.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "rule": "138AKT+140ACS",
     "drug": "BIC",
     "score": 10.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "rule": "138AKT+140ACS",
     "drug": "DTG",
     "score": 10.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "rule": "138AKT+140ACS",
     "drug": "EVG",
     "score": 15.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "rule": "138AKT+140ACS",
     "drug": "RAL",
     "score": 15.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "rule": "138AKT+148HKR",
     "drug": "BIC",
     "score": 10.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "rule": "138AKT+148HKR",
     "drug": "DTG",
     "score": 10.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "rule": "140ACS+148HKR",
     "drug": "BIC",
     "score": 10.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "rule": "140ACS+148HKR",
     "drug": "DTG",
     "score": 10.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "rule": "143ACGHRS+163R",
     "drug": "BIC",
     "score": 5.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "rule": "143ACGHRS+163R",
     "drug": "DTG",
     "score": 5.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "rule": "143ACGHRS+163R",
     "drug": "EVG",
     "score": 5.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "rule": "143ACGHRS+230R",
     "drug": "BIC",
     "score": 5.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "rule": "143ACGHRS+230R",
     "drug": "DTG",
     "score": 5.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "rule": "143ACGHRS+230R",
     "drug": "EVG",
     "score": 5.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "rule": "148HKR+155H",
     "drug": "BIC",
     "score": 10.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "rule": "148HKR+155H",
     "drug": "DTG",
     "score": 10.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "rule": "148HKR+163KR",
     "drug": "BIC",
     "score": 5.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "rule": "148HKR+163KR",
     "drug": "DTG",
     "score": 5.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "rule": "157Q+263K",
     "drug": "BIC",
     "score": 10.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "rule": "157Q+263K",
     "drug": "DTG",
     "score": 10.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "rule": "51Y+263K",
     "drug": "BIC",
     "score": 10.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "rule": "51Y+263K",
     "drug": "DTG",
     "score": 10.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "rule": "51Y+263K",
     "drug": "EVG",
     "score": 15.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "rule": "74FM+143ACGHRS",
     "drug": "BIC",
     "score": 5.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "rule": "74FM+143ACGHRS",
     "drug": "DTG",
     "score": 5.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "rule": "74FM+143ACGHRS",
     "drug": "EVG",
     "score": 5.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "rule": "74FM+148HKR",
     "drug": "BIC",
     "score": 10.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "rule": "74FM+148HKR",
     "drug": "DTG",
     "score": 10.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "rule": "74FM+148HKR",
     "drug": "EVG",
     "score": 10.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "rule": "74FM+148HKR",
     "drug": "RAL",
     "score": 10.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "rule": "92Q+155H",
     "drug": "BIC",
     "score": 5.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "rule": "92Q+155H",
     "drug": "DTG",
     "score": 5.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "rule": "97A+143ACGHRS",
     "drug": "EVG",
     "score": 5.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "rule": "97A+148HKR",
     "drug": "BIC",
     "score": 15.0
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "rule": "97A+148HKR",
     "drug": "DTG",

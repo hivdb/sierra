@@ -39,6 +39,7 @@ import edu.stanford.hivdb.drugs.Drug;
 import edu.stanford.hivdb.drugs.DrugClass;
 import edu.stanford.hivdb.mutations.Gene;
 import edu.stanford.hivdb.mutations.MutationSet;
+import edu.stanford.hivdb.mutations.Strain;
 import edu.stanford.hivdb.utilities.MyFileUtils;
 import edu.stanford.hivdb.utilities.TSV;
 
@@ -62,7 +63,8 @@ public class AlgorithmResultsComparison {
 
 	public static void main (String [] args) throws SQLException {
 		for (DrugClass drugClass : DrugClass.values()) {
-			Gene gene = drugClass.gene();
+			// TODO: HIV2 support
+			Gene gene = Gene.valueOf(Strain.HIV1, drugClass.gene());
 			List<String> header = new ArrayList<>();
 			List<List<String>> rows = new ArrayList<>();
 

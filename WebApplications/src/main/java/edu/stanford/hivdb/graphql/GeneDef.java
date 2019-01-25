@@ -24,6 +24,7 @@ import static graphql.schema.GraphQLObjectType.newObject;
 import static edu.stanford.hivdb.graphql.ExtendedFieldDefinition.*;
 
 import edu.stanford.hivdb.mutations.Gene;
+import edu.stanford.hivdb.mutations.GeneEnum;
 
 public class GeneDef {
 
@@ -33,7 +34,7 @@ public class GeneDef {
 	static {
 		GraphQLEnumType.Builder newEnumGene =
 			GraphQLEnumType.newEnum().name("EnumGene");
-		for (Gene gene : Gene.values()) {
+		for (GeneEnum gene : GeneEnum.values()) {
 			newEnumGene.value(gene.toString(), gene);
 		}
 		enumGene = newEnumGene.build();

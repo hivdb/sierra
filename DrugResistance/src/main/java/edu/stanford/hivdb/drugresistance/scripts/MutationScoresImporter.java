@@ -40,6 +40,7 @@ import edu.stanford.hivdb.mutations.AA;
 import edu.stanford.hivdb.mutations.Gene;
 import edu.stanford.hivdb.mutations.IUPACMutation;
 import edu.stanford.hivdb.mutations.Mutation;
+import edu.stanford.hivdb.mutations.Strain;
 import edu.stanford.hivdb.utilities.MyFileUtils;
 
 
@@ -115,7 +116,8 @@ public class MutationScoresImporter {
 		String mutText = rowFields.remove(0);
 		String type = rowFields.remove(0);
 		List<Drug> drugList = drugClass.getAllDrugs();
-		Gene gene = drugClass.gene();
+		// TODO: HIV2 support
+		Gene gene = Gene.valueOf(Strain.HIV1, drugClass.gene());
 		StringBuilder statements = new StringBuilder();
 		boolean noScores = true;
 		if ("Individual".equals(type)) {

@@ -31,52 +31,52 @@ public class GeneTest {
 	public void testGetDrugClasses() {
 		assertEquals(
 			Arrays.asList(new DrugClass[] {DrugClass.PI}),
-			Gene.PR.getDrugClasses());
+			Gene.valueOf("HIV1PR").getDrugClasses());
 		assertEquals(
 			Arrays.asList(new DrugClass[] {DrugClass.NRTI, DrugClass.NNRTI}),
-			Gene.RT.getDrugClasses());
+			Gene.valueOf("HIV1RT").getDrugClasses());
 		assertEquals(
 			Arrays.asList(new DrugClass[] {DrugClass.INSTI}),
-			Gene.IN.getDrugClasses());
+			Gene.valueOf("HIV1IN").getDrugClasses());
 	}
 
 	@Test
 	public void testGetMutationTypes() {
 		assertEquals(
 			Arrays.asList(new MutType[] {MutType.Major, MutType.Accessory, MutType.Other}),
-			Gene.PR.getMutationTypes());
+			Gene.valueOf("HIV1PR").getMutationTypes());
 		assertEquals(
 			Arrays.asList(new MutType[] {MutType.NRTI, MutType.NNRTI, MutType.Other}),
-			Gene.RT.getMutationTypes());
+			Gene.valueOf("HIV1RT").getMutationTypes());
 		assertEquals(
 			Arrays.asList(new MutType[] {MutType.Major, MutType.Accessory, MutType.Other}),
-			Gene.IN.getMutationTypes());
+			Gene.valueOf("HIV1IN").getMutationTypes());
 	}
 
 	@Test
 	public void testGetScoredMutTypes() {
 		assertEquals(
 			Arrays.asList(new MutType[] {MutType.Major, MutType.Accessory}),
-			Gene.PR.getScoredMutTypes());
+			Gene.valueOf("HIV1PR").getScoredMutTypes());
 		assertEquals(
 			Arrays.asList(new MutType[] {MutType.NRTI, MutType.NNRTI}),
-			Gene.RT.getScoredMutTypes());
+			Gene.valueOf("HIV1RT").getScoredMutTypes());
 		assertEquals(
 			Arrays.asList(new MutType[] {MutType.Major, MutType.Accessory}),
-			Gene.IN.getScoredMutTypes());
+			Gene.valueOf("HIV1IN").getScoredMutTypes());
 	}
 
 	@Test
 	public void testGetLength() {
-		assertEquals(99, Gene.PR.getLength());
-		assertEquals(560, Gene.RT.getLength());
-		assertEquals(288, Gene.IN.getLength());
+		assertEquals(99, Gene.valueOf("HIV1PR").getLength());
+		assertEquals(560, Gene.valueOf("HIV1RT").getLength());
+		assertEquals(288, Gene.valueOf("HIV1IN").getLength());
 	}
 
 	@Test
 	public void testGetConsensus() {
-		assertEquals("T", Gene.PR.getReference(4));
-		assertEquals("IDK", Gene.IN.getReference(5, 3));
-		assertEquals(560, Gene.RT.getReference().length());
+		assertEquals("T", Gene.valueOf("HIV1PR").getReference(4));
+		assertEquals("IDK", Gene.valueOf("HIV1IN").getReference(5, 3));
+		assertEquals(560, Gene.valueOf("HIV1RT").getReference().length());
 	}
 }

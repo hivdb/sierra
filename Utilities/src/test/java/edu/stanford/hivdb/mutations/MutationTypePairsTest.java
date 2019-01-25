@@ -25,8 +25,8 @@ public class MutationTypePairsTest {
 
 	@Test
 	public void testMutTypePairConstruction() {
-		final MutationTypePair mutTypePair = new MutationTypePair(Gene.RT, DrugClass.NNRTI, 234, "I", MutType.NNRTI, false);
-		assertEquals(Gene.RT, mutTypePair.getGene());
+		final MutationTypePair mutTypePair = new MutationTypePair(Gene.valueOf("HIV1RT"), DrugClass.NNRTI, 234, "I", MutType.NNRTI, false);
+		assertEquals(Gene.valueOf("HIV1RT"), mutTypePair.getGene());
 		assertEquals(DrugClass.NNRTI, mutTypePair.getDrugClass());
 		assertEquals(Integer.valueOf(234), mutTypePair.getPosition());
 		assertEquals("L", mutTypePair.getConsensus());
@@ -59,34 +59,34 @@ public class MutationTypePairsTest {
 	@Test
 	public void testIsMatched() {
 		final Mutation mut = IUPACMutation.parseString("PR:23I");
-		final MutationTypePair mutTypePair = new MutationTypePair(Gene.PR, DrugClass.PI, 23, "I", MutType.Accessory, false);
+		final MutationTypePair mutTypePair = new MutationTypePair(Gene.valueOf("HIV1PR"), DrugClass.PI, 23, "I", MutType.Accessory, false);
 		assertTrue(mutTypePair.isMutationMatched(mut));
 	}
 
 	@Test
 	public void testIsUnmatchedByGene() {
 		final Mutation mut = IUPACMutation.parseString("RT:23I");
-		final MutationTypePair mutTypePair = new MutationTypePair(Gene.PR, DrugClass.PI, 23, "I", MutType.Accessory, false);
+		final MutationTypePair mutTypePair = new MutationTypePair(Gene.valueOf("HIV1PR"), DrugClass.PI, 23, "I", MutType.Accessory, false);
 		assertFalse(mutTypePair.isMutationMatched(mut));
 	}
 
 	@Test
 	public void testIsUnmatchedByPos() {
 		final Mutation mut = IUPACMutation.parseString("PR:22I");
-		final MutationTypePair mutTypePair = new MutationTypePair(Gene.PR, DrugClass.PI, 23, "I", MutType.Accessory, false);
+		final MutationTypePair mutTypePair = new MutationTypePair(Gene.valueOf("HIV1PR"), DrugClass.PI, 23, "I", MutType.Accessory, false);
 		assertFalse(mutTypePair.isMutationMatched(mut));
 	}
 
 	@Test
 	public void testIsUnmatchedByAAs() {
 		final Mutation mut = IUPACMutation.parseString("PR:23A");
-		final MutationTypePair mutTypePair = new MutationTypePair(Gene.PR, DrugClass.PI, 23, "I", MutType.Accessory, false);
+		final MutationTypePair mutTypePair = new MutationTypePair(Gene.valueOf("HIV1PR"), DrugClass.PI, 23, "I", MutType.Accessory, false);
 		assertFalse(mutTypePair.isMutationMatched(mut));
 	}
 
 	@Test
 	public void testIsMatchedWithInsertion() {
-		final MutationTypePair mutTypePair = new MutationTypePair(Gene.RT, DrugClass.NRTI, 70, "ACDFHILMPVWY_", MutType.NRTI, true);
+		final MutationTypePair mutTypePair = new MutationTypePair(Gene.valueOf("HIV1RT"), DrugClass.NRTI, 70, "ACDFHILMPVWY_", MutType.NRTI, true);
 		final Mutation matchedMut = IUPACMutation.parseString("RT:70ACDFHILMPVW_Y");
 		final Mutation unmatchedMutPos = IUPACMutation.parseString("RT:71ACDFHILMPVW_Y");
 		assertTrue(mutTypePair.isMutationMatched(matchedMut));
@@ -95,7 +95,7 @@ public class MutationTypePairsTest {
 
 	@Test
 	public void testLookupByPosition() {
-		final List<MutType> mutTypes = MutationTypePairs.lookupByPosition(Gene.PR, 90);
+		final List<MutType> mutTypes = MutationTypePairs.lookupByPosition(Gene.valueOf("HIV1PR"), 90);
 		final List<MutType> eMutTypes = Arrays.asList(MutType.Major, MutType.Other);
 		assertEquals(eMutTypes, mutTypes);
 	}
@@ -156,7 +156,7 @@ public class MutationTypePairsTest {
 		final MutationSet muts = new MutationSet(rtMut, inMut1, inMut2);
 		final List<MutType> eInMut1Types = MutationTypePairs.lookupByMutation(inMut1);
 		final List<MutType> eInMut2Types = MutationTypePairs.lookupByMutation(inMut2);
-		final Map<Mutation, List<MutType>> mutTypes = MutationTypePairs.lookupByMutations(Gene.IN, muts);
+		final Map<Mutation, List<MutType>> mutTypes = MutationTypePairs.lookupByMutations(Gene.valueOf("HIV1IN"), muts);
 		assertEquals(2, mutTypes.size());
 		assertEquals(eInMut1Types, mutTypes.get(inMut1));
 		assertEquals(eInMut2Types, mutTypes.get(inMut2));

@@ -33,6 +33,7 @@ import edu.stanford.hivdb.mutations.AAMutation;
 import edu.stanford.hivdb.mutations.Gene;
 import edu.stanford.hivdb.mutations.Mutation;
 import edu.stanford.hivdb.mutations.MutationSet;
+import edu.stanford.hivdb.mutations.Strain;
 import edu.stanford.hivdb.utilities.Cachable;
 import edu.stanford.hivdb.utilities.Cachable.DataLoader;
 import edu.stanford.hivdb.utilities.Database;
@@ -198,7 +199,8 @@ public class TabularRulesComparison {
 				while (rs.next()) {
 					Drug drug = Drug.valueOf(rs.getString("Drug"));
 					String rule = new MutationSet(
-						drug.getDrugClass().gene(),
+						// TODO: support HIV2
+						Gene.valueOf(Strain.HIV1, drug.getDrugClass().gene()),
 						rs.getString("Rule"))
 						.displayAmbiguities()
 						.join('+');
@@ -230,7 +232,8 @@ public class TabularRulesComparison {
 			return db.selectAll(sqlStmt, rs -> {
 				Map<Mutation, Map<Drug, Map<HivdbVersion, Integer>>> mutsMap = new LinkedHashMap<>();
 				while (rs.next()) {
-					Gene gene = Gene.valueOf(rs.getString("Gene"));
+					// TODO: we don't have rule for HIV-2 yet
+					Gene gene = Gene.valueOf(Strain.HIV1, rs.getString("Gene"));
 					int pos = rs.getInt("Pos");
 					String aa = rs
 						.getString("AA")

@@ -32,6 +32,7 @@ import edu.stanford.hivdb.drugs.Drug;
 import edu.stanford.hivdb.drugs.DrugClass;
 import edu.stanford.hivdb.mutations.Gene;
 import edu.stanford.hivdb.mutations.MutationSet;
+import edu.stanford.hivdb.mutations.Strain;
 import edu.stanford.hivdb.utilities.Cachable;
 import edu.stanford.hivdb.utilities.Cachable.DataLoader;
 import edu.stanford.hivdb.utilities.TSV;
@@ -99,7 +100,8 @@ public class TabularPatternsComparison {
 		public Map<DrugClass, List<List<String>>> load() {
 			Map<DrugClass, List<List<String>>> results = new EnumMap<>(DrugClass.class);
 			for (DrugClass drugClass : DrugClass.values()) {
-				Gene gene = drugClass.gene();
+				// TODO: no pattern comparison for HIV2
+				Gene gene = Gene.valueOf(Strain.HIV1, drugClass.gene());
 				List<Drug> drugs = drugClass.getDrugsForHivdbTesting();
 				List<List<String>> rows = new ArrayList<>();
 				results.put(drugClass, rows);

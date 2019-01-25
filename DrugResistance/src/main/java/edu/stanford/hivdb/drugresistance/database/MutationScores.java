@@ -35,6 +35,7 @@ import edu.stanford.hivdb.mutations.AA;
 import edu.stanford.hivdb.mutations.Gene;
 import edu.stanford.hivdb.mutations.Mutation;
 import edu.stanford.hivdb.mutations.MutationSet;
+import edu.stanford.hivdb.mutations.Strain;
 import edu.stanford.hivdb.utilities.JdbcDatabase;
 import edu.stanford.hivdb.utilities.Cachable;
 
@@ -172,7 +173,8 @@ public class MutationScores {
 			"ORDER BY Gene, Pos, AA, Drug";
 
 		mutScores = db.iterate(sqlStatement, rs -> {
-			Gene gene = Gene.valueOf(rs.getString("Gene"));
+			// TODO: we don't have data for HIV2
+			Gene gene = Gene.valueOf(Strain.HIV1, rs.getString("Gene"));
 			DrugClass drugClass = DrugClass.valueOf(rs.getString("DrugClass"));
 			int pos = rs.getInt("Pos");
 			String aas = rs.getString("AA");

@@ -24,18 +24,18 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import edu.stanford.hivdb.mutations.Gene;
+import edu.stanford.hivdb.mutations.GeneEnum;
 
 public enum DrugClass {
-	NRTI(Gene.RT, "Nucleoside Reverse Transcriptase Inhibitor"),
-	NNRTI(Gene.RT, "Non-nucleoside Reverse Transcriptase Inhibitor"),
-	PI(Gene.PR, "Protease Inhibitor"),
-	INSTI(Gene.IN, "Integrase Strand Transfer Inhibitor");
+	NRTI(GeneEnum.RT, "Nucleoside Reverse Transcriptase Inhibitor"),
+	NNRTI(GeneEnum.RT, "Non-nucleoside Reverse Transcriptase Inhibitor"),
+	PI(GeneEnum.PR, "Protease Inhibitor"),
+	INSTI(GeneEnum.IN, "Integrase Strand Transfer Inhibitor");
 
-	private final Gene gene;
+	private final GeneEnum gene;
 	private final String fullName;
 
-	private DrugClass(final Gene gene, final String fullName) {
+	private DrugClass(final GeneEnum gene, final String fullName) {
 		this.gene = gene;
 		this.fullName = fullName;
 	}
@@ -53,7 +53,7 @@ public enum DrugClass {
 				   .collect(Collectors.toList());
 	}
 
-	public Gene gene() {
+	public GeneEnum gene() {
 		return this.gene;
 	}
 

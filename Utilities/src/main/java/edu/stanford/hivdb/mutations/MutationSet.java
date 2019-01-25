@@ -452,10 +452,10 @@ public class MutationSet extends TreeSet<Mutation> {
 	 * @return A new MutationSet instance
 	 */
 	public MutationSet getDRMs(DrugClass drugClass) {
-		Gene gene = drugClass.gene();
+		GeneEnum gene = drugClass.gene();
 		return filterBy(mut -> {
 			MutType type = mut.getPrimaryType();
-			if (mut.getGene() != gene || type == MutType.Other) {
+			if (mut.getGene().getGeneEnum() != gene || type == MutType.Other) {
 				return false;
 			}
 			else if (

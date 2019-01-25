@@ -38,32 +38,32 @@ public class AsiBaseTest {
 
 	@Test
 	public void testGetGene() {
-		Asi asiObj = new AsiHivdb(Gene.RT, new MutationSet("RT184V"));
-		assertEquals(Gene.RT, asiObj.getGene());
+		Asi asiObj = new AsiHivdb(Gene.valueOf("HIV1RT"), new MutationSet("RT184V"));
+		assertEquals(Gene.valueOf("HIV1RT"), asiObj.getGene());
 
-		asiObj = new AsiHivdb(Gene.PR, new MutationSet("PR24I,PR46L,PR54V"));
-		assertEquals(Gene.PR, asiObj.getGene());
+		asiObj = new AsiHivdb(Gene.valueOf("HIV1PR"), new MutationSet("PR24I,PR46L,PR54V"));
+		assertEquals(Gene.valueOf("HIV1PR"), asiObj.getGene());
 
-		asiObj = new AsiHivdb(Gene.IN, new MutationSet("IN140S,IN148H"));
-		assertEquals(Gene.IN, asiObj.getGene());
+		asiObj = new AsiHivdb(Gene.valueOf("HIV1IN"), new MutationSet("IN140S,IN148H"));
+		assertEquals(Gene.valueOf("HIV1IN"), asiObj.getGene());
 	}
 
 	@Test
 	public void testGetDrugLevel() {
-		Asi asiObj = new AsiHivdb(Gene.RT, new MutationSet("RT67N,RT70R,RT184V,RT219Q"));
+		Asi asiObj = new AsiHivdb(Gene.valueOf("HIV1RT"), new MutationSet("RT67N,RT70R,RT184V,RT219Q"));
 		assertEquals(3, asiObj.getDrugLevel(Drug.TDF));
 
-		asiObj = new AsiHivdb(Gene.IN, new MutationSet("IN184A"));
+		asiObj = new AsiHivdb(Gene.valueOf("HIV1IN"), new MutationSet("IN184A"));
 		assertEquals(1, asiObj.getDrugLevel(Drug.DTG));
 		assertEquals(1, asiObj.getDrugLevel(Drug.ABC));
 	}
 
 	@Test
 	public void testGetDrugLevelText() {
-		Asi asiObj = new AsiHivdb(Gene.RT, new MutationSet("RT67N,RT70R,RT184V,RT219Q"));
+		Asi asiObj = new AsiHivdb(Gene.valueOf("HIV1RT"), new MutationSet("RT67N,RT70R,RT184V,RT219Q"));
 		assertEquals("Low-Level Resistance", asiObj.getDrugLevelText(Drug.TDF));
 
-		asiObj = new AsiHivdb(Gene.IN, new MutationSet("IN184A"));
+		asiObj = new AsiHivdb(Gene.valueOf("HIV1IN"), new MutationSet("IN184A"));
 		assertEquals("Susceptible", asiObj.getDrugLevelText(Drug.DTG));
 		assertEquals("Susceptible", asiObj.getDrugLevelText(Drug.ABC));
 	}
@@ -72,50 +72,50 @@ public class AsiBaseTest {
 	public void testGetDrugLevelSir() {
 		Asi asiObj;
 
-		asiObj = new AsiHivdb(Gene.PR, new MutationSet("PR73V,PR76V,PR84V,PR88S"));
+		asiObj = new AsiHivdb(Gene.valueOf("HIV1PR"), new MutationSet("PR73V,PR76V,PR84V,PR88S"));
 		assertEquals("R", asiObj.getDrugLevelSir(Drug.FPV));
 
-		asiObj = new AsiHivdb(Gene.RT, new MutationSet("RT67N,RT70R,RT184V,RT219Q"));
+		asiObj = new AsiHivdb(Gene.valueOf("HIV1RT"), new MutationSet("RT67N,RT70R,RT184V,RT219Q"));
 		assertEquals("I", asiObj.getDrugLevelSir(Drug.TDF));
 
-		asiObj = new AsiHivdb(Gene.IN, new MutationSet("IN184A"));
+		asiObj = new AsiHivdb(Gene.valueOf("HIV1IN"), new MutationSet("IN184A"));
 		assertEquals("S", asiObj.getDrugLevelSir(Drug.DTG));
 		assertEquals("S", asiObj.getDrugLevelSir(Drug.ABC));
 
-		asiObj = new AsiRega(Gene.PR, new MutationSet("PR73V,PR76V,PR84V,PR88S"));
+		asiObj = new AsiRega(Gene.valueOf("HIV1PR"), new MutationSet("PR73V,PR76V,PR84V,PR88S"));
 		assertEquals("I", asiObj.getDrugLevelSir(Drug.FPV));
 
-		asiObj = new AsiRega(Gene.RT, new MutationSet("RT67N,RT70R,RT184V,RT219Q"));
+		asiObj = new AsiRega(Gene.valueOf("HIV1RT"), new MutationSet("RT67N,RT70R,RT184V,RT219Q"));
 		assertEquals("S", asiObj.getDrugLevelSir(Drug.TDF));
 
-		asiObj = new AsiRega(Gene.IN, new MutationSet("IN184A"));
+		asiObj = new AsiRega(Gene.valueOf("HIV1IN"), new MutationSet("IN184A"));
 		assertEquals("S", asiObj.getDrugLevelSir(Drug.DTG));
 		assertEquals("S", asiObj.getDrugLevelSir(Drug.ABC));
 
-		asiObj = new AsiAnrs(Gene.PR, new MutationSet("PR73V,PR76V,PR84V,PR88S"));
+		asiObj = new AsiAnrs(Gene.valueOf("HIV1PR"), new MutationSet("PR73V,PR76V,PR84V,PR88S"));
 		assertEquals("S", asiObj.getDrugLevelSir(Drug.FPV));
 
-		asiObj = new AsiAnrs(Gene.RT, new MutationSet("RT67N,RT70R,RT184V,RT219Q"));
+		asiObj = new AsiAnrs(Gene.valueOf("HIV1RT"), new MutationSet("RT67N,RT70R,RT184V,RT219Q"));
 		assertEquals("S", asiObj.getDrugLevelSir(Drug.TDF));
 
-		asiObj = new AsiAnrs(Gene.IN, new MutationSet("IN184A"));
+		asiObj = new AsiAnrs(Gene.valueOf("HIV1IN"), new MutationSet("IN184A"));
 		assertEquals("S", asiObj.getDrugLevelSir(Drug.DTG));
 		assertEquals("S", asiObj.getDrugLevelSir(Drug.ABC));
 	}
 
 	@Test
 	public void testGetTotalScore() {
-		Asi asiObj = new AsiHivdb(Gene.RT, new MutationSet("RT67N,RT70R,RT184V,RT219Q"));
+		Asi asiObj = new AsiHivdb(Gene.valueOf("HIV1RT"), new MutationSet("RT67N,RT70R,RT184V,RT219Q"));
 		assertEquals(15.0, asiObj.getTotalScore(Drug.TDF), 1e-6);
 
-		asiObj = new AsiHivdb(Gene.IN, new MutationSet("IN184A"));
+		asiObj = new AsiHivdb(Gene.valueOf("HIV1IN"), new MutationSet("IN184A"));
 		assertEquals(0.0, asiObj.getTotalScore(Drug.DTG), 1e-6);
 		assertEquals(0.0, asiObj.getTotalScore(Drug.ABC), 1e-6);
 	}
 
 	@Test
 	public void testGetDrugClassTotalDrugScores() {
-		Asi asiObj = new AsiHivdb(Gene.RT, new MutationSet("RT67N,RT70R,RT184V,RT219Q"));
+		Asi asiObj = new AsiHivdb(Gene.valueOf("HIV1RT"), new MutationSet("RT67N,RT70R,RT184V,RT219Q"));
 		Map<DrugClass, Map<Drug, Double>> expected = new EnumMap<>(DrugClass.class);
 		expected.put(DrugClass.NRTI, new EnumMap<>(Drug.class));
 		expected.put(DrugClass.NNRTI, new EnumMap<>(Drug.class));
@@ -143,7 +143,7 @@ public class AsiBaseTest {
 	@Test
 	public void testGetTriggeredMutations() {
 		Asi asiObj = new AsiHivdb(
-			Gene.RT, new MutationSet("RT67AN,RT71R,RT100I,RT101E,RT181C,RT184V,RT219Q"));
+			Gene.valueOf("HIV1RT"), new MutationSet("RT67AN,RT71R,RT100I,RT101E,RT181C,RT184V,RT219Q"));
 		MutationSet expected = new MutationSet("RT67AN,RT100I,RT101E,RT181C,RT184V,RT219Q");
 		assertEquals(expected, asiObj.getTriggeredMutations());
 		assertEquals(expected, asiObj.getTriggeredMutations());
@@ -158,7 +158,7 @@ public class AsiBaseTest {
 	@Test
 	public void testGetDrugClassDrugMutScores() {
 		Asi asiObj = new AsiHivdb(
-			Gene.RT, new MutationSet("RT67AN,RT71R,RT100I,RT101E,RT181C,RT184V,RT219Q"));
+			Gene.valueOf("HIV1RT"), new MutationSet("RT67AN,RT71R,RT100I,RT101E,RT181C,RT184V,RT219Q"));
 		Map<DrugClass, Map<Drug, Map<Mutation, Double>>> expected = new EnumMap<>(DrugClass.class);
 		expected.put(DrugClass.NRTI, new EnumMap<>(Drug.class));
 		expected.put(DrugClass.NNRTI, new EnumMap<>(Drug.class));
@@ -212,7 +212,7 @@ public class AsiBaseTest {
 	@Test
 	public void testGetDrugClassDrugComboMutScores() {
 		Asi asiObj = new AsiHivdb(
-			Gene.RT, new MutationSet("RT67AN,RT71R,RT100I,RT101E,RT181C,RT184V,RT219Q"));
+			Gene.valueOf("HIV1RT"), new MutationSet("RT67AN,RT71R,RT100I,RT101E,RT181C,RT184V,RT219Q"));
 		Map<DrugClass, Map<Drug, Map<MutationSet, Double>>> expected = new EnumMap<>(DrugClass.class);
 		expected.put(DrugClass.NNRTI, new EnumMap<>(Drug.class));
 		expected.get(DrugClass.NNRTI).put(Drug.NVP, new HashMap<>());
@@ -227,7 +227,7 @@ public class AsiBaseTest {
 	@Test
 	public void testGetTriggeredDrugRules() {
 		Asi asiObj = new AsiAnrs(
-			Gene.RT, new MutationSet("RT184V,RT219Q"));
+			Gene.valueOf("HIV1RT"), new MutationSet("RT184V,RT219Q"));
 		Map<Drug, Map<String, String>> expected = new EnumMap<>(Drug.class);
 		expected.put(Drug.ABC, new TreeMap<>());
 		expected.get(Drug.ABC).put("184VI", "Possible resistance");
@@ -241,7 +241,7 @@ public class AsiBaseTest {
 	@Test
 	public void testGetDrugMutScores() {
 		Asi asiObj = new AsiHivdb(
-			Gene.RT, new MutationSet("RT184V,RT219Q"));
+			Gene.valueOf("HIV1RT"), new MutationSet("RT184V,RT219Q"));
 		Map<Drug, Map<Mutation, Double>> expected = new EnumMap<>(Drug.class);
 		expected.put(Drug.ABC, new TreeMap<>());
 		expected.get(Drug.ABC).put(IUPACMutation.parseString("RT184V"), 15.0);
@@ -268,7 +268,7 @@ public class AsiBaseTest {
 	@Test
 	public void testGetDrugComboMutScores() {
 		Asi asiObj = new AsiHivdb(
-			Gene.RT, new MutationSet("RT67AN,RT71R,RT100I,RT101E,RT181C,RT184V,RT219Q"));
+			Gene.valueOf("HIV1RT"), new MutationSet("RT67AN,RT71R,RT100I,RT101E,RT181C,RT184V,RT219Q"));
 		Map<Drug, Map<MutationSet, Double>> expected = new EnumMap<>(Drug.class);
 		expected.put(Drug.NVP, new HashMap<>());
 		expected.get(Drug.NVP).put(new MutationSet("RT101E,RT181C"), 5.0);

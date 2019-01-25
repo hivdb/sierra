@@ -32,14 +32,14 @@ public class NucAminoAlignerTest {
 	public void testSingleSequence() {
 		Sequence testSeq = Sequence.fromGenbank("AF096883");
 		AlignedSequence alignedSeq = NucAminoAligner.align(testSeq);
-		AlignedGeneSeq seqPR = alignedSeq.getAlignedGeneSequence(Gene.PR);
+		AlignedGeneSeq seqPR = alignedSeq.getAlignedGeneSequence(Gene.valueOf("HIV1PR"));
 		assertEquals(1, seqPR.getFirstAA());
 		assertEquals(1, seqPR.getFirstNA());
 		assertEquals(99, seqPR.getLastAA());
 		assertEquals(297, seqPR.getLastNA());
 		assertEquals(
 			new MutationSet(
-				Gene.PR,
+				Gene.valueOf("HIV1PR"),
 				"L10V,E35D,M36I,N37D,I54V,Q58E,I62IV,L63P,I64V,A71V,G73T,L90M"),
 			seqPR.getMutations()
 		);
@@ -48,14 +48,14 @@ public class NucAminoAlignerTest {
 			"GGFVKVREYDQVPVEICGHKVITTVLVGPTPVNIIGRNLMTQIGCTLNF",
 			seqPR.getAlignedAAs()
 		);
-		AlignedGeneSeq seqRT = alignedSeq.getAlignedGeneSequence(Gene.RT);
+		AlignedGeneSeq seqRT = alignedSeq.getAlignedGeneSequence(Gene.valueOf("HIV1RT"));
 		assertEquals(1, seqRT.getFirstAA());
 		assertEquals(298, seqRT.getFirstNA());
 		assertEquals(230, seqRT.getLastAA());
 		assertEquals(993, seqRT.getLastNA());
 		assertEquals(
 			new MutationSet(
-				Gene.RT,
+				Gene.valueOf("HIV1RT"),
 				"E6D,K20R,M41L,K43Q,A62V,T69S_SA,K103N, " +
 				"V118I,S162A,Y181C,Q207E,R211K,T215Y,L228H"),
 			seqRT.getMutations()

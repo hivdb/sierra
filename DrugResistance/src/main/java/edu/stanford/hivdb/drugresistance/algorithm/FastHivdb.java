@@ -25,6 +25,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 
@@ -41,6 +42,7 @@ import edu.stanford.hivdb.mutations.AAMutation;
 import edu.stanford.hivdb.mutations.Gene;
 import edu.stanford.hivdb.mutations.Mutation;
 import edu.stanford.hivdb.mutations.MutationSet;
+import edu.stanford.hivdb.mutations.Strain;
 
 public class FastHivdb {
 
@@ -130,8 +132,8 @@ public class FastHivdb {
 	}
 
 	static {
-		Map<Gene, List<Rule>> rulesByGenes = new EnumMap<>(Gene.class);
-		for (Gene gene : Gene.values()) {
+		Map<Gene, List<Rule>> rulesByGenes = new TreeMap<>();
+		for (Gene gene : Gene.values(Strain.HIV1)) {
 			rulesByGenes.put(gene, new ArrayList<>());
 		}
 		for (MutScore mutScore : MutationScores.getMutScores()) {

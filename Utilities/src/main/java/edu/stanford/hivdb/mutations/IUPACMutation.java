@@ -19,6 +19,7 @@
 package edu.stanford.hivdb.mutations;
 
 import java.util.Map;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -40,7 +41,7 @@ public class IUPACMutation extends AAMutation {
 	private final String aas;
 	private final String triplet;
 	private final String insertedNAs;
-
+	
 	private static char[] calcAACharArray(String aas) {
 		aas = normalizeAAs(aas);
 		if (aas.contains("_")) {
@@ -108,7 +109,9 @@ public class IUPACMutation extends AAMutation {
 		Matcher m = mutationPattern.matcher(mutText);
 		if (m.matches()) {
 			try {
-				gene = Gene.valueOf(m.group(1).toUpperCase());
+				// TODO: currently we only support parsing HIV1 mutations.
+				//       need to design a new format for HIV2 mutations.
+				gene = Gene.valueOf(Strain.HIV1, m.group(1).toUpperCase());
 			} catch (NullPointerException e) {
 				throw new InvalidMutationException(
 					"Gene is not specified and also not found in the " +
@@ -132,7 +135,9 @@ public class IUPACMutation extends AAMutation {
 		if (m.matches()) {
 			if (gene == null) {
 				try {
-					gene = Gene.valueOf(m.group(1).toUpperCase());
+					// TODO: currently we only support parsing HIV1 mutations.
+					//       need to design a new format for HIV2 mutations.
+					gene = Gene.valueOf(Strain.HIV1, m.group(1).toUpperCase());
 				} catch (NullPointerException e) {
 					throw new InvalidMutationException(
 						"Gene is not specified and also not found in the " +

@@ -51,6 +51,8 @@ import edu.stanford.hivdb.drugs.Drug;
 import edu.stanford.hivdb.drugs.DrugClass;
 import edu.stanford.hivdb.mutations.AA;
 import edu.stanford.hivdb.mutations.Gene;
+import edu.stanford.hivdb.mutations.GeneEnum;
+import edu.stanford.hivdb.mutations.Strain;
 import edu.stanford.hivdb.utilities.MyEnumUtils;
 
 
@@ -114,7 +116,8 @@ public class AsiConstructor {
 			Node definition = doc.createElement("DEFINITIONS");
 			rootElement.appendChild(definition);
 
-			for (Gene gene : Gene.values()) {
+			// TODO: HIV2 support
+			for (Gene gene : Gene.values(Strain.HIV1)) {
 				List<DrugClass> drugClasses = gene.getDrugClasses();
 				String drugClassListString = MyEnumUtils.join(drugClasses, ",");
 
@@ -122,7 +125,7 @@ public class AsiConstructor {
 				definition.appendChild(geneDefinition);
 
 				Node geneName = doc.createElement("NAME");
-				geneName.appendChild(doc.createTextNode(gene.toString()));
+				geneName.appendChild(doc.createTextNode(gene.getShortName()));
 				geneDefinition.appendChild(geneName);
 
 				Node drugClassList = doc.createElement("DRUGCLASSLIST");
@@ -246,12 +249,12 @@ public class AsiConstructor {
 
 	private static Element createMutationCommentRules(Document doc) {
 		Element mutComments = doc.createElement("MUTATION_COMMENTS");
-		Map<Gene, List<ConditionalComment>> commentsByGenes =
+		Map<GeneEnum, List<ConditionalComment>> commentsByGenes =
 			ConditionalComments.getAllComments()
 			.stream()
 			.collect(Collectors.groupingBy(
 				cmt -> cmt.getGene(), LinkedHashMap::new, Collectors.toList()));
-		for (Gene gene : commentsByGenes.keySet()) {
+		for (GeneEnum gene : commentsByGenes.keySet()) {
 			List<ConditionalComment> comments = commentsByGenes.get(gene);
 			Element geneNode = doc.createElement("GENE");
 			Element geneNameNode = doc.createElement("NAME");

@@ -28,6 +28,7 @@ import edu.stanford.hivdb.mutations.Apobec;
 import edu.stanford.hivdb.mutations.Gene;
 import edu.stanford.hivdb.mutations.Mutation;
 import edu.stanford.hivdb.mutations.MutationSet;
+import edu.stanford.hivdb.mutations.Strain;
 import edu.stanford.hivdb.utilities.MyFileUtils;
 import edu.stanford.hivdb.utilities.TSV;
 
@@ -44,14 +45,15 @@ public class TypedMutationsExporter {
 	private static void exportUnusuals() {
 		HIVAminoAcidPercents allAAPcnts = HIVAminoAcidPercents.getInstance("all", "All");
 
-		for (Gene gene : Gene.values()) {
+		// TODO: HIV2 support
+		for (Gene gene : Gene.values(Strain.HIV1)) {
 			List<String> headers = new ArrayList<>();
 			Map<Character, List<String>> rows = new TreeMap<>();
 			headers.add("AA");
 			for (int pos = 1; pos <= gene.getLength(); pos ++) {
 				headers.add("" + pos);
 			}
-			for (HIVAminoAcidPercent aaPcnt : allAAPcnts.get(gene)) {
+			for (HIVAminoAcidPercent aaPcnt : allAAPcnts.get(gene.getGeneEnum())) {
 				if (!rows.containsKey(aaPcnt.aa)) {
 					List<String> row = new ArrayList<>();
 					row.add("" + aaPcnt.aa);
@@ -83,7 +85,7 @@ public class TypedMutationsExporter {
 		}
 		for (Mutation mut : mutSet) {
 			List<String> row = new ArrayList<>();
-			row.add(mut.getGene().toString());
+			row.add(mut.getGene().getShortName());
 			row.add(mut.getReference());
 			row.add("" + mut.getPosition());
 			row.add(mut.getAAs());

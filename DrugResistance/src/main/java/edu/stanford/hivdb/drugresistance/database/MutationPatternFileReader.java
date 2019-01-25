@@ -28,6 +28,7 @@ import java.util.List;
 import edu.stanford.hivdb.drugs.DrugClass;
 import edu.stanford.hivdb.mutations.Gene;
 import edu.stanford.hivdb.mutations.MutationSet;
+import edu.stanford.hivdb.mutations.Strain;
 import edu.stanford.hivdb.utilities.MutationFileReader;
 
 public class MutationPatternFileReader extends MutationFileReader {
@@ -40,7 +41,7 @@ public class MutationPatternFileReader extends MutationFileReader {
 	 * @return List of MutationSets
 	 */
 	public static List<MutationSet> readMutationListsForDrugClass(DrugClass drugClass, InputStream fileInputStream) {
-		Gene gene = drugClass.gene();
+		Gene gene = Gene.valueOf(Strain.HIV1, drugClass.gene());
 		List<MutationSet> mutationLists = new ArrayList<>();
 
 		try {

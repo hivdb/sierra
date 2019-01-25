@@ -87,8 +87,8 @@ public class MutationListValidatorTest {
 		assertValidationResult(
 			/* mutations as the input for MutationListValidator */
 			new Mutation[] {
-				new IUPACMutation(Gene.RT, 122, "*"),
-				new IUPACMutation(Gene.IN, 23, "*"),
+				new IUPACMutation(Gene.valueOf("HIV1RT"), 122, "*"),
+				new IUPACMutation(Gene.valueOf("HIV1IN"), 23, "*"),
 			},
 			/* expected result level(s) */
 			new ValidationLevel[] {
@@ -109,7 +109,7 @@ public class MutationListValidatorTest {
 		assertValidationResult(
 			/* mutations as the input for MutationListValidator */
 			new Mutation[] {
-				new IUPACMutation(Gene.RT, 43, "*"),
+				new IUPACMutation(Gene.valueOf("HIV1RT"), 43, "*"),
 			},
 			/* expected result level(s) */
 			new ValidationLevel[] {
@@ -127,7 +127,7 @@ public class MutationListValidatorTest {
 		assertValidationResult(
 			/* mutations as the input for MutationListValidator */
 			new Mutation[] {
-				new IUPACMutation(Gene.PR, 54, "V"),
+				new IUPACMutation(Gene.valueOf("HIV1PR"), 54, "V"),
 			}
 			/* the expected result should be empty */
 		);

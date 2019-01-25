@@ -26,6 +26,8 @@ import java.util.EnumMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -48,6 +50,7 @@ import edu.stanford.hivdb.drugresistance.database.CommentType;
 import edu.stanford.hivdb.drugresistance.database.ConditionalComments.BoundComment;
 import edu.stanford.hivdb.drugresistance.database.HivdbVersion;
 import edu.stanford.hivdb.mutations.MutationSet;
+import edu.stanford.hivdb.mutations.Strain;
 import edu.stanford.hivdb.drugs.Drug;
 import edu.stanford.hivdb.drugs.DrugClass;
 import edu.stanford.hivdb.genotyper.BoundGenotype;
@@ -81,19 +84,19 @@ public class XmlOutput {
 		final HivdbVersion curVersion = HivdbVersion.getLatestVersion();
 		ALG_VERSION = curVersion.readableVersion;
 		// ALG_DATE = curVersion.versionDate;
-		Map<Gene, Map<MutType, String>> tmpMap = new EnumMap<>(Gene.class);
-		for (Gene gene : Gene.values()) {
+		Map<Gene, Map<MutType, String>> tmpMap = new TreeMap<>();
+		for (Gene gene : Gene.values(Strain.HIV1)) {
 			tmpMap.put(gene, new EnumMap<>(MutType.class));
 		}
-		tmpMap.get(Gene.PR).put(MutType.Major, "PI_MAJOR");
-		tmpMap.get(Gene.PR).put(MutType.Accessory, "PI_MINOR");
-		tmpMap.get(Gene.PR).put(MutType.Other, "OTHER");
-		tmpMap.get(Gene.RT).put(MutType.NRTI, "NRTI");
-		tmpMap.get(Gene.RT).put(MutType.NNRTI, "NNRTI");
-		tmpMap.get(Gene.RT).put(MutType.Other, "OTHER");
-		tmpMap.get(Gene.IN).put(MutType.Major, "INI_MAJOR");
-		tmpMap.get(Gene.IN).put(MutType.Accessory, "INI_MINOR");
-		tmpMap.get(Gene.IN).put(MutType.Other, "OTHER");
+		tmpMap.get(Gene.valueOf("HIV1PR")).put(MutType.Major, "PI_MAJOR");
+		tmpMap.get(Gene.valueOf("HIV1PR")).put(MutType.Accessory, "PI_MINOR");
+		tmpMap.get(Gene.valueOf("HIV1PR")).put(MutType.Other, "OTHER");
+		tmpMap.get(Gene.valueOf("HIV1RT")).put(MutType.NRTI, "NRTI");
+		tmpMap.get(Gene.valueOf("HIV1RT")).put(MutType.NNRTI, "NNRTI");
+		tmpMap.get(Gene.valueOf("HIV1RT")).put(MutType.Other, "OTHER");
+		tmpMap.get(Gene.valueOf("HIV1IN")).put(MutType.Major, "INI_MAJOR");
+		tmpMap.get(Gene.valueOf("HIV1IN")).put(MutType.Accessory, "INI_MINOR");
+		tmpMap.get(Gene.valueOf("HIV1IN")).put(MutType.Other, "OTHER");
 		mutClassificationConversion = tmpMap;
 	}
 
@@ -373,7 +376,7 @@ public class XmlOutput {
 		Element geneData = document.createElement("geneData");
 
 		// name="gene" type="xs:string"
-		geneData.appendChild(newSimpleElement("gene", gene.toString()));
+		geneData.appendChild(newSimpleElement("gene", gene.getShortName()));
 
 		boolean isPresent = alignedGeneSeq != null;
 		// name="present" type="xs:boolean"
@@ -656,7 +659,7 @@ public class XmlOutput {
 	private Element createCommentElement(Mutation mut, BoundComment bc) {
 		Element comment = document.createElement("comment");
 		// name="gene" type="xs:string"
-		comment.appendChild(newSimpleElement("gene", mut.getGene().toString()));
+		comment.appendChild(newSimpleElement("gene", mut.getGene().getShortName()));
 
 		// name="grouping" type="xs:string" minOccurs="0" maxOccurs="1"
 		comment.appendChild(
@@ -713,7 +716,7 @@ public class XmlOutput {
 			newSimpleElement("GAHypermutated", numApobec > 1));
 
 		// name="geneData" type="GeneData" minOccurs="0" maxOccurs="3"
-		for (Gene gene : Gene.values()) {
+		for (Gene gene : Gene.values(Strain.HIV1)) {
 			result.appendChild(createGeneDataElement(
 				gene, alignedSeq.getAlignedGeneSequence(gene),
 				resistanceResults.get(gene), genotypeResult));

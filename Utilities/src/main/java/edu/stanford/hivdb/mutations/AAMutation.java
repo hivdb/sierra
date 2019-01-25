@@ -34,7 +34,7 @@ import edu.stanford.hivdb.aapcnt.HIVAminoAcidPercents;
 
 public class AAMutation implements Mutation {
 
-	private static final HIVAminoAcidPercents ALL_AA_PCNTS = HIVAminoAcidPercents.getInstance("all", "All");
+	private static final HIVAminoAcidPercents HIV1_AA_PCNTS = HIVAminoAcidPercents.getInstance("all", "All");
 	protected static final int DEFAULT_MAX_DISPLAY_AAS = 6;
 
 	private final Gene gene;
@@ -102,7 +102,7 @@ public class AAMutation implements Mutation {
 			position != another.getPosition()) {
 			throw new IllegalArgumentException(String.format(
 				"The other mutation must be at this position: %d (%s)",
-				position, gene.toString()));
+				position, gene.getShortName()));
 		}
 		return mergesWith(another.getAAChars());
 	}
@@ -123,7 +123,7 @@ public class AAMutation implements Mutation {
 		) {
 			throw new IllegalArgumentException(String.format(
 				"The other mutation must be at this position: %d (%s)",
-				position, gene.toString()));
+				position, gene.getShortName()));
 		}
 		return subtractsBy(another.getAAChars());
 	}
@@ -147,7 +147,7 @@ public class AAMutation implements Mutation {
 		) {
 			throw new IllegalArgumentException(String.format(
 				"The other mutation must be at this position: %d (%s)",
-				position, gene.toString()));
+				position, gene.getShortName()));
 		}
 		return intersectsWith(another.getAAChars());
 	}
@@ -269,11 +269,17 @@ public class AAMutation implements Mutation {
 
 	@Override
 	public final boolean isUnusual() {
+		if (gene.getStrain() != Strain.HIV1) {
+			// we don't have data for HIV2 so far
+			return false;
+		}
 		Set<Character> myAAChars = getAAChars();
 		if (myAAChars.contains('X')) {
 			return true;
 		}
-		return ALL_AA_PCNTS.containsUnusualAA(gene, position, StringUtils.join(myAAChars.toArray()));
+		return HIV1_AA_PCNTS.containsUnusualAA(
+			gene.getGeneEnum(), position,
+			StringUtils.join(myAAChars.toArray()));
 	}
 
 	@Override
@@ -302,6 +308,10 @@ public class AAMutation implements Mutation {
 
 	@Override
 	public final double getHighestMutPrevalence() {
+		if (gene.getStrain() != Strain.HIV1) {
+			// we don't have data for HIV2 so far
+			return .0;
+		}
 		Set<Character> myAAChars = getAAChars();
 		myAAChars.remove(getRefChar());
 		myAAChars.remove('X');
@@ -309,8 +319,9 @@ public class AAMutation implements Mutation {
 			return .0;
 		}
 
-		return ALL_AA_PCNTS.getHighestAAPercentValue(
-			gene, position, StringUtils.join(myAAChars.toArray())) * 100;
+		return HIV1_AA_PCNTS.getHighestAAPercentValue(
+			gene.getGeneEnum(), position,
+			StringUtils.join(myAAChars.toArray())) * 100;
 	}
 
 	@Override
@@ -471,6 +482,6 @@ public class AAMutation implements Mutation {
 
 	@Override
 	public final String getHumanFormatWithGene() {
-		return String.format("%s_%s", gene, getHumanFormat());
+		return String.format("%s_%s", gene.getShortName(), getHumanFormat());
 	}
 }

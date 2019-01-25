@@ -39,7 +39,7 @@ public class AlignedSequenceTest {
 		assertTrue(alignedSeq.isEmpty());
 		assertEquals(Collections.emptyMap(), alignedSeq.getAlignedGeneSequenceMap());
 		assertEquals(Collections.emptyList(), alignedSeq.getAlignedGeneSequences());
-		assertEquals(null, alignedSeq.getAlignedGeneSequence(Gene.PR));
+		assertEquals(null, alignedSeq.getAlignedGeneSequence(Gene.valueOf("HIV1PR")));
 		assertEquals(seq, alignedSeq.getInputSequence());
 		assertEquals(Collections.emptyList(), alignedSeq.getAvailableGenes());
 
@@ -74,15 +74,15 @@ public class AlignedSequenceTest {
 		HIV1Sample sample = new HIV1Sample();
 
 		// PR (nts): 33 to 282
-		sample.addSubstitutionRule(Gene.PR, 282, 297, "");
-		sample.addSubstitutionRule(Gene.PR, 0, 33, "");
+		sample.addSubstitutionRule(Gene.valueOf("HIV1PR"), 282, 297, "");
+		sample.addSubstitutionRule(Gene.valueOf("HIV1PR"), 0, 33, "");
 
 		// RT (nts): 123 to 1653
-		sample.addSubstitutionRule(Gene.RT, 1653, 1680, "");
-		sample.addSubstitutionRule(Gene.RT, 0, 123, "");
+		sample.addSubstitutionRule(Gene.valueOf("HIV1RT"), 1653, 1680, "");
+		sample.addSubstitutionRule(Gene.valueOf("HIV1RT"), 0, 123, "");
 
 		// IN: empty
-		sample.addSubstitutionRule(Gene.IN, 0, 864, "");
+		sample.addSubstitutionRule(Gene.valueOf("HIV1IN"), 0, 864, "");
 
 		Sequence seq = sample.getSequence();
 
@@ -118,15 +118,15 @@ public class AlignedSequenceTest {
 		HIV1Sample sample = new HIV1Sample();
 
 		// PR (nts): 33 to 282
-		sample.addSubstitutionRule(Gene.PR, 282, 297, StringUtils.repeat("N", 15));
-		sample.addSubstitutionRule(Gene.PR, 0, 33, "");
+		sample.addSubstitutionRule(Gene.valueOf("HIV1PR"), 282, 297, StringUtils.repeat("N", 15));
+		sample.addSubstitutionRule(Gene.valueOf("HIV1PR"), 0, 33, "");
 
 		// RT: empty
-		sample.addSubstitutionRule(Gene.RT, 0, 1680, StringUtils.repeat("N", 1680));
+		sample.addSubstitutionRule(Gene.valueOf("HIV1RT"), 0, 1680, StringUtils.repeat("N", 1680));
 
 		// IN (nts): 78 to 831
-		sample.addSubstitutionRule(Gene.IN, 831, 864, "");
-		sample.addSubstitutionRule(Gene.IN, 0, 78, StringUtils.repeat("N", 78));
+		sample.addSubstitutionRule(Gene.valueOf("HIV1IN"), 831, 864, "");
+		sample.addSubstitutionRule(Gene.valueOf("HIV1IN"), 0, 78, StringUtils.repeat("N", 78));
 
 		Sequence seq = sample.getSequence();
 
@@ -160,15 +160,15 @@ public class AlignedSequenceTest {
 		HIV1Sample sample = new HIV1Sample();
 
 		// PR: Empty
-		sample.addSubstitutionRule(Gene.PR, 0, 297, "");
+		sample.addSubstitutionRule(Gene.valueOf("HIV1PR"), 0, 297, "");
 
 		// RT (nts): 123 to 1653
-		sample.addSubstitutionRule(Gene.RT, 1653, 1680, "");
-		sample.addSubstitutionRule(Gene.RT, 0, 123, "");
+		sample.addSubstitutionRule(Gene.valueOf("HIV1RT"), 1653, 1680, "");
+		sample.addSubstitutionRule(Gene.valueOf("HIV1RT"), 0, 123, "");
 
 		// IN (nts): 78 to 831
-		sample.addSubstitutionRule(Gene.IN, 831, 864, "");
-		sample.addSubstitutionRule(Gene.IN, 0, 78, "");
+		sample.addSubstitutionRule(Gene.valueOf("HIV1IN"), 831, 864, "");
+		sample.addSubstitutionRule(Gene.valueOf("HIV1IN"), 0, 78, "");
 
 		Sequence seq = sample.getSequence();
 
@@ -202,16 +202,16 @@ public class AlignedSequenceTest {
 		HIV1Sample sample = new HIV1Sample();
 
 		// PR (nts): 33 to 282
-		sample.addSubstitutionRule(Gene.PR, 282, 297, "");
-		sample.addSubstitutionRule(Gene.PR, 0, 33, "");
+		sample.addSubstitutionRule(Gene.valueOf("HIV1PR"), 282, 297, "");
+		sample.addSubstitutionRule(Gene.valueOf("HIV1PR"), 0, 33, "");
 
 		// RT (nts): 123 to 1653
-		sample.addSubstitutionRule(Gene.RT, 1653, 1680, "");
-		sample.addSubstitutionRule(Gene.RT, 0, 123, "");
+		sample.addSubstitutionRule(Gene.valueOf("HIV1RT"), 1653, 1680, "");
+		sample.addSubstitutionRule(Gene.valueOf("HIV1RT"), 0, 123, "");
 
 		// IN (nts): 78 to 831
-		sample.addSubstitutionRule(Gene.IN, 831, 864, "");
-		sample.addSubstitutionRule(Gene.IN, 0, 78, "");
+		sample.addSubstitutionRule(Gene.valueOf("HIV1IN"), 831, 864, "");
+		sample.addSubstitutionRule(Gene.valueOf("HIV1IN"), 0, 78, "");
 
 		Sequence seq = sample.getSequence();
 
@@ -259,14 +259,14 @@ public class AlignedSequenceTest {
 		HIV1Sample sample = new HIV1Sample();
 
 		// PR (nts): 33 to 282
-		sample.addSubstitutionRule(Gene.PR, 282, 297, "");
-		sample.addSubstitutionRule(Gene.PR, 0, 33, "");
+		sample.addSubstitutionRule(Gene.valueOf("HIV1PR"), 282, 297, "");
+		sample.addSubstitutionRule(Gene.valueOf("HIV1PR"), 0, 33, "");
 
 		// RT: empty
-		sample.addSubstitutionRule(Gene.RT, 0, 1680, "");
+		sample.addSubstitutionRule(Gene.valueOf("HIV1RT"), 0, 1680, "");
 
 		// IN: empty
-		sample.addSubstitutionRule(Gene.IN, 0, 864, "");
+		sample.addSubstitutionRule(Gene.valueOf("HIV1IN"), 0, 864, "");
 
 		Sequence seq = sample.getSequence();
 
@@ -290,14 +290,14 @@ public class AlignedSequenceTest {
 		HIV1Sample sample = new HIV1Sample();
 
 		// PR: empty
-		sample.addSubstitutionRule(Gene.PR, 0, 297, "");
+		sample.addSubstitutionRule(Gene.valueOf("HIV1PR"), 0, 297, "");
 
 		// RT: 45 to 1626
-		sample.addSubstitutionRule(Gene.RT, 1626, 1680, "");
-		sample.addSubstitutionRule(Gene.RT, 0, 45, "");
+		sample.addSubstitutionRule(Gene.valueOf("HIV1RT"), 1626, 1680, "");
+		sample.addSubstitutionRule(Gene.valueOf("HIV1RT"), 0, 45, "");
 
 		// IN: empty
-		sample.addSubstitutionRule(Gene.IN, 0, 864, "");
+		sample.addSubstitutionRule(Gene.valueOf("HIV1IN"), 0, 864, "");
 
 		Sequence seq = sample.getSequence();
 
@@ -321,14 +321,14 @@ public class AlignedSequenceTest {
 		HIV1Sample sample = new HIV1Sample();
 
 		// PR: empty
-		sample.addSubstitutionRule(Gene.PR, 0, 297, "");
+		sample.addSubstitutionRule(Gene.valueOf("HIV1PR"), 0, 297, "");
 
 		// RT: empty
-		sample.addSubstitutionRule(Gene.RT, 0, 1680, "");
+		sample.addSubstitutionRule(Gene.valueOf("HIV1RT"), 0, 1680, "");
 
 		// IN: 12 to 837
-		sample.addSubstitutionRule(Gene.IN, 837, 864, "");
-		sample.addSubstitutionRule(Gene.IN, 0, 12, "");
+		sample.addSubstitutionRule(Gene.valueOf("HIV1IN"), 837, 864, "");
+		sample.addSubstitutionRule(Gene.valueOf("HIV1IN"), 0, 12, "");
 
 		Sequence seq = sample.getSequence();
 

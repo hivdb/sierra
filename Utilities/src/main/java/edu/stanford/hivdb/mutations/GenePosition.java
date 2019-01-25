@@ -37,9 +37,9 @@ public class GenePosition implements Comparable<GenePosition> {
 	}
 
 	public GenePosition(final String text) {
-		String[] genePos = text.split(":", 2);
-		this.gene = Gene.valueOf(genePos[0]);
-		this.position = Integer.parseInt(genePos[1]);
+		String[] strainGenePos = text.split(":", 2);
+		this.gene = Gene.valueOf(strainGenePos[0]);
+		this.position = Integer.parseInt(strainGenePos[1]);
 	}
 
 	@Override

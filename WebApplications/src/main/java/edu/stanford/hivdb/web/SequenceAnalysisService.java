@@ -40,6 +40,7 @@ import edu.stanford.hivdb.alignment.AlignedSequence;
 import edu.stanford.hivdb.alignment.Aligner;
 import edu.stanford.hivdb.alignment.TabularSequenceSummary;
 import edu.stanford.hivdb.mutations.Gene;
+import edu.stanford.hivdb.mutations.Strain;
 import edu.stanford.hivdb.drugresistance.GeneDR;
 import edu.stanford.hivdb.drugresistance.GeneDRFast;
 import edu.stanford.hivdb.drugresistance.algorithm.Algorithm;
@@ -140,7 +141,8 @@ public class SequenceAnalysisService {
 
 		private Map<Gene, String> getPrettyAlignmentTsvs() {
 			return Arrays
-			.stream(Gene.values())
+			// TODO: HIV2 support
+			.stream(Gene.values(Strain.HIV1))
 			.collect(Collectors.toMap(
 				gene -> gene,
 				gene -> {

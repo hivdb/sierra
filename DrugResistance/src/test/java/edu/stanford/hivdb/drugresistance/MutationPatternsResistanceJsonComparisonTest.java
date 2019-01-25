@@ -39,8 +39,10 @@ import edu.stanford.hivdb.drugresistance.database.ConditionalComments;
 import edu.stanford.hivdb.drugresistance.database.MutationPatternFileReader;
 import edu.stanford.hivdb.drugs.Drug;
 import edu.stanford.hivdb.drugs.DrugClass;
+import edu.stanford.hivdb.mutations.Gene;
 import edu.stanford.hivdb.mutations.MutType;
 import edu.stanford.hivdb.mutations.MutationSet;
+import edu.stanford.hivdb.mutations.Strain;
 import edu.stanford.hivdb.utilities.Json;
 
 /**
@@ -62,7 +64,7 @@ public class MutationPatternsResistanceJsonComparisonTest {
 					MutationPatternFileReader.readMutationListsForDrugClass(drugClass, mutationPatternsInputStream);
 
 			final Map<MutationSet, GeneDR> allResistanceResults =
-				GeneDRFast.parallelConstructor(drugClass.gene(), new HashSet<>(mutationLists));
+				GeneDRFast.parallelConstructor(Gene.valueOf(Strain.HIV1, drugClass.gene()), new HashSet<>(mutationLists));
 			// Test the totalScore files
 			// Calculated scores for each mutation list
 			Map<String, Map<Drug, Integer>> mutPatternScoresCalculated = new HashMap<>();

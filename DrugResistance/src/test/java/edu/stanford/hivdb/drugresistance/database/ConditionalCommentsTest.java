@@ -35,6 +35,7 @@ import edu.stanford.hivdb.drugresistance.database.ConditionalComments.ConditionT
 import edu.stanford.hivdb.drugresistance.database.ConditionalComments.ConditionalComment;
 import edu.stanford.hivdb.drugs.DrugClass;
 import edu.stanford.hivdb.mutations.Gene;
+import edu.stanford.hivdb.mutations.GeneEnum;
 import edu.stanford.hivdb.mutations.Mutation;
 import edu.stanford.hivdb.mutations.MutationSet;
 import edu.stanford.hivdb.mutations.IUPACMutation;
@@ -71,7 +72,7 @@ public class ConditionalCommentsTest {
 		assertEquals(eDrugClassNRTI, cmt.getDrugClass());
 		assertEquals(eConTypeDL, cmt.getConditionType());
 		assertEquals(eName, cmt.getName());
-		assertEquals(Gene.RT, cmt.getGene());
+		assertEquals(GeneEnum.RT, cmt.getGene());
 	}
 
 	@Test
@@ -79,7 +80,7 @@ public class ConditionalCommentsTest {
 		eConValue.put("gene", "PR");
 		final ConditionalComment cmt 
 			= new ConditionalComment(eName, eDrugClassPI, eConTypeMut, eConValue, eComment);
-		assertEquals(Gene.PR, cmt.getMutationGene());
+		assertEquals(GeneEnum.PR, cmt.getMutationGene());
 	}
 
 	@Test
@@ -156,13 +157,13 @@ public class ConditionalCommentsTest {
 		assertEquals(eComment, cmt.getText());
 		assertEquals(eHighlightText, cmt.getHighlightText());
 		assertEquals(eMut, cmt.getBoundMutation());
-		assertEquals(Gene.RT, cmt.getGene());
+		assertEquals(GeneEnum.RT, cmt.getGene());
 	}
 
 	@Test
 	public void testGetCommentsofDrugResistance() {
 		final MutationSet mutSet = new MutationSet("PR84A");
-		final GeneDR dr = new GeneDRFast(Gene.PR, mutSet);
+		final GeneDR dr = new GeneDRFast(Gene.valueOf("HIV1PR"), mutSet);
 		final List<BoundComment> cmts = ConditionalComments.getComments(dr);
 		final String eTextPrefix = "There is evidence for intermediate DRV resistance.";
 		final String textPrefix = cmts.get(0).getText();
@@ -171,7 +172,7 @@ public class ConditionalCommentsTest {
 
 	@Test
 	public void testGetCommentsFromMutOfInsertion() {
-		final Mutation mut = new IUPACMutation(Gene.RT, 69, "_SS");
+		final Mutation mut = new IUPACMutation(Gene.valueOf("HIV1RT"), 69, "_SS");
 		final List<BoundComment> result = ConditionalComments.getComments(mut);
 		for (BoundComment cmt : result) {
 			assertEquals(cmt.getBoundMutation().getAAs(), "_");
@@ -180,7 +181,7 @@ public class ConditionalCommentsTest {
 
 	@Test
 	public void testGetCommentsFromMutOfDeletion() {
-		final Mutation mut = new IUPACMutation(Gene.RT, 67, "-");
+		final Mutation mut = new IUPACMutation(Gene.valueOf("HIV1RT"), 67, "-");
 		final List<BoundComment> result = ConditionalComments.getComments(mut);
 		for (BoundComment cmt : result) {
 			assertEquals(cmt.getBoundMutation().getAAs(), "-");

@@ -27,11 +27,11 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.stream.Collectors;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
@@ -50,6 +50,7 @@ import edu.stanford.hivdb.mutations.FrameShift;
 import edu.stanford.hivdb.mutations.Gene;
 import edu.stanford.hivdb.mutations.IUPACMutation;
 import edu.stanford.hivdb.mutations.Mutation;
+import edu.stanford.hivdb.mutations.Strain;
 import edu.stanford.hivdb.utilities.FastaUtils;
 import edu.stanford.hivdb.utilities.Json;
 import edu.stanford.hivdb.utilities.Sequence;
@@ -76,23 +77,24 @@ public class NucAminoAligner {
 
 	static {
 		Map<Gene, Integer[]> geneAARange = new HashMap<>();
-		geneAARange.put(Gene.PR, new Integer[] {
+		// TODO: we need to extend to HIV2
+		geneAARange.put(Gene.valueOf("HIV1PR"), new Integer[] {
 			56 + 1,
-			56 + Gene.PR.getLength()
+			56 + Gene.valueOf("HIV1PR").getLength()
 		});
-		geneAARange.put(Gene.RT, new Integer[] {
-			geneAARange.get(Gene.PR)[1] + 1,
-			geneAARange.get(Gene.PR)[1] + Gene.RT.getLength()
+		geneAARange.put(Gene.valueOf("HIV1RT"), new Integer[] {
+			geneAARange.get(Gene.valueOf("HIV1PR"))[1] + 1,
+			geneAARange.get(Gene.valueOf("HIV1PR"))[1] + Gene.valueOf("HIV1RT").getLength()
 		});
-		geneAARange.put(Gene.IN, new Integer[] {
-			geneAARange.get(Gene.RT)[1] + 1,
-			geneAARange.get(Gene.RT)[1] + Gene.IN.getLength()
+		geneAARange.put(Gene.valueOf("HIV1IN"), new Integer[] {
+			geneAARange.get(Gene.valueOf("HIV1RT"))[1] + 1,
+			geneAARange.get(Gene.valueOf("HIV1RT"))[1] + Gene.valueOf("HIV1IN").getLength()
 		});
 		GENE_AA_RANGE = Collections.unmodifiableMap(geneAARange);
 		Map<Gene, Integer> minNumOfSitesPerGene = new HashMap<>();
-		minNumOfSitesPerGene.put(Gene.PR, 40);
-		minNumOfSitesPerGene.put(Gene.RT, 60);
-		minNumOfSitesPerGene.put(Gene.IN, 30);
+		minNumOfSitesPerGene.put(Gene.valueOf("HIV1PR"), 40);
+		minNumOfSitesPerGene.put(Gene.valueOf("HIV1RT"), 60);
+		minNumOfSitesPerGene.put(Gene.valueOf("HIV1IN"), 30);
 		MIN_NUM_OF_SITES_PER_GENE = Collections.unmodifiableMap(minNumOfSitesPerGene);
 	}
 
@@ -481,14 +483,15 @@ public class NucAminoAligner {
 			String name = (String) result.get("Name");
 			Sequence sequence = sequenceMap.get(name);
 			Map<?, ?> report = (Map<?, ?>) result.get("Report");
-			Map<Gene, AlignedGeneSeq> alignedGeneSeqs = new EnumMap<>(Gene.class);
+			Map<Gene, AlignedGeneSeq> alignedGeneSeqs = new TreeMap<>();
 			Map<Gene, String> discardedGenes = new LinkedHashMap<>();
 			String error = (String) result.get("Error");
 			if (!error.isEmpty()) {
 				errors.putIfAbsent(sequence, new StringBuilder());
 				errors.get(sequence).append(error);
 			} else {
-				for (Gene gene : Gene.values()) {
+				// TODO: HIV2 support
+				for (Gene gene : Gene.values(Strain.HIV1)) {
 					try {
 						alignedGeneSeqs.put(gene, geneSeqFromReport(sequence, gene, report));
 					} catch (MisAlignedException e) {

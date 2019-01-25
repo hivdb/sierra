@@ -36,6 +36,7 @@ import edu.stanford.hivdb.drugs.DrugClass;
 import edu.stanford.hivdb.mutations.AA;
 import edu.stanford.hivdb.mutations.Gene;
 import edu.stanford.hivdb.mutations.MutationSet;
+import edu.stanford.hivdb.mutations.Strain;
 import edu.stanford.hivdb.utilities.JdbcDatabase;
 import edu.stanford.hivdb.utilities.Cachable;
 
@@ -216,7 +217,8 @@ public class MutationComboScores {
 			"ORDER BY Gene, Rule, Drug";
 
 		combinationScores = db.iterate(sqlStatement, rs -> {
-			Gene gene = Gene.valueOf(rs.getString("Gene"));
+			// TODO: we don't have rules for HIV2 right now
+			Gene gene = Gene.valueOf(Strain.HIV1, rs.getString("Gene"));
 			DrugClass drugClass = DrugClass.valueOf(rs.getString("DrugClass"));
 			String rule = rs.getString("Rule");
 			Drug drug = Drug.valueOf(rs.getString("Drug"));

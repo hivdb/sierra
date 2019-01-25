@@ -21,20 +21,21 @@ public class JsonTest {
 	}
 
 	@Test
-	public void testDumpsWithMutatinSet() {
+	public void testDumpsWithMutationSet() {
 		String json = 	"[\n" +
 						"  {\n" +
 						"    \"type\": \"IUPAC\",\n" +
 						"    \"aas\": \"T\",\n" +
 						"    \"triplet\": \"\",\n" +
 						"    \"insertedNAs\": \"\",\n" +
-						"    \"gene\": \"PR\",\n" +
+						"    \"gene\": \"HIV1PR\",\n" +
 						"    \"position\": 55,\n" +
+						"    \"aaChars\": null,\n" +
 						"    \"maxDisplayAAs\": 4\n" +
 						"  },\n" +
 						"  {\n" +
 						"    \"type\": \"AA\",\n" +
-						"    \"gene\": \"PR\",\n" +
+						"    \"gene\": \"HIV1PR\",\n" +
 						"    \"position\": 56,\n" +
 						"    \"aaChars\": [\n" +
 						"      \"T\"\n" +
@@ -50,10 +51,10 @@ public class JsonTest {
 	@Test
 	public void testDumpsWithGenePosition() {
 		String json = 	"{\n" +
-						"  \"gene\": \"PR\",\n" +
+						"  \"gene\": \"HIV1PR\",\n" +
 						"  \"position\": 55\n" +
 						"}";
-		GenePosition gp = new GenePosition("PR:55");
+		GenePosition gp = new GenePosition("HIV1PR:55");
 		String eJson = Json.dumps(gp);
 		assertEquals(eJson, json);
 	}
@@ -67,8 +68,8 @@ public class JsonTest {
 
 	@Test
 	public void testLoadsWithGenePositionFromClass() {
-		GenePosition eGp = new GenePosition("PR:55");
-		GenePosition jsonGp = Json.loads("\"PR:55\"", GenePosition.class);
+		GenePosition eGp = new GenePosition("HIV1PR:55");
+		GenePosition jsonGp = Json.loads("\"HIV1PR:55\"", GenePosition.class);
 		assertEquals(eGp, jsonGp);
 	}
 
@@ -81,15 +82,15 @@ public class JsonTest {
 
 	@Test
 	public void testLoadsWithGenePositionFromType() {
-		GenePosition eGp = new GenePosition("PR:55");
-		GenePosition jsonGp = Json.loads("\"PR:55\"", TypeToken.get(GenePosition.class).getType());
+		GenePosition eGp = new GenePosition("HIV1PR:55");
+		GenePosition jsonGp = Json.loads("\"HIV1PR:55\"", TypeToken.get(GenePosition.class).getType());
 		assertEquals(eGp, jsonGp);
 	}
 
 	@Test
 	public void testLoadsFromReaderAndClass() {
-		GenePosition eGp = new GenePosition("PR:55");
-		Reader json = new StringReader("\"PR:55\"");
+		GenePosition eGp = new GenePosition("HIV1PR:55");
+		Reader json = new StringReader("\"HIV1PR:55\"");
 		GenePosition jsonGp = Json.loads(json, GenePosition.class);
 		assertEquals(eGp, jsonGp);
 	}

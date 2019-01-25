@@ -1,6 +1,6 @@
 [
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "position": 40,
     "consensus": "E",
@@ -9,7 +9,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "position": 41,
     "consensus": "M",
@@ -18,7 +18,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "position": 41,
     "consensus": "M",
@@ -27,7 +27,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "position": 44,
     "consensus": "E",
@@ -36,7 +36,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "position": 62,
     "consensus": "A",
@@ -45,7 +45,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "position": 65,
     "consensus": "K",
@@ -54,7 +54,7 @@
     "isUnusual": true
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "position": 65,
     "consensus": "K",
@@ -63,7 +63,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "position": 65,
     "consensus": "K",
@@ -72,7 +72,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "position": 65,
     "consensus": "K",
@@ -81,7 +81,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "position": 67,
     "consensus": "D",
@@ -90,7 +90,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "position": 67,
     "consensus": "D",
@@ -99,7 +99,7 @@
     "isUnusual": true
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "position": 67,
     "consensus": "D",
@@ -108,7 +108,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "position": 67,
     "consensus": "D",
@@ -117,7 +117,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "position": 68,
     "consensus": "S",
@@ -126,7 +126,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "position": 68,
     "consensus": "S",
@@ -135,7 +135,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "position": 69,
     "consensus": "T",
@@ -144,7 +144,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "position": 69,
     "consensus": "T",
@@ -153,7 +153,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "position": 69,
     "consensus": "T",
@@ -162,7 +162,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "position": 69,
     "consensus": "T",
@@ -171,7 +171,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "position": 69,
     "consensus": "T",
@@ -180,7 +180,7 @@
     "isUnusual": true
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "position": 69,
     "consensus": "T",
@@ -189,7 +189,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "position": 69,
     "consensus": "T",
@@ -198,7 +198,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "position": 70,
     "consensus": "K",
@@ -207,7 +207,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "position": 70,
     "consensus": "K",
@@ -216,7 +216,7 @@
     "isUnusual": true
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "position": 70,
     "consensus": "K",
@@ -225,7 +225,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "position": 70,
     "consensus": "K",
@@ -234,7 +234,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "position": 70,
     "consensus": "K",
@@ -243,7 +243,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "position": 74,
     "consensus": "L",
@@ -252,7 +252,7 @@
     "isUnusual": true
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "position": 74,
     "consensus": "L",
@@ -261,7 +261,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "position": 75,
     "consensus": "V",
@@ -270,7 +270,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "position": 75,
     "consensus": "V",
@@ -279,7 +279,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "position": 75,
     "consensus": "V",
@@ -288,7 +288,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "position": 75,
     "consensus": "V",
@@ -297,7 +297,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "position": 75,
     "consensus": "V",
@@ -306,7 +306,7 @@
     "isUnusual": true
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "position": 77,
     "consensus": "F",
@@ -315,7 +315,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "position": 77,
     "consensus": "F",
@@ -324,7 +324,7 @@
     "isUnusual": true
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "position": 115,
     "consensus": "Y",
@@ -333,7 +333,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "position": 115,
     "consensus": "Y",
@@ -342,7 +342,7 @@
     "isUnusual": true
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "position": 116,
     "consensus": "F",
@@ -351,7 +351,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "position": 116,
     "consensus": "F",
@@ -360,7 +360,7 @@
     "isUnusual": true
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "position": 118,
     "consensus": "V",
@@ -369,7 +369,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "position": 151,
     "consensus": "Q",
@@ -378,7 +378,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "position": 151,
     "consensus": "Q",
@@ -387,7 +387,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "position": 151,
     "consensus": "Q",
@@ -396,7 +396,7 @@
     "isUnusual": true
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "position": 184,
     "consensus": "M",
@@ -405,7 +405,7 @@
     "isUnusual": true
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "position": 184,
     "consensus": "M",
@@ -414,7 +414,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "position": 210,
     "consensus": "L",
@@ -423,7 +423,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "position": 215,
     "consensus": "T",
@@ -432,7 +432,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "position": 215,
     "consensus": "T",
@@ -441,7 +441,7 @@
     "isUnusual": true
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "position": 215,
     "consensus": "T",
@@ -450,7 +450,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "position": 215,
     "consensus": "T",
@@ -459,7 +459,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "position": 219,
     "consensus": "K",
@@ -468,7 +468,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "position": 219,
     "consensus": "K",
@@ -477,7 +477,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "position": 219,
     "consensus": "K",
@@ -486,7 +486,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NRTI",
     "position": 219,
     "consensus": "K",
@@ -495,7 +495,7 @@
     "isUnusual": true
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "position": 90,
     "consensus": "V",
@@ -504,7 +504,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "position": 98,
     "consensus": "A",
@@ -513,7 +513,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "position": 100,
     "consensus": "L",
@@ -522,7 +522,7 @@
     "isUnusual": true
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "position": 100,
     "consensus": "L",
@@ -531,7 +531,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "position": 100,
     "consensus": "L",
@@ -540,7 +540,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "position": 101,
     "consensus": "K",
@@ -549,7 +549,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "position": 101,
     "consensus": "K",
@@ -558,7 +558,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "position": 101,
     "consensus": "K",
@@ -567,7 +567,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "position": 101,
     "consensus": "K",
@@ -576,7 +576,7 @@
     "isUnusual": true
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "position": 101,
     "consensus": "K",
@@ -585,7 +585,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "position": 101,
     "consensus": "K",
@@ -594,7 +594,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "position": 103,
     "consensus": "K",
@@ -603,7 +603,7 @@
     "isUnusual": true
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "position": 103,
     "consensus": "K",
@@ -612,7 +612,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "position": 103,
     "consensus": "K",
@@ -621,7 +621,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "position": 103,
     "consensus": "K",
@@ -630,7 +630,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "position": 103,
     "consensus": "K",
@@ -639,7 +639,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "position": 103,
     "consensus": "K",
@@ -648,7 +648,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "position": 103,
     "consensus": "K",
@@ -657,7 +657,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "position": 106,
     "consensus": "V",
@@ -666,7 +666,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "position": 106,
     "consensus": "V",
@@ -675,7 +675,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "position": 106,
     "consensus": "V",
@@ -684,7 +684,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "position": 106,
     "consensus": "V",
@@ -693,7 +693,7 @@
     "isUnusual": true
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "position": 108,
     "consensus": "V",
@@ -702,7 +702,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "position": 108,
     "consensus": "V",
@@ -711,7 +711,7 @@
     "isUnusual": true
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "position": 132,
     "consensus": "I",
@@ -720,7 +720,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "position": 138,
     "consensus": "E",
@@ -729,7 +729,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "position": 138,
     "consensus": "E",
@@ -738,7 +738,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "position": 138,
     "consensus": "E",
@@ -747,7 +747,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "position": 138,
     "consensus": "E",
@@ -756,7 +756,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "position": 138,
     "consensus": "E",
@@ -765,7 +765,7 @@
     "isUnusual": true
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "position": 179,
     "consensus": "V",
@@ -774,7 +774,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "position": 179,
     "consensus": "V",
@@ -783,7 +783,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "position": 179,
     "consensus": "V",
@@ -792,7 +792,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "position": 179,
     "consensus": "V",
@@ -801,7 +801,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "position": 179,
     "consensus": "V",
@@ -810,7 +810,7 @@
     "isUnusual": true
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "position": 179,
     "consensus": "V",
@@ -819,7 +819,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "position": 181,
     "consensus": "Y",
@@ -828,7 +828,7 @@
     "isUnusual": true
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "position": 181,
     "consensus": "Y",
@@ -837,7 +837,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "position": 181,
     "consensus": "Y",
@@ -846,7 +846,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "position": 181,
     "consensus": "Y",
@@ -855,7 +855,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "position": 188,
     "consensus": "Y",
@@ -864,7 +864,7 @@
     "isUnusual": true
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "position": 188,
     "consensus": "Y",
@@ -873,7 +873,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "position": 188,
     "consensus": "Y",
@@ -882,7 +882,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "position": 188,
     "consensus": "Y",
@@ -891,7 +891,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "position": 188,
     "consensus": "Y",
@@ -900,7 +900,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "position": 190,
     "consensus": "G",
@@ -909,7 +909,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "position": 190,
     "consensus": "G",
@@ -918,7 +918,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "position": 190,
     "consensus": "G",
@@ -927,7 +927,7 @@
     "isUnusual": true
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "position": 190,
     "consensus": "G",
@@ -936,7 +936,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "position": 190,
     "consensus": "G",
@@ -945,7 +945,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "position": 190,
     "consensus": "G",
@@ -954,7 +954,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "position": 221,
     "consensus": "H",
@@ -963,7 +963,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "position": 225,
     "consensus": "P",
@@ -972,7 +972,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "position": 225,
     "consensus": "P",
@@ -981,7 +981,7 @@
     "isUnusual": true
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "position": 227,
     "consensus": "F",
@@ -990,7 +990,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "position": 227,
     "consensus": "F",
@@ -999,7 +999,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "position": 227,
     "consensus": "F",
@@ -1008,7 +1008,7 @@
     "isUnusual": true
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "position": 230,
     "consensus": "M",
@@ -1017,7 +1017,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "position": 230,
     "consensus": "M",
@@ -1026,7 +1026,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "position": 230,
     "consensus": "M",
@@ -1035,7 +1035,7 @@
     "isUnusual": true
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "position": 234,
     "consensus": "L",
@@ -1044,7 +1044,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "position": 234,
     "consensus": "L",
@@ -1053,7 +1053,7 @@
     "isUnusual": true
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "position": 236,
     "consensus": "P",
@@ -1062,7 +1062,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "position": 236,
     "consensus": "P",
@@ -1071,7 +1071,7 @@
     "isUnusual": true
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "position": 238,
     "consensus": "K",
@@ -1080,7 +1080,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "position": 238,
     "consensus": "K",
@@ -1089,7 +1089,7 @@
     "isUnusual": true
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "position": 238,
     "consensus": "K",
@@ -1098,7 +1098,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "position": 318,
     "consensus": "Y",
@@ -1107,7 +1107,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "position": 318,
     "consensus": "Y",
@@ -1116,7 +1116,7 @@
     "isUnusual": true
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "position": 348,
     "consensus": "N",
@@ -1125,7 +1125,7 @@
     "isUnusual": false
   },
   {
-    "gene": "RT",
+    "gene": "HIV1RT",
     "drugClass": "NNRTI",
     "position": 348,
     "consensus": "N",
@@ -1134,7 +1134,7 @@
     "isUnusual": true
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 10,
     "consensus": "L",
@@ -1143,7 +1143,7 @@
     "isUnusual": false
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 10,
     "consensus": "L",
@@ -1152,7 +1152,7 @@
     "isUnusual": true
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 10,
     "consensus": "L",
@@ -1161,7 +1161,7 @@
     "isUnusual": false
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 10,
     "consensus": "L",
@@ -1170,7 +1170,7 @@
     "isUnusual": false
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 11,
     "consensus": "V",
@@ -1179,7 +1179,7 @@
     "isUnusual": false
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 20,
     "consensus": "K",
@@ -1188,7 +1188,7 @@
     "isUnusual": false
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 20,
     "consensus": "K",
@@ -1197,7 +1197,7 @@
     "isUnusual": false
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 20,
     "consensus": "K",
@@ -1206,7 +1206,7 @@
     "isUnusual": false
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 20,
     "consensus": "K",
@@ -1215,7 +1215,7 @@
     "isUnusual": false
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 23,
     "consensus": "L",
@@ -1224,7 +1224,7 @@
     "isUnusual": false
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 24,
     "consensus": "L",
@@ -1233,7 +1233,7 @@
     "isUnusual": false
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 24,
     "consensus": "L",
@@ -1242,7 +1242,7 @@
     "isUnusual": false
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 24,
     "consensus": "L",
@@ -1251,7 +1251,7 @@
     "isUnusual": true
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 30,
     "consensus": "D",
@@ -1260,7 +1260,7 @@
     "isUnusual": false
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 30,
     "consensus": "D",
@@ -1269,7 +1269,7 @@
     "isUnusual": true
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 32,
     "consensus": "V",
@@ -1278,7 +1278,7 @@
     "isUnusual": false
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 32,
     "consensus": "V",
@@ -1287,7 +1287,7 @@
     "isUnusual": true
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 33,
     "consensus": "L",
@@ -1296,7 +1296,7 @@
     "isUnusual": false
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 33,
     "consensus": "L",
@@ -1305,7 +1305,7 @@
     "isUnusual": false
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 34,
     "consensus": "E",
@@ -1314,7 +1314,7 @@
     "isUnusual": true
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 35,
     "consensus": "E",
@@ -1323,7 +1323,7 @@
     "isUnusual": false
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 36,
     "consensus": "M",
@@ -1332,7 +1332,7 @@
     "isUnusual": false
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 37,
     "consensus": "N",
@@ -1341,7 +1341,7 @@
     "isUnusual": false
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 38,
     "consensus": "L",
@@ -1350,7 +1350,7 @@
     "isUnusual": true
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 39,
     "consensus": "P",
@@ -1359,7 +1359,7 @@
     "isUnusual": true
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 40,
     "consensus": "G",
@@ -1368,7 +1368,7 @@
     "isUnusual": true
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 41,
     "consensus": "R",
@@ -1377,7 +1377,7 @@
     "isUnusual": true
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 43,
     "consensus": "K",
@@ -1386,7 +1386,7 @@
     "isUnusual": false
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 46,
     "consensus": "M",
@@ -1395,7 +1395,7 @@
     "isUnusual": false
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 46,
     "consensus": "M",
@@ -1404,7 +1404,7 @@
     "isUnusual": true
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 46,
     "consensus": "M",
@@ -1413,7 +1413,7 @@
     "isUnusual": false
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 47,
     "consensus": "I",
@@ -1422,7 +1422,7 @@
     "isUnusual": false
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 47,
     "consensus": "I",
@@ -1431,7 +1431,7 @@
     "isUnusual": false
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 47,
     "consensus": "I",
@@ -1440,7 +1440,7 @@
     "isUnusual": true
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 48,
     "consensus": "G",
@@ -1449,7 +1449,7 @@
     "isUnusual": false
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 48,
     "consensus": "G",
@@ -1458,7 +1458,7 @@
     "isUnusual": false
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 48,
     "consensus": "G",
@@ -1467,7 +1467,7 @@
     "isUnusual": false
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 48,
     "consensus": "G",
@@ -1476,7 +1476,7 @@
     "isUnusual": true
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 50,
     "consensus": "I",
@@ -1485,7 +1485,7 @@
     "isUnusual": false
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 50,
     "consensus": "I",
@@ -1494,7 +1494,7 @@
     "isUnusual": false
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 50,
     "consensus": "I",
@@ -1503,7 +1503,7 @@
     "isUnusual": true
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 53,
     "consensus": "F",
@@ -1512,7 +1512,7 @@
     "isUnusual": false
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 53,
     "consensus": "F",
@@ -1521,7 +1521,7 @@
     "isUnusual": true
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 54,
     "consensus": "I",
@@ -1530,7 +1530,7 @@
     "isUnusual": false
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 54,
     "consensus": "I",
@@ -1539,7 +1539,7 @@
     "isUnusual": false
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 54,
     "consensus": "I",
@@ -1548,7 +1548,7 @@
     "isUnusual": false
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 54,
     "consensus": "I",
@@ -1557,7 +1557,7 @@
     "isUnusual": true
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 58,
     "consensus": "Q",
@@ -1566,7 +1566,7 @@
     "isUnusual": false
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 71,
     "consensus": "A",
@@ -1575,7 +1575,7 @@
     "isUnusual": false
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 71,
     "consensus": "A",
@@ -1584,7 +1584,7 @@
     "isUnusual": false
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 73,
     "consensus": "G",
@@ -1593,7 +1593,7 @@
     "isUnusual": true
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 73,
     "consensus": "G",
@@ -1602,7 +1602,7 @@
     "isUnusual": false
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 74,
     "consensus": "T",
@@ -1611,7 +1611,7 @@
     "isUnusual": false
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 74,
     "consensus": "T",
@@ -1620,7 +1620,7 @@
     "isUnusual": false
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 76,
     "consensus": "L",
@@ -1629,7 +1629,7 @@
     "isUnusual": false
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 76,
     "consensus": "L",
@@ -1638,7 +1638,7 @@
     "isUnusual": true
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 82,
     "consensus": "V",
@@ -1647,7 +1647,7 @@
     "isUnusual": false
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 82,
     "consensus": "V",
@@ -1656,7 +1656,7 @@
     "isUnusual": false
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 82,
     "consensus": "V",
@@ -1665,7 +1665,7 @@
     "isUnusual": false
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 82,
     "consensus": "V",
@@ -1674,7 +1674,7 @@
     "isUnusual": false
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 82,
     "consensus": "V",
@@ -1683,7 +1683,7 @@
     "isUnusual": false
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 82,
     "consensus": "V",
@@ -1692,7 +1692,7 @@
     "isUnusual": false
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 82,
     "consensus": "V",
@@ -1701,7 +1701,7 @@
     "isUnusual": true
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 82,
     "consensus": "V",
@@ -1710,7 +1710,7 @@
     "isUnusual": false
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 83,
     "consensus": "N",
@@ -1719,7 +1719,7 @@
     "isUnusual": false
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 84,
     "consensus": "I",
@@ -1728,7 +1728,7 @@
     "isUnusual": false
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 84,
     "consensus": "I",
@@ -1737,7 +1737,7 @@
     "isUnusual": false
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 84,
     "consensus": "I",
@@ -1746,7 +1746,7 @@
     "isUnusual": true
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 85,
     "consensus": "I",
@@ -1755,7 +1755,7 @@
     "isUnusual": false
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 88,
     "consensus": "N",
@@ -1764,7 +1764,7 @@
     "isUnusual": false
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 88,
     "consensus": "N",
@@ -1773,7 +1773,7 @@
     "isUnusual": false
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 88,
     "consensus": "N",
@@ -1782,7 +1782,7 @@
     "isUnusual": false
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 88,
     "consensus": "N",
@@ -1791,7 +1791,7 @@
     "isUnusual": true
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 89,
     "consensus": "L",
@@ -1800,7 +1800,7 @@
     "isUnusual": false
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 90,
     "consensus": "L",
@@ -1809,7 +1809,7 @@
     "isUnusual": false
   },
   {
-    "gene": "PR",
+    "gene": "HIV1PR",
     "drugClass": "PI",
     "position": 90,
     "consensus": "L",
@@ -1818,7 +1818,7 @@
     "isUnusual": true
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "position": 50,
     "consensus": "M",
@@ -1827,7 +1827,7 @@
     "isUnusual": false
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "position": 51,
     "consensus": "H",
@@ -1836,7 +1836,7 @@
     "isUnusual": false
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "position": 51,
     "consensus": "H",
@@ -1845,7 +1845,7 @@
     "isUnusual": true
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "position": 66,
     "consensus": "T",
@@ -1854,7 +1854,7 @@
     "isUnusual": false
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "position": 66,
     "consensus": "T",
@@ -1863,7 +1863,7 @@
     "isUnusual": true
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "position": 66,
     "consensus": "T",
@@ -1872,7 +1872,7 @@
     "isUnusual": false
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "position": 66,
     "consensus": "T",
@@ -1881,7 +1881,7 @@
     "isUnusual": false
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "position": 74,
     "consensus": "L",
@@ -1890,7 +1890,7 @@
     "isUnusual": false
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "position": 92,
     "consensus": "E",
@@ -1899,7 +1899,7 @@
     "isUnusual": true
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "position": 92,
     "consensus": "E",
@@ -1908,7 +1908,7 @@
     "isUnusual": false
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "position": 92,
     "consensus": "E",
@@ -1917,7 +1917,7 @@
     "isUnusual": false
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "position": 92,
     "consensus": "E",
@@ -1926,7 +1926,7 @@
     "isUnusual": false
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "position": 95,
     "consensus": "Q",
@@ -1935,7 +1935,7 @@
     "isUnusual": false
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "position": 97,
     "consensus": "T",
@@ -1944,7 +1944,7 @@
     "isUnusual": false
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "position": 118,
     "consensus": "G",
@@ -1953,7 +1953,7 @@
     "isUnusual": false
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "position": 118,
     "consensus": "G",
@@ -1962,7 +1962,7 @@
     "isUnusual": true
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "position": 119,
     "consensus": "S",
@@ -1971,7 +1971,7 @@
     "isUnusual": false
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "position": 121,
     "consensus": "F",
@@ -1980,7 +1980,7 @@
     "isUnusual": false
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "position": 121,
     "consensus": "F",
@@ -1989,7 +1989,7 @@
     "isUnusual": true
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "position": 128,
     "consensus": "A",
@@ -1998,7 +1998,7 @@
     "isUnusual": false
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "position": 138,
     "consensus": "E",
@@ -2007,7 +2007,7 @@
     "isUnusual": false
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "position": 138,
     "consensus": "E",
@@ -2016,7 +2016,7 @@
     "isUnusual": true
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "position": 138,
     "consensus": "E",
@@ -2025,7 +2025,7 @@
     "isUnusual": false
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "position": 140,
     "consensus": "G",
@@ -2034,7 +2034,7 @@
     "isUnusual": false
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "position": 140,
     "consensus": "G",
@@ -2043,7 +2043,7 @@
     "isUnusual": true
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "position": 142,
     "consensus": "P",
@@ -2052,7 +2052,7 @@
     "isUnusual": false
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "position": 143,
     "consensus": "Y",
@@ -2061,7 +2061,7 @@
     "isUnusual": false
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "position": 143,
     "consensus": "Y",
@@ -2070,7 +2070,7 @@
     "isUnusual": true
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "position": 143,
     "consensus": "Y",
@@ -2079,7 +2079,7 @@
     "isUnusual": false
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "position": 143,
     "consensus": "Y",
@@ -2088,7 +2088,7 @@
     "isUnusual": false
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "position": 145,
     "consensus": "P",
@@ -2097,7 +2097,7 @@
     "isUnusual": false
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "position": 145,
     "consensus": "P",
@@ -2106,7 +2106,7 @@
     "isUnusual": true
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "position": 146,
     "consensus": "Q",
@@ -2115,7 +2115,7 @@
     "isUnusual": false
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "position": 146,
     "consensus": "Q",
@@ -2124,7 +2124,7 @@
     "isUnusual": true
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "position": 147,
     "consensus": "S",
@@ -2133,7 +2133,7 @@
     "isUnusual": true
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "position": 147,
     "consensus": "S",
@@ -2142,7 +2142,7 @@
     "isUnusual": false
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "position": 148,
     "consensus": "Q",
@@ -2151,7 +2151,7 @@
     "isUnusual": true
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "position": 148,
     "consensus": "Q",
@@ -2160,7 +2160,7 @@
     "isUnusual": false
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "position": 148,
     "consensus": "Q",
@@ -2169,7 +2169,7 @@
     "isUnusual": false
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "position": 149,
     "consensus": "G",
@@ -2178,7 +2178,7 @@
     "isUnusual": false
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "position": 151,
     "consensus": "V",
@@ -2187,7 +2187,7 @@
     "isUnusual": false
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "position": 151,
     "consensus": "V",
@@ -2196,7 +2196,7 @@
     "isUnusual": false
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "position": 151,
     "consensus": "V",
@@ -2205,7 +2205,7 @@
     "isUnusual": true
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "position": 151,
     "consensus": "V",
@@ -2214,7 +2214,7 @@
     "isUnusual": false
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "position": 153,
     "consensus": "S",
@@ -2223,7 +2223,7 @@
     "isUnusual": false
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "position": 153,
     "consensus": "S",
@@ -2232,7 +2232,7 @@
     "isUnusual": true
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "position": 155,
     "consensus": "N",
@@ -2241,7 +2241,7 @@
     "isUnusual": true
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "position": 155,
     "consensus": "N",
@@ -2250,7 +2250,7 @@
     "isUnusual": false
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "position": 155,
     "consensus": "N",
@@ -2259,7 +2259,7 @@
     "isUnusual": false
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "position": 157,
     "consensus": "E",
@@ -2268,7 +2268,7 @@
     "isUnusual": false
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "position": 163,
     "consensus": "G",
@@ -2277,7 +2277,7 @@
     "isUnusual": false
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "position": 230,
     "consensus": "S",
@@ -2286,7 +2286,7 @@
     "isUnusual": false
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "position": 230,
     "consensus": "S",
@@ -2295,7 +2295,7 @@
     "isUnusual": false
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "position": 263,
     "consensus": "R",
@@ -2304,7 +2304,7 @@
     "isUnusual": false
   },
   {
-    "gene": "IN",
+    "gene": "HIV1IN",
     "drugClass": "INSTI",
     "position": 263,
     "consensus": "R",

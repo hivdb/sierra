@@ -37,8 +37,10 @@ import edu.stanford.hivdb.drugresistance.database.ConditionalComments;
 import edu.stanford.hivdb.drugresistance.database.MutationPatternFileReader;
 import edu.stanford.hivdb.drugs.Drug;
 import edu.stanford.hivdb.drugs.DrugClass;
+import edu.stanford.hivdb.mutations.Gene;
 import edu.stanford.hivdb.mutations.MutType;
 import edu.stanford.hivdb.mutations.MutationSet;
+import edu.stanford.hivdb.mutations.Strain;
 import edu.stanford.hivdb.utilities.Json;
 
 public class MutationPatternsResistanceToJson {
@@ -62,7 +64,7 @@ public class MutationPatternsResistanceToJson {
 
 			for (MutationSet mutations : mutationLists) {
 				String fmtMutationList = mutations.join();
-				GeneDR resistanceResults = new GeneDRFast(drugClass.gene(), mutations);
+				GeneDR resistanceResults = new GeneDRFast(Gene.valueOf(Strain.HIV1, drugClass.gene()), mutations);
 
 				Map<Drug, Integer> totalScores = new EnumMap<>(Drug.class);
 				Map<Drug, Integer> totalLevels = new EnumMap<>(Drug.class);

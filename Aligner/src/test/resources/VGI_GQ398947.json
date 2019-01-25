@@ -1,6 +1,6 @@
 {
-  "PR": {
-    "gene": "PR",
+  "HIV1PR": {
+    "gene": "HIV1PR",
     "sequence": {
       "header": "GQ398947",
       "sequence": "ACTCTTTGGCAACGACCCCTAGTCACAATAAAGGTAGGGGGGCAACTAAAGGAAGCTCTATTAAATACAGGAGCAGATGATACAGTATTAGAAAATATGAATTTGCCAGGAAAATGGAAACCAAAAATGATAGGGGGAATTGGAGGTTTTATCAAAGTAAGACAGTATGATCAGATACTCATAGAAATTTGTGGACATAAAGCTATAGGTACAGTACTAGTAGGACCTACACCTGTCAACATAATTGGAAGAAATCTGTTGACTCAGATTGGTTGCACTTTAAATTGTACAGAAATGGAAAAGGAAGGGAAAATTTCAAAAATTGGGCCTGAAAATCCATACAATACTCCAGTATTTGCCATAAAGAAAAAAGACAGTACTAAATGGAGAAAATTAGTAGATTTCAGGGAACTTAATAAGAAAACTCAAGACTTCTGGGAAGTTCAATTAGGAATACCACATCCTGCAGGGTTAAAGAAGAAAAAATCAGTAACAGTACTGGATGTGGGTGAYGCATATTTTTCAGTTCCCTTAGATAAAGACTTCAGGAAGTATACTGCATTTACCATACCTAGTATAAACAATGASACACCAGGGMTTAGATATCAGTACAATGTGCTTCCACAGGGATGGAAAGGATCACCAGCGATATTCCAAGCTAGCATGACAAAAATCTTAGAGCCYTTTAGAAAACAAAATCCAGACATAGTWATCTATCAATACATGGATGAYTYRTATGTAGGRTCTGACTTAGAAATAGGACAGCATAGAACAAAAATAGAGGAACTGAGACAACATCTGTTGAAGTGGGGATTYACCACAMCAGACAAAAAACATCAGAAAGAACCCCCATTYCTYTGGATGGGTTATGAACTCCATCCTGATAAATGGACAGTACAGCCTATAGTGCTK",
@@ -20,55 +20,55 @@
         "aas": "V",
         "triplet": "GTA",
         "insertedNAs": "",
-        "gene": "PR",
+        "gene": "HIV1PR",
         "position": 15,
         "aaChars": [
           "V"
         ],
-        "maxDisplayAAs": 4
+        "maxDisplayAAs": 6
       },
       {
         "type": "IUPAC",
         "aas": "N",
         "triplet": "AAT",
         "insertedNAs": "",
-        "gene": "PR",
+        "gene": "HIV1PR",
         "position": 25,
         "aaChars": [
           "N"
         ],
-        "maxDisplayAAs": 4
+        "maxDisplayAAs": 6
       },
       {
         "type": "IUPAC",
         "aas": "N",
         "triplet": "AAT",
         "insertedNAs": "",
-        "gene": "PR",
+        "gene": "HIV1PR",
         "position": 35,
         "aaChars": [
           "N"
         ],
-        "maxDisplayAAs": 4
+        "maxDisplayAAs": 6
       },
       {
         "type": "IUPAC",
         "aas": "K",
         "triplet": "AAA",
         "insertedNAs": "",
-        "gene": "PR",
+        "gene": "HIV1PR",
         "position": 41,
         "aaChars": [
           "K"
         ],
-        "maxDisplayAAs": 4
+        "maxDisplayAAs": 6
       }
     ],
     "frameShifts": [],
     "mutationListString": "I15V,D25N,E35N,R41K"
   },
-  "RT": {
-    "gene": "RT",
+  "HIV1RT": {
+    "gene": "HIV1RT",
     "sequence": {
       "header": "GQ398947",
       "sequence": "ACTCTTTGGCAACGACCCCTAGTCACAATAAAGGTAGGGGGGCAACTAAAGGAAGCTCTATTAAATACAGGAGCAGATGATACAGTATTAGAAAATATGAATTTGCCAGGAAAATGGAAACCAAAAATGATAGGGGGAATTGGAGGTTTTATCAAAGTAAGACAGTATGATCAGATACTCATAGAAATTTGTGGACATAAAGCTATAGGTACAGTACTAGTAGGACCTACACCTGTCAACATAATTGGAAGAAATCTGTTGACTCAGATTGGTTGCACTTTAAATTGTACAGAAATGGAAAAGGAAGGGAAAATTTCAAAAATTGGGCCTGAAAATCCATACAATACTCCAGTATTTGCCATAAAGAAAAAAGACAGTACTAAATGGAGAAAATTAGTAGATTTCAGGGAACTTAATAAGAAAACTCAAGACTTCTGGGAAGTTCAATTAGGAATACCACATCCTGCAGGGTTAAAGAAGAAAAAATCAGTAACAGTACTGGATGTGGGTGAYGCATATTTTTCAGTTCCCTTAGATAAAGACTTCAGGAAGTATACTGCATTTACCATACCTAGTATAAACAATGASACACCAGGGMTTAGATATCAGTACAATGTGCTTCCACAGGGATGGAAAGGATCACCAGCGATATTCCAAGCTAGCATGACAAAAATCTTAGAGCCYTTTAGAAAACAAAATCCAGACATAGTWATCTATCAATACATGGATGAYTYRTATGTAGGRTCTGACTTAGAAATAGGACAGCATAGAACAAAAATAGAGGAACTGAGACAACATCTGTTGAAGTGGGGATTYACCACAMCAGACAAAAAACATCAGAAAGAACCCCCATTYCTYTGGATGGGTTATGAACTCCATCCTGATAAATGGACAGTACAGCCTATAGTGCTK",
@@ -88,88 +88,88 @@
         "aas": "K",
         "triplet": "AAA",
         "insertedNAs": "",
-        "gene": "RT",
+        "gene": "HIV1RT",
         "position": 83,
         "aaChars": [
           "K"
         ],
-        "maxDisplayAAs": 4
+        "maxDisplayAAs": 6
       },
       {
         "type": "IUPAC",
         "aas": "DE",
         "triplet": "GAS",
         "insertedNAs": "",
-        "gene": "RT",
+        "gene": "HIV1RT",
         "position": 138,
         "aaChars": [
           "D",
           "E"
         ],
-        "maxDisplayAAs": 4
+        "maxDisplayAAs": 6
       },
       {
         "type": "IUPAC",
         "aas": "IL",
         "triplet": "MTT",
         "insertedNAs": "",
-        "gene": "RT",
+        "gene": "HIV1RT",
         "position": 142,
         "aaChars": [
           "I",
           "L"
         ],
-        "maxDisplayAAs": 4
+        "maxDisplayAAs": 6
       },
       {
         "type": "IUPAC",
         "aas": "A",
         "triplet": "GCT",
         "insertedNAs": "",
-        "gene": "RT",
+        "gene": "HIV1RT",
         "position": 162,
         "aaChars": [
           "A"
         ],
-        "maxDisplayAAs": 4
+        "maxDisplayAAs": 6
       },
       {
         "type": "IUPAC",
         "aas": "LS",
         "triplet": "TYR",
         "insertedNAs": "",
-        "gene": "RT",
+        "gene": "HIV1RT",
         "position": 187,
         "aaChars": [
           "L",
           "S"
         ],
-        "maxDisplayAAs": 4
+        "maxDisplayAAs": 6
       },
       {
         "type": "IUPAC",
         "aas": "K",
         "triplet": "AAG",
         "insertedNAs": "",
-        "gene": "RT",
+        "gene": "HIV1RT",
         "position": 211,
         "aaChars": [
           "K"
         ],
-        "maxDisplayAAs": 4
+        "maxDisplayAAs": 6
       },
       {
         "type": "IUPAC",
         "aas": "PT",
         "triplet": "MCA",
         "insertedNAs": "",
-        "gene": "RT",
+        "gene": "HIV1RT",
         "position": 217,
         "aaChars": [
           "P",
           "T"
         ],
-        "maxDisplayAAs": 4
+        "maxDisplayAAs": 6
       }
     ],
     "frameShifts": [],

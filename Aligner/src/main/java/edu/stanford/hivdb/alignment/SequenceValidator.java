@@ -236,20 +236,21 @@ public class SequenceValidator {
 			rightIgnored = Math.max(rightIgnored, geneSeq.getLastNA());
 		}
 		rightIgnored = alignedSequence.getInputSequence().getLength() - rightIgnored;
-		if (!availableGenes.contains(Gene.PR) && leftIgnored > 210) {
-			discardedGenes.add(Gene.PR);
+		// TODO: HIV2 Support
+		if (!availableGenes.contains(Gene.valueOf("HIV1PR")) && leftIgnored > 210) {
+			discardedGenes.add(Gene.valueOf("HIV1PR"));
 		}
-		if (!availableGenes.contains(Gene.RT) && leftIgnored > 800) {
-			discardedGenes.add(Gene.RT);
-		} else if (!availableGenes.contains(Gene.RT) && rightIgnored > 800) {
-			discardedGenes.add(Gene.RT);
+		if (!availableGenes.contains(Gene.valueOf("HIV1RT")) && leftIgnored > 800) {
+			discardedGenes.add(Gene.valueOf("HIV1RT"));
+		} else if (!availableGenes.contains(Gene.valueOf("HIV1RT")) && rightIgnored > 800) {
+			discardedGenes.add(Gene.valueOf("HIV1RT"));
 		}
-		if (!availableGenes.contains(Gene.IN) && rightIgnored > 600) {
-			discardedGenes.add(Gene.IN);
+		if (!availableGenes.contains(Gene.valueOf("HIV1IN")) && rightIgnored > 600) {
+			discardedGenes.add(Gene.valueOf("HIV1IN"));
 		}
 		if (!discardedGenes.isEmpty()) {
 			String textDiscardedGenes = discardedGenes
-				.stream().map(g -> g.toString())
+				.stream().map(g -> g.getShortName())
 				.collect(Collectors.joining(" or "));
 			addValidationResult("not-aligned-gene", textDiscardedGenes);
 			validated = false;
@@ -261,36 +262,36 @@ public class SequenceValidator {
 		int size;
 		AlignedGeneSeq geneSeq;
 		boolean validated = true;
-		geneSeq = alignedSequence.getAlignedGeneSequence(Gene.PR);
+		geneSeq = alignedSequence.getAlignedGeneSequence(Gene.valueOf("HIV1PR"));
 		if (geneSeq != null) {
 			size = geneSeq.getSize();
 			if (size < 60) {
-				addValidationResult("sequence-much-too-short", Gene.PR, size);
+				addValidationResult("sequence-much-too-short", Gene.valueOf("HIV1PR"), size);
 				validated = false;
 			} else if (size < 80) {
-				addValidationResult("sequence-too-short", Gene.PR, size);
+				addValidationResult("sequence-too-short", Gene.valueOf("HIV1PR"), size);
 				validated = false;
 			}
 		}
-		geneSeq = alignedSequence.getAlignedGeneSequence(Gene.RT);
+		geneSeq = alignedSequence.getAlignedGeneSequence(Gene.valueOf("HIV1RT"));
 		if (geneSeq != null) {
 			size = geneSeq.getSize();
 			if (size < 150) {
-				addValidationResult("sequence-much-too-short", Gene.RT, size);
+				addValidationResult("sequence-much-too-short", Gene.valueOf("HIV1RT"), size);
 				validated = false;
 			} else if (size < 200) {
-				addValidationResult("sequence-too-short", Gene.RT, size);
+				addValidationResult("sequence-too-short", Gene.valueOf("HIV1RT"), size);
 				validated = false;
 			}
 		}
-		geneSeq = alignedSequence.getAlignedGeneSequence(Gene.IN);
+		geneSeq = alignedSequence.getAlignedGeneSequence(Gene.valueOf("HIV1IN"));
 		if (geneSeq != null) {
 			size = geneSeq.getSize();
 			if (size < 100) {
-				addValidationResult("sequence-much-too-short", Gene.IN, size);
+				addValidationResult("sequence-much-too-short", Gene.valueOf("HIV1IN"), size);
 				validated = false;
 			} else if (size < 200) {
-				addValidationResult("sequence-too-short", Gene.IN, size);
+				addValidationResult("sequence-too-short", Gene.valueOf("HIV1IN"), size);
 				validated = false;
 			}
 		}
@@ -364,11 +365,11 @@ public class SequenceValidator {
 			int numStopCodons = stopCodons.size();
 			if (numStopCodons > 1) {
 				addValidationResult("severe-warning-too-many-stop-codons",
-							numStopCodons, gene.toString(), stops);
+							numStopCodons, gene.getShortName(), stops);
 				validated = false;
 			} else if (numStopCodons > 0) {
 				addValidationResult("note-stop-codon",
-						    numStopCodons, gene.toString(), stops);
+						    numStopCodons, gene.getShortName(), stops);
 				validated = false;
 			}
 		}
@@ -386,26 +387,26 @@ public class SequenceValidator {
 			int numUnusual = unusualMutations.size();
 			if (numUnusual > 8) {
 				addValidationResult("much-too-many-unusual-mutations",
-									 numUnusual, gene.toString(), text);
+									 numUnusual, gene.getShortName(), text);
 				validated = false;
 			} else if (numUnusual > 4) {
 				addValidationResult("too-many-unusual-mutations",
-						 numUnusual, gene.toString(), text);
+						 numUnusual, gene.getShortName(), text);
 				validated = false;
 			} else if (numUnusual > 2) {
 				addValidationResult("some-unusual-mutations",
-						 numUnusual, gene.toString(), text);
+						 numUnusual, gene.getShortName(), text);
 				validated = false;
 			}
 			MutationSet unusualMutAtDRP = alignedGeneSeq.getUnusualMutationsAtDrugResistancePositions();
 			int numUnusualAtDRP = unusualMutAtDRP.size();
 			if (numUnusualAtDRP > 1) {
 				addValidationResult("unusual-mutation-at-DRP-plural",
-						numUnusualAtDRP, gene.toString(), unusualMutAtDRP.join(", "));
+						numUnusualAtDRP, gene.getShortName(), unusualMutAtDRP.join(", "));
 				validated = false;
 			} else if (numUnusualAtDRP == 1) {
 				addValidationResult("unusual-mutation-at-DRP",
-						numUnusualAtDRP, gene.toString(), unusualMutAtDRP.join(", "));
+						numUnusualAtDRP, gene.getShortName(), unusualMutAtDRP.join(", "));
 				validated = false;
 			}
 		}
@@ -485,22 +486,22 @@ public class SequenceValidator {
 			if (numTotal > 1) {
 				validated = false;
 				if (frameShifts.size() > 0 && unusualIndels.size() > 0) {
-					addValidationResult("two-or-more-unusual-indels-and-frameshifts", gene.toString(),
+					addValidationResult("two-or-more-unusual-indels-and-frameshifts", gene.getShortName(),
 								numTotal, unusualIndelsListText, frameShiftListText);
 				} else if (frameShifts.size() > 0) {
-					addValidationResult("two-or-more-frameshifts", gene.toString(), numTotal,
+					addValidationResult("two-or-more-frameshifts", gene.getShortName(), numTotal,
 								frameShiftListText);
 				} else {
-					addValidationResult("two-or-more-unusual-indels", gene.toString(), numTotal,
+					addValidationResult("two-or-more-unusual-indels", gene.getShortName(), numTotal,
 							    unusualIndelsListText);
 				}
 
 			} else if (numTotal >0 ) {
 				validated = false;
 				if (frameShifts.size() > 0) {
-					addValidationResult("one-frameshift", gene.toString(), frameShiftListText);
+					addValidationResult("one-frameshift", gene.getShortName(), frameShiftListText);
 				} else {
-					addValidationResult("one-unusual-indel", gene.toString(), unusualIndelsListText);
+					addValidationResult("one-unusual-indel", gene.getShortName(), unusualIndelsListText);
 				}
 
 			}

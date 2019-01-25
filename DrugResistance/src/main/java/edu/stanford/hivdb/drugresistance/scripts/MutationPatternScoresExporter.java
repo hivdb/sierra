@@ -34,6 +34,7 @@ import edu.stanford.hivdb.drugresistance.database.MutationPatterns.MutationPatte
 import edu.stanford.hivdb.drugs.Drug;
 import edu.stanford.hivdb.drugs.DrugClass;
 import edu.stanford.hivdb.mutations.Gene;
+import edu.stanford.hivdb.mutations.Strain;
 import edu.stanford.hivdb.utilities.Json;
 import edu.stanford.hivdb.utilities.MyFileUtils;
 
@@ -67,7 +68,8 @@ public class MutationPatternScoresExporter {
 			DrugClass drugClass, String pattern) {
 		List<MutationElem> mutElements = new ArrayList<>();
 		String[] mutArr = StringUtils.split(pattern, ',');
-		Gene gene = drugClass.gene();
+		// TODO: HIV2 suppport
+		Gene gene = Gene.valueOf(Strain.HIV1, drugClass.gene());
 		for (int i=0; i < mutArr.length; i++) {
 			Matcher mm = mutationRegex.matcher(mutArr[i]);
 			mm.find();

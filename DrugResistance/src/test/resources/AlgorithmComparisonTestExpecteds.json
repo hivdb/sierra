@@ -24095,7 +24095,7 @@
           "algorithm": "ANRS",
           "SIR": "R",
           "interpretation": "Resistance",
-          "explanation": "106A (Resistance)"
+          "explanation": "106AM (Resistance)"
         },
         {
           "drug": "EFV",
@@ -24522,9 +24522,9 @@
         {
           "drug": "DOR",
           "algorithm": "ANRS",
-          "SIR": "R",
-          "interpretation": "Resistance",
-          "explanation": "106AM (Resistance)"
+          "SIR": "S",
+          "interpretation": "Susceptible",
+          "explanation": "No rules were triggered"
         },
         {
           "drug": "EFV",

@@ -2,7 +2,7 @@
   "NRTI": [
     {
       "type": "AA",
-      "gene": "RT",
+      "gene": "HIV1RT",
       "position": 31,
       "aaChars": [
         "L"
@@ -11,7 +11,7 @@
     },
     {
       "type": "AA",
-      "gene": "RT",
+      "gene": "HIV1RT",
       "position": 40,
       "aaChars": [
         "F"
@@ -20,7 +20,7 @@
     },
     {
       "type": "AA",
-      "gene": "RT",
+      "gene": "HIV1RT",
       "position": 41,
       "aaChars": [
         "L"
@@ -29,7 +29,7 @@
     },
     {
       "type": "AA",
-      "gene": "RT",
+      "gene": "HIV1RT",
       "position": 44,
       "aaChars": [
         "A"
@@ -38,7 +38,7 @@
     },
     {
       "type": "AA",
-      "gene": "RT",
+      "gene": "HIV1RT",
       "position": 64,
       "aaChars": [
         "H",
@@ -50,7 +50,7 @@
     },
     {
       "type": "AA",
-      "gene": "RT",
+      "gene": "HIV1RT",
       "position": 65,
       "aaChars": [
         "E",
@@ -61,7 +61,7 @@
     },
     {
       "type": "AA",
-      "gene": "RT",
+      "gene": "HIV1RT",
       "position": 67,
       "aaChars": [
         "-",
@@ -77,7 +77,7 @@
     },
     {
       "type": "AA",
-      "gene": "RT",
+      "gene": "HIV1RT",
       "position": 68,
       "aaChars": [
         "K"
@@ -86,7 +86,7 @@
     },
     {
       "type": "AA",
-      "gene": "RT",
+      "gene": "HIV1RT",
       "position": 69,
       "aaChars": [
         "-",
@@ -100,7 +100,7 @@
     },
     {
       "type": "AA",
-      "gene": "RT",
+      "gene": "HIV1RT",
       "position": 70,
       "aaChars": [
         "E",
@@ -115,7 +115,7 @@
     },
     {
       "type": "AA",
-      "gene": "RT",
+      "gene": "HIV1RT",
       "position": 73,
       "aaChars": [
         "M"
@@ -124,7 +124,7 @@
     },
     {
       "type": "AA",
-      "gene": "RT",
+      "gene": "HIV1RT",
       "position": 74,
       "aaChars": [
         "I",
@@ -134,7 +134,7 @@
     },
     {
       "type": "AA",
-      "gene": "RT",
+      "gene": "HIV1RT",
       "position": 75,
       "aaChars": [
         "A",
@@ -147,7 +147,7 @@
     },
     {
       "type": "AA",
-      "gene": "RT",
+      "gene": "HIV1RT",
       "position": 77,
       "aaChars": [
         "L"
@@ -156,7 +156,7 @@
     },
     {
       "type": "AA",
-      "gene": "RT",
+      "gene": "HIV1RT",
       "position": 105,
       "aaChars": [
         "T"
@@ -165,7 +165,7 @@
     },
     {
       "type": "AA",
-      "gene": "RT",
+      "gene": "HIV1RT",
       "position": 109,
       "aaChars": [
         "I",
@@ -176,7 +176,7 @@
     },
     {
       "type": "AA",
-      "gene": "RT",
+      "gene": "HIV1RT",
       "position": 115,
       "aaChars": [
         "F"
@@ -185,7 +185,7 @@
     },
     {
       "type": "AA",
-      "gene": "RT",
+      "gene": "HIV1RT",
       "position": 116,
       "aaChars": [
         "Y"
@@ -194,7 +194,7 @@
     },
     {
       "type": "AA",
-      "gene": "RT",
+      "gene": "HIV1RT",
       "position": 117,
       "aaChars": [
         "A"
@@ -203,7 +203,7 @@
     },
     {
       "type": "AA",
-      "gene": "RT",
+      "gene": "HIV1RT",
       "position": 151,
       "aaChars": [
         "K",
@@ -214,7 +214,7 @@
     },
     {
       "type": "AA",
-      "gene": "RT",
+      "gene": "HIV1RT",
       "position": 157,
       "aaChars": [
         "A"
@@ -223,7 +223,7 @@
     },
     {
       "type": "AA",
-      "gene": "RT",
+      "gene": "HIV1RT",
       "position": 184,
       "aaChars": [
         "I",
@@ -233,7 +233,7 @@
     },
     {
       "type": "AA",
-      "gene": "RT",
+      "gene": "HIV1RT",
       "position": 203,
       "aaChars": [
         "A",
@@ -244,7 +244,7 @@
     },
     {
       "type": "AA",
-      "gene": "RT",
+      "gene": "HIV1RT",
       "position": 208,
       "aaChars": [
         "F",
@@ -254,7 +254,7 @@
     },
     {
       "type": "AA",
-      "gene": "RT",
+      "gene": "HIV1RT",
       "position": 210,
       "aaChars": [
         "W"
@@ -263,7 +263,7 @@
     },
     {
       "type": "AA",
-      "gene": "RT",
+      "gene": "HIV1RT",
       "position": 212,
       "aaChars": [
         "C",
@@ -274,7 +274,7 @@
     },
     {
       "type": "AA",
-      "gene": "RT",
+      "gene": "HIV1RT",
       "position": 215,
       "aaChars": [
         "C",
@@ -293,7 +293,7 @@
     },
     {
       "type": "AA",
-      "gene": "RT",
+      "gene": "HIV1RT",
       "position": 218,
       "aaChars": [
         "E"
@@ -302,7 +302,7 @@
     },
     {
       "type": "AA",
-      "gene": "RT",
+      "gene": "HIV1RT",
       "position": 219,
       "aaChars": [
         "D",
@@ -319,7 +319,7 @@
     },
     {
       "type": "AA",
-      "gene": "RT",
+      "gene": "HIV1RT",
       "position": 223,
       "aaChars": [
         "E",
@@ -330,7 +330,7 @@
     },
     {
       "type": "AA",
-      "gene": "RT",
+      "gene": "HIV1RT",
       "position": 228,
       "aaChars": [
         "I",
@@ -342,7 +342,7 @@
     },
     {
       "type": "AA",
-      "gene": "RT",
+      "gene": "HIV1RT",
       "position": 304,
       "aaChars": [
         "G"
@@ -351,7 +351,7 @@
     },
     {
       "type": "AA",
-      "gene": "RT",
+      "gene": "HIV1RT",
       "position": 547,
       "aaChars": [
         "R"
@@ -362,7 +362,7 @@
   "NNRTI": [
     {
       "type": "AA",
-      "gene": "RT",
+      "gene": "HIV1RT",
       "position": 94,
       "aaChars": [
         "L"
@@ -371,7 +371,7 @@
     },
     {
       "type": "AA",
-      "gene": "RT",
+      "gene": "HIV1RT",
       "position": 98,
       "aaChars": [
         "G"
@@ -380,7 +380,7 @@
     },
     {
       "type": "AA",
-      "gene": "RT",
+      "gene": "HIV1RT",
       "position": 100,
       "aaChars": [
         "I"
@@ -389,7 +389,7 @@
     },
     {
       "type": "AA",
-      "gene": "RT",
+      "gene": "HIV1RT",
       "position": 101,
       "aaChars": [
         "A",
@@ -404,7 +404,7 @@
     },
     {
       "type": "AA",
-      "gene": "RT",
+      "gene": "HIV1RT",
       "position": 103,
       "aaChars": [
         "H",
@@ -416,7 +416,7 @@
     },
     {
       "type": "AA",
-      "gene": "RT",
+      "gene": "HIV1RT",
       "position": 106,
       "aaChars": [
         "A",
@@ -426,7 +426,7 @@
     },
     {
       "type": "AA",
-      "gene": "RT",
+      "gene": "HIV1RT",
       "position": 108,
       "aaChars": [
         "I"
@@ -435,7 +435,7 @@
     },
     {
       "type": "AA",
-      "gene": "RT",
+      "gene": "HIV1RT",
       "position": 132,
       "aaChars": [
         "L"
@@ -444,7 +444,7 @@
     },
     {
       "type": "AA",
-      "gene": "RT",
+      "gene": "HIV1RT",
       "position": 138,
       "aaChars": [
         "K",
@@ -455,7 +455,7 @@
     },
     {
       "type": "AA",
-      "gene": "RT",
+      "gene": "HIV1RT",
       "position": 139,
       "aaChars": [
         "R"
@@ -464,7 +464,7 @@
     },
     {
       "type": "AA",
-      "gene": "RT",
+      "gene": "HIV1RT",
       "position": 178,
       "aaChars": [
         "F"
@@ -473,7 +473,7 @@
     },
     {
       "type": "AA",
-      "gene": "RT",
+      "gene": "HIV1RT",
       "position": 179,
       "aaChars": [
         "F",
@@ -484,7 +484,7 @@
     },
     {
       "type": "AA",
-      "gene": "RT",
+      "gene": "HIV1RT",
       "position": 181,
       "aaChars": [
         "C",
@@ -499,7 +499,7 @@
     },
     {
       "type": "AA",
-      "gene": "RT",
+      "gene": "HIV1RT",
       "position": 188,
       "aaChars": [
         "C",
@@ -511,7 +511,7 @@
     },
     {
       "type": "AA",
-      "gene": "RT",
+      "gene": "HIV1RT",
       "position": 190,
       "aaChars": [
         "A",
@@ -524,7 +524,7 @@
     },
     {
       "type": "AA",
-      "gene": "RT",
+      "gene": "HIV1RT",
       "position": 221,
       "aaChars": [
         "C",
@@ -534,7 +534,7 @@
     },
     {
       "type": "AA",
-      "gene": "RT",
+      "gene": "HIV1RT",
       "position": 225,
       "aaChars": [
         "H"
@@ -543,7 +543,7 @@
     },
     {
       "type": "AA",
-      "gene": "RT",
+      "gene": "HIV1RT",
       "position": 227,
       "aaChars": [
         "L",
@@ -553,7 +553,7 @@
     },
     {
       "type": "AA",
-      "gene": "RT",
+      "gene": "HIV1RT",
       "position": 230,
       "aaChars": [
         "L"
@@ -562,7 +562,7 @@
     },
     {
       "type": "AA",
-      "gene": "RT",
+      "gene": "HIV1RT",
       "position": 232,
       "aaChars": [
         "H"
@@ -571,7 +571,7 @@
     },
     {
       "type": "AA",
-      "gene": "RT",
+      "gene": "HIV1RT",
       "position": 234,
       "aaChars": [
         "I"
@@ -580,7 +580,7 @@
     },
     {
       "type": "AA",
-      "gene": "RT",
+      "gene": "HIV1RT",
       "position": 238,
       "aaChars": [
         "N",
@@ -590,7 +590,7 @@
     },
     {
       "type": "AA",
-      "gene": "RT",
+      "gene": "HIV1RT",
       "position": 241,
       "aaChars": [
         "M"
@@ -599,7 +599,7 @@
     },
     {
       "type": "AA",
-      "gene": "RT",
+      "gene": "HIV1RT",
       "position": 242,
       "aaChars": [
         "H",
@@ -610,7 +610,7 @@
     },
     {
       "type": "AA",
-      "gene": "RT",
+      "gene": "HIV1RT",
       "position": 318,
       "aaChars": [
         "F"
@@ -619,7 +619,7 @@
     },
     {
       "type": "AA",
-      "gene": "RT",
+      "gene": "HIV1RT",
       "position": 348,
       "aaChars": [
         "I"
@@ -630,7 +630,7 @@
   "PI": [
     {
       "type": "AA",
-      "gene": "PR",
+      "gene": "HIV1PR",
       "position": 10,
       "aaChars": [
         "F",
@@ -641,7 +641,7 @@
     },
     {
       "type": "AA",
-      "gene": "PR",
+      "gene": "HIV1PR",
       "position": 11,
       "aaChars": [
         "L"
@@ -650,7 +650,7 @@
     },
     {
       "type": "AA",
-      "gene": "PR",
+      "gene": "HIV1PR",
       "position": 20,
       "aaChars": [
         "A",
@@ -660,7 +660,7 @@
     },
     {
       "type": "AA",
-      "gene": "PR",
+      "gene": "HIV1PR",
       "position": 22,
       "aaChars": [
         "V"
@@ -669,7 +669,7 @@
     },
     {
       "type": "AA",
-      "gene": "PR",
+      "gene": "HIV1PR",
       "position": 23,
       "aaChars": [
         "I"
@@ -678,7 +678,7 @@
     },
     {
       "type": "AA",
-      "gene": "PR",
+      "gene": "HIV1PR",
       "position": 24,
       "aaChars": [
         "F",
@@ -689,7 +689,7 @@
     },
     {
       "type": "AA",
-      "gene": "PR",
+      "gene": "HIV1PR",
       "position": 30,
       "aaChars": [
         "N"
@@ -698,7 +698,7 @@
     },
     {
       "type": "AA",
-      "gene": "PR",
+      "gene": "HIV1PR",
       "position": 32,
       "aaChars": [
         "I"
@@ -707,7 +707,7 @@
     },
     {
       "type": "AA",
-      "gene": "PR",
+      "gene": "HIV1PR",
       "position": 33,
       "aaChars": [
         "M"
@@ -716,7 +716,7 @@
     },
     {
       "type": "AA",
-      "gene": "PR",
+      "gene": "HIV1PR",
       "position": 34,
       "aaChars": [
         "N",
@@ -726,7 +726,7 @@
     },
     {
       "type": "AA",
-      "gene": "PR",
+      "gene": "HIV1PR",
       "position": 36,
       "aaChars": [
         "A"
@@ -735,7 +735,7 @@
     },
     {
       "type": "AA",
-      "gene": "PR",
+      "gene": "HIV1PR",
       "position": 43,
       "aaChars": [
         "T"
@@ -744,7 +744,7 @@
     },
     {
       "type": "AA",
-      "gene": "PR",
+      "gene": "HIV1PR",
       "position": 45,
       "aaChars": [
         "I",
@@ -755,7 +755,7 @@
     },
     {
       "type": "AA",
-      "gene": "PR",
+      "gene": "HIV1PR",
       "position": 46,
       "aaChars": [
         "I",
@@ -766,7 +766,7 @@
     },
     {
       "type": "AA",
-      "gene": "PR",
+      "gene": "HIV1PR",
       "position": 47,
       "aaChars": [
         "A",
@@ -776,7 +776,7 @@
     },
     {
       "type": "AA",
-      "gene": "PR",
+      "gene": "HIV1PR",
       "position": 48,
       "aaChars": [
         "A",
@@ -791,7 +791,7 @@
     },
     {
       "type": "AA",
-      "gene": "PR",
+      "gene": "HIV1PR",
       "position": 50,
       "aaChars": [
         "L",
@@ -801,7 +801,7 @@
     },
     {
       "type": "AA",
-      "gene": "PR",
+      "gene": "HIV1PR",
       "position": 51,
       "aaChars": [
         "A"
@@ -810,7 +810,7 @@
     },
     {
       "type": "AA",
-      "gene": "PR",
+      "gene": "HIV1PR",
       "position": 53,
       "aaChars": [
         "I",
@@ -822,7 +822,7 @@
     },
     {
       "type": "AA",
-      "gene": "PR",
+      "gene": "HIV1PR",
       "position": 54,
       "aaChars": [
         "A",
@@ -837,7 +837,7 @@
     },
     {
       "type": "AA",
-      "gene": "PR",
+      "gene": "HIV1PR",
       "position": 55,
       "aaChars": [
         "N",
@@ -847,7 +847,7 @@
     },
     {
       "type": "AA",
-      "gene": "PR",
+      "gene": "HIV1PR",
       "position": 66,
       "aaChars": [
         "F",
@@ -858,7 +858,7 @@
     },
     {
       "type": "AA",
-      "gene": "PR",
+      "gene": "HIV1PR",
       "position": 67,
       "aaChars": [
         "F",
@@ -868,7 +868,7 @@
     },
     {
       "type": "AA",
-      "gene": "PR",
+      "gene": "HIV1PR",
       "position": 71,
       "aaChars": [
         "I",
@@ -878,7 +878,7 @@
     },
     {
       "type": "AA",
-      "gene": "PR",
+      "gene": "HIV1PR",
       "position": 73,
       "aaChars": [
         "A",
@@ -894,7 +894,7 @@
     },
     {
       "type": "AA",
-      "gene": "PR",
+      "gene": "HIV1PR",
       "position": 74,
       "aaChars": [
         "E",
@@ -904,7 +904,7 @@
     },
     {
       "type": "AA",
-      "gene": "PR",
+      "gene": "HIV1PR",
       "position": 76,
       "aaChars": [
         "V"
@@ -913,7 +913,7 @@
     },
     {
       "type": "AA",
-      "gene": "PR",
+      "gene": "HIV1PR",
       "position": 82,
       "aaChars": [
         "A",
@@ -929,7 +929,7 @@
     },
     {
       "type": "AA",
-      "gene": "PR",
+      "gene": "HIV1PR",
       "position": 83,
       "aaChars": [
         "D",
@@ -939,7 +939,7 @@
     },
     {
       "type": "AA",
-      "gene": "PR",
+      "gene": "HIV1PR",
       "position": 84,
       "aaChars": [
         "A",
@@ -950,7 +950,7 @@
     },
     {
       "type": "AA",
-      "gene": "PR",
+      "gene": "HIV1PR",
       "position": 85,
       "aaChars": [
         "V"
@@ -959,7 +959,7 @@
     },
     {
       "type": "AA",
-      "gene": "PR",
+      "gene": "HIV1PR",
       "position": 88,
       "aaChars": [
         "D",
@@ -971,7 +971,7 @@
     },
     {
       "type": "AA",
-      "gene": "PR",
+      "gene": "HIV1PR",
       "position": 89,
       "aaChars": [
         "T",
@@ -981,7 +981,7 @@
     },
     {
       "type": "AA",
-      "gene": "PR",
+      "gene": "HIV1PR",
       "position": 90,
       "aaChars": [
         "M"
@@ -990,7 +990,7 @@
     },
     {
       "type": "AA",
-      "gene": "PR",
+      "gene": "HIV1PR",
       "position": 91,
       "aaChars": [
         "C",
@@ -1000,7 +1000,7 @@
     },
     {
       "type": "AA",
-      "gene": "PR",
+      "gene": "HIV1PR",
       "position": 95,
       "aaChars": [
         "F",
@@ -1013,7 +1013,7 @@
   "INSTI": [
     {
       "type": "AA",
-      "gene": "IN",
+      "gene": "HIV1IN",
       "position": 51,
       "aaChars": [
         "Y"
@@ -1022,7 +1022,7 @@
     },
     {
       "type": "AA",
-      "gene": "IN",
+      "gene": "HIV1IN",
       "position": 66,
       "aaChars": [
         "A",
@@ -1033,7 +1033,7 @@
     },
     {
       "type": "AA",
-      "gene": "IN",
+      "gene": "HIV1IN",
       "position": 92,
       "aaChars": [
         "A",
@@ -1043,7 +1043,7 @@
     },
     {
       "type": "AA",
-      "gene": "IN",
+      "gene": "HIV1IN",
       "position": 95,
       "aaChars": [
         "K"
@@ -1052,7 +1052,7 @@
     },
     {
       "type": "AA",
-      "gene": "IN",
+      "gene": "HIV1IN",
       "position": 121,
       "aaChars": [
         "Y"
@@ -1061,7 +1061,7 @@
     },
     {
       "type": "AA",
-      "gene": "IN",
+      "gene": "HIV1IN",
       "position": 138,
       "aaChars": [
         "A",
@@ -1072,7 +1072,7 @@
     },
     {
       "type": "AA",
-      "gene": "IN",
+      "gene": "HIV1IN",
       "position": 140,
       "aaChars": [
         "A",
@@ -1083,7 +1083,7 @@
     },
     {
       "type": "AA",
-      "gene": "IN",
+      "gene": "HIV1IN",
       "position": 142,
       "aaChars": [
         "T"
@@ -1092,7 +1092,7 @@
     },
     {
       "type": "AA",
-      "gene": "IN",
+      "gene": "HIV1IN",
       "position": 143,
       "aaChars": [
         "C",
@@ -1105,7 +1105,7 @@
     },
     {
       "type": "AA",
-      "gene": "IN",
+      "gene": "HIV1IN",
       "position": 147,
       "aaChars": [
         "G"
@@ -1114,7 +1114,7 @@
     },
     {
       "type": "AA",
-      "gene": "IN",
+      "gene": "HIV1IN",
       "position": 148,
       "aaChars": [
         "H",
@@ -1126,7 +1126,7 @@
     },
     {
       "type": "AA",
-      "gene": "IN",
+      "gene": "HIV1IN",
       "position": 155,
       "aaChars": [
         "D",
@@ -1136,7 +1136,7 @@
     },
     {
       "type": "AA",
-      "gene": "IN",
+      "gene": "HIV1IN",
       "position": 230,
       "aaChars": [
         "R"

@@ -174,13 +174,14 @@ public class MutationSetDef {
 						mutations = Tsms.getTsmsForDrugClass(DrugClass.INSTI, mutations);
 						break;
 					case GENE_PR:
-						mutations = mutations.getGeneMutations(Gene.PR);
+						// TODO: HIV2 support
+						mutations = mutations.getGeneMutations(Gene.valueOf("HIV1PR"));
 						break;
 					case GENE_RT:
-						mutations = mutations.getGeneMutations(Gene.RT);
+						mutations = mutations.getGeneMutations(Gene.valueOf("HIV1RT"));
 						break;
 					case GENE_IN:
-						mutations = mutations.getGeneMutations(Gene.IN);
+						mutations = mutations.getGeneMutations(Gene.valueOf("HIV1IN"));
 						break;
 					case TYPE_MAJOR:
 						mutations = mutations.getByMutType(MutType.Major);

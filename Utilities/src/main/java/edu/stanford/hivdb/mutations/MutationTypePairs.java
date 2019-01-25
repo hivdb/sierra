@@ -28,7 +28,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import edu.stanford.hivdb.drugs.DrugClass;
-import edu.stanford.hivdb.mutations.Gene;
 import edu.stanford.hivdb.mutations.MutType;
 import edu.stanford.hivdb.mutations.Mutation;
 import edu.stanford.hivdb.utilities.JdbcDatabase;
@@ -185,7 +184,8 @@ public class MutationTypePairs {
 			" ELSE 3 END), AAs";
 
 		mutationTypePairs = db.iterate(sqlStatement, rs -> {
-			Gene gene = Gene.valueOf(rs.getString("Gene"));
+			// TODO: we only have data for HIV1
+			Gene gene = Gene.valueOf("HIV1", rs.getString("Gene"));
 			DrugClass drugClass = DrugClass.valueOf(rs.getString("DrugClass"));
 			int pos = rs.getInt("Pos");
 			String aas = rs.getString("AAs");

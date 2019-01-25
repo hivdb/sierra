@@ -35,6 +35,7 @@ import edu.stanford.hivdb.drugresistance.GeneDR;
 import edu.stanford.hivdb.drugs.Drug;
 import edu.stanford.hivdb.drugs.DrugClass;
 import edu.stanford.hivdb.mutations.Gene;
+import edu.stanford.hivdb.mutations.GeneEnum;
 import edu.stanford.hivdb.mutations.Mutation;
 import edu.stanford.hivdb.mutations.MutationSet;
 import edu.stanford.hivdb.utilities.Cachable;
@@ -67,11 +68,11 @@ public class ConditionalComments {
 			this.comment = comment;
 		}
 
-		public Gene getMutationGene() {
+		public GeneEnum getMutationGene() {
 			if (conditionType != ConditionType.MUTATION) {
 				return null;
 			}
-			return Gene.valueOf((String) conditionValue.get("gene"));
+			return GeneEnum.valueOf((String) conditionValue.get("gene"));
 		}
 
 		public Integer getMutationPosition() {
@@ -136,11 +137,11 @@ public class ConditionalComments {
 		public String getText() { return comment; }
 		public DrugClass getDrugClass() { return drugClass; }
 		public ConditionType getConditionType() { return conditionType; }
-		public Gene getGene() { return drugClass.gene(); }
+		public GeneEnum getGene() { return drugClass.gene(); }
 	}
 
 	public static class BoundComment {
-		final private Gene gene;
+		final private GeneEnum gene;
 		final private DrugClass drugClass;
 		final private String commentName;
 		final private CommentType commentType;
@@ -166,7 +167,7 @@ public class ConditionalComments {
 		public String getText() { return comment; }
 		public Collection<String> getHighlightText() { return highlightText; }
 		public Mutation getBoundMutation() { return mutation; }
-		public Gene getGene() { return gene; }
+		public GeneEnum getGene() { return gene; }
 		public DrugClass drugClass() { return drugClass; }
 	}
 
@@ -185,8 +186,8 @@ public class ConditionalComments {
 
 	private static BoundComment findMutationComment(
 			Gene gene, MutationSet mutations, ConditionalComment cc) {
-		Gene ccgene = cc.getMutationGene();
-		if (!ccgene.equals(gene)) {
+		GeneEnum ccgene = cc.getMutationGene();
+		if (ccgene != gene.getGeneEnum()) {
 			// skip if it's other gene
 			return null;
 		}

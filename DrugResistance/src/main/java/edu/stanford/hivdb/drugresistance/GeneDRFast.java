@@ -18,7 +18,7 @@
 
 package edu.stanford.hivdb.drugresistance;
 
-import java.util.EnumMap;
+import java.util.TreeMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -52,7 +52,7 @@ public class GeneDRFast extends GeneDR {
 	protected final FastHivdb fastHivdb;
 
 	public static Map<Gene, GeneDR> getResistanceByGeneFromAlignedGeneSeqs(List<AlignedGeneSeq> alignedGeneSeqs) {
-		Map<Gene, GeneDR> resistanceForSequence = new EnumMap<>(Gene.class);
+		Map<Gene, GeneDR> resistanceForSequence = new TreeMap<>();
 		for (AlignedGeneSeq geneSeq : alignedGeneSeqs) {
 			Gene gene = geneSeq.getGene();
 			final GeneDR geneDR = new GeneDRFast(gene, geneSeq.getMutations());
@@ -62,7 +62,7 @@ public class GeneDRFast extends GeneDR {
 	}
 
 	public static Map<Gene, GeneDR> getResistanceByGeneFromReads(List<GeneSequenceReads> allGeneSeqReads) {
-		Map<Gene, GeneDR> resistanceForSequence = new EnumMap<>(Gene.class);
+		Map<Gene, GeneDR> resistanceForSequence = new TreeMap<>();
 		for (GeneSequenceReads geneSeqReads : allGeneSeqReads) {
 			Gene gene = geneSeqReads.getGene();
 			final GeneDR geneDR = new GeneDRFast(gene, geneSeqReads.getMutations());

@@ -20,9 +20,10 @@ package edu.stanford.hivdb.ngs;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 
@@ -35,12 +36,14 @@ import edu.stanford.hivdb.genotyper.HIVGenotypeResult;
 import edu.stanford.hivdb.mutations.Gene;
 import edu.stanford.hivdb.mutations.MutationSet;
 import edu.stanford.hivdb.mutations.PositionCodonReads;
+import edu.stanford.hivdb.mutations.Strain;
 import edu.stanford.hivdb.utilities.SeqUtils;
 
 public class SequenceReads {
 
 	private final static int HXB2_PR_FIRST_NA = 2253;
-	private final EnumMap<Gene, GeneSequenceReads> allGeneSequenceReads;
+	private final Strain strain;
+	private final Map<Gene, GeneSequenceReads> allGeneSequenceReads;
 	private String name;
 	private HIVGenotypeResult subtypeResult;
 	private MutationSet mutations;
@@ -56,13 +59,13 @@ public class SequenceReads {
 		// TODO: dynamic cutoff
 		double finalMinPrevalence = minPrevalence >= 0 ? minPrevalence : (double) 0.05;
 		long finalMinReadDepth = minReadDepth > 0 ? minReadDepth : (long) 1000;
-		EnumMap<Gene, GeneSequenceReads> geneSequences = allReads.stream()
+		Map<Gene, GeneSequenceReads> geneSequences = allReads.stream()
 			// remove all codons with their read depth < minReadDepth
 			.filter(read -> read.getTotalReads() >= finalMinReadDepth)
 			.collect(
 				Collectors.groupingBy(
 					PositionCodonReads::getGene,
-					() -> new EnumMap<>(Gene.class),
+					TreeMap::new,
 					Collectors.collectingAndThen(
 						Collectors.toList(),
 						list -> new GeneSequenceReads(list, finalMinPrevalence)
@@ -82,18 +85,20 @@ public class SequenceReads {
 			medianReadDepth = median.evaluate(ReadDepths);
 		}
 
+		// TODO: add support for HIV2
 		return new SequenceReads(
-				name, geneSequences,
+				name, Strain.HIV1, geneSequences,
 				finalMinPrevalence, finalMinReadDepth,
 				medianReadDepth);
 	}
 
-	public SequenceReads(
-			final String name,
-			final EnumMap<Gene, GeneSequenceReads> allGeneSequenceReads,
+	protected SequenceReads(
+			final String name, final Strain strain,
+			final Map<Gene, GeneSequenceReads> allGeneSequenceReads,
 			final double minPrevalence, final long minReadDepth,
 			final double medianReadDepth) {
 		this.name = name;
+		this.strain = strain;
 		this.allGeneSequenceReads = allGeneSequenceReads;
 		this.minPrevalence = minPrevalence;
 		this.minReadDepth = minReadDepth;
@@ -101,6 +106,8 @@ public class SequenceReads {
 	}
 
 	public String getName() { return name; }
+	
+	public Strain getStrain() { return strain; }
 
 	public boolean isEmpty() { return allGeneSequenceReads.isEmpty(); }
 
@@ -140,7 +147,7 @@ public class SequenceReads {
 	public String getConcatenatedSeq() {
 		if (concatenatedSeq == null) {
 			StringBuilder concatSeq = new StringBuilder();
-			for (Gene gene : Gene.values()) {
+			for (Gene gene : Gene.values(strain)) {
 				GeneSequenceReads geneSeq = allGeneSequenceReads.get(gene);
 				if (geneSeq == null) {
 					concatSeq.append(StringUtils.repeat("...", gene.getLength()));

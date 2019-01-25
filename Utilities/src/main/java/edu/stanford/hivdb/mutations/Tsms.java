@@ -62,7 +62,8 @@ public class Tsms {
 			String aas = rs.getString(3);
 			MutationSet mutSet = map.getOrDefault(drugClass, new MutationSet());
 			mutSet = mutSet.mergesWith(new AAMutation(
-				drugClass.gene(), pos,
+				// TODO: we only have data for HIV1
+				Gene.valueOf(Strain.HIV1, drugClass.gene()), pos,
 				aas.toCharArray(), 0xff));
 			map.put(drugClass, mutSet);
 			return null;
