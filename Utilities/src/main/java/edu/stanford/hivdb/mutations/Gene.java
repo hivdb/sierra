@@ -46,7 +46,8 @@ public class Gene implements Comparable<Gene> {
 			new Gene(
 				Strain.HIV1, GeneEnum.PR, // 99 AAs
 				"PQITLWQRPLVTIKIGGQLKEALLDTGADDTVLEEMNLPGRWKPKMIGGI" +
-				"GGFIKVRQYDQILIEICGHKAIGTVLVGPTPVNIIGRNLLTQIGCTLNF"));
+				"GGFIKVRQYDQILIEICGHKAIGTVLVGPTPVNIIGRNLLTQIGCTLNF",
+				/* firstNA */2253));
 		_singletons.put(
 			"HIV1RT",
 			new Gene(
@@ -62,7 +63,8 @@ public class Gene implements Comparable<Gene> {
 				"WWTEYWQATWIPEWEFVNTPPLVKLWYQLEKEPIVGAETFYVDGAANRET" +
 				"KLGKAGYVTDRGRQKVVSLTDTTNQKTELQAIHLALQDSGLEVNIVTDSQ" +
 				"YALGIIQAQPDKSESELVSQIIEQLIKKEKVYLAWVPAHKGIGGNEQVDK" +
-				"LVSAGIRKVL"));
+				"LVSAGIRKVL",
+				/* firstNA */2550));
 		_singletons.put(
 			"HIV1IN",
 			new Gene(
@@ -72,7 +74,8 @@ public class Gene implements Comparable<Gene> {
 				"LLKLAGRWPVKTIHTDNGSNFTSTTVKAACWWAGIKQEFGIPYNPQSQGV" +
 				"VESMNKELKKIIGQVRDQAEHLKTAVQMAVFIHNFKRKGGIGGYSAGERI" +
 				"VDIIATDIQTKELQKQITKIQNFRVYYRDSRDPLWKGPAKLLWKGEGAVV" +
-				"IQDNSDIKVVPRRKAKIIRDYGKQMAGDDCVASRQDED"));
+				"IQDNSDIKVVPRRKAKIIRDYGKQMAGDDCVASRQDED",
+				/* firstNA */4230));
 
 		// ROD
 		_singletons.put(
@@ -80,7 +83,8 @@ public class Gene implements Comparable<Gene> {
 			new Gene(
 				Strain.HIV2A, GeneEnum.PR, // 99 AAs
 				"PQFSLWKRPVVTAYIEGQPVEVLLDTGADDSIVAGIELGNNYSPKIVGGI" +
-				"GGFINTKEYKNVEIEVLNKKVRATIMTGDTPINIFGRNILTALGMSLNL"));
+				"GGFINTKEYKNVEIEVLNKKVRATIMTGDTPINIFGRNILTALGMSLNL",
+				/* firstNA */2253)); // TODO: update firstNA to ROD
 		_singletons.put(
 			"HIV2ART",
 			new Gene(
@@ -96,7 +100,8 @@ public class Gene implements Comparable<Gene> {
 				"WDNYWQVTWIPDWDFVSTPPLVRLAFNLVGDPIPGAETFYTDGSCNRQSK" +
 				"EGKAGYVTDRGKDKVKKLEQTTNQQAELEAFAMALTDSGPKVNIIVDSQY" +
 				"VMGISASQPTESESKIVNQIIEEMIKKEAIYVAWVPAHKGIGGNQEVDHL" +
-				"VSQGIRQVL"));
+				"VSQGIRQVL",
+				/* firstNA */2550)); // TODO: update firstNA to ROD
 		_singletons.put(
 			"HIV2AIN",
 			new Gene(
@@ -106,7 +111,8 @@ public class Gene implements Comparable<Gene> {
 				"LLKLASRWPITHLHTDNGANFTSQEVKMVAWWIGIEQSFGVPYNPQSQGV" +
 				"VEAMNHHLKNQISRIREQANTIETIVLMAIHCMNFKRRGGIGDMTPSERL" +
 				"INMITTEQEIQFLQAKNSKLKDFRVYFREGRDQLWKGPGELLWKGEGAVL" +
-				"VKVGTDIKIIPRRKAKIIRDYGGRQEMDSGSHLEGAREDGEMA"));
+				"VKVGTDIKIIPRRKAKIIRDYGGRQEMDSGSHLEGAREDGEMA",
+				/* firstNA */4230)); // TODO: update firstNA to ROD
 		
 		// EHO
 		_singletons.put(
@@ -114,7 +120,8 @@ public class Gene implements Comparable<Gene> {
 			new Gene(
 				Strain.HIV2B, GeneEnum.PR, // 99 AAs
 				"PQFSLWRRPVVKATIEGQSVEVLLDTGADDSIVAGIELGSNYTPKIVGGI" +
-				"GGFINTNEYKNVEIEVVGKRVRATVMTGDTPINIFGRNILNSLGMTLNF"));
+				"GGFINTNEYKNVEIEVVGKRVRATVMTGDTPINIFGRNILNSLGMTLNF",
+				/* firstNA */2253)); // TODO: update firstNA to EHO
 		_singletons.put(
 			"HIV2BRT",
 			new Gene(
@@ -130,7 +137,8 @@ public class Gene implements Comparable<Gene> {
 				"WTDYWQVTWIPEWDFVSTPPLIRLAYNLVKDPLEGVETYYTDGSCNKASK" +
 				"EGKAGYVTDRGKDKVKPLEQTTNQQAELEAFALALQDSGPQVNIIVDSQY" +
 				"VMGIVAAQPTETESPIVREIIEEMIKKEKIYVGWVPAHKGLGGNQEVDHL" +
-				"VSQGIRQIL"));
+				"VSQGIRQIL",
+				/* firstNA */2253)); // TODO: update firstNA to EHO
 		_singletons.put(
 			"HIV2BIN",
 			new Gene(
@@ -140,7 +148,8 @@ public class Gene implements Comparable<Gene> {
 				"LLKLASRWPITHLHTDNGANFTSQDVKMAAWWIGIEQTFGVPYNPESQGV" +
 				"VEAMNHHLKNQIDRIRDQAVSIETVVLMATHCMNFKRRGGIGDMTPAERI" +
 				"VNMITTEQEIQFLQTKNLKFQNFRVYYREGRDQLWKGPGDLLWKGEGAVI" +
-				"IKVGTEIKVIPRRKAKIIRNYGGGKELDCSADVEDTMQAREVAQSN"));
+				"IKVGTEIKVIPRRKAKIIRNYGGGKELDCSADVEDTMQAREVAQSN",
+				/* firstNA */4230)); // TODO: update firstNA to EHO
 		
 		
 		singletons = Collections.unmodifiableMap(_singletons);
@@ -149,11 +158,13 @@ public class Gene implements Comparable<Gene> {
 	private final Strain strain;
 	private final GeneEnum geneEnum;
 	private final String reference;
+	private final int firstNA;
 
-	private Gene(Strain strain, GeneEnum gene, String reference) {
+	private Gene(Strain strain, GeneEnum gene, String reference, int firstNA) {
 		this.strain = strain;
 		this.geneEnum = gene;
 		this.reference = reference;
+		this.firstNA = firstNA;
 	}
 
 	public static Gene valueOf(String strainText, String geneText) {
@@ -258,6 +269,14 @@ public class Gene implements Comparable<Gene> {
 
 	public int getLength() {
 		return this.reference.length();
+	}
+	
+	public int getFirstNA() {
+		return this.firstNA;
+	}
+	
+	public int getNASize() {
+		return this.reference.length() * 3;
 	}
 
 	/**

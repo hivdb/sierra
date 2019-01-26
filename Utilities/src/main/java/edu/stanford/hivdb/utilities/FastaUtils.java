@@ -88,13 +88,18 @@ public class FastaUtils {
 	 * @return List<Sequence>
 	 */
 	public static List<Sequence> fetchGenbank(Collection<String> accessions) {
-		String baseUrl = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi";
+		String baseUrl = "https://www.ncbi.nlm.nih.gov/sviewer/viewer.cgi";
 		HttpResponse<InputStream> response;
 		try {
 			response = Unirest.post(baseUrl)
-				.queryString("db", "nucleotide")
-				.queryString("rettype", "fasta")
-				.queryString("retmode", "text")
+				.queryString("tool", "portal")
+				.queryString("save", "file")
+				.queryString("log$", "seqview")
+				.queryString("db", "nuccore")
+				.queryString("report", "fasta")
+				.queryString("conwithfeat", "on")
+				// TODO: move this to configuration
+				// .queryString("api_key", "c589b6589a876ae42089c059c49249722807")
 				.field("id", String.join(",", accessions))
 				.asBinary();
 		} catch (UnirestException e) {

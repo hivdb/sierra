@@ -27,6 +27,7 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -38,6 +39,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import com.google.common.collect.Iterables;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Streams;
 
 import com.amazonaws.services.lambda.AWSLambda;
@@ -74,10 +76,63 @@ public class NucAminoAligner {
 	private static final int SEQUENCE_SHRINKAGE_WINDOW = 15;
 	private static final int SEQUENCE_SHRINKAGE_CUTOFF_PCNT = 30;
 	private static final Executor executor = Executors.newFixedThreadPool(20);
+	private static final Map<Strain, String[]> NUCAMINO_LOCAL_COMMANDS;
 
 	static {
+		String executable = System.getenv("NUCAMINO_PROGRAM");
+		if (executable == null) {
+			// use "nucamino" as default program path
+			executable = "nucamino";
+		}
+		Map<Strain, String[]> nucaminoCommands = new EnumMap<>(Strain.class);
+		nucaminoCommands.put(
+			Strain.HIV1,
+			new String[] {
+				/* Command */
+				executable,	 	// path to nucamino binary
+				"align", 		// sub-command: use built-in alignment profile
+				"hiv1b", 		// specify built-in profile choice
+				"pol", 			// specify gene to align against
+
+				/* Flags */
+				"-q", 			// quiet mode
+				"-f", "json", 	// return output format as json
+			}
+		);
+		nucaminoCommands.put(
+			Strain.HIV2A,
+			new String[] {
+				/* Command */
+				executable,	 	// path to nucamino binary
+				"align", 		// sub-command: use built-in alignment profile
+				"hiv2a", 		// specify built-in profile choice
+				"pol", 			// specify gene to align against
+
+				/* Flags */
+				"-q", 			// quiet mode
+				"-f", "json", 	// return output format as json
+			}
+		);
+
+		nucaminoCommands.put(
+			Strain.HIV2B,
+			new String[] {
+				/* Command */
+				executable,	 	// path to nucamino binary
+				"align", 		// sub-command: use built-in alignment profile
+				"hiv2b", 		// specify built-in profile choice
+				"pol", 			// specify gene to align against
+
+				/* Flags */
+				"-q", 			// quiet mode
+				"-f", "json", 	// return output format as json
+			}
+		);
+		
+		NUCAMINO_LOCAL_COMMANDS = Collections.unmodifiableMap(nucaminoCommands);
+	
+		/* initialize GENE_AA_RANGE */
 		Map<Gene, Integer[]> geneAARange = new HashMap<>();
-		// TODO: we need to extend to HIV2
 		geneAARange.put(Gene.valueOf("HIV1PR"), new Integer[] {
 			56 + 1,
 			56 + Gene.valueOf("HIV1PR").getLength()
@@ -90,11 +145,46 @@ public class NucAminoAligner {
 			geneAARange.get(Gene.valueOf("HIV1RT"))[1] + 1,
 			geneAARange.get(Gene.valueOf("HIV1RT"))[1] + Gene.valueOf("HIV1IN").getLength()
 		});
+
+		geneAARange.put(Gene.valueOf("HIV2APR"), new Integer[] {
+			85 + 1,
+			85 + Gene.valueOf("HIV2APR").getLength()
+		});
+		geneAARange.put(Gene.valueOf("HIV2ART"), new Integer[] {
+			geneAARange.get(Gene.valueOf("HIV2APR"))[1] + 1,
+			geneAARange.get(Gene.valueOf("HIV2APR"))[1] + Gene.valueOf("HIV2ART").getLength()
+		});
+		geneAARange.put(Gene.valueOf("HIV2AIN"), new Integer[] {
+			geneAARange.get(Gene.valueOf("HIV2ART"))[1] + 1,
+			geneAARange.get(Gene.valueOf("HIV2ART"))[1] + Gene.valueOf("HIV2AIN").getLength()
+		});
+
+		geneAARange.put(Gene.valueOf("HIV2BPR"), new Integer[] {
+			84 + 1,
+			84 + Gene.valueOf("HIV2BPR").getLength()
+		});
+		geneAARange.put(Gene.valueOf("HIV2BRT"), new Integer[] {
+			geneAARange.get(Gene.valueOf("HIV2BPR"))[1] + 1,
+			geneAARange.get(Gene.valueOf("HIV2BPR"))[1] + Gene.valueOf("HIV2BRT").getLength()
+		});
+		geneAARange.put(Gene.valueOf("HIV2BIN"), new Integer[] {
+			geneAARange.get(Gene.valueOf("HIV2BRT"))[1] + 1,
+			geneAARange.get(Gene.valueOf("HIV2BRT"))[1] + Gene.valueOf("HIV2BIN").getLength()
+		});
 		GENE_AA_RANGE = Collections.unmodifiableMap(geneAARange);
+
+		/* initialize minNumOfSitesPerGene */
 		Map<Gene, Integer> minNumOfSitesPerGene = new HashMap<>();
 		minNumOfSitesPerGene.put(Gene.valueOf("HIV1PR"), 40);
 		minNumOfSitesPerGene.put(Gene.valueOf("HIV1RT"), 60);
 		minNumOfSitesPerGene.put(Gene.valueOf("HIV1IN"), 30);
+		minNumOfSitesPerGene.put(Gene.valueOf("HIV2APR"), 40);
+		minNumOfSitesPerGene.put(Gene.valueOf("HIV2ART"), 60);
+		minNumOfSitesPerGene.put(Gene.valueOf("HIV2AIN"), 30);
+		minNumOfSitesPerGene.put(Gene.valueOf("HIV2BPR"), 40);
+		minNumOfSitesPerGene.put(Gene.valueOf("HIV2BRT"), 60);
+		minNumOfSitesPerGene.put(Gene.valueOf("HIV2BIN"), 30);
+
 		MIN_NUM_OF_SITES_PER_GENE = Collections.unmodifiableMap(minNumOfSitesPerGene);
 	}
 
@@ -139,25 +229,51 @@ public class NucAminoAligner {
 		return parallelAlign(sequences, false);
 	}
 
-	private static List<String> localNucamino(Collection<Sequence> sequences) {
-		String jsonString;
-		String[] cmd = NucAminoAligner.generateCmd();
-		try {
-			Process proc = Runtime.getRuntime().exec(cmd);
-			OutputStream stdin = proc.getOutputStream();
-			BufferedReader stdout = new BufferedReader(new InputStreamReader(proc.getInputStream()));
-			FastaUtils.writeStream(sequences, stdin);
-			jsonString = stdout.lines().collect(Collectors.joining());
-			stdout.close();
-			proc.waitFor();
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		} catch (InterruptedException e) {
-			throw new RuntimeException(e);
+	/**
+	 * Uses locally installed NucAmino to align HIV sequences.
+	 *  
+	 * @param sequences
+	 * @return
+	 */
+	private static Map<Strain, List<String>> localNucamino(Collection<Sequence> sequences) {
+		Map<Strain, CompletableFuture<String>> futures = new EnumMap<>(Strain.class);
+		
+		for (Strain strain : Strain.values()) {
+			String[] cmd = NUCAMINO_LOCAL_COMMANDS.get(strain);
+			CompletableFuture<String> future = CompletableFuture.supplyAsync(() -> {
+				String jsonString;
+				try {
+					Process proc = Runtime.getRuntime().exec(cmd);
+					OutputStream stdin = proc.getOutputStream();
+					BufferedReader stdout = new BufferedReader(new InputStreamReader(proc.getInputStream()));
+					FastaUtils.writeStream(sequences, stdin);
+					jsonString = stdout.lines().collect(Collectors.joining());
+					stdout.close();
+					proc.waitFor();
+					return jsonString;
+				} catch (InterruptedException e) {
+					throw new RuntimeException(e);
+				} catch (IOException e) {
+					throw new RuntimeException(e);
+				}
+			}, executor);
+			futures.put(strain, future);
 		}
-		List<String> result = new ArrayList<>();
-		result.add(jsonString);
-		return result;
+
+		CompletableFuture.allOf(futures.values().toArray(new CompletableFuture<?>[0])).join();
+		
+		Map<Strain, List<String>> results = new EnumMap<>(Strain.class);
+		for (Strain strain : Strain.values()) {
+			CompletableFuture<String> future = futures.get(strain);
+			try {
+				results.put(strain, Lists.newArrayList(future.get()));
+			} catch (InterruptedException e) {
+				throw new RuntimeException(e);
+			} catch (ExecutionException e) {
+				throw new RuntimeException(e);
+			}
+		}
+		return results;
 	}
 
 	private static List<String> awsNucamino(Collection<Sequence> sequences, String awsFuncAndQual) {
@@ -193,44 +309,79 @@ public class NucAminoAligner {
 			}
 		}).collect(Collectors.toList());
 	}
+	
+	private static Map<Sequence, AlignedSequence> selectBestAlignments(
+		List<AlignedSequence> newAlignments,
+		Map<Sequence, AlignedSequence> knownAlignments
+	) {
+		for (AlignedSequence alignedSeq : newAlignments) {
+			Sequence inputSeq = alignedSeq.getInputSequence();
+			if (knownAlignments.containsKey(inputSeq)) {
+				if (alignedSeq.isEmpty()) {
+					// no overwrite
+					continue;
+				}
+				AlignedSequence knownAlignedSeq = knownAlignments.get(inputSeq);
+				// if (knownAlignedSeq.getAvailableGenes().size() < alignedSeq.getAvailableGenes().size()) {
+				// 	knownAlignments.put(inputSeq, alignedSeq);
+				// }
+				if (knownAlignedSeq.getNumMatchedNAs() < alignedSeq.getNumMatchedNAs()) {
+					knownAlignments.put(inputSeq, alignedSeq);
+				}
+			}
+			else {
+				knownAlignments.put(inputSeq, alignedSeq);
+			}
+		}
+		return knownAlignments;
+	}
 
 	private static List<AlignedSequence> parallelAlign(Collection<Sequence> sequences, boolean reversingSequence) {
-		Map<Sequence, StringBuilder> errors = new LinkedHashMap<>();
+		Map<Sequence, Map<Strain, StringBuilder>> errors = new LinkedHashMap<>();
 		Collection<Sequence> preparedSeqs = sequences;
 		if (reversingSequence) {
 			preparedSeqs = preparedSeqs.stream()
 				.map(s -> s.reverseCompliment())
 				.collect(Collectors.toList());
 		}
-		List<String> jsonStrings;
-		String awsFunc = System.getenv("NUCAMINO_AWS_LAMBDA");
-		if (awsFunc == null || awsFunc.equals("")) {
-			jsonStrings = localNucamino(preparedSeqs);
-		} else {
-			jsonStrings = awsNucamino(preparedSeqs, awsFunc);
-		}
-		List<AlignedSequence> results = new ArrayList<>();
-		for (String jsonString : jsonStrings) {
-			results.addAll(processCommandOutput(sequences, jsonString, reversingSequence, errors));
+		Map<Strain, List<String>> jsonStrings;
+		
+		// TODO: temporarily disable AWS NUCAMINO because we want to support multiple strains
+		//
+		// String awsFunc = System.getenv("NUCAMINO_AWS_LAMBDA");
+		// if (awsFunc == null || awsFunc.equals("")) {
+		// 	jsonStrings = localNucamino(preparedSeqs);
+		// } else {
+		// 	jsonStrings = awsNucamino(preparedSeqs, awsFunc);
+		// }
+
+		jsonStrings = localNucamino(preparedSeqs);
+		
+		Map<Sequence, AlignedSequence> results = new LinkedHashMap<>();
+		for (Strain strain : jsonStrings.keySet()) {
+			for (String jsonString : jsonStrings.get(strain)) {
+				List<AlignedSequence> alignedSeqs = processCommandOutput(
+					strain, sequences, jsonString,
+					reversingSequence, errors
+				);
+				results = selectBestAlignments(alignedSeqs, results);
+			}
 		}
 		if (!reversingSequence && !errors.isEmpty()) {
 			// a second run for reverse complement
-			List<Sequence> errorSeqs = new ArrayList<>(errors.keySet());
-			Map<Sequence, AlignedSequence> reversedResults = parallelAlign(errorSeqs, true).stream()
-				.collect(Collectors.toMap(as -> as.getInputSequence(), as -> as));
-			results = results.stream()
-				.map(as -> {
-					if (as.isEmpty()) {
-						AlignedSequence ras = reversedResults.get(as.getInputSequence());
-						if (!ras.isEmpty()) {
-							as = ras;
-						}
-					}
-					return as;
-				})
+
+			int numStrains = Strain.values().length;
+			List<Sequence> errorSeqs = errors
+				.entrySet().stream()
+				.filter(e -> e.getValue().size() == numStrains)
+				.map(e -> e.getKey())
 				.collect(Collectors.toList());
+			if (!errorSeqs.isEmpty()) {
+				List<AlignedSequence> reversedResults = parallelAlign(errorSeqs, true);
+				results = selectBestAlignments(reversedResults, results);
+			}
 		}
-		return results;
+		return Lists.newArrayList(results.values());
 	}
 
 	private static AlignedGeneSeq geneSeqFromReport(
@@ -469,8 +620,9 @@ public class NucAminoAligner {
 	 * @return list of AlignedSequence for all input sequences
 	 */
 	private static List<AlignedSequence> processCommandOutput(
-			Collection<Sequence> sequences, String jsonString,
-			boolean sequenceReversed, Map<Sequence, StringBuilder> errors) {
+			Strain strain, Collection<Sequence> sequences, String jsonString,
+			boolean sequenceReversed, Map<Sequence, Map<Strain, StringBuilder>> errors) {
+
 		Map<?, ?> jsonObj = Json.loads(
 			jsonString, new TypeToken<Map<?, ?>>(){}.getType());
 		List<?> alignmentResults = (List<?>) jsonObj.get("POL");
@@ -487,11 +639,11 @@ public class NucAminoAligner {
 			Map<Gene, String> discardedGenes = new LinkedHashMap<>();
 			String error = (String) result.get("Error");
 			if (!error.isEmpty()) {
-				errors.putIfAbsent(sequence, new StringBuilder());
-				errors.get(sequence).append(error);
+				errors.putIfAbsent(sequence, new EnumMap<>(Strain.class));
+				errors.get(sequence).putIfAbsent(strain, new StringBuilder());
+				errors.get(sequence).get(strain).append(error);
 			} else {
-				// TODO: HIV2 support
-				for (Gene gene : Gene.values(Strain.HIV1)) {
+				for (Gene gene : Gene.values(strain)) {
 					try {
 						alignedGeneSeqs.put(gene, geneSeqFromReport(sequence, gene, report));
 					} catch (MisAlignedException e) {
@@ -501,12 +653,15 @@ public class NucAminoAligner {
 					}
 				}
 				if (alignedGeneSeqs.isEmpty()) {
-					errors.putIfAbsent(sequence, new StringBuilder());
-					errors.get(sequence).append("No aligned results were found.");
+					errors.putIfAbsent(sequence, new EnumMap<>(Strain.class));
+					errors.get(sequence).putIfAbsent(strain, new StringBuilder());
+					errors.get(sequence).get(strain).append("No aligned results were found.");
 				}
 			}
 			alignedSequences.add(
-				new AlignedSequence(sequence, alignedGeneSeqs, discardedGenes, sequenceReversed)
+				new AlignedSequence(
+					strain, sequence, alignedGeneSeqs,
+					discardedGenes, sequenceReversed)
 			);
 		}
 		return alignedSequences;
@@ -518,28 +673,4 @@ public class NucAminoAligner {
 		// 	alignResult.getAATripletLine());
 	}
 
-	/**
-	 * Generates command line text for executing nucamino program using the built-in hiv1b
-	 * profile to align against the POL gene.
-	 * @param seq, gene
-	 * @return cmd.toString()
-	 */
-	private static String[] generateCmd() {
-		String executable = System.getenv("NUCAMINO_PROGRAM");
-		if (executable == null) {
-			// use "nucamino" as default program path
-			executable = "nucamino";
-		}
-		return new String[] {
-			/* Command */
-			executable,	 	// path to nucamino binary
-			"align", 		// sub-command: use built-in alignment profile
-			"hiv1b", 		// specify built-in profile choice
-			"pol", 			// specify gene to align against
-
-			/* Flags */
-			"-q", 			// quiet mode
-			"-f", "json", 	// return output format as json
-		};
-	}
 }

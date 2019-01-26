@@ -191,11 +191,32 @@ public class AlignedGeneSeq {
 	public int getLastNA() { return lastNA; }
 	public int getFirstAA() { return firstAA;}  // Need
 	public int getLastAA() { return lastAA; } // Need
+	
+	protected int getNumDiscordantNAs() {
+		int numDiscordantNAs = 0;
+		for (Mutation mut : mutations) {
+			if (mut.getTriplet().equals("NNN")) {
+				// NNN doesn't count
+				continue;
+			}
+			if (mut.isDeletion()) {
+				numDiscordantNAs += 3;
+			} else {
+				numDiscordantNAs += 3; //CodonTranslation.getMinimalNAChanges(mut.getTriplet(), mut.getConsensus());
+			}
+		}
+		for (FrameShift fs: frameShifts) {
+			if (fs.isInsertion()) {
+				numDiscordantNAs += fs.getSize();
+			}
+		}
+		return numDiscordantNAs;
+		
+	}
 
 	public float getMatchPcnt() {
 		if (matchPcnt == -1) {
 			int numNAs = lastNA - firstNA + 1;
-			int numDiscordance = 0;
 			for (Mutation mut : mutations) {
 				if (mut.getTriplet().equals("NNN")) {
 					// NNN doesn't count
@@ -204,19 +225,14 @@ public class AlignedGeneSeq {
 				}
 				if (mut.isDeletion()) {
 					numNAs += 3;
-					numDiscordance += 3;
-				} else {
-					numDiscordance += 3; //CodonTranslation.getMinimalNAChanges(mut.getTriplet(), mut.getConsensus());
 				}
 			}
 			for (FrameShift fs: frameShifts) {
 				if (fs.isDeletion()) {
 					numNAs += fs.getSize();
-				} else {
-					numDiscordance += fs.getSize();
 				}
 			}
-			matchPcnt = 100 - 100 * (float) numDiscordance / (float) numNAs;
+			matchPcnt = 100 - 100 * (float) getNumDiscordantNAs() / (float) numNAs;
 		}
 		return matchPcnt;
 	}

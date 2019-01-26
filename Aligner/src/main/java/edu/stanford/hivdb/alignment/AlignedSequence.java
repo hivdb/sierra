@@ -21,7 +21,6 @@ package edu.stanford.hivdb.alignment;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 import java.util.Collections;
 
 import org.apache.commons.lang3.StringUtils;
@@ -41,8 +40,6 @@ import edu.stanford.hivdb.utilities.SeqUtils;
 import edu.stanford.hivdb.utilities.Sequence;
 
 public class AlignedSequence {
-	private static final Map<Gene, Integer> FIRST_NA_BY_GENE;
-	private static final Map<Gene, Integer> NUM_NAS_BY_GENE;
 	private static final String WILDCARD = ".";
 
 	private final Strain strain;
@@ -61,36 +58,23 @@ public class AlignedSequence {
 	private transient List<FrameShift> frameShifts;
 	private final Boolean isReverseComplement;
 	private final Boolean isEmpty;
+	private transient Integer numMatchedNAs;
 
 	private static final Logger LOGGER = LogManager.getLogger();
 
-	static {
-		// TODO: HIV2 support
-		Map<Gene, Integer> firstNAByGene = new TreeMap<>();
-		firstNAByGene.put(Gene.valueOf("HIV1PR"), new Integer(2253));
-		firstNAByGene.put(Gene.valueOf("HIV1RT"), new Integer(2550));
-		firstNAByGene.put(Gene.valueOf("HIV1IN"), new Integer(4230));
-		FIRST_NA_BY_GENE = Collections.unmodifiableMap(firstNAByGene);
-
-		Map<Gene, Integer> numNAsByGene = new TreeMap<>();
-		numNAsByGene.put(Gene.valueOf("HIV1PR"), new Integer(297));
-		numNAsByGene.put(Gene.valueOf("HIV1RT"), new Integer(1680));
-		numNAsByGene.put(Gene.valueOf("HIV1IN"), new Integer(864));
-		NUM_NAS_BY_GENE = Collections.unmodifiableMap(numNAsByGene);
-	}
-
 	public AlignedSequence(
+			final Strain strain,
 			final Sequence unalignedSequence,
 			final Map<Gene, AlignedGeneSeq> alignedGeneSequenceMap,
 			final Map<Gene, String> discardedGenes,
 			final boolean sequenceReversed) {
 		inputSequence = unalignedSequence;
-		// TODO: add HIV2 support
-		this.strain = Strain.HIV1;
+		this.strain = strain;
 		this.alignedGeneSequenceMap = alignedGeneSequenceMap;
 		this.discardedGenes = discardedGenes;
 		isReverseComplement = sequenceReversed;
 		isEmpty = alignedGeneSequenceMap.isEmpty();
+		numMatchedNAs = null;
 	}
 
 	public boolean isEmpty() {
@@ -173,7 +157,7 @@ public class AlignedSequence {
 				concatSeq.append(geneSeqNAs);
 				// save number of missing trailing NAs for next geneSeq
 				numPrevPrefixNAs =
-					NUM_NAS_BY_GENE.get(gene) -
+					gene.getNASize() -
 					geneSeqNAs.length() - numCurPrefixNAs;
 				isFirstGeneSeq = false;
 			}
@@ -201,7 +185,7 @@ public class AlignedSequence {
 			for (Gene gene : getAvailableGenes()) {
 				// use the first available gene only
 				absoluteFirstNA =
-					FIRST_NA_BY_GENE.get(gene) +
+					gene.getFirstNA() +
 					(alignedGeneSequenceMap.get(gene).getFirstAA() - 1) * 3;
 				break;
 			}
@@ -266,5 +250,19 @@ public class AlignedSequence {
 		}
 		return frameShifts;
 	}
-
+	
+	protected int getNumMatchedNAs() {
+		if (numMatchedNAs == null) {
+			numMatchedNAs = 0;
+			for (Gene gene : alignedGeneSequenceMap.keySet()) {
+				numMatchedNAs += gene.getNASize();
+				AlignedGeneSeq geneSeq = alignedGeneSequenceMap.get(gene);
+				numMatchedNAs -=
+					geneSeq.getFirstAA() * 3 - 3 + // left missing NAs
+					geneSeq.getNumDiscordantNAs() +
+					gene.getNASize() - geneSeq.getLastAA() * 3; // right missing NAs
+			}
+		}
+		return numMatchedNAs;
+	}
 }
