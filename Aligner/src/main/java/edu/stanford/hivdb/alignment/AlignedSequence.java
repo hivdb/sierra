@@ -24,8 +24,6 @@ import java.util.Map;
 import java.util.Collections;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import edu.stanford.hivdb.genotyper.BoundGenotype;
 import edu.stanford.hivdb.genotyper.HIVGenotypeReference;
@@ -33,6 +31,7 @@ import edu.stanford.hivdb.genotyper.HIVGenotypeResult;
 import edu.stanford.hivdb.mutations.Apobec;
 import edu.stanford.hivdb.mutations.FrameShift;
 import edu.stanford.hivdb.mutations.Gene;
+import edu.stanford.hivdb.mutations.GeneEnum;
 import edu.stanford.hivdb.mutations.MutationSet;
 import edu.stanford.hivdb.mutations.Sdrms;
 import edu.stanford.hivdb.mutations.Strain;
@@ -40,7 +39,8 @@ import edu.stanford.hivdb.utilities.SeqUtils;
 import edu.stanford.hivdb.utilities.Sequence;
 
 public class AlignedSequence {
-	private static final String WILDCARD = ".";
+	private static final Character WILDCARD = '.';
+	private static final Character WILDCARD_PLACEHOLDER = '\b';
 
 	private final Strain strain;
 	private final Sequence inputSequence;
@@ -60,7 +60,7 @@ public class AlignedSequence {
 	private final Boolean isEmpty;
 	private transient Integer numMatchedNAs;
 
-	private static final Logger LOGGER = LogManager.getLogger();
+	// private static final Logger LOGGER = LogManager.getLogger();
 
 	public AlignedSequence(
 			final Strain strain,
@@ -134,37 +134,62 @@ public class AlignedSequence {
 	}
 
 	public String getConcatenatedSeq() {
-
 		if (concatenatedSequence == null) {
-
-			String geneSeqNAs;
-			AlignedGeneSeq geneSeq;
-			int numCurPrefixNAs = 0;
-			int numPrevPrefixNAs = 0;
-			boolean isFirstGeneSeq = true;
-			StringBuilder concatSeq = new StringBuilder();
-
-			for (Gene gene: getAvailableGenes()) {
-				geneSeq = alignedGeneSequenceMap.get(gene);
-				numCurPrefixNAs = (geneSeq.getFirstAA() - 1) * 3;
-				if (!isFirstGeneSeq) {
-					// append missing trailing NAs of prev geneSeq
-					// and missing leading NAs of current geneSeq
-					concatSeq.append(StringUtils.repeat(
-							WILDCARD, numPrevPrefixNAs + numCurPrefixNAs));
-				}
-				geneSeqNAs = geneSeq.getAlignedNAs();
-				concatSeq.append(geneSeqNAs);
-				// save number of missing trailing NAs for next geneSeq
-				numPrevPrefixNAs =
-					gene.getNASize() -
-					geneSeqNAs.length() - numCurPrefixNAs;
-				isFirstGeneSeq = false;
-			}
-
-			concatenatedSequence = concatSeq.toString();
+			concatenatedSequence = getConcatenatedSeq(false, true);
 		}
 		return concatenatedSequence;
+	}
+	
+	private String getConcatenatedSeq(boolean alignToHXB2, boolean trimResult) {
+		String geneSeqNAs;
+		AlignedGeneSeq geneSeq;
+		int numPrefixNAs = 0;
+		int numSuffixNAs = 0;
+		StringBuilder concatSeq = new StringBuilder();
+
+		for (Gene gene: getAvailableGenes()) {
+			geneSeq = alignedGeneSequenceMap.get(gene);
+			numPrefixNAs = (geneSeq.getFirstAA() - 1) * 3;
+			geneSeqNAs = geneSeq.getAlignedNAs();
+			numSuffixNAs =
+				gene.getNASize() -
+				geneSeqNAs.length() - numPrefixNAs;
+
+			geneSeqNAs =
+				StringUtils.repeat(WILDCARD_PLACEHOLDER, numPrefixNAs) +
+				geneSeqNAs +
+				StringUtils.repeat(WILDCARD_PLACEHOLDER, numSuffixNAs);
+
+			if (alignToHXB2 && (gene.getStrain() == Strain.HIV2A ||
+				gene.getStrain() == Strain.HIV2B)) {
+				GeneEnum geneEnum = gene.getGeneEnum();
+				if (geneEnum == GeneEnum.RT) {
+					// RT346: 1AA Deletion comparing to HXB2
+					geneSeqNAs =
+						geneSeqNAs.substring(0, 345 * 3) +
+						StringUtils.repeat(WILDCARD_PLACEHOLDER, 3) +
+						geneSeqNAs.substring(345 * 3);
+				}
+				else if (geneEnum == GeneEnum.IN) {
+					// IN272: 2AAs Insertion comparing to HXB2
+					geneSeqNAs = 
+						geneSeqNAs.substring(0, 272 * 3) +
+						geneSeqNAs.substring(274 * 3);
+					// IN283: 1AA Insertion comparing to HXB2
+					geneSeqNAs = 
+						geneSeqNAs.substring(0, 283 * 3) +
+						geneSeqNAs.substring(284 * 3);
+					// Anything after IN288
+					geneSeqNAs = geneSeqNAs.substring(0, 288 * 3); 
+				}
+			}
+			concatSeq.append(geneSeqNAs);
+		}
+		if (trimResult) {
+			return concatSeq.toString().trim().replace(WILDCARD_PLACEHOLDER, WILDCARD);
+		} else {
+			return concatSeq.toString().replace(WILDCARD_PLACEHOLDER, WILDCARD);
+		}
 	}
 
 	public MutationSet getMutations() {
@@ -189,7 +214,6 @@ public class AlignedSequence {
 					(alignedGeneSequenceMap.get(gene).getFirstAA() - 1) * 3;
 				break;
 			}
-			LOGGER.debug("First HXB2 NA: firstNA:" + absoluteFirstNA);
 		}
 		return absoluteFirstNA;
 	}
@@ -203,8 +227,12 @@ public class AlignedSequence {
 
 	public HIVGenotypeResult getSubtypeResult() {
 		if (!isEmpty && subtypeResult == null) {
+			// HIV-Genotyper only accepts HXB2-aligned sequence.
+			// Therefore we need to tweak the alignment.
+			String hxb2ConcatSeq = getConcatenatedSeq(true, false);
+			int hxb2FirstNA = Gene.valueOf("HIV1PR").getFirstNA();
 			subtypeResult = HIVGenotypeReference.compareAll(
-				getConcatenatedSeq(), getAbsoluteFirstNA());
+				hxb2ConcatSeq, hxb2FirstNA);
 		}
 		return subtypeResult;
 	}

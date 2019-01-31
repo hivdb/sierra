@@ -69,8 +69,7 @@ public class FastaUtilsTest {
 		assertFalse(c.isAccessible());
 	}
 
-	// @Test
-	// Genbank is currently unstable
+	@Test
 	public void testFetchGenbank() {
 		List<String> accessions = Arrays.asList("186416");
 		Sequence seq = FastaUtils.fetchGenbank(accessions).get(0);

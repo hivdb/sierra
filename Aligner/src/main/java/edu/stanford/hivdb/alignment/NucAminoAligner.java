@@ -236,26 +236,29 @@ public class NucAminoAligner {
 	 * @return
 	 */
 	private static Map<Strain, List<String>> localNucamino(Collection<Sequence> sequences) {
-		Map<Strain, CompletableFuture<String>> futures = new EnumMap<>(Strain.class);
+		Map<Strain, CompletableFuture<List<String>>> futures = new EnumMap<>(Strain.class);
 		
 		for (Strain strain : Strain.values()) {
 			String[] cmd = NUCAMINO_LOCAL_COMMANDS.get(strain);
-			CompletableFuture<String> future = CompletableFuture.supplyAsync(() -> {
-				String jsonString;
-				try {
-					Process proc = Runtime.getRuntime().exec(cmd);
-					OutputStream stdin = proc.getOutputStream();
-					BufferedReader stdout = new BufferedReader(new InputStreamReader(proc.getInputStream()));
-					FastaUtils.writeStream(sequences, stdin);
-					jsonString = stdout.lines().collect(Collectors.joining());
-					stdout.close();
-					proc.waitFor();
-					return jsonString;
-				} catch (InterruptedException e) {
-					throw new RuntimeException(e);
-				} catch (IOException e) {
-					throw new RuntimeException(e);
+			CompletableFuture<List<String>> future = CompletableFuture.supplyAsync(() -> {
+				List<String> jsonStrings = new ArrayList<>();
+				Iterable<List<Sequence>> partialSets = Iterables.partition(sequences, 10);
+				for (List<Sequence> partialSet : partialSets) {
+					try {
+						Process proc = Runtime.getRuntime().exec(cmd);
+						OutputStream stdin = proc.getOutputStream();
+						BufferedReader stdout = new BufferedReader(new InputStreamReader(proc.getInputStream()));
+						FastaUtils.writeStream(partialSet, stdin);
+						jsonStrings.add(stdout.lines().collect(Collectors.joining()));
+						stdout.close();
+						proc.waitFor();
+					} catch (InterruptedException e) {
+						throw new RuntimeException(e);
+					} catch (IOException e) {
+						throw new RuntimeException(e);
+					}
 				}
+				return jsonStrings;
 			}, executor);
 			futures.put(strain, future);
 		}
@@ -264,9 +267,9 @@ public class NucAminoAligner {
 		
 		Map<Strain, List<String>> results = new EnumMap<>(Strain.class);
 		for (Strain strain : Strain.values()) {
-			CompletableFuture<String> future = futures.get(strain);
+			CompletableFuture<List<String>> future = futures.get(strain);
 			try {
-				results.put(strain, Lists.newArrayList(future.get()));
+				results.put(strain, future.get());
 			} catch (InterruptedException e) {
 				throw new RuntimeException(e);
 			} catch (ExecutionException e) {

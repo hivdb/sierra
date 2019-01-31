@@ -33,6 +33,7 @@ public class NucAminoAlignerTest {
 	public void testSingleSequence() {
 		Sequence testSeq = Sequence.fromGenbank("AF096883");
 		AlignedSequence alignedSeq = NucAminoAligner.align(testSeq);
+		assertEquals("B (1.92%)", alignedSeq.getSubtypeText());
 		AlignedGeneSeq seqPR = alignedSeq.getAlignedGeneSequence(Gene.valueOf("HIV1PR"));
 		assertEquals(1, seqPR.getFirstAA());
 		assertEquals(1, seqPR.getFirstNA());
@@ -76,6 +77,7 @@ public class NucAminoAlignerTest {
 		Sequence testSeq = Sequence.fromGenbank("Z48731");
 		AlignedSequence alignedSeq = NucAminoAligner.align(testSeq);
 		assertEquals(Strain.HIV2A, alignedSeq.getStrain());
+		assertEquals("HIV-2 Group A (6.30%)", alignedSeq.getSubtypeText());
 		AlignedGeneSeq seqPR = alignedSeq.getAlignedGeneSequence(Gene.valueOf("HIV2APR"));
 		assertEquals(1, seqPR.getFirstAA());
 		assertEquals(2081 + 1, seqPR.getFirstNA());
@@ -119,6 +121,7 @@ public class NucAminoAlignerTest {
 		Sequence testSeq = Sequence.fromGenbank("L07625");
 		AlignedSequence alignedSeq = NucAminoAligner.align(testSeq);
 		assertEquals(Strain.HIV2B, alignedSeq.getStrain());
+		assertEquals("HIV-2 Group B (9.89%)", alignedSeq.getSubtypeText());
 		AlignedGeneSeq seqPR = alignedSeq.getAlignedGeneSequence(Gene.valueOf("HIV2BPR"));
 		assertEquals(1, seqPR.getFirstAA());
 		assertEquals(2618 + 1, seqPR.getFirstNA());

@@ -138,7 +138,7 @@ public class Gene implements Comparable<Gene> {
 				"EGKAGYVTDRGKDKVKPLEQTTNQQAELEAFALALQDSGPQVNIIVDSQY" +
 				"VMGIVAAQPTETESPIVREIIEEMIKKEKIYVGWVPAHKGLGGNQEVDHL" +
 				"VSQGIRQIL",
-				/* firstNA */2253)); // TODO: update firstNA to EHO
+				/* firstNA */2550)); // TODO: update firstNA to EHO
 		_singletons.put(
 			"HIV2BIN",
 			new Gene(

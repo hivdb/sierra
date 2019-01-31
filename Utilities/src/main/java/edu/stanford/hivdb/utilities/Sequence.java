@@ -59,16 +59,27 @@ public class Sequence {
 	private String sequence;
 	private String removedInvalidChars;
 
-	public Sequence(String header, String sequence) {
+	/**
+	 * Initializes a sequence with given header and sequence string.
+	 *
+	 * @param header
+	 * @param sequenceText
+	 */
+	public Sequence(String header, String sequenceText) {
 		this.header = header;
 		this.removedInvalidChars = "";
-		this.sequence = sanitizeSequence(sequence);
+		this.sequence = sanitizeSequence(sequenceText);
 	}
 
-//	public static List<Sequence> fromGenbank(Collection<String> accessions) {
-//		return FastaUtils.fetchGenbank(accessions);
-//	}
-
+	/**
+	 * Creates a Sequence object from designated Genbank Accession ID
+	 * 
+	 * IMPORTANT: This function is only designed for unit tests. Use it in
+	 * production will significant reduce the performance and stability.
+	 * 
+	 * @param accession
+	 * @return a Sequence object
+	 */
 	public static Sequence fromGenbank(String accession) {
 		List<String> accessions = Arrays.asList(accession);
 		List<Sequence> result = FastaUtils.fetchGenbank(accessions);
@@ -76,18 +87,34 @@ public class Sequence {
 		return result.get(0);
 	}
 
+	/**
+	 * Initializes a Sequence object from a jFASTA element
+	 *
+	 * @param el
+	 */
 	public Sequence(final FASTAElement el) {
 		this(el.getHeader(), el.getSequence());
 	}
 
-	private String sanitizeSequence(String sequence) {
-		sequence = sequence.toUpperCase();
-		this.removedInvalidChars += sequence
+	/**
+	 * Sanitizes the sequence string to remove non-IUPAC characters
+	 *
+	 * @param sequenceText
+	 * @return the sanitized sequence string
+	 */
+	private String sanitizeSequence(String sequenceText) {
+		sequenceText = sequenceText.toUpperCase();
+		this.removedInvalidChars += sequenceText
 			.replaceAll("[ACGTRYMWSKBDHVN]", "");
-		return sequence
+		return sequenceText
 			.replaceAll("[^ACGTRYMWSKBDHVN]", "");
 	}
 
+	/**
+	 * Gets removed non-IUPAC characters by `sanitizeSequence`
+	 * 
+	 * @return a set of removed characters
+	 */
 	public Set<Character> removedInvalidChars() {
 		Set<Character> result = new TreeSet<>();
 		for (Character c : removedInvalidChars.toCharArray()) {
@@ -96,26 +123,56 @@ public class Sequence {
 		return result;
 	}
 
+	/**
+	 * Gets the header name of the sequence.
+	 * 
+	 * @return String
+	 */
 	public String getHeader() {
 		return header;
 	}
 
+	/**
+	 * Gets the sequence text.
+	 *
+	 * @return String
+	 */
 	public String getSequence() {
 		return sequence;
 	}
 
+	/**
+	 * Gets the sequence length/size.
+	 * 
+	 * @return Integer
+	 */
 	public Integer getLength() {
 		return sequence.length();
 	}
 
+	/**
+	 * Gets the MD5 hash string of this sequence.
+	 *
+	 * @return String
+	 */
 	public String getMD5() {
 		return DigestUtils.md5Hex(sequence);
 	}
 
+	/**
+	 * Gets the SHA512 hash string of this sequence.
+	 *
+	 * @return String
+	 */
 	public String getSHA512() {
 		return DigestUtils.sha512Hex(sequence);
 	}
 
+	/**
+	 * Calculates the reverse compliment of current sequence.
+	 *
+	 * @return Sequence object of the reverse compliment
+	 */
 	public Sequence reverseCompliment() {
 		StringBuilder reversed = new StringBuilder();
 		int seqLen = sequence.length();

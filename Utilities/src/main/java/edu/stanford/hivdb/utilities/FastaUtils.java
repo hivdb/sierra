@@ -43,6 +43,9 @@ import net.sf.jfasta.impl.FASTAFileReaderImpl;
 import net.sf.jfasta.impl.FASTAFileWriter;
 
 public class FastaUtils {
+
+	private static transient double fetchGenbankLastRun = -1;
+	
 	private FastaUtils() {}
 
 	/**
@@ -74,7 +77,7 @@ public class FastaUtils {
 		}
 
 		String resultStr = String.join("\n", result);
-		if (resultStr.startsWith(" Error")) resultStr = "";
+		if (resultStr.startsWith("Bad id.")) resultStr = "";
 		if (!(resultStr.startsWith(">") || resultStr.isEmpty())) {
 			resultStr = ">UnnamedSequence\n" + resultStr;
 		}
@@ -83,11 +86,27 @@ public class FastaUtils {
 
 	/**
 	 * Fetches a list of Genbank nucleotide sequences
+	 * 
+	 * IMPORTANT: This function is only designed for unit tests. Use it in
+	 * production will significant reduce the performance and stability.
 	 *
 	 * @param accessions
 	 * @return List<Sequence>
 	 */
 	public static List<Sequence> fetchGenbank(Collection<String> accessions) {
+		if (fetchGenbankLastRun - System.currentTimeMillis() < 1000) {
+			/* Genbank applies threshold to requests from same origin IP.
+			 * 
+			 * To avoid errors, this block ensures that the time interval
+			 * between each request must greater than 1000ms.
+			 */
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				throw new RuntimeException(e);
+			}
+		}
+		fetchGenbankLastRun = System.currentTimeMillis();
 		String baseUrl = "https://www.ncbi.nlm.nih.gov/sviewer/viewer.cgi";
 		HttpResponse<InputStream> response;
 		try {
@@ -98,8 +117,6 @@ public class FastaUtils {
 				.queryString("db", "nuccore")
 				.queryString("report", "fasta")
 				.queryString("conwithfeat", "on")
-				// TODO: move this to configuration
-				// .queryString("api_key", "c589b6589a876ae42089c059c49249722807")
 				.field("id", String.join(",", accessions))
 				.asBinary();
 		} catch (UnirestException e) {

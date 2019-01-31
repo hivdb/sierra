@@ -36,6 +36,18 @@ public class SequenceTest {
 		assertEquals("35af5703862dd708a8ac1edc6b740e272e2ea85ee77643e5f0" +
 					 "46e283d5eb2823e44f9772ab8f4d9d356f0e8ffc484d916b43" +
 					 "0dec1db960c48125a528f859f97d", seq.getSHA512());
+		// repeat fromGenbank
+		seq = Sequence.fromGenbank("186416");
+		assertNotNull(seq);
+		assertEquals(Integer.valueOf(1966), seq.getLength());
+		
+		seq = Sequence.fromGenbank("186416");
+		assertNotNull(seq);
+		assertEquals(Integer.valueOf(1966), seq.getLength());
+
+		seq = Sequence.fromGenbank("186416");
+		assertNotNull(seq);
+		assertEquals(Integer.valueOf(1966), seq.getLength());
 	}
 
 	@Test
