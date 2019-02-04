@@ -376,7 +376,7 @@ public class XmlOutput {
 		Element geneData = document.createElement("geneData");
 
 		// name="gene" type="xs:string"
-		geneData.appendChild(newSimpleElement("gene", gene.getShortName()));
+		geneData.appendChild(newSimpleElement("gene", gene.getName()));
 
 		boolean isPresent = alignedGeneSeq != null;
 		// name="present" type="xs:boolean"
@@ -659,7 +659,7 @@ public class XmlOutput {
 	private Element createCommentElement(Mutation mut, BoundComment bc) {
 		Element comment = document.createElement("comment");
 		// name="gene" type="xs:string"
-		comment.appendChild(newSimpleElement("gene", mut.getGene().getShortName()));
+		comment.appendChild(newSimpleElement("gene", mut.getGene().getName()));
 
 		// name="grouping" type="xs:string" minOccurs="0" maxOccurs="1"
 		comment.appendChild(

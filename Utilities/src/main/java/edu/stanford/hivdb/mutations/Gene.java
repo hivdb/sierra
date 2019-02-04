@@ -305,7 +305,11 @@ public class Gene implements Comparable<Gene> {
 		return this.geneEnum;
 	}
 	
-	public String getShortName() {
+	public String getNameWithStrain() {
+		return this.toString();
+	}
+	
+	public String getName() {
 		return this.geneEnum.name();
 	}
 	

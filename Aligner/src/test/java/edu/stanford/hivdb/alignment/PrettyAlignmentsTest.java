@@ -84,7 +84,7 @@ public class PrettyAlignmentsTest {
 			}
 			output.append(row + "\n");
 		}
-		MyFileUtils.writeFile(gene.getShortName() + "PrettyAlignmentTestOutput.txt", output.toString());
+		MyFileUtils.writeFile(gene.getName() + "PrettyAlignmentTestOutput.txt", output.toString());
 	}
 
 }

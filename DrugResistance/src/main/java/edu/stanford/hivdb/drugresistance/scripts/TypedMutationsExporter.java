@@ -85,7 +85,7 @@ public class TypedMutationsExporter {
 		}
 		for (Mutation mut : mutSet) {
 			List<String> row = new ArrayList<>();
-			row.add(mut.getGene().getShortName());
+			row.add(mut.getGene().getName());
 			row.add(mut.getReference());
 			row.add("" + mut.getPosition());
 			row.add(mut.getAAs());

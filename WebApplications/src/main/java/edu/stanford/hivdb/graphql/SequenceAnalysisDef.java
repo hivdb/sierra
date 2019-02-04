@@ -105,6 +105,11 @@ public class SequenceAnalysisDef {
 			.name("inputSequence")
 			.description("The original unaligned sequence.")
 			.build())
+		.field(field -> field
+			.type(enumStrain)
+			.name("strain")
+			.description("HIV strain of this sequence.")
+		)
 		.field(newFieldDefinition()
 			.type(GraphQLBoolean)
 			.name("isReverseComplement")

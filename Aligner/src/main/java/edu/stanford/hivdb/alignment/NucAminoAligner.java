@@ -248,6 +248,7 @@ public class NucAminoAligner {
 						Process proc = Runtime.getRuntime().exec(cmd);
 						OutputStream stdin = proc.getOutputStream();
 						BufferedReader stdout = new BufferedReader(new InputStreamReader(proc.getInputStream()));
+						// System.out.println(partialSet);
 						FastaUtils.writeStream(partialSet, stdin);
 						jsonStrings.add(stdout.lines().collect(Collectors.joining()));
 						stdout.close();

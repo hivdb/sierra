@@ -140,7 +140,7 @@ public class AlignedSequence {
 		return concatenatedSequence;
 	}
 	
-	private String getConcatenatedSeq(boolean alignToHXB2, boolean trimResult) {
+	private String getConcatenatedSeq(boolean fitWithHXB2, boolean trimResult) {
 		String geneSeqNAs;
 		AlignedGeneSeq geneSeq;
 		int numPrefixNAs = 0;
@@ -160,7 +160,7 @@ public class AlignedSequence {
 				geneSeqNAs +
 				StringUtils.repeat(WILDCARD_PLACEHOLDER, numSuffixNAs);
 
-			if (alignToHXB2 && (gene.getStrain() == Strain.HIV2A ||
+			if (fitWithHXB2 && (gene.getStrain() == Strain.HIV2A ||
 				gene.getStrain() == Strain.HIV2B)) {
 				GeneEnum geneEnum = gene.getGeneEnum();
 				if (geneEnum == GeneEnum.RT) {

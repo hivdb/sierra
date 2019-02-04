@@ -74,7 +74,7 @@ public class TabularAlgorithmsComparison {
 					for (Drug drug : dc.getDrugsForHivdbTesting()) {
 						List<String> row = new ArrayList<>();
 						row.add(alignedSeq.getInputSequence().getHeader());
-						row.add(gene.getShortName());
+						row.add(gene.getName());
 						row.add(drug.getDisplayAbbr());
 						for (Asi asi : asiList) {
 							String sir = asi.getDrugLevelSir(drug);

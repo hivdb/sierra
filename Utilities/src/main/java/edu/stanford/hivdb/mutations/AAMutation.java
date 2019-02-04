@@ -102,7 +102,7 @@ public class AAMutation implements Mutation {
 			position != another.getPosition()) {
 			throw new IllegalArgumentException(String.format(
 				"The other mutation must be at this position: %d (%s)",
-				position, gene.getShortName()));
+				position, gene.getName()));
 		}
 		return mergesWith(another.getAAChars());
 	}
@@ -123,7 +123,7 @@ public class AAMutation implements Mutation {
 		) {
 			throw new IllegalArgumentException(String.format(
 				"The other mutation must be at this position: %d (%s)",
-				position, gene.getShortName()));
+				position, gene.getName()));
 		}
 		return subtractsBy(another.getAAChars());
 	}
@@ -147,7 +147,7 @@ public class AAMutation implements Mutation {
 		) {
 			throw new IllegalArgumentException(String.format(
 				"The other mutation must be at this position: %d (%s)",
-				position, gene.getShortName()));
+				position, gene.getName()));
 		}
 		return intersectsWith(another.getAAChars());
 	}
@@ -482,6 +482,6 @@ public class AAMutation implements Mutation {
 
 	@Override
 	public final String getHumanFormatWithGene() {
-		return String.format("%s_%s", gene.getShortName(), getHumanFormat());
+		return String.format("%s_%s", gene.getName(), getHumanFormat());
 	}
 }

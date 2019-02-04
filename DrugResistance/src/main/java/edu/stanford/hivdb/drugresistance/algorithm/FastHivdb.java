@@ -133,8 +133,10 @@ public class FastHivdb {
 
 	static {
 		Map<Gene, List<Rule>> rulesByGenes = new TreeMap<>();
-		for (Gene gene : Gene.values(Strain.HIV1)) {
-			rulesByGenes.put(gene, new ArrayList<>());
+		for (Strain strain : Strain.values()) {
+			for (Gene gene : Gene.values(strain)) {
+				rulesByGenes.put(gene, new ArrayList<>());
+			}
 		}
 		for (MutScore mutScore : MutationScores.getMutScores()) {
 			List<Integer> pos = new ArrayList<>();

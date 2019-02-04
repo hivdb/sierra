@@ -125,7 +125,7 @@ public class AsiConstructor {
 				definition.appendChild(geneDefinition);
 
 				Node geneName = doc.createElement("NAME");
-				geneName.appendChild(doc.createTextNode(gene.getShortName()));
+				geneName.appendChild(doc.createTextNode(gene.getName()));
 				geneDefinition.appendChild(geneName);
 
 				Node drugClassList = doc.createElement("DRUGCLASSLIST");

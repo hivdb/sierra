@@ -259,7 +259,7 @@ public class MutationPatterns {
 						map.put(seqId, muts);
 						return null;
 					},
-					gene.getShortName());
+					gene.getName());
 				allResult.putAll(calcGenePatterns(gene, allMutations.values()));
 			}
 			return allResult;

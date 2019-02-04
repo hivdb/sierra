@@ -52,10 +52,13 @@ public class GeneDef {
 			.name("Gene")
 			.description("HIV genes. Accept PR, RT or IN.")
 			.field(field -> field
+				.type(GraphQLString)
+				.name("nameWithStrain")
+				.description("Name of the gene (with strain name)."))
+			.field(field -> field
 				.type(enumGene)
 				.name("name")
-				.description("Name of the gene.")
-				.dataFetcher(pipeLineDataFetcher))
+				.description("Name of the gene (without strain name)."))
 			.field(field -> field
 				.type(enumStrain)
 				.name("strain")
