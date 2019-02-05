@@ -21812,14 +21812,14 @@
           "algorithm": "HIVDB",
           "SIR": "R",
           "interpretation": "High-Level Resistance",
-          "explanation": "Total score: 70\nN155H (60), T97A (10) "
+          "explanation": "Total score: 80\nN155H (60), T97A (10), D232N (10) "
         },
         {
           "drug": "RAL",
           "algorithm": "HIVDB",
           "SIR": "R",
           "interpretation": "High-Level Resistance",
-          "explanation": "Total score: 70\nN155H (60), T97A (10) "
+          "explanation": "Total score: 80\nN155H (60), T97A (10), D232N (10) "
         },
         {
           "drug": "BIC",
@@ -22821,28 +22821,28 @@
           "algorithm": "HIVDB",
           "SIR": "I",
           "interpretation": "Intermediate Resistance",
-          "explanation": "Total score: 45\nQ148H (25), G140S (10) G140S + Q148H (10)"
+          "explanation": "Total score: 55\nQ148H (25), G140S (10) G140S + Q148H (10), L74I + Q148H (10)"
         },
         {
           "drug": "DTG",
           "algorithm": "HIVDB",
-          "SIR": "I",
-          "interpretation": "Intermediate Resistance",
-          "explanation": "Total score: 45\nQ148H (25), G140S (10) G140S + Q148H (10)"
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 60\nQ148H (25), G140S (10) L74I + Q148H (15), G140S + Q148H (10)"
         },
         {
           "drug": "EVG",
           "algorithm": "HIVDB",
           "SIR": "R",
           "interpretation": "High-Level Resistance",
-          "explanation": "Total score: 90\nQ148H (60), G140S (30) "
+          "explanation": "Total score: 105\nQ148H (60), G140S (30) L74I + Q148H (15)"
         },
         {
           "drug": "RAL",
           "algorithm": "HIVDB",
           "SIR": "R",
           "interpretation": "High-Level Resistance",
-          "explanation": "Total score: 90\nQ148H (60), G140S (30) "
+          "explanation": "Total score: 105\nQ148H (60), G140S (30) L74I + Q148H (15)"
         },
         {
           "drug": "BIC",
@@ -22928,14 +22928,14 @@
           "algorithm": "HIVDB",
           "SIR": "R",
           "interpretation": "High-Level Resistance",
-          "explanation": "Total score: 60\nN155H (60) "
+          "explanation": "Total score: 70\nN155H (60), D232N (10) "
         },
         {
           "drug": "RAL",
           "algorithm": "HIVDB",
           "SIR": "R",
           "interpretation": "High-Level Resistance",
-          "explanation": "Total score: 60\nN155H (60) "
+          "explanation": "Total score: 70\nN155H (60), D232N (10) "
         },
         {
           "drug": "BIC",
@@ -23021,14 +23021,14 @@
           "algorithm": "HIVDB",
           "SIR": "R",
           "interpretation": "High-Level Resistance",
-          "explanation": "Total score: 60\nN155H (60) "
+          "explanation": "Total score: 70\nN155H (60), D232N (10) "
         },
         {
           "drug": "RAL",
           "algorithm": "HIVDB",
           "SIR": "R",
           "interpretation": "High-Level Resistance",
-          "explanation": "Total score: 60\nN155H (60) "
+          "explanation": "Total score: 70\nN155H (60), D232N (10) "
         },
         {
           "drug": "BIC",
@@ -23114,14 +23114,14 @@
           "algorithm": "HIVDB",
           "SIR": "R",
           "interpretation": "High-Level Resistance",
-          "explanation": "Total score: 60\nN155H (60) "
+          "explanation": "Total score: 70\nN155H (60), D232N (10) "
         },
         {
           "drug": "RAL",
           "algorithm": "HIVDB",
           "SIR": "R",
           "interpretation": "High-Level Resistance",
-          "explanation": "Total score: 60\nN155H (60) "
+          "explanation": "Total score: 70\nN155H (60), D232N (10) "
         },
         {
           "drug": "BIC",
@@ -23207,14 +23207,14 @@
           "algorithm": "HIVDB",
           "SIR": "R",
           "interpretation": "High-Level Resistance",
-          "explanation": "Total score: 60\nN155H (60) "
+          "explanation": "Total score: 70\nN155H (60), D232N (10) "
         },
         {
           "drug": "RAL",
           "algorithm": "HIVDB",
           "SIR": "R",
           "interpretation": "High-Level Resistance",
-          "explanation": "Total score: 60\nN155H (60) "
+          "explanation": "Total score: 70\nN155H (60), D232N (10) "
         },
         {
           "drug": "BIC",

@@ -179,7 +179,7 @@
       "pos": 118.0,
       "aas": "R"
     },
-    "comment": "G118R is an extremely rare non-polymorphic mutation selected in patients receiving RAL and DTG and in vitro by DTG. It causes intermediate reductions in RAL and EVG susceptibility and low-level reductions in DTG and BIC susceptibility."
+    "comment": "G118R is a rare non-polymorphic mutation selected in patients receiving RAL and DTG and in vitro by DTG. It causes a variable reduction in susceptibility to each of the INSTIs of about 5-fold."
   },
   {
     "commentName": "IN119R",
@@ -476,7 +476,7 @@
       "pos": 151.0,
       "aas": "I"
     },
-    "comment": "V151I is an accessory INSTI selected mutation that occurs in 1% to 5% of viruses from ARV-naive patients depending on subtype. It appears to have little or no effect on INSTI susceptibility."
+    "comment": "V151I is an accessory INSTI selected mutation that occurs in 1% to 5% of viruses from ARV-naive patients depending on subtype. Alone, it appears to have little or no effect on INSTI susceptibility."
   },
   {
     "commentName": "IN151L",
@@ -587,6 +587,17 @@
       "aas": "R"
     },
     "comment": "S230R is a non-polymorphic mutation selected by RAL, EVG, and DTG. It causes low-level reductions in DTG susceptibility."
+  },
+  {
+    "commentName": "IN232N",
+    "drugClass": "INSTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "gene": "IN",
+      "pos": 232.0,
+      "aas": "N"
+    },
+    "comment": "D232N is a common nonpolymorphic accessory mutation selected in patients receiving RAL and EVG."
   },
   {
     "commentName": "IN263ACDEFGHILMNPQSTVWY_-",

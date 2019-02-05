@@ -87,22 +87,24 @@ public class MutationPrevalencesTest {
 
 			/* 1st mutation in the INI file with 2 different subtypes */
 			Mutation m = new Mutation(Gene.IN, 1, "S");
-			checkNullPrevalence(MutationPrevalences.getPrevalenceAtSamePosition(m), "S", "A");
+			
+			// percentageNaive < 0.1 and percentageTreated < 0.1 should be filtered by MutationPrevalences
 			checkNullPrevalence(MutationPrevalences.getPrevalenceAtSamePosition(m), "S", "B");
+			checkNullPrevalence(MutationPrevalences.getPrevalenceAtSamePosition(m), "S", "D");
 
 			/* mutation towards the end of INI file */
 			m = new Mutation(Gene.IN, 286, "N");
-			checkPrevalence(MutationPrevalences.getPrevalenceAtSamePosition(m), "N", "CRF01_AE", 1820, 66, 3.6, 1, 0, 0);
+			checkPrevalence(MutationPrevalences.getPrevalenceAtSamePosition(m), "N", "CRF01_AE", 1856, 66, 3.6, 1, 0, 0);
 
 			/* mutations in the middle of RTI file*/
 			m = new Mutation(Gene.RT, 553, "I");
 			checkNullPrevalence(MutationPrevalences.getPrevalenceAtSamePosition(m), "I", "G");
 			m = new Mutation(Gene.RT, 554, "S");
-			checkPrevalence(MutationPrevalences.getPrevalenceAtSamePosition(m), "S", "Other", 737, 547, 74.2, 2, 0, 0);
+			checkPrevalence(MutationPrevalences.getPrevalenceAtSamePosition(m), "S", "Other", 792, 592, 74.7, 20, 8, 40);
 
 			/* mutation in the middle of PI file */
 			m = new Mutation(Gene.PR, 72, "T");
-			checkPrevalence(MutationPrevalences.getPrevalenceAtSamePosition(m), "T", "All", 98137, 3731, 3.8, 26382, 2106, 8.0);
+			checkPrevalence(MutationPrevalences.getPrevalenceAtSamePosition(m), "T", "All", 103441, 3826, 3.7, 26385, 2106, 8.0);
 		}
 
 		@Test

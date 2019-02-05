@@ -2297,6 +2297,15 @@
   {
     "gene": "IN",
     "drugClass": "INSTI",
+    "position": 232,
+    "consensus": "D",
+    "aas": "N",
+    "type": "Accessory",
+    "isUnusual": false
+  },
+  {
+    "gene": "IN",
+    "drugClass": "INSTI",
     "position": 263,
     "consensus": "R",
     "aas": "K",
