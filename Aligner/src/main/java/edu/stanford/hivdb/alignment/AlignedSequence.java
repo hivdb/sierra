@@ -141,6 +141,7 @@ public class AlignedSequence {
 	}
 	
 	private String getConcatenatedSeq(boolean fitWithHXB2, boolean trimResult) {
+		// TODO: should be replaced by Gene.adjustNAAlignment
 		String geneSeqNAs;
 		AlignedGeneSeq geneSeq;
 		int numPrefixNAs = 0;

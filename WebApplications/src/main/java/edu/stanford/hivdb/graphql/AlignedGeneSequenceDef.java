@@ -95,6 +95,19 @@ public class AlignedGeneSequenceDef {
 				"Mixtures are represented as \"X\"."
 			)
 		)
+		.field(field -> field
+			.type(GraphQLString)
+			.name("adjustedAlignedNAs")
+			.description("(HXB2 numbering) adjusted aligned DNA sequence without insertions and insertion gaps.")
+		)
+		.field(field -> field
+			.type(GraphQLString)
+			.name("adjustedAlignedAAs")
+			.description(
+				"(HXB2 numbering) adjusted aligned protein sequence without insertions and insertion gaps. " +
+				"Mixtures are represented as \"X\"."
+			)
+		)
 		.field(newMutationSet("mutations")
 			.description("All mutations found in the aligned sequence.")
 			.build()

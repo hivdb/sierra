@@ -179,12 +179,19 @@ public class AlignedGeneSeq {
 			this.alignedNAs = alignedNAs.toString();
 		}
 		return this.alignedNAs;
-
 	} // Need
 
 	public String getAlignedAAs() {
 		return CodonTranslation.simpleTranslate(
 			this.getAlignedNAs(), firstAA, gene.getReference());
+	}
+	
+	public String getAdjustedAlignedNAs() {
+		return gene.adjustNAAlignment(getAlignedNAs(), firstAA, lastAA);
+	}
+
+	public String getAdjustedAlignedAAs() {
+		return gene.adjustAAAlignment(getAlignedAAs(), firstAA, lastAA);
 	}
 
 	public int getFirstNA() { return firstNA; }

@@ -102,6 +102,7 @@ public class NucAminoAlignerTest {
 				"R460K, K462R, K467V, V492A, S505V, A506V, S507G, S514N, K515R"),
 			seqRT.getMutations()
 		);
+		assertEquals(seqRT.getAdjustedAlignedNAs().length(), 560);
 		AlignedGeneSeq seqIN = alignedSeq.getAlignedGeneSequence(Gene.valueOf("HIV2AIN"));
 		assertEquals(1, seqIN.getFirstAA());
 		assertEquals(2081 + 1975, seqIN.getFirstNA());
@@ -114,6 +115,7 @@ public class NucAminoAlignerTest {
 				"L250I, I260V, E276D, S281P, A286T, M292V"),
 			seqIN.getMutations()
 		);
+		assertEquals(seqIN.getAdjustedAlignedNAs().length(), 288);
 	}
 
 	@Test
