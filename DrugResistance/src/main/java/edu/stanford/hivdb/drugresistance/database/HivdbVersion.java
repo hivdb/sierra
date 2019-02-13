@@ -38,7 +38,7 @@ public enum HivdbVersion {
 	V8_6("AlgXMLs/HIVDB_8.6.xml", "2018-07-03", "8.6"),
 	V8_6_1("AlgXMLs/HIVDB_8.6.1.xml", "2018-07-18", "8.6.1"),
 	V8_7("AlgXMLs/HIVDB_8.7.xml", "2018-10-19", "8.7"),
-	V8_8("AlgXMLs/HIVDB_8.8a1.xml", "2019-02-04", "8.8a1");
+	V8_8("AlgXMLs/HIVDB_8.8.xml", "2019-02-13", "8.8");
 
 	public final String resourcePath;
 	public final String versionDate;
