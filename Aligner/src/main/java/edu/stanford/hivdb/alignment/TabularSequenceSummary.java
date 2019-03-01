@@ -28,10 +28,12 @@ import org.apache.commons.lang3.StringUtils;
 import edu.stanford.hivdb.utilities.TSV;
 import edu.stanford.hivdb.drugs.DrugClass;
 import edu.stanford.hivdb.mutations.Gene;
+import edu.stanford.hivdb.mutations.GeneEnum;
 import edu.stanford.hivdb.mutations.Apobec;
 import edu.stanford.hivdb.mutations.FrameShift;
 import edu.stanford.hivdb.mutations.MutType;
 import edu.stanford.hivdb.mutations.MutationSet;
+import edu.stanford.hivdb.mutations.Strain;
 import edu.stanford.hivdb.utilities.NumberFormats;
 
 
@@ -242,7 +244,7 @@ public class TabularSequenceSummary {
 		// TODO: HIV2 Support
 		for (Gene gene : Gene.values(alignedSeq.getStrain())) {
 			if (!seqResult.containsKey(gene)) {
-				if (gene.equals(Gene.valueOf("HIV1RT"))) {
+				if (gene.getGeneEnum() == GeneEnum.RT) {
 					nonDrmTsmsList.add("NA");
 					nonDrmTsmsList.add("NA");
 				} else {
@@ -273,17 +275,18 @@ public class TabularSequenceSummary {
 		String firstAAPR, lastAAPR, firstAART, lastAART, firstAAIN, lastAAIN;
 		firstAAPR = lastAAPR = firstAART = lastAART = firstAAIN = lastAAIN = "NA";
 		Map<Gene, AlignedGeneSeq> seqResult = alignedSeq.getAlignedGeneSequenceMap();
-		if (seqResult.containsKey(Gene.valueOf("HIV1PR"))) {
-			firstAAPR = "" + seqResult.get(Gene.valueOf("HIV1PR")).getFirstAA();
-			lastAAPR = "" + seqResult.get(Gene.valueOf("HIV1PR")).getLastAA();
+		Strain strain = alignedSeq.getStrain();
+		if (seqResult.containsKey(Gene.valueOf(strain, "PR"))) {
+			firstAAPR = "" + seqResult.get(Gene.valueOf(strain, "PR")).getFirstAA();
+			lastAAPR = "" + seqResult.get(Gene.valueOf(strain, "PR")).getLastAA();
 		}
-		if (seqResult.containsKey(Gene.valueOf("HIV1RT"))) {
-			firstAART = "" + seqResult.get(Gene.valueOf("HIV1RT")).getFirstAA();
-			lastAART = "" + seqResult.get(Gene.valueOf("HIV1RT")).getLastAA();
+		if (seqResult.containsKey(Gene.valueOf(strain, "RT"))) {
+			firstAART = "" + seqResult.get(Gene.valueOf(strain, "RT")).getFirstAA();
+			lastAART = "" + seqResult.get(Gene.valueOf(strain, "RT")).getLastAA();
 		}
-		if (seqResult.containsKey(Gene.valueOf("HIV1IN"))) {
-			firstAAIN = "" + seqResult.get(Gene.valueOf("HIV1IN")).getFirstAA();
-			lastAAIN = "" + seqResult.get(Gene.valueOf("HIV1IN")).getLastAA();
+		if (seqResult.containsKey(Gene.valueOf(strain, "IN"))) {
+			firstAAIN = "" + seqResult.get(Gene.valueOf(strain, "IN")).getFirstAA();
+			lastAAIN = "" + seqResult.get(Gene.valueOf(strain, "IN")).getLastAA();
 		}
 		geneBoundaries.addAll(Arrays.asList(new String[] {
 			firstAAPR, lastAAPR, firstAART, lastAART, firstAAIN, lastAAIN}));
