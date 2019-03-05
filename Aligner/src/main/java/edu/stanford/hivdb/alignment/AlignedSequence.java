@@ -148,8 +148,14 @@ public class AlignedSequence {
 		int numSuffixNAs = 0;
 		StringBuilder concatSeq = new StringBuilder();
 
-		for (Gene gene: getAvailableGenes()) {
+		for (Gene hxb2Gene: Gene.values(Strain.HIV1)) {
+			GeneEnum geneEnum = hxb2Gene.getGeneEnum();
+			Gene gene = Gene.valueOf(strain, geneEnum);
 			geneSeq = alignedGeneSequenceMap.get(gene);
+			if (geneSeq == null) {
+				concatSeq.append(StringUtils.repeat(WILDCARD_PLACEHOLDER, gene.getNASize()));
+				continue;
+			}
 			numPrefixNAs = (geneSeq.getFirstAA() - 1) * 3;
 			geneSeqNAs = geneSeq.getAlignedNAs();
 			numSuffixNAs =
@@ -163,7 +169,6 @@ public class AlignedSequence {
 
 			if (fitWithHXB2 && (gene.getStrain() == Strain.HIV2A ||
 				gene.getStrain() == Strain.HIV2B)) {
-				GeneEnum geneEnum = gene.getGeneEnum();
 				if (geneEnum == GeneEnum.RT) {
 					// RT346: 1AA Deletion comparing to HXB2
 					geneSeqNAs =
