@@ -30,6 +30,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import com.google.common.primitives.Chars;
 
+import edu.stanford.hivdb.aapcnt.HIVAminoAcidPercent;
 import edu.stanford.hivdb.aapcnt.HIVAminoAcidPercents;
 
 public class AAMutation implements Mutation {
@@ -322,6 +323,20 @@ public class AAMutation implements Mutation {
 		return HIV1_AA_PCNTS.getHighestAAPercentValue(
 			gene.getGeneEnum(), position,
 			StringUtils.join(myAAChars.toArray())) * 100;
+	}
+	
+	public static Double getPrevalence(Gene gene, int position, char aminoAcid) {
+		if (gene.getStrain() != Strain.HIV1) {
+			// we don't have data for HIV2 yet
+			return .0;
+		}
+		HIVAminoAcidPercent aaPcnt = HIV1_AA_PCNTS.get(gene.getGeneEnum(), position, aminoAcid);
+		if (aaPcnt != null) {
+			return aaPcnt.percent;
+		}
+		else {
+			return .0;
+		}
 	}
 
 	@Override

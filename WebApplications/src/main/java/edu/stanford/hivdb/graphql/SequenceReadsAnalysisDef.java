@@ -35,6 +35,7 @@ import edu.stanford.hivdb.drugresistance.GeneDRFast;
 import edu.stanford.hivdb.genotyper.BoundGenotype;
 import edu.stanford.hivdb.genotyper.HIVGenotypeResult;
 import edu.stanford.hivdb.mutations.PositionCodonReads;
+import edu.stanford.hivdb.mutations.Strain;
 import edu.stanford.hivdb.ngs.GeneSequenceReads;
 import edu.stanford.hivdb.ngs.SequenceReads;
 
@@ -75,10 +76,11 @@ public class SequenceReadsAnalysisDef {
 		if (name == null) {
 			throw new GraphQLException("`name` is a required field but doesn't have value");
 		}
+		Strain strain = (Strain) input.get("strain");
 		List<PositionCodonReads> allReads = (
 			((List<?>) input.get("allReads"))
 			.stream()
-			.map(pcr -> toPositionCodonReads((Map<?, ?>) pcr))
+			.map(pcr -> toPositionCodonReads(strain, (Map<?, ?>) pcr))
 			.collect(Collectors.toList()));
 		if (allReads == null) {
 			throw new GraphQLException("`allReads` is a required field but doesn't have value");
@@ -100,6 +102,10 @@ public class SequenceReadsAnalysisDef {
 			.type(GraphQLString)
 			.name("name")
 			.description("An identifiable name for identifying the result from the returning list."))
+		.field(field -> field
+			.type(enumStrain)
+			.name("strain")
+			.description("Strain of this sequence, choice: HIV1, HIV2A, HIV2B."))
 		.field(field -> field
 			.type(new GraphQLList(iPositionCodonReads))
 			.name("allReads")

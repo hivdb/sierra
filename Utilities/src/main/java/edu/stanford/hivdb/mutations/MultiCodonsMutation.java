@@ -8,7 +8,6 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import edu.stanford.hivdb.mutations.PositionCodonReads;
-import edu.stanford.hivdb.mutations.PositionCodonReads.CodonReads;
 
 /**
  * An implementation of the Mutation interface to accept
@@ -32,32 +31,14 @@ public class MultiCodonsMutation extends AAMutation {
 		Map<Character, Long> aaCounts = new TreeMap<>();
 
 		for (CodonReads codonReads : posCodonReads.getCodonReads()) {
-			// Tolerant spaces and dashes
-			String codon = codonReads.codon.replaceAll("[ -]", "");
+			char aa = codonReads.getAminoAcid();
+			if (aa == 'X') {
+				continue;
+			}
 			long count = codonReads.reads;
 			if (count <= minReads) {
 				// remove minor variants below min-prevalence
 				continue;
-			}
-			if (!codon.matches("^[ACGT]*$")) {
-				// do not allow ambiguous codes
-				continue;
-			}
-
-			int codonLen = codon.length();
-			char aa;
-			if (codonLen < 3) {
-				// a deletion
-				aa = '-';
-			}
-			else if (codonLen < 6) {
-				aa = CodonTranslation.translateNATriplet(
-					codon.substring(0, 3)
-				).charAt(0);
-			}
-			else {
-				// an insertion
-				aa = '_';
 			}
 			long prevCount = aaCounts.getOrDefault(aa, 0l);
 			aaCounts.put(aa, prevCount + count);

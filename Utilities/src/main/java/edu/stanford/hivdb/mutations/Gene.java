@@ -311,7 +311,11 @@ public class Gene implements Comparable<Gene> {
 	 * @return the AA at the submitted position
 	 */
 	public String getReference(int pos) {
-		return getReference(pos, 1);
+		return getRefChar(pos).toString();
+	}
+	
+	public Character getRefChar(int pos) {
+		return this.reference.charAt(pos - 1);
 	}
 
 	public String getReference(int pos, int length) {

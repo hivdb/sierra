@@ -31,11 +31,14 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import edu.stanford.hivdb.mutations.Gene;
+import edu.stanford.hivdb.mutations.GeneEnum;
 import edu.stanford.hivdb.mutations.PositionCodonReads;
+import edu.stanford.hivdb.mutations.Strain;
+import static edu.stanford.hivdb.graphql.ExtendedFieldDefinition.*;
 
 public class PositionCodonReadsDef {
 
-	public static PositionCodonReads toPositionCodonReads(Map<?, ?> input) {
+	public static PositionCodonReads toPositionCodonReads(Strain strain, Map<?, ?> input) {
 		Map<String, Long> allCodonReads = (
 			((List<?>) input.get("allCodonReads"))
 			.stream()
@@ -51,7 +54,7 @@ public class PositionCodonReadsDef {
 			totalReads = allCodonReads.values().stream().reduce(Long::sum).get();
 		}
 		return new PositionCodonReads(
-			(Gene) input.get("gene"),
+			Gene.valueOf(strain, (GeneEnum) input.get("gene")),
 			(Integer) input.get("position"),
 			totalReads,
 			allCodonReads);
@@ -87,10 +90,43 @@ public class PositionCodonReadsDef {
 			.description("Number of reads for this codon."))
 		.field(field -> field
 			.type(GraphQLString)
-			.name("aminoAcids")
+			.name("aminoAcid")
 			.description(
-				"The corresponding amino acid(s)."
+				"The corresponding amino acid."
 			))
+		.field(newFieldDefinition()
+			.type(GraphQLFloat)
+			.name("prevalence")
+			.description("Amino acid prevalence in HIVDB database")
+			.build())
+		.field(newFieldDefinition()
+			.type(GraphQLBoolean)
+			.name("isReference")
+			.description("The amino acid is the same as the reference (consensus) amino acid.")
+			.build())
+		.field(newFieldDefinition()
+			.type(GraphQLBoolean)
+			.name("isDRM")
+			.description(
+				"The amino acid is a known drug resistance mutation (DRM).")
+			.build())
+		.field(newFieldDefinition()
+			.type(GraphQLBoolean)
+			.name("isUnusual")
+			.description("The amino acid is an unusual mutation.")
+			.build())
+		.field(newFieldDefinition()
+			.type(GraphQLBoolean)
+			.name("isApobecMutation")
+			.description("The amino acid is a signature APOBEC-mediated hypermutation.")
+			.build())
+		.field(newFieldDefinition()
+			.type(GraphQLBoolean)
+			.name("isApobecDRM")
+			.description(
+				"The amino acid is a drug resistance mutation (DRM) might " +
+				"be caused by APOBEC-mediated G-to-A hypermutation.")
+			.build())
 		.build();
 
 	public static GraphQLInputObjectType iPositionCodonReads = newInputObject()
