@@ -38,6 +38,8 @@ import edu.stanford.hivdb.mutations.PositionCodonReads;
 import edu.stanford.hivdb.mutations.Strain;
 import edu.stanford.hivdb.ngs.GeneSequenceReads;
 import edu.stanford.hivdb.ngs.SequenceReads;
+import edu.stanford.hivdb.ngs.SequenceReadsHistogram;
+import edu.stanford.hivdb.ngs.SequenceReadsHistogram.AggregationOption;
 
 import static edu.stanford.hivdb.graphql.MutationSetDef.*;
 import static edu.stanford.hivdb.graphql.GeneDef.*;
@@ -46,6 +48,7 @@ import static edu.stanford.hivdb.graphql.MutationStatsDef.oMutationStats;
 import static edu.stanford.hivdb.graphql.DrugResistanceDef.*;
 import static edu.stanford.hivdb.graphql.SubtypeV2Def.*;
 import static edu.stanford.hivdb.graphql.PositionCodonReadsDef.*;
+import static edu.stanford.hivdb.graphql.SequenceReadsHistogramDef.*;
 
 public class SequenceReadsAnalysisDef {
 
@@ -68,6 +71,19 @@ public class SequenceReadsAnalysisDef {
 			SequenceReads seqReads = (SequenceReads) environment.getSource();
 			List<GeneSequenceReads> allGeneSeqReads = seqReads.getAllGeneSequenceReads();
 			return new ArrayList<>(GeneDRFast.getResistanceByGeneFromReads(allGeneSeqReads).values());
+		}
+	};
+	
+	private static DataFetcher<SequenceReadsHistogram> seqReadsHistogramDataFetcher = new DataFetcher<SequenceReadsHistogram>() {
+		
+		@Override
+		public SequenceReadsHistogram get(DataFetchingEnvironment environment) {
+			SequenceReads seqReads = (SequenceReads) environment.getSource();
+			double lowerLimit = environment.getArgument("pcntLowerLimit");
+			double upperLimit = environment.getArgument("pcntUpperLimit");
+			int numBins = environment.getArgument("numBins");
+			AggregationOption aggBy = environment.getArgument("AggregatesBy");
+			return seqReads.getHistogram(lowerLimit, upperLimit, numBins, aggBy);
 		}
 	};
 
@@ -218,6 +234,31 @@ public class SequenceReadsAnalysisDef {
 			.name("drugResistance")
 			.description("List of drug resistance results by genes.")
 			.dataFetcher(drugResistanceDataFetcher))
+		.field(field -> field
+			.type(oSeqReadsHistogram)
+			.name("histogram")
+			.description("Histogram data for sequence reads.")
+			.argument(arg -> arg
+				.name("pcntLowerLimit")
+				.type(GraphQLFloat)
+				.defaultValue(.1d)
+				.description("Percent lower limit of filtering codon reads (range: 0-100)."))
+			.argument(arg -> arg
+				.name("pcntUpperLimit")
+				.type(GraphQLFloat)
+				.defaultValue(20d)
+				.description("Percent lower limit of filtering codon reads (range: 0-100)."))
+			.argument(arg -> arg
+			 	.name("numBins")
+			 	.type(GraphQLInt)
+			 	.defaultValue(8)
+			 	.description("Number of bins wanted in this histogram."))
+			.argument(arg -> arg
+				.name("aggregatesBy")
+				.type(enumAggregationOption)
+				.defaultValue(AggregationOption.AminoAcid)
+				.description("Aggregation option."))
+			.dataFetcher(seqReadsHistogramDataFetcher))
 		.build();
 
 }

@@ -37,6 +37,7 @@ import edu.stanford.hivdb.mutations.Gene;
 import edu.stanford.hivdb.mutations.MutationSet;
 import edu.stanford.hivdb.mutations.PositionCodonReads;
 import edu.stanford.hivdb.mutations.Strain;
+import edu.stanford.hivdb.ngs.SequenceReadsHistogram.AggregationOption;
 import edu.stanford.hivdb.utilities.SeqUtils;
 
 public class SequenceReads {
@@ -158,6 +159,17 @@ public class SequenceReads {
 			concatenatedSeq = concatSeq.toString();
 		}
 		return concatenatedSeq;
+	}
+	
+	public SequenceReadsHistogram getHistogram(
+		final Double pcntLowerLimit,
+		final Double pcntUpperLimit,
+		final Integer numBins,
+		final AggregationOption aggregatesBy) {
+		return new SequenceReadsHistogram(
+			getAllGeneSequenceReads(),
+			pcntLowerLimit / 100, pcntUpperLimit / 100,
+			numBins, aggregatesBy);
 	}
 
 	public MutationSet getMutations(final double minPrevalence) {

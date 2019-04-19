@@ -35,7 +35,7 @@ public class MultiCodonsMutation extends AAMutation {
 			if (aa == 'X') {
 				continue;
 			}
-			long count = codonReads.reads;
+			long count = codonReads.getReads();
 			if (count <= minReads) {
 				// remove minor variants below min-prevalence
 				continue;
@@ -52,8 +52,8 @@ public class MultiCodonsMutation extends AAMutation {
 		List<String> cleanCodons = new ArrayList<>();
 		for (CodonReads codonReads : posCodonReads.getCodonReads()) {
 			// Tolerant spaces and dashes
-			String codon = codonReads.codon.replaceAll("[ -]", "");
-			long count = codonReads.reads;
+			String codon = codonReads.getCodon().replaceAll("[ -]", "");
+			long count = codonReads.getReads();
 			if (count <= minReads) {
 				// remove minor variants below min-prevalence
 				continue;

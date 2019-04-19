@@ -18,8 +18,8 @@
 package edu.stanford.hivdb.mutations;
 
 public class CodonReads {
-	public final String codon;
-	public final long reads;
+	private final String codon;
+	private final long reads;
 	private final Gene gene;
 	private final int position;
 	private transient Mutation mutation;
@@ -39,6 +39,9 @@ public class CodonReads {
 		this.codon = normalizeCodon(codon);
 		this.reads = reads;
 	}
+	
+	public String getCodon() { return codon; }
+	public Long getReads() { return reads; }
 	
 	public Character getAminoAcid() {
 		if (aminoAcid == null) {
