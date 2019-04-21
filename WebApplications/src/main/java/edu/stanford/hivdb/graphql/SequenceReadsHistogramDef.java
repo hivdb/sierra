@@ -46,6 +46,10 @@ public class SequenceReadsHistogramDef {
 				.description("Usual sites histogram data."))
 			.field(field -> field
 				.type(new GraphQLList(oSeqReadsHistogramBin))
+				.name("drmSites")
+				.description("Sites with drug resistance mutations histogram data."))
+			.field(field -> field
+				.type(new GraphQLList(oSeqReadsHistogramBin))
 				.name("unusualSites")
 				.description("Unusual sites histogram data."))
 			.field(field -> field

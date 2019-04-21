@@ -26,8 +26,8 @@ public class CodonReads {
 	private transient Character aminoAcid;
 	
 	public static String normalizeCodon(String codon) {
-		// Tolerant spaces and dashes
-		return codon.replaceAll("[ -]", "");
+		// Tolerant spaces, commas, colons, semicolons and dashes
+		return codon.replaceAll("[ ,:;-]", "");
 	}
 
 	public CodonReads(

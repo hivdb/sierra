@@ -97,7 +97,16 @@ public class GraphQLService {
 			errorMap.put("locations", error.getLocations());
 			if (error instanceof ExceptionWhileDataFetching) {
 				Throwable innerExc = ((ExceptionWhileDataFetching) error).getException();
-				errorMap.put("stackTrace", innerExc.getStackTrace());
+				List<Map<String, Object>> details = new ArrayList<>();
+				do {
+					Map<String, Object> errDetail = new LinkedHashMap<>();
+					errDetail.put("exception", innerExc.toString());
+					errDetail.put("message", innerExc.getMessage());
+					errDetail.put("stackTrace", innerExc.getStackTrace());
+					details.add(errDetail);
+					innerExc = innerExc.getCause();
+				} while (innerExc != null);
+				errorMap.put("details", details);
 				/*if (!(innerExc instanceof InvalidMutationStringException)) {
 					throw new RuntimeException("Unhandled exception", innerExc);
 				}*/

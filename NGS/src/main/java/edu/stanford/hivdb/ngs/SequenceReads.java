@@ -28,7 +28,9 @@ import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.math3.stat.descriptive.rank.Median;
+import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
+
+import com.google.common.collect.Streams;
 
 import edu.stanford.hivdb.genotyper.BoundGenotype;
 import edu.stanford.hivdb.genotyper.HIVGenotypeReference;
@@ -51,8 +53,8 @@ public class SequenceReads {
 	private String concatenatedSeq;
 	private Double mixturePcnt;
 	private Double minPrevalence;
-	private Double medianReadDepth;
 	private Long minReadDepth;
+	private transient DescriptiveStatistics readDepthStats;
 
 	public static SequenceReads fromCodonReadsTable(
 			String name, List<PositionCodonReads> allReads,
@@ -74,36 +76,21 @@ public class SequenceReads {
 				)
 			);
 
-		Median median = new Median();
-		double[] ReadDepths = (
-			allReads.stream()
-			.filter(read -> read.getTotalReads() >= finalMinReadDepth)
-			.mapToDouble(read -> read.getTotalReads())
-			.toArray()
-		);
-		double medianReadDepth = -1;
-		if (ReadDepths.length > 0) {
-			medianReadDepth = median.evaluate(ReadDepths);
-		}
-
 		// TODO: add support for HIV2
 		return new SequenceReads(
 				name, Strain.HIV1, geneSequences,
-				finalMinPrevalence, finalMinReadDepth,
-				medianReadDepth);
+				finalMinPrevalence, finalMinReadDepth);
 	}
 
 	protected SequenceReads(
 			final String name, final Strain strain,
 			final Map<Gene, GeneSequenceReads> allGeneSequenceReads,
-			final double minPrevalence, final long minReadDepth,
-			final double medianReadDepth) {
+			final double minPrevalence, final long minReadDepth) {
 		this.name = name;
 		this.strain = strain;
 		this.allGeneSequenceReads = allGeneSequenceReads;
 		this.minPrevalence = minPrevalence;
 		this.minReadDepth = minReadDepth;
-		this.medianReadDepth = medianReadDepth;
 	}
 
 	public String getName() { return name; }
@@ -116,8 +103,18 @@ public class SequenceReads {
 
 	public long getMinReadDepth() { return minReadDepth; }
 
-	public Double getMedianReadDepth() { return medianReadDepth; }
-
+	public DescriptiveStatistics getReadDepthStats() {
+		if (readDepthStats == null) {
+			double[] readDepthArray = allGeneSequenceReads.values().stream()
+				.map(gsr -> gsr.getAllPositionCodonReads())
+				.map(pcrs -> pcrs.stream().mapToDouble(pcr -> pcr.getTotalReads()))
+				.reduce((a, b) -> Streams.concat(a, b))
+				.get().toArray();
+			readDepthStats = new DescriptiveStatistics(readDepthArray);
+		}
+		return readDepthStats;
+	}
+	
 	public List<GeneSequenceReads> getAllGeneSequenceReads() {
 		return new ArrayList<>(allGeneSequenceReads.values());
 	}
@@ -165,11 +162,12 @@ public class SequenceReads {
 		final Double pcntLowerLimit,
 		final Double pcntUpperLimit,
 		final Integer numBins,
+		final Boolean cumulative,
 		final AggregationOption aggregatesBy) {
 		return new SequenceReadsHistogram(
 			getAllGeneSequenceReads(),
 			pcntLowerLimit / 100, pcntUpperLimit / 100,
-			numBins, aggregatesBy);
+			numBins, cumulative, aggregatesBy);
 	}
 
 	public MutationSet getMutations(final double minPrevalence) {

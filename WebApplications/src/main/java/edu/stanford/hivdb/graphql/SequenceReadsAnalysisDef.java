@@ -49,6 +49,7 @@ import static edu.stanford.hivdb.graphql.DrugResistanceDef.*;
 import static edu.stanford.hivdb.graphql.SubtypeV2Def.*;
 import static edu.stanford.hivdb.graphql.PositionCodonReadsDef.*;
 import static edu.stanford.hivdb.graphql.SequenceReadsHistogramDef.*;
+import static edu.stanford.hivdb.graphql.DescriptiveStatisticsDef.*;
 
 public class SequenceReadsAnalysisDef {
 
@@ -82,8 +83,9 @@ public class SequenceReadsAnalysisDef {
 			double lowerLimit = environment.getArgument("pcntLowerLimit");
 			double upperLimit = environment.getArgument("pcntUpperLimit");
 			int numBins = environment.getArgument("numBins");
-			AggregationOption aggBy = environment.getArgument("AggregatesBy");
-			return seqReads.getHistogram(lowerLimit, upperLimit, numBins, aggBy);
+			boolean cumulative = environment.getArgument("cumulative");
+			AggregationOption aggBy = environment.getArgument("aggregatesBy");
+			return seqReads.getHistogram(lowerLimit, upperLimit, numBins, cumulative, aggBy);
 		}
 	};
 
@@ -254,11 +256,21 @@ public class SequenceReadsAnalysisDef {
 			 	.defaultValue(8)
 			 	.description("Number of bins wanted in this histogram."))
 			.argument(arg -> arg
+				.name("cumulative")
+				.type(GraphQLBoolean)
+				.defaultValue(true)
+				.description("Generate cumulative histogram data instead."))
+			.argument(arg -> arg
 				.name("aggregatesBy")
 				.type(enumAggregationOption)
-				.defaultValue(AggregationOption.AminoAcid)
+				.defaultValue(AggregationOption.Position)
 				.description("Aggregation option."))
 			.dataFetcher(seqReadsHistogramDataFetcher))
+		.field(field -> field
+			.name("readDepthStats")
+			.type(oDescriptiveStatistics)
+			.description("Descriptive statistics of all read depth.")
+		)
 		.build();
 
 }
