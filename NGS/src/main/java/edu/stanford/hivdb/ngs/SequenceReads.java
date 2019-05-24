@@ -22,10 +22,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
+import java.util.stream.DoubleStream;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
@@ -47,6 +49,7 @@ public class SequenceReads {
 	private final static int HXB2_PR_FIRST_NA = 2253;
 	private final Strain strain;
 	private final Map<Gene, GeneSequenceReads> allGeneSequenceReads;
+	private final CutoffSuggestion cutoffSuggestion;
 	private String name;
 	private HIVGenotypeResult subtypeResult;
 	private MutationSet mutations;
@@ -60,7 +63,8 @@ public class SequenceReads {
 			String name, List<PositionCodonReads> allReads,
 			Double minPrevalence, Long minReadDepth) {
 		// TODO: dynamic cutoff
-		double finalMinPrevalence = minPrevalence >= 0 ? minPrevalence : (double) 0.05;
+		CutoffSuggestion cutoffSuggestion = new CutoffSuggestion(allReads);
+		double finalMinPrevalence = minPrevalence >= 0 ? minPrevalence : cutoffSuggestion.getStricterLimit();
 		long finalMinReadDepth = minReadDepth > 0 ? minReadDepth : (long) 1000;
 		Map<Gene, GeneSequenceReads> geneSequences = allReads.stream()
 			// remove all codons with their read depth < minReadDepth
@@ -79,19 +83,25 @@ public class SequenceReads {
 		// TODO: add support for HIV2
 		return new SequenceReads(
 				name, Strain.HIV1, geneSequences,
-				finalMinPrevalence, finalMinReadDepth);
+				finalMinPrevalence, finalMinReadDepth, cutoffSuggestion);
 	}
 
 	protected SequenceReads(
 			final String name, final Strain strain,
 			final Map<Gene, GeneSequenceReads> allGeneSequenceReads,
-			final double minPrevalence, final long minReadDepth) {
+			final double minPrevalence, final long minReadDepth,
+			final CutoffSuggestion cutoffSuggestion) {
 		this.name = name;
 		this.strain = strain;
 		this.allGeneSequenceReads = allGeneSequenceReads;
 		this.minPrevalence = minPrevalence;
 		this.minReadDepth = minReadDepth;
+		this.cutoffSuggestion = cutoffSuggestion;
 	}
+
+	public Double getCutoffSuggestionLooserLimit() { return cutoffSuggestion.getLooserLimit(); }
+
+	public Double getCutoffSuggestionStricterLimit() { return cutoffSuggestion.getStricterLimit(); }
 
 	public String getName() { return name; }
 	
@@ -105,12 +115,17 @@ public class SequenceReads {
 
 	public DescriptiveStatistics getReadDepthStats() {
 		if (readDepthStats == null) {
-			double[] readDepthArray = allGeneSequenceReads.values().stream()
+			Optional<DoubleStream> readDepthStream = allGeneSequenceReads.values().stream()
 				.map(gsr -> gsr.getAllPositionCodonReads())
 				.map(pcrs -> pcrs.stream().mapToDouble(pcr -> pcr.getTotalReads()))
-				.reduce((a, b) -> Streams.concat(a, b))
-				.get().toArray();
-			readDepthStats = new DescriptiveStatistics(readDepthArray);
+				.reduce((a, b) -> Streams.concat(a, b));
+			if (readDepthStream.isPresent()) {
+				double[] readDepthArray = readDepthStream.get().toArray();
+				readDepthStats = new DescriptiveStatistics(readDepthArray);
+			}
+			else {
+				readDepthStats = new DescriptiveStatistics(new double[] {0, 0, 0});
+			}
 		}
 		return readDepthStats;
 	}

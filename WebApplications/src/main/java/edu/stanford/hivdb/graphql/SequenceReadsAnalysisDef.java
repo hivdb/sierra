@@ -154,9 +154,21 @@ public class SequenceReadsAnalysisDef {
 			.description("Name of this sequence."))
 		.field(field -> field
 			.type(GraphQLFloat)
+			.name("cutoffSuggestionLooserLimit")
+			.description(
+				"Algorithm suggested minimal prevalence cutoff. " +
+				"This cutoff is looser and may include more problematic mutations."))
+		.field(field -> field
+			.type(GraphQLFloat)
+			.name("cutoffSuggestionStricterLimit")
+			.description(
+				"Algorithm suggested minimal prevalence cutoff. " +
+				"This cutoff is stricter and include less problematic mutations."))
+		.field(field -> field
+			.type(GraphQLFloat)
 			.name("minPrevalence")
 			.description(
-				"The minimal prevalence cuoff applied on this sequence. " +
+				"The minimal prevalence cutoff applied on this sequence. " +
 				"If the same name field didn't specified in `SequenceReadsInput`, " +
 				"this value was dynamically selected by the program " +
 				"based on sequencing quality."))

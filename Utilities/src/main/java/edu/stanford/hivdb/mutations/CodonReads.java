@@ -20,8 +20,10 @@ package edu.stanford.hivdb.mutations;
 public class CodonReads {
 	private final String codon;
 	private final long reads;
+	private final long totalReads;
 	private final Gene gene;
 	private final int position;
+	private final double proportion;
 	private transient Mutation mutation;
 	private transient Character aminoAcid;
 	
@@ -32,16 +34,19 @@ public class CodonReads {
 
 	public CodonReads(
 		final Gene gene, final int position,
-		final String codon, final long reads
+		final String codon, final long reads, final long totalReads
 	) {
 		this.gene = gene;
 		this.position = position;
 		this.codon = normalizeCodon(codon);
 		this.reads = reads;
+		this.totalReads = totalReads;
+		this.proportion = (double) reads / totalReads;
 	}
 	
 	public String getCodon() { return codon; }
 	public Long getReads() { return reads; }
+	public Long getTotalReads() { return totalReads; }
 	
 	public Character getAminoAcid() {
 		if (aminoAcid == null) {
@@ -74,6 +79,10 @@ public class CodonReads {
 			mutation = new AAMutation(gene, position, getAminoAcid());
 		}
 		return mutation;
+	}
+	
+	public Double getProportion() {
+		return this.proportion;
 	}
 	
 	public Double getPrevalence() {

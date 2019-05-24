@@ -50,10 +50,11 @@ public class PositionCodonReads {
 
 	public Gene getGene() { return gene; }
 	public long getPosition() { return position; }
+	public GenePosition getGenePositon() { return new GenePosition(gene, position); }
 	public long getTotalReads() { return totalReads; }
 	public List<CodonReads> getCodonReads() {
 		return allCodonReads.entrySet().stream()
-			.map(e -> new CodonReads(gene, position, e.getKey(), e.getValue()))
+			.map(e -> new CodonReads(gene, position, e.getKey(), e.getValue(), totalReads))
 			.collect(Collectors.toList());
 	}
 
