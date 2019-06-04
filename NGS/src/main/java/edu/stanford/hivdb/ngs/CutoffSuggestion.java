@@ -1,5 +1,7 @@
 package edu.stanford.hivdb.ngs;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,41 +26,79 @@ public class CutoffSuggestion {
 			.sum();
 		long remainCount = totalCount;
 		
-		boolean reachedPointAllReal = false;
-		
-		double prevFold = 1, curFold = 1,
-				lowerLimit = 0, upperLimit = 0;
+		boolean started = false;
+		double fold = 1;
+		List<Double> proportionInWindow = new ArrayList<>();
+		List<Double> codonPcntsInWindow = new ArrayList<>();
+		List<Double> foldsInWindow = new ArrayList<>();
 		
 		for (CodonReads r : sortedCodonReads) {
-			double pcnt = r.getProportion();
+			double proportion = r.getProportion();
 			long curReads = r.getReads();
-			if (pcnt > 0.2) {
+			if (proportion > 0.2) {
+				// ignore codons with proportion > 20%
 				remainCount -= curReads;
 				continue;
 			}
-			prevFold = curFold;
-			curFold = (double) r.getTotalReads() * remainCount / totalCount / curReads;
-			if (Double.isNaN(curFold)) {
-				curFold = 0;
+			fold = (double) r.getTotalReads() * remainCount / totalCount / curReads;
+			if (Double.isNaN(fold)) {
+				fold = 0;
 			}
-			remainCount -= curReads;
-			if (!reachedPointAllReal && prevFold < curFold) {
-				reachedPointAllReal = true;
+			if (!started && fold < 0.8) {
+				started = true;
 			}
-			if (reachedPointAllReal) {
-				if (curFold < 0.5) {
-					upperLimit = pcnt;
-				}
-				else if (curFold < 1) {
-					lowerLimit = pcnt;
-				}
-				else /*if (curFold >= 1) */ {
+			if (started) {
+				if (fold >= 1) {
 					break;
 				}
+				remainCount -= curReads;
+				proportionInWindow.add(proportion);
+				double codonPcnt = r.getCodonPercent();
+				// codon percent is more precise to tell if the codon/AA is rare
+				codonPcntsInWindow.add(codonPcnt);
+				foldsInWindow.add(fold);
 			}
 		}
-		this.looserLimit = lowerLimit;
-		this.stricterLimit = upperLimit;
+		
+		// sometime the fold >= 1 didn't reached and we went all the way to the end
+		double maxFold = Collections.max(foldsInWindow);
+		// tolerant fluctuation
+		double nearMaxFold = maxFold * 0.95;
+		maxFold = foldsInWindow.stream().filter(f -> f > nearMaxFold).findFirst().get();
+		int maxFoldIndex = foldsInWindow.indexOf(maxFold);
+		
+		proportionInWindow = proportionInWindow.subList(0, maxFoldIndex + 1);
+		codonPcntsInWindow = codonPcntsInWindow.subList(0 , maxFoldIndex + 1);
+		foldsInWindow = foldsInWindow.subList(0, maxFoldIndex + 1);
+		
+		int minFoldIndex = foldsInWindow.indexOf(Collections.min(foldsInWindow));
+		int tmpsize = foldsInWindow.size();
+		proportionInWindow = proportionInWindow.subList(minFoldIndex, tmpsize);
+		codonPcntsInWindow = codonPcntsInWindow.subList(minFoldIndex, tmpsize);
+		foldsInWindow = foldsInWindow.subList(minFoldIndex, tmpsize);
+
+		double totalRareCodonInWindow = codonPcntsInWindow.stream()
+			.mapToDouble(pcnt -> 1 - Math.sqrt(pcnt))
+			.sum();
+		long totalCodonInWindow = codonPcntsInWindow.size(); //stream().filter(pcnt -> pcnt < 0.5).count();
+		double rareRate = totalRareCodonInWindow / totalCodonInWindow;
+		if (totalCodonInWindow == 0) {
+			rareRate = 0;
+		}
+
+		int newsize = proportionInWindow.size();
+		double[] proportionInWindowArr = new double[newsize];
+		for (int i = 0; i < newsize; i ++) {
+			proportionInWindowArr[i] = proportionInWindow.get(i);
+		}
+		// this is similar to finding percentile, however it uses ceil() to
+		// final a smaller cutoff (especially useful when the distribution of
+		// proportion is very sparse)
+		int indexFromRareRate = (int) Math.ceil(newsize * (1 - rareRate));
+		this.stricterLimit = proportionInWindow.get(indexFromRareRate);
+
+		this.looserLimit = proportionInWindow.get(proportionInWindow.size() - 1);
+		// this.stricterLimit = upperLimit;
 	}
 	
 	public Double getLooserLimit() { return looserLimit; }

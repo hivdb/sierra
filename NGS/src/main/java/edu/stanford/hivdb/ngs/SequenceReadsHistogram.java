@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.function.Function;
 
+import org.apache.commons.lang3.tuple.Pair;
+
 import edu.stanford.hivdb.mutations.CodonReads;
 import edu.stanford.hivdb.mutations.PositionCodonReads;
 
@@ -43,9 +45,9 @@ public class SequenceReadsHistogram {
 	final private Double log10PcntLowerLimit;
 	final private Double log10PcntUpperLimit;
 	final private Integer numBins;
-	final private boolean cumulative;
+	final private Double[] binSteps;
+	final private Boolean cumulative;
 	final private AggregationOption aggregatesBy;
-	final private transient Double binWidth;
 	
 	public SequenceReadsHistogram(
 		List<GeneSequenceReads> allGeneSequenceReads,
@@ -58,7 +60,38 @@ public class SequenceReadsHistogram {
 		this.aggregatesBy = aggregatesBy;
 		log10PcntLowerLimit = Math.max(MIN_LOG10_LOWER_LIMIT, Math.log10(pcntLowerLimit));
 		log10PcntUpperLimit = Math.log10(pcntUpperLimit);
-		binWidth = (log10PcntUpperLimit - log10PcntLowerLimit) / numBins;
+		double binWidth = (log10PcntUpperLimit - log10PcntLowerLimit) / numBins;
+
+		Double[] binSteps = new Double[numBins + 1];
+		for (int idx = 0; idx < numBins + 1; idx ++) {
+			binSteps[idx] = log10PcntLowerLimit + idx * binWidth;
+		}
+		this.binSteps = binSteps;
+	}
+
+	public SequenceReadsHistogram(
+		List<GeneSequenceReads> allGeneSequenceReads,
+		double pcntLowerLimit, double pcntUpperLimit, Double[] binTicks,
+		boolean cumulative, AggregationOption aggregatesBy
+	) {
+		this.allGeneSequenceReads = allGeneSequenceReads;
+		this.numBins = binTicks.length;
+	
+		this.cumulative = cumulative;
+		this.aggregatesBy = aggregatesBy;
+		log10PcntLowerLimit = Math.max(MIN_LOG10_LOWER_LIMIT, Math.log10(pcntLowerLimit));
+		log10PcntUpperLimit = Math.log10(pcntUpperLimit);
+
+		Double[] binSteps = new Double[numBins + 1];
+		for (int idx = 0; idx < numBins + 1; idx ++) {
+			if (idx == numBins) {
+				binSteps[idx] = log10PcntUpperLimit;
+			}
+			else {
+				binSteps[idx] = Math.log10(binTicks[idx]);
+			}
+		}
+		this.binSteps = binSteps;
 	}
 	
 	private boolean testBetween(double val, double lowerLimit, double upperLimit) {
@@ -75,14 +108,10 @@ public class SequenceReadsHistogram {
 		/* iterate all codon reads; remove filtered ones; save result in binsCount */
 		for (GeneSequenceReads geneSeqReads : allGeneSequenceReads) {
 			for (PositionCodonReads pcr : geneSeqReads.getAllPositionCodonReads()) {
-				Set<String> aggregatedSites = new HashSet<>();
+				Set<Pair<Integer, String>> aggregatedSites = new HashSet<>();
 				boolean[] excludedSites = new boolean[numBins];
 				long total = pcr.getTotalReads();
 				double log10Total = Math.log10(total);
-				double[] binSteps = new double[numBins];
-				for (int idx = 0; idx < numBins; idx ++) {
-					binSteps[idx] = log10PcntLowerLimit + idx * binWidth;
-				}
 				for (CodonReads cr : pcr.getCodonReads()) {
 					long reads = cr.getReads();
 					double log10Reads = Math.log10(reads);
@@ -106,23 +135,21 @@ public class SequenceReadsHistogram {
 								key = cr.getCodon();
 						}
 						for (int idx = 0; idx < numBins; idx ++) {
-							if (testBetween(log10Pcnt, binSteps[idx], binSteps[idx] + binWidth)) {
-								// TODO: can a set of tuples be faster?
-								String idxKey = String.format("%d::%s", idx, key);
-								aggregatedSites.add(idxKey);
+							if (testBetween(log10Pcnt, binSteps[idx], binSteps[idx + 1])) {
+								aggregatedSites.add(Pair.of(idx, key));
 							}
 						}
 					}
 					else if (positionMatchAll) {
 						for (int idx = 0; idx < numBins; idx ++) {
-							if (testBetween(log10Pcnt, binSteps[idx], binSteps[idx] + binWidth)) {
+							if (testBetween(log10Pcnt, binSteps[idx], binSteps[idx + 1])) {
 								excludedSites[idx] = true;
 							}
 						}
 					}
 				}
-				for (String idxKey : aggregatedSites) {
-					int idx = Integer.parseInt(idxKey.split("::", 2)[0]);
+				for (Pair<Integer, String> idxKey : aggregatedSites) {
+					int idx = idxKey.getLeft();
 					if (positionMatchAll && excludedSites[idx]) {
 						continue;
 					}
@@ -134,28 +161,53 @@ public class SequenceReadsHistogram {
 		List<HistogramBin> result = new ArrayList<>();
 		for (int idx = 0; idx < numBins; idx ++) {
 			result.add(new HistogramBin(
-				log10PcntLowerLimit + idx * binWidth,
-				binWidth,
+				binSteps[idx],
+				binSteps[idx + 1] - binSteps[idx],
 				binsCount[idx]));
 		}
 		return result;
 	}
 	
 	public List<HistogramBin> getUsualSites() {
-		boolean aggByPos = aggregatesBy == AggregationOption.Position;
-		return getSites(cr -> !cr.isUnusual(), aggByPos);
+		switch (aggregatesBy) {
+			case Position:
+				return getSites(cr -> !cr.isUnusual(), true);
+			case AminoAcid:
+				return getSites(cr -> !cr.isUnusual(), false);
+			default:  // case Codon:
+				return getSites(cr -> !cr.isUnusualByCodon(), false);
+		}
 	}
 	
 	public List<HistogramBin> getUnusualSites() {
-		return getSites(cr -> cr.isUnusual(), false);
+		switch (aggregatesBy) {
+			case Position:
+			case AminoAcid:
+				return getSites(cr -> cr.isUnusual(), false);
+			default:  // case Codon:
+				return getSites(cr -> cr.isUnusualByCodon(), false);
+		}
 	}
 	
 	public List<HistogramBin> getUnusualApobecSites() {
-		return getSites(cr -> cr.isUnusual() && cr.isApobecMutation(), false);
+		switch (aggregatesBy) {
+			case Position:
+			case AminoAcid:
+				return getSites(cr -> cr.isUnusual() && cr.isApobecMutation(), false);
+			default:  // case Codon:
+				return getSites(cr -> cr.isUnusualByCodon() && cr.isApobecMutation(), false);
+		}
 	}
 	
 	public List<HistogramBin> getDrmSites() {
 		return getSites(cr -> cr.isDRM(), false);
 	}
-
+	
+	public Integer getNumPositions() {
+		return (allGeneSequenceReads
+				.stream()
+				.mapToInt(gsr -> gsr.getAllPositionCodonReads().size())
+				.sum());
+	}
+		
 }

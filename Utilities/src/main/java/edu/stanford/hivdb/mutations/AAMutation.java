@@ -30,12 +30,12 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import com.google.common.primitives.Chars;
 
-import edu.stanford.hivdb.aapcnt.HIVAminoAcidPercent;
-import edu.stanford.hivdb.aapcnt.HIVAminoAcidPercents;
+import edu.stanford.hivdb.hivfacts.HIVAminoAcidPercent;
+import edu.stanford.hivdb.hivfacts.HIVAminoAcidPercents;
 
 public class AAMutation implements Mutation {
 
-	private static final HIVAminoAcidPercents HIV1_AA_PCNTS = HIVAminoAcidPercents.getInstance("all", "All");
+	private static final HIVAminoAcidPercents HIV1_AA_PCNTS = HIVAminoAcidPercents.getInstance("all", "all");
 	protected static final int DEFAULT_MAX_DISPLAY_AAS = 6;
 
 	private final Gene gene;
@@ -330,7 +330,8 @@ public class AAMutation implements Mutation {
 			// we don't have data for HIV2 yet
 			return .0;
 		}
-		HIVAminoAcidPercent aaPcnt = HIV1_AA_PCNTS.get(gene.getGeneEnum(), position, aminoAcid);
+		HIVAminoAcidPercent aaPcnt = HIV1_AA_PCNTS.get(
+			gene.getGeneEnum(), position, aminoAcid);
 		if (aaPcnt != null) {
 			return aaPcnt.percent;
 		}

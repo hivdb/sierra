@@ -181,8 +181,20 @@ public class SequenceReads {
 		final AggregationOption aggregatesBy) {
 		return new SequenceReadsHistogram(
 			getAllGeneSequenceReads(),
-			pcntLowerLimit / 100, pcntUpperLimit / 100,
+			pcntLowerLimit, pcntUpperLimit,
 			numBins, cumulative, aggregatesBy);
+	}
+
+	public SequenceReadsHistogram getHistogram(
+		final Double pcntLowerLimit,
+		final Double pcntUpperLimit,
+		final Double[] binTicks,
+		final Boolean cumulative,
+		final AggregationOption aggregatesBy) {
+		return new SequenceReadsHistogram(
+			getAllGeneSequenceReads(),
+			pcntLowerLimit / 100, pcntUpperLimit / 100,
+			binTicks, cumulative, aggregatesBy);
 	}
 
 	public MutationSet getMutations(final double minPrevalence) {

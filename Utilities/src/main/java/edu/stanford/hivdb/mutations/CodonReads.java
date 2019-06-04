@@ -17,6 +17,9 @@
 */
 package edu.stanford.hivdb.mutations;
 
+import edu.stanford.hivdb.hivfacts.HIVCodonPercent;
+import edu.stanford.hivdb.hivfacts.HIVCodonPercents;
+
 public class CodonReads {
 	private final String codon;
 	private final long reads;
@@ -26,6 +29,8 @@ public class CodonReads {
 	private final double proportion;
 	private transient Mutation mutation;
 	private transient Character aminoAcid;
+	
+	private static final HIVCodonPercents HIV1_CODON_PCNTS = HIVCodonPercents.getInstance("all", "all");
 	
 	public static String normalizeCodon(String codon) {
 		// Tolerant spaces, commas, colons, semicolons and dashes
@@ -85,8 +90,21 @@ public class CodonReads {
 		return this.proportion;
 	}
 	
-	public Double getPrevalence() {
-		return AAMutation.getPrevalence(gene, position, getAminoAcid()) * 100;
+	public Double getCodonPercent() {
+		if (gene.getStrain() != Strain.HIV1) {
+			// we don't have data for HIV2 yet
+			return .0;
+		}
+		HIVCodonPercent codonPcnt = HIV1_CODON_PCNTS.get(
+			gene.getGeneEnum(), position, codon);
+		if (codonPcnt == null) {
+			return .0;
+		}
+		return codonPcnt.percent;
+	}
+	
+	public Double getAAPercent() {
+		return AAMutation.getPrevalence(gene, position, getAminoAcid());
 	}
 	
 	public boolean isReference() {
@@ -103,6 +121,10 @@ public class CodonReads {
 	
 	public boolean isUnusual() {
 		return isReference() ? false : getMutation().isUnusual();
+	}
+	
+	public boolean isUnusualByCodon() {
+		return getCodonPercent() < 0.0001;
 	}
 	
 	public boolean isDRM() {

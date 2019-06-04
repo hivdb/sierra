@@ -56,6 +56,10 @@ public class SequenceReadsHistogramDef {
 				.type(new GraphQLList(oSeqReadsHistogramBin))
 				.name("unusualApobecSites")
 				.description("Unusual & APOBEC sites histogram data."))
+			.field(field -> field
+				.type(GraphQLInt)
+				.name("numPositions")
+				.description("Total number of positions."))
 			.build();
 	}
 	
