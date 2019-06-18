@@ -57,6 +57,18 @@ public class SequenceReadsHistogramDef {
 				.name("unusualApobecSites")
 				.description("Unusual & APOBEC sites histogram data."))
 			.field(field -> field
+				.type(new GraphQLList(oSeqReadsHistogramBin))
+				.name("apobecSites")
+				.description("APOBEC sites histogram data."))
+			.field(field -> field
+				.type(new GraphQLList(oSeqReadsHistogramBin))
+				.name("apobecDrmSites")
+				.description("APOBEC DRM sites histogram data."))
+			.field(field -> field
+				.type(new GraphQLList(oSeqReadsHistogramBin))
+				.name("stopCodonSites")
+				.description("Stop codon sites histogram data."))
+			.field(field -> field
 				.type(GraphQLInt)
 				.name("numPositions")
 				.description("Total number of positions."))

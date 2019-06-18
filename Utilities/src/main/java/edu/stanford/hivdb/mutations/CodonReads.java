@@ -53,6 +53,10 @@ public class CodonReads {
 	public Long getReads() { return reads; }
 	public Long getTotalReads() { return totalReads; }
 	
+	public Character getRefAminoAcid() {
+		return gene.getRefChar(position);
+	}
+	
 	public Character getAminoAcid() {
 		if (aminoAcid == null) {
 			if (!codon.matches("^[ACGT]*$")) {
@@ -117,6 +121,10 @@ public class CodonReads {
 	
 	public boolean isApobecDRM() {
 		return isReference() ? false : getMutation().isApobecDRM();
+	}
+	
+	public boolean hasStop() {
+		return isReference() ? false : getMutation().hasStop();
 	}
 	
 	public boolean isUnusual() {

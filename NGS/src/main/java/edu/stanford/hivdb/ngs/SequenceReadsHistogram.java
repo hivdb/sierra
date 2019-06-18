@@ -199,6 +199,18 @@ public class SequenceReadsHistogram {
 		}
 	}
 	
+	public List<HistogramBin> getApobecSites() {
+		return getSites(cr -> cr.isApobecMutation(), false);
+	}
+	
+	public List<HistogramBin> getApobecDrmSites() {
+		return getSites(cr -> cr.isApobecDRM(), false);
+	}
+
+	public List<HistogramBin> getStopCodonSites() {
+		return getSites(cr -> cr.hasStop(), false);
+	}
+	
 	public List<HistogramBin> getDrmSites() {
 		return getSites(cr -> cr.isDRM(), false);
 	}

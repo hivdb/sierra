@@ -53,8 +53,21 @@ public class PositionCodonReads {
 	public GenePosition getGenePositon() { return new GenePosition(gene, position); }
 	public long getTotalReads() { return totalReads; }
 	public List<CodonReads> getCodonReads() {
+		return getCodonReads(false, 1., .0);
+	}
+	public List<CodonReads> getCodonReads(
+		boolean mutationOnly,
+		double maxProportion,
+		double minProportion
+	) {
 		return allCodonReads.entrySet().stream()
 			.map(e -> new CodonReads(gene, position, e.getKey(), e.getValue(), totalReads))
+			.filter(cr -> cr.getAminoAcid() != 'X')
+			.filter(cr -> mutationOnly ? !cr.isReference() : true)
+			.filter(cr -> {
+				double prop = cr.getProportion();
+				return prop > minProportion && prop < maxProportion;
+			})
 			.collect(Collectors.toList());
 	}
 

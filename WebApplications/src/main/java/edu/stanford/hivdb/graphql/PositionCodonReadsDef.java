@@ -30,6 +30,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import edu.stanford.hivdb.mutations.CodonReads;
 import edu.stanford.hivdb.mutations.Gene;
 import edu.stanford.hivdb.mutations.GeneEnum;
 import edu.stanford.hivdb.mutations.PositionCodonReads;
@@ -90,10 +91,17 @@ public class PositionCodonReadsDef {
 			.description("Number of reads for this codon."))
 		.field(field -> field
 			.type(GraphQLString)
+			.name("refAminoAcid")
+			.description("The corresponding reference amino acid."))
+		.field(field -> field
+			.type(GraphQLString)
 			.name("aminoAcid")
-			.description(
-				"The corresponding amino acid."
-			))
+			.description("The corresponding amino acid."))
+		.field(newFieldDefinition()
+			.type(GraphQLFloat)
+			.name("proportion")
+			.description("Codon proportion of current position (0.0 - 1.0)")
+			.build())
 		.field(newFieldDefinition()
 			.type(GraphQLFloat)
 			.name("codonPercent")
@@ -102,6 +110,7 @@ public class PositionCodonReadsDef {
 		.field(newFieldDefinition()
 			.type(GraphQLFloat)
 			.name("aaPercent")
+			.dataFetcher(cr -> ((CodonReads) cr.getSource()).getAAPercent())
 			.description("Amino acid prevalence in HIVDB database (0.0 - 1.0)")
 			.build())
 		.field(newFieldDefinition()
@@ -178,6 +187,29 @@ public class PositionCodonReadsDef {
 		.field(field -> field
 			.type(new GraphQLList(oOneCodonReads))
 			.name("codonReads")
+			.argument(arg -> arg
+				.type(GraphQLBoolean)
+				.name("mutationOnly")
+				.description("Exclude codons matched subtype B consensus.")
+			)
+			.argument(arg -> arg
+				.type(GraphQLFloat)
+				.name("maxProportion")
+				.description("Exclude codons with proportions higher than specified value (0 - 1).")
+			)
+			.argument(arg -> arg
+				.type(GraphQLFloat)
+				.name("minProportion")
+				.description("Exclude codons with proportions lower than specified value (0 - 1).")
+			)
+			.dataFetcher(s -> {
+				PositionCodonReads pcr = (PositionCodonReads) s.getSource();
+				Boolean mutationOnly = (Boolean) s.getArgument("mutationOnly");
+				double maxProp = (double) s.getArgument("maxProportion");
+				double minProp = (double) s.getArgument("minProportion");
+				return pcr.getCodonReads(mutationOnly, maxProp, minProp);
+				
+			})
 			.description("All codon reads at this position."))
 		.build();
 

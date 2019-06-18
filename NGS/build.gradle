@@ -29,7 +29,6 @@ dependencies {
         exclude group: 'junit'
         exclude group: 'org.mockito'
     }
-    compile 'edu.stanford.hivdb.aapcnt:hiv-aapcnt-java:2018.11-2'
     compile(project(':hiv-genotyper'))
 
     // Use JUnit test framework
