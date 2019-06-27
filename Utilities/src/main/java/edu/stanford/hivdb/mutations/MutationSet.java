@@ -81,16 +81,16 @@ public class MutationSet extends TreeSet<Mutation> {
 	 *
 	 * All duplicated mutations are removed before returning.
 	 *
-	 * @param gene
+	 * @param defaultGene
 	 * @param mutationsStr
 	 * @return A list of Mutation objects
 	 */
-	public MutationSet(Gene gene, String formattedMuts) {
-		this(parseString(gene, formattedMuts));
+	public MutationSet(Gene defaultGene, String formattedMuts) {
+		this(parseString(defaultGene, formattedMuts));
 	}
 
-	public MutationSet(Gene gene, Collection<String> formattedMuts) {
-		this(parseStringCollection(gene, formattedMuts));
+	public MutationSet(Gene defaultGene, Collection<String> formattedMuts) {
+		this(parseStringCollection(defaultGene, formattedMuts));
 	}
 
 	public MutationSet(String formattedMuts) {
@@ -98,22 +98,22 @@ public class MutationSet extends TreeSet<Mutation> {
 	}
 
 	private static List<Mutation>
-			parseString(Gene gene, String formattedMuts) {
+			parseString(Gene defaultGene, String formattedMuts) {
 		if (formattedMuts == null) {
 			return new ArrayList<>();
 		}
 		return parseStringCollection(
-			gene,
+			defaultGene,
 			Arrays.asList(formattedMuts.split("[\\s,;+\\.]+"))
 		);
 	}
 
 	private static List<Mutation>
-			parseStringCollection(Gene gene, Collection<String> formattedMuts) {
+			parseStringCollection(Gene defaultGene, Collection<String> formattedMuts) {
 		return formattedMuts
 			.stream()
 			.filter(mStr -> mStr.length() > 0)
-			.map(mStr -> Mutation.parseString(gene, mStr))
+			.map(mStr -> Mutation.parseString(defaultGene, mStr))
 //			Since parseString throws exceptions instead of returning
 //			null mutations, the call to filter below may be redundant.
 //			.filter(mut -> mut != null)

@@ -174,11 +174,12 @@ public class Mutation implements Comparable<Mutation> {
 				"The other mutation must be at this position: %d (%s)",
 				pos, gene.toString()));
 		}
-		if (isIndel() || another.isIndel()) {
-			throw new UnsupportedOperationException(String.format(
-				"Can not merge indel mutations (%s with %s)",
-				toString(), another.toString()));
-		}
+		// workaround since we allows coexistence of indel and normal AAs in future version
+		// if (isIndel() || another.isIndel()) {
+		// 	throw new UnsupportedOperationException(String.format(
+		// 		"Can not merge indel mutations (%s with %s)",
+		// 		toString(), another.toString()));
+		// }
 		StringBuilder newAAs = new StringBuilder();
 		String anotherAAs = another.getAAs();
 		newAAs.append(aas);
@@ -299,19 +300,23 @@ public class Mutation implements Comparable<Mutation> {
 	 * @param gene, mutText
 	 * @return a Mutation object
 	 */
-	public static Mutation parseString(Gene gene, String mutText) {
+	public static Mutation parseString(Gene defaultGene, String mutText) {
 		Matcher m = mutationPattern.matcher(mutText);
 		Mutation mut = null;
 		if (m.matches()) {
-			if (gene == null) {
-				try {
-					gene = Gene.valueOf(m.group(1).toUpperCase());
-				} catch (NullPointerException e) {
+			Gene gene;
+			try {
+				gene = Gene.valueOf(m.group(1).toUpperCase());
+			} catch (NullPointerException e) {
+				if (defaultGene == null) {
 					throw new InvalidMutationStringException(
 						"Gene is not specified and also not found in the " +
 						"given text: " + mutText + ". The correct format " +
 						"for an input mutation string is, for example, " +
 						"RT:215Y.", e);
+				}
+				else {
+					gene = defaultGene;
 				}
 			}
 			int pos = Integer.parseInt(m.group(3));

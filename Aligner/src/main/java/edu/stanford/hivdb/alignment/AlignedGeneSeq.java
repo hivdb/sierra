@@ -32,6 +32,7 @@ import edu.stanford.hivdb.mutations.Gene;
 import edu.stanford.hivdb.mutations.Mutation;
 import edu.stanford.hivdb.mutations.MutationSet;
 import edu.stanford.hivdb.mutations.Tsms;
+import edu.stanford.hivdb.mutations.WithGene;
 import edu.stanford.hivdb.mutations.Sdrms;
 import edu.stanford.hivdb.mutations.MutType;
 import edu.stanford.hivdb.mutations.CodonTranslation;
@@ -49,7 +50,7 @@ import edu.stanford.hivdb.drugs.DrugClass;
  * are determined
  *
  */
-public class AlignedGeneSeq {
+public class AlignedGeneSeq implements WithGene {
 
 	// Variables assigned by CLapAlign
 	private final Gene gene;
@@ -144,7 +145,9 @@ public class AlignedGeneSeq {
 		mutationListString = getMutationListString();
 	}
 
+	@Override
 	public Gene getGene() { return gene; }
+
 	public Sequence getSequence() {	return sequence; }
 	public List<AlignedSite> getAlignedSites() { return alignedSites; }
 

@@ -428,5 +428,125 @@
     "insertedNAs": "",
     "isInsertion": false,
     "isDeletion": false
+  },
+  {
+    "gene": "IN",
+    "cons": "T",
+    "pos": 66,
+    "aas": "AIK",
+    "triplet": "",
+    "insertedNAs": "",
+    "isInsertion": false,
+    "isDeletion": false
+  },
+  {
+    "gene": "IN",
+    "cons": "E",
+    "pos": 92,
+    "aas": "GQ",
+    "triplet": "",
+    "insertedNAs": "",
+    "isInsertion": false,
+    "isDeletion": false
+  },
+  {
+    "gene": "IN",
+    "cons": "G",
+    "pos": 118,
+    "aas": "R",
+    "triplet": "",
+    "insertedNAs": "",
+    "isInsertion": false,
+    "isDeletion": false
+  },
+  {
+    "gene": "IN",
+    "cons": "F",
+    "pos": 121,
+    "aas": "Y",
+    "triplet": "",
+    "insertedNAs": "",
+    "isInsertion": false,
+    "isDeletion": false
+  },
+  {
+    "gene": "IN",
+    "cons": "E",
+    "pos": 138,
+    "aas": "AKT",
+    "triplet": "",
+    "insertedNAs": "",
+    "isInsertion": false,
+    "isDeletion": false
+  },
+  {
+    "gene": "IN",
+    "cons": "G",
+    "pos": 140,
+    "aas": "ACS",
+    "triplet": "",
+    "insertedNAs": "",
+    "isInsertion": false,
+    "isDeletion": false
+  },
+  {
+    "gene": "IN",
+    "cons": "Y",
+    "pos": 143,
+    "aas": "CHRS",
+    "triplet": "",
+    "insertedNAs": "",
+    "isInsertion": false,
+    "isDeletion": false
+  },
+  {
+    "gene": "IN",
+    "cons": "S",
+    "pos": 147,
+    "aas": "G",
+    "triplet": "",
+    "insertedNAs": "",
+    "isInsertion": false,
+    "isDeletion": false
+  },
+  {
+    "gene": "IN",
+    "cons": "Q",
+    "pos": 148,
+    "aas": "HKR",
+    "triplet": "",
+    "insertedNAs": "",
+    "isInsertion": false,
+    "isDeletion": false
+  },
+  {
+    "gene": "IN",
+    "cons": "N",
+    "pos": 155,
+    "aas": "H",
+    "triplet": "",
+    "insertedNAs": "",
+    "isInsertion": false,
+    "isDeletion": false
+  },
+  {
+    "gene": "IN",
+    "cons": "S",
+    "pos": 230,
+    "aas": "R",
+    "triplet": "",
+    "insertedNAs": "",
+    "isInsertion": false,
+    "isDeletion": false
+  },
+  {
+    "gene": "IN",
+    "cons": "R",
+    "pos": 263,
+    "aas": "K",
+    "triplet": "",
+    "insertedNAs": "",
+    "isInsertion": false,
+    "isDeletion": false
   }
 ]
