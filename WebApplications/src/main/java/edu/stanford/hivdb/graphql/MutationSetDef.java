@@ -228,7 +228,6 @@ public class MutationSetDef {
 							gene = ((WithGene) source).getGene();
 						}
 						MutationSet filterSet = new MutationSet(gene, customList);
-						System.out.println(filterSet);
 						mutations = mutations.intersectsWith(filterSet);
 						break;
 					}
