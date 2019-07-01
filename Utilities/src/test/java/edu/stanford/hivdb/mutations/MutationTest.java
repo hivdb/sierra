@@ -116,16 +116,20 @@ public class MutationTest {
 			.mergesWith(new Mutation(Gene.RT, 68, "C"));
 	}
 
-	@Test(expected=UnsupportedOperationException.class)
 	public void testMergesWithIndel() {
-		new Mutation(Gene.RT, 67, 'A')
-			.mergesWith(new Mutation(Gene.RT, 67, "-"));
+		assertEquals(
+			new Mutation(Gene.RT, 67, 'A')
+			.mergesWith(new Mutation(Gene.RT, 67, "-"))
+			.getAAs(),
+			"A-");
 	}
 
-	@Test(expected=UnsupportedOperationException.class)
 	public void testIndelMergesWith() {
-		new Mutation(Gene.RT, 67, '-')
-			.mergesWith(new Mutation(Gene.RT, 67, "A"));
+		assertEquals(
+			new Mutation(Gene.RT, 67, '-')
+			.mergesWith(new Mutation(Gene.RT, 67, "A"))
+			.getAAs(),
+			"-A");
 	}
 
 	@Test
