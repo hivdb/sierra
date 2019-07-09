@@ -31,7 +31,7 @@ import edu.stanford.hivdb.mutations.Gene;
 import edu.stanford.hivdb.mutations.MutType;
 import edu.stanford.hivdb.mutations.MutationSet;
 
-public class GeneDRTest {
+public class GeneDRFastTest {
 
 	@Test
 	public void testGetGene() {

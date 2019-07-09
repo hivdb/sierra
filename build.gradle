@@ -10,9 +10,6 @@ subprojects {
         maven {
             url 'https://dl.bintray.com/hivdb/hivdb'
         }
-        flatDir {
-            dirs '../DrugResistance/lib'
-        }
     }
 
     compileJava {

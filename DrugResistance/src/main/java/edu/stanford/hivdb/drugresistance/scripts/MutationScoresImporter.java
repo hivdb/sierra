@@ -29,7 +29,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.apache.commons.lang.StringEscapeUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -156,7 +156,7 @@ public class MutationScoresImporter {
 				values.add(String.format(
 					"('%s', '%s', '%s', '%s', '%s', '%s', 0)",
 					gene, drugClass,
-					StringEscapeUtils.escapeSql(AA.toHIVDBFormat(mutText)),
+					StringUtils.replace(AA.toHIVDBFormat(mutText), "'", "''"),
 					drug, score, VERSION
 				));
 			}

@@ -1,3 +1,7 @@
 [submodule "hiv-genotyper"]
 	path = hiv-genotyper
 	url = https://github.com/hivdb/hiv-genotyper.git
+[submodule "asi_interpreter"]
+	path = asi_interpreter
+	url = git@github.com:hivdb/asi_interpreter.git
+	branch = 1.4.0.0
