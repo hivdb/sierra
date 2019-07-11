@@ -42,12 +42,7 @@ import edu.stanford.hivdb.drugs.DrugClass;
 
 
 /**
- * Instantiated with data from CLap including (sequence, gene, firstAA, lastAA, firstNA,
- * lastNA, pcntMatch, originalAlignedNAs, originalControlLine, and originalAATripletLine
- *
- * After the processSequence sequence method is called, the finalFirstAA, finalLastAA,
- * finalAlignedNAs, List<Mutation>(including insertions and deletions), and List<FrameShift>
- * are determined
+ * Result object of data from {@link edu.stanford.hivdb.alignment.NucAminoAligner}.
  *
  */
 public class AlignedGeneSeq implements WithGene {
@@ -97,6 +92,8 @@ public class AlignedGeneSeq implements WithGene {
 	 * @param alignedSites
 	 * @param mutations
 	 * @param frameShifts
+	 * @param leftTrimmed
+	 * @param rightTrimmed
 	 */
 	public AlignedGeneSeq(
 			Sequence sequence, Gene gene,
