@@ -29,9 +29,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import com.amazonaws.util.StringUtils;
 
 import edu.stanford.hivdb.drugresistance.database.HivdbVersion;
 import edu.stanford.hivdb.drugs.DrugClass;
@@ -113,7 +114,8 @@ public class MutationCommentsImporter {
 			"('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')",
 			gene, drugClass, pos, aas, mutType,
 			rank, VERSION, VERSION.versionDate,
-			StringEscapeUtils.escapeSql(comment.trim())));
+			StringUtils.replace(comment.trim(), "'", "''")
+		));
 		statements.append(';');
 		return statements.toString();
 	}

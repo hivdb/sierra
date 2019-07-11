@@ -44,8 +44,8 @@ public class MutationPatternsTest {
 		MutationPatterns mutPatterns = new MutationPatterns(DrugClass.INSTI);
 		Map<String, Integer> allPatternCounts = mutPatterns.getAllPatternCounts();
 		assertEquals(DrugClass.INSTI, mutPatterns.getDrugClass());
-		assertTrue(mutPatterns.getPatternCount("E157Q") > 351);
-		assertTrue(allPatternCounts.get("E157Q") > 351);
+		assertTrue(mutPatterns.getPatternCount("E157Q") > 348);
+		assertTrue(allPatternCounts.get("E157Q") > 348);
 		assertTrue(mutPatterns.getPatternCount("E138A,G140S,Q148H") > 18);
 		assertTrue(mutPatterns.getPatternCount("N155H,E157Q,G163K") > 4);
 	}

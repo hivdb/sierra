@@ -206,7 +206,7 @@ public class NucAminoAligner {
 	/**
 	 * Receives a sequence and aligns it to each HIV gene by NucAmino.
 	 *
-	 * @Param sequence
+	 * @param sequence
 	 * @return an AlignedSequence object
 	 */
 	public static AlignedSequence align(Sequence sequence) {
@@ -222,7 +222,7 @@ public class NucAminoAligner {
 	/**
 	 * Receives set of sequences and aligns them to each HIV gene in parallel by NucAmino.
 	 *
-	 * @Param sequences
+	 * @param sequences
 	 * @return list of AlignedSequence objects
 	 */
 	public static List<AlignedSequence> parallelAlign(Collection<Sequence> sequences) {

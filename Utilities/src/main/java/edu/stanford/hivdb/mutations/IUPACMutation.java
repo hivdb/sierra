@@ -128,21 +128,25 @@ public class IUPACMutation extends AAMutation {
 	 * @param gene, mutText
 	 * @return a Mutation object
 	 */
-	public static IUPACMutation parseString(Gene gene, String mutText) {
+	public static IUPACMutation parseString(Gene defaultGene, String mutText) {
 		Matcher m = mutationPattern.matcher(mutText);
 		IUPACMutation mut = null;
 		if (m.matches()) {
-			if (gene == null) {
-				try {
-					// TODO: currently we only support parsing HIV1 mutations.
-					//       need to design a new format for HIV2 mutations.
-					gene = Gene.valueOf(Strain.HIV1, m.group(1).toUpperCase());
-				} catch (NullPointerException e) {
+			Gene gene;
+			try {
+				// TODO: currently we only support parsing HIV1 mutations.
+				//       need to design a new format for HIV2 mutations.
+				gene = Gene.valueOf(Strain.HIV1, m.group(1).toUpperCase());
+			} catch (NullPointerException e) {
+				if (defaultGene == null) {
 					throw new InvalidMutationException(
 						"Gene is not specified and also not found in the " +
 						"given text: " + mutText + ". The correct format " +
 						"for an input mutation string is, for example, " +
 						"RT:215Y.", e);
+				}
+				else {
+					gene = defaultGene;
 				}
 			}
 			int pos = Integer.parseInt(m.group(3));

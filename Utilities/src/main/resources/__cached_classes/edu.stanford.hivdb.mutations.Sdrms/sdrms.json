@@ -435,5 +435,125 @@
       "L"
     ],
     "maxDisplayAAs": 255
+  },
+  {
+    "type": "AA",
+    "gene": "HIV1IN",
+    "position": 66,
+    "aaChars": [
+      "A",
+      "I",
+      "K"
+    ],
+    "maxDisplayAAs": 255
+  },
+  {
+    "type": "AA",
+    "gene": "HIV1IN",
+    "position": 92,
+    "aaChars": [
+      "G",
+      "Q"
+    ],
+    "maxDisplayAAs": 255
+  },
+  {
+    "type": "AA",
+    "gene": "HIV1IN",
+    "position": 118,
+    "aaChars": [
+      "R"
+    ],
+    "maxDisplayAAs": 255
+  },
+  {
+    "type": "AA",
+    "gene": "HIV1IN",
+    "position": 121,
+    "aaChars": [
+      "Y"
+    ],
+    "maxDisplayAAs": 255
+  },
+  {
+    "type": "AA",
+    "gene": "HIV1IN",
+    "position": 138,
+    "aaChars": [
+      "A",
+      "K",
+      "T"
+    ],
+    "maxDisplayAAs": 255
+  },
+  {
+    "type": "AA",
+    "gene": "HIV1IN",
+    "position": 140,
+    "aaChars": [
+      "A",
+      "C",
+      "S"
+    ],
+    "maxDisplayAAs": 255
+  },
+  {
+    "type": "AA",
+    "gene": "HIV1IN",
+    "position": 143,
+    "aaChars": [
+      "C",
+      "H",
+      "R",
+      "S"
+    ],
+    "maxDisplayAAs": 255
+  },
+  {
+    "type": "AA",
+    "gene": "HIV1IN",
+    "position": 147,
+    "aaChars": [
+      "G"
+    ],
+    "maxDisplayAAs": 255
+  },
+  {
+    "type": "AA",
+    "gene": "HIV1IN",
+    "position": 148,
+    "aaChars": [
+      "H",
+      "K",
+      "R"
+    ],
+    "maxDisplayAAs": 255
+  },
+  {
+    "type": "AA",
+    "gene": "HIV1IN",
+    "position": 155,
+    "aaChars": [
+      "H"
+    ],
+    "maxDisplayAAs": 255
+  },
+  {
+    "type": "AA",
+    "gene": "HIV1IN",
+    "position": 230,
+    "aaChars": [
+      "R"
+    ],
+    "maxDisplayAAs": 255
+  },
+  {
+    "type": "AA",
+    "gene": "HIV1IN",
+    "position": 263,
+    "aaChars": [
+      "K"
+    ],
+    "maxDisplayAAs": 255
   }
 ]

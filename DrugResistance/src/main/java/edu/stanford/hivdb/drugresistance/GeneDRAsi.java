@@ -18,6 +18,7 @@
 
 package edu.stanford.hivdb.drugresistance;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
@@ -29,6 +30,7 @@ import edu.stanford.hivdb.drugs.Drug;
 import edu.stanford.hivdb.drugs.DrugClass;
 import edu.stanford.hivdb.mutations.Gene;
 import edu.stanford.hivdb.mutations.MutationSet;
+import edu.stanford.hivdb.ngs.GeneSequenceReads;
 
 /**
  * Initialize with Gene, mutTypes, mutCommentsAsi, drugClassTotalDrugScoresAsi,
@@ -47,11 +49,22 @@ import edu.stanford.hivdb.mutations.MutationSet;
 public class GeneDRAsi extends GeneDR {
 
 	protected final AsiHivdb asiObject;
-
-	public static Map<Gene, GeneDR> getResistanceByGene(Map<Gene, AlignedGeneSeq> alignedGeneSeqs) {
+	
+	public static Map<Gene, GeneDR> getResistanceByGeneFromAlignedGeneSeqs(List<AlignedGeneSeq> alignedGeneSeqs) {
 		Map<Gene, GeneDR> resistanceForSequence = new TreeMap<>();
-		for (Gene gene : alignedGeneSeqs.keySet()) {
-			final GeneDR geneDR = new GeneDRAsi(gene, alignedGeneSeqs.get(gene));
+		for (AlignedGeneSeq geneSeq : alignedGeneSeqs) {
+			Gene gene = geneSeq.getGene();
+			final GeneDR geneDR = new GeneDRAsi(gene, geneSeq.getMutations());
+			resistanceForSequence.put(gene, geneDR);
+		}
+		return resistanceForSequence;
+	}
+
+	public static Map<Gene, GeneDR> getResistanceByGeneFromReads(List<GeneSequenceReads> allGeneSeqReads) {
+		Map<Gene, GeneDR> resistanceForSequence = new TreeMap<>();
+		for (GeneSequenceReads geneSeqReads : allGeneSeqReads) {
+			Gene gene = geneSeqReads.getGene();
+			final GeneDR geneDR = new GeneDRAsi(gene, geneSeqReads.getMutations());
 			resistanceForSequence.put(gene, geneDR);
 		}
 		return resistanceForSequence;

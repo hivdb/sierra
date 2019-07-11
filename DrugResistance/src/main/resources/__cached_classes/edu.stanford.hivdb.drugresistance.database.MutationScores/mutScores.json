@@ -7620,7 +7620,7 @@
     "pos": 118,
     "aa": "R",
     "drug": "BIC",
-    "score": 15.0
+    "score": 30.0
   },
   {
     "gene": "HIV1IN",
@@ -7629,7 +7629,7 @@
     "pos": 118,
     "aa": "R",
     "drug": "DTG",
-    "score": 15.0
+    "score": 30.0
   },
   {
     "gene": "HIV1IN",
@@ -8579,6 +8579,24 @@
   {
     "gene": "HIV1IN",
     "drugClass": "INSTI",
+    "cons": "D",
+    "pos": 232,
+    "aa": "N",
+    "drug": "EVG",
+    "score": 10.0
+  },
+  {
+    "gene": "HIV1IN",
+    "drugClass": "INSTI",
+    "cons": "D",
+    "pos": 232,
+    "aa": "N",
+    "drug": "RAL",
+    "score": 10.0
+  },
+  {
+    "gene": "HIV1IN",
+    "drugClass": "INSTI",
     "cons": "R",
     "pos": 263,
     "aa": "K",
@@ -8592,7 +8610,7 @@
     "pos": 263,
     "aa": "K",
     "drug": "DTG",
-    "score": 25.0
+    "score": 30.0
   },
   {
     "gene": "HIV1IN",

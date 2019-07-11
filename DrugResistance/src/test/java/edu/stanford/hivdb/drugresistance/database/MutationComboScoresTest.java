@@ -38,7 +38,7 @@ import edu.stanford.hivdb.mutations.MutationSet;
 
 public class MutationComboScoresTest {
 
-	static final int TOTAL_COMBO_SCORES = 263;
+	static final int TOTAL_COMBO_SCORES = 279;
 	
 	final Gene eGene = Gene.valueOf("HIV1RT");
 	final DrugClass eDrugClass = DrugClass.NNRTI;
@@ -79,6 +79,7 @@ public class MutationComboScoresTest {
 
 	@Test
 	public void testGetComboScores() {
+		// This assertion is expected to fail after number of combo rules changed
 		assertEquals(TOTAL_COMBO_SCORES, comboScores.size());
 		for (DrugClass dc : DrugClass.values()) {
 			final List<ComboScore> dcScores = MutationComboScores.getCombinationScores(dc);

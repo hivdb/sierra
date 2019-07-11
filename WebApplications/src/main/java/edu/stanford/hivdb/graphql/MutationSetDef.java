@@ -19,6 +19,7 @@
 package edu.stanford.hivdb.graphql;
 
 import graphql.schema.*;
+import static graphql.Scalars.*;
 import graphql.schema.GraphQLFieldDefinition.Builder;
 
 import static graphql.schema.GraphQLArgument.newArgument;
@@ -32,6 +33,7 @@ import edu.stanford.hivdb.mutations.MutType;
 import edu.stanford.hivdb.mutations.MutationSet;
 import edu.stanford.hivdb.mutations.Sdrms;
 import edu.stanford.hivdb.mutations.Tsms;
+import edu.stanford.hivdb.mutations.WithGene;
 
 import static edu.stanford.hivdb.graphql.MutationDef.oMutation;
 import static edu.stanford.hivdb.graphql.ExtendedFieldDefinition.*;
@@ -44,7 +46,9 @@ public class MutationSetDef {
 		PI_TSM, NRTI_TSM, NNRTI_TSM, INSTI_TSM,
 		GENE_PR, GENE_RT, GENE_IN,
 		TYPE_MAJOR, TYPE_ACCESSORY, TYPE_NRTI, TYPE_NNRTI, TYPE_OTHER,
-		INSERTION, DELETION, UNUSUAL, AMBIGUOUS, STOPCODON };
+		INSERTION, DELETION, UNUSUAL, AMBIGUOUS, STOPCODON,
+		CUSTOMLIST
+	};
 
 	private static GraphQLEnumType oMutationSetFilterOption =
 		GraphQLEnumType.newEnum()
@@ -116,6 +120,9 @@ public class MutationSetDef {
 		.value(
 			"STOPCODON", mutsFilterOption.STOPCODON,
 			"List only mutations with stop codon(s).")
+		.value(
+			"CUSTOMLIST", mutsFilterOption.CUSTOMLIST,
+			"Accept a custom list of mutations and find the intersects.")
 		.build();
 
 	public static Builder newMutationSet(String name) {
@@ -213,6 +220,16 @@ public class MutationSetDef {
 					case STOPCODON:
 						mutations = mutations.getStopCodons();
 						break;
+					case CUSTOMLIST:
+						List<String> customList = environment.getArgument("customList");
+						Object source = environment.getSource();
+						Gene gene = null;
+						if (source instanceof WithGene) {
+							gene = ((WithGene) source).getGene();
+						}
+						MutationSet filterSet = new MutationSet(gene, customList);
+						mutations = mutations.intersectsWith(filterSet);
+						break;
 					}
 				}
 				return mutations;
@@ -222,11 +239,18 @@ public class MutationSetDef {
 		return newFieldDefinition()
 			.name(name)
 			.type(new GraphQLList(oMutation))
-			.argument(newArgument()
+			.argument(arg -> arg
 				.name("filterOptions")
 				.type(new GraphQLList(oMutationSetFilterOption))
-				.description("List of filter options for the mutation set.")
-				.build())
+				.description("List of filter options for the mutation set."))
+			.argument(arg -> arg
+				.name("customList")
+				.type(new GraphQLList(GraphQLString))
+				.description(
+					"List of possible mutation strings that should be " +
+					"included in this query if presented. Gene need to be " +
+					"prepend if the gene is not able to be inferred from " +
+					"the context."))
 			.dataFetcher(new MutationSetDataFetcher(name));
 	}
 }

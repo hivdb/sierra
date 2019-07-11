@@ -63,7 +63,7 @@ public class Aligner
 	 * Note: this method doesn't guarantee the input order of the sequences (if
 	 * you used LinkedHashSet).
 	 *
-	 * @Param sequences
+	 * @param sequences
 	 * @return map of sequences to map of genes to alignedGeneSeqs
 	 */
 	@Deprecated
@@ -80,7 +80,7 @@ public class Aligner
 	/**
 	 * Receives set of sequences and aligns them to each HIV gene in parallel.
 	 *
-	 * @Param sequences
+	 * @param sequences
 	 * @return list of AlignedSequence objects
 	 */
 	public static List<AlignedSequence> parallelAlign(List<Sequence> sequences) {
