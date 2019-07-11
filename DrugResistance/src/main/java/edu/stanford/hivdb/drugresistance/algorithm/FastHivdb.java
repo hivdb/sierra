@@ -183,12 +183,18 @@ public class FastHivdb {
 				for (Drug drug : childAA.scores.keySet()) {
 					scores.putIfAbsent(drug, new LinkedHashMap<>());
 					triggeredMuts.putIfAbsent(drug, new LinkedHashMap<>());
-					Double score = scores.get(drug)
-						.getOrDefault(curKey, Double.NEGATIVE_INFINITY);
-					Double newScore = childAA.scores.getOrDefault(drug, .0);
-					if (newScore > score) {
-						scores.get(drug).put(curKey, newScore);
-						triggeredMuts.get(drug).put(curKey, curMuts);
+					Double score = scores.get(drug).getOrDefault(curKey, null);
+					Double newScore = childAA.scores.getOrDefault(drug, null);
+					if (newScore != null) {
+						if (score == null || (newScore > score)) {
+							scores.get(drug).put(curKey, newScore);
+							triggeredMuts.get(drug).put(curKey, curMuts);
+						}
+						if (newScore.equals(score)) {
+							// mixture like M184IV
+							curMuts = curMuts.mergesWith(triggeredMuts.get(drug).get(curKey));
+							triggeredMuts.get(drug).put(curKey, curMuts);
+						}
 					}
 				}
 			}
