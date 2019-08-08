@@ -22,12 +22,14 @@ import graphql.schema.*;
 import static graphql.Scalars.*;
 import static graphql.schema.GraphQLObjectType.newObject;
 
-import edu.stanford.hivdb.ngs.GeneSequenceReads;
+// import edu.stanford.hivdb.ngs.GeneSequenceReads;
 
 import static edu.stanford.hivdb.graphql.MutationSetDef.*;
-import static edu.stanford.hivdb.graphql.MutationStatsDef.oMutationStats;
+// import static edu.stanford.hivdb.graphql.MutationStatsDef.oMutationStats;
 import static edu.stanford.hivdb.graphql.PositionCodonReadsDef.oPositionCodonReads;
+import static edu.stanford.hivdb.graphql.SequenceReadsHistogramDef.*;
 import static edu.stanford.hivdb.graphql.GeneDef.*;
+import static edu.stanford.hivdb.graphql.DescriptiveStatisticsDef.*;
 
 public class GeneSequenceReadsDef {
 
@@ -72,9 +74,9 @@ public class GeneSequenceReadsDef {
 				"The amino acid size of this sequence without unsequenced region (Ns).")
 		)
 		.field(field -> field
-			.type(GraphQLFloat)
-			.name("medianReadDepth")
-			.description("Median read depth of all codons in this gene.")
+			.name("readDepthStats")
+			.type(oDescriptiveStatistics)
+			.description("Descriptive statistics of all read depth.")
 		)
 		.field(field -> field
 			.type(GraphQLString)
@@ -98,22 +100,23 @@ public class GeneSequenceReadsDef {
 		// 	.name("frameShifts")
 		// 	.description("All frame shifts found in the aligned sequence.")
 		// )
-		.field(field -> field
-			.type(new GraphQLList(oMutationStats))
-			.name("mutationStats")
-			.argument(arg -> arg
-				.type(new GraphQLList(GraphQLFloat))
-				.name("allMinPrevalence")
-				.description(
-					"Specify the prevalence cutoff of fetching mutation stats."
-				))
-			.dataFetcher(env -> (
-				((GeneSequenceReads) env.getSource())
-				.getMutationStats(
-					env.getArgument("allMinPrevalence")
-				)
-			))
-			.description("List of statistics of mutations."))
+		.field(oSeqReadsHistogramBuilder)
+		// .field(field -> field
+		// 	.type(new GraphQLList(oMutationStats))
+		// 	.name("mutationStats")
+		// 	.argument(arg -> arg
+		// 		.type(new GraphQLList(GraphQLFloat))
+		// 		.name("allMinPrevalence")
+		// 		.description(
+		// 			"Specify the prevalence cutoff of fetching mutation stats."
+		// 		))
+		// 	.dataFetcher(env -> (
+		// 		((GeneSequenceReads) env.getSource())
+		// 		.getMutationStats(
+		// 			env.getArgument("allMinPrevalence")
+		// 		)
+		// 	))
+		// 	.description("List of statistics of mutations."))
 		.build();
 
 }

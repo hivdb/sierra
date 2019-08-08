@@ -22,7 +22,6 @@ import graphql.schema.*;
 import static graphql.Scalars.*;
 import graphql.schema.GraphQLFieldDefinition.Builder;
 
-import static graphql.schema.GraphQLArgument.newArgument;
 import java.util.ArrayList;
 import java.util.List;
 

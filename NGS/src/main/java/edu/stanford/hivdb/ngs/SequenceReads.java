@@ -42,9 +42,10 @@ import edu.stanford.hivdb.mutations.MutationSet;
 import edu.stanford.hivdb.mutations.PositionCodonReads;
 import edu.stanford.hivdb.mutations.Strain;
 import edu.stanford.hivdb.ngs.SequenceReadsHistogram.AggregationOption;
+import edu.stanford.hivdb.ngs.SequenceReadsHistogram.WithSequenceReadsHistogram;
 import edu.stanford.hivdb.utilities.SeqUtils;
 
-public class SequenceReads {
+public class SequenceReads implements WithSequenceReadsHistogram {
 
 	private final static int HXB2_PR_FIRST_NA = 2253;
 	private final Strain strain;
@@ -173,6 +174,7 @@ public class SequenceReads {
 		return concatenatedSeq;
 	}
 	
+	@Override
 	public SequenceReadsHistogram getHistogram(
 		final Double pcntLowerLimit,
 		final Double pcntUpperLimit,
@@ -185,6 +187,7 @@ public class SequenceReads {
 			numBins, cumulative, aggregatesBy);
 	}
 
+	@Override
 	public SequenceReadsHistogram getHistogram(
 		final Double pcntLowerLimit,
 		final Double pcntUpperLimit,

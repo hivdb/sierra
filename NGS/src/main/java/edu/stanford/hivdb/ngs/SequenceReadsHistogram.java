@@ -19,6 +19,24 @@ public class SequenceReadsHistogram {
 		Codon, AminoAcid, Position;
 	}
 	
+	public static interface WithSequenceReadsHistogram {
+		
+		public SequenceReadsHistogram getHistogram(
+			final Double pcntLowerLimit,
+			final Double pcntUpperLimit,
+			final Integer numBins,
+			final Boolean cumulative,
+			final AggregationOption aggregatesBy);
+
+		public SequenceReadsHistogram getHistogram(
+			final Double pcntLowerLimit,
+			final Double pcntUpperLimit,
+			final Double[] binTicks,
+			final Boolean cumulative,
+			final AggregationOption aggregatesBy);
+		
+	}
+	
 	public static class HistogramBin {
 		final public Double log10Percent;
 		final public Double binWidth;
@@ -97,7 +115,7 @@ public class SequenceReadsHistogram {
 	private boolean testBetween(double val, double lowerLimit, double upperLimit) {
 		return val >= lowerLimit && (cumulative || val <= upperLimit);
 	}
-	
+
 	private List<HistogramBin> getSites(
 		Function<CodonReads, Boolean> filter,
 		boolean positionMatchAll

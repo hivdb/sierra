@@ -25,6 +25,7 @@ import edu.stanford.hivdb.mutations.MutType;
 import edu.stanford.hivdb.mutations.Mutation;
 import edu.stanford.hivdb.mutations.MutationSet;
 
+@Deprecated
 public class MutationStats {
 
 	private final double minPrevalence;

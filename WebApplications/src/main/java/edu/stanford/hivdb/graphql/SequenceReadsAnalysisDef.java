@@ -25,7 +25,6 @@ import static graphql.schema.GraphQLObjectType.newObject;
 import static graphql.schema.GraphQLInputObjectType.newInputObject;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -39,13 +38,11 @@ import edu.stanford.hivdb.mutations.PositionCodonReads;
 import edu.stanford.hivdb.mutations.Strain;
 import edu.stanford.hivdb.ngs.GeneSequenceReads;
 import edu.stanford.hivdb.ngs.SequenceReads;
-import edu.stanford.hivdb.ngs.SequenceReadsHistogram;
-import edu.stanford.hivdb.ngs.SequenceReadsHistogram.AggregationOption;
 
 import static edu.stanford.hivdb.graphql.MutationSetDef.*;
 import static edu.stanford.hivdb.graphql.GeneDef.*;
 import static edu.stanford.hivdb.graphql.GeneSequenceReadsDef.*;
-import static edu.stanford.hivdb.graphql.MutationStatsDef.oMutationStats;
+// import static edu.stanford.hivdb.graphql.MutationStatsDef.oMutationStats;
 import static edu.stanford.hivdb.graphql.DrugResistanceDef.*;
 import static edu.stanford.hivdb.graphql.SubtypeV2Def.*;
 import static edu.stanford.hivdb.graphql.PositionCodonReadsDef.*;
@@ -76,29 +73,6 @@ public class SequenceReadsAnalysisDef {
 		}
 	};
 	
-	private static DataFetcher<SequenceReadsHistogram> seqReadsHistogramDataFetcher = new DataFetcher<SequenceReadsHistogram>() {
-		
-		@Override
-		public SequenceReadsHistogram get(DataFetchingEnvironment environment) {
-			SequenceReads seqReads = (SequenceReads) environment.getSource();
-			double lowerLimit = environment.getArgument("pcntLowerLimit");
-			double upperLimit = environment.getArgument("pcntUpperLimit");
-			Integer numBins = environment.getArgument("numBins");
-			List<Double> binTicks = environment.getArgument("binTicks");
-			boolean cumulative = environment.getArgument("cumulative");
-			AggregationOption aggBy = environment.getArgument("aggregatesBy");
-			if (numBins != null) {
-				return seqReads.getHistogram(lowerLimit, upperLimit, numBins, cumulative, aggBy);
-			}
-			else {
-				return seqReads.getHistogram(
-					lowerLimit, upperLimit,
-					binTicks.toArray(new Double[binTicks.size()]),
-					cumulative, aggBy);
-			}
-		}
-	};
-
 	public static SequenceReads toSequenceReadsList(Map<String, Object> input) {
 		String name = (String) input.get("name");
 		if (name == null) {
@@ -189,11 +163,6 @@ public class SequenceReadsAnalysisDef {
 				"The minimal read depth for each codon of this sequence."
 			))
 		.field(field -> field
-			.type(GraphQLFloat)
-			.name("medianReadDepth")
-			.description("Median read depth of all codons in this sequence.")
-		)
-		.field(field -> field
 			.type(new GraphQLList(oGene))
 			.name("availableGenes")
 			.description("Available genes found in the sequence reads."))
@@ -228,27 +197,27 @@ public class SequenceReadsAnalysisDef {
 		.field(newMutationSet("mutations")
 			.description("All mutations found in the sequence reads.")
 			.build())
-		.field(field -> field
-			.type(new GraphQLList(oMutationStats))
-			.name("mutationStats")
-			.argument(arg -> arg
-				.type(new GraphQLList(GraphQLFloat))
-				.name("allMinPrevalence")
-				.description(
-					"Specify the prevalence cutoff of fetching mutation stats."
-				))
-			.dataFetcher(env -> (
-				((SequenceReads) env.getSource())
-				.getMutationStats(
-					env.getArgument("allMinPrevalence")
-				)
-			))
-			.description("List of statistics of mutations."))
-		.field(field -> field
-			.type(new GraphQLList(oMutationStats))
-			.name("allMutationStats")
-			.description(
-				"List of statistics of mutations at all prevalence points. (INTERNAL)"))
+		// .field(field -> field
+		// 	.type(new GraphQLList(oMutationStats))
+		// 	.name("mutationStats")
+		// 	.argument(arg -> arg
+		// 		.type(new GraphQLList(GraphQLFloat))
+		// 		.name("allMinPrevalence")
+		// 		.description(
+		// 			"Specify the prevalence cutoff of fetching mutation stats."
+		// 		))
+		// 	.dataFetcher(env -> (
+		// 		((SequenceReads) env.getSource())
+		// 		.getMutationStats(
+		// 			env.getArgument("allMinPrevalence")
+		// 		)
+		// 	))
+		// 	.description("List of statistics of mutations."))
+		// .field(field -> field
+		// 	.type(new GraphQLList(oMutationStats))
+		// 	.name("allMutationStats")
+		// 	.description(
+		// 		"List of statistics of mutations at all prevalence points. (INTERNAL)"))
 		// .field(field -> field
 		// 	.type(new GraphQLList(oFrameShift))
 		// 	.name("frameShifts")
@@ -258,40 +227,7 @@ public class SequenceReadsAnalysisDef {
 			.name("drugResistance")
 			.description("List of drug resistance results by genes.")
 			.dataFetcher(drugResistanceDataFetcher))
-		.field(field -> field
-			.type(oSeqReadsHistogram)
-			.name("histogram")
-			.description("Histogram data for sequence reads.")
-			.argument(arg -> arg
-				.name("pcntLowerLimit")
-				.type(GraphQLFloat)
-				.defaultValue(0.001d)
-				.description("Percent lower limit of filtering codon reads (range: 0-100)."))
-			.argument(arg -> arg
-				.name("pcntUpperLimit")
-				.type(GraphQLFloat)
-				.defaultValue(0.2d)
-				.description("Percent lower limit of filtering codon reads (range: 0-100)."))
-			.argument(arg -> arg
-			 	.name("numBins")
-			 	.type(GraphQLInt)
-			 	.description("Number of bins wanted in this histogram. (either `numBins` or `binTicks` must be provided)"))
-			.argument(arg -> arg
-			 	.name("binTicks")
-			 	.type(new GraphQLList(GraphQLFloat))
-			 	.defaultValue(Arrays.asList(0.001, 0.002, 0.005, 0.01, 0.02, 0.05, 0.1, 0.2))
-			 	.description("Bin ticks wanted in this histogram. (either `numBins` or `binTicks` must be provided)"))
-			.argument(arg -> arg
-				.name("cumulative")
-				.type(GraphQLBoolean)
-				.defaultValue(true)
-				.description("Generate cumulative histogram data instead."))
-			.argument(arg -> arg
-				.name("aggregatesBy")
-				.type(enumAggregationOption)
-				.defaultValue(AggregationOption.Position)
-				.description("Aggregation option."))
-			.dataFetcher(seqReadsHistogramDataFetcher))
+		.field(oSeqReadsHistogramBuilder)
 		.field(field -> field
 			.name("readDepthStats")
 			.type(oDescriptiveStatistics)

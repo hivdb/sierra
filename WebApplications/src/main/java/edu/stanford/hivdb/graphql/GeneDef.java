@@ -21,7 +21,6 @@ package edu.stanford.hivdb.graphql;
 import graphql.schema.*;
 import static graphql.Scalars.*;
 import static graphql.schema.GraphQLObjectType.newObject;
-import static edu.stanford.hivdb.graphql.ExtendedFieldDefinition.*;
 
 import edu.stanford.hivdb.mutations.Gene;
 import edu.stanford.hivdb.mutations.GeneEnum;

@@ -27,7 +27,10 @@ import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
 import org.apache.commons.math3.stat.descriptive.rank.Median;
+
+import com.google.common.collect.Lists;
 
 import edu.stanford.hivdb.mutations.CodonTranslation;
 import edu.stanford.hivdb.mutations.Gene;
@@ -35,8 +38,10 @@ import edu.stanford.hivdb.mutations.MultiCodonsMutation;
 import edu.stanford.hivdb.mutations.Mutation;
 import edu.stanford.hivdb.mutations.MutationSet;
 import edu.stanford.hivdb.mutations.PositionCodonReads;
+import edu.stanford.hivdb.ngs.SequenceReadsHistogram.AggregationOption;
+import edu.stanford.hivdb.ngs.SequenceReadsHistogram.WithSequenceReadsHistogram;
 
-public class GeneSequenceReads {
+public class GeneSequenceReads implements WithSequenceReadsHistogram {
 
 	private final Gene gene;
 	private final int firstAA;
@@ -44,6 +49,7 @@ public class GeneSequenceReads {
 	private final List<PositionCodonReads> posCodonReads;
 	private final double minPrevalence;
 	private MutationSet mutations;
+	private transient DescriptiveStatistics readDepthStats;
 
 	public GeneSequenceReads(
 			final Gene gene,
@@ -125,6 +131,48 @@ public class GeneSequenceReads {
 			medianReadDepth = median.evaluate(ReadDepths);
 		}
 		return medianReadDepth;
+	}
+
+	@Override
+	public SequenceReadsHistogram getHistogram(
+		final Double pcntLowerLimit,
+		final Double pcntUpperLimit,
+		final Integer numBins,
+		final Boolean cumulative,
+		final AggregationOption aggregatesBy) {
+		return new SequenceReadsHistogram(
+			Lists.asList(this, new GeneSequenceReads[0]),
+			pcntLowerLimit, pcntUpperLimit,
+			numBins, cumulative, aggregatesBy);
+	}
+
+	@Override
+	public SequenceReadsHistogram getHistogram(
+		final Double pcntLowerLimit,
+		final Double pcntUpperLimit,
+		final Double[] binTicks,
+		final Boolean cumulative,
+		final AggregationOption aggregatesBy) {
+		return new SequenceReadsHistogram(
+			Lists.asList(this, new GeneSequenceReads[0]),
+			pcntLowerLimit / 100, pcntUpperLimit / 100,
+			binTicks, cumulative, aggregatesBy);
+	}
+
+	public DescriptiveStatistics getReadDepthStats() {
+		if (readDepthStats == null) {
+			double[] readDepthArray = posCodonReads.stream()
+				.mapToDouble(pcr -> pcr.getTotalReads())
+				.toArray();
+			
+			if (readDepthArray.length > 2) {
+				readDepthStats = new DescriptiveStatistics(readDepthArray);
+			}
+			else {
+				readDepthStats = new DescriptiveStatistics(new double[] {0, 0, 0});
+			}
+		}
+		return readDepthStats;
 	}
 
 	public MutationSet getMutations() {

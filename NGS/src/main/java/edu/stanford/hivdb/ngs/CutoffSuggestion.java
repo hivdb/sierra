@@ -60,6 +60,12 @@ public class CutoffSuggestion {
 			}
 		}
 		
+		if (foldsInWindow.isEmpty()) {
+			this.stricterLimit = .0;
+			this.looserLimit = .0;
+			return;
+		}
+		
 		// sometime the fold >= 1 didn't reached and we went all the way to the end
 		double maxFold = Collections.max(foldsInWindow);
 		// tolerant fluctuation
@@ -95,9 +101,14 @@ public class CutoffSuggestion {
 		// final a smaller cutoff (especially useful when the distribution of
 		// proportion is very sparse)
 		int indexFromRareRate = (int) Math.ceil(newsize * (1 - rareRate));
-		this.stricterLimit = proportionInWindow.get(indexFromRareRate);
-
-		this.looserLimit = proportionInWindow.get(proportionInWindow.size() - 1);
+		if (proportionInWindow.size() > indexFromRareRate) {
+			this.stricterLimit = proportionInWindow.get(indexFromRareRate);
+			this.looserLimit = proportionInWindow.get(proportionInWindow.size() - 1);
+		}
+		else {
+			this.stricterLimit = .0;
+			this.looserLimit = .0;
+		}
 		// this.stricterLimit = upperLimit;
 	}
 	

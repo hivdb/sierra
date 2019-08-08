@@ -24,6 +24,7 @@ import static graphql.schema.GraphQLObjectType.newObject;
 
 import static edu.stanford.hivdb.graphql.ExtendedFieldDefinition.*;
 
+@Deprecated			
 public class MutationStatsDef {
 
 	public static GraphQLObjectType oMutationStats;
