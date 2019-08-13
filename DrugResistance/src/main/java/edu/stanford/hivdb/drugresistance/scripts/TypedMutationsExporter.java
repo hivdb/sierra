@@ -22,8 +22,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import edu.stanford.hivdb.aapcnt.HIVAminoAcidPercent;
-import edu.stanford.hivdb.aapcnt.HIVAminoAcidPercents;
+import edu.stanford.hivdb.hivfacts.HIVAminoAcidPercent;
+import edu.stanford.hivdb.hivfacts.HIVAminoAcidPercents;
 import edu.stanford.hivdb.mutations.Apobec;
 import edu.stanford.hivdb.mutations.Gene;
 import edu.stanford.hivdb.mutations.Mutation;
@@ -42,7 +42,7 @@ public class TypedMutationsExporter {
 	}
 
 	private static void exportUnusuals() {
-		HIVAminoAcidPercents allAAPcnts = HIVAminoAcidPercents.getInstance("all", "All");
+		HIVAminoAcidPercents allAAPcnts = HIVAminoAcidPercents.getInstance("all", "all");
 
 		// Map<GenePosition, Map<Character, Boolean>>
 		// 	unusuals = UnusualMutations.getUnusualMuts();

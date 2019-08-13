@@ -30,7 +30,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
-import edu.stanford.hivdb.aapcnt.HIVAminoAcidPercents;
+import edu.stanford.hivdb.hivfacts.HIVAminoAcidPercents;
 import edu.stanford.hivdb.utilities.MyStringUtils;
 
 public class Mutation implements Comparable<Mutation> {
@@ -43,7 +43,7 @@ public class Mutation implements Comparable<Mutation> {
 		"([AC-IK-NP-TV-Z.*]+(?:[#_]?[AC-IK-NP-TV-Z.*]+)?|[id_#~-]|[iI]ns(?:ertion)?|[dD]el(?:etion)?)" +
 		"(?::([ACGTRYMWSKBDHVN-]{3})?)?" +
 		"\\s*$");
-	private static final HIVAminoAcidPercents allAAPcnts = HIVAminoAcidPercents.getInstance("all", "All");
+	private static final HIVAminoAcidPercents allAAPcnts = HIVAminoAcidPercents.getInstance("all", "all");
 
 	private Gene gene;
 	private String cons;
@@ -103,7 +103,7 @@ public class Mutation implements Comparable<Mutation> {
 		this(gene, pos, "" + aa, "", "");
 	}
 
-   	public static Mutation fromNucAminoMutation(Gene gene, int aaStart, Map<?, ?> mut) {
+	public static Mutation fromNucAminoMutation(Gene gene, int aaStart, Map<?, ?> mut) {
 		int pos = ((Double) mut.get("Position")).intValue() - aaStart + 1;
 
 		String codon = "";

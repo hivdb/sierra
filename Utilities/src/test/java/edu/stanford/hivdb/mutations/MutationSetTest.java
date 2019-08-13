@@ -505,9 +505,9 @@ public class MutationSetTest {
 	public void testGetHighestMutPrevalences() {
 		MutationSet muts = new MutationSet("RT:67N,RT:69KS,PR:82VIA,RT68W");
 		Map<Mutation, Double> expected = new HashMap<>();
-		expected.put(new Mutation(Gene.RT, 67, "N"), 9.0147444549135450);
-		expected.put(new Mutation(Gene.RT, 69, "KS"), 0.8036226800178583);
-		expected.put(new Mutation(Gene.PR, 82, "VIA"), 4.7026691174567015);
+		expected.put(new Mutation(Gene.RT, 67, "N"), 8.111958255747572);
+		expected.put(new Mutation(Gene.RT, 69, "KS"), 0.8224159135875088);
+		expected.put(new Mutation(Gene.PR, 82, "VIA"), 4.71235797386012);
 		expected.put(new Mutation(Gene.RT, 68, "W"), 0.0);
 		assertEquals(expected, muts.getHighestMutPrevalences());
 	}

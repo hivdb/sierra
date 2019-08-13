@@ -260,7 +260,7 @@ public class MutationTest {
 	@Test
 	public void testIsApobecMut() {
 		assertTrue(new Mutation(Gene.PR, 25, "KN").isApobecMutation());
-		assertTrue(new Mutation(Gene.PR, 25, "K").isApobecMutation());
+		assertFalse(new Mutation(Gene.PR, 25, "K").isApobecMutation());
 		assertTrue(new Mutation(Gene.PR, 25, "DN").isApobecMutation());
 		assertTrue(new Mutation(Gene.PR, 25, "DKN").isApobecMutation());
 		assertFalse(new Mutation(Gene.PR, 25, "D").isApobecMutation());
@@ -791,11 +791,11 @@ public class MutationTest {
 		final Mutation prevMutsZero = new Mutation(Gene.IN, 45, "CDEFH");
 		final Mutation prevMutsWCons = new Mutation(Gene.IN, 45, "LHKQ");
 		final Mutation prevMutsWConsAndStop = new Mutation(Gene.IN, 45, "*LHKQ");
-		assertEquals(0.03587, prevMut.getHighestMutPrevalence(), 1e-5);
-		assertEquals(3.77107, prevMuts.getHighestMutPrevalence(), 1e-5);
+		assertEquals(0.03118, prevMut.getHighestMutPrevalence(), 1e-5);
+		assertEquals(3.92463, prevMuts.getHighestMutPrevalence(), 1e-5);
 		assertEquals(0.0, prevMutZero.getHighestMutPrevalence(), 1e-5);
-		assertEquals(0.0, prevMutsZero.getHighestMutPrevalence(), 1e-5);
-		assertEquals(3.77107, prevMutsWCons.getHighestMutPrevalence(), 1e-5);
-		assertEquals(3.77107, prevMutsWConsAndStop.getHighestMutPrevalence(), 1e-5);
+		assertEquals(0.00445, prevMutsZero.getHighestMutPrevalence(), 1e-5);
+		assertEquals(3.92463, prevMutsWCons.getHighestMutPrevalence(), 1e-5);
+		assertEquals(3.92463, prevMutsWConsAndStop.getHighestMutPrevalence(), 1e-5);
 	}
 }

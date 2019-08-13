@@ -17,31 +17,37 @@
 
 package edu.stanford.hivdb.mutations;
 
-import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
-import edu.stanford.hivdb.utilities.JdbcDatabase;
-import edu.stanford.hivdb.utilities.Cachable;
+import edu.stanford.hivdb.hivfacts.HIVAPOBECMutation;
+import edu.stanford.hivdb.hivfacts.HIVAPOBECMutations;
 
 public class Apobec {
-	@Cachable.CachableField
-	private static MutationSet apobecMutsLU;
+	private final static HIVAPOBECMutations hivApobecs = HIVAPOBECMutations.getInstance();
 
-	@Cachable.CachableField
-	private static MutationSet apobecDRMsLU;
+	private final static MutationSet apobecMutsLU;
+	private final static MutationSet apobecDRMsLU;
 
 	private transient final MutationSet apobecMuts;
 	private transient final MutationSet apobecDRMs;
-
+	
 	static {
-		Cachable.setup(Apobec.class, () -> {
-			try {
-				populateApobecMaps();
-			} catch (SQLException e) {
-				throw new ExceptionInInitializerError(e);
-			}
-		});
+		List<Mutation> _apobecsLU = new ArrayList<>();
+		for (HIVAPOBECMutation m : hivApobecs.getApobecMutations()) {
+			_apobecsLU.add(new Mutation(
+				Gene.valueOf(m.getGene()), m.getPosition(), m.getAA()));
+		}
+		apobecMutsLU = new MutationSet(_apobecsLU);
+		List<Mutation> _apobecDRMsLU = new ArrayList<>();
+		for (HIVAPOBECMutation m : hivApobecs.getApobecDRMs()) {
+			_apobecDRMsLU.add(new Mutation(
+				Gene.valueOf(m.getGene()), m.getPosition(), m.getAA()));
+		}
+		apobecDRMsLU = new MutationSet(_apobecDRMsLU);	
 	}
+
 
 	public static boolean isApobecMutation(Mutation mutation) {
 		return apobecMutsLU.hasSharedAAMutation(mutation);
@@ -112,35 +118,5 @@ public class Apobec {
 		}
 
 		return comment.toString();
-	}
-
-	// Populates two sets. One containing all mutations indicative
-	// of APOBEC-mediated G-to-A hypermutation.
-	// The second containing those DRMs that could be selected by
-	// therapy or could could be caused by APOBEC.
-	protected static void populateApobecMaps() throws SQLException {
-		final JdbcDatabase db = JdbcDatabase.getDefault();
-		final String sqlStatementApobecMuts =
-			"SELECT Gene, Pos, AA FROM tblApobecMuts ORDER BY Gene, Pos, AA";
-		final String sqlStatementApobecDRMs =
-			"SELECT Gene, Pos, AA FROM tblApobecDRMs ORDER BY Gene, Pos, AA";
-
-		apobecMutsLU = new MutationSet(
-			db.iterate(sqlStatementApobecMuts, rs -> {
-				return new Mutation(
-					Gene.valueOf(rs.getString("Gene")),
-					rs.getInt("Pos"),
-					rs.getString("AA"));
-			})
-		);
-
-		apobecDRMsLU = new MutationSet(
-			db.iterate(sqlStatementApobecDRMs, rs -> {
-				return new Mutation(
-					Gene.valueOf(rs.getString("Gene")),
-					rs.getInt("Pos"),
-					rs.getString("AA"));
-			})
-		);
 	}
 }
