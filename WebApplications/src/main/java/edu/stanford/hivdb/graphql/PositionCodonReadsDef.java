@@ -190,6 +190,7 @@ public class PositionCodonReadsDef {
 			.argument(arg -> arg
 				.type(GraphQLBoolean)
 				.name("mutationOnly")
+				.defaultValue(false)
 				.description("Exclude codons matched subtype B consensus.")
 			)
 			.argument(arg -> arg

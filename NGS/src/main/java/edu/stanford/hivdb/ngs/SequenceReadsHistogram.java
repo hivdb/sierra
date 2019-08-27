@@ -117,8 +117,7 @@ public class SequenceReadsHistogram {
 	}
 
 	private List<HistogramBin> getSites(
-		Function<CodonReads, Boolean> filter,
-		boolean positionMatchAll
+		Function<CodonReads, Boolean> filter
 	) {
 		/* initialize binsCount */
 		int[] binsCount = new int[numBins];
@@ -127,7 +126,6 @@ public class SequenceReadsHistogram {
 		for (GeneSequenceReads geneSeqReads : allGeneSequenceReads) {
 			for (PositionCodonReads pcr : geneSeqReads.getAllPositionCodonReads()) {
 				Set<Pair<Integer, String>> aggregatedSites = new HashSet<>();
-				boolean[] excludedSites = new boolean[numBins];
 				long total = pcr.getTotalReads();
 				double log10Total = Math.log10(total);
 				for (CodonReads cr : pcr.getCodonReads()) {
@@ -158,19 +156,9 @@ public class SequenceReadsHistogram {
 							}
 						}
 					}
-					else if (positionMatchAll) {
-						for (int idx = 0; idx < numBins; idx ++) {
-							if (testBetween(log10Pcnt, binSteps[idx], binSteps[idx + 1])) {
-								excludedSites[idx] = true;
-							}
-						}
-					}
 				}
 				for (Pair<Integer, String> idxKey : aggregatedSites) {
 					int idx = idxKey.getLeft();
-					if (positionMatchAll && excludedSites[idx]) {
-						continue;
-					}
 					binsCount[idx] ++;
 				}
 			}
@@ -189,11 +177,11 @@ public class SequenceReadsHistogram {
 	public List<HistogramBin> getUsualSites() {
 		switch (aggregatesBy) {
 			case Position:
-				return getSites(cr -> !cr.isUnusual(), true);
+				return getSites(cr -> !cr.isUnusual());
 			case AminoAcid:
-				return getSites(cr -> !cr.isUnusual(), false);
+				return getSites(cr -> !cr.isUnusual());
 			default:  // case Codon:
-				return getSites(cr -> !cr.isUnusualByCodon(), false);
+				return getSites(cr -> !cr.isUnusualByCodon());
 		}
 	}
 	
@@ -201,9 +189,9 @@ public class SequenceReadsHistogram {
 		switch (aggregatesBy) {
 			case Position:
 			case AminoAcid:
-				return getSites(cr -> cr.isUnusual(), false);
+				return getSites(cr -> cr.isUnusual());
 			default:  // case Codon:
-				return getSites(cr -> cr.isUnusualByCodon(), false);
+				return getSites(cr -> cr.isUnusualByCodon());
 		}
 	}
 	
@@ -211,26 +199,26 @@ public class SequenceReadsHistogram {
 		switch (aggregatesBy) {
 			case Position:
 			case AminoAcid:
-				return getSites(cr -> cr.isUnusual() && cr.isApobecMutation(), false);
+				return getSites(cr -> cr.isUnusual() && cr.isApobecMutation());
 			default:  // case Codon:
-				return getSites(cr -> cr.isUnusualByCodon() && cr.isApobecMutation(), false);
+				return getSites(cr -> cr.isUnusualByCodon() && cr.isApobecMutation());
 		}
 	}
 	
 	public List<HistogramBin> getApobecSites() {
-		return getSites(cr -> cr.isApobecMutation(), false);
+		return getSites(cr -> cr.isApobecMutation());
 	}
 	
 	public List<HistogramBin> getApobecDrmSites() {
-		return getSites(cr -> cr.isApobecDRM(), false);
+		return getSites(cr -> cr.isApobecDRM());
 	}
 
 	public List<HistogramBin> getStopCodonSites() {
-		return getSites(cr -> cr.hasStop(), false);
+		return getSites(cr -> cr.hasStop());
 	}
 	
 	public List<HistogramBin> getDrmSites() {
-		return getSites(cr -> cr.isDRM(), false);
+		return getSites(cr -> cr.isDRM());
 	}
 	
 	public Integer getNumPositions() {
