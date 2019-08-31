@@ -119,15 +119,15 @@ public class FastHivdbTest {
 	@Test
 	public void testGetTriggeredMutations() {
 		FastHivdb asiObj = new FastHivdb(
-			Gene.valueOf("HIV1RT"), new MutationSet("RT67AN,RT71R,RT100I,RT101E,RT181C,RT184V,RT219Q"));
+			Gene.valueOf("HIV1RT"), new MutationSet("RT67AN,RT71R,RT100I,RT101E,RT181C,RT184IV,RT219Q"));
 		// RT67A is not a DRM
-		MutationSet expected = new MutationSet("RT67N,RT100I,RT101E,RT181C,RT184V,RT219Q");
+		MutationSet expected = new MutationSet("RT67N,RT100I,RT101E,RT181C,RT184IV,RT219Q");
 		assertEquals(expected, asiObj.getTriggeredMutations());
 		assertEquals(expected, asiObj.getTriggeredMutations());
-		expected = new MutationSet("RT67N,RT184V,RT219Q");
+		expected = new MutationSet("RT67N,RT184IV,RT219Q");
 		assertEquals(expected, asiObj.getTriggeredMutations(DrugClass.NRTI));
 		assertEquals(expected, asiObj.getTriggeredMutations(DrugClass.NRTI));
-		expected = new MutationSet("RT100I,RT101E,RT181C");
+		expected = new MutationSet("RT100I,RT101E,RT181C,RT184I");
 		assertEquals(expected, asiObj.getTriggeredMutations(DrugClass.NNRTI));
 		assertEquals(expected, asiObj.getTriggeredMutations(DrugClass.NNRTI));
 	}

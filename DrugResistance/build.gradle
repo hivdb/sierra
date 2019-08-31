@@ -6,7 +6,7 @@ plugins {
 }
 
 group = 'edu.stanford.hivdb'
-version = '2.3.1'
+version = '2.3.3'
 
 description = """DrugResistance"""
 
@@ -33,7 +33,7 @@ dependencies {
     compile project(':Aligner')
     compile project(':NGS')
     compile project(':asi_interpreter')
-    compile 'edu.stanford.hivdb.aapcnt:hiv-aapcnt-java:2018.11-2'
+    compile 'edu.stanford.hivdb.hivfacts:hivfacts-java:2019.8'
     testCompile 'junit:junit:4.12'
     testCompile 'org.mockito:mockito-core:1.9.5'
     testCompile project(':Utilities')

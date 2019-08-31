@@ -6,7 +6,7 @@ plugins {
 }
 
 group = 'edu.stanford.hivdb'
-version = '2.3.1'
+version = '2.3.3'
 
 description = """Utilities"""
 
@@ -42,7 +42,7 @@ dependencies {
     compile 'org.apache.httpcomponents:httpclient:4.5.6'
     compile 'org.apache.httpcomponents:httpcore:4.4.10'
     compile 'com.mashape.unirest:unirest-java:1.4.9'
-    compile 'edu.stanford.hivdb.hivfacts:hivfacts-java:2019.6a1'
+    compile 'edu.stanford.hivdb.hivfacts:hivfacts-java:2019.8'
     compile project(':TestResources')
 }
 

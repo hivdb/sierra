@@ -28,7 +28,10 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.stream.Collectors;
+
+import org.apache.commons.lang3.StringUtils;
 
 import edu.stanford.hivdb.drugresistance.GeneDR;
 import edu.stanford.hivdb.drugresistance.algorithm.Asi;
@@ -83,21 +86,50 @@ public class DrugResistanceDef {
 					map.put("level", geneDR.getDrugLevel(drug));
 					map.put("text", geneDR.getDrugLevelText(drug));
 					List<Map<String, Object>> partialScores = new ArrayList<>();
+
+					// aggregate scores by positions instead of mutations
+					// TODO: this should be moved to GeneDR
+					Map<String, MutationSet> gpMutations = new TreeMap<>();
+					Map<String, Double> gpPartialScores = new HashMap<>();
 					for (Map.Entry<Mutation, Double> e :
 							geneDR.getScoredIndividualMutsForDrug(drug).entrySet()) {
-						Map<String, Object> partialScore = new HashMap<>();
-						List<Mutation> rule = new ArrayList<>();
-						rule.add(e.getKey());
-						partialScore.put("mutations", rule);
-						partialScore.put("score", e.getValue());
-						partialScores.add(partialScore);
+						Mutation mut = e.getKey();
+
+						List<String> gpKeyList = new ArrayList<>();
+						gpKeyList.add(mut.getGenePosition().toString());
+						String gpKey = StringUtils.join(gpKeyList, "+");
+
+						MutationSet muts = gpMutations.getOrDefault(gpKey, new MutationSet());
+						muts = muts.mergesWith(mut);
+
+						gpMutations.put(gpKey, muts);
+						gpPartialScores.put(gpKey, gpPartialScores.getOrDefault(gpKey, .0) + e.getValue());
 					}
 					for (Map.Entry<MutationSet, Double> e :
 							geneDR.getScoredComboMutsForDrug(drug).entrySet()) {
+						MutationSet muts = e.getKey();
+
+						List<String> gpKeyList = (
+							muts.stream()
+							.map(m -> m.getGenePosition().toString())
+							.collect(Collectors.toList())
+						);
+						String gpKey = StringUtils.join(gpKeyList, "+");
+
+						MutationSet prevMuts = gpMutations.getOrDefault(gpKey, new MutationSet());
+						muts = muts.mergesWith(prevMuts);
+
+						gpMutations.put(gpKey, muts);
+						gpPartialScores.put(gpKey, gpPartialScores.getOrDefault(gpKey, .0) + e.getValue());
+					}
+
+					for (String gpkey : gpMutations.keySet()) {
+						MutationSet muts = gpMutations.get(gpkey);
+						Double score = gpPartialScores.get(gpkey);
+
 						Map<String, Object> partialScore = new HashMap<>();
-						List<Mutation> rule = new ArrayList<>(e.getKey());
-						partialScore.put("mutations", rule);
-						partialScore.put("score", e.getValue());
+						partialScore.put("mutations", muts);
+						partialScore.put("score", score);
 						partialScores.add(partialScore);
 					}
 					map.put("partialScores", partialScores);

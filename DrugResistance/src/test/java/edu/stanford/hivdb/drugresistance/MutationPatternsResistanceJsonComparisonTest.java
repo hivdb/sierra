@@ -118,7 +118,7 @@ public class MutationPatternsResistanceJsonComparisonTest {
 					int calculatedScoreFast = mutPatternScoresCalculatedFast.get(mutList).get(drug);
 					Assert.assertTrue(
 						String.format(
-							"Error in %s (%). %s doesn't equal to %s or %s",
+							"Error in %s (%s). %s doesn't equal to %s or %s",
 							testMutationPatterns, mutList, expectedScore, calculatedScoreAsi, calculatedScoreFast),
 						expectedScore == calculatedScoreAsi &&
 						expectedScore == calculatedScoreFast);

@@ -154,8 +154,8 @@ public class ApobecTest {
 
 	@Test
 	public void testMixMutsFromFile() {
-		final String eComment = "The following 4 APOBEC muts were present in the sequence: PR: G48ER, G52R; RT: M41I, G190R. The following 3 DRMs in this sequence could reflect APOBEC activity: PR: G73S; RT: D67N, M184I.";
-		final MutationSet eMuts = new MutationSet("PR:48RE PR:52R RT:41I RT:190R");
+		final String eComment = "The following 4 APOBEC muts were present in the sequence: PR: G48R, G52R; RT: M41I, G190R. The following 3 DRMs in this sequence could reflect APOBEC activity: PR: G73S; RT: D67N, M184I.";
+		final MutationSet eMuts = new MutationSet("PR:48R PR:52R RT:41I RT:190R");
 		final MutationSet eDRMs = new MutationSet("PR:73S RT:67N RT:184I");
 		final InputStream testMutationsInputStream = TestMutationsFiles.getTestMutationsInputStream(TestMutationsProperties.APOBEC_TEST);
 		final List<MutationSet> mutationLists = MutationFileReader.readMutationLists(testMutationsInputStream);
