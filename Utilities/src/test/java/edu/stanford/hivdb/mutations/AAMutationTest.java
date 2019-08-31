@@ -241,7 +241,6 @@ public class AAMutationTest {
 	@Test
 	public void testIsApobecMut() {
 		assertTrue(new AAMutation(Gene.valueOf("HIV1PR"), 25, "KN".toCharArray()).isApobecMutation());
-		assertTrue(new AAMutation(Gene.valueOf("HIV1PR"), 25, 'K').isApobecMutation());
 		assertTrue(new AAMutation(Gene.valueOf("HIV1PR"), 25, "DN".toCharArray()).isApobecMutation());
 		assertTrue(new AAMutation(Gene.valueOf("HIV1PR"), 25, "DKN".toCharArray()).isApobecMutation());
 		assertFalse(new AAMutation(Gene.valueOf("HIV1PR"), 25, 'D').isApobecMutation());

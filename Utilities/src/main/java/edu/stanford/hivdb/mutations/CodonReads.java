@@ -99,8 +99,21 @@ public class CodonReads {
 			// we don't have data for HIV2 yet
 			return .0;
 		}
-		HIVCodonPercent codonPcnt = HIV1_CODON_PCNTS.get(
-			gene.getGeneEnum(), position, codon);
+		HIVCodonPercent codonPcnt;
+		String cleanedCodon = codon;
+		if (codon.length() > 5) {
+			cleanedCodon = "ins";
+		}
+		else if (codon.length() < 3) {
+			cleanedCodon = "del";
+		}
+		try {
+			codonPcnt = HIV1_CODON_PCNTS.get(
+				gene.getGeneEnum(), position, cleanedCodon);
+		}
+		catch (IllegalArgumentException e) {
+			return .0;
+		}
 		if (codonPcnt == null) {
 			return .0;
 		}

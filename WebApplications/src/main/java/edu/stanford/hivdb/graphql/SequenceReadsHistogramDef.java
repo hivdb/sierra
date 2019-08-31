@@ -92,6 +92,10 @@ public class SequenceReadsHistogramDef {
 				.description("Unusual & APOBEC sites histogram data."))
 			.field(field -> field
 				.type(new GraphQLList(oSeqReadsHistogramBin))
+				.name("unusualNonApobecSites")
+				.description("Unusual & Non-APOBEC sites histogram data."))
+			.field(field -> field
+				.type(new GraphQLList(oSeqReadsHistogramBin))
 				.name("apobecSites")
 				.description("APOBEC sites histogram data."))
 			.field(field -> field

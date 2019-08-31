@@ -204,6 +204,16 @@ public class SequenceReadsHistogram {
 				return getSites(cr -> cr.isUnusualByCodon() && cr.isApobecMutation());
 		}
 	}
+
+	public List<HistogramBin> getUnusualNonApobecSites() {
+		switch (aggregatesBy) {
+			case Position:
+			case AminoAcid:
+				return getSites(cr -> cr.isUnusual() && !cr.isApobecMutation());
+			default:  // case Codon:
+				return getSites(cr -> cr.isUnusualByCodon() && !cr.isApobecMutation());
+		}
+	}
 	
 	public List<HistogramBin> getApobecSites() {
 		return getSites(cr -> cr.isApobecMutation());

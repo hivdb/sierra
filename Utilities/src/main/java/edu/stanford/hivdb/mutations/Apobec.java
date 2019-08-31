@@ -36,14 +36,14 @@ public class Apobec {
 	static {
 		List<Mutation> _apobecsLU = new ArrayList<>();
 		for (HIVAPOBECMutation m : hivApobecs.getApobecMutations()) {
-			_apobecsLU.add(new Mutation(
-				Gene.valueOf(m.getGene()), m.getPosition(), m.getAA()));
+			_apobecsLU.add(new AAMutation(
+				Gene.valueOf(Strain.HIV1, m.getGene()), m.getPosition(), m.getAA()));
 		}
 		apobecMutsLU = new MutationSet(_apobecsLU);
 		List<Mutation> _apobecDRMsLU = new ArrayList<>();
 		for (HIVAPOBECMutation m : hivApobecs.getApobecDRMs()) {
-			_apobecDRMsLU.add(new Mutation(
-				Gene.valueOf(m.getGene()), m.getPosition(), m.getAA()));
+			_apobecDRMsLU.add(new AAMutation(
+				Gene.valueOf(Strain.HIV1, m.getGene()), m.getPosition(), m.getAA()));
 		}
 		apobecDRMsLU = new MutationSet(_apobecDRMsLU);	
 	}
