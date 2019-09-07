@@ -41,8 +41,8 @@ import edu.stanford.hivdb.ngs.SequenceReads;
 
 import static edu.stanford.hivdb.graphql.MutationSetDef.*;
 import static edu.stanford.hivdb.graphql.GeneDef.*;
+import static edu.stanford.hivdb.graphql.StrainDef.*;
 import static edu.stanford.hivdb.graphql.GeneSequenceReadsDef.*;
-// import static edu.stanford.hivdb.graphql.MutationStatsDef.oMutationStats;
 import static edu.stanford.hivdb.graphql.DrugResistanceDef.*;
 import static edu.stanford.hivdb.graphql.SubtypeV2Def.*;
 import static edu.stanford.hivdb.graphql.PositionCodonReadsDef.*;
@@ -137,6 +137,10 @@ public class SequenceReadsAnalysisDef {
 			.name("name")
 			.description("Name of this sequence."))
 		.field(field -> field
+			.type(oStrain)
+			.name("strain")
+			.description("Strain of this sequence."))
+		.field(field -> field
 			.type(GraphQLFloat)
 			.name("cutoffSuggestionLooserLimit")
 			.description(
@@ -197,31 +201,6 @@ public class SequenceReadsAnalysisDef {
 		.field(newMutationSet("mutations")
 			.description("All mutations found in the sequence reads.")
 			.build())
-		// .field(field -> field
-		// 	.type(new GraphQLList(oMutationStats))
-		// 	.name("mutationStats")
-		// 	.argument(arg -> arg
-		// 		.type(new GraphQLList(GraphQLFloat))
-		// 		.name("allMinPrevalence")
-		// 		.description(
-		// 			"Specify the prevalence cutoff of fetching mutation stats."
-		// 		))
-		// 	.dataFetcher(env -> (
-		// 		((SequenceReads) env.getSource())
-		// 		.getMutationStats(
-		// 			env.getArgument("allMinPrevalence")
-		// 		)
-		// 	))
-		// 	.description("List of statistics of mutations."))
-		// .field(field -> field
-		// 	.type(new GraphQLList(oMutationStats))
-		// 	.name("allMutationStats")
-		// 	.description(
-		// 		"List of statistics of mutations at all prevalence points. (INTERNAL)"))
-		// .field(field -> field
-		// 	.type(new GraphQLList(oFrameShift))
-		// 	.name("frameShifts")
-		// 	.description("All frame shifts found in the aligned sequence."))
 		.field(field -> field
 			.type(new GraphQLList(oDrugResistance))
 			.name("drugResistance")

@@ -24,12 +24,11 @@ import static graphql.schema.GraphQLObjectType.newObject;
 
 import edu.stanford.hivdb.mutations.Gene;
 import edu.stanford.hivdb.mutations.GeneEnum;
-import edu.stanford.hivdb.mutations.Strain;
+import static edu.stanford.hivdb.graphql.StrainDef.*;
 
 public class GeneDef {
 
 	public static GraphQLEnumType enumGene;
-	public static GraphQLEnumType enumStrain;
 	public static GraphQLObjectType oGene;
 
 	static {
@@ -40,13 +39,6 @@ public class GeneDef {
 		}
 		enumGene = newEnumGene.build();
 		
-		GraphQLEnumType.Builder newEnumStrain =
-			GraphQLEnumType.newEnum().name("Strain");
-		for (Strain strain : Strain.values()) {
-			newEnumStrain.value(strain.toString(), strain);
-		}
-		enumStrain = newEnumStrain.build();
-
 		oGene = newObject()
 			.name("Gene")
 			.description("HIV genes. Accept PR, RT or IN.")
@@ -59,7 +51,7 @@ public class GeneDef {
 				.name("name")
 				.description("Name of the gene (without strain name)."))
 			.field(field -> field
-				.type(enumStrain)
+				.type(oStrain)
 				.name("strain")
 				.description("HIV strain referred by this gene."))
 			.field(field -> field

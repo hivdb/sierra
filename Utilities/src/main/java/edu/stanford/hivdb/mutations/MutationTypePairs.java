@@ -19,6 +19,7 @@
 package edu.stanford.hivdb.mutations;
 
 import java.sql.SQLException;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -173,9 +174,10 @@ public class MutationTypePairs {
 		final JdbcDatabase db = JdbcDatabase.getResultsDB();
 
 		// TODO: The version is hard-coded here.
-		final String sqlStatement =
+		final String sqlStatement1 =
 			"SELECT Gene, DrugClass, Pos, AAs, Type, IsUnusual " +
-			"FROM tblMutationTypesWithVersions WHERE Version='V8_8' " +
+			"FROM tblMutationTypesWithVersions WHERE " +
+			"Strain='HIV1' AND Version='V8_8' " +
 			"ORDER BY Gene, DrugClass, Pos, " +
 			"(CASE Type WHEN 'Major' THEN 0" +
 			" WHEN 'Accessory' THEN 1" +
@@ -183,8 +185,7 @@ public class MutationTypePairs {
 			" WHEN 'NNRTI' THEN 1" +
 			" ELSE 3 END), AAs";
 
-		mutationTypePairs = db.iterate(sqlStatement, rs -> {
-			// TODO: we only have data for HIV1
+		List<MutationTypePair> _mutationTypePairs = db.iterate(sqlStatement1, rs -> {
 			Gene gene = Gene.valueOf("HIV1", rs.getString("Gene"));
 			DrugClass drugClass = DrugClass.valueOf(rs.getString("DrugClass"));
 			int pos = rs.getInt("Pos");
@@ -198,5 +199,32 @@ public class MutationTypePairs {
 				gene, drugClass, pos, aas,
 				mutType, isUnusual);
 		});
+		
+		final String sqlStatement2 =
+			"SELECT Strain, Gene, DrugClass, Pos, AAs, Type, IsUnusual " +
+			"FROM tblMutationTypesWithVersions WHERE " +
+			"Version='V9_0a1' " +
+			"ORDER BY Gene, DrugClass, Pos, " +
+			"(CASE Type WHEN 'Major' THEN 0" +
+			" WHEN 'Accessory' THEN 1" +
+			" WHEN 'NRTI' THEN 0" +
+			" WHEN 'NNRTI' THEN 1" +
+			" ELSE 3 END), AAs";
+		_mutationTypePairs.addAll(
+			db.iterate(sqlStatement2, rs -> {
+				Gene gene = Gene.valueOf(rs.getString("Strain"), rs.getString("Gene"));
+				DrugClass drugClass = DrugClass.valueOf(rs.getString("DrugClass"));
+				int pos = rs.getInt("Pos");
+				String aas = rs.getString("AAs");
+				MutType mutType = MutType.valueOf(rs.getString("Type"));
+				Boolean isUnusual = rs.getBoolean("isUnusual");
+				aas = aas
+					.replaceAll("#","_")
+					.replaceAll("~", "-");
+				return new MutationTypePair(
+					gene, drugClass, pos, aas,
+					mutType, isUnusual);
+		}));
+		mutationTypePairs = Collections.unmodifiableList(_mutationTypePairs);
 	}
 }

@@ -153,7 +153,7 @@ public class AlignedSequence {
 			Gene gene = Gene.valueOf(strain, geneEnum);
 			geneSeq = alignedGeneSequenceMap.get(gene);
 			if (geneSeq == null) {
-				concatSeq.append(StringUtils.repeat(WILDCARD_PLACEHOLDER, gene.getNASize()));
+				concatSeq.append(StringUtils.repeat(WILDCARD_PLACEHOLDER, hxb2Gene.getNASize()));
 				continue;
 			}
 			numPrefixNAs = (geneSeq.getFirstAA() - 1) * 3;
@@ -236,6 +236,7 @@ public class AlignedSequence {
 			// HIV-Genotyper only accepts HXB2-aligned sequence.
 			// Therefore we need to tweak the alignment.
 			String hxb2ConcatSeq = getConcatenatedSeq(true, false);
+			System.out.println(hxb2ConcatSeq);
 			int hxb2FirstNA = Gene.valueOf("HIV1PR").getFirstNA();
 			subtypeResult = HIVGenotypeReference.compareAll(
 				hxb2ConcatSeq, hxb2FirstNA);

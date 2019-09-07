@@ -19,13 +19,10 @@
 package edu.stanford.hivdb.ngs;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.Set;
 import java.util.TreeMap;
-import java.util.TreeSet;
 import java.util.stream.Collectors;
 import java.util.stream.DoubleStream;
 
@@ -48,6 +45,7 @@ import edu.stanford.hivdb.utilities.SeqUtils;
 public class SequenceReads implements WithSequenceReadsHistogram {
 
 	private final static int HXB2_PR_FIRST_NA = 2253;
+	private final static double MIN_PREVALENCE_FOR_SUBTYPING = 0.05;
 	private final Strain strain;
 	private final Map<Gene, GeneSequenceReads> allGeneSequenceReads;
 	private final CutoffSuggestion cutoffSuggestion;
@@ -143,21 +141,6 @@ public class SequenceReads implements WithSequenceReadsHistogram {
 		return new ArrayList<>(allGeneSequenceReads.keySet());
 	}
 
-	public List<MutationStats> getMutationStats(Collection<Double> allMinPrevalence) {
-		return allMinPrevalence.stream().map(
-			mp -> new MutationStats(mp, getMutations(mp))
-		).collect(Collectors.toList());
-	}
-
-	public List<MutationStats> getAllMutationStats() {
-		Set<Double> allMinPrevalence = allGeneSequenceReads.values().stream()
-			.map(gs -> gs.getPrevalencePoints())
-			.reduce(new TreeSet<>(), (s1, s2) -> {
-				s1.addAll(s2); return s1;
-			});
-		return getMutationStats(allMinPrevalence);
-	}
-
 	public String getConcatenatedSeq() {
 		if (concatenatedSeq == null) {
 			StringBuilder concatSeq = new StringBuilder();
@@ -172,6 +155,20 @@ public class SequenceReads implements WithSequenceReadsHistogram {
 			concatenatedSeq = concatSeq.toString();
 		}
 		return concatenatedSeq;
+	}
+	
+	protected String getConcatenatedSeqForSubtyping() {
+		StringBuilder concatSeq = new StringBuilder();
+		for (Gene gene : Gene.values(strain)) {
+			GeneSequenceReads geneSeq = allGeneSequenceReads.get(gene);
+			if (geneSeq == null) {
+				concatSeq.append(StringUtils.repeat("...", gene.getLength()));
+			} else {
+				concatSeq.append(
+					geneSeq.getAlignedNAs(MIN_PREVALENCE_FOR_SUBTYPING, true));
+			}
+		}
+		return concatSeq.toString();
 	}
 	
 	@Override
@@ -221,7 +218,7 @@ public class SequenceReads implements WithSequenceReadsHistogram {
 	public HIVGenotypeResult getSubtypeResult() {
 		if (!isEmpty() && subtypeResult == null) {
 			subtypeResult = HIVGenotypeReference.compareAll(
-				getConcatenatedSeq(), HXB2_PR_FIRST_NA);
+				getConcatenatedSeqForSubtyping(), HXB2_PR_FIRST_NA);
 		}
 		return subtypeResult;
 	}

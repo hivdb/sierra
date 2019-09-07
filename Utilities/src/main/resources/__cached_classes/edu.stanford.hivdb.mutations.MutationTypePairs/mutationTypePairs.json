@@ -2320,5 +2320,1121 @@
     "aas": "ACDEFGHILMNPQSTVWY_-",
     "type": "Other",
     "isUnusual": true
+  },
+  {
+    "gene": "HIV2ART",
+    "drugClass": "NRTI",
+    "position": 40,
+    "consensus": "K",
+    "aas": "R",
+    "type": "Accessory",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2BRT",
+    "drugClass": "NRTI",
+    "position": 40,
+    "consensus": "K",
+    "aas": "R",
+    "type": "Accessory",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2BRT",
+    "drugClass": "NRTI",
+    "position": 41,
+    "consensus": "M",
+    "aas": "L",
+    "type": "Other",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2ART",
+    "drugClass": "NRTI",
+    "position": 41,
+    "consensus": "M",
+    "aas": "L",
+    "type": "Other",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2BRT",
+    "drugClass": "NRTI",
+    "position": 62,
+    "consensus": "A",
+    "aas": "V",
+    "type": "Accessory",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2ART",
+    "drugClass": "NRTI",
+    "position": 62,
+    "consensus": "A",
+    "aas": "V",
+    "type": "Accessory",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2ART",
+    "drugClass": "NRTI",
+    "position": 65,
+    "consensus": "K",
+    "aas": "EN",
+    "type": "Major",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2BRT",
+    "drugClass": "NRTI",
+    "position": 65,
+    "consensus": "K",
+    "aas": "EN",
+    "type": "Major",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2BRT",
+    "drugClass": "NRTI",
+    "position": 65,
+    "consensus": "K",
+    "aas": "R",
+    "type": "Major",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2ART",
+    "drugClass": "NRTI",
+    "position": 65,
+    "consensus": "K",
+    "aas": "R",
+    "type": "Major",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2BRT",
+    "drugClass": "NRTI",
+    "position": 67,
+    "consensus": "D",
+    "aas": "NGESTH",
+    "type": "Other",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2ART",
+    "drugClass": "NRTI",
+    "position": 67,
+    "consensus": "D",
+    "aas": "NGESTH",
+    "type": "Other",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2ART",
+    "drugClass": "NRTI",
+    "position": 69,
+    "consensus": "N",
+    "aas": "-",
+    "type": "Major",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2BRT",
+    "drugClass": "NRTI",
+    "position": 69,
+    "consensus": "N",
+    "aas": "-",
+    "type": "Major",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2ART",
+    "drugClass": "NRTI",
+    "position": 69,
+    "consensus": "N",
+    "aas": "_",
+    "type": "Major",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2BRT",
+    "drugClass": "NRTI",
+    "position": 69,
+    "consensus": "N",
+    "aas": "_",
+    "type": "Major",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2BRT",
+    "drugClass": "NRTI",
+    "position": 69,
+    "consensus": "N",
+    "aas": "S",
+    "type": "Accessory",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2ART",
+    "drugClass": "NRTI",
+    "position": 69,
+    "consensus": "N",
+    "aas": "S",
+    "type": "Accessory",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2BRT",
+    "drugClass": "NRTI",
+    "position": 70,
+    "consensus": "K",
+    "aas": "N",
+    "type": "Major",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2ART",
+    "drugClass": "NRTI",
+    "position": 70,
+    "consensus": "K",
+    "aas": "N",
+    "type": "Major",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2ART",
+    "drugClass": "NRTI",
+    "position": 70,
+    "consensus": "K",
+    "aas": "R",
+    "type": "Major",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2BRT",
+    "drugClass": "NRTI",
+    "position": 70,
+    "consensus": "K",
+    "aas": "R",
+    "type": "Major",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2ART",
+    "drugClass": "NRTI",
+    "position": 74,
+    "consensus": "L",
+    "aas": "VI",
+    "type": "Accessory",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2BRT",
+    "drugClass": "NRTI",
+    "position": 74,
+    "consensus": "L",
+    "aas": "VI",
+    "type": "Accessory",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2ART",
+    "drugClass": "NRTI",
+    "position": 75,
+    "consensus": "I",
+    "aas": "V",
+    "type": "Accessory",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2BRT",
+    "drugClass": "NRTI",
+    "position": 75,
+    "consensus": "I",
+    "aas": "V",
+    "type": "Accessory",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2ART",
+    "drugClass": "NRTI",
+    "position": 77,
+    "consensus": "F",
+    "aas": "L",
+    "type": "Accessory",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2BRT",
+    "drugClass": "NRTI",
+    "position": 77,
+    "consensus": "F",
+    "aas": "L",
+    "type": "Accessory",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2BRT",
+    "drugClass": "NRTI",
+    "position": 111,
+    "consensus": "V",
+    "aas": "I",
+    "type": "Accessory",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2ART",
+    "drugClass": "NRTI",
+    "position": 111,
+    "consensus": "V",
+    "aas": "I",
+    "type": "Accessory",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2ART",
+    "drugClass": "NRTI",
+    "position": 115,
+    "consensus": "Y",
+    "aas": "F",
+    "type": "Major",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2BRT",
+    "drugClass": "NRTI",
+    "position": 115,
+    "consensus": "Y",
+    "aas": "F",
+    "type": "Major",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2ART",
+    "drugClass": "NRTI",
+    "position": 116,
+    "consensus": "F",
+    "aas": "Y",
+    "type": "Accessory",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2BRT",
+    "drugClass": "NRTI",
+    "position": 116,
+    "consensus": "F",
+    "aas": "Y",
+    "type": "Accessory",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2ART",
+    "drugClass": "NRTI",
+    "position": 151,
+    "consensus": "Q",
+    "aas": "M",
+    "type": "Major",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2BRT",
+    "drugClass": "NRTI",
+    "position": 151,
+    "consensus": "Q",
+    "aas": "M",
+    "type": "Major",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2BRT",
+    "drugClass": "NRTI",
+    "position": 184,
+    "consensus": "M",
+    "aas": "VI",
+    "type": "Major",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2ART",
+    "drugClass": "NRTI",
+    "position": 184,
+    "consensus": "M",
+    "aas": "VI",
+    "type": "Major",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2BRT",
+    "drugClass": "NRTI",
+    "position": 195,
+    "consensus": "D",
+    "aas": "N",
+    "type": "Accessory",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2ART",
+    "drugClass": "NRTI",
+    "position": 195,
+    "consensus": "D",
+    "aas": "N",
+    "type": "Accessory",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2BRT",
+    "drugClass": "NRTI",
+    "position": 210,
+    "consensus": "N",
+    "aas": "ACDEFGHIKLMPQRSTVWY_",
+    "type": "Other",
+    "isUnusual": true
+  },
+  {
+    "gene": "HIV2ART",
+    "drugClass": "NRTI",
+    "position": 210,
+    "consensus": "N",
+    "aas": "ACDEFGHIKLMPQRSTVWY_",
+    "type": "Other",
+    "isUnusual": true
+  },
+  {
+    "gene": "HIV2ART",
+    "drugClass": "NRTI",
+    "position": 214,
+    "consensus": "F",
+    "aas": "L",
+    "type": "Accessory",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2BRT",
+    "drugClass": "NRTI",
+    "position": 214,
+    "consensus": "F",
+    "aas": "L",
+    "type": "Accessory",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2BRT",
+    "drugClass": "NRTI",
+    "position": 215,
+    "consensus": "S",
+    "aas": "YF",
+    "type": "Major",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2ART",
+    "drugClass": "NRTI",
+    "position": 215,
+    "consensus": "S",
+    "aas": "YF",
+    "type": "Major",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2ART",
+    "drugClass": "NRTI",
+    "position": 219,
+    "consensus": "E",
+    "aas": "ACDFGHIKLMNPQRSTVWY_",
+    "type": "Other",
+    "isUnusual": true
+  },
+  {
+    "gene": "HIV2BRT",
+    "drugClass": "NRTI",
+    "position": 219,
+    "consensus": "E",
+    "aas": "ACDFGHIKLMNPQRSTVWY_",
+    "type": "Other",
+    "isUnusual": true
+  },
+  {
+    "gene": "HIV2APR",
+    "drugClass": "PI",
+    "position": 10,
+    "consensus": "V",
+    "aas": "I",
+    "type": "Accessory",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2BPR",
+    "drugClass": "PI",
+    "position": 10,
+    "consensus": "V",
+    "aas": "I",
+    "type": "Accessory",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2APR",
+    "drugClass": "PI",
+    "position": 23,
+    "consensus": "L",
+    "aas": "I",
+    "type": "Other",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2BPR",
+    "drugClass": "PI",
+    "position": 23,
+    "consensus": "L",
+    "aas": "I",
+    "type": "Other",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2APR",
+    "drugClass": "PI",
+    "position": 30,
+    "consensus": "D",
+    "aas": "N",
+    "type": "Major",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2BPR",
+    "drugClass": "PI",
+    "position": 30,
+    "consensus": "D",
+    "aas": "N",
+    "type": "Major",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2BPR",
+    "drugClass": "PI",
+    "position": 33,
+    "consensus": "V",
+    "aas": "I",
+    "type": "Accessory",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2APR",
+    "drugClass": "PI",
+    "position": 33,
+    "consensus": "V",
+    "aas": "I",
+    "type": "Accessory",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2BPR",
+    "drugClass": "PI",
+    "position": 45,
+    "consensus": "K",
+    "aas": "R",
+    "type": "Accessory",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2APR",
+    "drugClass": "PI",
+    "position": 45,
+    "consensus": "K",
+    "aas": "R",
+    "type": "Accessory",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2APR",
+    "drugClass": "PI",
+    "position": 47,
+    "consensus": "V",
+    "aas": "A",
+    "type": "Major",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2BPR",
+    "drugClass": "PI",
+    "position": 47,
+    "consensus": "V",
+    "aas": "A",
+    "type": "Major",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2APR",
+    "drugClass": "PI",
+    "position": 48,
+    "consensus": "G",
+    "aas": "VA",
+    "type": "Major",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2BPR",
+    "drugClass": "PI",
+    "position": 48,
+    "consensus": "G",
+    "aas": "VA",
+    "type": "Major",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2BPR",
+    "drugClass": "PI",
+    "position": 50,
+    "consensus": "I",
+    "aas": "L",
+    "type": "Major",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2APR",
+    "drugClass": "PI",
+    "position": 50,
+    "consensus": "I",
+    "aas": "L",
+    "type": "Major",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2BPR",
+    "drugClass": "PI",
+    "position": 50,
+    "consensus": "I",
+    "aas": "V",
+    "type": "Major",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2APR",
+    "drugClass": "PI",
+    "position": 50,
+    "consensus": "I",
+    "aas": "V",
+    "type": "Major",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2APR",
+    "drugClass": "PI",
+    "position": 53,
+    "consensus": "F",
+    "aas": "Y",
+    "type": "Accessory",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2BPR",
+    "drugClass": "PI",
+    "position": 53,
+    "consensus": "F",
+    "aas": "Y",
+    "type": "Accessory",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2APR",
+    "drugClass": "PI",
+    "position": 54,
+    "consensus": "I",
+    "aas": "L",
+    "type": "Major",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2BPR",
+    "drugClass": "PI",
+    "position": 54,
+    "consensus": "I",
+    "aas": "L",
+    "type": "Major",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2BPR",
+    "drugClass": "PI",
+    "position": 54,
+    "consensus": "I",
+    "aas": "M",
+    "type": "Major",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2APR",
+    "drugClass": "PI",
+    "position": 54,
+    "consensus": "I",
+    "aas": "M",
+    "type": "Major",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2APR",
+    "drugClass": "PI",
+    "position": 56,
+    "consensus": "T",
+    "aas": "V",
+    "type": "Accessory",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2BPR",
+    "drugClass": "PI",
+    "position": 56,
+    "consensus": "T",
+    "aas": "V",
+    "type": "Accessory",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2APR",
+    "drugClass": "PI",
+    "position": 71,
+    "consensus": "V",
+    "aas": "I",
+    "type": "Accessory",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2BPR",
+    "drugClass": "PI",
+    "position": 71,
+    "consensus": "V",
+    "aas": "I",
+    "type": "Accessory",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2BPR",
+    "drugClass": "PI",
+    "position": 73,
+    "consensus": "A",
+    "aas": "G",
+    "type": "Accessory",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2APR",
+    "drugClass": "PI",
+    "position": 73,
+    "consensus": "A",
+    "aas": "G",
+    "type": "Accessory",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2BPR",
+    "drugClass": "PI",
+    "position": 82,
+    "consensus": "I",
+    "aas": "F",
+    "type": "Major",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2APR",
+    "drugClass": "PI",
+    "position": 82,
+    "consensus": "I",
+    "aas": "F",
+    "type": "Major",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2BPR",
+    "drugClass": "PI",
+    "position": 82,
+    "consensus": "I",
+    "aas": "LM",
+    "type": "Major",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2APR",
+    "drugClass": "PI",
+    "position": 82,
+    "consensus": "I",
+    "aas": "LM",
+    "type": "Major",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2BPR",
+    "drugClass": "PI",
+    "position": 84,
+    "consensus": "I",
+    "aas": "V",
+    "type": "Major",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2APR",
+    "drugClass": "PI",
+    "position": 84,
+    "consensus": "I",
+    "aas": "V",
+    "type": "Major",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2APR",
+    "drugClass": "PI",
+    "position": 85,
+    "consensus": "F",
+    "aas": "L",
+    "type": "Accessory",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2BPR",
+    "drugClass": "PI",
+    "position": 85,
+    "consensus": "F",
+    "aas": "L",
+    "type": "Accessory",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2APR",
+    "drugClass": "PI",
+    "position": 88,
+    "consensus": "N",
+    "aas": "D",
+    "type": "Accessory",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2BPR",
+    "drugClass": "PI",
+    "position": 88,
+    "consensus": "N",
+    "aas": "D",
+    "type": "Accessory",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2BPR",
+    "drugClass": "PI",
+    "position": 90,
+    "consensus": "L",
+    "aas": "M",
+    "type": "Major",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2APR",
+    "drugClass": "PI",
+    "position": 90,
+    "consensus": "L",
+    "aas": "M",
+    "type": "Major",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2BPR",
+    "drugClass": "PI",
+    "position": 95,
+    "consensus": "M",
+    "aas": "V",
+    "type": "Accessory",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2APR",
+    "drugClass": "PI",
+    "position": 95,
+    "consensus": "M",
+    "aas": "V",
+    "type": "Accessory",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2APR",
+    "drugClass": "PI",
+    "position": 99,
+    "consensus": "L",
+    "aas": "F",
+    "type": "Accessory",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2BPR",
+    "drugClass": "PI",
+    "position": 99,
+    "consensus": "F",
+    "aas": "F",
+    "type": "Accessory",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2AIN",
+    "drugClass": "INSTI",
+    "position": 51,
+    "consensus": "H",
+    "aas": "Y",
+    "type": "Major",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2BIN",
+    "drugClass": "INSTI",
+    "position": 51,
+    "consensus": "H",
+    "aas": "Y",
+    "type": "Major",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2BIN",
+    "drugClass": "INSTI",
+    "position": 66,
+    "consensus": "T",
+    "aas": "AIK",
+    "type": "Major",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2AIN",
+    "drugClass": "INSTI",
+    "position": 66,
+    "consensus": "T",
+    "aas": "AIK",
+    "type": "Major",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2BIN",
+    "drugClass": "INSTI",
+    "position": 84,
+    "consensus": "I",
+    "aas": "V",
+    "type": "Accessory",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2AIN",
+    "drugClass": "INSTI",
+    "position": 84,
+    "consensus": "I",
+    "aas": "V",
+    "type": "Accessory",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2BIN",
+    "drugClass": "INSTI",
+    "position": 92,
+    "consensus": "E",
+    "aas": "GAQ",
+    "type": "Major",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2AIN",
+    "drugClass": "INSTI",
+    "position": 92,
+    "consensus": "E",
+    "aas": "GAQ",
+    "type": "Major",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2BIN",
+    "drugClass": "INSTI",
+    "position": 97,
+    "consensus": "T",
+    "aas": "A",
+    "type": "Accessory",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2AIN",
+    "drugClass": "INSTI",
+    "position": 97,
+    "consensus": "T",
+    "aas": "A",
+    "type": "Accessory",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2BIN",
+    "drugClass": "INSTI",
+    "position": 118,
+    "consensus": "G",
+    "aas": "R",
+    "type": "Major",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2AIN",
+    "drugClass": "INSTI",
+    "position": 118,
+    "consensus": "G",
+    "aas": "R",
+    "type": "Major",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2BIN",
+    "drugClass": "INSTI",
+    "position": 121,
+    "consensus": "F",
+    "aas": "Y",
+    "type": "Major",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2AIN",
+    "drugClass": "INSTI",
+    "position": 121,
+    "consensus": "F",
+    "aas": "Y",
+    "type": "Major",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2AIN",
+    "drugClass": "INSTI",
+    "position": 140,
+    "consensus": "G",
+    "aas": "SAC",
+    "type": "Major",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2BIN",
+    "drugClass": "INSTI",
+    "position": 140,
+    "consensus": "G",
+    "aas": "SAC",
+    "type": "Major",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2BIN",
+    "drugClass": "INSTI",
+    "position": 143,
+    "consensus": "Y",
+    "aas": "CR",
+    "type": "Major",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2AIN",
+    "drugClass": "INSTI",
+    "position": 143,
+    "consensus": "Y",
+    "aas": "CR",
+    "type": "Major",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2AIN",
+    "drugClass": "INSTI",
+    "position": 147,
+    "consensus": "S",
+    "aas": "G",
+    "type": "Major",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2BIN",
+    "drugClass": "INSTI",
+    "position": 147,
+    "consensus": "S",
+    "aas": "G",
+    "type": "Major",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2AIN",
+    "drugClass": "INSTI",
+    "position": 148,
+    "consensus": "Q",
+    "aas": "HKR",
+    "type": "Major",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2BIN",
+    "drugClass": "INSTI",
+    "position": 148,
+    "consensus": "Q",
+    "aas": "HKR",
+    "type": "Major",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2AIN",
+    "drugClass": "INSTI",
+    "position": 153,
+    "consensus": "A",
+    "aas": "G",
+    "type": "Major",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2BIN",
+    "drugClass": "INSTI",
+    "position": 153,
+    "consensus": "A",
+    "aas": "G",
+    "type": "Major",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2BIN",
+    "drugClass": "INSTI",
+    "position": 155,
+    "consensus": "N",
+    "aas": "H",
+    "type": "Major",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2AIN",
+    "drugClass": "INSTI",
+    "position": 155,
+    "consensus": "N",
+    "aas": "H",
+    "type": "Major",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2BIN",
+    "drugClass": "INSTI",
+    "position": 231,
+    "consensus": "R",
+    "aas": "_",
+    "type": "Major",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2AIN",
+    "drugClass": "INSTI",
+    "position": 231,
+    "consensus": "R",
+    "aas": "_",
+    "type": "Major",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2AIN",
+    "drugClass": "INSTI",
+    "position": 263,
+    "consensus": "R",
+    "aas": "K",
+    "type": "Major",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV2BIN",
+    "drugClass": "INSTI",
+    "position": 263,
+    "consensus": "R",
+    "aas": "K",
+    "type": "Major",
+    "isUnusual": false
   }
 ]

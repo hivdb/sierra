@@ -232,7 +232,9 @@ public class Gene implements Comparable<Gene> {
 		switch(geneEnum) {
 		case RT:
 			drugClasses.add(DrugClass.NRTI);
-			drugClasses.add(DrugClass.NNRTI);
+			if (strain == Strain.HIV1) {
+				drugClasses.add(DrugClass.NNRTI);
+			}
 			break;
 		case PR:
 			drugClasses.add(DrugClass.PI);

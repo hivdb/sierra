@@ -67,12 +67,15 @@ public class ConditionalComments {
 			this.conditionValue = conditionValue;
 			this.comment = comment;
 		}
-
-		public GeneEnum getMutationGene() {
+		
+		public Gene getMutationGene() {
 			if (conditionType != ConditionType.MUTATION) {
 				return null;
 			}
-			return GeneEnum.valueOf((String) conditionValue.get("gene"));
+			// TODO: support 
+			return Gene.valueOf(
+				(String) conditionValue.getOrDefault("Strain", "HIV1"),
+				(String) conditionValue.get("gene"));
 		}
 
 		public Integer getMutationPosition() {
@@ -186,8 +189,8 @@ public class ConditionalComments {
 
 	private static BoundComment findMutationComment(
 			Gene gene, MutationSet mutations, ConditionalComment cc) {
-		GeneEnum ccgene = cc.getMutationGene();
-		if (ccgene != gene.getGeneEnum()) {
+		Gene ccgene = cc.getMutationGene();
+		if (ccgene != gene) {
 			// skip if it's other gene
 			return null;
 		}

@@ -41,6 +41,7 @@ import edu.stanford.hivdb.subtype.Subtype;
 import static edu.stanford.hivdb.graphql.UnalignedSequenceDef.*;
 import static edu.stanford.hivdb.graphql.MutationSetDef.*;
 import static edu.stanford.hivdb.graphql.GeneDef.*;
+import static edu.stanford.hivdb.graphql.StrainDef.*;
 import static edu.stanford.hivdb.graphql.FrameShiftDef.*;
 import static edu.stanford.hivdb.graphql.SubtypeDef.*;
 import static edu.stanford.hivdb.graphql.AlignedGeneSequenceDef.*;
@@ -106,7 +107,7 @@ public class SequenceAnalysisDef {
 			.description("The original unaligned sequence.")
 			.build())
 		.field(field -> field
-			.type(enumStrain)
+			.type(oStrain)
 			.name("strain")
 			.description("HIV strain of this sequence.")
 		)

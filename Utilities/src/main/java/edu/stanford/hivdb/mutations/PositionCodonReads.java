@@ -77,7 +77,7 @@ public class PositionCodonReads {
 			.filter(e -> e.getValue() > minReads)
 			.collect(Collectors.toMap(
 				e -> e.getKey(),
-				e -> e.getValue() * 100.0 / totalReads,
+				e -> Double.valueOf(e.getValue() / totalReads),
 				(e1, e2) -> e1,
 				LinkedHashMap::new));
 	}

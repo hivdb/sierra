@@ -19,11 +19,8 @@
 package edu.stanford.hivdb.ngs;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
@@ -179,24 +176,6 @@ public class GeneSequenceReads implements WithSequenceReadsHistogram {
 		return getMutations(this.minPrevalence);
 	}
 
-	/** Returns prevalence points where mutation(s) got pruned
-	 *
-	 * @return all prevalence points
-	 */
-	public Set<Double> getPrevalencePoints() {
-		return (
-			posCodonReads
-			.stream()
-			.map(pcr -> new TreeSet<>(pcr.getCodonWithPrevalence(0).values()))
-			.reduce(new TreeSet<Double>(), (s1, s2) -> {
-				s1.addAll(s2);
-				return s1;
-			}))
-			.stream()
-			.map(p -> p / 100.0)
-			.collect(Collectors.toSet());
-	}
-
 	/** Returns consensus sequence aligned to subtype B reference.
 	 *  All insertions are removed from the result.
 	 *
@@ -205,6 +184,19 @@ public class GeneSequenceReads implements WithSequenceReadsHistogram {
 	 * @return the aligned consensus sequence
 	 */
 	public String getAlignedNAs(boolean autoComplete) {
+		return getAlignedNAs(minPrevalence, autoComplete);
+	}
+
+	/** Returns consensus sequence aligned to subtype B reference.
+	 *  All insertions are removed from the result.
+	 *
+	 * @param threshold specify the minimal prevalence requirement for
+	 * creating codon consensus
+	 * @param autoComplete specify <tt>true</tt> to prepend and/or append
+	 * wildcard "." to incomplete sequence
+	 * @return the aligned consensus sequence
+	 */
+	public String getAlignedNAs(double threshold, boolean autoComplete) {
 		StringBuilder seq = new StringBuilder();
 		if (autoComplete) {
 			seq.append(StringUtils.repeat("...", firstAA - 1));
@@ -216,7 +208,7 @@ public class GeneSequenceReads implements WithSequenceReadsHistogram {
 				seq.append(StringUtils.repeat("...", (int) (curPos - prevPos - 1)));
 			}
 			prevPos = curPos;
-			seq.append(pcr.getCodonConsensus(minPrevalence));
+			seq.append(pcr.getCodonConsensus(threshold));
 		}
 		if (autoComplete) {
 			seq.append(StringUtils.repeat("...", gene.getLength() - lastAA));
@@ -244,12 +236,6 @@ public class GeneSequenceReads implements WithSequenceReadsHistogram {
 	public String getAlignedAAs() {
 		return CodonTranslation.simpleTranslate(
 			this.getAlignedNAs(false), firstAA, gene.getReference());
-	}
-
-	public List<MutationStats> getMutationStats(Collection<Double> allMinPrevalence) {
-		return allMinPrevalence.stream().map(
-			mp -> new MutationStats(mp, getMutations(mp))
-		).collect(Collectors.toList());
 	}
 
 }

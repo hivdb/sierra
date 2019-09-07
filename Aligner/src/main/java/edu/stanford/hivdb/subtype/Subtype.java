@@ -119,7 +119,9 @@ public enum Subtype {
 	N,
 	P,
 	HIV2A,
-	HIV2B;
+	HIV2B,
+	HIV2C,
+	HIV2D;
 
 	public static Subtype valueOf(Genotype genotype) {
 		return valueOf(genotype.getIndexName());
