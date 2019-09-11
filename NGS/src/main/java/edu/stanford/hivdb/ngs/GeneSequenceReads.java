@@ -93,7 +93,7 @@ public class GeneSequenceReads implements WithSequenceReadsHistogram {
 			long prevPos = firstAA - 1;
 			for (PositionCodonReads pcr : posCodonReads) {
 				long curPos = pcr.getPosition();
-				for (Long pos = prevPos; pos < curPos - 1; pos ++) {
+				for (Long pos = prevPos + 1; pos < curPos - 1; pos ++) {
 					// add unsequenced regions
 					myMutations.add(MultiCodonsMutation.initUnsequenced(
 						gene, pos.intValue()

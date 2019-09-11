@@ -33,7 +33,11 @@ public class DescriptiveStatisticsDef {
 		public Double get(DataFetchingEnvironment environment) {
 			DescriptiveStatistics descStats = (DescriptiveStatistics) environment.getSource();
 			double p = environment.getArgument("p");
-			return descStats.getPercentile(p);
+			Double result = descStats.getPercentile(p);
+			if (Double.isNaN(result)) {
+				return null;
+			}
+			return result;
 		}
 	};
 	
