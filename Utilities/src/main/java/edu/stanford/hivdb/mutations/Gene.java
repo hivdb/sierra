@@ -253,8 +253,13 @@ public class Gene implements Comparable<Gene> {
 		List<MutType> mutTypes = new ArrayList<>();
 		switch(geneEnum) {
 		case RT:
-			mutTypes.add(MutType.NRTI);
-			mutTypes.add(MutType.NNRTI);
+			if (strain == Strain.HIV1) {
+				mutTypes.add(MutType.NRTI);
+				mutTypes.add(MutType.NNRTI);
+			} else {
+				mutTypes.add(MutType.Major);
+				mutTypes.add(MutType.Accessory);
+			}
 			mutTypes.add(MutType.Other);
 			break;
 		case PR:
@@ -278,8 +283,13 @@ public class Gene implements Comparable<Gene> {
 		List<MutType> mutTypes = new ArrayList<>();
 		switch(geneEnum) {
 		case RT:
-			mutTypes.add(MutType.NRTI);
-			mutTypes.add(MutType.NNRTI);
+			if (strain == Strain.HIV1) {
+				mutTypes.add(MutType.NRTI);
+				mutTypes.add(MutType.NNRTI);
+			} else {
+				mutTypes.add(MutType.Major);
+				mutTypes.add(MutType.Accessory);
+			}
 			break;
 		case PR:
 			mutTypes.add(MutType.Major);
