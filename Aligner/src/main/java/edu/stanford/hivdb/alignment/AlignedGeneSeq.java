@@ -57,6 +57,8 @@ public class AlignedGeneSeq implements WithGene {
 	private final int leftTrimmed;
 	private final int rightTrimmed;
 	private float matchPcnt;
+	private final boolean sequenceReversed;
+	private transient Sequence reversedSeq;
 	private transient List<AlignedSite> alignedSites;
 	protected transient boolean codonAlignerTouched = false;
 	protected transient boolean codon69Touched = false;
@@ -103,7 +105,8 @@ public class AlignedGeneSeq implements WithGene {
 			Collection<Mutation> mutations,
 			List<FrameShift> frameShifts,
 			final int leftTrimmed,
-			final int rightTrimmed) {
+			final int rightTrimmed,
+			final boolean sequenceReversed) {
 		this.sequence = sequence;
 		this.gene = gene;
 		this.firstAA = firstAA;
@@ -111,6 +114,10 @@ public class AlignedGeneSeq implements WithGene {
 		this.firstNA = firstNA;
 		this.lastNA = lastNA;
 		this.matchPcnt = -1;
+		this.sequenceReversed = sequenceReversed;
+		if (sequenceReversed) {
+			reversedSeq = sequence.reverseCompliment();
+		}
 		this.leftTrimmed = leftTrimmed;
 		this.rightTrimmed = rightTrimmed;
 
@@ -163,7 +170,13 @@ public class AlignedGeneSeq implements WithGene {
 	public String getAlignedNAs() {
 		if (this.alignedNAs == null) {
 			StringBuilder alignedNAs = new StringBuilder();
-			String naSeq = sequence.getSequence();
+			String naSeq;
+			if (sequenceReversed) {
+				naSeq = reversedSeq.getSequence();
+			}
+			else {
+				naSeq = sequence.getSequence();
+			}
 
 			for (AlignedSite site : alignedSites) {
 				int posNA = site.getPosNA();
