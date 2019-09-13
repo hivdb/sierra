@@ -25,6 +25,8 @@ import java.util.List;
 import java.util.Map;
 import org.apache.commons.lang3.StringUtils;
 
+import com.google.common.collect.Lists;
+
 import edu.stanford.hivdb.utilities.TSV;
 import edu.stanford.hivdb.drugs.DrugClass;
 import edu.stanford.hivdb.mutations.Gene;
@@ -40,10 +42,11 @@ import edu.stanford.hivdb.utilities.NumberFormats;
 public class TabularSequenceSummary {
 	private static final String[] headerFields = {
 			"Sequence Name", "Genes", "PR Start", "PR End", "RT Start",
-			"RT End", "IN Start", "IN End", "Subtype(%)", "Pcnt Mix",
-			"PR Major", "PR Accessory", "PR Other", "NRTI", "NNRTI",
-			"RT Other", "IN Major", "IN Accessory", "IN Other", "PR SDRMs",
-			"RT SDRMs", "PI TSMs", "NRTI TSMs", "NNRTI TSMs", "INSTI TSMs",
+			"RT End", "IN Start", "IN End", "Subtype (%)", "Pcnt Mix",
+			"PR Major", "PR Accessory", "PR Other", "NRTI Major", "NRTI Accessory",
+			"NNRTI Major", "NNRTI Accessory", "RT Other", "IN Major", 
+			"IN Accessory", "IN Other", "PR SDRMs", "RT SDRMs", "IN SDRMs",
+			"PI TSMs", "NRTI TSMs", "NNRTI TSMs", "INSTI TSMs",
 			"Num Frame Shifts", "Frame Shifts",	"Num Insertions", "Insertions",
 			"Num Deletions", "Deletions", "Num Stop Codons", "StopCodons",
 			"Num BDHVN", "BDHVN", "Num Apobec Mutations", "Apobec Mutations",
@@ -64,7 +67,8 @@ public class TabularSequenceSummary {
 			String seqName = alignedSeq.getInputSequence().getHeader();
 
 			tabularResults.put(seqName, new HashMap<String, String>());
-			String genes = StringUtils.join(geneList, ",");
+			String genes = StringUtils.join(
+				geneList.stream().map(g -> g.getName()).toArray(), ",");
 
 			// sequenceName
 			sequenceRecord.add(seqName);
@@ -83,7 +87,7 @@ public class TabularSequenceSummary {
 				NumberFormats.prettyDecimalAsString(alignedSeq.getMixturePcnt()));
 
 			// PRMajor, PRAccessory, PROther,
-			// NRTI, NNRTI, RTOther,
+			// NRTIMajor, NRTIAccessory, NNRTIMajor, NNRTIAccessory, RTOther,
 			// INMajor, INAccessory, INOther
 			sequenceRecord.addAll(determineMutLists(alignedSeq));
 
@@ -195,6 +199,7 @@ public class TabularSequenceSummary {
 		Map<Gene, AlignedGeneSeq> seqResult = alignedSeq.getAlignedGeneSequenceMap();
 		String prSdrms = "NA";
 		String rtSdrms = "NA";
+		String inSdrms = "NA";
 		// TODO: HIV2 Support
 		if (seqResult.containsKey(Gene.valueOf("HIV1PR"))) {
 			MutationSet sdrms = seqResult.get(Gene.valueOf("HIV1PR")).getSdrms();
@@ -204,8 +209,13 @@ public class TabularSequenceSummary {
 			MutationSet sdrms = seqResult.get(Gene.valueOf("HIV1RT")).getSdrms();
 			rtSdrms = sdrms.join();
 		}
+		if (seqResult.containsKey(Gene.valueOf("HIV1IN"))) {
+			MutationSet sdrms = seqResult.get(Gene.valueOf("HIV1IN")).getSdrms();
+			inSdrms = sdrms.join();
+		}
 		sdrmList.add(prSdrms);
 		sdrmList.add(rtSdrms);
+		sdrmList.add(inSdrms);
 		return sdrmList;
 
 	}
@@ -213,16 +223,31 @@ public class TabularSequenceSummary {
 	public static List<String> determineMutLists(AlignedSequence alignedSeq) {
 		List<String> mutListStrings = new ArrayList<>();
 		Map<Gene, AlignedGeneSeq> seqResult = alignedSeq.getAlignedGeneSequenceMap();
-
-		// TODO: HIV2 Support
 		for (Gene gene : Gene.values(alignedSeq.getStrain())) {
 			if (!seqResult.containsKey(gene)) {
-				mutListStrings.add("NA");
-				mutListStrings.add("NA");
-				mutListStrings.add("NA");
+				if (gene.getGeneEnum() == GeneEnum.RT) {
+					mutListStrings.addAll(Arrays.asList("NA", "NA", "NA", "NA", "NA"));
+				}
+				else {
+					mutListStrings.addAll(Arrays.asList("NA", "NA", "NA"));
+				}
 			} else {
 				AlignedGeneSeq seq = seqResult.get(gene);
-				for (MutType mutType : gene.getMutationTypes()) {
+				List<MutType> mutTypes;
+				if (gene == Gene.valueOf("HIV1RT")) {
+					mutTypes = Arrays.asList(MutType.NRTI, null, MutType.NNRTI, null, MutType.Other);
+				}
+				else if (gene == Gene.valueOf("HIV2ART") || gene == Gene.valueOf("HIV2BRT")) {
+					mutTypes = Arrays.asList(MutType.Major, MutType.Accessory, null, null, MutType.Other);
+				}
+				else {
+					mutTypes = Arrays.asList(MutType.Major, MutType.Accessory, MutType.Other);
+				}
+				for (MutType mutType : mutTypes) {
+					if (mutType == null) {
+						mutListStrings.add("NA");
+						continue;
+					}
 					MutationSet mutTypeMutations = seq.getMutationsByMutType(mutType);
 					if (mutTypeMutations.isEmpty()) {
 						mutListStrings.add("None");
@@ -253,8 +278,27 @@ public class TabularSequenceSummary {
 			} else {
 				AlignedGeneSeq seq = seqResult.get(gene);
 				Map<DrugClass, MutationSet> allNonDrmTsms = seq.getNonDrmTsms();
-				for (DrugClass drugClass : gene.getDrugClasses()) {
+				List<DrugClass> drugClasses;
+				switch (gene.getGeneEnum()) {
+					case PR:
+						drugClasses = Arrays.asList(DrugClass.PI);
+						break;
+					case RT:
+						drugClasses = Arrays.asList(DrugClass.NRTI, DrugClass.NNRTI);
+						break;
+					default:
+						// case IN:
+						drugClasses = Arrays.asList(DrugClass.INSTI);
+						break;
+				}
+				
+				for (DrugClass drugClass : drugClasses) {
+					if (!allNonDrmTsms.containsKey(drugClass)) {
+						nonDrmTsmsList.add("NA");
+						continue;
+					}
 					MutationSet nonDrmTsms = allNonDrmTsms.get(drugClass);
+
 					String nonDrmTsmsText;
 					if (nonDrmTsms.size() > 0) {
 						nonDrmTsmsText = nonDrmTsms.join();
