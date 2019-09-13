@@ -389,7 +389,8 @@ public class NucAminoAligner {
 	}
 
 	private static AlignedGeneSeq geneSeqFromReport(
-			Sequence sequence, Gene gene, Map<?, ?> report) {
+			Sequence sequence, Gene gene, Map<?, ?> report,
+			boolean sequenceReversed) {
 		Integer[] aaRange = GENE_AA_RANGE.get(gene);
 		int aaStart = aaRange[0];
 		int aaEnd = aaRange[1];
@@ -456,7 +457,7 @@ public class NucAminoAligner {
 			lastAA - trimDelsRight,
 			firstNA + trimDelsLeft * 3,
 			lastNA - trimDelsRight * 3,
-			alignedSites, mutations, frameShifts, 0, 0);
+			alignedSites, mutations, frameShifts, 0, 0, sequenceReversed);
 		if (geneSeq.getMatchPcnt() < MIN_MATCH_PCNT) {
 			throw new MisAlignedException(String.format(
 				"Alignment of gene %s was discarded " +
@@ -482,7 +483,7 @@ public class NucAminoAligner {
 				geneSeq.getLastNA() - trimUUsRight * 3,
 				geneSeq.getAlignedSites(),
 				geneSeq.getMutations(),
-				geneSeq.getFrameShifts(), trimUUsLeft, trimUUsRight);
+				geneSeq.getFrameShifts(), trimUUsLeft, trimUUsRight, sequenceReversed);
 		}
 
 		if (geneSeq.getSize() < minNumOfSites) {
@@ -649,7 +650,7 @@ public class NucAminoAligner {
 			} else {
 				for (Gene gene : Gene.values(strain)) {
 					try {
-						alignedGeneSeqs.put(gene, geneSeqFromReport(sequence, gene, report));
+						alignedGeneSeqs.put(gene, geneSeqFromReport(sequence, gene, report, sequenceReversed));
 					} catch (MisAlignedException e) {
 						if (!e.isSuppressible()) {
 							discardedGenes.put(gene, e.getMessage());
