@@ -72,9 +72,8 @@ public class ConditionalComments {
 			if (conditionType != ConditionType.MUTATION) {
 				return null;
 			}
-			// TODO: support 
 			return Gene.valueOf(
-				(String) conditionValue.getOrDefault("Strain", "HIV1"),
+				(String) conditionValue.getOrDefault("strain", "HIV1"),
 				(String) conditionValue.get("gene"));
 		}
 
@@ -300,7 +299,7 @@ public class ConditionalComments {
 			"FROM tblConditionalCommentsWithVersions WHERE Version=? " +
 			"ORDER BY CommentName";
 
-		conditionalComments = db.iterate(sqlStatement, rs -> {
+		List<ConditionalComment> _conditionalComments = db.iterate(sqlStatement, rs -> {
 			String name = rs.getString("CommentName");
 			DrugClass drugClass = DrugClass.valueOf(rs.getString("DrugClass"));
 			ConditionType type = ConditionType.valueOf(rs.getString("ConditionType"));
@@ -310,5 +309,21 @@ public class ConditionalComments {
 			String commentText = rs.getString("Comment");
 			return new ConditionalComment(name, drugClass, type, value, commentText);
 		}, HivdbVersion.getLatestVersion().name());
+		
+		final String sqlStatement2 =
+			"SELECT CommentName, DrugClass, ConditionType, ConditionValue, Comment " +
+			"FROM tblConditionalCommentsWithVersions WHERE Version=? " +
+			"ORDER BY CommentName";
+		_conditionalComments.addAll(db.iterate(sqlStatement2, rs -> {
+			String name = rs.getString("CommentName");
+			DrugClass drugClass = DrugClass.valueOf(rs.getString("DrugClass"));
+			ConditionType type = ConditionType.valueOf(rs.getString("ConditionType"));
+			Map<String, Object> value = Json.loads(
+				rs.getString("ConditionValue"),
+				new TypeToken<Map<String, Object>>(){}.getType());
+			String commentText = rs.getString("Comment");
+			return new ConditionalComment(name, drugClass, type, value, commentText);
+		}, "V9_0a1"));
+		conditionalComments = Collections.unmodifiableList(_conditionalComments);
 	}
 }

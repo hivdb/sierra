@@ -2996,5 +2996,1493 @@
       "aas": "G"
     },
     "comment": "A98G is a non-polymorphic accessory mutation associated with low-level reduced susceptibility to each of the NNRTIs."
+  },
+  {
+    "commentName": "HIV2AIN118R",
+    "drugClass": "INSTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2A",
+      "gene": "IN",
+      "pos": 118.0,
+      "aas": "R"
+    },
+    "comment": "G118R is an uncommon HIV-1-associated drug-resistance mutation which has not yet been reported in HIV-2 infected patients."
+  },
+  {
+    "commentName": "HIV2AIN121Y",
+    "drugClass": "INSTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2A",
+      "gene": "IN",
+      "pos": 121.0,
+      "aas": "Y"
+    },
+    "comment": "F121Y is an uncommon HIV-1-associated drug-resistance mutation which has not yet been reported in HIV-2 infected patients."
+  },
+  {
+    "commentName": "HIV2AIN140SAC",
+    "drugClass": "INSTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2A",
+      "gene": "IN",
+      "pos": 140.0,
+      "aas": "SAC"
+    },
+    "comment": "G140S is a nonpolymorphic HIV-1 associated drug-resistance mutation which is also selected by INSTIs in HIV-2-infected persons"
+  },
+  {
+    "commentName": "HIV2AIN143CR",
+    "drugClass": "INSTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2A",
+      "gene": "IN",
+      "pos": 143.0,
+      "aas": "CR"
+    },
+    "comment": "Y143C/R are non-polymorphic mutations associated with high-level RAL resistance. Alone, they have minimal effects on EVG susceptibility. However, they are associated with intermediate to high-level reductions in EVG susceptibility when they occur in combination with one or more accessory INSTI-resistance mutations. Y143 mutations do not reduce DTG or BIC susceptibility."
+  },
+  {
+    "commentName": "HIV2AIN147G",
+    "drugClass": "INSTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2A",
+      "gene": "IN",
+      "pos": 147.0,
+      "aas": "G"
+    },
+    "comment": "S147G is a non-polymorphic HIV-1-associated drug-resistance mutation that has also been reported in INSTI-experienced persons."
+  },
+  {
+    "commentName": "HIV2AIN148HKR",
+    "drugClass": "INSTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2A",
+      "gene": "IN",
+      "pos": 148.0,
+      "aas": "HKR"
+    },
+    "comment": "Q148H/K/R are nonpolymorphic HIV-1 associated drug-resistance mutation which are also selected by INSTIs in HIV-2-infected persons"
+  },
+  {
+    "commentName": "HIV2AIN153G",
+    "drugClass": "INSTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2A",
+      "gene": "IN",
+      "pos": 153.0,
+      "aas": "G"
+    },
+    "comment": "S153YF are extremely rare nonpolymorphic HIV-1-associated INSTI-resistance mutations. A153G is a nonpolymorphic HIV-2 mutation that is selected by INSTIs usually in combination with N155H"
+  },
+  {
+    "commentName": "HIV2AIN155H",
+    "drugClass": "INSTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2A",
+      "gene": "IN",
+      "pos": 155.0,
+      "aas": "H"
+    },
+    "comment": "N155H is a nonpolymorphic HIV-1 associated drug-resistance mutation which is also commonly selected by INSTIs in HIV-2-infected persons"
+  },
+  {
+    "commentName": "HIV2AIN231_",
+    "drugClass": "INSTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2A",
+      "gene": "IN",
+      "pos": 231.0,
+      "aas": "_"
+    },
+    "comment": "Among HIV-2 isolates, amino  acid insertions at position 231 are selected by INSTIs and associated with markedly reduced INSTI susceptibility."
+  },
+  {
+    "commentName": "HIV2AIN263K",
+    "drugClass": "INSTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2A",
+      "gene": "IN",
+      "pos": 263.0,
+      "aas": "K"
+    },
+    "comment": "R263K is a nonpolymorphic HIV-1-associated drug-resistance mutation which has also been reported in HIV-2 infected INSTI-experienced persons. "
+  },
+  {
+    "commentName": "HIV2AIN51Y",
+    "drugClass": "INSTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2A",
+      "gene": "IN",
+      "pos": 51.0,
+      "aas": "Y"
+    },
+    "comment": "H51Y is an uncommon HIV-1-associated drug-resistance mutation which has also been selected by INSTIs in HIV-2 infected patients."
+  },
+  {
+    "commentName": "HIV2AIN66AIK",
+    "drugClass": "INSTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2A",
+      "gene": "IN",
+      "pos": 66.0,
+      "aas": "AIK"
+    },
+    "comment": "T66AIK are HIV-1-associated drug-resistance mutation which have  not been reported in HIV-2 infected patients."
+  },
+  {
+    "commentName": "HIV2AIN84V",
+    "drugClass": "INSTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2A",
+      "gene": "IN",
+      "pos": 84.0,
+      "aas": "V"
+    },
+    "comment": "I84V is a polymorphic HIV-2 associated mutation that occurs significantly more commonly in INSTI-experienced compared with INSTI-naïve persons."
+  },
+  {
+    "commentName": "HIV2AIN92GAQ",
+    "drugClass": "INSTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2A",
+      "gene": "IN",
+      "pos": 92.0,
+      "aas": "GAQ"
+    },
+    "comment": "E92Q is an HIV-1-associated drug resistance mutations which is also commonly selected by INSTIs in HIV-2 infected persons. E92G/A have also been reported in INSTI-experienced HIV-2-infected persons"
+  },
+  {
+    "commentName": "HIV2AIN97A",
+    "drugClass": "INSTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2A",
+      "gene": "IN",
+      "pos": 97.0,
+      "aas": "A"
+    },
+    "comment": "Among HIV-1 isolates, T97A is a minimally polymorphic accessory INSTI-selected mutation. Among HIV-2 isolates, T97A is a nonpolymorphic common INSTI-selected mutation."
+  },
+  {
+    "commentName": "HIV2APR10I",
+    "drugClass": "PI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2A",
+      "gene": "PR",
+      "pos": 10.0,
+      "aas": "I"
+    },
+    "comment": "V10I is a minimally polymorphic mutation that occurs significantly more commonly in PI-treated than PI-naïve HIV-2 isolates."
+  },
+  {
+    "commentName": "HIV2APR23I",
+    "drugClass": "PI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2A",
+      "gene": "PR",
+      "pos": 23.0,
+      "aas": "I"
+    },
+    "comment": "L23I is an uncommon non-polymorphic HIV-1 associated PI-resistance mutation."
+  },
+  {
+    "commentName": "HIV2APR30N",
+    "drugClass": "PI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2A",
+      "gene": "PR",
+      "pos": 30.0,
+      "aas": "N"
+    },
+    "comment": "D30N is a non-polymorphic mutation that causes high-level HIV-1 resistance to NFV."
+  },
+  {
+    "commentName": "HIV2APR33I",
+    "drugClass": "PI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2A",
+      "gene": "PR",
+      "pos": 33.0,
+      "aas": "I"
+    },
+    "comment": "V33I is a minimally polymorphic mutation that occurs significantly more commonly in PI-treated than PI-naïve HIV-2 isolates."
+  },
+  {
+    "commentName": "HIV2APR45R",
+    "drugClass": "PI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2A",
+      "gene": "PR",
+      "pos": 45.0,
+      "aas": "R"
+    },
+    "comment": "K45R is a minimally polymorphic mutation that occurs significantly more commonly in PI-treated than PI-naïve HIV-2 isolates."
+  },
+  {
+    "commentName": "HIV2APR47A",
+    "drugClass": "PI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2A",
+      "gene": "PR",
+      "pos": 47.0,
+      "aas": "A"
+    },
+    "comment": "V47A is a non-polymorphic common PI-selected mutation that reduces HIV-2 susceptibility to LPV and other PIs.  "
+  },
+  {
+    "commentName": "HIV2APR48VA",
+    "drugClass": "PI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2A",
+      "gene": "PR",
+      "pos": 48.0,
+      "aas": "VA"
+    },
+    "comment": "G48VA are non-polymorphic PI-selected HIV-2 mutations"
+  },
+  {
+    "commentName": "HIV2APR50L",
+    "drugClass": "PI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2A",
+      "gene": "PR",
+      "pos": 50.0,
+      "aas": "L"
+    },
+    "comment": "I50L is a non-polymorphic HIV-2 mutation selected by ATV. It causes high-level resistance to ATV and increases susceptibility to most of the remaining PIs."
+  },
+  {
+    "commentName": "HIV2APR50V",
+    "drugClass": "PI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2A",
+      "gene": "PR",
+      "pos": 50.0,
+      "aas": "V"
+    },
+    "comment": "I50V is a non-polymorphic PI-selected mutation that reduces HIV-2 susceptibility to LPV and other PIs.  "
+  },
+  {
+    "commentName": "HIV2APR53Y",
+    "drugClass": "PI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2A",
+      "gene": "PR",
+      "pos": 53.0,
+      "aas": "Y"
+    },
+    "comment": "F53Y is a nonpolymorphic PI-selected HIV-2 mutation"
+  },
+  {
+    "commentName": "HIV2APR54L",
+    "drugClass": "PI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2A",
+      "gene": "PR",
+      "pos": 54.0,
+      "aas": "L"
+    },
+    "comment": "I54L is a nonpolymorphic PI-selected mutation."
+  },
+  {
+    "commentName": "HIV2APR54M",
+    "drugClass": "PI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2A",
+      "gene": "PR",
+      "pos": 54.0,
+      "aas": "M"
+    },
+    "comment": "I54M is a non-polymorphic common PI-selected mutation.  "
+  },
+  {
+    "commentName": "HIV2APR56V",
+    "drugClass": "PI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2A",
+      "gene": "PR",
+      "pos": 56.0,
+      "aas": "V"
+    },
+    "comment": "T56V is a common nonpolymrophic mutation that occurs significantly more commonly in HIV-2 isolates from PI-treated vs. PI-naïve isolates."
+  },
+  {
+    "commentName": "HIV2APR71I",
+    "drugClass": "PI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2A",
+      "gene": "PR",
+      "pos": 71.0,
+      "aas": "I"
+    },
+    "comment": "V71I is a common polymorphic mutation that occurs significantly more commonly in PI-treated than PI-naïve HIV-2 isolates."
+  },
+  {
+    "commentName": "HIV2APR73G",
+    "drugClass": "PI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2A",
+      "gene": "PR",
+      "pos": 73.0,
+      "aas": "G"
+    },
+    "comment": "A73G is a nonpolymorphic mutation that occurs significantly more commonoly in PI-treated than PI-naïve HIV-2 isolates."
+  },
+  {
+    "commentName": "HIV2APR82F",
+    "drugClass": "PI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2A",
+      "gene": "PR",
+      "pos": 82.0,
+      "aas": "F"
+    },
+    "comment": "I82F is a non-polymorphic common PI-selected mutations that reduces HIV-2 susceptibility to LPV and other PIs."
+  },
+  {
+    "commentName": "HIV2APR82LM",
+    "drugClass": "PI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2A",
+      "gene": "PR",
+      "pos": 82.0,
+      "aas": "LM"
+    },
+    "comment": "I82LM are nonpolymorphic PI-selected HIV-2 mutations."
+  },
+  {
+    "commentName": "HIV2APR84V",
+    "drugClass": "PI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2A",
+      "gene": "PR",
+      "pos": 84.0,
+      "aas": "V"
+    },
+    "comment": "I84V is a non-polymorphic PI-selected HIV-2 mutation.  "
+  },
+  {
+    "commentName": "HIV2APR85L",
+    "drugClass": "PI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2A",
+      "gene": "PR",
+      "pos": 85.0,
+      "aas": "L"
+    },
+    "comment": "I85V is a non-polymorphic PI-selected mutation. It has minimal, if any, effects on PI susceptibility."
+  },
+  {
+    "commentName": "HIV2APR88D",
+    "drugClass": "PI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2A",
+      "gene": "PR",
+      "pos": 88.0,
+      "aas": "D"
+    },
+    "comment": "N88D is a nonpolymorphic HIV-1-associated PI resistance mutation that has been reported in one PI-treated HIV-2 isolate."
+  },
+  {
+    "commentName": "HIV2APR90M",
+    "drugClass": "PI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2A",
+      "gene": "PR",
+      "pos": 90.0,
+      "aas": "M"
+    },
+    "comment": "L90M is a non-polymorphic PI-selected HIV-2 mutation. "
+  },
+  {
+    "commentName": "HIV2APR95V",
+    "drugClass": "PI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2A",
+      "gene": "PR",
+      "pos": 95.0,
+      "aas": "V"
+    },
+    "comment": "M95V is a nonpolymorphic mutations that occurs significantly more common in PI-treated than PI-naïve HIV-2 isolates."
+  },
+  {
+    "commentName": "HIV2APR99F",
+    "drugClass": "PI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2A",
+      "gene": "PR",
+      "pos": 99.0,
+      "aas": "F"
+    },
+    "comment": "L99F is a nonpolymorphic mutations that occurs significantly more common in PI-treated than PI-naïve HIV-2 isolates."
+  },
+  {
+    "commentName": "HIV2ART111I",
+    "drugClass": "NRTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2A",
+      "gene": "RT",
+      "pos": 111.0,
+      "aas": "I"
+    },
+    "comment": "V111I is a common polymorphic mutation that occurs significantly more commonly in HIV-2 sequences from NRTI-treated than NRTI-naïve persons."
+  },
+  {
+    "commentName": "HIV2ART115F",
+    "drugClass": "NRTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2A",
+      "gene": "RT",
+      "pos": 115.0,
+      "aas": "F"
+    },
+    "comment": "Y11F is associated with reduced susceptibility to each of the NRTIs"
+  },
+  {
+    "commentName": "HIV2ART116Y",
+    "drugClass": "NRTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2A",
+      "gene": "RT",
+      "pos": 116.0,
+      "aas": "Y"
+    },
+    "comment": "F116Y is an accessory HIV-1-associated mutation that usually occurs in combination with the multi-NRTI resistance mutation Q151M. It has not been associated with NRTI therapy in HIV-2 isolates."
+  },
+  {
+    "commentName": "HIV2ART151M",
+    "drugClass": "NRTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2A",
+      "gene": "RT",
+      "pos": 151.0,
+      "aas": "M"
+    },
+    "comment": "Q151M causes high-level resistance to each of the NRTIs."
+  },
+  {
+    "commentName": "HIV2ART184VI",
+    "drugClass": "NRTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2A",
+      "gene": "RT",
+      "pos": 184.0,
+      "aas": "VI"
+    },
+    "comment": "M184V/I cause high-level in vitro resistance to 3TC and FTC and low-level resistance to ABC. However, M184V/I are not contraindications to continued treatment with 3TC or FTC because they increase susceptibility to AZT, TDF and d4T and are associated with clinically significant reductions in HIV-1 replication."
+  },
+  {
+    "commentName": "HIV2ART195N",
+    "drugClass": "NRTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2A",
+      "gene": "RT",
+      "pos": 195.0,
+      "aas": "N"
+    },
+    "comment": "D195N is a slighly polymorphic HIV-2 mutation that occurs with increased frequency in NRTI-treated persons."
+  },
+  {
+    "commentName": "HIV2ART210ACDEFGHIKLMPQRSTVWY_",
+    "drugClass": "NRTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2A",
+      "gene": "RT",
+      "pos": 210.0,
+      "aas": "ACDEFGHIKLMPQRSTVWY_"
+    },
+    "comment": "210W is an HIV-1 associated TAM. The HIV-2 consensus at this position is N. Mutations at this position have not been selected by NRTIs in HIV-2 isolates."
+  },
+  {
+    "commentName": "HIV2ART214L",
+    "drugClass": "NRTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2A",
+      "gene": "RT",
+      "pos": 214.0,
+      "aas": "L"
+    },
+    "comment": "F214L is a slighly polymorphic HIV-2 mutation that occurs with increased frequency in NRTI-treated persons."
+  },
+  {
+    "commentName": "HIV2ART215YF",
+    "drugClass": "NRTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2A",
+      "gene": "RT",
+      "pos": 215.0,
+      "aas": "YF"
+    },
+    "comment": "S215Y/F occur significantly more commonly in HIV-2 sequences from NRTI-treated than NRTI-naïve persons but their effects on HIV-2 susceptibility to NRTIs is uncertain."
+  },
+  {
+    "commentName": "HIV2ART219ACDFGHIKLMNPQRSTVWY_",
+    "drugClass": "NRTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2A",
+      "gene": "RT",
+      "pos": 219.0,
+      "aas": "ACDFGHIKLMNPQRSTVWY_"
+    },
+    "comment": "219QENR are HIV-1 associated TAMs. The HIV-2 consensus  at this position is E. Mutations at this position have not been selected by NRTIs in HIV-2 isolates. "
+  },
+  {
+    "commentName": "HIV2ART40R",
+    "drugClass": "NRTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2A",
+      "gene": "RT",
+      "pos": 40.0,
+      "aas": "R"
+    },
+    "comment": "K40R occurs significantly more commonly in HIV-2 sequences from NRTI-treated than NRTI-naïve persons."
+  },
+  {
+    "commentName": "HIV2ART41L",
+    "drugClass": "NRTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2A",
+      "gene": "RT",
+      "pos": 41.0,
+      "aas": "L"
+    },
+    "comment": "M41L is an HIV-1 associated TAM that has not been selected by NRTIs in HIV-2-infected persons and has not been associated with reduced HIV-2 susceptibility to NRTIs."
+  },
+  {
+    "commentName": "HIV2ART62V",
+    "drugClass": "NRTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2A",
+      "gene": "RT",
+      "pos": 62.0,
+      "aas": "V"
+    },
+    "comment": "A62V occurs significantly more commonly in HIV-2 sequences from NRTI-treated than NRTI-naïve persons."
+  },
+  {
+    "commentName": "HIV2ART65EN",
+    "drugClass": "NRTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2A",
+      "gene": "RT",
+      "pos": 65.0,
+      "aas": "EN"
+    },
+    "comment": "K65R occurs significantly more commonly in HIV-2 sequences from NRTI-treated than NRTI-naïve persons and is associated with reduced susceptibility to XXX.K65N/E are mutations that have rarely been selected by TDF, ABC, and d4T in HIV-1 isolates."
+  },
+  {
+    "commentName": "HIV2ART65R",
+    "drugClass": "NRTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2A",
+      "gene": "RT",
+      "pos": 65.0,
+      "aas": "R"
+    },
+    "comment": "K65R occurs significantly more commonly in HIV-2 sequences from NRTI-treated than NRTI-naïve persons and is associated with reduced susceptibility to XXX."
+  },
+  {
+    "commentName": "HIV2ART67NGESTH",
+    "drugClass": "NRTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2A",
+      "gene": "RT",
+      "pos": 67.0,
+      "aas": "NGESTH"
+    },
+    "comment": "D67 mutations are commonly occurring HIV-1-assocated TAMs that are not selected in HIV-2 isolates."
+  },
+  {
+    "commentName": "HIV2ART69-",
+    "drugClass": "NRTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2A",
+      "gene": "RT",
+      "pos": 69.0,
+      "aas": "-"
+    },
+    "comment": "Deletions in the Beta3-Beta4 loop are associated with reduced HIV-1 susceptibility to each of the NRTIs but they have not been reported in HIV-2 isolates."
+  },
+  {
+    "commentName": "HIV2ART69S",
+    "drugClass": "NRTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2A",
+      "gene": "RT",
+      "pos": 69.0,
+      "aas": "S"
+    },
+    "comment": "N69S is a slighly polymorphic HIV-2 mutation that occurs with increased frequency in NRTI-treated persons."
+  },
+  {
+    "commentName": "HIV2ART69_",
+    "drugClass": "NRTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2A",
+      "gene": "RT",
+      "pos": 69.0,
+      "aas": "_"
+    },
+    "comment": "Insertions in the Beta3-Beta4 loop are associated with reduced HIV-1 susceptibility to each of the NRTIs but they have not been reported in HIV-2 isolates."
+  },
+  {
+    "commentName": "HIV2ART70N",
+    "drugClass": "NRTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2A",
+      "gene": "RT",
+      "pos": 70.0,
+      "aas": "N"
+    },
+    "comment": "K70N occurs significantly more commonly in HIV-2 sequences from NRTI-treated than NRTI-naïve persons but its effects on HIV-2 susceptibility to NRTIs is uncertain."
+  },
+  {
+    "commentName": "HIV2ART70R",
+    "drugClass": "NRTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2A",
+      "gene": "RT",
+      "pos": 70.0,
+      "aas": "R"
+    },
+    "comment": "K70R occurs significantly more commonly in HIV-2 sequences from NRTI-treated than NRTI-naïve persons but its effects on HIV-2 susceptibility to NRTIs is uncertain."
+  },
+  {
+    "commentName": "HIV2ART74VI",
+    "drugClass": "NRTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2A",
+      "gene": "RT",
+      "pos": 74.0,
+      "aas": "VI"
+    },
+    "comment": "L74VI are common HIV-1-associated NRTI-resistance mutations that have not been reported in HIV-2 sequences."
+  },
+  {
+    "commentName": "HIV2ART75V",
+    "drugClass": "NRTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2A",
+      "gene": "RT",
+      "pos": 75.0,
+      "aas": "V"
+    },
+    "comment": "I75V occurs significantly more commonly in HIV-2 sequences from NRTI-treated than NRTI-naïve persons but its effects on HIV-2 susceptibility to NRTIs is uncertain."
+  },
+  {
+    "commentName": "HIV2ART77L",
+    "drugClass": "NRTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2A",
+      "gene": "RT",
+      "pos": 77.0,
+      "aas": "L"
+    },
+    "comment": "F77L is an accessory HIV-1-associated mutation that usually occurs in combination with the multi-NRTI resistance mutation Q151M. It has not been associated with NRTI therapy in HIV-2 isolates."
+  },
+  {
+    "commentName": "HIV2BIN118R",
+    "drugClass": "INSTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2B",
+      "gene": "IN",
+      "pos": 118.0,
+      "aas": "R"
+    },
+    "comment": "G118R is an uncommon HIV-1-associated drug-resistance mutation which has not yet been reported in HIV-2 infected patients."
+  },
+  {
+    "commentName": "HIV2BIN121Y",
+    "drugClass": "INSTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2B",
+      "gene": "IN",
+      "pos": 121.0,
+      "aas": "Y"
+    },
+    "comment": "F121Y is an uncommon HIV-1-associated drug-resistance mutation which has not yet been reported in HIV-2 infected patients."
+  },
+  {
+    "commentName": "HIV2BIN140SAC",
+    "drugClass": "INSTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2B",
+      "gene": "IN",
+      "pos": 140.0,
+      "aas": "SAC"
+    },
+    "comment": "G140S is a nonpolymorphic HIV-1 associated drug-resistance mutation which is also selected by INSTIs in HIV-2-infected persons"
+  },
+  {
+    "commentName": "HIV2BIN143CR",
+    "drugClass": "INSTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2B",
+      "gene": "IN",
+      "pos": 143.0,
+      "aas": "CR"
+    },
+    "comment": "Y143C/R are non-polymorphic mutations associated with high-level RAL resistance. Alone, they have minimal effects on EVG susceptibility. However, they are associated with intermediate to high-level reductions in EVG susceptibility when they occur in combination with one or more accessory INSTI-resistance mutations. Y143 mutations do not reduce DTG or BIC susceptibility."
+  },
+  {
+    "commentName": "HIV2BIN147G",
+    "drugClass": "INSTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2B",
+      "gene": "IN",
+      "pos": 147.0,
+      "aas": "G"
+    },
+    "comment": "S147G is a non-polymorphic HIV-1-associated drug-resistance mutation that has also been reported in INSTI-experienced persons."
+  },
+  {
+    "commentName": "HIV2BIN148HKR",
+    "drugClass": "INSTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2B",
+      "gene": "IN",
+      "pos": 148.0,
+      "aas": "HKR"
+    },
+    "comment": "Q148H/K/R are nonpolymorphic HIV-1 associated drug-resistance mutation which are also selected by INSTIs in HIV-2-infected persons"
+  },
+  {
+    "commentName": "HIV2BIN153G",
+    "drugClass": "INSTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2B",
+      "gene": "IN",
+      "pos": 153.0,
+      "aas": "G"
+    },
+    "comment": "S153YF are extremely rare nonpolymorphic HIV-1-associated INSTI-resistance mutations. A153G is a nonpolymorphic HIV-2 mutation that is selected by INSTIs usually in combination with N155H"
+  },
+  {
+    "commentName": "HIV2BIN155H",
+    "drugClass": "INSTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2B",
+      "gene": "IN",
+      "pos": 155.0,
+      "aas": "H"
+    },
+    "comment": "N155H is a nonpolymorphic HIV-1 associated drug-resistance mutation which is also commonly selected by INSTIs in HIV-2-infected persons"
+  },
+  {
+    "commentName": "HIV2BIN231_",
+    "drugClass": "INSTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2B",
+      "gene": "IN",
+      "pos": 231.0,
+      "aas": "_"
+    },
+    "comment": "Among HIV-2 isolates, amino  acid insertions at position 231 are selected by INSTIs and associated with markedly reduced INSTI susceptibility."
+  },
+  {
+    "commentName": "HIV2BIN263K",
+    "drugClass": "INSTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2B",
+      "gene": "IN",
+      "pos": 263.0,
+      "aas": "K"
+    },
+    "comment": "R263K is a nonpolymorphic HIV-1-associated drug-resistance mutation which has also been reported in HIV-2 infected INSTI-experienced persons. "
+  },
+  {
+    "commentName": "HIV2BIN51Y",
+    "drugClass": "INSTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2B",
+      "gene": "IN",
+      "pos": 51.0,
+      "aas": "Y"
+    },
+    "comment": "H51Y is an uncommon HIV-1-associated drug-resistance mutation which has also been selected by INSTIs in HIV-2 infected patients."
+  },
+  {
+    "commentName": "HIV2BIN66AIK",
+    "drugClass": "INSTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2B",
+      "gene": "IN",
+      "pos": 66.0,
+      "aas": "AIK"
+    },
+    "comment": "T66AIK are HIV-1-associated drug-resistance mutation which have  not been reported in HIV-2 infected patients."
+  },
+  {
+    "commentName": "HIV2BIN84V",
+    "drugClass": "INSTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2B",
+      "gene": "IN",
+      "pos": 84.0,
+      "aas": "V"
+    },
+    "comment": "I84V is a polymorphic HIV-2 associated mutation that occurs significantly more commonly in INSTI-experienced compared with INSTI-naïve persons."
+  },
+  {
+    "commentName": "HIV2BIN92GAQ",
+    "drugClass": "INSTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2B",
+      "gene": "IN",
+      "pos": 92.0,
+      "aas": "GAQ"
+    },
+    "comment": "E92Q is an HIV-1-associated drug resistance mutations which is also commonly selected by INSTIs in HIV-2 infected persons. E92G/A have also been reported in INSTI-experienced HIV-2-infected persons"
+  },
+  {
+    "commentName": "HIV2BIN97A",
+    "drugClass": "INSTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2B",
+      "gene": "IN",
+      "pos": 97.0,
+      "aas": "A"
+    },
+    "comment": "Among HIV-1 isolates, T97A is a minimally polymorphic accessory INSTI-selected mutation. Among HIV-2 isolates, T97A is a nonpolymorphic common INSTI-selected mutation."
+  },
+  {
+    "commentName": "HIV2BPR10I",
+    "drugClass": "PI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2B",
+      "gene": "PR",
+      "pos": 10.0,
+      "aas": "I"
+    },
+    "comment": "V10I is a minimally polymorphic mutation that occurs significantly more commonly in PI-treated than PI-naïve HIV-2 isolates."
+  },
+  {
+    "commentName": "HIV2BPR23I",
+    "drugClass": "PI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2B",
+      "gene": "PR",
+      "pos": 23.0,
+      "aas": "I"
+    },
+    "comment": "L23I is an uncommon non-polymorphic HIV-1 associated PI-resistance mutation."
+  },
+  {
+    "commentName": "HIV2BPR30N",
+    "drugClass": "PI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2B",
+      "gene": "PR",
+      "pos": 30.0,
+      "aas": "N"
+    },
+    "comment": "D30N is a non-polymorphic mutation that causes high-level HIV-1 resistance to NFV."
+  },
+  {
+    "commentName": "HIV2BPR33I",
+    "drugClass": "PI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2B",
+      "gene": "PR",
+      "pos": 33.0,
+      "aas": "I"
+    },
+    "comment": "V33I is a minimally polymorphic mutation that occurs significantly more commonly in PI-treated than PI-naïve HIV-2 isolates."
+  },
+  {
+    "commentName": "HIV2BPR45R",
+    "drugClass": "PI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2B",
+      "gene": "PR",
+      "pos": 45.0,
+      "aas": "R"
+    },
+    "comment": "K45R is a minimally polymorphic mutation that occurs significantly more commonly in PI-treated than PI-naïve HIV-2 isolates."
+  },
+  {
+    "commentName": "HIV2BPR47A",
+    "drugClass": "PI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2B",
+      "gene": "PR",
+      "pos": 47.0,
+      "aas": "A"
+    },
+    "comment": "V47A is a non-polymorphic common PI-selected mutation that reduces HIV-2 susceptibility to LPV and other PIs.  "
+  },
+  {
+    "commentName": "HIV2BPR48VA",
+    "drugClass": "PI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2B",
+      "gene": "PR",
+      "pos": 48.0,
+      "aas": "VA"
+    },
+    "comment": "G48VA are non-polymorphic PI-selected HIV-2 mutations"
+  },
+  {
+    "commentName": "HIV2BPR50L",
+    "drugClass": "PI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2B",
+      "gene": "PR",
+      "pos": 50.0,
+      "aas": "L"
+    },
+    "comment": "I50L is a non-polymorphic HIV-2 mutation selected by ATV. It causes high-level resistance to ATV and increases susceptibility to most of the remaining PIs."
+  },
+  {
+    "commentName": "HIV2BPR50V",
+    "drugClass": "PI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2B",
+      "gene": "PR",
+      "pos": 50.0,
+      "aas": "V"
+    },
+    "comment": "I50V is a non-polymorphic PI-selected mutation that reduces HIV-2 susceptibility to LPV and other PIs.  "
+  },
+  {
+    "commentName": "HIV2BPR53Y",
+    "drugClass": "PI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2B",
+      "gene": "PR",
+      "pos": 53.0,
+      "aas": "Y"
+    },
+    "comment": "F53Y is a nonpolymorphic PI-selected HIV-2 mutation"
+  },
+  {
+    "commentName": "HIV2BPR54L",
+    "drugClass": "PI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2B",
+      "gene": "PR",
+      "pos": 54.0,
+      "aas": "L"
+    },
+    "comment": "I54L is a nonpolymorphic PI-selected mutation."
+  },
+  {
+    "commentName": "HIV2BPR54M",
+    "drugClass": "PI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2B",
+      "gene": "PR",
+      "pos": 54.0,
+      "aas": "M"
+    },
+    "comment": "I54M is a non-polymorphic common PI-selected mutation.  "
+  },
+  {
+    "commentName": "HIV2BPR56V",
+    "drugClass": "PI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2B",
+      "gene": "PR",
+      "pos": 56.0,
+      "aas": "V"
+    },
+    "comment": "T56V is a common nonpolymrophic mutation that occurs significantly more commonly in HIV-2 isolates from PI-treated vs. PI-naïve isolates."
+  },
+  {
+    "commentName": "HIV2BPR71I",
+    "drugClass": "PI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2B",
+      "gene": "PR",
+      "pos": 71.0,
+      "aas": "I"
+    },
+    "comment": "V71I is a common polymorphic mutation that occurs significantly more commonly in PI-treated than PI-naïve HIV-2 isolates."
+  },
+  {
+    "commentName": "HIV2BPR73G",
+    "drugClass": "PI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2B",
+      "gene": "PR",
+      "pos": 73.0,
+      "aas": "G"
+    },
+    "comment": "A73G is a nonpolymorphic mutation that occurs significantly more commonoly in PI-treated than PI-naïve HIV-2 isolates."
+  },
+  {
+    "commentName": "HIV2BPR82F",
+    "drugClass": "PI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2B",
+      "gene": "PR",
+      "pos": 82.0,
+      "aas": "F"
+    },
+    "comment": "I82F is a non-polymorphic common PI-selected mutations that reduces HIV-2 susceptibility to LPV and other PIs."
+  },
+  {
+    "commentName": "HIV2BPR82LM",
+    "drugClass": "PI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2B",
+      "gene": "PR",
+      "pos": 82.0,
+      "aas": "LM"
+    },
+    "comment": "I82LM are nonpolymorphic PI-selected HIV-2 mutations."
+  },
+  {
+    "commentName": "HIV2BPR84V",
+    "drugClass": "PI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2B",
+      "gene": "PR",
+      "pos": 84.0,
+      "aas": "V"
+    },
+    "comment": "I84V is a non-polymorphic PI-selected HIV-2 mutation.  "
+  },
+  {
+    "commentName": "HIV2BPR85L",
+    "drugClass": "PI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2B",
+      "gene": "PR",
+      "pos": 85.0,
+      "aas": "L"
+    },
+    "comment": "I85V is a non-polymorphic PI-selected mutation. It has minimal, if any, effects on PI susceptibility."
+  },
+  {
+    "commentName": "HIV2BPR88D",
+    "drugClass": "PI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2B",
+      "gene": "PR",
+      "pos": 88.0,
+      "aas": "D"
+    },
+    "comment": "N88D is a nonpolymorphic HIV-1-associated PI resistance mutation that has been reported in one PI-treated HIV-2 isolate."
+  },
+  {
+    "commentName": "HIV2BPR90M",
+    "drugClass": "PI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2B",
+      "gene": "PR",
+      "pos": 90.0,
+      "aas": "M"
+    },
+    "comment": "L90M is a non-polymorphic PI-selected HIV-2 mutation. "
+  },
+  {
+    "commentName": "HIV2BPR95V",
+    "drugClass": "PI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2B",
+      "gene": "PR",
+      "pos": 95.0,
+      "aas": "V"
+    },
+    "comment": "M95V is a nonpolymorphic mutations that occurs significantly more common in PI-treated than PI-naïve HIV-2 isolates."
+  },
+  {
+    "commentName": "HIV2BPR99F",
+    "drugClass": "PI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2B",
+      "gene": "PR",
+      "pos": 99.0,
+      "aas": "F"
+    },
+    "comment": "L99F is a nonpolymorphic mutations that occurs significantly more common in PI-treated than PI-naïve HIV-2 isolates."
+  },
+  {
+    "commentName": "HIV2BRT111I",
+    "drugClass": "NRTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2B",
+      "gene": "RT",
+      "pos": 111.0,
+      "aas": "I"
+    },
+    "comment": "V111I is a common polymorphic mutation that occurs significantly more commonly in HIV-2 sequences from NRTI-treated than NRTI-naïve persons."
+  },
+  {
+    "commentName": "HIV2BRT115F",
+    "drugClass": "NRTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2B",
+      "gene": "RT",
+      "pos": 115.0,
+      "aas": "F"
+    },
+    "comment": "Y11F is associated with reduced susceptibility to each of the NRTIs"
+  },
+  {
+    "commentName": "HIV2BRT116Y",
+    "drugClass": "NRTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2B",
+      "gene": "RT",
+      "pos": 116.0,
+      "aas": "Y"
+    },
+    "comment": "F116Y is an accessory HIV-1-associated mutation that usually occurs in combination with the multi-NRTI resistance mutation Q151M. It has not been associated with NRTI therapy in HIV-2 isolates."
+  },
+  {
+    "commentName": "HIV2BRT151M",
+    "drugClass": "NRTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2B",
+      "gene": "RT",
+      "pos": 151.0,
+      "aas": "M"
+    },
+    "comment": "Q151M causes high-level resistance to each of the NRTIs."
+  },
+  {
+    "commentName": "HIV2BRT184VI",
+    "drugClass": "NRTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2B",
+      "gene": "RT",
+      "pos": 184.0,
+      "aas": "VI"
+    },
+    "comment": "M184V/I cause high-level in vitro resistance to 3TC and FTC and low-level resistance to ABC. However, M184V/I are not contraindications to continued treatment with 3TC or FTC because they increase susceptibility to AZT, TDF and d4T and are associated with clinically significant reductions in HIV-1 replication."
+  },
+  {
+    "commentName": "HIV2BRT195N",
+    "drugClass": "NRTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2B",
+      "gene": "RT",
+      "pos": 195.0,
+      "aas": "N"
+    },
+    "comment": "D195N is a slighly polymorphic HIV-2 mutation that occurs with increased frequency in NRTI-treated persons."
+  },
+  {
+    "commentName": "HIV2BRT210ACDEFGHIKLMPQRSTVWY_",
+    "drugClass": "NRTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2B",
+      "gene": "RT",
+      "pos": 210.0,
+      "aas": "ACDEFGHIKLMPQRSTVWY_"
+    },
+    "comment": "210W is an HIV-1 associated TAM. The HIV-2 consensus at this position is N. Mutations at this position have not been selected by NRTIs in HIV-2 isolates."
+  },
+  {
+    "commentName": "HIV2BRT214L",
+    "drugClass": "NRTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2B",
+      "gene": "RT",
+      "pos": 214.0,
+      "aas": "L"
+    },
+    "comment": "F214L is a slighly polymorphic HIV-2 mutation that occurs with increased frequency in NRTI-treated persons."
+  },
+  {
+    "commentName": "HIV2BRT215YF",
+    "drugClass": "NRTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2B",
+      "gene": "RT",
+      "pos": 215.0,
+      "aas": "YF"
+    },
+    "comment": "S215Y/F occur significantly more commonly in HIV-2 sequences from NRTI-treated than NRTI-naïve persons but their effects on HIV-2 susceptibility to NRTIs is uncertain."
+  },
+  {
+    "commentName": "HIV2BRT219ACDFGHIKLMNPQRSTVWY_",
+    "drugClass": "NRTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2B",
+      "gene": "RT",
+      "pos": 219.0,
+      "aas": "ACDFGHIKLMNPQRSTVWY_"
+    },
+    "comment": "219QENR are HIV-1 associated TAMs. The HIV-2 consensus  at this position is E. Mutations at this position have not been selected by NRTIs in HIV-2 isolates. "
+  },
+  {
+    "commentName": "HIV2BRT40R",
+    "drugClass": "NRTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2B",
+      "gene": "RT",
+      "pos": 40.0,
+      "aas": "R"
+    },
+    "comment": "K40R occurs significantly more commonly in HIV-2 sequences from NRTI-treated than NRTI-naïve persons."
+  },
+  {
+    "commentName": "HIV2BRT41L",
+    "drugClass": "NRTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2B",
+      "gene": "RT",
+      "pos": 41.0,
+      "aas": "L"
+    },
+    "comment": "M41L is an HIV-1 associated TAM that has not been selected by NRTIs in HIV-2-infected persons and has not been associated with reduced HIV-2 susceptibility to NRTIs."
+  },
+  {
+    "commentName": "HIV2BRT62V",
+    "drugClass": "NRTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2B",
+      "gene": "RT",
+      "pos": 62.0,
+      "aas": "V"
+    },
+    "comment": "A62V occurs significantly more commonly in HIV-2 sequences from NRTI-treated than NRTI-naïve persons."
+  },
+  {
+    "commentName": "HIV2BRT65EN",
+    "drugClass": "NRTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2B",
+      "gene": "RT",
+      "pos": 65.0,
+      "aas": "EN"
+    },
+    "comment": "K65R occurs significantly more commonly in HIV-2 sequences from NRTI-treated than NRTI-naïve persons and is associated with reduced susceptibility to XXX.K65N/E are mutations that have rarely been selected by TDF, ABC, and d4T in HIV-1 isolates."
+  },
+  {
+    "commentName": "HIV2BRT65R",
+    "drugClass": "NRTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2B",
+      "gene": "RT",
+      "pos": 65.0,
+      "aas": "R"
+    },
+    "comment": "K65R occurs significantly more commonly in HIV-2 sequences from NRTI-treated than NRTI-naïve persons and is associated with reduced susceptibility to XXX."
+  },
+  {
+    "commentName": "HIV2BRT67NGESTH",
+    "drugClass": "NRTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2B",
+      "gene": "RT",
+      "pos": 67.0,
+      "aas": "NGESTH"
+    },
+    "comment": "D67 mutations are commonly occurring HIV-1-assocated TAMs that are not selected in HIV-2 isolates."
+  },
+  {
+    "commentName": "HIV2BRT69-",
+    "drugClass": "NRTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2B",
+      "gene": "RT",
+      "pos": 69.0,
+      "aas": "-"
+    },
+    "comment": "Deletions in the Beta3-Beta4 loop are associated with reduced HIV-1 susceptibility to each of the NRTIs but they have not been reported in HIV-2 isolates."
+  },
+  {
+    "commentName": "HIV2BRT69S",
+    "drugClass": "NRTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2B",
+      "gene": "RT",
+      "pos": 69.0,
+      "aas": "S"
+    },
+    "comment": "N69S is a slighly polymorphic HIV-2 mutation that occurs with increased frequency in NRTI-treated persons."
+  },
+  {
+    "commentName": "HIV2BRT69_",
+    "drugClass": "NRTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2B",
+      "gene": "RT",
+      "pos": 69.0,
+      "aas": "_"
+    },
+    "comment": "Insertions in the Beta3-Beta4 loop are associated with reduced HIV-1 susceptibility to each of the NRTIs but they have not been reported in HIV-2 isolates."
+  },
+  {
+    "commentName": "HIV2BRT70N",
+    "drugClass": "NRTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2B",
+      "gene": "RT",
+      "pos": 70.0,
+      "aas": "N"
+    },
+    "comment": "K70N occurs significantly more commonly in HIV-2 sequences from NRTI-treated than NRTI-naïve persons but its effects on HIV-2 susceptibility to NRTIs is uncertain."
+  },
+  {
+    "commentName": "HIV2BRT70R",
+    "drugClass": "NRTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2B",
+      "gene": "RT",
+      "pos": 70.0,
+      "aas": "R"
+    },
+    "comment": "K70R occurs significantly more commonly in HIV-2 sequences from NRTI-treated than NRTI-naïve persons but its effects on HIV-2 susceptibility to NRTIs is uncertain."
+  },
+  {
+    "commentName": "HIV2BRT74VI",
+    "drugClass": "NRTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2B",
+      "gene": "RT",
+      "pos": 74.0,
+      "aas": "VI"
+    },
+    "comment": "L74VI are common HIV-1-associated NRTI-resistance mutations that have not been reported in HIV-2 sequences."
+  },
+  {
+    "commentName": "HIV2BRT75V",
+    "drugClass": "NRTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2B",
+      "gene": "RT",
+      "pos": 75.0,
+      "aas": "V"
+    },
+    "comment": "I75V occurs significantly more commonly in HIV-2 sequences from NRTI-treated than NRTI-naïve persons but its effects on HIV-2 susceptibility to NRTIs is uncertain."
+  },
+  {
+    "commentName": "HIV2BRT77L",
+    "drugClass": "NRTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "strain": "HIV2B",
+      "gene": "RT",
+      "pos": 77.0,
+      "aas": "L"
+    },
+    "comment": "F77L is an accessory HIV-1-associated mutation that usually occurs in combination with the multi-NRTI resistance mutation Q151M. It has not been associated with NRTI therapy in HIV-2 isolates."
   }
 ]
