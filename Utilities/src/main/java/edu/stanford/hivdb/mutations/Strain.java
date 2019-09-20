@@ -1,17 +1,23 @@
 package edu.stanford.hivdb.mutations;
 
 public enum Strain {
-	HIV1("HIV-1"),
-	HIV2A("HIV-2 Group A"),
-	HIV2B("HIV-2 Group B");
+	HIV1("HIV-1", "hiv1b"),
+	HIV2A("HIV-2 Group A", "hiv2a"),
+	HIV2B("HIV-2 Group B", "hiv2b");
 	
-	private final String displayText; 
+	private final String displayText;
+	private final String nucaminoProfile;
 	
-	private Strain(String displayText) {
+	private Strain(String displayText, String nucaminoProfile) {
 		this.displayText = displayText;
+		this.nucaminoProfile = nucaminoProfile;
 	}
 	
 	public String getDisplayText() {
 		return displayText;
+	}
+	
+	public String getNucaminoProfile() {
+		return nucaminoProfile;
 	}
 }

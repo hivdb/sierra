@@ -34,13 +34,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
+
+import org.apache.commons.lang3.tuple.Pair;
+
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
-import com.google.common.collect.Streams;
 
 import com.amazonaws.services.lambda.AWSLambda;
 import com.amazonaws.services.lambda.AWSLambdaClientBuilder;
@@ -280,38 +282,52 @@ public class NucAminoAligner {
 		return results;
 	}
 
-	private static List<String> awsNucamino(Collection<Sequence> sequences, String awsFuncAndQual) {
+	private static Map<Strain, List<String>> awsNucamino(Collection<Sequence> sequences, String awsFuncAndQual) {
+		List<CompletableFuture<Pair<Strain, String>>> futures = new ArrayList<>();
 		String[] funcAndQual = awsFuncAndQual.split(":");
+
 		Iterable<List<Sequence>> partialSets = Iterables.partition(sequences, 5);
-		List<CompletableFuture<String>> futures = Streams.stream(partialSets).map(partialSet -> {
-			Map<String, String> payload = new HashMap<>();
-			payload.put("profile", "hiv1b");
-			payload.put("genes", "pol");
-			payload.put("fasta", FastaUtils.writeString(partialSet));
-			String payloadText = Json.dumps(payload);
-			AWSLambda client = AWSLambdaClientBuilder.standard().build();
-			InvokeRequest request = new InvokeRequest()
-				.withFunctionName(funcAndQual[0])
-				.withPayload(payloadText)
-				.withQualifier(funcAndQual[1]);
-			return CompletableFuture.supplyAsync(() -> {
-				InvokeResult response = client.invoke(request);
-				ByteBuffer respPayload = response.getPayload();
-				return new String(respPayload.array(), Charset.forName("UTF-8"));
-			}, executor);
-		}).collect(Collectors.toList());
+		for (List<Sequence> partialSet : partialSets) {
+			for (Strain strain : Strain.values()) {
+				Map<String, String> payload = new HashMap<>();
+				payload.put("profile", strain.getNucaminoProfile());
+				payload.put("genes", "pol");
+				payload.put("fasta", FastaUtils.writeString(partialSet));
+				String payloadText = Json.dumps(payload);
+				AWSLambda client = AWSLambdaClientBuilder.standard().build();
+				InvokeRequest request = new InvokeRequest()
+					.withFunctionName(funcAndQual[0])
+					.withPayload(payloadText)
+					.withQualifier(funcAndQual[1]);
+				CompletableFuture<Pair<Strain, String>> future = CompletableFuture.supplyAsync(() -> {
+					InvokeResult response = client.invoke(request);
+					ByteBuffer respPayload = response.getPayload();
+					return Pair.of(
+						strain,
+						new String(respPayload.array(), Charset.forName("UTF-8"))
+					);
+				}, executor);
+				futures.add(future);
+			}
+		}
 
 		CompletableFuture.allOf(futures.toArray(new CompletableFuture<?>[0])).join();
-
-		return futures.stream().map(f -> {
+		Map<Strain, List<String>> results = new EnumMap<>(Strain.class);
+		for (CompletableFuture<Pair<Strain, String>> future : futures) {
+			Pair<Strain, String> result;
 			try {
-				return f.get();
-			} catch (InterruptedException e) {
-				throw new RuntimeException(e);
-			} catch (ExecutionException e) {
+				result = future.get();
+				Strain strain = result.getLeft();
+				String jsonString = result.getRight();
+				if (!results.containsKey(strain)) {
+					results.put(strain, new ArrayList<>());
+				}
+				results.get(strain).add(jsonString);
+			} catch (InterruptedException | ExecutionException e) {
 				throw new RuntimeException(e);
 			}
-		}).collect(Collectors.toList());
+		}
+		return results;
 	}
 	
 	private static Map<Sequence, AlignedSequence> selectBestAlignments(
@@ -350,16 +366,12 @@ public class NucAminoAligner {
 		}
 		Map<Strain, List<String>> jsonStrings;
 		
-		// TODO: temporarily disable AWS NUCAMINO because we want to support multiple strains
-		//
-		// String awsFunc = System.getenv("NUCAMINO_AWS_LAMBDA");
-		// if (awsFunc == null || awsFunc.equals("")) {
-		// 	jsonStrings = localNucamino(preparedSeqs);
-		// } else {
-		// 	jsonStrings = awsNucamino(preparedSeqs, awsFunc);
-		// }
-
-		jsonStrings = localNucamino(preparedSeqs);
+		String awsFunc = System.getenv("NUCAMINO_AWS_LAMBDA");
+		if (awsFunc == null || awsFunc.equals("")) {
+			jsonStrings = localNucamino(preparedSeqs);
+		} else {
+			jsonStrings = awsNucamino(preparedSeqs, awsFunc);
+		}
 		
 		Map<Sequence, AlignedSequence> results = new LinkedHashMap<>();
 		for (Strain strain : jsonStrings.keySet()) {

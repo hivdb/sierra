@@ -8,6 +8,8 @@ dev: build
 	@docker rm -f hivdb-sierra-dev 2>/dev/null || true
 	@docker run \
 		--name=hivdb-sierra-dev \
+		--volume ~/.aws:/root/.aws:ro \
+		--env NUCAMINO_AWS_LAMBDA=nucamino:3 \
 		--rm -it --publish=8111:8080 ${DOCKERREPO} dev
 
 inspect:
