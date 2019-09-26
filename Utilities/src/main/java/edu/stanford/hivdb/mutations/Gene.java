@@ -182,7 +182,7 @@ public class Gene implements Comparable<Gene> {
 	private final Integer[] alignmentAdjustment;
 	private final int firstNA;
 
-	private Gene(
+	protected Gene(
 		Strain strain, GeneEnum gene, String reference,
 		Integer[] alignmentAdjustment, int firstNA
 	) {
@@ -239,7 +239,7 @@ public class Gene implements Comparable<Gene> {
 		case PR:
 			drugClasses.add(DrugClass.PI);
 			break;
-		case IN:
+		default: // case IN:
 			drugClasses.add(DrugClass.INSTI);
 			break;
 		}
@@ -267,7 +267,7 @@ public class Gene implements Comparable<Gene> {
 			mutTypes.add(MutType.Accessory);
 			mutTypes.add(MutType.Other);
 			break;
-		case IN:
+		default: // case IN:
 			mutTypes.add(MutType.Major);
 			mutTypes.add(MutType.Accessory);
 			mutTypes.add(MutType.Other);
@@ -295,7 +295,7 @@ public class Gene implements Comparable<Gene> {
 			mutTypes.add(MutType.Major);
 			mutTypes.add(MutType.Accessory);
 			break;
-		case IN:
+		default: // case IN:
 			mutTypes.add(MutType.Major);
 			mutTypes.add(MutType.Accessory);
 			break;
@@ -482,10 +482,8 @@ public class Gene implements Comparable<Gene> {
 	@Override
 	public int compareTo(Gene o) {
 		if (o == null) throw new NullPointerException("Null is incomprable.");
-		int cmp = strain.compareTo(o.strain);
-		if (cmp == 0) {
-			cmp = geneEnum.compareTo(o.geneEnum);
-		}
+		int cmp = strain.compareTo(o.strain) * 3;
+		cmp += geneEnum.compareTo(o.geneEnum);
 		return cmp;
 	}
 

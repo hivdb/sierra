@@ -132,6 +132,9 @@ public class FastaUtilsTest {
 		assertEquals(
 			emptySeq,
 			FastaUtils.readString(" Error"));
+		assertEquals(
+			emptySeq,
+			FastaUtils.readString("Bad id."));
 	}
 
 	@Test

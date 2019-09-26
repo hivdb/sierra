@@ -97,17 +97,17 @@ public class MutationPrevalencesTest {
 
 			/* mutation towards the end of INI file */
 			m = new IUPACMutation(Gene.valueOf("HIV1IN"), 286, "N");
-			checkPrevalence(MutationPrevalences.getPrevalenceAtSamePosition(m), "N", "CRF01_AE", 1991, 75, 3.8, 1, 0, 0);
+			checkPrevalence(MutationPrevalences.getPrevalenceAtSamePosition(m), "N", "CRF01_AE", 1992, 75, 3.8, 3, 0, 0);
 
 			/* mutations in the middle of RTI file*/
 			m = new IUPACMutation(Gene.valueOf("HIV1RT"), 553, "I");
 			checkNullPrevalence(MutationPrevalences.getPrevalenceAtSamePosition(m), "I", "G");
 			m = new IUPACMutation(Gene.valueOf("HIV1RT"), 554, "S");
-			checkPrevalence(MutationPrevalences.getPrevalenceAtSamePosition(m), "S", "Other", 845, 623, 73.7, 20, 8, 40);
+			checkPrevalence(MutationPrevalences.getPrevalenceAtSamePosition(m), "S", "Other", 843, 622, 73.8, 20, 8, 40);
 
 			/* mutation in the middle of PI file */
 			m = new IUPACMutation(Gene.valueOf("HIV1PR"), 72, "T");
-			checkPrevalence(MutationPrevalences.getPrevalenceAtSamePosition(m), "T", "All", 116611, 4429, 3.8, 29383, 2277, 7.7);
+			checkPrevalence(MutationPrevalences.getPrevalenceAtSamePosition(m), "T", "All", 114865, 4370, 3.8, 29572, 2302, 7.8);
 		}
 
 		@Test

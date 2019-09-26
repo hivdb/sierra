@@ -78,6 +78,7 @@ public class FastaUtils {
 
 		String resultStr = String.join("\n", result);
 		if (resultStr.startsWith("Bad id.")) resultStr = "";
+		if (resultStr.startsWith(" Error")) resultStr = "";
 		if (!(resultStr.startsWith(">") || resultStr.isEmpty())) {
 			resultStr = ">UnnamedSequence\n" + resultStr;
 		}
