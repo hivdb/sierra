@@ -178,7 +178,7 @@ public class MutationTypePairs {
 		// TODO: The version is hard-coded here.
 		final String sqlStatement =
 			"SELECT Gene, DrugClass, Pos, AAs, Type, IsUnusual " +
-			"FROM tblMutationTypesWithVersions WHERE Version='V8_8' " +
+			"FROM tblMutationTypesWithVersions WHERE Version='V8_9' " +
 			"ORDER BY Gene, DrugClass, Pos, " +
 			"(CASE Type WHEN 'Major' THEN 0" +
 			" WHEN 'Accessory' THEN 1" +

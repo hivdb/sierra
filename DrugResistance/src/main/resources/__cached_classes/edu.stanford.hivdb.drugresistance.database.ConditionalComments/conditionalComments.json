@@ -259,15 +259,26 @@
     "comment": "E138K/A are non-polymorphic mutations selected in patients receiving RAL, EVG, and DTG. They usually occur in combination with Q148 mutations. Alone they do not reduce INSTI susceptibility. However, when they occur in combination with Q148 mutations, they are associated with high-level resistance to RAL and EVG and intermediate reductions in DTG and BIC susceptibility. E138T is an uncommon nonpolymorphic INSTI-selected mutation that appears to have an effect similar to E138K/A."
   },
   {
-    "commentName": "IN140DEFHIKLMNPQRTVWY_-",
+    "commentName": "IN140DEFHIKLMNPQTVWY_-",
     "drugClass": "INSTI",
     "conditionType": "MUTATION",
     "conditionValue": {
       "gene": "IN",
       "pos": 140.0,
-      "aas": "DEFHIKLMNPQRTVWY_-"
+      "aas": "DEFHIKLMNPQTVWY_-"
     },
-    "comment": "G140S/A/C are non-polymorphic mutations that usually occur with Q148 mutations. Alone, they have minimal effects on INSTI susceptibility. However, in combination with Q148 mutations they are associated with high-level resistance to RAL and EVG and intermediate reductions in DTG and BIC susceptibility. $listMutsIn{140(NOT SAC)} is an unusual mutation at this position."
+    "comment": "G140S/A/C are non-polymorphic mutations that usually occur with Q148 mutations. Alone, they have minimal effects on INSTI susceptibility. However, in combination with Q148 mutations they are associated with high-level resistance to RAL and EVG and intermediate reductions in DTG and BIC susceptibility. $listMutsIn{140(NOT SACR)} is an unusual mutation at this position."
+  },
+  {
+    "commentName": "IN140R",
+    "drugClass": "INSTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "gene": "IN",
+      "pos": 140.0,
+      "aas": "R"
+    },
+    "comment": "G140R is a nonpolymorphic mutation reported in one patient receiving the investigational INSTI cabotegravir. It appears to reduce cabotegravir susceptibility by 5-10-fold."
   },
   {
     "commentName": "IN140SAC",
@@ -300,7 +311,7 @@
       "pos": 143.0,
       "aas": "CR"
     },
-    "comment": "Y143C/R are non-polymorphic mutations associated with high-level RAL resistance. Alone, they have minimal effects on EVG susceptibility. However, they are associated with intermediate to high-level reductions in EVG susceptibility when they occur in combination with one or more accessory INSTI-resistance mutations. Y143 mutations do not reduce DTG or BIC susceptibility."
+    "comment": "Y143C/R are non-polymorphic mutations associated with high-level RAL resistance. Alone, they have minimal effects on EVG susceptibility. However, they are associated with intermediate reductions in EVG susceptibility when they occur in combination with one or more accessory INSTI-resistance mutations. Y143 mutations do not reduce DTG or BIC susceptibility."
   },
   {
     "commentName": "IN143DEFILMNPQTVW_-",
@@ -322,7 +333,7 @@
       "pos": 143.0,
       "aas": "H"
     },
-    "comment": "Y143C/R are non-polymorphic mutations associated with high-level RAL resistance. Alone, they have minimal effects on EVG susceptibility. However, they are associated with intermediate to high-level reductions in EVG susceptibility when they occur in combination with one or more accessory INSTI-resistance mutations. Y143 mutations do not reduce DTG or BIC susceptibility. Y143H is a less-common mutation at this position that is likely a transitional mutation between the wildtype Y amino acid and the mutant R (which differs from the wildtype Y by two nucleotides)."
+    "comment": "Y143C/R are non-polymorphic mutations associated with high-level RAL resistance. Alone, they have minimal effects on EVG susceptibility. However, they are associated with intermediate reductions in EVG susceptibility when they occur in combination with one or more accessory INSTI-resistance mutations. Y143 mutations do not reduce DTG or BIC susceptibility. Y143H is a less-common mutation at this position that is likely a transitional mutation between the wildtype Y amino acid and the mutant R (which differs from the wildtype Y by two nucleotides)."
   },
   {
     "commentName": "IN143KGSA",
@@ -399,7 +410,7 @@
       "pos": 147.0,
       "aas": "G"
     },
-    "comment": "S147G is a non-polymorphic mutation selected primarily in patients receiving EVG. It moderately reduces EVG susceptibility. It does not reduce RAL, DTG, or BIC susceptibility."
+    "comment": "S147G is a non-polymorphic mutation selected primarily in patients receiving EVG and less commonly in patients receiving RAL and DTG. It moderately reduces EVG susceptibility. It does not reduce RAL, DTG, or BIC susceptibility."
   },
   {
     "commentName": "IN148ACDEFGILMPSTVWY_-",
@@ -620,6 +631,17 @@
       "aas": "K"
     },
     "comment": "R263K is selected in vitro by EVG, DTG, and BIC, and in patients receiving DTG. It reduces DTG and BIC susceptibility about 2-fold and EVG susceptibility somewhat more. "
+  },
+  {
+    "commentName": "IN49G",
+    "drugClass": "INSTI",
+    "conditionType": "MUTATION",
+    "conditionValue": {
+      "gene": "IN",
+      "pos": 49.0,
+      "aas": "G"
+    },
+    "comment": "A49G is a rare nonpolymorphic IN mutation that has been reported in combination with one or more INSTI-resistance mutations in two persons receiving DTG."
   },
   {
     "commentName": "IN50I",
@@ -1642,7 +1664,7 @@
       "pos": 100.0,
       "aas": "V"
     },
-    "comment": "L100I is a non-polymorphic mutation that usually occurs with K103N. In this setting it causes high-level resistance to NVP, EFV, and RPV and intermediate resistance to ETR. L100V is a rare non-polymorphic mutation with low / intermediate resistance to EFV, NVP, and RPV."
+    "comment": "L100I is a non-polymorphic mutation that usually occurs with K103N. In this setting it causes high-level resistance to NVP, EFV, and RPV and intermediate resistance to ETR and possibly DOR. L100V is a rare non-polymorphic mutation with low / intermediate resistance to EFV, NVP, and RPV."
   },
   {
     "commentName": "RT101CDFGILMSVWY_-",
@@ -1697,7 +1719,7 @@
       "pos": 101.0,
       "aas": "P"
     },
-    "comment": "K101P is a non-polymorphic mutation that causes high-level resistance to each of the NNRTIs. It has a weight of 2.5 in the Tibotec ETR genotypic susceptibility score. Its does not appear to reduce DOR susceptibility."
+    "comment": "K101P is a non-polymorphic mutation that causes high-level resistance to NVP, EFV, RPV, and ETR. It has a weight of 2.5 in the Tibotec ETR genotypic susceptibility score. Its does not appear to reduce DOR susceptibility."
   },
   {
     "commentName": "RT101Q",
@@ -1796,7 +1818,7 @@
       "pos": 106.0,
       "aas": "A"
     },
-    "comment": "V106A is a non-polymorphic mutation that causes high-level resistance to NVP and intermediate resistance to EFV. It is selected in vitro and in vivo by DOR and alone it causes intermediate reductions in DOR susceptibility. In combination with other DOR-associated DRMs it is associated with high-level DOR resistance."
+    "comment": "V106A is a non-polymorphic mutation that causes high-level resistance to NVP and DOR, and intermediate resistance to EFV. It is commonly selected in vitro and in vivo by DOR."
   },
   {
     "commentName": "RT106CDEFGHKLNPQRSTWY_-",
@@ -1818,7 +1840,7 @@
       "pos": 106.0,
       "aas": "I"
     },
-    "comment": "V106I is occurs in 1% to 2% of viruses from untreated persons. It contributes to reduced NNRTI susceptibility in combination with other mutations. It has a weight of 1.5 in the Tibotec ETR genotypic susceptibility score despite not contributing much to reduced ETR susceptibility. It likely plays a greater role in reducing DOR susceptibility, particularly in combination with other NNRTI-associated DRMs. "
+    "comment": "V106I occurs in 1% to 2% of viruses from untreated persons. It contributes to reduced NNRTI susceptibility in combination with other mutations. It has a weight of 1.5 in the Tibotec ETR genotypic susceptibility score despite not contributing much to reduced ETR susceptibility. It is commonly selected during DOR treatment in combination with mutations at position 227."
   },
   {
     "commentName": "RT106M",
@@ -1950,7 +1972,7 @@
       "pos": 138.0,
       "aas": "K"
     },
-    "comment": "E138K is a non-polymorphic mutation selected in a high proportion of patients receiving RPV. It reduces RPV susceptibility by 2 to 3-fold and in combination with K101E or the NRTI-resistance mutation M184I, it is sufficient to cause virological failure on a first-line RPV-containing regimen. E138K causes low-level cross-resistance to ETR but no cross-resistance to NVP, EFV, or DOR."
+    "comment": "E138K is a non-polymorphic mutation selected in a high proportion of patients receiving RPV. It reduces RPV susceptibility by 2 to 3-fold and in combination with K101E or the NRTI-resistance mutation M184I, it is sufficient to cause virological failure on a first-line RPV-containing regimen. E138K causes low-level cross-resistance to ETR and possibly to DOR."
   },
   {
     "commentName": "RT138QG",
@@ -1961,7 +1983,7 @@
       "pos": 138.0,
       "aas": "QG"
     },
-    "comment": "E138Q/G are non-polymorphic accessory mutations frequently selected in patients receiving ETR and RPV and occasionally in patients receiving NVP and EFV. In most studies, they cause low-level reductions in susceptibility to NVP, RPV, and ETR."
+    "comment": "E138Q/G are non-polymorphic accessory mutations frequently selected in patients receiving ETR and RPV and occasionally in patients receiving NVP and EFV. In most studies, they cause low-level reductions in susceptibility to NVP, RPV, and ETR. Their effects on DOR are not known."
   },
   {
     "commentName": "RT138R",
@@ -1972,7 +1994,7 @@
       "pos": 138.0,
       "aas": "R"
     },
-    "comment": "E138R is a rare non-polymorphic accessory mutation selected in vitro by RPV. It is associated with 2 to 3-fold reduced susceptibility to ETR and RPV."
+    "comment": "E138R is a rare non-polymorphic accessory mutation selected in vitro by RPV. It is associated with 2 to 3-fold reduced susceptibility to ETR and RPV and possibly to NVP and EFV. Its effect on DOR is not known."
   },
   {
     "commentName": "RT151ACDEFGHIKNPRSTVWY_-",
@@ -2159,7 +2181,7 @@
       "pos": 188.0,
       "aas": "C"
     },
-    "comment": "Y188C is a non-polymorphic mutation selected in patients receiving NVP and EFV. It confers high-level resistance to NVP and EFV."
+    "comment": "Y188C is a non-polymorphic mutation selected in patients receiving NVP and EFV. It confers high-level resistance to NVP and EFV. It appears to cause little if any reduction in susceptibility to RPV, ETR, or DOR."
   },
   {
     "commentName": "RT188F",
@@ -2181,7 +2203,7 @@
       "pos": 188.0,
       "aas": "H"
     },
-    "comment": "Y188H is a non-polymorphic mutation selected in patients receiving NVP and EFV. It causes about 5 to 10-fold reduced susceptibility to NVP and EFV."
+    "comment": "Y188H is a non-polymorphic mutation selected in patients receiving NVP and EFV. It causes about 5 to 10-fold reduced susceptibility to NVP and EFV. It appears to cause little if any reduction in susceptibility to RPV, ETR, or DOR."
   },
   {
     "commentName": "RT188L",
@@ -2236,7 +2258,7 @@
       "pos": 190.0,
       "aas": "EQ"
     },
-    "comment": "G190E is a non-polymorphic mutation that causes high-level resistance to each of the NNRTIs including DOR. G190Q is a less common non-polymorphic NNRTI-selected mutation that is associated with high-level NVP and EFV resistance. Its effects on RPV, ETR, and DOR susceptibility is not known."
+    "comment": "G190E is a non-polymorphic mutation that causes intermediate to high-level resistance to each of the NNRTIs. G190Q is a less common non-polymorphic NNRTI-selected mutation that is associated with high-level NVP and EFV resistance. Its effects on RPV, ETR, and DOR susceptibility is not known."
   },
   {
     "commentName": "RT190R",
@@ -2368,7 +2390,7 @@
       "pos": 221.0,
       "aas": "Y"
     },
-    "comment": "H221Y is a non-polymorphic accessory mutation selected primarily by NVP and RPV. It frequently occurs in combination with Y181C."
+    "comment": "H221Y is a non-polymorphic accessory mutation selected primarily by NVP, RPV, and DOR. It frequently occurs in combination with Y181C."
   },
   {
     "commentName": "RT225ACDEFGIKLMNQRSTVWY_-",
@@ -2412,7 +2434,7 @@
       "pos": 227.0,
       "aas": "C"
     },
-    "comment": "F227C is a nonpolymorphic mutation selected in persons receiving DOR and rarely in persons receiving ETR and RPV. It usually occurs in combination with other DRMs and in this setting has consistently been associated with the highest possible levels of DOR resistance. It is also usually associated with intermediate or higher reductions in susceptibility to NVP, EFV, ETR, and RPV. "
+    "comment": "F227C is a nonpolymorphic mutation selected in persons receiving DOR and rarely in persons receiving ETR and RPV. It usually occurs in combination with other DRMs and in this setting has consistently been associated with the highest possible levels of DOR resistance. It is also usually associated with intermediate or high-level reductions in susceptibility to NVP, EFV, ETR, and RPV."
   },
   {
     "commentName": "RT227ILV",
@@ -2459,15 +2481,15 @@
     "comment": "M230L is an uncommon non-polymorphic mutation selected in persons receiving EFV, NVP, and RPV. It causes intermediate to high-level resistance to each of the NNRTIs."
   },
   {
-    "commentName": "RT234ACDEFGHKLMNPQRSTWY_-",
+    "commentName": "RT234ACDEFGHKMNPQRSTWY_-",
     "drugClass": "NNRTI",
     "conditionType": "MUTATION",
     "conditionValue": {
       "gene": "RT",
       "pos": 234.0,
-      "aas": "ACDEFGHKLMNPQRSTWY_-"
+      "aas": "ACDEFGHKMNPQRSTWY_-"
     },
-    "comment": "L234I is a nonpolymorphic mutation selected in persons receiving NVP and EFV. It is also selected in vitro by ETR and DOR. In combination with V106A, it is associated with high-level DOR resistance. Its effect on susceptibility when it occurs alone has not been studied. $listMutsIn{108(NOT I)} is a highly unusual mutation at this position."
+    "comment": "L234I is a nonpolymorphic mutation selected in persons receiving NVP and EFV. It is also selected in vitro by ETR and DOR. In combination with V106A, it is associated with high-level DOR resistance. Its effect on susceptibility when it occurs alone has not been studied. $listMutsIn{234(NOT I)} is a highly unusual mutation at this position."
   },
   {
     "commentName": "RT234I",
@@ -2478,7 +2500,7 @@
       "pos": 234.0,
       "aas": "I"
     },
-    "comment": "L234I is a nonpolymorphic mutation selected in persons receiving NVP and EFV. It is also selected in vitro by ETR and DOR. In combination with V106A, it is associated with high-level DOR resistance. Its effect on susceptibility when it occurs alone has not been studied."
+    "comment": "L234I is a nonpolymorphic mutation selected in persons receiving NVP and EFV. It is also selected in vitro by ETR and DOR. In combination with V106A, it is associated with high-level DOR resistance. Its effect on susceptibility when it occurs alone has not been well characterized."
   },
   {
     "commentName": "RT236ACDEFGHIKMNQRSTVWY_-",
@@ -2500,7 +2522,7 @@
       "pos": 236.0,
       "aas": "L"
     },
-    "comment": "P236L is a non-polymorphic mutation that causes high-level DLV resistance but does not reduce susceptibility to any other NNRTIs."
+    "comment": "P236L is a non-polymorphic mutation that has been selected in vitro by DOR and been associated with possible low-level reductions in susceptibility in vitro."
   },
   {
     "commentName": "RT238ACDEFGHILMPQSVWY_-",
@@ -2555,7 +2577,7 @@
       "pos": 318.0,
       "aas": "F"
     },
-    "comment": "Y318F is an uncommon mutation that causes intermediate NVP resistance and potentially low-level EFV resistance. It has been selected in vivo by DOR but its effect on DOR susceptibility has not been studied."
+    "comment": "Y318F is an uncommon mutation that causes intermediate NVP resistance and potentially low-level EFV resistance. It has been selected in vivo by DOR and in combination with other mutations it has been associated with high-level reductions in DOR susceptibility. Its effect on DOR susceptibility when it occurs alone has not been studied."
   },
   {
     "commentName": "RT348ACDEFGHKLMPQRSTVWY_-",

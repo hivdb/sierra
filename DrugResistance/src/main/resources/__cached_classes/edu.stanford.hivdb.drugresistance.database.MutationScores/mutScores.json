@@ -1896,7 +1896,7 @@
     "pos": 106,
     "aa": "I",
     "drug": "DOR",
-    "score": 15.0
+    "score": 10.0
   },
   {
     "gene": "RT",
@@ -1932,7 +1932,7 @@
     "pos": 106,
     "aa": "M",
     "drug": "DOR",
-    "score": 30.0
+    "score": 50.0
   },
   {
     "gene": "RT",
@@ -1959,7 +1959,7 @@
     "pos": 108,
     "aa": "I",
     "drug": "DOR",
-    "score": 10.0
+    "score": 15.0
   },
   {
     "gene": "RT",
@@ -2120,6 +2120,15 @@
     "cons": "E",
     "pos": 138,
     "aa": "K",
+    "drug": "DOR",
+    "score": 10.0
+  },
+  {
+    "gene": "RT",
+    "drugClass": "NNRTI",
+    "cons": "E",
+    "pos": 138,
+    "aa": "K",
     "drug": "EFV",
     "score": 10.0
   },
@@ -2426,6 +2435,15 @@
     "cons": "V",
     "pos": 179,
     "aa": "F",
+    "drug": "DOR",
+    "score": 10.0
+  },
+  {
+    "gene": "RT",
+    "drugClass": "NNRTI",
+    "cons": "V",
+    "pos": 179,
+    "aa": "F",
     "drug": "EFV",
     "score": 10.0
   },
@@ -3129,7 +3147,7 @@
     "pos": 190,
     "aa": "Q",
     "drug": "DOR",
-    "score": 60.0
+    "score": 30.0
   },
   {
     "gene": "RT",
@@ -4056,7 +4074,7 @@
     "pos": 221,
     "aa": "Y",
     "drug": "DOR",
-    "score": 10.0
+    "score": 15.0
   },
   {
     "gene": "RT",
@@ -4173,7 +4191,7 @@
     "pos": 227,
     "aa": "I",
     "drug": "DOR",
-    "score": 30.0
+    "score": 50.0
   },
   {
     "gene": "RT",
@@ -4200,7 +4218,7 @@
     "pos": 227,
     "aa": "L",
     "drug": "DOR",
-    "score": 30.0
+    "score": 50.0
   },
   {
     "gene": "RT",
@@ -4227,7 +4245,7 @@
     "pos": 227,
     "aa": "V",
     "drug": "DOR",
-    "score": 30.0
+    "score": 50.0
   },
   {
     "gene": "RT",
@@ -4345,6 +4363,15 @@
     "aa": "I",
     "drug": "DOR",
     "score": 30.0
+  },
+  {
+    "gene": "RT",
+    "drugClass": "NNRTI",
+    "cons": "P",
+    "pos": 236,
+    "aa": "L",
+    "drug": "DOR",
+    "score": 15.0
   },
   {
     "gene": "RT",
@@ -8601,7 +8628,7 @@
     "pos": 263,
     "aa": "K",
     "drug": "BIC",
-    "score": 25.0
+    "score": 30.0
   },
   {
     "gene": "IN",
