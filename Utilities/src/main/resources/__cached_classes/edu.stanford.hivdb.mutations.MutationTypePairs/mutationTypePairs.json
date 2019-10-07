@@ -1048,7 +1048,7 @@
     "drugClass": "NNRTI",
     "position": 234,
     "consensus": "L",
-    "aas": "ACDEFGHKLMNPQRSTWY_-",
+    "aas": "ACDEFGHKMNPQRSTWY_-",
     "type": "Other",
     "isUnusual": true
   },
