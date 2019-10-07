@@ -36,6 +36,7 @@ import edu.stanford.hivdb.drugresistance.GeneDR;
 import edu.stanford.hivdb.drugresistance.GeneDRFast;
 import edu.stanford.hivdb.genotyper.BoundGenotype;
 import edu.stanford.hivdb.genotyper.HIVGenotypeResult;
+import edu.stanford.hivdb.mutations.MutationSet;
 import edu.stanford.hivdb.subtype.Subtype;
 
 import static edu.stanford.hivdb.graphql.UnalignedSequenceDef.*;
@@ -48,6 +49,7 @@ import static edu.stanford.hivdb.graphql.AlignedGeneSequenceDef.*;
 import static edu.stanford.hivdb.graphql.DrugResistanceDef.*;
 import static edu.stanford.hivdb.graphql.ValidationResultDef.*;
 import static edu.stanford.hivdb.graphql.SubtypeV2Def.*;
+import static edu.stanford.hivdb.graphql.MutationPrevalenceDef.*;
 import static edu.stanford.hivdb.graphql.ExtendedFieldDefinition.newFieldDefinition;
 
 public class SequenceAnalysisDef {
@@ -203,6 +205,14 @@ public class SequenceAnalysisDef {
 			.description("List of drug resistance results by genes.")
 			.dataFetcher(drugResistanceDataFetcher)
 			.build())
+		.field(field -> field
+			.type(new GraphQLList(oBoundMutationPrevalence))
+			.name("mutationPrevalences")
+			.description("List of mutation prevalence results.")
+			.dataFetcher(env -> {
+				MutationSet mutations = ((AlignedSequence) env.getSource()).getMutations();
+				return getBoundMutationPrevalenceList(mutations);
+			}))
 		.field(newFieldDefinition()
 			.type(new GraphQLList(oBoundSubtype))
 			.name("subtypes")

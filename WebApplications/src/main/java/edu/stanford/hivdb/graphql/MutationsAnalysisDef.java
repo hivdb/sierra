@@ -29,8 +29,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import edu.stanford.hivdb.alignment.MutationListValidator;
-import edu.stanford.hivdb.alignment.ValidationResult;
-import edu.stanford.hivdb.drugresistance.GeneDR;
 import edu.stanford.hivdb.drugresistance.GeneDRFast;
 import edu.stanford.hivdb.drugresistance.algorithm.Algorithm;
 import edu.stanford.hivdb.mutations.Gene;
@@ -39,7 +37,6 @@ import static edu.stanford.hivdb.graphql.DrugResistanceDef.*;
 import static edu.stanford.hivdb.graphql.ValidationResultDef.*;
 import static edu.stanford.hivdb.graphql.MutationPrevalenceDef.*;
 import static edu.stanford.hivdb.graphql.AlgorithmComparisonDef.*;
-import static edu.stanford.hivdb.graphql.ExtendedFieldDefinition.*;
 
 public class MutationsAnalysisDef {
 
@@ -61,92 +58,68 @@ public class MutationsAnalysisDef {
 		return (MutationSet) data.get(1);
 	}
 
-	private static DataFetcher<List<GeneDR>> drugResistanceDataFetcher = new DataFetcher<List<GeneDR>>() {
-		@Override
-		public List<GeneDR> get(DataFetchingEnvironment environment) {
-			Map<Gene, MutationSet> mutationsByGene = getMutationsByGeneFromSource(environment);
-			return mutationsByGene
-				.entrySet()
-				.stream()
-				.map(e -> new GeneDRFast(e.getKey(), e.getValue()))
-				.collect(Collectors.toList());
-		}
-	};
-
-	private static DataFetcher<List<Map<String, Object>>> mutationPrevalencesDataFetcher = new DataFetcher<List<Map<String, Object>>>() {
-		@Override
-		public List<Map<String, Object>> get(DataFetchingEnvironment environment) {
-			MutationSet mutations = getMutationSetFromSource(environment);
-			return getBoundMutationPrevalenceList(mutations);
-		}
-	};
-
-	private static DataFetcher<List<Map<String, Object>>> algorithmComparisonDataFetcher = new DataFetcher<List<Map<String, Object>>>() {
-		@Override
-		public List<Map<String, Object>> get(DataFetchingEnvironment environment) {
-			List<Algorithm> asiAlgs = environment.getArgument("algorithms");
-			List<Map<String, String>> customAlgs = environment.getArgument("customAlgorithms");
-			if (asiAlgs == null) { asiAlgs = Collections.emptyList(); }
-			if (customAlgs == null) { customAlgs = Collections.emptyList(); }
-			if (asiAlgs.isEmpty() && customAlgs.isEmpty()) {
-				return Collections.emptyList();
-			}
-			asiAlgs = asiAlgs
-				.stream().filter(alg -> alg != null)
-				.collect(Collectors.toList());
-			Map<String, String> customAlgs2 = customAlgs
-				.stream()
-				.filter(map -> map != null)
-				.collect(Collectors.toMap(
-					map -> map.get("name"),
-					map -> map.get("xml"),
-					(x1, x2) -> x2,
-					LinkedHashMap::new
-				));
-			Map<Gene, MutationSet> mutationsByGene = getMutationsByGeneFromSource(environment);
-			return fetchAlgorithmComparisonData(mutationsByGene, asiAlgs, customAlgs2);
-		}
-	};
-
-	private static DataFetcher<List<ValidationResult>> validationResultsDataFetcher = new DataFetcher<List<ValidationResult>>() {
-
-		@Override
-		public List<ValidationResult> get(DataFetchingEnvironment environment) {
-			MutationSet mutations = getMutationSetFromSource(environment);
-			MutationListValidator validator = new MutationListValidator(mutations);
-			return validator.getValidationResults();
-		}
-
-	};
-
 	public static GraphQLObjectType oMutationsAnalysis = newObject()
 		.name("MutationsAnalysis")
-		.field(newFieldDefinition()
+		.field(field -> field
 			.type(new GraphQLList(oValidationResult))
 			.name("validationResults")
 			.description("Validation results for the mutation list.")
-			.dataFetcher(validationResultsDataFetcher)
-			.build())
-		.field(newFieldDefinition()
+			.dataFetcher(env -> {
+				MutationSet mutations = getMutationSetFromSource(env);
+				MutationListValidator validator = new MutationListValidator(mutations);
+				return validator.getValidationResults();
+			}))
+		.field(field -> field
 			.type(new GraphQLList(oDrugResistance))
 			.name("drugResistance")
 			.description("List of drug resistance results by genes.")
-			.dataFetcher(drugResistanceDataFetcher)
-			.build())
-		.field(newFieldDefinition()
+			.dataFetcher(env -> {
+				Map<Gene, MutationSet> mutationsByGene = getMutationsByGeneFromSource(env);
+				return mutationsByGene
+					.entrySet()
+					.stream()
+					.map(e -> new GeneDRFast(e.getKey(), e.getValue()))
+					.collect(Collectors.toList());
+				
+			}))
+		.field(field -> field
 			.type(new GraphQLList(oBoundMutationPrevalence))
 			.name("mutationPrevalences")
 			.description("List of mutation prevalence results.")
-			.dataFetcher(mutationPrevalencesDataFetcher)
-			.build())
-		.field(newFieldDefinition()
+			.dataFetcher(env -> {
+				MutationSet mutations = getMutationSetFromSource(env);
+				return getBoundMutationPrevalenceList(mutations);
+			}))
+		.field(field -> field
 			.type(new GraphQLList(oAlgorithmComparison))
 			.name("algorithmComparison")
 			.description("List of ASI comparison results.")
-			.dataFetcher(algorithmComparisonDataFetcher)
+			.dataFetcher(env -> {
+				List<Algorithm> asiAlgs = env.getArgument("algorithms");
+				List<Map<String, String>> customAlgs = env.getArgument("customAlgorithms");
+				if (asiAlgs == null) { asiAlgs = Collections.emptyList(); }
+				if (customAlgs == null) { customAlgs = Collections.emptyList(); }
+				if (asiAlgs.isEmpty() && customAlgs.isEmpty()) {
+					return Collections.emptyList();
+				}
+				asiAlgs = asiAlgs
+					.stream().filter(alg -> alg != null)
+					.collect(Collectors.toList());
+				Map<String, String> customAlgs2 = customAlgs
+					.stream()
+					.filter(map -> map != null)
+					.collect(Collectors.toMap(
+						map -> map.get("name"),
+						map -> map.get("xml"),
+						(x1, x2) -> x2,
+						LinkedHashMap::new
+					));
+				Map<Gene, MutationSet> mutationsByGene = getMutationsByGeneFromSource(env);
+				return fetchAlgorithmComparisonData(mutationsByGene, asiAlgs, customAlgs2);
+			
+			})
 			.argument(aASIAlgorithmArgument)
-			.argument(aASICustomAlgorithmArgument)
-			.build())
+			.argument(aASICustomAlgorithmArgument))
 		.build();
 
 }

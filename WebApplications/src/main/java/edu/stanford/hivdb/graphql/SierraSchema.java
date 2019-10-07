@@ -27,7 +27,6 @@ import static graphql.schema.GraphQLObjectType.newObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.EnumSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -112,25 +111,6 @@ public class SierraSchema {
 		return result;
 	}
 
-	private static DataFetcher<List<Object>> mutationsAnalysisDataFetcher = new DataFetcher<List<Object>>() {
-		@Override
-		public List<Object> get(DataFetchingEnvironment environment) {
-			List<String> mutations = environment.getArgument("mutations");
-			return prepareMutationsAnalysisData(mutations);
-		}
-	};
-
-	private static DataFetcher<List<List<Object>>> patternAnalysisDataFetcher = new DataFetcher<List<List<Object>>>() {
-		@Override
-		public List<List<Object>> get(DataFetchingEnvironment environment) {
-			List<List<String>> patterns = environment.getArgument("patterns");
-			return patterns
-				.stream()
-				.map(mutations -> prepareMutationsAnalysisData(mutations))
-				.collect(Collectors.toList());
-		}
-	};
-
 	private static DataFetcher<List<Gene>> geneDataFetcher = new DataFetcher<List<Gene>>() {
 		@Override
 		public List<Gene> get(DataFetchingEnvironment environment) {
@@ -194,7 +174,7 @@ public class SierraSchema {
 				.build())
 			.dataFetcher(getSequenceReadsAnalysisDataFetcher())
 			.build())
-		.field(newFieldDefinition()
+		.field(field -> field
 			.type(oMutationsAnalysis)
 			.name("mutationsAnalysis")
 			.description("Analyze a list of mutations belong to a single sequence and output result.")
@@ -203,9 +183,11 @@ public class SierraSchema {
 				.type(new GraphQLList(GraphQLString))
 				.description("Mutations to be analyzed.")
 				.build())
-			.dataFetcher(mutationsAnalysisDataFetcher)
-			.build())
-		.field(newFieldDefinition()
+			.dataFetcher(env -> {
+				List<String> mutations = env.getArgument("mutations");
+				return prepareMutationsAnalysisData(mutations);
+			}))
+		.field(field -> field
 			.type(new GraphQLList(oMutationsAnalysis))
 			.name("patternAnalysis")
 			.description(
@@ -216,8 +198,14 @@ public class SierraSchema {
 				.type(new GraphQLList(new GraphQLList(GraphQLString)))
 				.description("Lists of mutations to be analyzed.")
 				.build())
-			.dataFetcher(patternAnalysisDataFetcher)
-			.build())
+			.dataFetcher(env -> {
+				List<List<String>> patterns = env.getArgument("patterns");
+				return patterns
+					.stream()
+					.map(mutations -> prepareMutationsAnalysisData(mutations))
+					.collect(Collectors.toList());
+				
+			}))
 		.field(newFieldDefinition()
 			.type(new GraphQLList(oGene))
 			.name("genes")
