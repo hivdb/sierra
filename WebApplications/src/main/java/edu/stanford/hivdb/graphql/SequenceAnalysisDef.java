@@ -26,6 +26,7 @@ import static graphql.schema.GraphQLObjectType.newObject;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -34,8 +35,10 @@ import edu.stanford.hivdb.alignment.AlignedGeneSeq;
 import edu.stanford.hivdb.alignment.AlignedSequence;
 import edu.stanford.hivdb.drugresistance.GeneDR;
 import edu.stanford.hivdb.drugresistance.GeneDRFast;
+import edu.stanford.hivdb.drugresistance.algorithm.Algorithm;
 import edu.stanford.hivdb.genotyper.BoundGenotype;
 import edu.stanford.hivdb.genotyper.HIVGenotypeResult;
+import edu.stanford.hivdb.mutations.Gene;
 import edu.stanford.hivdb.mutations.MutationSet;
 import edu.stanford.hivdb.subtype.Subtype;
 
@@ -50,6 +53,7 @@ import static edu.stanford.hivdb.graphql.DrugResistanceDef.*;
 import static edu.stanford.hivdb.graphql.ValidationResultDef.*;
 import static edu.stanford.hivdb.graphql.SubtypeV2Def.*;
 import static edu.stanford.hivdb.graphql.MutationPrevalenceDef.*;
+import static edu.stanford.hivdb.graphql.AlgorithmComparisonDef.*;
 import static edu.stanford.hivdb.graphql.ExtendedFieldDefinition.newFieldDefinition;
 
 public class SequenceAnalysisDef {
@@ -236,6 +240,36 @@ public class SequenceAnalysisDef {
 			.description(
 				"Formatted text for best matching subtype.")
 			.build())
+		.field(field -> field
+			.type(new GraphQLList(oAlgorithmComparison))
+			.name("algorithmComparison")
+			.description("List of ASI comparison results.")
+			.dataFetcher(env -> {
+				List<Algorithm> asiAlgs = env.getArgument("algorithms");
+				List<Map<String, String>> customAlgs = env.getArgument("customAlgorithms");
+				if (asiAlgs == null) { asiAlgs = Collections.emptyList(); }
+				if (customAlgs == null) { customAlgs = Collections.emptyList(); }
+				if (asiAlgs.isEmpty() && customAlgs.isEmpty()) {
+					return Collections.emptyList();
+				}
+				asiAlgs = asiAlgs
+					.stream().filter(alg -> alg != null)
+					.collect(Collectors.toList());
+				Map<String, String> customAlgs2 = customAlgs
+					.stream()
+					.filter(map -> map != null)
+					.collect(Collectors.toMap(
+						map -> map.get("name"),
+						map -> map.get("xml"),
+						(x1, x2) -> x2,
+						LinkedHashMap::new
+					));
+				AlignedSequence alignedSeq = env.getSource();
+				Map<Gene, MutationSet> mutationsByGene = alignedSeq.getMutations().groupByGene();
+				return fetchAlgorithmComparisonData(mutationsByGene, asiAlgs, customAlgs2);
+			})
+			.argument(aASIAlgorithmArgument)
+			.argument(aASICustomAlgorithmArgument))
 		.build();
 
 }
