@@ -22,11 +22,16 @@ import graphql.schema.*;
 import static graphql.Scalars.*;
 import static graphql.schema.GraphQLObjectType.newObject;
 
+import java.util.stream.Collectors;
+
+import edu.stanford.hivdb.ngs.GeneSequenceReads;
+import edu.stanford.hivdb.utilities.Json;
+
 // import edu.stanford.hivdb.ngs.GeneSequenceReads;
 
 import static edu.stanford.hivdb.graphql.MutationSetDef.*;
 // import static edu.stanford.hivdb.graphql.MutationStatsDef.oMutationStats;
-import static edu.stanford.hivdb.graphql.PositionCodonReadsDef.oPositionCodonReads;
+import static edu.stanford.hivdb.graphql.PositionCodonReadsDef.*;
 import static edu.stanford.hivdb.graphql.SequenceReadsHistogramDef.*;
 import static edu.stanford.hivdb.graphql.GeneDef.*;
 import static edu.stanford.hivdb.graphql.DescriptiveStatisticsDef.*;
@@ -60,6 +65,22 @@ public class GeneSequenceReadsDef {
 			.description(
 				"Position codon reads in this gene sequence.")
 		)
+		.field(field -> codonReadsArgs.apply(field)
+			.type(GraphQLString)
+			.name("internalJsonAllPositionCodonReads")
+			.dataFetcher(e -> Json.dumpsUgly(
+				((GeneSequenceReads) e.getSource())
+				.getAllPositionCodonReads()
+				.stream()
+				.map(pcr -> pcr.extMap(
+					(Boolean) e.getArgument("mutationOnly"),
+					(double) e.getArgument("maxProportion"),
+					(double) e.getArgument("minProportion")
+				))
+				.collect(Collectors.toList()))
+			)
+			.description(
+				"Position codon reads in this gene sequence (json formated)."))
 		// .field(field -> field
 		// 	.type(GraphQLFloat)
 		// 	.name("matchPcnt")

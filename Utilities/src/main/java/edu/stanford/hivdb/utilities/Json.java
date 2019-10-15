@@ -43,6 +43,7 @@ import edu.stanford.hivdb.mutations.MutationSet;
 public class Json {
 
 	private static final Gson gson;
+	private static final Gson uglyGson;
 
 	private static class ExtendedTypeAdapterFactory implements TypeAdapterFactory {
 
@@ -129,10 +130,16 @@ public class Json {
 			.registerTypeAdapterFactory(typeFactory)
 			.registerTypeAdapterFactory(new ExtendedTypeAdapterFactory())
 			.serializeNulls().setPrettyPrinting().create();
+		uglyGson = new GsonBuilder()
+			.serializeNulls().create();
 	}
 
 	public static String dumps(Object object) {
 		return gson.toJson(object);
+	}
+	
+	public static String dumpsUgly(Object object) {
+		return uglyGson.toJson(object);
 	}
 
 	public static <T> T loads(String json, Class<T> type) {

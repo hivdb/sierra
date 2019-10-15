@@ -70,7 +70,7 @@ public class PositionCodonReads {
 			})
 			.collect(Collectors.toList());
 	}
-
+	
 	public Map<String, Double> getCodonWithPrevalence(double minPrevalence) {
 		long minReads = Math.round(totalReads * minPrevalence + 0.5);
 		return allCodonReads.entrySet().stream()
@@ -92,5 +92,24 @@ public class PositionCodonReads {
 			return "NNN";
 		}
 		return CodonTranslation.getMergedCodon(codons);
+	}
+	
+	/**
+	 * Get Extended map
+	 * 
+	 * @return Map<String, Object>
+	 */
+	public Map<String, Object> extMap(
+		boolean mutationOnly, double maxProp, double minProp
+	) {
+		Map<String, Object> result = new LinkedHashMap<>();
+		result.put("position", getPosition());
+		result.put("totalReads", getTotalReads());
+		result.put(
+			"codonReads",
+			getCodonReads(mutationOnly, maxProp, minProp)
+			.stream().map(cr -> cr.extMap())
+			.collect(Collectors.toList()));
+		return result;
 	}
 }

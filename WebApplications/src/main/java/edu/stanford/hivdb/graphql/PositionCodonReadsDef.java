@@ -19,6 +19,7 @@
 package edu.stanford.hivdb.graphql;
 
 import graphql.schema.*;
+
 import static graphql.Scalars.*;
 import static edu.stanford.hivdb.graphql.GeneDef.oGene;
 import static edu.stanford.hivdb.graphql.GeneDef.enumGene;
@@ -28,6 +29,7 @@ import static graphql.schema.GraphQLInputObjectType.newInputObject;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.UnaryOperator;
 import java.util.stream.Collectors;
 
 import edu.stanford.hivdb.mutations.CodonReads;
@@ -35,7 +37,6 @@ import edu.stanford.hivdb.mutations.Gene;
 import edu.stanford.hivdb.mutations.GeneEnum;
 import edu.stanford.hivdb.mutations.PositionCodonReads;
 import edu.stanford.hivdb.mutations.Strain;
-import static edu.stanford.hivdb.graphql.ExtendedFieldDefinition.*;
 
 public class PositionCodonReadsDef {
 
@@ -97,52 +98,67 @@ public class PositionCodonReadsDef {
 			.type(GraphQLString)
 			.name("aminoAcid")
 			.description("The corresponding amino acid."))
-		.field(newFieldDefinition()
+		.field(field -> field
 			.type(GraphQLFloat)
 			.name("proportion")
-			.description("Codon proportion of current position (0.0 - 1.0)")
-			.build())
-		.field(newFieldDefinition()
+			.description("Codon proportion of current position (0.0 - 1.0)"))
+		.field(field -> field
 			.type(GraphQLFloat)
 			.name("codonPercent")
-			.description("Codon prevalence in HIVDB database (0.0 - 1.0)")
-			.build())
-		.field(newFieldDefinition()
+			.description("Codon prevalence in HIVDB database (0.0 - 1.0)"))
+		.field(field -> field
 			.type(GraphQLFloat)
 			.name("aaPercent")
 			.dataFetcher(cr -> ((CodonReads) cr.getSource()).getAAPercent())
-			.description("Amino acid prevalence in HIVDB database (0.0 - 1.0)")
-			.build())
-		.field(newFieldDefinition()
+			.description("Amino acid prevalence in HIVDB database (0.0 - 1.0)"))
+		.field(field -> field
 			.type(GraphQLBoolean)
 			.name("isReference")
-			.description("The amino acid is the same as the reference (consensus) amino acid.")
-			.build())
-		.field(newFieldDefinition()
+			.dataFetcher(cr -> ((CodonReads) cr.getSource()).isReference())
+			.description("The amino acid is the same as the reference (consensus) amino acid."))
+		.field(field -> field
 			.type(GraphQLBoolean)
 			.name("isDRM")
+			.dataFetcher(cr -> ((CodonReads) cr.getSource()).isDRM())
 			.description(
-				"The amino acid is a known drug resistance mutation (DRM).")
-			.build())
-		.field(newFieldDefinition()
+				"The amino acid is a known drug resistance mutation (DRM)."))
+		.field(field -> field
 			.type(GraphQLBoolean)
 			.name("isUnusual")
-			.description("The amino acid is an unusual mutation.")
-			.build())
-		.field(newFieldDefinition()
+			.dataFetcher(cr -> ((CodonReads) cr.getSource()).isUnusual())
+			.description("The amino acid is an unusual mutation."))
+		.field(field -> field
 			.type(GraphQLBoolean)
 			.name("isApobecMutation")
-			.description("The amino acid is a signature APOBEC-mediated hypermutation.")
-			.build())
-		.field(newFieldDefinition()
+			.dataFetcher(cr -> ((CodonReads) cr.getSource()).isApobecMutation())
+			.description("The amino acid is a signature APOBEC-mediated hypermutation."))
+		.field(field -> field
 			.type(GraphQLBoolean)
 			.name("isApobecDRM")
+			.dataFetcher(cr -> ((CodonReads) cr.getSource()).isApobecDRM())
 			.description(
 				"The amino acid is a drug resistance mutation (DRM) might " +
-				"be caused by APOBEC-mediated G-to-A hypermutation.")
-			.build())
+				"be caused by APOBEC-mediated G-to-A hypermutation."))
 		.build();
-
+	
+	protected static UnaryOperator<GraphQLFieldDefinition.Builder> codonReadsArgs = field -> field
+		.argument(arg -> arg
+			.type(GraphQLBoolean)
+			.name("mutationOnly")
+			.defaultValue(false)
+			.description("Exclude codons matched subtype B consensus.")
+		)
+		.argument(arg -> arg
+			.type(GraphQLFloat)
+			.name("maxProportion")
+			.description("Exclude codons with proportions higher than specified value (0 - 1).")
+		)
+		.argument(arg -> arg
+			.type(GraphQLFloat)
+			.name("minProportion")
+			.description("Exclude codons with proportions lower than specified value (0 - 1).")
+		);
+	
 	public static GraphQLInputObjectType iPositionCodonReads = newInputObject()
 		.name("PositionCodonReadsInput")
 		.description("Codon reads at a single position.")
@@ -184,33 +200,17 @@ public class PositionCodonReadsDef {
 			.description(
 				"Total reads at this position. The field will be automatically " +
 				"calculated from `allCodonReads` if it's absent."))
-		.field(field -> field
+		.field(field -> codonReadsArgs.apply(field)
 			.type(new GraphQLList(oOneCodonReads))
 			.name("codonReads")
-			.argument(arg -> arg
-				.type(GraphQLBoolean)
-				.name("mutationOnly")
-				.defaultValue(false)
-				.description("Exclude codons matched subtype B consensus.")
-			)
-			.argument(arg -> arg
-				.type(GraphQLFloat)
-				.name("maxProportion")
-				.description("Exclude codons with proportions higher than specified value (0 - 1).")
-			)
-			.argument(arg -> arg
-				.type(GraphQLFloat)
-				.name("minProportion")
-				.description("Exclude codons with proportions lower than specified value (0 - 1).")
-			)
-			.dataFetcher(s -> {
-				PositionCodonReads pcr = (PositionCodonReads) s.getSource();
-				Boolean mutationOnly = (Boolean) s.getArgument("mutationOnly");
-				double maxProp = (double) s.getArgument("maxProportion");
-				double minProp = (double) s.getArgument("minProportion");
-				return pcr.getCodonReads(mutationOnly, maxProp, minProp);
-				
-			})
+			.dataFetcher(e -> (
+				((PositionCodonReads) e.getSource())
+				.getCodonReads(
+					(Boolean) e.getArgument("mutationOnly"),
+					(double) e.getArgument("maxProportion"),
+					(double) e.getArgument("minProportion")
+				)
+			))
 			.description("All codon reads at this position."))
 		.build();
 

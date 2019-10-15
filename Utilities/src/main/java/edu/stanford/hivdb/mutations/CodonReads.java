@@ -17,6 +17,9 @@
 */
 package edu.stanford.hivdb.mutations;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 import edu.stanford.hivdb.hivfacts.HIVCodonPercent;
 import edu.stanford.hivdb.hivfacts.HIVCodonPercents;
 
@@ -150,6 +153,27 @@ public class CodonReads {
 	
 	public boolean isDRM() {
 		return isReference() ? false : getMutation().isDRM();
+	}
+	
+	/**
+	 * Get Extended map
+	 * 
+	 * @return Map<String, Object>
+	 */
+	public Map<String, Object> extMap() {
+		Map<String, Object> result = new LinkedHashMap<>();
+		result.put("codon", getCodon());
+		result.put("reads", getReads());
+		result.put("refAminoAcid", getRefAminoAcid());
+		result.put("aminoAcid", getAminoAcid());
+		result.put("proportion", getProportion());
+		result.put("aaPercent", getAAPercent());
+		result.put("codonPercent", getCodonPercent());
+		result.put("isApobecMutation", isApobecMutation());
+		result.put("isApobecDRM", isApobecDRM());
+		result.put("isUnusual", isUnusual());
+		result.put("isDRM", isDRM());
+		return result;
 	}
 
 }
