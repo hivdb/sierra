@@ -37,6 +37,7 @@ import edu.stanford.hivdb.mutations.Sdrms;
 import edu.stanford.hivdb.mutations.Strain;
 import edu.stanford.hivdb.utilities.SeqUtils;
 import edu.stanford.hivdb.utilities.Sequence;
+import edu.stanford.hivdb.utilities.ValidationResult;
 
 public class AlignedSequence {
 	private static final Character WILDCARD = '.';

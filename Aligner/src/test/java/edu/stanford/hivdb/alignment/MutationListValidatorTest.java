@@ -30,6 +30,8 @@ import edu.stanford.hivdb.mutations.IUPACMutation;
 import edu.stanford.hivdb.mutations.Mutation;
 import edu.stanford.hivdb.mutations.MutationSet;
 import edu.stanford.hivdb.utilities.MutationFileReader;
+import edu.stanford.hivdb.utilities.ValidationLevel;
+import edu.stanford.hivdb.utilities.ValidationResult;
 
 public class MutationListValidatorTest {
 

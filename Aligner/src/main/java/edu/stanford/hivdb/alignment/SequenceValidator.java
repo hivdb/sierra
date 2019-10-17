@@ -38,6 +38,8 @@ import edu.stanford.hivdb.mutations.Mutation;
 import edu.stanford.hivdb.mutations.MutationSet;
 import edu.stanford.hivdb.mutations.Strain;
 import edu.stanford.hivdb.utilities.Json;
+import edu.stanford.hivdb.utilities.ValidationLevel;
+import edu.stanford.hivdb.utilities.ValidationResult;
 
 public class SequenceValidator {
 

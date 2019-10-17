@@ -16,9 +16,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package edu.stanford.hivdb.alignment;
-
-import edu.stanford.hivdb.alignment.ValidationLevel;
+package edu.stanford.hivdb.utilities;
 
 public class ValidationResult {
 

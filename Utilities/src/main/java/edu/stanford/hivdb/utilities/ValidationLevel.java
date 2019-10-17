@@ -16,7 +16,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package edu.stanford.hivdb.alignment;
+package edu.stanford.hivdb.utilities;
 
 public enum ValidationLevel {
 	OK, NOTE, WARNING, SEVERE_WARNING, CRITICAL;

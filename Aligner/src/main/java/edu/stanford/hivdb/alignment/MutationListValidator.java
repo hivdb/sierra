@@ -29,6 +29,8 @@ import org.apache.logging.log4j.Logger;
 import edu.stanford.hivdb.mutations.Apobec;
 import edu.stanford.hivdb.mutations.Mutation;
 import edu.stanford.hivdb.mutations.MutationSet;
+import edu.stanford.hivdb.utilities.ValidationLevel;
+import edu.stanford.hivdb.utilities.ValidationResult;
 
 public class MutationListValidator {
 

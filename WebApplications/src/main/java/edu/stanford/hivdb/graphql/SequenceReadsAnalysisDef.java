@@ -42,6 +42,7 @@ import edu.stanford.hivdb.ngs.SequenceReads;
 import static edu.stanford.hivdb.graphql.MutationSetDef.*;
 import static edu.stanford.hivdb.graphql.GeneDef.*;
 import static edu.stanford.hivdb.graphql.StrainDef.*;
+import static edu.stanford.hivdb.graphql.ValidationResultDef.*;
 import static edu.stanford.hivdb.graphql.GeneSequenceReadsDef.*;
 import static edu.stanford.hivdb.graphql.DrugResistanceDef.*;
 import static edu.stanford.hivdb.graphql.SubtypeV2Def.*;
@@ -153,6 +154,10 @@ public class SequenceReadsAnalysisDef {
 				"Algorithm suggested minimal prevalence cutoff. " +
 				"This cutoff is stricter and include less problematic mutations."))
 		.field(field -> field
+			.type(new GraphQLList(oValidationResult))
+			.name("validationResults")
+			.description("Validation results for the sequence reads."))
+		.field(field -> field
 			.type(GraphQLFloat)
 			.name("minPrevalence")
 			.description(
@@ -164,7 +169,7 @@ public class SequenceReadsAnalysisDef {
 			.type(GraphQLLong)
 			.name("minReadDepth")
 			.description(
-				"The minimal read depth for each codon of this sequence."
+				"The minimal read depth for each codon of the sequence reads."
 			))
 		.field(field -> field
 			.type(new GraphQLList(oGene))

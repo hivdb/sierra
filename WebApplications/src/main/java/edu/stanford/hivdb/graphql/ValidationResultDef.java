@@ -22,7 +22,8 @@ import graphql.schema.*;
 import static graphql.Scalars.*;
 import static graphql.schema.GraphQLObjectType.newObject;
 
-import edu.stanford.hivdb.alignment.ValidationLevel;
+import edu.stanford.hivdb.utilities.ValidationLevel;
+
 import static edu.stanford.hivdb.graphql.ExtendedFieldDefinition.*;
 
 public class ValidationResultDef {

@@ -36,7 +36,7 @@ public class MultiCodonsMutation extends AAMutation {
 				continue;
 			}
 			long count = codonReads.getReads();
-			if (count <= minReads) {
+			if (count < minReads) {
 				// remove minor variants below min-prevalence
 				continue;
 			}

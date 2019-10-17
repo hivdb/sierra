@@ -41,6 +41,7 @@ import edu.stanford.hivdb.mutations.Strain;
 import edu.stanford.hivdb.ngs.SequenceReadsHistogram.AggregationOption;
 import edu.stanford.hivdb.ngs.SequenceReadsHistogram.WithSequenceReadsHistogram;
 import edu.stanford.hivdb.utilities.SeqUtils;
+import edu.stanford.hivdb.utilities.ValidationResult;
 
 public class SequenceReads implements WithSequenceReadsHistogram {
 
@@ -49,7 +50,8 @@ public class SequenceReads implements WithSequenceReadsHistogram {
 	private final Strain strain;
 	private final Map<Gene, GeneSequenceReads> allGeneSequenceReads;
 	private final CutoffSuggestion cutoffSuggestion;
-	private String name;
+	private final Double proportionTrimmedPositions;
+	private final String name;
 	private HIVGenotypeResult subtypeResult;
 	private MutationSet mutations;
 	private String concatenatedSeq;
@@ -57,6 +59,7 @@ public class SequenceReads implements WithSequenceReadsHistogram {
 	private Double minPrevalence;
 	private Long minReadDepth;
 	private transient DescriptiveStatistics readDepthStats;
+	private transient List<ValidationResult> validationResults;
 
 	public static SequenceReads fromCodonReadsTable(
 			String name, List<PositionCodonReads> allReads,
@@ -65,9 +68,12 @@ public class SequenceReads implements WithSequenceReadsHistogram {
 		CutoffSuggestion cutoffSuggestion = new CutoffSuggestion(allReads);
 		double finalMinPrevalence = minPrevalence >= 0 ? minPrevalence : cutoffSuggestion.getStricterLimit();
 		long finalMinReadDepth = minReadDepth > 0 ? minReadDepth : (long) 1000;
-		Map<Gene, GeneSequenceReads> geneSequences = allReads.stream()
+		List<PositionCodonReads> filteredAllReads = allReads.stream()
 			// remove all codons with their read depth < minReadDepth
 			.filter(read -> read.getTotalReads() >= finalMinReadDepth)
+			.collect(Collectors.toList());
+		Map<Gene, GeneSequenceReads> geneSequences = filteredAllReads
+			.stream()
 			.collect(
 				Collectors.groupingBy(
 					PositionCodonReads::getGene,
@@ -78,30 +84,45 @@ public class SequenceReads implements WithSequenceReadsHistogram {
 					)
 				)
 			);
+		double proportionTrimmedPositions = 1. - (double) filteredAllReads.size() / (double) allReads.size();
 
 		// TODO: add support for HIV2
 		return new SequenceReads(
 				name, Strain.HIV1, geneSequences,
-				finalMinPrevalence, finalMinReadDepth, cutoffSuggestion);
+				finalMinPrevalence, finalMinReadDepth,
+				cutoffSuggestion, proportionTrimmedPositions);
 	}
 
 	protected SequenceReads(
 			final String name, final Strain strain,
 			final Map<Gene, GeneSequenceReads> allGeneSequenceReads,
 			final double minPrevalence, final long minReadDepth,
-			final CutoffSuggestion cutoffSuggestion) {
+			final CutoffSuggestion cutoffSuggestion,
+			final double proportionTrimmedPositions) {
 		this.name = name;
 		this.strain = strain;
 		this.allGeneSequenceReads = allGeneSequenceReads;
 		this.minPrevalence = minPrevalence;
 		this.minReadDepth = minReadDepth;
 		this.cutoffSuggestion = cutoffSuggestion;
+		this.proportionTrimmedPositions = proportionTrimmedPositions;
+	}
+	
+	public Integer getSize() {
+		int totalSize = 0;
+		for (Gene gene : allGeneSequenceReads.keySet()) {
+			GeneSequenceReads gsr = allGeneSequenceReads.get(gene);
+			totalSize += gsr.getSize();
+		}
+		return totalSize;
 	}
 
 	public Double getCutoffSuggestionLooserLimit() { return cutoffSuggestion.getLooserLimit(); }
 
 	public Double getCutoffSuggestionStricterLimit() { return cutoffSuggestion.getStricterLimit(); }
 
+	public Double getProportionTrimmedPositions() { return proportionTrimmedPositions; }
+	
 	public String getName() { return name; }
 	
 	public Strain getStrain() { return strain; }
@@ -111,6 +132,18 @@ public class SequenceReads implements WithSequenceReadsHistogram {
 	public double getMinPrevalence() { return minPrevalence; }
 
 	public long getMinReadDepth() { return minReadDepth; }
+	
+	public List<ValidationResult> getValidationResults() {
+		if (validationResults == null) {
+			SequenceReadsValidator sequenceValidator = new SequenceReadsValidator(this);
+			if (!sequenceValidator.validate()) {
+				validationResults = sequenceValidator.getValidationResults();
+			} else {
+				validationResults = new ArrayList<>();
+			}
+		}
+		return validationResults;
+	}
 
 	public DescriptiveStatistics getReadDepthStats() {
 		if (readDepthStats == null) {

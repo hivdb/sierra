@@ -37,6 +37,8 @@ import edu.stanford.hivdb.mutations.Gene;
 import edu.stanford.hivdb.mutations.MutationSet;
 import edu.stanford.hivdb.utilities.FastaUtils;
 import edu.stanford.hivdb.utilities.Sequence;
+import edu.stanford.hivdb.utilities.ValidationLevel;
+import edu.stanford.hivdb.utilities.ValidationResult;
 
 public class SequenceValidatorTest {
 
