@@ -31,7 +31,6 @@ import edu.stanford.hivdb.mutations.CodonReads;
 import edu.stanford.hivdb.mutations.Gene;
 import edu.stanford.hivdb.mutations.Mutation;
 import edu.stanford.hivdb.mutations.MutationSet;
-import edu.stanford.hivdb.utilities.Json;
 import edu.stanford.hivdb.utilities.ValidationLevel;
 import edu.stanford.hivdb.utilities.ValidationResult;
 
@@ -68,7 +67,7 @@ public class SequenceReadsValidator {
 		messages.put(
 			"min-read-depth-too-low",
 			"You have selected a minimal read-depth of %d. However, " +
-			"%.1f%% of the positions in your sequence have fewer than 1000 " +
+			"%.1f%% of the positions in your sequence have fewer than %d " +
 			"reads. Click the read coverage button to review.");
 
 		levels.put("sequence-much-too-short", ValidationLevel.SEVERE_WARNING);
@@ -158,9 +157,10 @@ public class SequenceReadsValidator {
 		boolean validated = true;
 		double pcnt = sequenceReads.getProportionTrimmedPositions();
 		if (pcnt > PROPORTION_TRIMMED_POSITIONS_THRESHOLD) {
+			long minReadDepth = sequenceReads.getMinReadDepth();
 			addValidationResult(
 				"min-read-depth-too-low",
-				sequenceReads.getMinReadDepth(), pcnt * 100);
+				minReadDepth, pcnt * 100, minReadDepth);
 			validated = false;
 		}
 		return validated;
