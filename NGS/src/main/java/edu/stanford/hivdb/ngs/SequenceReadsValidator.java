@@ -27,6 +27,7 @@ import java.util.Map;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import edu.stanford.hivdb.mutations.Apobec;
 import edu.stanford.hivdb.mutations.CodonReads;
 import edu.stanford.hivdb.mutations.Gene;
 import edu.stanford.hivdb.mutations.Mutation;
@@ -88,7 +89,7 @@ public class SequenceReadsValidator {
 		levels.put("note-stop-codon", ValidationLevel.NOTE);
 		messages.put("note-stop-codon", "There is %d stop codon in %s: %s.");
 
-		levels.put("too-many-unusual-mutations", ValidationLevel.WARNING);
+		levels.put("too-many-unusual-mutations", ValidationLevel.SEVERE_WARNING);
 		messages.put(
 			"too-many-unusual-mutations",
 			"At this threshold (%.1f%%), >= 1.0%% of positions have a " +
@@ -98,14 +99,31 @@ public class SequenceReadsValidator {
 			"this threshold represent sequence artifacts.");
 
 		
-		levels.put("too-many-apobec-mutations", ValidationLevel.WARNING);
+		levels.put("too-many-apobec-mutations-one-apobec-drm", ValidationLevel.SEVERE_WARNING);
 		messages.put(
-			"too-many-apobec-mutations",
+			"too-many-apobec-mutations-one-apobec-drm",
+			"At this threshold (%.1f%%), >=3 positions with signature " +
+			"APOBEC mutations. At this threshold, the sequence also contains " +
+			"one drug-resistance mutation that could be caused by " +
+			"APOBEC-mediated G-to-A hypermutation (%s). This " +
+			"DRM therefore should be considered possible sequence artifacts.");
+		
+		levels.put("too-many-apobec-mutations-multiple-apobec-drms", ValidationLevel.SEVERE_WARNING);
+		messages.put(
+			"too-many-apobec-mutations-multiple-apobec-drms",
 			"At this threshold (%.1f%%), >=3 positions with signature " +
 			"APOBEC mutations. At this threshold, the sequence also contains " +
 			"%d drug-resistance mutations that could be caused by " +
-			"APOBEC-mediated G-to-A hypermutation (list APOBEC DRMs). These " +
+			"APOBEC-mediated G-to-A hypermutation (%s). These " +
 			"DRMs therefore should be considered possible sequence artifacts.");
+
+		levels.put("too-many-apobec-mutations-no-apobec-drm", ValidationLevel.WARNING);
+		messages.put(
+			"too-many-apobec-mutations-no-apobec-drm",
+			"At this threshold (%.1f%%), >=3 positions with signature " +
+			"APOBEC mutations. At this threshold, the sequence contains no" +
+			"drug-resistance mutations that could be caused by " +
+			"APOBEC-mediated G-to-A hypermutation.");
 
 		VALIDATION_RESULT_LEVELS = Collections.unmodifiableMap(levels);
 		VALIDATION_RESULT_MESSAGES = Collections.unmodifiableMap(messages);
@@ -291,7 +309,7 @@ public class SequenceReadsValidator {
 		boolean validated = true;
 		List<GeneSequenceReads> allGeneSeqReads = sequenceReads.getAllGeneSequenceReads();
 		int numAPOBECs = 0;
-		int numApobecDRMs = 0;
+		MutationSet apobecDRMs = new MutationSet();
 		double cutoff = sequenceReads.getMinPrevalence();
 
 		for (GeneSequenceReads gsr : allGeneSeqReads) {
@@ -307,22 +325,27 @@ public class SequenceReadsValidator {
 					return 0;
 				})
 				.sum());
-			numApobecDRMs += (
-				gsr.getAllPositionCodonReads()
-				.stream()
-				.mapToInt(pcr -> {
-					for (CodonReads cr : pcr.getCodonReads(true, 1., cutoff)) {
-						if (cr.isApobecDRM()) {
-							return 1;
-						}
-					}
-					return 0;
-				})
-				.sum());
+			apobecDRMs = apobecDRMs.mergesWith(new Apobec(gsr.getMutations()).getApobecDRMs());
 		}
+		int numApobecDRMs = apobecDRMs.size();
 		if (numAPOBECs > APOBEC_THRESHOLD) {
-			addValidationResult("too-many-apobec-mutations",
-								 cutoff * 100, numApobecDRMs);
+			String apobecs = apobecDRMs.join(", ", Mutation::getHumanFormatWithGene);
+			
+			if (numApobecDRMs > 1) {
+				addValidationResult(
+					"too-many-apobec-mutations-multiple-apobec-drms",
+					cutoff * 100, numApobecDRMs, apobecs);
+			}
+			else if (numApobecDRMs == 1) {
+				addValidationResult(
+					"too-many-apobec-mutations-one-apobec-drm",
+					cutoff * 100, apobecs);
+			}
+			else {
+				addValidationResult(
+					"too-many-apobec-mutations-no-apobec-drm",
+					cutoff * 100);
+			}
 			validated = false;
 		}
 		return validated;
