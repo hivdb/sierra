@@ -34,4 +34,3 @@ dependencies {
     // Use JUnit test framework
     testCompile 'junit:junit:4.12'
 }
-

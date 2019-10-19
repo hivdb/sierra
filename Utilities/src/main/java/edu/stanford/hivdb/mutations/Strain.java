@@ -20,4 +20,8 @@ public enum Strain {
 	public String getNucaminoProfile() {
 		return nucaminoProfile;
 	}
+	
+	public Gene[] getGenes() {
+		return Gene.values(this);
+	}
 }

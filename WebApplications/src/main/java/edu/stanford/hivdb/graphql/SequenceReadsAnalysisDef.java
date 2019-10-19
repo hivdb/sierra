@@ -37,6 +37,7 @@ import edu.stanford.hivdb.genotyper.HIVGenotypeResult;
 import edu.stanford.hivdb.mutations.PositionCodonReads;
 import edu.stanford.hivdb.mutations.Strain;
 import edu.stanford.hivdb.ngs.GeneSequenceReads;
+import edu.stanford.hivdb.ngs.OneCodonReadsCoverage;
 import edu.stanford.hivdb.ngs.SequenceReads;
 
 import static edu.stanford.hivdb.graphql.MutationSetDef.*;
@@ -131,6 +132,31 @@ public class SequenceReadsAnalysisDef {
 				"specified."))
 		.build();
 
+	public static GraphQLObjectType oOneCodonReadsCoverage = newObject()
+		.name("OneCodonReadsCoverage")
+		.field(field -> field
+			.type(oGene)
+			.name("gene")
+			.description("Gene of this record.")
+		)
+		.field(field -> field
+			.type(GraphQLLong)
+			.name("position")
+			.description("Codon position in this gene.")
+		)
+		.field(field -> field
+			.type(GraphQLLong)
+			.name("totalReads")
+			.description("Total reads of this position.")
+		)
+		.field(field -> field
+			.type(GraphQLBoolean)
+			.name("isTrimmed")
+			.dataFetcher(env -> ((OneCodonReadsCoverage) env.getSource()).isTrimmed())
+			.description("This position is trimmed or not.")
+		)
+		.build();
+	
 	public static GraphQLObjectType oSequenceReadsAnalysis = newObject()
 		.name("SequenceReadsAnalysis")
 		.field(field -> field
@@ -216,6 +242,11 @@ public class SequenceReadsAnalysisDef {
 			.name("readDepthStats")
 			.type(oDescriptiveStatistics)
 			.description("Descriptive statistics of all read depth.")
+		)
+		.field(field -> field
+			.name("codonReadsCoverage")
+			.type(new GraphQLList(oOneCodonReadsCoverage))
+			.description("Codon reads coverage.")
 		)
 		.build();
 

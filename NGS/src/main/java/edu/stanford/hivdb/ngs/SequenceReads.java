@@ -19,6 +19,7 @@
 package edu.stanford.hivdb.ngs;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -49,6 +50,7 @@ public class SequenceReads implements WithSequenceReadsHistogram {
 	private final static double MIN_PREVALENCE_FOR_SUBTYPING = 0.05;
 	private final Strain strain;
 	private final Map<Gene, GeneSequenceReads> allGeneSequenceReads;
+	private final List<OneCodonReadsCoverage> codonReadsCoverage;
 	private final CutoffSuggestion cutoffSuggestion;
 	private final Double proportionTrimmedPositions;
 	private final String name;
@@ -60,7 +62,7 @@ public class SequenceReads implements WithSequenceReadsHistogram {
 	private Long minReadDepth;
 	private transient DescriptiveStatistics readDepthStats;
 	private transient List<ValidationResult> validationResults;
-
+	
 	public static SequenceReads fromCodonReadsTable(
 			String name, List<PositionCodonReads> allReads,
 			Double minPrevalence, Long minReadDepth) {
@@ -68,6 +70,10 @@ public class SequenceReads implements WithSequenceReadsHistogram {
 		CutoffSuggestion cutoffSuggestion = new CutoffSuggestion(allReads);
 		double finalMinPrevalence = minPrevalence >= 0 ? minPrevalence : cutoffSuggestion.getStricterLimit();
 		long finalMinReadDepth = minReadDepth > 0 ? minReadDepth : (long) 1000;
+		
+		// sort by genePosition first
+		allReads.sort((o1, o2) -> o1.getGenePositon().compareTo(o2.getGenePositon()));
+		
 		List<PositionCodonReads> filteredAllReads = allReads.stream()
 			// remove all codons with their read depth < minReadDepth
 			.filter(read -> read.getTotalReads() >= finalMinReadDepth)
@@ -84,13 +90,22 @@ public class SequenceReads implements WithSequenceReadsHistogram {
 					)
 				)
 			);
+		List<OneCodonReadsCoverage> codonReadsCoverage = allReads.stream()
+			.map(read -> new OneCodonReadsCoverage(
+				read.getGene(),
+				read.getPosition(),
+				read.getTotalReads(),
+				read.getTotalReads() >= finalMinReadDepth
+			))
+			.collect(Collectors.toList());
 		double proportionTrimmedPositions = 1. - (double) filteredAllReads.size() / (double) allReads.size();
 
 		// TODO: add support for HIV2
 		return new SequenceReads(
 				name, Strain.HIV1, geneSequences,
 				finalMinPrevalence, finalMinReadDepth,
-				cutoffSuggestion, proportionTrimmedPositions);
+				cutoffSuggestion, codonReadsCoverage,
+				proportionTrimmedPositions);
 	}
 
 	protected SequenceReads(
@@ -98,14 +113,20 @@ public class SequenceReads implements WithSequenceReadsHistogram {
 			final Map<Gene, GeneSequenceReads> allGeneSequenceReads,
 			final double minPrevalence, final long minReadDepth,
 			final CutoffSuggestion cutoffSuggestion,
+			final List<OneCodonReadsCoverage> codonReadsCoverage,
 			final double proportionTrimmedPositions) {
 		this.name = name;
 		this.strain = strain;
-		this.allGeneSequenceReads = allGeneSequenceReads;
+		this.allGeneSequenceReads = Collections.unmodifiableMap(allGeneSequenceReads);
 		this.minPrevalence = minPrevalence;
 		this.minReadDepth = minReadDepth;
 		this.cutoffSuggestion = cutoffSuggestion;
+		this.codonReadsCoverage = Collections.unmodifiableList(codonReadsCoverage);
 		this.proportionTrimmedPositions = proportionTrimmedPositions;
+	}
+	
+	public List<OneCodonReadsCoverage> getCodonReadsCoverage() {
+		return codonReadsCoverage;
 	}
 	
 	public Integer getSize() {

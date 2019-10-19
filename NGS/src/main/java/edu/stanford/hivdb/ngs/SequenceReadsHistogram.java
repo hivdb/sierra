@@ -234,7 +234,7 @@ public class SequenceReadsHistogram {
 	public Integer getNumPositions() {
 		return (allGeneSequenceReads
 				.stream()
-				.mapToInt(gsr -> gsr.getAllPositionCodonReads().size())
+				.mapToInt(gsr -> gsr.getNumPositions())
 				.sum());
 	}
 		

@@ -84,8 +84,9 @@ public class GeneSequenceReads implements WithSequenceReadsHistogram {
 	public Gene getGene() { return gene; }
 	public int getFirstAA() { return firstAA; }
 	public int getLastAA() { return lastAA; }
-	public int getSize() { return lastAA - firstAA + 1; }
-	public List<PositionCodonReads> getAllPositionCodonReads() { return this.posCodonReads; }
+	public int getSize() { return lastAA - firstAA; }
+	public int getNumPositions() { return posCodonReads.size(); }
+	public List<PositionCodonReads> getAllPositionCodonReads() { return posCodonReads; }
 
 	public MutationSet getMutations(final double minPrevalence) {
 		if (minPrevalence != this.minPrevalence || mutations == null) {

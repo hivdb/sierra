@@ -20,16 +20,19 @@ package edu.stanford.hivdb.ngs;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang3.tuple.Pair;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import edu.stanford.hivdb.mutations.Apobec;
 import edu.stanford.hivdb.mutations.CodonReads;
 import edu.stanford.hivdb.mutations.Gene;
+import edu.stanford.hivdb.mutations.GeneEnum;
 import edu.stanford.hivdb.mutations.Mutation;
 import edu.stanford.hivdb.mutations.MutationSet;
 import edu.stanford.hivdb.utilities.ValidationLevel;
@@ -47,6 +50,9 @@ public class SequenceReadsValidator {
 	private static final Double GAP_LEN_THRESHOLD = 0.1;
 	private static final Double UNUSUAL_THRESHOLD = 0.01;
 	private static final Integer APOBEC_THRESHOLD = 2;
+	private static final Map<GeneEnum, Pair<Integer, Integer>> SEQUENCE_DRM_RANGES;
+	private static final Double SEQUENCE_DRM_MIN1 = 0.4;
+	private static final Double SEQUENCE_DRM_MIN2 = 0.6;
 
 	static {
 		Map<String, ValidationLevel> levels = new HashMap<>();
@@ -57,30 +63,31 @@ public class SequenceReadsValidator {
 					"There were no Protease, Reverse Transcriptase, or " +
 					"Integrase genes found, refuse to process.");
 
-		levels.put("gap-too-long", ValidationLevel.WARNING);
+		levels.put("gap-too-long", ValidationLevel.SEVERE_WARNING);
 		messages.put(
 			"gap-too-long",
-			"More than 10%% of intermediate codon positions are not included " +
+			"More than 10%% of intermediate continuous positions are absent " +
 			"in the submitted codon frequency table. This may indicates " +
-			"preprocess issue and lead to incorrect subtyping detection.");
+			"preprocess issue and lead to incorrect subtyping detection. Click " +
+			"the ‘Read Coverage’ button to review.");
 		
 		levels.put("min-read-depth-too-low", ValidationLevel.WARNING);
 		messages.put(
 			"min-read-depth-too-low",
 			"You have selected a minimal read-depth of %d. However, " +
 			"%.1f%% of the positions in your sequence have fewer than %d " +
-			"reads. Click the read coverage button to review.");
+			"reads. Click the ‘Read Coverage’ button to review.");
 
 		levels.put("sequence-much-too-short", ValidationLevel.SEVERE_WARNING);
 		messages.put(
 			"sequence-much-too-short",
-			"The %s sequence contains just %d codons, " +
+			"The %s sequence contains just %d codon(s) in DRM region, " +
 			"which is not sufficient for a comprehensive interpretation.");
 
 		levels.put("sequence-too-short", ValidationLevel.WARNING);
 		messages.put(
 			"sequence-too-short",
-			"The %s sequence contains just %d codons, " +
+			"The %s sequence contains just %d codon(s) in DRM region, " +
 			"which is not sufficient for a comprehensive interpretation.");
 
 		levels.put("severe-warning-too-many-stop-codons", ValidationLevel.SEVERE_WARNING);
@@ -127,6 +134,12 @@ public class SequenceReadsValidator {
 
 		VALIDATION_RESULT_LEVELS = Collections.unmodifiableMap(levels);
 		VALIDATION_RESULT_MESSAGES = Collections.unmodifiableMap(messages);
+
+		Map<GeneEnum, Pair<Integer, Integer>> seqDrmRanges = new EnumMap<>(GeneEnum.class);
+		seqDrmRanges.put(GeneEnum.PR, Pair.of(10, 90));
+		seqDrmRanges.put(GeneEnum.RT, Pair.of(41, 348));
+		seqDrmRanges.put(GeneEnum.IN, Pair.of(51, 263));
+		SEQUENCE_DRM_RANGES = Collections.unmodifiableMap(seqDrmRanges);
 
 	}
 
@@ -185,40 +198,33 @@ public class SequenceReadsValidator {
 	}
 
 	protected boolean validateSequenceSize() {
-		int size;
+		long size;
+		Gene[] genes = sequenceReads.getStrain().getGenes();
 		GeneSequenceReads geneSeqReads;
 		boolean validated = true;
-		geneSeqReads = sequenceReads.getGeneSequenceReads(Gene.valueOf("HIV1PR"));
-		if (geneSeqReads != null) {
-			size = geneSeqReads.getSize();
-			if (size < 60) {
-				addValidationResult("sequence-much-too-short", Gene.valueOf("HIV1PR"), size);
-				validated = false;
-			} else if (size < 80) {
-				addValidationResult("sequence-too-short", Gene.valueOf("HIV1PR"), size);
-				validated = false;
-			}
-		}
-		geneSeqReads = sequenceReads.getGeneSequenceReads(Gene.valueOf("HIV1RT"));
-		if (geneSeqReads != null) {
-			size = geneSeqReads.getSize();
-			if (size < 150) {
-				addValidationResult("sequence-much-too-short", Gene.valueOf("HIV1RT"), size);
-				validated = false;
-			} else if (size < 200) {
-				addValidationResult("sequence-too-short", Gene.valueOf("HIV1RT"), size);
-				validated = false;
-			}
-		}
-		geneSeqReads = sequenceReads.getGeneSequenceReads(Gene.valueOf("HIV1IN"));
-		if (geneSeqReads != null) {
-			size = geneSeqReads.getSize();
-			if (size < 100) {
-				addValidationResult("sequence-much-too-short", Gene.valueOf("HIV1IN"), size);
-				validated = false;
-			} else if (size < 200) {
-				addValidationResult("sequence-too-short", Gene.valueOf("HIV1IN"), size);
-				validated = false;
+		
+		for (Gene gene : genes) {
+			geneSeqReads = sequenceReads.getGeneSequenceReads(gene);
+			if (geneSeqReads != null) {
+				Pair<Integer, Integer> drmRange = SEQUENCE_DRM_RANGES.get(gene.getGeneEnum());
+				Integer left = drmRange.getLeft();
+				Integer right = drmRange.getRight();
+
+				size = geneSeqReads.getAllPositionCodonReads().stream()
+					.filter(pcr -> {
+						long pos = pcr.getPosition();
+						return pos >= left && pos <= right;
+					})
+					.count();
+				double ratio = (double) size / (double) (right - left + 1);
+				if (ratio < SEQUENCE_DRM_MIN1) {
+					addValidationResult("sequence-much-too-short", gene, size);
+					validated = false;
+				}
+				else if (ratio < SEQUENCE_DRM_MIN2) {
+					addValidationResult("sequence-too-short", gene, size);
+					validated = false;
+				}
 			}
 		}
 		return validated;
@@ -226,27 +232,30 @@ public class SequenceReadsValidator {
 
 	protected boolean validateLongGap() {
 		boolean validated = true;
-		double gapLenThreshold = GAP_LEN_THRESHOLD;
-		double continuousDels = 0.;
-		double numTotalPositions = sequenceReads.getSize();
+		List<OneCodonReadsCoverage> crcs = sequenceReads.getCodonReadsCoverage();
+		if (crcs.isEmpty()) {
+			return validated;
+		}
+		long leftMost = crcs.get(0).getPolPosition();
+		long rightMost = crcs.get(crcs.size() - 1).getPolPosition();
+		double maxGapWidth = Math.ceil((rightMost - leftMost + 1) * GAP_LEN_THRESHOLD);
+		
+		long prevPos = leftMost;
+		for (OneCodonReadsCoverage crc : crcs) {
+			long curPos = crc.getPolPosition();
+			double posDiff = curPos - prevPos;
+			if (posDiff > maxGapWidth) {
+				addValidationResult("gap-too-long");
+				validated = false;
+				break;
+			}
+			prevPos = curPos;
+		}
 		for (Mutation mut : sequenceReads.getMutations()) {
-			if (continuousDels / numTotalPositions > gapLenThreshold) {
+			if (mut.getInsertedNAs().length() > maxGapWidth * 3) {
 				addValidationResult("gap-too-long");
 				validated = false;
 				break;
-			}
-			if (
-				(double) mut.getInsertedNAs().length() /
-				numTotalPositions > gapLenThreshold * 3
-			) {
-				addValidationResult("gap-too-long");
-				validated = false;
-				break;
-			}
-			if (mut.isDeletion()) {
-				continuousDels ++;
-			} else {
-				continuousDels = 0;
 			}
 		}
 		return validated;

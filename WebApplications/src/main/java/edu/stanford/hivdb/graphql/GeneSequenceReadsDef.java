@@ -92,7 +92,13 @@ public class GeneSequenceReadsDef {
 			.type(GraphQLInt)
 			.name("size")
 			.description(
-				"The amino acid size of this sequence without unsequenced region (Ns).")
+				"The amino acid size of this sequence including unsequenced region.")
+		)
+		.field(field -> field
+			.type(GraphQLInt)
+			.name("numPositions")
+			.description(
+				"The sequenced positions of this sequence.")
 		)
 		.field(field -> field
 			.name("readDepthStats")

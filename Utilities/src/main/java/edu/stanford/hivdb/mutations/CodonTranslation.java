@@ -218,9 +218,9 @@ public class CodonTranslation {
 
 	/*
 	 * Translates a triplet into its corresponding amino acid or amino acids (if the triplet encodes > 1 amino acid)
-	 * The amino acid "X" is returned if the codon encodes > 4 (DEFAULT_AAS_LIMIT) amino acids or
-	 * if there is no entry for the codon in the tripletsTable (occurs when triplet contains one or two '-'
-	 * consistent with an edited frame-shift deletion).
+	 * The amino acid "X" is returned if there is no entry for the codon in the tripletsTable
+	 * (occurs when triplet contains one or two '-' consistent with an edited frame-shift deletion).
+	 * 
 	 * @param nas nucleotide triplet
 	 * @return AA amino acid translation
 	 */
