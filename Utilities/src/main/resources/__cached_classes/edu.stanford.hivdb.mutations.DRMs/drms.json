@@ -439,6 +439,7 @@
     "position": 106,
     "aaChars": [
       "A",
+      "I",
       "M"
     ],
     "maxDisplayAAs": 255
@@ -622,7 +623,9 @@
     "position": 227,
     "aaChars": [
       "C",
-      "L"
+      "I",
+      "L",
+      "V"
     ],
     "maxDisplayAAs": 255
   },
@@ -632,6 +635,24 @@
     "position": 230,
     "aaChars": [
       "I",
+      "L"
+    ],
+    "maxDisplayAAs": 255
+  },
+  {
+    "type": "AA",
+    "gene": "HIV1RT",
+    "position": 234,
+    "aaChars": [
+      "I"
+    ],
+    "maxDisplayAAs": 255
+  },
+  {
+    "type": "AA",
+    "gene": "HIV1RT",
+    "position": 236,
+    "aaChars": [
       "L"
     ],
     "maxDisplayAAs": 255
@@ -689,6 +710,7 @@
     "gene": "HIV1IN",
     "position": 74,
     "aaChars": [
+      "F",
       "I",
       "M"
     ],
@@ -820,6 +842,15 @@
   {
     "type": "AA",
     "gene": "HIV1IN",
+    "position": 149,
+    "aaChars": [
+      "A"
+    ],
+    "maxDisplayAAs": 255
+  },
+  {
+    "type": "AA",
+    "gene": "HIV1IN",
     "position": 151,
     "aaChars": [
       "A",
@@ -873,6 +904,15 @@
     "position": 230,
     "aaChars": [
       "R"
+    ],
+    "maxDisplayAAs": 255
+  },
+  {
+    "type": "AA",
+    "gene": "HIV1IN",
+    "position": 232,
+    "aaChars": [
+      "N"
     ],
     "maxDisplayAAs": 255
   },

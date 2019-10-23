@@ -21,8 +21,10 @@ package edu.stanford.hivdb.mutations;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -244,6 +246,18 @@ public class Gene implements Comparable<Gene> {
 			break;
 		}
 		return drugClasses;
+	}
+	
+	public Set<GenePosition> getGenePositionsBetween(
+		int start, int end
+	) {
+		Set<GenePosition> genePositions = new LinkedHashSet<>();
+		start = Math.max(start, 1);
+		end = Math.min(end, getLength());
+		for (int pos = start; pos <= end; pos ++) {
+			genePositions.add(new GenePosition(this, pos));
+		}
+		return genePositions;
 	}
 
 	/**

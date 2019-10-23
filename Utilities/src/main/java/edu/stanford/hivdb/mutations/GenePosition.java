@@ -17,6 +17,9 @@
 
 package edu.stanford.hivdb.mutations;
 
+import java.util.LinkedHashSet;
+import java.util.Set;
+
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
@@ -30,6 +33,35 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 public class GenePosition implements Comparable<GenePosition> {
 	public final Gene gene;
 	public final Integer position;
+	
+	public static Set<GenePosition> getGenePositionsBetween(
+		final GenePosition start, final GenePosition end
+	) {
+		if (start.gene.getStrain() != end.gene.getStrain()) {
+			throw new IllegalArgumentException(
+				"Virus strain of `start` and `end` positions must be the same."
+			);
+		}
+		Strain strain = start.gene.getStrain();
+		Set<GenePosition> genePositions = new LinkedHashSet<>();
+		for (Gene gene : strain.getGenes()) {
+			int startPos = 1;
+			int endPos = gene.getLength();
+			if (gene.compareTo(start.gene) == 0) {
+				startPos = start.position;
+			}
+			if (gene.compareTo(end.gene) == 0) {
+				endPos = end.position;
+			}
+			if (gene.compareTo(start.gene) >= 0 &&
+				gene.compareTo(end.gene) <= 0) {
+				genePositions.addAll(
+					gene.getGenePositionsBetween(startPos, endPos));
+			}
+		}
+		return genePositions;
+		
+	}
 
 	public GenePosition(final Gene gene, final int pos) {
 		this.gene = gene;
@@ -40,6 +72,27 @@ public class GenePosition implements Comparable<GenePosition> {
 		String[] strainGenePos = text.split(":", 2);
 		this.gene = Gene.valueOf(strainGenePos[0]);
 		this.position = Integer.parseInt(strainGenePos[1]);
+	}
+
+	public Integer getPolPosition() {
+		// internal function, don't expose to GraphQL
+		int absPos;
+		Strain strain = gene.getStrain();
+		switch(gene.getGeneEnum()) {
+			case PR:
+				absPos = position;
+				break;
+			case RT:
+				absPos = Gene.valueOf(strain, "PR").getLength() + position;
+				break;
+			default:  // case IN
+				absPos = (
+					Gene.valueOf(strain, "PR").getLength() +
+					Gene.valueOf(strain, "RT").getLength() +
+					position);
+				break;
+		}
+		return absPos;
 	}
 
 	@Override

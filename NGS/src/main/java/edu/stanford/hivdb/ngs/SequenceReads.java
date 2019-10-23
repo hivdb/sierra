@@ -95,7 +95,7 @@ public class SequenceReads implements WithSequenceReadsHistogram {
 				read.getGene(),
 				read.getPosition(),
 				read.getTotalReads(),
-				read.getTotalReads() >= finalMinReadDepth
+				read.getTotalReads() < finalMinReadDepth
 			))
 			.collect(Collectors.toList());
 		double proportionTrimmedPositions = 1. - (double) filteredAllReads.size() / (double) allReads.size();

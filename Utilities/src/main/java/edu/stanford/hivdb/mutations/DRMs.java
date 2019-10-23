@@ -22,6 +22,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import edu.stanford.hivdb.utilities.JdbcDatabase;
 import edu.stanford.hivdb.utilities.Cachable;
@@ -32,7 +34,7 @@ public class DRMs {
 	private static final JdbcDatabase db;
 
 	static {
-		db = JdbcDatabase.getDefault();
+		db = JdbcDatabase.getResultsDB();
 		Cachable.setup(DRMs.class, () -> {
 			try {
 				populateDRMs();
@@ -40,6 +42,20 @@ public class DRMs {
 				throw new ExceptionInInitializerError(e);
 			}
 		});
+	}
+	
+	public static Set<GenePosition> getDRGenePositionsBetween(
+		GenePosition minGp, GenePosition maxGp
+	) {
+		return (
+			drms.stream()
+			.map(drm -> drm.getGenePosition())
+			.filter(
+				gp -> gp.compareTo(minGp) >= 0 &&
+				gp.compareTo(maxGp) <= 0
+			)
+			.collect(Collectors.toSet())
+		);
 	}
 
 	/**
@@ -64,11 +80,11 @@ public class DRMs {
 	private static void populateDRMs() throws SQLException {
 		final String sqlStatement1 =
 			"SELECT Gene, Pos, AA " +
-			"FROM tblScores " +
+			"FROM tblScoresWithVersions WHERE Version='V8_9' " +
 			"GROUP BY Gene, Pos, AA ORDER BY Gene, Pos, AA";
 		final String sqlStatement2 =
 			"SELECT Gene, Rule " +
-			"FROM tblCombinationScores " +
+			"FROM tblCombinationScoresWithVersions WHERE Version='V8_9' " +
 			"Group BY Gene, Rule ORDER BY Gene, Rule";
 
 		List<Collection<Mutation>> allDrms = new ArrayList<>();

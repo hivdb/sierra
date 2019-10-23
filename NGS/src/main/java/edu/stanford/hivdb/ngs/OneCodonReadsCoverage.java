@@ -1,7 +1,7 @@
 package edu.stanford.hivdb.ngs;
 
 import edu.stanford.hivdb.mutations.Gene;
-import edu.stanford.hivdb.mutations.Strain;
+import edu.stanford.hivdb.mutations.GenePosition;
 
 public class OneCodonReadsCoverage {
 	private final Gene gene;
@@ -29,6 +29,10 @@ public class OneCodonReadsCoverage {
 		return position;
 	}
 	
+	public GenePosition getGenePosition() {
+		return new GenePosition(gene, (int) position);
+	}
+	
 	public Long getTotalReads() {
 		return totalReads;
 	}
@@ -37,25 +41,8 @@ public class OneCodonReadsCoverage {
 		return isTrimmed;
 	}
 	
-	public Long getPolPosition() {
-		// internal function, don't expose to GraphQL
-		long absPos;
-		Strain strain = gene.getStrain();
-		switch(gene.getGeneEnum()) {
-			case PR:
-				absPos = position;
-				break;
-			case RT:
-				absPos = Gene.valueOf(strain, "PR").getLength() + position;
-				break;
-			default:  // case IN
-				absPos = (
-					Gene.valueOf(strain, "PR").getLength() +
-					Gene.valueOf(strain, "RT").getLength() +
-					position);
-				break;
-		}
-		return absPos;
+	public Integer getPolPosition() {
+		return getGenePosition().getPolPosition();
 	}
 	
 }

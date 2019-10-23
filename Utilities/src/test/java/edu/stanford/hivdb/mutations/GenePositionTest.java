@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 import java.util.HashSet;
 import java.util.Set;
 import org.junit.Test;
+import org.mockito.internal.util.collections.Sets;
 
 public class GenePositionTest {
 	static final int MAX_PR_POS = 99;
@@ -28,6 +29,37 @@ public class GenePositionTest {
 		assertEquals(inGP.position, Integer.valueOf(MAX_IN_POS));
 		assertEquals(inGPMax.position, Integer.valueOf(Integer.MAX_VALUE));
 		assertEquals(inGPMin.position, Integer.valueOf(Integer.MIN_VALUE));
+	}
+	
+	@Test
+	public void testGetGenePositionsBetween() {
+		assertEquals(
+			Sets.newSet(
+				new GenePosition("HIV1PR:97"),
+				new GenePosition("HIV1PR:98"),
+				new GenePosition("HIV1PR:99"),
+				new GenePosition("HIV1RT:1"),
+				new GenePosition("HIV1RT:2")
+			), GenePosition.getGenePositionsBetween(
+				new GenePosition("HIV1PR:97"),
+				new GenePosition("HIV1RT:2")
+			));
+		
+		Set<GenePosition> gps1 = GenePosition.getGenePositionsBetween(
+			new GenePosition("HIV1PR:50"),
+			new GenePosition("HIV1IN:50")
+		);
+		assertEquals(660, gps1.size());
+		Set<GenePosition> gps2 = GenePosition.getGenePositionsBetween(
+			new GenePosition("HIV2APR:50"),
+			new GenePosition("HIV2AIN:50")
+		);
+		assertEquals(659, gps2.size());
+		Set<GenePosition> gps3 = GenePosition.getGenePositionsBetween(
+			new GenePosition("HIV1PR:50"),
+			new GenePosition("HIV1PR:95")
+		);
+		assertEquals(46, gps3.size());
 	}
 
 	// Potential issues:
