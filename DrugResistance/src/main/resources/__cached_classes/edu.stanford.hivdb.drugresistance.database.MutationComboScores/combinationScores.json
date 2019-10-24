@@ -114,6 +114,27 @@
   {
     "gene": "HIV1RT",
     "drugClass": "NNRTI",
+    "rule": "106I+181C",
+    "drug": "DOR",
+    "score": 10.0
+  },
+  {
+    "gene": "HIV1RT",
+    "drugClass": "NNRTI",
+    "rule": "106I+181C",
+    "drug": "RPV",
+    "score": 10.0
+  },
+  {
+    "gene": "HIV1RT",
+    "drugClass": "NNRTI",
+    "rule": "106I+190S",
+    "drug": "DOR",
+    "score": 10.0
+  },
+  {
+    "gene": "HIV1RT",
+    "drugClass": "NNRTI",
     "rule": "108I+181C",
     "drug": "DOR",
     "score": 10.0
@@ -184,7 +205,7 @@
   {
     "gene": "HIV1RT",
     "drugClass": "NNRTI",
-    "rule": "181C+190A",
+    "rule": "181C+190ACSTV",
     "drug": "DOR",
     "score": 20.0
   },
@@ -205,8 +226,15 @@
   {
     "gene": "HIV1RT",
     "drugClass": "NNRTI",
-    "rule": "181C+190CSTV",
+    "rule": "181CIV+221Y",
     "drug": "DOR",
+    "score": 10.0
+  },
+  {
+    "gene": "HIV1RT",
+    "drugClass": "NNRTI",
+    "rule": "181CIV+221Y",
+    "drug": "RPV",
     "score": 10.0
   },
   {
@@ -1598,28 +1626,28 @@
   {
     "gene": "HIV1IN",
     "drugClass": "INSTI",
-    "rule": "138AKT+118R",
+    "rule": "118R+138AKT",
     "drug": "BIC",
     "score": 10.0
   },
   {
     "gene": "HIV1IN",
     "drugClass": "INSTI",
-    "rule": "138AKT+118R",
+    "rule": "118R+138AKT",
     "drug": "DTG",
     "score": 10.0
   },
   {
     "gene": "HIV1IN",
     "drugClass": "INSTI",
-    "rule": "138AKT+118R",
+    "rule": "118R+138AKT",
     "drug": "EVG",
     "score": 10.0
   },
   {
     "gene": "HIV1IN",
     "drugClass": "INSTI",
-    "rule": "138AKT+118R",
+    "rule": "118R+138AKT",
     "drug": "RAL",
     "score": 10.0
   },
@@ -1752,16 +1780,30 @@
   {
     "gene": "HIV1IN",
     "drugClass": "INSTI",
+    "rule": "147G+148HKR",
+    "drug": "BIC",
+    "score": 15.0
+  },
+  {
+    "gene": "HIV1IN",
+    "drugClass": "INSTI",
+    "rule": "147G+148HKR",
+    "drug": "DTG",
+    "score": 15.0
+  },
+  {
+    "gene": "HIV1IN",
+    "drugClass": "INSTI",
     "rule": "148HKR+155H",
     "drug": "BIC",
-    "score": 10.0
+    "score": 20.0
   },
   {
     "gene": "HIV1IN",
     "drugClass": "INSTI",
     "rule": "148HKR+155H",
     "drug": "DTG",
-    "score": 10.0
+    "score": 20.0
   },
   {
     "gene": "HIV1IN",
@@ -1776,6 +1818,41 @@
     "rule": "148HKR+163KR",
     "drug": "DTG",
     "score": 5.0
+  },
+  {
+    "gene": "HIV1IN",
+    "drugClass": "INSTI",
+    "rule": "155H+147G",
+    "drug": "BIC",
+    "score": 10.0
+  },
+  {
+    "gene": "HIV1IN",
+    "drugClass": "INSTI",
+    "rule": "155H+147G",
+    "drug": "DTG",
+    "score": 10.0
+  },
+  {
+    "gene": "HIV1IN",
+    "drugClass": "INSTI",
+    "rule": "155H+147G",
+    "drug": "EVG",
+    "score": 10.0
+  },
+  {
+    "gene": "HIV1IN",
+    "drugClass": "INSTI",
+    "rule": "155H+263K",
+    "drug": "BIC",
+    "score": 20.0
+  },
+  {
+    "gene": "HIV1IN",
+    "drugClass": "INSTI",
+    "rule": "155H+263K",
+    "drug": "DTG",
+    "score": 20.0
   },
   {
     "gene": "HIV1IN",
@@ -1866,7 +1943,7 @@
     "drugClass": "INSTI",
     "rule": "74FIM+148HKR",
     "drug": "BIC",
-    "score": 10.0
+    "score": 15.0
   },
   {
     "gene": "HIV1IN",
@@ -1894,14 +1971,28 @@
     "drugClass": "INSTI",
     "rule": "92Q+155H",
     "drug": "BIC",
-    "score": 5.0
+    "score": 10.0
   },
   {
     "gene": "HIV1IN",
     "drugClass": "INSTI",
     "rule": "92Q+155H",
     "drug": "DTG",
-    "score": 5.0
+    "score": 10.0
+  },
+  {
+    "gene": "HIV1IN",
+    "drugClass": "INSTI",
+    "rule": "92Q+155H",
+    "drug": "EVG",
+    "score": 10.0
+  },
+  {
+    "gene": "HIV1IN",
+    "drugClass": "INSTI",
+    "rule": "92Q+155H",
+    "drug": "RAL",
+    "score": 10.0
   },
   {
     "gene": "HIV1IN",

@@ -234,6 +234,10 @@ public class AsiConstructor {
 			if (comment.getConditionType() == ConditionType.DRUGLEVEL) {
 				continue;
 			}
+			if (comment.getMutationGene().getStrain() != Strain.HIV1) {
+				// skip HIV2 comments
+				continue;
+			}
 			Element commentStr = doc.createElement("COMMENT_STRING");
 			commentStr.setAttribute("id", comment.getName());
 			Element text = doc.createElement("TEXT");
@@ -262,6 +266,10 @@ public class AsiConstructor {
 			geneNode.appendChild(geneNameNode);
 			for (ConditionalComment cmt : comments) {
 				if (cmt.getConditionType() == ConditionType.DRUGLEVEL) {
+					continue;
+				}
+				if (cmt.getMutationGene().getStrain() != Strain.HIV1) {
+					// skip HIV2 comments
 					continue;
 				}
 				Element ruleNode = doc.createElement("RULE");

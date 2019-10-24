@@ -9850,8 +9850,8 @@
           "drug": "DOR",
           "algorithm": "HIVDB",
           "SIR": "I",
-          "interpretation": "Low-Level Resistance",
-          "explanation": "Total score: 20\nY181C (10), H221HY (10) "
+          "interpretation": "Intermediate Resistance",
+          "explanation": "Total score: 35\nH221HY (15), Y181C (10) Y181C + H221HY (10)"
         },
         {
           "drug": "EFV",
@@ -9879,7 +9879,7 @@
           "algorithm": "HIVDB",
           "SIR": "R",
           "interpretation": "High-Level Resistance",
-          "explanation": "Total score: 60\nY181C (45), H221HY (15) "
+          "explanation": "Total score: 70\nY181C (45), H221HY (15) Y181C + H221HY (10)"
         },
         {
           "drug": "ABC",
@@ -10634,7 +10634,7 @@
           "algorithm": "HIVDB",
           "SIR": "I",
           "interpretation": "Intermediate Resistance",
-          "explanation": "Total score: 50\nA98G (15), V108I (10), Y181C (10) V108I + Y181C (10), A98G + Y181C (5)"
+          "explanation": "Total score: 55\nA98G (15), V108I (15), Y181C (10) V108I + Y181C (10), A98G + Y181C (5)"
         },
         {
           "drug": "EFV",
@@ -11063,7 +11063,7 @@
           "algorithm": "HIVDB",
           "SIR": "I",
           "interpretation": "Intermediate Resistance",
-          "explanation": "Total score: 30\nV106M (30) "
+          "explanation": "Total score: 50\nV106M (50) "
         },
         {
           "drug": "EFV",
@@ -12695,7 +12695,7 @@
           "algorithm": "HIVDB",
           "SIR": "R",
           "interpretation": "High-Level Resistance",
-          "explanation": "Total score: 100\nG190S (30), K101E (15), V108I (10), Y181C (10), H221HY (10) V108I + Y181C (10), Y181C + G190S (10), K101E + G190S (5)"
+          "explanation": "Total score: 130\nG190S (30), K101E (15), V108I (15), H221HY (15), Y181C (10) Y181C + G190S (20), V108I + Y181C (10), Y181C + H221HY (10), K101E + G190S (5)"
         },
         {
           "drug": "EFV",
@@ -12723,7 +12723,7 @@
           "algorithm": "HIVDB",
           "SIR": "R",
           "interpretation": "High-Level Resistance",
-          "explanation": "Total score: 130\nK101E (45), Y181C (45), G190S (15), H221HY (15) Y181C + G190S (10)"
+          "explanation": "Total score: 140\nK101E (45), Y181C (45), G190S (15), H221HY (15) Y181C + G190S (10), Y181C + H221HY (10)"
         },
         {
           "drug": "ABC",
@@ -25118,29 +25118,29 @@
           "drug": "BIC",
           "algorithm": "HIVDB",
           "SIR": "I",
-          "interpretation": "Low-Level Resistance",
-          "explanation": "Total score: 25\nE92Q (10), N155H (10) E92Q + N155H (5)"
+          "interpretation": "Intermediate Resistance",
+          "explanation": "Total score: 30\nE92Q (10), N155H (10) E92Q + N155H (10)"
         },
         {
           "drug": "DTG",
           "algorithm": "HIVDB",
           "SIR": "I",
-          "interpretation": "Low-Level Resistance",
-          "explanation": "Total score: 25\nE92Q (10), N155H (10) E92Q + N155H (5)"
+          "interpretation": "Intermediate Resistance",
+          "explanation": "Total score: 30\nE92Q (10), N155H (10) E92Q + N155H (10)"
         },
         {
           "drug": "EVG",
           "algorithm": "HIVDB",
           "SIR": "R",
           "interpretation": "High-Level Resistance",
-          "explanation": "Total score: 120\nE92Q (60), N155H (60) "
+          "explanation": "Total score: 130\nE92Q (60), N155H (60) E92Q + N155H (10)"
         },
         {
           "drug": "RAL",
           "algorithm": "HIVDB",
           "SIR": "R",
           "interpretation": "High-Level Resistance",
-          "explanation": "Total score: 90\nN155H (60), E92Q (30) "
+          "explanation": "Total score: 100\nN155H (60), E92Q (30) E92Q + N155H (10)"
         },
         {
           "drug": "BIC",
@@ -25770,14 +25770,14 @@
           "algorithm": "HIVDB",
           "SIR": "I",
           "interpretation": "Intermediate Resistance",
-          "explanation": "Total score: 45\nQ148R (25), N155H (10) Q148R + N155H (10)"
+          "explanation": "Total score: 55\nQ148R (25), N155H (10) Q148R + N155H (20)"
         },
         {
           "drug": "DTG",
           "algorithm": "HIVDB",
           "SIR": "I",
           "interpretation": "Intermediate Resistance",
-          "explanation": "Total score: 45\nQ148R (25), N155H (10) Q148R + N155H (10)"
+          "explanation": "Total score: 55\nQ148R (25), N155H (10) Q148R + N155H (20)"
         },
         {
           "drug": "EVG",
@@ -26512,9 +26512,9 @@
         {
           "drug": "BIC",
           "algorithm": "HIVDB",
-          "SIR": "I",
-          "interpretation": "Intermediate Resistance",
-          "explanation": "Total score: 55\nQ148H (25), G140S (10) G140S + Q148H (10), L74I + Q148H (10)"
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 60\nQ148H (25), G140S (10) L74I + Q148H (15), G140S + Q148H (10)"
         },
         {
           "drug": "DTG",
@@ -27163,16 +27163,16 @@
         {
           "drug": "BIC",
           "algorithm": "HIVDB",
-          "SIR": "I",
-          "interpretation": "Intermediate Resistance",
-          "explanation": "Total score: 45\nQ148R (25), E138K (10) E138K + Q148R (10)"
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 60\nQ148R (25), E138K (10) S147G + Q148R (15), E138K + Q148R (10)"
         },
         {
           "drug": "DTG",
           "algorithm": "HIVDB",
-          "SIR": "I",
-          "interpretation": "Intermediate Resistance",
-          "explanation": "Total score: 45\nQ148R (25), E138K (10) E138K + Q148R (10)"
+          "SIR": "R",
+          "interpretation": "High-Level Resistance",
+          "explanation": "Total score: 60\nQ148R (25), E138K (10) S147G + Q148R (15), E138K + Q148R (10)"
         },
         {
           "drug": "EVG",
@@ -27537,28 +27537,28 @@
           "algorithm": "HIVDB",
           "SIR": "R",
           "interpretation": "High-Level Resistance",
-          "explanation": "Total score: 100\nQ148QK (30), H51HY (10), E92EQ (10), G140GS (10), N155NH (10) G140GS + Q148QK (10), Q148QK + N155NH (10), Q148QK + G163GR (5), E92EQ + N155NH (5)"
+          "explanation": "Total score: 115\nQ148QK (30), H51HY (10), E92EQ (10), G140GS (10), N155NH (10) Q148QK + N155NH (20), G140GS + Q148QK (10), E92EQ + N155NH (10), Q148QK + G163GR (5)"
         },
         {
           "drug": "DTG",
           "algorithm": "HIVDB",
           "SIR": "R",
           "interpretation": "High-Level Resistance",
-          "explanation": "Total score: 100\nQ148QK (30), H51HY (10), E92EQ (10), G140GS (10), N155NH (10) G140GS + Q148QK (10), Q148QK + N155NH (10), Q148QK + G163GR (5), E92EQ + N155NH (5)"
+          "explanation": "Total score: 115\nQ148QK (30), H51HY (10), E92EQ (10), G140GS (10), N155NH (10) Q148QK + N155NH (20), G140GS + Q148QK (10), E92EQ + N155NH (10), Q148QK + G163GR (5)"
         },
         {
           "drug": "EVG",
           "algorithm": "HIVDB",
           "SIR": "R",
           "interpretation": "High-Level Resistance",
-          "explanation": "Total score: 240\nE92EQ (60), Q148QK (60), N155NH (60), G140GS (30), H51HY (15), G163GR (15) "
+          "explanation": "Total score: 250\nE92EQ (60), Q148QK (60), N155NH (60), G140GS (30), H51HY (15), G163GR (15) E92EQ + N155NH (10)"
         },
         {
           "drug": "RAL",
           "algorithm": "HIVDB",
           "SIR": "R",
           "interpretation": "High-Level Resistance",
-          "explanation": "Total score: 210\nQ148QK (60), N155NH (60), E92EQ (30), G140GS (30), H51HY (15), G163GR (15) "
+          "explanation": "Total score: 220\nQ148QK (60), N155NH (60), E92EQ (30), G140GS (30), H51HY (15), G163GR (15) E92EQ + N155NH (10)"
         },
         {
           "drug": "BIC",
@@ -28281,28 +28281,28 @@
           "algorithm": "HIVDB",
           "SIR": "R",
           "interpretation": "High-Level Resistance",
-          "explanation": "Total score: 80\nQ148QR (25), E92EQ (10), G140GS (10), N155NH (10) G140GS + Q148QR (10), Q148QR + N155NH (10), E92EQ + N155NH (5)"
+          "explanation": "Total score: 95\nQ148QR (25), E92EQ (10), G140GS (10), N155NH (10) Q148QR + N155NH (20), G140GS + Q148QR (10), E92EQ + N155NH (10)"
         },
         {
           "drug": "DTG",
           "algorithm": "HIVDB",
           "SIR": "R",
           "interpretation": "High-Level Resistance",
-          "explanation": "Total score: 80\nQ148QR (25), E92EQ (10), G140GS (10), N155NH (10) G140GS + Q148QR (10), Q148QR + N155NH (10), E92EQ + N155NH (5)"
+          "explanation": "Total score: 95\nQ148QR (25), E92EQ (10), G140GS (10), N155NH (10) Q148QR + N155NH (20), G140GS + Q148QR (10), E92EQ + N155NH (10)"
         },
         {
           "drug": "EVG",
           "algorithm": "HIVDB",
           "SIR": "R",
           "interpretation": "High-Level Resistance",
-          "explanation": "Total score: 210\nE92EQ (60), Q148QR (60), N155NH (60), G140GS (30) "
+          "explanation": "Total score: 220\nE92EQ (60), Q148QR (60), N155NH (60), G140GS (30) E92EQ + N155NH (10)"
         },
         {
           "drug": "RAL",
           "algorithm": "HIVDB",
           "SIR": "R",
           "interpretation": "High-Level Resistance",
-          "explanation": "Total score: 180\nQ148QR (60), N155NH (60), E92EQ (30), G140GS (30) "
+          "explanation": "Total score: 190\nQ148QR (60), N155NH (60), E92EQ (30), G140GS (30) E92EQ + N155NH (10)"
         },
         {
           "drug": "BIC",
@@ -29880,7 +29880,7 @@
           "algorithm": "HIVDB",
           "SIR": "I",
           "interpretation": "Intermediate Resistance",
-          "explanation": "Total score: 40\nL100LI (15), V108VI (10) L100LI + K103N (15)"
+          "explanation": "Total score: 45\nL100LI (15), V108VI (15) L100LI + K103N (15)"
         },
         {
           "drug": "EFV",

@@ -38,7 +38,7 @@ import edu.stanford.hivdb.mutations.MutationSet;
 
 public class MutationComboScoresTest {
 
-	static final int TOTAL_COMBO_SCORES = 279;
+	static final int TOTAL_COMBO_SCORES = 292;
 	
 	final Gene eGene = Gene.valueOf("HIV1RT");
 	final DrugClass eDrugClass = DrugClass.NNRTI;

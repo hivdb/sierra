@@ -1048,7 +1048,7 @@
     "drugClass": "NNRTI",
     "position": 234,
     "consensus": "L",
-    "aas": "ACDEFGHKLMNPQRSTWY_-",
+    "aas": "ACDEFGHKMNPQRSTWY_-",
     "type": "Other",
     "isUnusual": true
   },
@@ -1820,6 +1820,15 @@
   {
     "gene": "HIV1IN",
     "drugClass": "INSTI",
+    "position": 49,
+    "consensus": "A",
+    "aas": "G",
+    "type": "Accessory",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV1IN",
+    "drugClass": "INSTI",
     "position": 50,
     "consensus": "M",
     "aas": "I",
@@ -2029,6 +2038,15 @@
     "drugClass": "INSTI",
     "position": 140,
     "consensus": "G",
+    "aas": "R",
+    "type": "Major",
+    "isUnusual": false
+  },
+  {
+    "gene": "HIV1IN",
+    "drugClass": "INSTI",
+    "position": 140,
+    "consensus": "G",
     "aas": "SAC",
     "type": "Major",
     "isUnusual": false
@@ -2038,7 +2056,7 @@
     "drugClass": "INSTI",
     "position": 140,
     "consensus": "G",
-    "aas": "DEFHIKLMNPQRTVWY_-",
+    "aas": "DEFHIKLMNPQTVWY_-",
     "type": "Accessory",
     "isUnusual": true
   },
