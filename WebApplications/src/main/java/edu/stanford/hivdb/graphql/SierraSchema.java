@@ -19,6 +19,7 @@
 package edu.stanford.hivdb.graphql;
 
 import graphql.schema.*;
+import graphql.schema.GraphQLObjectType.Builder;
 
 import static graphql.Scalars.*;
 import static graphql.schema.GraphQLArgument.newArgument;
@@ -120,7 +121,7 @@ public class SierraSchema {
 	};
 
 	// https://github.com/facebook/relay/issues/112
-	public static GraphQLObjectType oViewer = newObject()
+	public static Builder oViewerBuilder = newObject()
 		.name("Viewer")
 		.field(newFieldDefinition()
 			.type(oHivdbVersion)
@@ -193,10 +194,11 @@ public class SierraSchema {
 			.name("mutationPrevalenceSubtypes")
 			.description("List all supported HIV-1 subtypes by mutation prevalence.")
 			.dataFetcher(mutationPrevalenceSubtypesDataFetcher)
-			.build())
-		.build();
+			.build());
+	
+	public static GraphQLObjectType oViewer = oViewerBuilder.name("Viewer").build();
 
-	public static GraphQLObjectType oRoot = newObject()
+	public static GraphQLObjectType oRoot = oViewerBuilder
 		.name("Root")
 		.field(newFieldDefinition()
 			.type(oViewer)
