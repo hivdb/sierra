@@ -87,7 +87,7 @@ public class ConditionalComments {
 			return (String) conditionValue.get("aas");
 		}
 
-		private Map<Drug, List<Integer>> getDrugLevels() {
+		public Map<Drug, List<Integer>> getDrugLevels() {
 			Map<Drug, List<Integer>> drugLevels = new LinkedHashMap<>();
 			if (conditionType != ConditionType.DRUGLEVEL) {
 				return drugLevels;
@@ -314,6 +314,6 @@ public class ConditionalComments {
 				new TypeToken<Map<String, Object>>(){}.getType());
 			String commentText = rs.getString("Comment");
 			return new ConditionalComment(name, drugClass, type, value, commentText);
-		}, HivdbVersion.getLatestVersion().name());
+		}, HivdbVersion.getLatestVersion().getDBName());
 	}
 }

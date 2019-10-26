@@ -223,6 +223,6 @@ public class MutationComboScores {
 			double score = rs.getDouble("Score");
 			rule = AA.toInternalFormat(rule);
 			return new ComboScore(gene, drugClass, rule, drug, score);
-		}, HivdbVersion.getLatestVersion().name());
+		}, HivdbVersion.getLatestVersion().getDBName());
 	}
 }
