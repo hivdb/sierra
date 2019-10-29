@@ -6,7 +6,7 @@ plugins {
 }
 
 group = 'edu.stanford.hivdb'
-version = '2.4.0'
+version = '2.4.1'
 
 description = """Utilities"""
 
@@ -56,6 +56,7 @@ task updateCachable(type: JavaExec, group: 'Generator', description: 'Generate f
         edu.stanford.hivdb.mutations.Sdrms
         edu.stanford.hivdb.mutations.Tsms
         edu.stanford.hivdb.mutations.MutationPrevalences
+        edu.stanford.hivdb.mutations.DRMs
     """
 }
 

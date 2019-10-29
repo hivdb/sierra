@@ -265,6 +265,8 @@ public class Mutation implements Comparable<Mutation> {
 		}
 		return isAtDrugResistancePosition;
 	}
+	
+	public boolean isDRM() { return DRMs.isDRM(this); }
 
 	public boolean isUnsequenced() {
 		// "NNN", "NN-", "NNG" should be considered as unsequenced region
