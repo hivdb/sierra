@@ -39,6 +39,7 @@ import edu.stanford.hivdb.mutations.Strain;
 import edu.stanford.hivdb.ngs.GeneSequenceReads;
 import edu.stanford.hivdb.ngs.OneCodonReadsCoverage;
 import edu.stanford.hivdb.ngs.SequenceReads;
+import edu.stanford.hivdb.utilities.Json;
 
 import static edu.stanford.hivdb.graphql.MutationSetDef.*;
 import static edu.stanford.hivdb.graphql.GeneDef.*;
@@ -248,6 +249,18 @@ public class SequenceReadsAnalysisDef {
 			.type(new GraphQLList(oOneCodonReadsCoverage))
 			.description("Codon reads coverage.")
 		)
+		.field(field -> field
+			.type(GraphQLString)
+			.name("internalJsonCodonReadsCoverage")
+			.dataFetcher(e -> Json.dumpsUgly(
+				((SequenceReads) e.getSource())
+				.getCodonReadsCoverage()
+				.stream()
+				.map(rc -> rc.extMap())
+				.collect(Collectors.toList()))
+			)
+			.description(
+				"Position codon reads in this gene sequence (json formated)."))
 		.build();
 
 }

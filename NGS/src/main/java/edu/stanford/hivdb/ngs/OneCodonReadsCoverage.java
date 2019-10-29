@@ -1,5 +1,8 @@
 package edu.stanford.hivdb.ngs;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 import edu.stanford.hivdb.mutations.Gene;
 import edu.stanford.hivdb.mutations.GenePosition;
 
@@ -43,6 +46,17 @@ public class OneCodonReadsCoverage {
 	
 	public Integer getPolPosition() {
 		return getGenePosition().getPolPosition();
+	}
+
+	public Map<String, Object> extMap() {
+		Map<String, Object> result = new LinkedHashMap<>();
+		Map<String, Object> geneMap = new LinkedHashMap<>();
+		geneMap.put("name", gene.getName());
+		result.put("gene", geneMap);
+		result.put("position", position);
+		result.put("totalReads", totalReads);
+		result.put("isTrimmed", isTrimmed);
+		return result;
 	}
 	
 }
