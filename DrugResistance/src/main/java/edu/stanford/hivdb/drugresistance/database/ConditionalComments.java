@@ -315,7 +315,7 @@ public class ConditionalComments {
 			)
 		);
 		comments.addAll(
-			ConditionalComments.fromAsiResultComments(
+			ConditionalComments.fromAsiDrugLevelComments(
 				evaluatedGene.getEvaluatedResultCommentRules()
 			)
 		);
@@ -402,7 +402,7 @@ public class ConditionalComments {
 		return results;
 	}
 	
-	private static List<BoundComment> fromAsiResultComments(Collection<EvaluatedResultCommentRule> resultComments) {
+	private static List<BoundComment> fromAsiDrugLevelComments(Collection<EvaluatedResultCommentRule> resultComments) {
 		List<BoundComment> results = new ArrayList<>();
 		for (EvaluatedResultCommentRule resultComment : resultComments) {
 			if (!resultComment.getResult()) {
