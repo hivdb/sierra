@@ -31,11 +31,12 @@ import edu.stanford.hivdb.drugresistance.database.HivdbVersion;
 import edu.stanford.hivdb.drugresistance.reports.TabularRulesComparison.ComparisonDataLoader;
 import edu.stanford.hivdb.drugs.DrugClass;
 import edu.stanford.hivdb.testutils.MockDatabase;
+import edu.stanford.hivdb.utilities.Json;
 
 public class TabularRulesComparisonTest {
 
 	// This was intend to hard coded. Review the changes when you made an upgrade and change the version pair here
-	final static private String versionPair = "7.0:8.9";
+	final static private String versionPair = "7.0:8.9-1";
 
 	@Test
 	public void testGetInstance() {
@@ -67,8 +68,8 @@ public class TabularRulesComparisonTest {
 			stmt1,
 			new Object[] {
 				DrugClass.PI.name(),
-				HivdbVersion.V7_0.name(),
-				HivdbVersion.V8_9.name()
+				HivdbVersion.V7_0.getDBName(),
+				HivdbVersion.V8_9p1.getDBName()
 			},
 			new String[] {
 				"Gene", "Pos", "AA", "Drug", "Version", "Score"
@@ -83,8 +84,8 @@ public class TabularRulesComparisonTest {
 			stmt1,
 			new Object[] {
 				DrugClass.NRTI.name(),
-				HivdbVersion.V7_0.name(),
-				HivdbVersion.V8_9.name()
+				HivdbVersion.V7_0.getDBName(),
+				HivdbVersion.V8_9p1.getDBName()
 			},
 			new String[] {
 				"Gene", "Pos", "AA", "Drug", "Version", "Score"
@@ -97,8 +98,8 @@ public class TabularRulesComparisonTest {
 			stmt2,
 			new Object[] {
 				DrugClass.NRTI.name(),
-				HivdbVersion.V7_0.name(),
-				HivdbVersion.V8_9.name()
+				HivdbVersion.V7_0.getDBName(),
+				HivdbVersion.V8_9p1.getDBName()
 			},
 			new String[] {
 				"Rule", "Drug", "Version", "Score"

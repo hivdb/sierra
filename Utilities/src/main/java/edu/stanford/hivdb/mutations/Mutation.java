@@ -18,6 +18,7 @@
 
 package edu.stanford.hivdb.mutations;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -234,16 +235,11 @@ public class Mutation implements Comparable<Mutation> {
 		}
 		return unsafeIntersectsWith(another);
 	}
-
-	/**
-	 * Similar to intersectsWith but spare all assertions.
-	 * Maybe useful when those assertions are not necessary.
-	 */
-	protected Mutation unsafeIntersectsWith(Mutation... others) {
+	
+	public Mutation retainedAAs(String... allAminoAcids) {
 		StringBuilder newAAs = new StringBuilder();
-		for (Mutation another : others) {
-			String anotherAAs = another.aas;
-			for (char newAA : anotherAAs.toCharArray()) {
+		for (String aminoAcids : allAminoAcids) {
+			for (char newAA : aminoAcids.toCharArray()) {
 				if (aas.indexOf(newAA) > -1) {
 					newAAs.append(newAA);
 				}
@@ -255,6 +251,14 @@ public class Mutation implements Comparable<Mutation> {
 		}
 		
 		return new Mutation(gene, pos, newAAs.toString());
+	}
+
+	/**
+	 * Similar to intersectsWith but spare all assertions.
+	 * Maybe useful when those assertions are not necessary.
+	 */
+	protected Mutation unsafeIntersectsWith(Mutation... others) {
+		return retainedAAs(Arrays.stream(others).map(o -> o.aas).toArray(String[]::new));
 	}
 
 	public boolean isAtDrugResistancePosition() {

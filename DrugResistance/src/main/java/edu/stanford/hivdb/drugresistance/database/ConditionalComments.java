@@ -27,6 +27,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import org.fstrf.stanfordAsiInterpreter.resistance.definition.CommentDefinition;
@@ -53,6 +55,7 @@ import edu.stanford.hivdb.utilities.Json;
 public class ConditionalComments {
 
 	private static final String WILDCARD_REGEX = "\\$listMutsIn\\{.+?\\}";
+	private static final Pattern MUTCOMMENT_PATTERN = Pattern.compile("^(PR|RT|IN)(\\d+)([A-Z_-]+)$");
 	
 	public static enum ConditionType {
 		MUTATION, DRUGLEVEL
@@ -370,8 +373,21 @@ public class ConditionalComments {
 			CommentDefinition cmtDef = (CommentDefinition) def;
 			String commentName = cmtDef.getId();
 			ConditionalComment condComment = condCommentMap.get(commentName);
-			Mutation mut = Mutation.parseString(commentName);
-			mut = muts.get(mut.getGene(), mut.getPosition()).intersectsWith(mut);
+			Matcher m = MUTCOMMENT_PATTERN.matcher(commentName);
+			Mutation mut;
+			if (m.matches()) {
+				mut = (
+					muts
+					.get(Gene.valueOf(m.group(1)), Integer.parseInt(m.group(2)))
+					.retainedAAs(m.group(3))
+				);
+			}
+			else {
+				throw new RuntimeException(
+					String.format("Invalid comment name: %s", commentName)
+				);
+			}
+			
 			List<String> highlight = new ArrayList<>();
 			highlight.add(mut.getHumanFormat());
 			results.add(new BoundComment(
