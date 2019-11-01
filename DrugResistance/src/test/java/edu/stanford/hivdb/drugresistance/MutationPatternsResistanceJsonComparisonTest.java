@@ -270,8 +270,8 @@ public class MutationPatternsResistanceJsonComparisonTest {
 
 					try {
 						// Fix this AssertionError by re-run MutationPatternsResistanceToJson.java and clean Eclipse
-						Assert.assertTrue(expectedComment.equals(calculatedCommentAsi));
-						Assert.assertTrue(expectedComment.equals(calculatedCommentFast));
+						Assert.assertEquals(expectedComment.trim(), calculatedCommentAsi);
+						Assert.assertEquals(expectedComment, calculatedCommentFast);
 					} catch(AssertionError e) {
 						System.out.println("         MutationList: " + mutList);
 						System.out.println("      ExpectedComment: " + expectedComment);

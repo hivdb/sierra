@@ -34,6 +34,7 @@ import java.util.stream.Collectors;
 import edu.stanford.hivdb.alignment.AlignedGeneSeq;
 import edu.stanford.hivdb.alignment.AlignedSequence;
 import edu.stanford.hivdb.drugresistance.GeneDR;
+import edu.stanford.hivdb.drugresistance.GeneDRAsi;
 import edu.stanford.hivdb.drugresistance.GeneDRFast;
 import edu.stanford.hivdb.drugresistance.algorithm.Algorithm;
 import edu.stanford.hivdb.genotyper.BoundGenotype;
@@ -100,7 +101,7 @@ public class SequenceAnalysisDef {
 		public List<GeneDR> get(DataFetchingEnvironment environment) {
 			AlignedSequence alignedSeq = (AlignedSequence) environment.getSource();
 			Map<Gene, AlignedGeneSeq> geneSeqMap = alignedSeq.getAlignedGeneSequenceMap();
-			return new ArrayList<>(GeneDRFast.getResistanceByGene(geneSeqMap).values());
+			return new ArrayList<>(GeneDRAsi.getResistanceByGene(geneSeqMap).values());
 		}
 	};
 

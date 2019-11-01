@@ -22,6 +22,7 @@ import java.util.Map;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.fstrf.stanfordAsiInterpreter.resistance.evaluate.EvaluatedGene;
 
 import edu.stanford.hivdb.drugs.Drug;
 import edu.stanford.hivdb.drugs.DrugClass;
@@ -111,4 +112,6 @@ public interface Asi {
 	public Map<Drug, Map<Mutation, Double>> getDrugMutScores();
 
 	public Map<Drug, Map<MutationSet, Double>> getDrugComboMutScores();
+
+	public EvaluatedGene getEvaluatedGene();
 }
