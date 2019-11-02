@@ -393,7 +393,7 @@ public class ConditionalComments {
 			results.add(new BoundComment(
 				condComment.commentName, condComment.drugClass,
 				CommentType.fromMutType(mut.getPrimaryType()),
-				cmtDef.getText(),
+				cmtDef.getText().replaceAll(WILDCARD_REGEX, mut.getHumanFormat()),
 				highlight,
 				mut
 			));
