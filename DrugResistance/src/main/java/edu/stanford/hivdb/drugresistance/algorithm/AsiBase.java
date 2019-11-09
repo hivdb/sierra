@@ -397,6 +397,11 @@ abstract public class AsiBase implements Asi {
 		triggeredDrugRules.putIfAbsent(drug, new LinkedHashMap<String, String>());
 		triggeredDrugRules.get(drug).putIfAbsent(condition, susceptibility);
 	}
+	
+	@Override
+	public EvaluatedGene getEvaluatedGene() {
+		return evaluatedGene;
+	}
 
 	// drugClasstotalDrugScores: DrugClass => Drug => totalScore
 	// drugClassDrugMutScores: DrugClass => Drug => Mutation=> score

@@ -25,6 +25,7 @@ import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 import edu.stanford.hivdb.alignment.AlignedGeneSeq;
+import edu.stanford.hivdb.drugresistance.algorithm.Asi;
 import edu.stanford.hivdb.drugresistance.algorithm.AsiHivdb;
 import edu.stanford.hivdb.drugs.Drug;
 import edu.stanford.hivdb.drugs.DrugClass;
@@ -90,6 +91,10 @@ public class GeneDRAsi extends GeneDR {
 				muts -> muts,
 				muts -> new GeneDRAsi(gene, muts)
 			));
+	}
+	
+	public Asi getAsiObject() {
+		return asiObject;
 	}
 
 	@Override

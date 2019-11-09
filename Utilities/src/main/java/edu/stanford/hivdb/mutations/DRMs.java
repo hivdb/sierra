@@ -74,7 +74,6 @@ public class DRMs {
 	public static boolean isAtDRPosition(Mutation mut) {
 		GenePosition gp = mut.getGenePosition();
 		return drms.get(gp) != null;
-
 	}
 
 	private static void populateDRMs() throws SQLException {

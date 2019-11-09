@@ -142,7 +142,7 @@ public class MutationComboScores {
 		Map<Drug, List<MutationSet>> matchedMutsListMap = new EnumMap<>(Drug.class);
 		Map<Drug, List<ComboScore>> matchesMap =
 			matchComboScore(gene, geneSeqMuts, matchedMutsListMap);
-		
+
 		for (Drug drug : matchesMap.keySet()) {
 			List<ComboScore> matches = matchesMap.get(drug);
 			List<MutationSet> matchedMutsList = matchedMutsListMap.get(drug);
@@ -194,7 +194,7 @@ public class MutationComboScores {
 				if (matchedMuts.size() < csMuts.size()) {
 					return false;
 				}
-							
+
 				// misleading to mutate argument, especially in this lambda
 				matchedMutsListMap
 					.putIfAbsent(cs.drug, new ArrayList<>());
@@ -225,6 +225,6 @@ public class MutationComboScores {
 			double score = rs.getDouble("Score");
 			rule = AA.toInternalFormat(rule);
 			return new ComboScore(gene, drugClass, rule, drug, score);
-		}, HivdbVersion.getLatestVersion().name());
+		}, HivdbVersion.getLatestVersion().getDBName());
 	}
 }

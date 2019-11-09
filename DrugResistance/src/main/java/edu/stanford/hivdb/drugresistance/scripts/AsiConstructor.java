@@ -93,8 +93,9 @@ public class AsiConstructor {
 			Document doc = docBuilder.newDocument();
 
 			DOMImplementation domImpl = doc.getImplementation();
-			DocumentType docType = domImpl.createDocumentType("ALGORITHM", "",
-					"http://sierra2.stanford.edu/sierra/ASI2.1.dtd");
+			DocumentType docType = domImpl.createDocumentType(
+				"ALGORITHM", "",
+				"https://cms.hivdb.org/prod/downloads/asi/ASI2.2.dtd");
 			doc.appendChild(docType);
 
 
@@ -207,6 +208,7 @@ public class AsiConstructor {
 				}
 			}
 			rootElement.appendChild(createMutationCommentRules(doc));
+			rootElement.appendChild(createDrugLevelConditionCommentRules(doc));
 
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
 			Transformer transformer = transformerFactory.newTransformer();
@@ -231,9 +233,9 @@ public class AsiConstructor {
 	private static Element createCommentDefinitions(Document doc) {
 		Element commentDefs = doc.createElement("COMMENT_DEFINITIONS");
 		for (ConditionalComment comment : ConditionalComments.getAllComments()) {
-			if (comment.getConditionType() == ConditionType.DRUGLEVEL) {
+			/* if (comment.getConditionType() == ConditionType.DRUGLEVEL) {
 				continue;
-			}
+			} */
 			if (comment.getMutationGene().getStrain() != Strain.HIV1) {
 				// skip HIV2 comments
 				continue;
@@ -256,6 +258,7 @@ public class AsiConstructor {
 		Map<GeneEnum, List<ConditionalComment>> commentsByGenes =
 			ConditionalComments.getAllComments()
 			.stream()
+			.filter(cmt -> cmt.getConditionType() == ConditionType.MUTATION)
 			.collect(Collectors.groupingBy(
 				cmt -> cmt.getGene(), LinkedHashMap::new, Collectors.toList()));
 		for (GeneEnum gene : commentsByGenes.keySet()) {
@@ -287,6 +290,42 @@ public class AsiConstructor {
 			mutComments.appendChild(geneNode);
 		}
 		return mutComments;
+	}
+	
+	private static Element createDrugLevelConditionCommentRules(Document doc) {
+		Element resultComments = doc.createElement("RESULT_COMMENTS");
+		List<ConditionalComment> comments =
+			ConditionalComments.getAllComments()
+			.stream()
+			.filter(cmt -> cmt.getConditionType() == ConditionType.DRUGLEVEL)
+			.collect(Collectors.toList());
+		for (ConditionalComment cmt : comments) {
+			Element ruleNode = doc.createElement("RESULT_COMMENT_RULE");
+			Element condList = doc.createElement("DRUG_LEVEL_CONDITIONS");
+			for (Map.Entry<Drug, List<Integer>> entry : cmt.getDrugLevels().entrySet()) {
+				Drug drug = entry.getKey();
+				List<Integer> levels = entry.getValue();
+				for (Integer level : levels) {
+					Element cond = doc.createElement("DRUG_LEVEL_CONDITION");
+					Element drugName = doc.createElement("DRUG_NAME");
+					drugName.appendChild(doc.createTextNode(drug.getDisplayAbbr()));
+					Element eqLevel = doc.createElement("EQ");
+					eqLevel.appendChild(doc.createTextNode("" + level));
+					cond.appendChild(drugName);
+					cond.appendChild(eqLevel);
+					condList.appendChild(cond);
+				}
+			}
+			ruleNode.appendChild(condList);
+			Element actionNode = doc.createElement("LEVEL_ACTION");
+			Element commentNode = doc.createElement("COMMENT");
+			commentNode.setAttribute("ref", cmt.getName());
+			actionNode.appendChild(commentNode);
+			ruleNode.appendChild(actionNode);
+			resultComments.appendChild(ruleNode);
+		}
+		return resultComments;
+		
 	}
 
 }

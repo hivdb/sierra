@@ -51,7 +51,7 @@ import edu.stanford.hivdb.utilities.TSV;
 public class TabularRulesComparison {
 	private static final String TBL_SCORES = "tblScoresWithVersions";
 	private static final String TBL_COMBINATION_SCORES = "tblCombinationScoresWithVersions";
-	public static final HivdbVersion[][] VERSIONPAIRS =HivdbVersion.getVersionComparisonPairs();
+	public static final HivdbVersion[][] VERSIONPAIRS = HivdbVersion.getVersionComparisonPairs();
 
 	@Cachable.CachableField
 	private static Map<String, Map<DrugClass, List<List<String>>>> allRows;
@@ -216,10 +216,15 @@ public class TabularRulesComparison {
 						drugsMap.get(drug).put(rightVersion, 0);
 					}
 					Map<HivdbVersion, Integer> versionsMap = drugsMap.get(drug);
-					versionsMap.put(version, score);
+					if (version.name().equals(leftVersion.getDBName())) {
+						versionsMap.put(leftVersion, score);
+					}
+					if (version.name().equals(rightVersion.getDBName())) {
+						versionsMap.put(rightVersion, score);
+					}
 				}
 				return rulesMap;
-			}, drugClass.name(), leftVersion.name(), rightVersion.name());
+			}, drugClass.name(), leftVersion.getDBName(), rightVersion.getDBName());
 		}
 
 		protected Map<Mutation, Map<Drug, Map<HivdbVersion, Integer>>> genMutDrugVersionScoreChanges(
@@ -251,11 +256,16 @@ public class TabularRulesComparison {
 						mutsMap.get(mut).get(drug).put(leftVersion, 0);
 						mutsMap.get(mut).get(drug).put(rightVersion, 0);
 					}
-					mutsMap.get(mut).get(drug).put(version, score);
+					if (version.name().equals(leftVersion.getDBName())) {
+						mutsMap.get(mut).get(drug).put(leftVersion, score);
+					}
+					if (version.name().equals(rightVersion.getDBName())) {
+						mutsMap.get(mut).get(drug).put(rightVersion, score);
+					}
 
 				}
 				return mutsMap;
-			}, drugClass.name(), leftVersion.name(), rightVersion.name());
+			}, drugClass.name(), leftVersion.getDBName(), rightVersion.getDBName());
 		}
 	}
 

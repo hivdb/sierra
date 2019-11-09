@@ -185,6 +185,6 @@ public class MutationScores {
 
 			return new MutScore(
 				gene, drugClass, pos, aa, drug, score);
-		}, HivdbVersion.getLatestVersion().name());
+		}, HivdbVersion.getLatestVersion().getDBName());
 	}
 }

@@ -42,7 +42,7 @@ import edu.stanford.hivdb.alignment.TabularSequenceSummary;
 import edu.stanford.hivdb.mutations.Gene;
 import edu.stanford.hivdb.mutations.Strain;
 import edu.stanford.hivdb.drugresistance.GeneDR;
-import edu.stanford.hivdb.drugresistance.GeneDRFast;
+import edu.stanford.hivdb.drugresistance.GeneDRAsi;
 import edu.stanford.hivdb.drugresistance.algorithm.Algorithm;
 import edu.stanford.hivdb.utilities.Json;
 import edu.stanford.hivdb.utilities.FastaUtils;
@@ -104,7 +104,7 @@ public class SequenceAnalysisService {
 				List<AlignedGeneSeq> aligneds =
 					getAlignedSeq(seq).getAlignedGeneSequences();
 				drsMap.put(
-					seq, GeneDRFast.getResistanceByGeneFromAlignedGeneSeqs(aligneds));
+					seq, GeneDRAsi.getResistanceByGeneFromAlignedGeneSeqs(aligneds));
 			}
 			return drsMap.get(seq);
 		}

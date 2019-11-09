@@ -29,6 +29,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import edu.stanford.hivdb.alignment.MutationListValidator;
+import edu.stanford.hivdb.drugresistance.GeneDRAsi;
 import edu.stanford.hivdb.drugresistance.GeneDRFast;
 import edu.stanford.hivdb.drugresistance.algorithm.Algorithm;
 import edu.stanford.hivdb.mutations.Gene;
@@ -78,7 +79,7 @@ public class MutationsAnalysisDef {
 				return mutationsByGene
 					.entrySet()
 					.stream()
-					.map(e -> new GeneDRFast(e.getKey(), e.getValue()))
+					.map(e -> new GeneDRAsi(e.getKey(), e.getValue()))
 					.collect(Collectors.toList());
 				
 			}))

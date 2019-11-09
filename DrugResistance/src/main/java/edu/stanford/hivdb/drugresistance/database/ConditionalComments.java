@@ -22,16 +22,28 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+
+import org.fstrf.stanfordAsiInterpreter.resistance.definition.CommentDefinition;
+import org.fstrf.stanfordAsiInterpreter.resistance.definition.Definition;
+import org.fstrf.stanfordAsiInterpreter.resistance.evaluate.EvaluatedDrugLevelCondition;
+import org.fstrf.stanfordAsiInterpreter.resistance.evaluate.EvaluatedGene;
+import org.fstrf.stanfordAsiInterpreter.resistance.evaluate.EvaluatedResultCommentRule;
 
 import com.google.common.primitives.Chars;
 import com.google.gson.reflect.TypeToken;
 
 import edu.stanford.hivdb.drugresistance.GeneDR;
+import edu.stanford.hivdb.drugresistance.GeneDRAsi;
+import edu.stanford.hivdb.drugresistance.GeneDRFast;
+import edu.stanford.hivdb.drugresistance.algorithm.Asi;
 import edu.stanford.hivdb.drugs.Drug;
 import edu.stanford.hivdb.drugs.DrugClass;
 import edu.stanford.hivdb.mutations.Gene;
@@ -45,6 +57,7 @@ import edu.stanford.hivdb.utilities.Json;
 public class ConditionalComments {
 
 	private static final String WILDCARD_REGEX = "\\$listMutsIn\\{.+?\\}";
+	private static final Pattern MUTCOMMENT_PATTERN = Pattern.compile("^(PR|RT|IN)(\\d+)([A-Z_-]+)$");
 
 	public static enum ConditionType {
 		MUTATION, DRUGLEVEL
@@ -91,7 +104,7 @@ public class ConditionalComments {
 			return (String) conditionValue.get("aas");
 		}
 
-		private Map<Drug, List<Integer>> getDrugLevels() {
+		public Map<Drug, List<Integer>> getDrugLevels() {
 			Map<Drug, List<Integer>> drugLevels = new LinkedHashMap<>();
 			if (conditionType != ConditionType.DRUGLEVEL) {
 				return drugLevels;
@@ -175,15 +188,21 @@ public class ConditionalComments {
 
 	@Cachable.CachableField
 	private static List<ConditionalComment> conditionalComments;
+	private static transient Map<String, ConditionalComment> condCommentMap;
 
 	static {
 		Cachable.setup(ConditionalComments.class, () -> {
 			try {
-				populateComments();
+				conditionalComments = Collections.unmodifiableList(populateComments());
 			} catch (SQLException e) {
 				throw new ExceptionInInitializerError(e);
 			}
 		});
+		Map<String, ConditionalComment> condCommentMap2 = new HashMap<>();
+		for (ConditionalComment cmt : conditionalComments) {
+			condCommentMap2.put(cmt.getName(), cmt);
+		}
+		condCommentMap = Collections.unmodifiableMap(condCommentMap2);
 	}
 
 	private static BoundComment findMutationComment(
@@ -246,8 +265,22 @@ public class ConditionalComments {
 			null
 		);
 	}
-
+	
 	public static List<BoundComment> getComments(GeneDR geneDR) {
+		if (geneDR instanceof GeneDRFast) {
+			return getComments((GeneDRFast) geneDR);
+		}
+		else if (geneDR instanceof GeneDRAsi) {
+			return getComments((GeneDRAsi) geneDR);
+		}
+		else {
+			throw new RuntimeException(
+				"Parameter geneDR must be an instance of GeneDRFast or GeneDRAsi"
+			);
+		}
+	}
+
+	public static List<BoundComment> getComments(GeneDRFast geneDR) {
 		Gene gene = geneDR.getGene();
 		MutationSet mutations = geneDR.getMutations();
 		List<BoundComment> comments = new ArrayList<>();
@@ -263,6 +296,23 @@ public class ConditionalComments {
 				comments.add(comment);
 			}
 		}
+		return comments;
+	}
+	
+	public static List<BoundComment> getComments(GeneDRAsi geneDR) {
+		Asi asiObject = geneDR.getAsiObject();
+		EvaluatedGene evaluatedGene = asiObject.getEvaluatedGene();
+		List<BoundComment> comments = (
+			ConditionalComments.fromAsiMutationComments(
+				(Collection<?>) evaluatedGene.getGeneCommentDefinitions(),
+				geneDR.getMutations()
+			)
+		);
+		comments.addAll(
+			ConditionalComments.fromAsiDrugLevelComments(
+				evaluatedGene.getEvaluatedResultCommentRules()
+			)
+		);
 		return comments;
 	}
 
@@ -289,7 +339,7 @@ public class ConditionalComments {
 	/**
 	 * Populate comments from HIVDB_Results database to static variable.
 	 */
-	private static void populateComments() throws SQLException {
+	private static List<ConditionalComment> populateComments() throws SQLException {
 
 		final JdbcDatabase db = JdbcDatabase.getResultsDB();
 
@@ -308,7 +358,7 @@ public class ConditionalComments {
 				new TypeToken<Map<String, Object>>(){}.getType());
 			String commentText = rs.getString("Comment");
 			return new ConditionalComment(name, drugClass, type, value, commentText);
-		}, HivdbVersion.getLatestVersion().name());
+		}, HivdbVersion.getLatestVersion().getDBName());
 		
 		final String sqlStatement2 =
 			"SELECT CommentName, DrugClass, ConditionType, ConditionValue, Comment " +
@@ -324,6 +374,83 @@ public class ConditionalComments {
 			String commentText = rs.getString("Comment");
 			return new ConditionalComment(name, drugClass, type, value, commentText);
 		}, "V9_0a1"));
-		conditionalComments = Collections.unmodifiableList(_conditionalComments);
+		return _conditionalComments;
+	}
+
+	private static List<BoundComment> fromAsiMutationComments(Collection<?> defs, MutationSet muts) {
+		List<BoundComment> results = new ArrayList<>();
+		for (Object def : defs) {
+			CommentDefinition cmtDef = (CommentDefinition) def;
+			String commentName = cmtDef.getId();
+			ConditionalComment condComment = condCommentMap.get(commentName);
+			Matcher m = MUTCOMMENT_PATTERN.matcher(commentName);
+			Mutation mut;
+			if (m.matches()) {
+				mut = (
+					muts
+					.get(Gene.valueOf(m.group(1)), Integer.parseInt(m.group(2)))
+					.intersectsWith(
+						m.group(3).chars()
+						.mapToObj(e -> (char) e)
+						.collect(Collectors.toList())
+					)
+				);
+			}
+			else {
+				throw new RuntimeException(
+					String.format("Invalid comment name: %s", commentName)
+				);
+			}
+			
+			List<String> highlight = new ArrayList<>();
+			highlight.add(mut.getHumanFormat());
+			results.add(new BoundComment(
+				condComment.commentName, condComment.drugClass,
+				CommentType.fromMutType(mut.getPrimaryType()),
+				cmtDef.getText().replaceAll(WILDCARD_REGEX, mut.getHumanFormat()),
+				highlight,
+				mut
+			));
+		}
+		results.sort((a, b) -> a.getBoundMutation().compareTo(b.getBoundMutation())); 
+		return results;
+	}
+	
+	private static List<BoundComment> fromAsiDrugLevelComments(Collection<EvaluatedResultCommentRule> resultComments) {
+		List<BoundComment> results = new ArrayList<>();
+		for (EvaluatedResultCommentRule resultComment : resultComments) {
+			if (!resultComment.getResult()) {
+				continue;
+			}
+			List<Drug> drugs = new ArrayList<>();
+			for (
+				EvaluatedDrugLevelCondition cond :
+				resultComment.getEvaluatedDrugLevelConditions()
+			) {
+				String drugName = cond.getDrug();
+				drugs.add(Drug.getSynonym(drugName));
+			}
+			for (Definition def : resultComment.getDefinitions()) {
+				CommentDefinition cmtDef = (CommentDefinition) def;
+				String commentName = cmtDef.getId();
+				ConditionalComment condComment = condCommentMap.get(commentName);
+				Set<String> highlights = drugs.stream()
+					.map(d -> d.getDisplayAbbr())
+					.collect(Collectors.toSet());
+				highlights.addAll(
+					drugs.stream()
+					.map(d -> d.name())
+					.collect(Collectors.toSet())
+				);
+				results.add(new BoundComment(
+					condComment.commentName, condComment.drugClass,
+					CommentType.Dosage,
+					cmtDef.getText(),
+					highlights,
+					null
+				));
+			}
+		}
+		return results;
 	}
 }

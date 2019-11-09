@@ -61,6 +61,7 @@ task updateCachable(type: JavaExec, group: 'Generator', description: 'Generate f
         edu.stanford.hivdb.mutations.DRMs
         edu.stanford.hivdb.mutations.Tsms
         edu.stanford.hivdb.mutations.MutationPrevalences
+        edu.stanford.hivdb.mutations.DRMs
     """
 }
 

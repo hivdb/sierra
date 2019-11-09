@@ -21,6 +21,19 @@ package edu.stanford.hivdb.drugresistance.database;
 import java.io.InputStream;
 
 public enum HivdbVersion {
+	/**
+	 * Versions naming convention A_B(_C)?(aD|pE)? / A.B(.C)?(aD|-E)?
+	 * 
+	 * A: Major version. Increased when new genes/virus are introduced.
+	 *    Can be also increased when the differences comparing to A.0
+	 *    are too great.
+	 * B: Minor version. Increased when new rules/drugs are introduced.
+	 * C: Tiny version. Increased when new comments are introduced.
+	 * D: Alpha version. Temporarily used when doing pre-release.
+	 * E: Post version. Increased when only ASI file get updated due
+	 *    to other reason. 
+	 *
+	 */
 	V7_0("AlgXMLs/HIVDB_7.0.xml", "2014-02-27", "7.0"),
 	V7_5("AlgXMLs/HIVDB_7.5.xml", "2015-03-16", "7.5"),
 	V7_6("AlgXMLs/HIVDB_7.6.xml", "2015-03-22", "7.6"),
@@ -39,7 +52,8 @@ public enum HivdbVersion {
 	V8_6_1("AlgXMLs/HIVDB_8.6.1.xml", "2018-07-18", "8.6.1"),
 	V8_7("AlgXMLs/HIVDB_8.7.xml", "2018-10-19", "8.7"),
 	V8_8("AlgXMLs/HIVDB_8.8.xml", "2019-02-13", "8.8"),
-	V8_9("AlgXMLs/HIVDB_8.9.xml", "2019-10-07", "8.9");
+	V8_9("AlgXMLs/HIVDB_8.9.xml", "2019-10-07", "8.9"),
+	V8_9p1("AlgXMLs/HIVDB_8.9-1.xml", "2019-10-25", "8.9-1");
 
 	public final String resourcePath;
 	public final String versionDate;
@@ -81,13 +95,18 @@ public enum HivdbVersion {
 				getLatestVersion()
 			},
 			new HivdbVersion[] {
-				V8_8, V8_9
+				V8_8, V8_9p1
 			}
 		};
 	}
 
 	public static HivdbVersion getLatestVersion() {
-		return V8_9;
+		return V8_9p1;
+	}
+	
+	public String getDBName() {
+		// For version A_BpE, assume using same rules and comments as A_B
+		return name().split("p")[0];
 	}
 
 	public InputStream getResource() {
