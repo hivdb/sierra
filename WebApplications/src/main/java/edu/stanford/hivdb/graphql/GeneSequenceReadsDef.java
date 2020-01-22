@@ -21,10 +21,13 @@ package edu.stanford.hivdb.graphql;
 import graphql.schema.*;
 import static graphql.Scalars.*;
 import static graphql.schema.GraphQLObjectType.newObject;
+import static graphql.schema.GraphQLCodeRegistry.newCodeRegistry;
+import static graphql.schema.FieldCoordinates.coordinates;
 
 import java.util.stream.Collectors;
 
-import edu.stanford.hivdb.ngs.GeneSequenceReads;
+import edu.stanford.hivdb.hivfacts.HIV;
+import edu.stanford.hivdb.seqreads.GeneSequenceReads;
 import edu.stanford.hivdb.utilities.Json;
 
 // import edu.stanford.hivdb.ngs.GeneSequenceReads;
@@ -37,6 +40,35 @@ import static edu.stanford.hivdb.graphql.GeneDef.*;
 import static edu.stanford.hivdb.graphql.DescriptiveStatisticsDef.*;
 
 public class GeneSequenceReadsDef {
+
+	private static DataFetcher<String> internalJsonAllPositionCodonReadsDataFetcher = env -> {
+		GeneSequenceReads<HIV> geneSeqReads = env.getSource();
+		return Json.dumpsUgly(
+			geneSeqReads
+			.getAllPositionCodonReads()
+			.stream()
+			.map(pcr -> pcr.extMap(
+				(Boolean) env.getArgument("mutationOnly"),
+				(double) env.getArgument("maxProportion"),
+				(double) env.getArgument("minProportion")
+			))
+			.collect(Collectors.toList()));
+	};
+
+	public static GraphQLCodeRegistry geneSequenceReadsCodeRegistry = newCodeRegistry()
+		.dataFetcher(
+			coordinates("GeneSequenceReads", "internalJsonAllPositionCodonReads"),
+			internalJsonAllPositionCodonReadsDataFetcher
+		)
+		.dataFetcher(
+			coordinates("GeneSequenceReads", "histogram"),
+			seqReadsHistogramDataFetcher
+		)
+		.dataFetcher(
+			coordinates("GeneSequenceReads", "mutations"),
+			new MutationSetDataFetcher("mutations")
+		)
+		.build();
 
 	public static GraphQLObjectType oGeneSequenceReads = newObject()
 		.name("GeneSequenceReads")
@@ -68,17 +100,6 @@ public class GeneSequenceReadsDef {
 		.field(field -> codonReadsArgs.apply(field)
 			.type(GraphQLString)
 			.name("internalJsonAllPositionCodonReads")
-			.dataFetcher(e -> Json.dumpsUgly(
-				((GeneSequenceReads) e.getSource())
-				.getAllPositionCodonReads()
-				.stream()
-				.map(pcr -> pcr.extMap(
-					(Boolean) e.getArgument("mutationOnly"),
-					(double) e.getArgument("maxProportion"),
-					(double) e.getArgument("minProportion")
-				))
-				.collect(Collectors.toList()))
-			)
 			.description(
 				"Position codon reads in this gene sequence (json formated)."))
 		// .field(field -> field
@@ -118,32 +139,10 @@ public class GeneSequenceReadsDef {
 				"Mixtures are represented as \"X\"."
 			)
 		)
-		.field(newMutationSet("mutations")
+		.field(field -> newMutationSet(field, "mutations")
 			.description("All mutations found in the aligned sequence.")
-			.build()
 		)
-		// .field(field -> field
-		// 	.type(new GraphQLList(oFrameShift))
-		// 	.name("frameShifts")
-		// 	.description("All frame shifts found in the aligned sequence.")
-		// )
 		.field(oSeqReadsHistogramBuilder)
-		// .field(field -> field
-		// 	.type(new GraphQLList(oMutationStats))
-		// 	.name("mutationStats")
-		// 	.argument(arg -> arg
-		// 		.type(new GraphQLList(GraphQLFloat))
-		// 		.name("allMinPrevalence")
-		// 		.description(
-		// 			"Specify the prevalence cutoff of fetching mutation stats."
-		// 		))
-		// 	.dataFetcher(env -> (
-		// 		((GeneSequenceReads) env.getSource())
-		// 		.getMutationStats(
-		// 			env.getArgument("allMinPrevalence")
-		// 		)
-		// 	))
-		// 	.description("List of statistics of mutations."))
 		.build();
 
 }

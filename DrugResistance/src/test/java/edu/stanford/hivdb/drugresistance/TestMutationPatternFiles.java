@@ -19,7 +19,8 @@
 package edu.stanford.hivdb.drugresistance;
 
 import java.io.InputStream;
-import edu.stanford.hivdb.drugs.DrugClass;
+
+import edu.stanford.hivdb.hivfacts.HIVDrugClass;
 
 /**
  * Converts each of the MutationPatternFiles to an input stream so that they can be used for
@@ -29,20 +30,20 @@ import edu.stanford.hivdb.drugs.DrugClass;
 public class TestMutationPatternFiles {
 
 	public enum TestMutationPatterns {
-		INSTI_PATTERNS(DrugClass.INSTI, "MutationPatternsFiles/PatternsINSTI.txt"),
-		NRTI_PATTERNS(DrugClass.NRTI, "MutationPatternsFiles/PatternsNRTI.txt"),
-		NNRTI_PATTERNS(DrugClass.NNRTI, "MutationPatternsFiles/PatternsNNRTI.txt"),
-		PI_PATTERNS(DrugClass.PI, "MutationPatternsFiles/PatternsPI.txt");
+		INSTI_PATTERNS(HIVDrugClass.INSTI, "MutationPatternsFiles/PatternsINSTI.txt"),
+		NRTI_PATTERNS(HIVDrugClass.NRTI, "MutationPatternsFiles/PatternsNRTI.txt"),
+		NNRTI_PATTERNS(HIVDrugClass.NNRTI, "MutationPatternsFiles/PatternsNNRTI.txt"),
+		PI_PATTERNS(HIVDrugClass.PI, "MutationPatternsFiles/PatternsPI.txt");
 
-		private final DrugClass drugClass;
+		private final HIVDrugClass drugClass;
 	    private final String filePath;
 
-	    private TestMutationPatterns(final DrugClass drugClass, final String filePath) {
+	    private TestMutationPatterns(final HIVDrugClass drugClass, final String filePath) {
 	    	this.drugClass = drugClass;
 	    	this.filePath = filePath;
 	    }
 
-	    public DrugClass getDrugClass() {
+	    public HIVDrugClass getDrugClass() {
 	    	return this.drugClass;
 	    }
 

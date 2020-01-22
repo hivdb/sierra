@@ -25,8 +25,10 @@ import java.util.Collections;
 
 import org.junit.Test;
 
-import edu.stanford.hivdb.mutations.Gene;
-import edu.stanford.hivdb.utilities.Sequence;
+import edu.stanford.hivdb.hivfacts.HIVGene;
+import edu.stanford.hivdb.sequences.AlignedGeneSeq;
+import edu.stanford.hivdb.sequences.AlignedSite;
+import edu.stanford.hivdb.sequences.Sequence;
 
 public class AlignedGeneSeqTest {
 
@@ -53,7 +55,7 @@ public class AlignedGeneSeqTest {
 	public void testReversedSeqGetAlignedNAs() {
 		Sequence revSeq = new Sequence("ReversedSeq", "CCAAAGAGTGATTTGAGG");
 		AlignedGeneSeq alignedGeneSeq = new AlignedGeneSeq(
-			revSeq, Gene.valueOf("HIV1PR"),
+			revSeq, HIVGene.valueOf("HIV1PR"),
 			1, 6, 1, 18, Arrays.asList(
 				new AlignedSite(1, 1, 3),
 				new AlignedSite(2, 4, 3),
@@ -66,7 +68,7 @@ public class AlignedGeneSeqTest {
 		assertEquals("CCTCAAATCACTCTTTGG", alignedGeneSeq.getAlignedNAs());
 
 		AlignedGeneSeq alignedGeneSeq2 = new AlignedGeneSeq(
-			revSeq, Gene.valueOf("HIV1PR"),
+			revSeq, HIVGene.valueOf("HIV1PR"),
 			1, 6, 1, 18, Arrays.asList(
 				new AlignedSite(1, 1, 3),
 				new AlignedSite(2, 4, 3),
@@ -83,7 +85,7 @@ public class AlignedGeneSeqTest {
 	public void testReversedSeqGetAlignedAAs() {
 		Sequence revSeq = new Sequence("ReversedSeq", "CCAAAGAGTGATTTGAGG");
 		AlignedGeneSeq alignedGeneSeq = new AlignedGeneSeq(
-			revSeq, Gene.valueOf("HIV1PR"),
+			revSeq, HIVGene.valueOf("HIV1PR"),
 			1, 6, 1, 18, Arrays.asList(
 				new AlignedSite(1, 1, 3),
 				new AlignedSite(2, 4, 3),
@@ -96,7 +98,7 @@ public class AlignedGeneSeqTest {
 		assertEquals("PQITLW", alignedGeneSeq.getAlignedAAs());
 
 		AlignedGeneSeq alignedGeneSeq2 = new AlignedGeneSeq(
-			revSeq, Gene.valueOf("HIV1PR"),
+			revSeq, HIVGene.valueOf("HIV1PR"),
 			1, 6, 1, 18, Arrays.asList(
 				new AlignedSite(1, 1, 3),
 				new AlignedSite(2, 4, 3),

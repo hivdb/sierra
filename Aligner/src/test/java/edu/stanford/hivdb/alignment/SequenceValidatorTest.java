@@ -30,13 +30,17 @@ import static org.mockito.Mockito.*;
 
 import edu.stanford.hivdb.filetestutils.TestSequencesFiles;
 import edu.stanford.hivdb.filetestutils.TestSequencesFiles.TestSequencesProperties;
-import edu.stanford.hivdb.genotyper.BoundGenotype;
-import edu.stanford.hivdb.genotyper.HIVGenotypeResult;
-import edu.stanford.hivdb.mutations.Apobec;
-import edu.stanford.hivdb.mutations.Gene;
+import edu.stanford.hivdb.genotypes.BoundGenotype;
+import edu.stanford.hivdb.genotypes.GenotypeResult;
+import edu.stanford.hivdb.hivfacts.Apobec;
+import edu.stanford.hivdb.hivfacts.HIVGene;
+import edu.stanford.hivdb.hivfacts.HIVDefaultSequenceValidator;
 import edu.stanford.hivdb.mutations.MutationSet;
+import edu.stanford.hivdb.sequences.AlignedGeneSeq;
+import edu.stanford.hivdb.sequences.AlignedSequence;
+import edu.stanford.hivdb.sequences.NucAminoAligner;
+import edu.stanford.hivdb.sequences.Sequence;
 import edu.stanford.hivdb.utilities.FastaUtils;
-import edu.stanford.hivdb.utilities.Sequence;
 import edu.stanford.hivdb.utilities.ValidationLevel;
 import edu.stanford.hivdb.utilities.ValidationResult;
 
@@ -47,10 +51,10 @@ public class SequenceValidatorTest {
 		final InputStream testSequenceInputStream =
 				TestSequencesFiles.getTestSequenceInputStream(TestSequencesProperties.JUST_IN);
 		final List<Sequence> sequences = FastaUtils.readStream(testSequenceInputStream);
-		List<AlignedSequence> allAligneds =	Aligner.parallelAlign(sequences);
+		List<AlignedSequence> allAligneds =	NucAminoAligner.parallelAlign(sequences);
 		for (AlignedSequence alignedSeq : allAligneds) {
 			System.out.println("\n" + alignedSeq.getInputSequence().getHeader());
-			SequenceValidator sequenceValidator = new SequenceValidator(alignedSeq);
+			HIVDefaultSequenceValidator sequenceValidator = new HIVDefaultSequenceValidator(alignedSeq);
 			if (!sequenceValidator.validate()) {
 				List<ValidationResult> validationResults = sequenceValidator.getValidationResults();
 				for (ValidationResult vr : validationResults) {
@@ -81,24 +85,24 @@ public class SequenceValidatorTest {
 		Sequence seq1 = new Sequence("overlap_test", seqStr);
 		Sequence seq2 = new Sequence(
 			"overlap_test_2", seqStr.replace("MTTGGTTGCACT", "MTTGGTAAAACT"));
-		AlignedSequence alignedSeq = Aligner.align(seq1);
-		SequenceValidator validator = spy(new SequenceValidator(alignedSeq));
+		AlignedSequence alignedSeq = NucAminoAligner.align(seq1);
+		HIVDefaultSequenceValidator validator = spy(new HIVDefaultSequenceValidator(alignedSeq));
 		assertFalse(validator.validateLongGap());
 		verify(validator, times(1))
-		.addValidationResult("overlap", Gene.valueOf("HIV1RT"), "CAGMTTGGTTGC...");
+		.addValidationResult("overlap", HIVGene.valueOf("HIV1RT"), "CAGMTTGGTTGC...");
 
-		alignedSeq = Aligner.align(seq2);
-		validator = spy(new SequenceValidator(alignedSeq));
+		alignedSeq = NucAminoAligner.align(seq2);
+		validator = spy(new HIVDefaultSequenceValidator(alignedSeq));
 		assertFalse(validator.validateLongGap());
 		verify(validator, times(1))
-		.addValidationResult("overlap", Gene.valueOf("HIV1RT"), "ACTTTAAATTTT");
+		.addValidationResult("overlap", HIVGene.valueOf("HIV1RT"), "ACTTTAAATTTT");
 	}
 
 	@Test
 	public void testValidateNAs() {
 		AlignedSequence alignedSeq = mock(AlignedSequence.class);
 		when(alignedSeq.getInputSequence()).thenReturn(new Sequence("test", "...not ATCG"));
-		SequenceValidator validator = new SequenceValidator(alignedSeq);
+		HIVDefaultSequenceValidator validator = new HIVDefaultSequenceValidator(alignedSeq);
 		assertFalse(validator.validateNAs());
 		assertEquals(1, validator.getValidationResults().size());
 		assertEquals(
@@ -107,7 +111,7 @@ public class SequenceValidatorTest {
 
 		alignedSeq = mock(AlignedSequence.class);
 		when(alignedSeq.getInputSequence()).thenReturn(new Sequence("test", "ATCG"));
-		validator = new SequenceValidator(alignedSeq);
+		validator = new HIVDefaultSequenceValidator(alignedSeq);
 		assertTrue(validator.validateNAs());
 		assertEquals(0, validator.getValidationResults().size());
 	}
@@ -116,12 +120,12 @@ public class SequenceValidatorTest {
 	public void testValidateNotHIV2() {
 		// case 1: HIV-2
 		AlignedSequence alignedSeq = mock(AlignedSequence.class);
-		HIVGenotypeResult genotypeResult = mock(HIVGenotypeResult.class);
+		GenotypeResult genotypeResult = mock(GenotypeResult.class);
 		BoundGenotype genotype = mock(BoundGenotype.class);
 		when(genotypeResult.getBestMatch()).thenReturn(genotype);
 		when(genotype.getDisplayWithoutDistance()).thenReturn("HIV2");
-		when(alignedSeq.getSubtypeResult()).thenReturn(genotypeResult);
-		SequenceValidator validator = new SequenceValidator(alignedSeq);
+		when(alignedSeq.getGenotypeResult()).thenReturn(genotypeResult);
+		HIVDefaultSequenceValidator validator = new HIVDefaultSequenceValidator(alignedSeq);
 		assertFalse(validator.validateNotHIV2());
 		assertEquals(1, validator.getValidationResults().size());
 		assertEquals(
@@ -130,12 +134,12 @@ public class SequenceValidatorTest {
 
 		// case 2: type B
 		alignedSeq = mock(AlignedSequence.class);
-		genotypeResult = mock(HIVGenotypeResult.class);
+		genotypeResult = mock(GenotypeResult.class);
 		genotype = mock(BoundGenotype.class);
 		when(genotypeResult.getBestMatch()).thenReturn(genotype);
 		when(genotype.getDisplayWithoutDistance()).thenReturn("B");
-		when(alignedSeq.getSubtypeResult()).thenReturn(genotypeResult);
-		validator = new SequenceValidator(alignedSeq);
+		when(alignedSeq.getGenotypeResult()).thenReturn(genotypeResult);
+		validator = new HIVDefaultSequenceValidator(alignedSeq);
 		assertTrue(validator.validateNotHIV2());
 		assertEquals(0, validator.getValidationResults().size());
 	}
@@ -145,7 +149,7 @@ public class SequenceValidatorTest {
 		// case 1: there's no gene
 		AlignedSequence alignedSeq = mock(AlignedSequence.class);
 		when(alignedSeq.isEmpty()).thenReturn(true);
-		SequenceValidator validator = new SequenceValidator(alignedSeq);
+		HIVDefaultSequenceValidator validator = new HIVDefaultSequenceValidator(alignedSeq);
 		assertFalse(validator.validateGene());
 		assertEquals(1, validator.getValidationResults().size());
 		assertEquals(
@@ -155,7 +159,7 @@ public class SequenceValidatorTest {
 		// case 2: there're genes
 		alignedSeq = mock(AlignedSequence.class);
 		when(alignedSeq.isEmpty()).thenReturn(false);
-		validator = new SequenceValidator(alignedSeq);
+		validator = new HIVDefaultSequenceValidator(alignedSeq);
 		assertTrue(validator.validateGene());
 		assertEquals(0, validator.getValidationResults().size());
 	}
@@ -212,12 +216,12 @@ public class SequenceValidatorTest {
 			String stopCodonsStr, ValidationLevel level) {
 		AlignedSequence alignedSeq = mock(AlignedSequence.class);
 		AlignedGeneSeq geneSeq = mock(AlignedGeneSeq.class);
-		Map<Gene, AlignedGeneSeq> geneSeqs = new TreeMap<>();
-		geneSeqs.put(Gene.valueOf("HIV1PR"), geneSeq);
+		Map<HIVGene, AlignedGeneSeq> geneSeqs = new TreeMap<>();
+		geneSeqs.put(HIVGene.valueOf("HIV1PR"), geneSeq);
 		when(geneSeq.getStopCodons())
-		.thenReturn(new MutationSet(Gene.valueOf("HIV1PR"), stopCodonsStr));
+		.thenReturn(new MutationSet(HIVGene.valueOf("HIV1PR"), stopCodonsStr));
 		when(alignedSeq.getAlignedGeneSequenceMap()).thenReturn(geneSeqs);
-		SequenceValidator validator = new SequenceValidator(alignedSeq);
+		HIVDefaultSequenceValidator validator = new HIVDefaultSequenceValidator(alignedSeq);
 		if (level == null) {
 			assertTrue(validator.validateNoStopCodons());
 			assertEquals(0, validator.getValidationResults().size());
@@ -235,14 +239,14 @@ public class SequenceValidatorTest {
 			String unusualMutsStr, String unusualMutsAtDRP, ValidationLevel level) {
 		AlignedSequence alignedSeq = mock(AlignedSequence.class);
 		AlignedGeneSeq geneSeq = mock(AlignedGeneSeq.class);
-		Map<Gene, AlignedGeneSeq> geneSeqs = new TreeMap<>();
-		geneSeqs.put(Gene.valueOf("HIV1PR"), geneSeq);
+		Map<HIVGene, AlignedGeneSeq> geneSeqs = new TreeMap<>();
+		geneSeqs.put(HIVGene.valueOf("HIV1PR"), geneSeq);
 		when(geneSeq.getUnusualMutations())
-		.thenReturn(new MutationSet(Gene.valueOf("HIV1PR"), unusualMutsStr));
+		.thenReturn(new MutationSet(HIVGene.valueOf("HIV1PR"), unusualMutsStr));
 		when(geneSeq.getUnusualMutationsAtDrugResistancePositions())
-		.thenReturn(new MutationSet(Gene.valueOf("HIV1PR"), unusualMutsAtDRP));
+		.thenReturn(new MutationSet(HIVGene.valueOf("HIV1PR"), unusualMutsAtDRP));
 		when(alignedSeq.getAlignedGeneSequenceMap()).thenReturn(geneSeqs);
-		SequenceValidator validator = new SequenceValidator(alignedSeq);
+		HIVDefaultSequenceValidator validator = new HIVDefaultSequenceValidator(alignedSeq);
 		if (level == null) {
 			assertTrue(validator.validateNoTooManyUnusualMutations());
 			assertEquals(0, validator.getValidationResults().size());
@@ -265,7 +269,7 @@ public class SequenceValidatorTest {
 		when(apobec.getNumApobecMuts()).thenReturn(numApobecMuts);
 		when(apobec.getApobecMutsAtDRP()).thenReturn(apobecMutsAtDRP);
 		when(alignedSeq.getApobec()).thenReturn(apobec);
-		SequenceValidator validator = new SequenceValidator(alignedSeq);
+		HIVDefaultSequenceValidator validator = new HIVDefaultSequenceValidator(alignedSeq);
 		if (level == null) {
 			assertTrue(validator.validateNotApobec());
 			assertEquals(0, validator.getValidationResults().size());

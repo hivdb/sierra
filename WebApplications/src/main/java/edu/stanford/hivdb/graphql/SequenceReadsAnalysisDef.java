@@ -23,6 +23,8 @@ import graphql.schema.*;
 import static graphql.Scalars.*;
 import static graphql.schema.GraphQLObjectType.newObject;
 import static graphql.schema.GraphQLInputObjectType.newInputObject;
+import static graphql.schema.GraphQLCodeRegistry.newCodeRegistry;
+import static graphql.schema.FieldCoordinates.coordinates;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -31,15 +33,17 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import edu.stanford.hivdb.drugresistance.GeneDR;
-import edu.stanford.hivdb.drugresistance.GeneDRFast;
-import edu.stanford.hivdb.genotyper.BoundGenotype;
-import edu.stanford.hivdb.genotyper.HIVGenotypeResult;
+import edu.stanford.hivdb.drugresistance.GeneDRAsi;
+import edu.stanford.hivdb.drugs.DrugResistanceAlgorithm;
+import edu.stanford.hivdb.genotypes.BoundGenotype;
+import edu.stanford.hivdb.genotypes.GenotypeResult;
+import edu.stanford.hivdb.hivfacts.HIV;
 import edu.stanford.hivdb.mutations.PositionCodonReads;
-import edu.stanford.hivdb.mutations.Strain;
-import edu.stanford.hivdb.ngs.GeneSequenceReads;
-import edu.stanford.hivdb.ngs.OneCodonReadsCoverage;
-import edu.stanford.hivdb.ngs.SequenceReads;
+import edu.stanford.hivdb.seqreads.GeneSequenceReads;
+import edu.stanford.hivdb.seqreads.OneCodonReadsCoverage;
+import edu.stanford.hivdb.seqreads.SequenceReads;
 import edu.stanford.hivdb.utilities.Json;
+import edu.stanford.hivdb.viruses.Strain;
 
 import static edu.stanford.hivdb.graphql.MutationSetDef.*;
 import static edu.stanford.hivdb.graphql.GeneDef.*;
@@ -54,35 +58,32 @@ import static edu.stanford.hivdb.graphql.DescriptiveStatisticsDef.*;
 
 public class SequenceReadsAnalysisDef {
 
-	private static DataFetcher<List<BoundGenotype>> subtypesDataFetcher = new DataFetcher<List<BoundGenotype>>() {
-		@Override
-		public List<BoundGenotype> get(DataFetchingEnvironment environment) {
-			int first = environment.getArgument("first");
-			SequenceReads seqReads = (SequenceReads) environment.getSource();
-			HIVGenotypeResult subtypeResult = seqReads.getSubtypeResult();
-			if (subtypeResult == null) {
-				return Collections.emptyList();
-			}
-			return subtypeResult.getAllMatches().subList(0, first);
+	private static DataFetcher<List<BoundGenotype<HIV>>> subtypesDataFetcher = env -> {
+		int first = env.getArgument("first");
+		SequenceReads<HIV> seqReads = env.getSource();
+		GenotypeResult<HIV> subtypeResult = seqReads.getSubtypeResult();
+		if (subtypeResult == null) {
+			return Collections.emptyList();
 		}
+		return subtypeResult.getAllMatches().subList(0, first);
 	};
 
-	private static DataFetcher<List<GeneDR>> drugResistanceDataFetcher = new DataFetcher<List<GeneDR>>() {
-		@Override
-		public List<GeneDR> get(DataFetchingEnvironment environment) {
-			SequenceReads seqReads = (SequenceReads) environment.getSource();
-			List<GeneSequenceReads> allGeneSeqReads = seqReads.getAllGeneSequenceReads();
-			return new ArrayList<>(GeneDRFast.getResistanceByGeneFromReads(allGeneSeqReads).values());
-		}
+	private static DataFetcher<List<GeneDR<HIV>>> drugResistanceDataFetcher = env -> {
+		HIV hiv = HIV.getInstance();
+		DrugResistanceAlgorithm<HIV> alg = hiv.getLatestDrugResistAlgorithm("HIVDB");
+		SequenceReads<HIV> seqReads = env.getSource();
+		List<GeneSequenceReads<HIV>> allGeneSeqReads = seqReads.getAllGeneSequenceReads();
+		return new ArrayList<>(GeneDRAsi.getResistanceByGeneFromReads(allGeneSeqReads, alg).values());
 	};
 	
-	public static SequenceReads toSequenceReadsList(Map<String, Object> input) {
+	public static SequenceReads<HIV> toSequenceReadsList(Map<String, Object> input) {
 		String name = (String) input.get("name");
 		if (name == null) {
 			throw new GraphQLException("`name` is a required field but doesn't have value");
 		}
-		Strain strain = (Strain) input.get("strain");
-		List<PositionCodonReads> allReads = (
+		@SuppressWarnings("unchecked")
+		Strain<HIV> strain = (Strain<HIV>) input.get("strain");
+		List<PositionCodonReads<HIV>> allReads = (
 			((List<?>) input.get("allReads"))
 			.stream()
 			.map(pcr -> toPositionCodonReads(strain, (Map<?, ?>) pcr))
@@ -96,6 +97,7 @@ public class SequenceReadsAnalysisDef {
 		}
 		return SequenceReads.fromCodonReadsTable(
 			(String) input.get("name"),
+			strain,
 			allReads,
 			(Double) input.get("minPrevalence"),
 			(Long) input.get("minReadDepth"));
@@ -133,6 +135,18 @@ public class SequenceReadsAnalysisDef {
 				"specified."))
 		.build();
 
+	private static DataFetcher<Boolean> isTrimmedDataFetcher = env -> {
+		OneCodonReadsCoverage<HIV> ocrc = env.getSource();
+		return ocrc.isTrimmed();
+	};
+	
+	private static GraphQLCodeRegistry oneCodonReadsCoverageCodeRegistry = newCodeRegistry()
+		.dataFetcher(
+			coordinates("OneCodonReadsCoverage", "isTrimmed"),
+			isTrimmedDataFetcher
+		)
+		.build();
+
 	public static GraphQLObjectType oOneCodonReadsCoverage = newObject()
 		.name("OneCodonReadsCoverage")
 		.field(field -> field
@@ -153,9 +167,44 @@ public class SequenceReadsAnalysisDef {
 		.field(field -> field
 			.type(GraphQLBoolean)
 			.name("isTrimmed")
-			.dataFetcher(env -> ((OneCodonReadsCoverage) env.getSource()).isTrimmed())
 			.description("This position is trimmed or not.")
 		)
+		.build();
+	
+	private static DataFetcher<String> internalJsonCodonReadsCoverageDataFetcher = env -> {
+		SequenceReads<HIV> sr = env.getSource();
+		return Json.dumpsUgly(
+			sr
+			.getCodonReadsCoverage()
+			.stream()
+			.map(rc -> rc.extMap())
+			.collect(Collectors.toList()));
+	};
+
+
+	public static GraphQLCodeRegistry sequenceReadsCodeRegistry = newCodeRegistry()
+		.dataFetcher(
+			coordinates("SequenceReadsAnalysis", "subtypes"),
+			subtypesDataFetcher
+		)
+		.dataFetcher(
+			coordinates("SequenceReadsAnalysis", "drugResistance"),
+			drugResistanceDataFetcher
+		)
+		.dataFetcher(
+			coordinates("SequenceReadsAnalysis", "internalJsonCodonReadsCoverage"),
+			internalJsonCodonReadsCoverageDataFetcher
+		)
+		.dataFetcher(
+			coordinates("SequenceReadsAnalysis", "histogram"),
+			seqReadsHistogramDataFetcher
+		)
+		.dataFetcher(
+			coordinates("SequenceReadsAnalysis", "mutations"),
+			new MutationSetDataFetcher("mutations")
+		)
+		.dataFetchers(oneCodonReadsCoverageCodeRegistry)
+		.dataFetchers(geneSequenceReadsCodeRegistry)
 		.build();
 	
 	public static GraphQLObjectType oSequenceReadsAnalysis = newObject()
@@ -215,7 +264,6 @@ public class SequenceReadsAnalysisDef {
 				.defaultValue(2)
 				.description(
 					"Fetch only the first nth closest subtypes. Default to 2."))
-			.dataFetcher(subtypesDataFetcher)
 			.description(
 				"List of HIV1 groups or subtypes, or HIV species. " +
 				"Sorted by the similarity from most to least."))
@@ -230,14 +278,12 @@ public class SequenceReadsAnalysisDef {
 			.description(
 				"Mixture pecentage of the consensus. Notes only RYMWKS " +
 				"are counted."))
-		.field(newMutationSet("mutations")
-			.description("All mutations found in the sequence reads.")
-			.build())
+		.field(field -> newMutationSet(field, "mutations")
+			.description("All mutations found in the sequence reads."))
 		.field(field -> field
 			.type(new GraphQLList(oDrugResistance))
 			.name("drugResistance")
-			.description("List of drug resistance results by genes.")
-			.dataFetcher(drugResistanceDataFetcher))
+			.description("List of drug resistance results by genes."))
 		.field(oSeqReadsHistogramBuilder)
 		.field(field -> field
 			.name("readDepthStats")
@@ -252,13 +298,6 @@ public class SequenceReadsAnalysisDef {
 		.field(field -> field
 			.type(GraphQLString)
 			.name("internalJsonCodonReadsCoverage")
-			.dataFetcher(e -> Json.dumpsUgly(
-				((SequenceReads) e.getSource())
-				.getCodonReadsCoverage()
-				.stream()
-				.map(rc -> rc.extMap())
-				.collect(Collectors.toList()))
-			)
 			.description(
 				"Position codon reads in this gene sequence (json formated)."))
 		.build();

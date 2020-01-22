@@ -31,19 +31,20 @@ import org.junit.Test;
 import edu.stanford.hivdb.drugresistance.database.MutationComboScores;
 
 import static edu.stanford.hivdb.drugresistance.database.MutationComboScores.ComboScore;
-import edu.stanford.hivdb.drugs.Drug;
-import edu.stanford.hivdb.drugs.DrugClass;
-import edu.stanford.hivdb.mutations.Gene;
+
+import edu.stanford.hivdb.hivfacts.HIVDrug;
+import edu.stanford.hivdb.hivfacts.HIVDrugClass;
+import edu.stanford.hivdb.hivfacts.HIVGene;
 import edu.stanford.hivdb.mutations.MutationSet;
 
 public class MutationComboScoresTest {
 
 	static final int TOTAL_COMBO_SCORES = 292;
 	
-	final Gene eGene = Gene.valueOf("HIV1RT");
-	final DrugClass eDrugClass = DrugClass.NNRTI;
+	final HIVGene eGene = HIVGene.valueOf("HIV1RT");
+	final HIVDrugClass eDrugClass = HIVDrugClass.NNRTI;
 	final String eRule = "100I+103N";
-	final Drug eDrug = Drug.DOR;
+	final HIVDrug eDrug = HIVDrug.DOR;
 	final double eScore = 15.0;
 	final ComboScore comboScore
 		= new ComboScore(eGene, eDrugClass, eRule, eDrug, eScore);
@@ -67,7 +68,7 @@ public class MutationComboScoresTest {
 
 	@Test
 	public void testGetRuleMutations() {
-		final MutationSet eRuleMuts = new MutationSet(Gene.valueOf("HIV1RT"), "100I, 103N");
+		final MutationSet eRuleMuts = new MutationSet(HIVGene.valueOf("HIV1RT"), "100I, 103N");
 		assertEquals(eRuleMuts, comboScore.getRuleMutations());
 	}
 
@@ -81,7 +82,7 @@ public class MutationComboScoresTest {
 	public void testGetComboScores() {
 		// This assertion is expected to fail after number of combo rules changed
 		assertEquals(TOTAL_COMBO_SCORES, comboScores.size());
-		for (DrugClass dc : DrugClass.values()) {
+		for (HIVDrugClass dc : HIVDrugClass.values()) {
 			final List<ComboScore> dcScores = MutationComboScores.getCombinationScores(dc);
 			assertTrue(comboScores.containsAll(dcScores));
 		}
@@ -89,7 +90,7 @@ public class MutationComboScoresTest {
 
 	@Test
 	public void testGroupComboScoresByPosition() {
-		for (Drug drug : Drug.values()) {
+		for (HIVDrug drug : HIVDrug.values()) {
 			Map<List<Integer>, List<ComboScore>> csByPos
 				= MutationComboScores.groupComboScoresByPositions(drug);
 			comboScores
@@ -111,23 +112,23 @@ public class MutationComboScoresTest {
 		final double eComboScoreFTC = 5.0;
 		final double eComboScoreLMV = 5.0;
 		final double eComboScoreTDF = 10.0;
-		final MutationSet muts = new MutationSet(Gene.valueOf("HIV1RT"), "41L+215FY");
-		final Map<DrugClass, Map<Drug, Map<MutationSet, Double>>> mcs =
-				MutationComboScores.getComboMutDrugScoresForMutSet(Gene.valueOf("HIV1RT"), new MutationSet(muts));
+		final MutationSet muts = new MutationSet(HIVGene.valueOf("HIV1RT"), "41L+215FY");
+		final Map<HIVDrugClass, Map<HIVDrug, Map<MutationSet, Double>>> mcs =
+				MutationComboScores.getComboMutDrugScoresForMutSet(HIVGene.valueOf("HIV1RT"), new MutationSet(muts));
 		final double comboScoreABC
-			= mcs.get(DrugClass.NRTI).get(Drug.ABC).get(muts);
+			= mcs.get(HIVDrugClass.NRTI).get(HIVDrug.ABC).get(muts);
 		final double comboScoreAZT
-			= mcs.get(DrugClass.NRTI).get(Drug.AZT).get(muts);
+			= mcs.get(HIVDrugClass.NRTI).get(HIVDrug.AZT).get(muts);
 		final double comboScoreD4T
-			= mcs.get(DrugClass.NRTI).get(Drug.D4T).get(muts);
+			= mcs.get(HIVDrugClass.NRTI).get(HIVDrug.D4T).get(muts);
 		final double comboScoreDDI
-			= mcs.get(DrugClass.NRTI).get(Drug.DDI).get(muts);
+			= mcs.get(HIVDrugClass.NRTI).get(HIVDrug.DDI).get(muts);
 		final double comboScoreFTC
-			= mcs.get(DrugClass.NRTI).get(Drug.FTC).get(muts);
+			= mcs.get(HIVDrugClass.NRTI).get(HIVDrug.FTC).get(muts);
 		final double comboScoreLMV
-			= mcs.get(DrugClass.NRTI).get(Drug.LMV).get(muts);
+			= mcs.get(HIVDrugClass.NRTI).get(HIVDrug.LMV).get(muts);
 		final double comboScoreTDF
-			= mcs.get(DrugClass.NRTI).get(Drug.TDF).get(muts);
+			= mcs.get(HIVDrugClass.NRTI).get(HIVDrug.TDF).get(muts);
 		assertEquals(Double.valueOf(eComboScoreABC), Double.valueOf(comboScoreABC));
 		assertEquals(Double.valueOf(eComboScoreAZT), Double.valueOf(comboScoreAZT));
 		assertEquals(Double.valueOf(eComboScoreD4T), Double.valueOf(comboScoreD4T));
@@ -139,36 +140,36 @@ public class MutationComboScoresTest {
 	
 	@Test
 	public void testGetComboMutDrugScoresForSingleMutSet_OfEmptySet() {
-		final MutationSet muts = new MutationSet(Gene.valueOf("HIV1RT"), "");
-		final Map<DrugClass, Map<Drug, Map<MutationSet, Double>>> mutComboScores =
-			MutationComboScores.getComboMutDrugScoresForMutSet(Gene.valueOf("HIV1RT"), new MutationSet(muts));
+		final MutationSet muts = new MutationSet(HIVGene.valueOf("HIV1RT"), "");
+		final Map<HIVDrugClass, Map<HIVDrug, Map<MutationSet, Double>>> mutComboScores =
+			MutationComboScores.getComboMutDrugScoresForMutSet(HIVGene.valueOf("HIV1RT"), new MutationSet(muts));
 		assertTrue(mutComboScores.isEmpty());
 	}
 	
 	@Test
 	public void testGetComboMutDrugScoresForSingleMutSet_OfSingleMut() {
-		final MutationSet muts = new MutationSet(Gene.valueOf("HIV1RT"), "41L");
-		final Map<DrugClass, Map<Drug, Map<MutationSet, Double>>> mutComboScores =
-			MutationComboScores.getComboMutDrugScoresForMutSet(Gene.valueOf("HIV1RT"), new MutationSet(muts));
+		final MutationSet muts = new MutationSet(HIVGene.valueOf("HIV1RT"), "41L");
+		final Map<HIVDrugClass, Map<HIVDrug, Map<MutationSet, Double>>> mutComboScores =
+			MutationComboScores.getComboMutDrugScoresForMutSet(HIVGene.valueOf("HIV1RT"), new MutationSet(muts));
 		assertTrue(mutComboScores.isEmpty());
 	}
 	
 	@Test
 	public void testGetComboMutDrugScoresOfMutSet_OfUnmatchedMuts() {
-		final MutationSet muts = new MutationSet(Gene.valueOf("HIV1RT"), "41E+215L");
-		final Map<DrugClass, Map<Drug, Map<MutationSet, Double>>> mutComboScores =
-			MutationComboScores.getComboMutDrugScoresForMutSet(Gene.valueOf("HIV1RT"), new MutationSet(muts));
+		final MutationSet muts = new MutationSet(HIVGene.valueOf("HIV1RT"), "41E+215L");
+		final Map<HIVDrugClass, Map<HIVDrug, Map<MutationSet, Double>>> mutComboScores =
+			MutationComboScores.getComboMutDrugScoresForMutSet(HIVGene.valueOf("HIV1RT"), new MutationSet(muts));
 		assertTrue(mutComboScores.isEmpty());
 	}
 	
 	@Test
 	public void testGetComboMutDrugScoresOfMutSet_OfPartiallyMatchedMuts() {
-		final DrugClass eDrugClass = DrugClass.NRTI;
-		final MutationSet eMutSet = new MutationSet(Gene.valueOf("HIV1RT"), "41L+44D+210W+215Q");
+		final HIVDrugClass eDrugClass = HIVDrugClass.NRTI;
+		final MutationSet eMutSet = new MutationSet(HIVGene.valueOf("HIV1RT"), "41L+44D+210W+215Q");
 		final Double eScore = 10.0;
-		final Map<DrugClass, Map<Drug, Map<MutationSet, Double>>> mutComboScores =
-			MutationComboScores.getComboMutDrugScoresForMutSet(Gene.valueOf("HIV1RT"), new MutationSet(eMutSet));
-		for (Entry<Drug, Map<MutationSet, Double>> drugScorePair : mutComboScores.get(eDrugClass).entrySet()) {
+		final Map<HIVDrugClass, Map<HIVDrug, Map<MutationSet, Double>>> mutComboScores =
+			MutationComboScores.getComboMutDrugScoresForMutSet(HIVGene.valueOf("HIV1RT"), new MutationSet(eMutSet));
+		for (Entry<HIVDrug, Map<MutationSet, Double>> drugScorePair : mutComboScores.get(eDrugClass).entrySet()) {
 			Double score = drugScorePair.getValue().get(eMutSet);
 			assertEquals(eScore, score);
 		}
@@ -176,13 +177,13 @@ public class MutationComboScoresTest {
 	
 	@Test
 	public void testGetComboMutDrugScoresOfMutSet_OfPartialScrambledMatch() {
-		final DrugClass eDrugClass = DrugClass.NRTI;
-		final MutationSet eMutSet = new MutationSet(Gene.valueOf("HIV1RT"), "210W+215Q+44D+41L");
+		final HIVDrugClass eDrugClass = HIVDrugClass.NRTI;
+		final MutationSet eMutSet = new MutationSet(HIVGene.valueOf("HIV1RT"), "210W+215Q+44D+41L");
 		final Double eScore = 10.0;
-		final Map<DrugClass, Map<Drug, Map<MutationSet, Double>>> mutComboScores =
-			MutationComboScores.getComboMutDrugScoresForMutSet(Gene.valueOf("HIV1RT"), new MutationSet(eMutSet));
+		final Map<HIVDrugClass, Map<HIVDrug, Map<MutationSet, Double>>> mutComboScores =
+			MutationComboScores.getComboMutDrugScoresForMutSet(HIVGene.valueOf("HIV1RT"), new MutationSet(eMutSet));
 		printMatchingRules(mutComboScores);
-		for (Entry<Drug, Map<MutationSet, Double>> drugScorePair : mutComboScores.get(eDrugClass).entrySet()) {
+		for (Entry<HIVDrug, Map<MutationSet, Double>> drugScorePair : mutComboScores.get(eDrugClass).entrySet()) {
 			Double score = drugScorePair.getValue().get(eMutSet);
 			assertEquals(eScore, score);
 		}
@@ -190,9 +191,9 @@ public class MutationComboScoresTest {
 	
 	// print the results obtained when getRulesDrugsAndScoresForMutList is called
 	@SuppressWarnings("unused")
-	private static void printMatchingRules(Map<DrugClass, Map<Drug, Map<MutationSet, Double>>> matchingRTRulesDrugScores) {
-		for (DrugClass drugClass : matchingRTRulesDrugScores.keySet()) {
-			for (Drug drug : matchingRTRulesDrugScores.get(drugClass).keySet()) {
+	private static void printMatchingRules(Map<HIVDrugClass, Map<HIVDrug, Map<MutationSet, Double>>> matchingRTRulesDrugScores) {
+		for (HIVDrugClass drugClass : matchingRTRulesDrugScores.keySet()) {
+			for (HIVDrug drug : matchingRTRulesDrugScores.get(drugClass).keySet()) {
 				for (MutationSet comboMuts : matchingRTRulesDrugScores.get(drugClass).get(drug).keySet()) {
 					double score = matchingRTRulesDrugScores.get(drugClass).get(drug).get(comboMuts);
 					//Collections.sort(comboMuts);

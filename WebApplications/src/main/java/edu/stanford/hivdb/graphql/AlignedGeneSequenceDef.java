@@ -21,6 +21,8 @@ package edu.stanford.hivdb.graphql;
 import graphql.schema.*;
 import static graphql.Scalars.*;
 import static graphql.schema.GraphQLObjectType.newObject;
+import static graphql.schema.GraphQLCodeRegistry.newCodeRegistry;
+import static graphql.schema.FieldCoordinates.coordinates;
 
 import static edu.stanford.hivdb.graphql.PrettyPairwiseDef.*;
 import static edu.stanford.hivdb.graphql.MutationSetDef.*;
@@ -28,6 +30,14 @@ import static edu.stanford.hivdb.graphql.GeneDef.*;
 import static edu.stanford.hivdb.graphql.FrameShiftDef.*;
 
 public class AlignedGeneSequenceDef {
+
+
+	public static GraphQLCodeRegistry alignedGeneSequenceCodeRegistry = newCodeRegistry()
+		.dataFetcher(
+			coordinates("AlignedGeneSequence", "mutations"),
+			new MutationSetDataFetcher("mutations")
+		)
+		.build();
 
 	public static GraphQLObjectType oAlignedGeneSequence = newObject()
 		.name("AlignedGeneSequence")
@@ -108,10 +118,8 @@ public class AlignedGeneSequenceDef {
 				"Mixtures are represented as \"X\"."
 			)
 		)
-		.field(newMutationSet("mutations")
-			.description("All mutations found in the aligned sequence.")
-			.build()
-		)
+		.field(field -> newMutationSet(field, "mutations")
+			.description("All mutations found in the aligned sequence."))
 		.field(field -> field
 			.type(new GraphQLList(oFrameShift))
 			.name("frameShifts")

@@ -26,18 +26,18 @@ import java.util.Map;
 
 import org.junit.Test;
 
-import edu.stanford.hivdb.alignment.AlignedGeneSeq;
-import edu.stanford.hivdb.alignment.AlignedSequence;
-import edu.stanford.hivdb.alignment.Aligner;
 import edu.stanford.hivdb.drugresistance.GeneDR;
 import edu.stanford.hivdb.drugresistance.GeneDRFast;
-import edu.stanford.hivdb.drugresistance.reports.TabularResistanceSummary;
 import edu.stanford.hivdb.filetestutils.TestSequencesFiles;
 import edu.stanford.hivdb.filetestutils.TestSequencesFiles.TestSequencesProperties;
-import edu.stanford.hivdb.mutations.Gene;
+import edu.stanford.hivdb.hivfacts.HIVGene;
+import edu.stanford.hivdb.hivfacts.extras.TabularResistanceSummary;
+import edu.stanford.hivdb.sequences.AlignedGeneSeq;
+import edu.stanford.hivdb.sequences.AlignedSequence;
+import edu.stanford.hivdb.sequences.NucAminoAligner;
+import edu.stanford.hivdb.sequences.Sequence;
 import edu.stanford.hivdb.utilities.MyFileUtils;
 import edu.stanford.hivdb.utilities.FastaUtils;
-import edu.stanford.hivdb.utilities.Sequence;
 
 public class TabularResistanceSummaryTest {
 	private static Map<String, Map<String, String>> tabularResistance = new HashMap<>();
@@ -48,7 +48,7 @@ public class TabularResistanceSummaryTest {
 		final InputStream testSequenceInputStream =
 				TestSequencesFiles.getTestSequenceInputStream(TestSequencesProperties.SMALL);
 		final List<Sequence> sequences = FastaUtils.readStream(testSequenceInputStream);
-		List<Map<Gene, GeneDR>> allResistanceResults = determineAllResistanceResults(sequences);
+		List<Map<HIVGene, GeneDR>> allResistanceResults = determineAllResistanceResults(sequences);
 		TabularResistanceSummary tabularResistanceSummary = new TabularResistanceSummary(sequences, allResistanceResults);
 		tabularResistance = tabularResistanceSummary.getTable();
 		headerFields = tabularResistanceSummary.getHeaderFields();
@@ -91,11 +91,11 @@ public class TabularResistanceSummaryTest {
 	}
 
 
-	private static List<Map<Gene, GeneDR>> determineAllResistanceResults(List<Sequence> sequences) {
-		Map<Gene, GeneDR> resistanceResults = new HashMap<>();
-		List<Map<Gene, GeneDR>> allResistanceResults = new ArrayList<>();
+	private static List<Map<HIVGene, GeneDR>> determineAllResistanceResults(List<Sequence> sequences) {
+		Map<HIVGene, GeneDR> resistanceResults = new HashMap<>();
+		List<Map<HIVGene, GeneDR>> allResistanceResults = new ArrayList<>();
 		for (Sequence seq : sequences) {
-			AlignedSequence alignedSeq = Aligner.align(seq);
+			AlignedSequence alignedSeq = NucAminoAligner.align(seq);
 			List<AlignedGeneSeq> alignmentResults = alignedSeq.getAlignedGeneSequences();
 			resistanceResults = GeneDRFast.getResistanceByGeneFromAlignedGeneSeqs(alignmentResults);
 			allResistanceResults.add(resistanceResults);

@@ -20,6 +20,7 @@ package edu.stanford.hivdb.drugresistance.database;
 
 import java.io.InputStream;
 
+@Deprecated
 public enum HivdbVersion {
 	/**
 	 * Versions naming convention A_B(_C)?(aD|pE)? / A.B(.C)?(aD|-E)?

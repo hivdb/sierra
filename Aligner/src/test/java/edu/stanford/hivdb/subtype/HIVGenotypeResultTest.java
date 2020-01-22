@@ -25,19 +25,19 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Test;
 
-import edu.stanford.hivdb.alignment.AlignedSequence;
-import edu.stanford.hivdb.alignment.Aligner;
 import edu.stanford.hivdb.filetestutils.TestSequencesFiles;
 import edu.stanford.hivdb.filetestutils.TestSequencesFiles.TestSequencesProperties;
-import edu.stanford.hivdb.genotyper.BoundGenotype;
-import edu.stanford.hivdb.genotyper.HIVGenotypeResult;
+import edu.stanford.hivdb.genotypes.BoundGenotype;
+import edu.stanford.hivdb.genotypes.GenotypeResult;
+import edu.stanford.hivdb.hivfacts.Sdrms;
 import edu.stanford.hivdb.mutations.MutationSet;
-import edu.stanford.hivdb.mutations.Sdrms;
+import edu.stanford.hivdb.sequences.AlignedSequence;
+import edu.stanford.hivdb.sequences.NucAminoAligner;
+import edu.stanford.hivdb.sequences.Sequence;
 import edu.stanford.hivdb.subtype.Subtype;
 import edu.stanford.hivdb.utilities.MyFileUtils;
 // import edu.stanford.hivdb.utilities.NumberFormats;
 import edu.stanford.hivdb.utilities.FastaUtils;
-import edu.stanford.hivdb.utilities.Sequence;
 
 public class HIVGenotypeResultTest {
 	private static final Logger LOGGER = LogManager.getLogger();
@@ -55,7 +55,7 @@ public class HIVGenotypeResultTest {
 		StringBuffer output = new StringBuffer();
 		sequences = sequences.subList(0, 1000);
 
-		List<AlignedSequence> allAligneds = Aligner.parallelAlign(sequences);
+		List<AlignedSequence> allAligneds = NucAminoAligner.parallelAlign(sequences);
 
 		for (AlignedSequence alignedSeq : allAligneds) {
 
@@ -78,7 +78,7 @@ public class HIVGenotypeResultTest {
 			LOGGER.debug("completeSequence:" + completeSequence);
 			LOGGER.debug("SDRMs:" + sdrms.join());
 
-			HIVGenotypeResult genotypeResult = alignedSeq.getSubtypeResult();
+			GenotypeResult genotypeResult = alignedSeq.getGenotypeResult();
 
 			BoundGenotype bestMatch = genotypeResult.getBestMatch();
 			//Subtype closestSubtype = closestSubtypes.get(0);

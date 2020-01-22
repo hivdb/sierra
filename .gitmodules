@@ -5,3 +5,9 @@
 	path = asi_interpreter
 	url = https://github.com/hivdb/asi_interpreter.git
 	branch = 1.4.0.0
+[submodule "hivfacts"]
+	path = hivfacts
+	url = git@github.com:hivdb/hivfacts.git
+[submodule "sierra-core"]
+	path = sierra-core
+	url = git@github.com:hivdb/sierra-core.git

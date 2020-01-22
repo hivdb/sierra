@@ -28,11 +28,15 @@ import org.junit.Test;
 
 import edu.stanford.hivdb.filetestutils.TestSequencesFiles;
 import edu.stanford.hivdb.filetestutils.TestSequencesFiles.TestSequencesProperties;
-import edu.stanford.hivdb.mutations.Gene;
-import edu.stanford.hivdb.mutations.Strain;
+import edu.stanford.hivdb.hivfacts.HIVGene;
+import edu.stanford.hivdb.hivfacts.HIVStrain;
+import edu.stanford.hivdb.sequences.AlignedGeneSeq;
+import edu.stanford.hivdb.sequences.AlignedSequence;
+import edu.stanford.hivdb.sequences.NucAminoAligner;
+import edu.stanford.hivdb.sequences.PrettyAlignments;
+import edu.stanford.hivdb.sequences.Sequence;
 import edu.stanford.hivdb.utilities.MyFileUtils;
 import edu.stanford.hivdb.utilities.FastaUtils;
-import edu.stanford.hivdb.utilities.Sequence;
 
 public class PrettyAlignmentsTest {
 
@@ -45,10 +49,10 @@ public class PrettyAlignmentsTest {
 		final InputStream testSequenceInputStream = TestSequencesFiles.getTestSequenceInputStream(TestSequencesProperties.MALDARELLI2);
 		final List<Sequence> sequences = FastaUtils.readStream(testSequenceInputStream);
 		Map<Sequence, AlignedSequence> allAligneds = (
-			Aligner.parallelAlign(sequences)
+			NucAminoAligner.parallelAlign(sequences)
 			.stream().collect(Collectors.toMap(as -> as.getInputSequence(), as -> as))
 		);
-		for (Gene gene : Gene.values(Strain.HIV1)) {
+		for (HIVGene gene : HIVGene.values(HIVStrain.HIV1)) {
 			List<AlignedGeneSeq> alignmentResults = new ArrayList<>();
 
 			for (Sequence seq : sequences) {
@@ -66,7 +70,7 @@ public class PrettyAlignmentsTest {
 		}
 	}
 
-	private void printOutAlignment(Gene gene, PrettyAlignments prettyAlignment,
+	private void printOutAlignment(HIVGene gene, PrettyAlignments prettyAlignment,
 			Map<String, Map<Integer, String>> sequenceAllPosAAs) {
 		StringBuilder output = new StringBuilder();
 		String header = String.format("%25s\t", "Sequence Names");

@@ -25,20 +25,21 @@ import static org.junit.Assert.*;
 
 import edu.stanford.hivdb.filetestutils.TestMutationsFiles;
 import edu.stanford.hivdb.filetestutils.TestMutationsFiles.TestMutationsProperties;
-import edu.stanford.hivdb.mutations.Gene;
-import edu.stanford.hivdb.mutations.IUPACMutation;
-import edu.stanford.hivdb.mutations.Mutation;
+import edu.stanford.hivdb.hivfacts.HIVGene;
+import edu.stanford.hivdb.mutations.ConsensusMutation;
+import edu.stanford.hivdb.mutations.MutationFileReader;
 import edu.stanford.hivdb.mutations.MutationSet;
-import edu.stanford.hivdb.utilities.MutationFileReader;
+import edu.stanford.hivdb.hivfacts.HIVAAMutation;
+import edu.stanford.hivdb.hivfacts.HIVDefaultMutationsValidator;
 import edu.stanford.hivdb.utilities.ValidationLevel;
 import edu.stanford.hivdb.utilities.ValidationResult;
 
 public class MutationListValidatorTest {
 
 	private void assertValidationResult(
-			Mutation[] mutations, ValidationLevel[] levels, String[] messages) {
+			HIVAAMutation[] mutations, ValidationLevel[] levels, String[] messages) {
 		MutationSet mutSet = new MutationSet(mutations);
-		MutationListValidator validator = new MutationListValidator(mutSet);
+		HIVDefaultMutationsValidator validator = new HIVDefaultMutationsValidator(mutSet);
 		if (levels.length == 0) {
 			try {
 				assertTrue(validator.validate());
@@ -59,7 +60,7 @@ public class MutationListValidatorTest {
 		}
 	}
 
-	private void assertValidationResult(Mutation[] mutations) {
+	private void assertValidationResult(HIVAAMutation[] mutations) {
 		assertValidationResult(
 			mutations, new ValidationLevel[] {}, new String[] {});
 	}
@@ -71,7 +72,7 @@ public class MutationListValidatorTest {
 				TestMutationsFiles.getTestMutationsInputStream(TestMutationsProperties.VALIDATION_TEST);
 		final List<MutationSet> mutationSets = MutationFileReader.readMutationLists(testMutationsInputStream);
 		for (MutationSet mutSet : mutationSets) {
-			MutationListValidator validator = new MutationListValidator(mutSet);
+			HIVDefaultMutationsValidator validator = new HIVDefaultMutationsValidator(mutSet);
 			validator.validate();
 			List<ValidationResult> results = validator.getValidationResults();
 			for (ValidationResult result : results) {
@@ -88,9 +89,9 @@ public class MutationListValidatorTest {
 
 		assertValidationResult(
 			/* mutations as the input for MutationListValidator */
-			new Mutation[] {
-				new IUPACMutation(Gene.valueOf("HIV1RT"), 122, "*"),
-				new IUPACMutation(Gene.valueOf("HIV1IN"), 23, "*"),
+			new HIVAAMutation[] {
+				new ConsensusMutation(HIVGene.valueOf("HIV1RT"), 122, "*"),
+				new ConsensusMutation(HIVGene.valueOf("HIV1IN"), 23, "*"),
 			},
 			/* expected result level(s) */
 			new ValidationLevel[] {
@@ -110,8 +111,8 @@ public class MutationListValidatorTest {
 
 		assertValidationResult(
 			/* mutations as the input for MutationListValidator */
-			new Mutation[] {
-				new IUPACMutation(Gene.valueOf("HIV1RT"), 43, "*"),
+			new HIVAAMutation[] {
+				new ConsensusMutation(HIVGene.valueOf("HIV1RT"), 43, "*"),
 			},
 			/* expected result level(s) */
 			new ValidationLevel[] {
@@ -128,8 +129,8 @@ public class MutationListValidatorTest {
 	public void testMutationsAllAtDRM() {
 		assertValidationResult(
 			/* mutations as the input for MutationListValidator */
-			new Mutation[] {
-				new IUPACMutation(Gene.valueOf("HIV1PR"), 54, "V"),
+			new HIVAAMutation[] {
+				new ConsensusMutation(HIVGene.valueOf("HIV1PR"), 54, "V"),
 			}
 			/* the expected result should be empty */
 		);

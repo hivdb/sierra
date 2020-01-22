@@ -21,10 +21,10 @@ package edu.stanford.hivdb.graphql;
 import graphql.schema.*;
 
 import static graphql.Scalars.*;
-import static edu.stanford.hivdb.graphql.GeneDef.oGene;
-import static edu.stanford.hivdb.graphql.GeneDef.enumGene;
 import static graphql.schema.GraphQLObjectType.newObject;
 import static graphql.schema.GraphQLInputObjectType.newInputObject;
+import static graphql.schema.GraphQLCodeRegistry.newCodeRegistry;
+import static graphql.schema.FieldCoordinates.coordinates;
 
 import java.util.HashMap;
 import java.util.List;
@@ -32,15 +32,17 @@ import java.util.Map;
 import java.util.function.UnaryOperator;
 import java.util.stream.Collectors;
 
+import edu.stanford.hivdb.viruses.Strain;
+import edu.stanford.hivdb.hivfacts.HIV;
 import edu.stanford.hivdb.mutations.CodonReads;
-import edu.stanford.hivdb.mutations.Gene;
-import edu.stanford.hivdb.mutations.GeneEnum;
 import edu.stanford.hivdb.mutations.PositionCodonReads;
-import edu.stanford.hivdb.mutations.Strain;
+
+import static edu.stanford.hivdb.graphql.GeneDef.oGene;
+import static edu.stanford.hivdb.graphql.GeneDef.enumGene;
 
 public class PositionCodonReadsDef {
 
-	public static PositionCodonReads toPositionCodonReads(Strain strain, Map<?, ?> input) {
+	public static PositionCodonReads<HIV> toPositionCodonReads(Strain<HIV> strain, Map<?, ?> input) {
 		Map<String, Long> allCodonReads = (
 			((List<?>) input.get("allCodonReads"))
 			.stream()
@@ -55,8 +57,8 @@ public class PositionCodonReadsDef {
 		if (totalReads < 0) {
 			totalReads = allCodonReads.values().stream().reduce(Long::sum).get();
 		}
-		return new PositionCodonReads(
-			Gene.valueOf(strain, (GeneEnum) input.get("gene")),
+		return new PositionCodonReads<>(
+			strain.getGene((String) input.get("gene")),
 			(Integer) input.get("position"),
 			totalReads,
 			allCodonReads);
@@ -75,6 +77,18 @@ public class PositionCodonReadsDef {
 			.type(GraphQLLong)
 			.name("reads")
 			.description("Number of reads for this codon."))
+		.build();
+	
+	private static DataFetcher<Double> aaPercentDataFetcher = env -> {
+		CodonReads<HIV> cr = env.getSource();
+		return cr.getAAPercent();
+	};
+	
+	private static GraphQLCodeRegistry oneCodonReadsCodeRegistry = newCodeRegistry()
+		.dataFetcher(
+			coordinates("OneCodonReads", "aaPercent"),
+			aaPercentDataFetcher
+		)
 		.build();
 
 	public static GraphQLObjectType oOneCodonReads = newObject()
@@ -109,33 +123,27 @@ public class PositionCodonReadsDef {
 		.field(field -> field
 			.type(GraphQLFloat)
 			.name("aaPercent")
-			.dataFetcher(cr -> ((CodonReads) cr.getSource()).getAAPercent())
 			.description("Amino acid prevalence in HIVDB database (0.0 - 1.0)"))
 		.field(field -> field
 			.type(GraphQLBoolean)
 			.name("isReference")
-			.dataFetcher(cr -> ((CodonReads) cr.getSource()).isReference())
 			.description("The amino acid is the same as the reference (consensus) amino acid."))
 		.field(field -> field
 			.type(GraphQLBoolean)
 			.name("isDRM")
-			.dataFetcher(cr -> ((CodonReads) cr.getSource()).isDRM())
 			.description(
 				"The amino acid is a known drug resistance mutation (DRM)."))
 		.field(field -> field
 			.type(GraphQLBoolean)
 			.name("isUnusual")
-			.dataFetcher(cr -> ((CodonReads) cr.getSource()).isUnusual())
 			.description("The amino acid is an unusual mutation."))
 		.field(field -> field
 			.type(GraphQLBoolean)
 			.name("isApobecMutation")
-			.dataFetcher(cr -> ((CodonReads) cr.getSource()).isApobecMutation())
 			.description("The amino acid is a signature APOBEC-mediated hypermutation."))
 		.field(field -> field
 			.type(GraphQLBoolean)
 			.name("isApobecDRM")
-			.dataFetcher(cr -> ((CodonReads) cr.getSource()).isApobecDRM())
 			.description(
 				"The amino acid is a drug resistance mutation (DRM) might " +
 				"be caused by APOBEC-mediated G-to-A hypermutation."))
@@ -182,6 +190,23 @@ public class PositionCodonReadsDef {
 			.name("allCodonReads")
 			.description("All codon reads at this position."))
 		.build();
+	
+	private static DataFetcher<List<CodonReads<HIV>>> oneCodonReadsDataFetcher = env -> {
+		PositionCodonReads<HIV> pcr = env.getSource();
+		return pcr.getCodonReads(
+			(Boolean) env.getArgument("mutationOnly"),
+			(double) env.getArgument("maxProportion"),
+			(double) env.getArgument("minProportion")
+		);
+	};
+	
+	public static GraphQLCodeRegistry positionCodonCodeRegistry = newCodeRegistry()
+		.dataFetcher(
+			coordinates("PositionCodonReads", "codonReads"),
+			oneCodonReadsDataFetcher
+		)
+		.dataFetchers(oneCodonReadsCodeRegistry)
+		.build();
 
 	public static GraphQLObjectType oPositionCodonReads = newObject()
 		.name("PositionCodonReads")
@@ -203,14 +228,6 @@ public class PositionCodonReadsDef {
 		.field(field -> codonReadsArgs.apply(field)
 			.type(new GraphQLList(oOneCodonReads))
 			.name("codonReads")
-			.dataFetcher(e -> (
-				((PositionCodonReads) e.getSource())
-				.getCodonReads(
-					(Boolean) e.getArgument("mutationOnly"),
-					(double) e.getArgument("maxProportion"),
-					(double) e.getArgument("minProportion")
-				)
-			))
 			.description("All codon reads at this position."))
 		.build();
 

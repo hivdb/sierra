@@ -34,15 +34,15 @@ import org.junit.Assert;
 
 import com.google.gson.reflect.TypeToken;
 
+import edu.stanford.hivdb.comments.ConditionalComments;
 import edu.stanford.hivdb.drugresistance.TestMutationPatternFiles.TestMutationPatterns;
-import edu.stanford.hivdb.drugresistance.database.ConditionalComments;
 import edu.stanford.hivdb.drugresistance.database.MutationPatternFileReader;
-import edu.stanford.hivdb.drugs.Drug;
-import edu.stanford.hivdb.drugs.DrugClass;
-import edu.stanford.hivdb.mutations.Gene;
-import edu.stanford.hivdb.mutations.MutType;
+import edu.stanford.hivdb.hivfacts.HIVDrug;
+import edu.stanford.hivdb.hivfacts.HIVDrugClass;
+import edu.stanford.hivdb.hivfacts.HIVGene;
+import edu.stanford.hivdb.hivfacts.HIVStrain;
 import edu.stanford.hivdb.mutations.MutationSet;
-import edu.stanford.hivdb.mutations.Strain;
+import edu.stanford.hivdb.mutations.MutationType;
 import edu.stanford.hivdb.utilities.Json;
 
 /**
@@ -58,12 +58,12 @@ public class MutationPatternsResistanceJsonComparisonTest {
 		for (TestMutationPatterns testMutationPatterns : TestMutationPatterns.values()) {
 			final InputStream mutationPatternsInputStream =
 					TestMutationPatternFiles.getTestMutationPatternsInputStream(testMutationPatterns);
-			DrugClass drugClass = testMutationPatterns.getDrugClass();
+			HIVDrugClass drugClass = testMutationPatterns.getDrugClass();
 			//System.out.println("In MutationPatternsResistanceToJson:" + testMutationPatterns.toString());
 			final List<MutationSet> mutationLists =
 					MutationPatternFileReader.readMutationListsForDrugClass(drugClass, mutationPatternsInputStream);
 
-			Gene gene = Gene.valueOf(Strain.HIV1, drugClass.gene());
+			HIVGene gene = HIVGene.valueOf(HIVStrain.HIV1, drugClass.gene());
 			final Map<MutationSet, GeneDR> allResistanceResultsAsi =
 				GeneDRAsi.parallelConstructor(gene, new HashSet<>(mutationLists));
 
@@ -72,17 +72,17 @@ public class MutationPatternsResistanceJsonComparisonTest {
 
 			// Test the totalScore files
 			// Calculated scores for each mutation list
-			Map<String, Map<Drug, Integer>> mutPatternScoresCalculatedAsi = new HashMap<>();
-			Map<String, Map<Drug, Integer>> mutPatternScoresCalculatedFast = new HashMap<>();
+			Map<String, Map<HIVDrug, Integer>> mutPatternScoresCalculatedAsi = new HashMap<>();
+			Map<String, Map<HIVDrug, Integer>> mutPatternScoresCalculatedFast = new HashMap<>();
 			for (MutationSet mutations : mutationLists) {
 				String fmtMutationList = mutations.join();
 				GeneDR resistanceResultsAsi = allResistanceResultsAsi.get(mutations);
 				GeneDR resistanceResultsFast = allResistanceResultsFast.get(mutations);
 
-				Map<Drug, Integer> totalScoresAsi = new HashMap<>();
-				Map<Drug, Integer> totalScoresFast = new HashMap<>();
+				Map<HIVDrug, Integer> totalScoresAsi = new HashMap<>();
+				Map<HIVDrug, Integer> totalScoresFast = new HashMap<>();
 
-				for (Drug drug : drugClass.getDrugsForHivdbTesting()) {
+				for (HIVDrug drug : drugClass.getDrugs()) {
 					double totalScoreAsi = resistanceResultsAsi.getTotalDrugScore(drug);
 					double totalScoreFast = resistanceResultsFast.getTotalDrugScore(drug);
 					totalScoresAsi.put(drug, (int)totalScoreAsi);
@@ -93,12 +93,12 @@ public class MutationPatternsResistanceJsonComparisonTest {
 			}
 
 			// Retrieve pre-existing saved scores in json format
-			Type mapTypeScores = new TypeToken<Map<String, Map<Drug, Integer>>>() {}.getType();
+			Type mapTypeScores = new TypeToken<Map<String, Map<HIVDrug, Integer>>>() {}.getType();
 			final InputStream mutPatternDrugScoresJsonInputStream =
 				MutationPatternsResistanceJsonComparisonTest.class.getClassLoader().getResourceAsStream(
 					"MutationPatternsExpectedResistanceResults/Patterns" + drugClass + ".scores.json");
 			BufferedReader brScores = new BufferedReader(new InputStreamReader(mutPatternDrugScoresJsonInputStream));
-			Map<String, Map<Drug, Integer>> mutPatternScoresExpected = Json.loads(brScores, mapTypeScores);
+			Map<String, Map<HIVDrug, Integer>> mutPatternScoresExpected = Json.loads(brScores, mapTypeScores);
 
 			// Compare the results
 			Assert.assertTrue(
@@ -112,7 +112,7 @@ public class MutationPatternsResistanceJsonComparisonTest {
 				mutPatternScoresExpected.size() == mutPatternScoresCalculatedFast.size()
 				);
 			for (String mutList : mutPatternScoresExpected.keySet()) {
-				for (Drug drug : mutPatternScoresExpected.get(mutList).keySet()) {
+				for (HIVDrug drug : mutPatternScoresExpected.get(mutList).keySet()) {
 					int expectedScore = mutPatternScoresExpected.get(mutList).get(drug);
 					int calculatedScoreAsi = mutPatternScoresCalculatedAsi.get(mutList).get(drug);
 					int calculatedScoreFast = mutPatternScoresCalculatedFast.get(mutList).get(drug);
@@ -128,15 +128,15 @@ public class MutationPatternsResistanceJsonComparisonTest {
 
 			// Test the levels files
 			// Calculated levels for each mutation list
-			Map<String, Map<Drug, Integer>> mutPatternLevelsCalculatedAsi = new HashMap<>();
-			Map<String, Map<Drug, Integer>> mutPatternLevelsCalculatedFast = new HashMap<>();
+			Map<String, Map<HIVDrug, Integer>> mutPatternLevelsCalculatedAsi = new HashMap<>();
+			Map<String, Map<HIVDrug, Integer>> mutPatternLevelsCalculatedFast = new HashMap<>();
 			for (MutationSet mutations : mutationLists) {
 				String fmtMutationList = mutations.join();
 				GeneDR resistanceResultsAsi = allResistanceResultsAsi.get(mutations);
 				GeneDR resistanceResultsFast = allResistanceResultsFast.get(mutations);
-				Map<Drug, Integer> levelsAsi = new HashMap<>();
-				Map<Drug, Integer> levelsFast = new HashMap<>();
-				for (Drug drug : drugClass.getDrugsForHivdbTesting()) {
+				Map<HIVDrug, Integer> levelsAsi = new HashMap<>();
+				Map<HIVDrug, Integer> levelsFast = new HashMap<>();
+				for (HIVDrug drug : drugClass.getDrugs()) {
 					int levelAsi = resistanceResultsAsi.getDrugLevel(drug);
 					int levelFast = resistanceResultsFast.getDrugLevel(drug);
 					levelsAsi.put(drug, levelAsi);
@@ -151,7 +151,7 @@ public class MutationPatternsResistanceJsonComparisonTest {
 				MutationPatternsResistanceJsonComparisonTest.class.getClassLoader().getResourceAsStream(
 					"MutationPatternsExpectedResistanceResults/Patterns" + drugClass + ".levels.json");
 			BufferedReader brLevels = new BufferedReader(new InputStreamReader(mutPatternDrugLevelsJsonInputStream));
-			Map<String, Map<Drug, Integer>> mutPatternLevelsExpected = Json.loads(brLevels, mapTypeScores);
+			Map<String, Map<HIVDrug, Integer>> mutPatternLevelsExpected = Json.loads(brLevels, mapTypeScores);
 
 			// Compare the results
 			Assert.assertTrue(
@@ -159,7 +159,7 @@ public class MutationPatternsResistanceJsonComparisonTest {
 				mutPatternLevelsExpected.size() == mutPatternLevelsCalculatedFast.size()
 			);
 			for (String mutList : mutPatternLevelsExpected.keySet()) {
-				for (Drug drug : mutPatternLevelsExpected.get(mutList).keySet()) {
+				for (HIVDrug drug : mutPatternLevelsExpected.get(mutList).keySet()) {
 					int expectedLevel = mutPatternLevelsExpected.get(mutList).get(drug);
 					int calculatedLevelAsi = mutPatternLevelsCalculatedAsi.get(mutList).get(drug);
 					int calculatedLevelFast = mutPatternLevelsCalculatedFast.get(mutList).get(drug);
@@ -174,22 +174,22 @@ public class MutationPatternsResistanceJsonComparisonTest {
 
 			// Test the mutTypes files
 			// Calculated levels for each mutation list
-			Map<String, Map<MutType, String>> mutPatternMutTypesCalculatedAsi = new HashMap<>();
-			Map<String, Map<MutType, String>> mutPatternMutTypesCalculatedFast = new HashMap<>();
+			Map<String, Map<MutationType, String>> mutPatternMutTypesCalculatedAsi = new HashMap<>();
+			Map<String, Map<MutationType, String>> mutPatternMutTypesCalculatedFast = new HashMap<>();
 			for (MutationSet mutations : mutationLists) {
 				String fmtMutationList = mutations.join();
 				GeneDR resistanceResultsAsi = allResistanceResultsAsi.get(mutations);
 				GeneDR resistanceResultsFast = allResistanceResultsFast.get(mutations);
-				Map<MutType, String> mutTypesAsi = new HashMap<>();
-				Map<MutType, String> mutTypesFast = new HashMap<>();
-				Map<MutType, MutationSet> mutTypeMutListsAsi = resistanceResultsAsi.groupMutationsByTypes();
-				Map<MutType, MutationSet> mutTypeMutListsFast = resistanceResultsFast.groupMutationsByTypes();
-				for (MutType mutType : mutTypeMutListsAsi.keySet()) {
+				Map<MutationType, String> mutTypesAsi = new HashMap<>();
+				Map<MutationType, String> mutTypesFast = new HashMap<>();
+				Map<MutationType, MutationSet> mutTypeMutListsAsi = resistanceResultsAsi.groupMutationsByTypes();
+				Map<MutationType, MutationSet> mutTypeMutListsFast = resistanceResultsFast.groupMutationsByTypes();
+				for (MutationType mutType : mutTypeMutListsAsi.keySet()) {
 					MutationSet mutListAsi = mutTypeMutListsAsi.get(mutType);
 					String mutListStringAsi = mutListAsi.join();
 					mutTypesAsi.put(mutType,  mutListStringAsi);
 				}
-				for (MutType mutType : mutTypeMutListsFast.keySet()) {
+				for (MutationType mutType : mutTypeMutListsFast.keySet()) {
 					MutationSet mutListFast = mutTypeMutListsFast.get(mutType);
 					String mutListStringFast = mutListFast.join();
 					mutTypesFast.put(mutType,  mutListStringFast);
@@ -199,12 +199,12 @@ public class MutationPatternsResistanceJsonComparisonTest {
 			}
 
 			// Retrieve pre-existing saved mutTypes in json format
-			Type mapTypeMutTypes = new TypeToken<Map<String, Map<MutType, String>>>() {}.getType();
+			Type mapTypeMutTypes = new TypeToken<Map<String, Map<MutationType, String>>>() {}.getType();
 			final InputStream mutPatternMutTypesJsonInputStream =
 					MutationPatternsResistanceJsonComparisonTest.class.getClassLoader().getResourceAsStream(
 						"MutationPatternsExpectedResistanceResults/Patterns" + drugClass + ".mutTypes.json");
 			BufferedReader brMutTypes = new BufferedReader(new InputStreamReader(mutPatternMutTypesJsonInputStream));
-			Map<String, Map<MutType, String>> mutPatternMutTypesExpected = Json.loads(brMutTypes, mapTypeMutTypes);
+			Map<String, Map<MutationType, String>> mutPatternMutTypesExpected = Json.loads(brMutTypes, mapTypeMutTypes);
 
 
 			// Compare the results
@@ -213,7 +213,7 @@ public class MutationPatternsResistanceJsonComparisonTest {
 				mutPatternMutTypesExpected.size() == mutPatternMutTypesCalculatedFast.size()
 			);
 			for (String mutList : mutPatternMutTypesExpected.keySet()) {
-				for (MutType mutType : mutPatternMutTypesExpected.get(mutList).keySet()) {
+				for (MutationType mutType : mutPatternMutTypesExpected.get(mutList).keySet()) {
 					String expectedMutList = mutPatternMutTypesExpected.get(mutList).get(mutType);
 					String calculatedMutListAsi = mutPatternMutTypesCalculatedAsi.get(mutList).get(mutType);
 					String calculatedMutListFast = mutPatternMutTypesCalculatedFast.get(mutList).get(mutType);

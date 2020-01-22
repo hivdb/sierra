@@ -25,37 +25,38 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.stanford.hivdb.drugs.DrugClass;
-import edu.stanford.hivdb.mutations.Gene;
-import edu.stanford.hivdb.mutations.MutationSet;
-import edu.stanford.hivdb.mutations.Strain;
-import edu.stanford.hivdb.utilities.MutationFileReader;
+// import edu.stanford.hivdb.hivfacts.HIVDrugClass;
+// import edu.stanford.hivdb.hivfacts.HIVGene;
+// import edu.stanford.hivdb.hivfacts.HIVStrain;
+// import edu.stanford.hivdb.mutations.MutationFileReader;
+// import edu.stanford.hivdb.mutations.MutationSet;
 
-public class MutationPatternFileReader extends MutationFileReader {
+@Deprecated
+public class MutationPatternFileReader /*extends MutationFileReader*/ {
 
-	/**
-	 * Reads in a list of mutations on a single line. This is used primarily for testing purposes
-	 * The expected mutation format for this reader an optional consensus followed by Pos . AAs separated by commas
-	 * The gene is known because the drugClass is passed in as a parameter
-	 * @param filePath Path to the file to read in
-	 * @return List of MutationSets
-	 */
-	public static List<MutationSet> readMutationListsForDrugClass(DrugClass drugClass, InputStream fileInputStream) {
-		Gene gene = Gene.valueOf(Strain.HIV1, drugClass.gene());
-		List<MutationSet> mutationLists = new ArrayList<>();
-
-		try {
-			BufferedReader br = new BufferedReader(new InputStreamReader(fileInputStream));
-			String line;
-			while ((line = br.readLine()) != null) {
-				if (line.startsWith(">") || shouldSkip(line)) continue;
-				mutationLists.add(new MutationSet(gene, line.trim()));
-			}
-			br.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-		return mutationLists;
-	}
+// 	/**
+// 	 * Reads in a list of mutations on a single line. This is used primarily for testing purposes
+// 	 * The expected mutation format for this reader an optional consensus followed by Pos . AAs separated by commas
+// 	 * The gene is known because the drugClass is passed in as a parameter
+// 	 * @param filePath Path to the file to read in
+// 	 * @return List of MutationSets
+// 	 */
+// 	public static List<MutationSet> readMutationListsForDrugClass(HIVDrugClass drugClass, InputStream fileInputStream) {
+// 		HIVGene gene = HIVGene.valueOf(HIVStrain.HIV1, drugClass.gene());
+// 		List<MutationSet> mutationLists = new ArrayList<>();
+// 
+// 		try {
+// 			BufferedReader br = new BufferedReader(new InputStreamReader(fileInputStream));
+// 			String line;
+// 			while ((line = br.readLine()) != null) {
+// 				if (line.startsWith(">") || shouldSkip(line)) continue;
+// 				mutationLists.add(new MutationSet(gene, line.trim()));
+// 			}
+// 			br.close();
+// 		} catch (IOException e) {
+// 			e.printStackTrace();
+// 		}
+// 
+// 		return mutationLists;
+// 	}
 }

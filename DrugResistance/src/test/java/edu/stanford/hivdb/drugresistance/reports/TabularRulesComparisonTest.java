@@ -29,7 +29,7 @@ import org.junit.Test;
 
 import edu.stanford.hivdb.drugresistance.database.HivdbVersion;
 import edu.stanford.hivdb.drugresistance.reports.TabularRulesComparison.ComparisonDataLoader;
-import edu.stanford.hivdb.drugs.DrugClass;
+import edu.stanford.hivdb.hivfacts.HIVDrugClass;
 import edu.stanford.hivdb.testutils.MockDatabase;
 import edu.stanford.hivdb.utilities.Json;
 
@@ -40,14 +40,14 @@ public class TabularRulesComparisonTest {
 
 	@Test
 	public void testGetInstance() {
-		TabularRulesComparison instance1 = TabularRulesComparison.getInstance(versionPair, DrugClass.INSTI);
-		TabularRulesComparison instance2 = TabularRulesComparison.getInstance(versionPair, DrugClass.INSTI);
+		TabularRulesComparison instance1 = TabularRulesComparison.getInstance(versionPair, HIVDrugClass.INSTI);
+		TabularRulesComparison instance2 = TabularRulesComparison.getInstance(versionPair, HIVDrugClass.INSTI);
 		assertEquals(instance1, instance2);
 	}
 
 	@Test
 	public void testToString() {
-		TabularRulesComparison instance = TabularRulesComparison.getInstance(versionPair, DrugClass.INSTI);
+		TabularRulesComparison instance = TabularRulesComparison.getInstance(versionPair, HIVDrugClass.INSTI);
 		assertEquals(
 			"Rule\tBIC\tDTG\tEVG\tRAL\tNum Diffs\tMax Diff",
 			instance.toString().split("\n")[0]);
@@ -67,7 +67,7 @@ public class TabularRulesComparisonTest {
 		db.whenSelect(
 			stmt1,
 			new Object[] {
-				DrugClass.PI.name(),
+				HIVDrugClass.PI.name(),
 				HivdbVersion.V7_0.getDBName(),
 				HivdbVersion.V8_9p1.getDBName()
 			},
@@ -83,7 +83,7 @@ public class TabularRulesComparisonTest {
 		db.whenSelect(
 			stmt1,
 			new Object[] {
-				DrugClass.NRTI.name(),
+				HIVDrugClass.NRTI.name(),
 				HivdbVersion.V7_0.getDBName(),
 				HivdbVersion.V8_9p1.getDBName()
 			},
@@ -97,7 +97,7 @@ public class TabularRulesComparisonTest {
 		db.whenSelect(
 			stmt2,
 			new Object[] {
-				DrugClass.NRTI.name(),
+				HIVDrugClass.NRTI.name(),
 				HivdbVersion.V7_0.getDBName(),
 				HivdbVersion.V8_9p1.getDBName()
 			},
@@ -114,16 +114,16 @@ public class TabularRulesComparisonTest {
 				{"210W+215FY", "AZT", "V7_0", 10},
 				{"210W+215FY", "AZT", "V8_9", 10}
 			});
-		Map<DrugClass, List<List<String>>> result = dl.load().get(versionPair);
+		Map<HIVDrugClass, List<List<String>>> result = dl.load().get(versionPair);
 		// For IndexOutOfBoundsException: Did you just update the HIVdb version? Update all the versions above
-		assertEquals("E40F, 5, 0, 0, 0, 0, 0, 0, 0, 0", String.join(", ", result.get(DrugClass.NRTI).get(0)));
-		assertEquals("Y115F+M184IV, 0, 0, 0, 0, 0, 0, 10 => 0, 1, 10", String.join(", ", result.get(DrugClass.NRTI).get(1)));
-		assertEquals("L74IV+M184IV, 15, 0, 0, 0, 0, 0, 0, 0, 0", String.join(", ", result.get(DrugClass.NRTI).get(2)));
-		assertEquals("L210W+T215FY, 10, 10, 0, 0, 0, 0 => 5, 0, 1, 5", String.join(", ", result.get(DrugClass.NRTI).get(3)));
-		assertTrue(result.get(DrugClass.NNRTI).isEmpty());
-		assertTrue(result.get(DrugClass.INSTI).isEmpty());
-		assertEquals("L10F, 0, 5 => 15, 0, 0, 0, 0 => 15, 0, 0, 2, 15", String.join(", ", result.get(DrugClass.PI).get(0)));
-		assertEquals("V11I, 0, 5 => 0, 0, 0, 0, 0, 0, 0, 1, 5", String.join(", ", result.get(DrugClass.PI).get(1)));
+		assertEquals("E40F, 5, 0, 0, 0, 0, 0, 0, 0, 0", String.join(", ", result.get(HIVDrugClass.NRTI).get(0)));
+		assertEquals("Y115F+M184IV, 0, 0, 0, 0, 0, 0, 10 => 0, 1, 10", String.join(", ", result.get(HIVDrugClass.NRTI).get(1)));
+		assertEquals("L74IV+M184IV, 15, 0, 0, 0, 0, 0, 0, 0, 0", String.join(", ", result.get(HIVDrugClass.NRTI).get(2)));
+		assertEquals("L210W+T215FY, 10, 10, 0, 0, 0, 0 => 5, 0, 1, 5", String.join(", ", result.get(HIVDrugClass.NRTI).get(3)));
+		assertTrue(result.get(HIVDrugClass.NNRTI).isEmpty());
+		assertTrue(result.get(HIVDrugClass.INSTI).isEmpty());
+		assertEquals("L10F, 0, 5 => 15, 0, 0, 0, 0 => 15, 0, 0, 2, 15", String.join(", ", result.get(HIVDrugClass.PI).get(0)));
+		assertEquals("V11I, 0, 5 => 0, 0, 0, 0, 0, 0, 0, 1, 5", String.join(", ", result.get(HIVDrugClass.PI).get(1)));
 		assertEquals("allRows", dl.getFieldName());
 	}
 

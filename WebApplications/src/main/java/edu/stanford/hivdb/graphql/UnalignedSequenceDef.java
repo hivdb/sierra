@@ -24,14 +24,13 @@ import static graphql.schema.GraphQLInputObjectField.newInputObjectField;
 import static graphql.schema.GraphQLObjectType.newObject;
 
 import static edu.stanford.hivdb.graphql.Exceptions.*;
-import static edu.stanford.hivdb.graphql.ExtendedFieldDefinition.newFieldDefinition;
 
 import java.util.Map;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import edu.stanford.hivdb.utilities.Sequence;
+import edu.stanford.hivdb.sequences.Sequence;
 
 import static graphql.schema.GraphQLInputObjectType.newInputObject;
 
@@ -71,26 +70,22 @@ public class UnalignedSequenceDef {
 	public static GraphQLObjectType oUnalignedSequence = newObject()
 		.name("UnalignedSequenceOutput")
 		.description("Unaligned sequence.")
-		.field(newFieldDefinition()
+		.field(field -> field
 			.type(GraphQLString)
 			.name("header")
-			.description("Name of the sequence.")
-			.build())
-		.field(newFieldDefinition()
+			.description("Name of the sequence."))
+		.field(field -> field
 			.type(GraphQLString)
 			.name("sequence")
-			.description("The sequence itself as a string.")
-			.build())
-		.field(newFieldDefinition()
+			.description("The sequence itself as a string."))
+		.field(field -> field
 			.type(GraphQLString)
 			.name("MD5")
-			.description("Hex MD5 value of the sequence.")
-			.build())
-		.field(newFieldDefinition()
+			.description("Hex MD5 value of the sequence."))
+		.field(field -> field
 			.type(GraphQLString)
 			.name("SHA512")
-			.description("Hex SHA512 value of the sequence.")
-			.build())
+			.description("Hex SHA512 value of the sequence."))
 		.build();
 
 	public static GraphQLInputObjectType iUnalignedSequence = newInputObject()

@@ -24,37 +24,37 @@ import static org.mockito.Mockito.*;
 import java.util.Collections;
 import org.junit.Test;
 
-import edu.stanford.hivdb.drugresistance.database.CommentType;
-import edu.stanford.hivdb.drugs.Drug;
-import edu.stanford.hivdb.drugs.DrugClass;
-import edu.stanford.hivdb.mutations.Gene;
-import edu.stanford.hivdb.mutations.MutType;
+import edu.stanford.hivdb.comments.CommentType;
+import edu.stanford.hivdb.hivfacts.HIVDrug;
+import edu.stanford.hivdb.hivfacts.HIVDrugClass;
+import edu.stanford.hivdb.hivfacts.HIVGene;
 import edu.stanford.hivdb.mutations.MutationSet;
+import edu.stanford.hivdb.mutations.MutationType;
 
 public class GeneDRAsiTest {
 
 	@Test
 	public void testGetGene() {
-		GeneDR geneDR = new GeneDRAsi(Gene.valueOf("HIV1IN"), new MutationSet());
-		assertEquals(Gene.valueOf("HIV1IN"), geneDR.getGene());
+		GeneDR geneDR = new GeneDRAsi(HIVGene.valueOf("HIV1IN"), new MutationSet());
+		assertEquals(HIVGene.valueOf("HIV1IN"), geneDR.getGene());
 	}
 
 	@Test
 	public void testGetMutationByType() {
-		GeneDR geneDR = new GeneDRAsi(Gene.valueOf("HIV1IN"), new MutationSet());
-		assertEquals(Collections.emptySet(), geneDR.getMutationsByType(MutType.Major));
+		GeneDR geneDR = new GeneDRAsi(HIVGene.valueOf("HIV1IN"), new MutationSet());
+		assertEquals(Collections.emptySet(), geneDR.getMutationsByType(MutationType.Major));
 
-		geneDR = new GeneDRAsi(Gene.valueOf("HIV1RT"), new MutationSet("RT69T_TT, RT43E"));
-		assertEquals(new MutationSet("RT69T_TT"), geneDR.getMutationsByType(MutType.NRTI));
-		assertEquals(new MutationSet("RT43E"), geneDR.getMutationsByType(MutType.Other));
+		geneDR = new GeneDRAsi(HIVGene.valueOf("HIV1RT"), new MutationSet("RT69T_TT, RT43E"));
+		assertEquals(new MutationSet("RT69T_TT"), geneDR.getMutationsByType(MutationType.NRTI));
+		assertEquals(new MutationSet("RT43E"), geneDR.getMutationsByType(MutationType.Other));
 	}
 
 	@Test
 	public void testGetCommentsByType() {
-		GeneDR geneDR = new GeneDRAsi(Gene.valueOf("HIV1IN"), new MutationSet());
+		GeneDR geneDR = new GeneDRAsi(HIVGene.valueOf("HIV1IN"), new MutationSet());
 		assertEquals(Collections.emptyList(), geneDR.getCommentsByType(CommentType.Major));
 
-		geneDR = new GeneDRAsi(Gene.valueOf("HIV1RT"), new MutationSet("RT69T_TT, RT138D"));
+		geneDR = new GeneDRAsi(HIVGene.valueOf("HIV1RT"), new MutationSet("RT69T_TT, RT138D"));
 		assertEquals(Collections.emptyList(), geneDR.getCommentsByType(CommentType.Major));
 		assertEquals(1, geneDR.getCommentsByType(CommentType.NRTI).size());
 		assertNotEquals(Collections.emptyList(), geneDR.getCommentsByType(CommentType.NRTI));
@@ -64,37 +64,37 @@ public class GeneDRAsiTest {
 
 	@Test
 	public void testDrugClassHasScoredMuts() {
-		GeneDR geneDR = spy(new GeneDRAsi(Gene.valueOf("HIV1IN"), new MutationSet()));
-		doReturn(true).when(geneDR).drugClassHasScoredIndividualMuts(DrugClass.INSTI);
-		doReturn(true).when(geneDR).drugClassHasScoredComboMuts(DrugClass.INSTI);
-		assertTrue(geneDR.drugClassHasScoredMuts(DrugClass.INSTI));
+		GeneDR geneDR = spy(new GeneDRAsi(HIVGene.valueOf("HIV1IN"), new MutationSet()));
+		doReturn(true).when(geneDR).drugClassHasScoredIndividualMuts(HIVDrugClass.INSTI);
+		doReturn(true).when(geneDR).drugClassHasScoredComboMuts(HIVDrugClass.INSTI);
+		assertTrue(geneDR.drugClassHasScoredMuts(HIVDrugClass.INSTI));
 
-		doReturn(false).when(geneDR).drugClassHasScoredComboMuts(DrugClass.INSTI);
-		assertTrue(geneDR.drugClassHasScoredMuts(DrugClass.INSTI));
+		doReturn(false).when(geneDR).drugClassHasScoredComboMuts(HIVDrugClass.INSTI);
+		assertTrue(geneDR.drugClassHasScoredMuts(HIVDrugClass.INSTI));
 
-		doReturn(false).when(geneDR).drugClassHasScoredIndividualMuts(DrugClass.INSTI);
-		doReturn(true).when(geneDR).drugClassHasScoredComboMuts(DrugClass.INSTI);
-		assertTrue(geneDR.drugClassHasScoredMuts(DrugClass.INSTI));
+		doReturn(false).when(geneDR).drugClassHasScoredIndividualMuts(HIVDrugClass.INSTI);
+		doReturn(true).when(geneDR).drugClassHasScoredComboMuts(HIVDrugClass.INSTI);
+		assertTrue(geneDR.drugClassHasScoredMuts(HIVDrugClass.INSTI));
 
-		doReturn(false).when(geneDR).drugClassHasScoredComboMuts(DrugClass.INSTI);
-		assertFalse(geneDR.drugClassHasScoredMuts(DrugClass.INSTI));
+		doReturn(false).when(geneDR).drugClassHasScoredComboMuts(HIVDrugClass.INSTI);
+		assertFalse(geneDR.drugClassHasScoredMuts(HIVDrugClass.INSTI));
 	}
 
 	@Test
 	public void testDrugHasScoredMuts() {
-		GeneDR geneDR = spy(new GeneDRAsi(Gene.valueOf("HIV1IN"), new MutationSet()));
-		doReturn(true).when(geneDR).drugHasScoredIndividualMuts(Drug.RAL);
-		doReturn(true).when(geneDR).drugHasScoredComboMuts(Drug.RAL);
-		assertTrue(geneDR.drugHasScoredMuts(Drug.RAL));
+		GeneDR geneDR = spy(new GeneDRAsi(HIVGene.valueOf("HIV1IN"), new MutationSet()));
+		doReturn(true).when(geneDR).drugHasScoredIndividualMuts(HIVDrug.RAL);
+		doReturn(true).when(geneDR).drugHasScoredComboMuts(HIVDrug.RAL);
+		assertTrue(geneDR.drugHasScoredMuts(HIVDrug.RAL));
 
-		doReturn(false).when(geneDR).drugHasScoredComboMuts(Drug.RAL);
-		assertTrue(geneDR.drugHasScoredMuts(Drug.RAL));
+		doReturn(false).when(geneDR).drugHasScoredComboMuts(HIVDrug.RAL);
+		assertTrue(geneDR.drugHasScoredMuts(HIVDrug.RAL));
 
-		doReturn(false).when(geneDR).drugHasScoredIndividualMuts(Drug.RAL);
-		doReturn(true).when(geneDR).drugHasScoredComboMuts(Drug.RAL);
-		assertTrue(geneDR.drugHasScoredMuts(Drug.RAL));
+		doReturn(false).when(geneDR).drugHasScoredIndividualMuts(HIVDrug.RAL);
+		doReturn(true).when(geneDR).drugHasScoredComboMuts(HIVDrug.RAL);
+		assertTrue(geneDR.drugHasScoredMuts(HIVDrug.RAL));
 
-		doReturn(false).when(geneDR).drugHasScoredComboMuts(Drug.RAL);
-		assertFalse(geneDR.drugHasScoredMuts(Drug.RAL));
+		doReturn(false).when(geneDR).drugHasScoredComboMuts(HIVDrug.RAL);
+		assertFalse(geneDR.drugHasScoredMuts(HIVDrug.RAL));
 	}
 }

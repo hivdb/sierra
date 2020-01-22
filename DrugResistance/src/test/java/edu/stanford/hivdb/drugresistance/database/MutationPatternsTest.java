@@ -28,8 +28,8 @@ import org.junit.Test;
 
 import edu.stanford.hivdb.drugresistance.database.MutationPatterns;
 import edu.stanford.hivdb.drugresistance.database.MutationPatterns.MutationPattern;
-import edu.stanford.hivdb.drugs.Drug;
-import edu.stanford.hivdb.drugs.DrugClass;
+import edu.stanford.hivdb.hivfacts.HIVDrug;
+import edu.stanford.hivdb.hivfacts.HIVDrugClass;
 import edu.stanford.hivdb.testutils.MockDatabase;
 
 /**
@@ -41,9 +41,9 @@ public class MutationPatternsTest {
 
 	@Test
 	public void testConstructor() {
-		MutationPatterns mutPatterns = new MutationPatterns(DrugClass.INSTI);
+		MutationPatterns mutPatterns = new MutationPatterns(HIVDrugClass.INSTI);
 		Map<String, Integer> allPatternCounts = mutPatterns.getAllPatternCounts();
-		assertEquals(DrugClass.INSTI, mutPatterns.getDrugClass());
+		assertEquals(HIVDrugClass.INSTI, mutPatterns.getDrugClass());
 		assertTrue(mutPatterns.getPatternCount("E157Q") > 348);
 		assertTrue(allPatternCounts.get("E157Q") > 348);
 		assertTrue(mutPatterns.getPatternCount("E138A,G140S,Q148H") > 18);
@@ -52,7 +52,7 @@ public class MutationPatternsTest {
 
 	@Test
 	public void testGetOrderedMutPatterns() {
-		MutationPatterns mutPatterns = new MutationPatterns(DrugClass.NRTI);
+		MutationPatterns mutPatterns = new MutationPatterns(HIVDrugClass.NRTI);
 		List<String> mutPatternStrList = mutPatterns.getOrderedMutPatterns();
 		assertTrue(mutPatternStrList.size() > 4749);
 		assertEquals("M184V", mutPatternStrList.get(0));
@@ -60,9 +60,9 @@ public class MutationPatternsTest {
 
 	@Test
 	public void testGroupMutationPatternsByPatternAndDrugs() {
-		MutationPatterns mutPatterns = new MutationPatterns(DrugClass.NNRTI);
-		Map<String, Map<Drug, MutationPattern>> mutPatternMap = mutPatterns.groupMutationPatternsByPatternAndDrugs();
-		assertEquals((Integer) 115, mutPatternMap.get("A98G,K103N,E138Q,K238T").get(Drug.EFV).totalScore);
+		MutationPatterns mutPatterns = new MutationPatterns(HIVDrugClass.NNRTI);
+		Map<String, Map<HIVDrug, MutationPattern>> mutPatternMap = mutPatterns.groupMutationPatternsByPatternAndDrugs();
+		assertEquals((Integer) 115, mutPatternMap.get("A98G,K103N,E138Q,K238T").get(HIVDrug.EFV).totalScore);
 	}
 
 	@Test
@@ -109,11 +109,11 @@ public class MutationPatternsTest {
 				{"2619", 73, "S"},
 			}
 		);
-		Map<DrugClass, List<MutationPattern>> result = dl.load();
-		assertEquals(48, result.get(DrugClass.PI).size());
-		assertEquals(0, result.get(DrugClass.NRTI).size());
-		assertEquals(0, result.get(DrugClass.NNRTI).size());
-		assertEquals(0, result.get(DrugClass.INSTI).size());
+		Map<HIVDrugClass, List<MutationPattern>> result = dl.load();
+		assertEquals(48, result.get(HIVDrugClass.PI).size());
+		assertEquals(0, result.get(HIVDrugClass.NRTI).size());
+		assertEquals(0, result.get(HIVDrugClass.NNRTI).size());
+		assertEquals(0, result.get(HIVDrugClass.INSTI).size());
 	}
 
 }

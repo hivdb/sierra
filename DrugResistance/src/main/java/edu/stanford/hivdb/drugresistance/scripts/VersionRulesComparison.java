@@ -18,10 +18,10 @@
 
 package edu.stanford.hivdb.drugresistance.scripts;
 
-import edu.stanford.hivdb.drugresistance.database.HivdbVersion;
-import edu.stanford.hivdb.drugresistance.reports.TabularRulesComparison;
-import edu.stanford.hivdb.drugs.DrugClass;
-import edu.stanford.hivdb.utilities.MyFileUtils;
+// import edu.stanford.hivdb.drugresistance.database.HivdbVersion;
+// import edu.stanford.hivdb.drugresistance.reports.TabularRulesComparison;
+// import edu.stanford.hivdb.hivfacts.HIVDrugClass;
+// import edu.stanford.hivdb.utilities.MyFileUtils;
 
 
 /**
@@ -34,16 +34,17 @@ import edu.stanford.hivdb.utilities.MyFileUtils;
  *   and are named "AllScoreChanges_CURRENTVERSION__NEWVERSION_DATE.tsv"
  *
  */
+@Deprecated
 public class VersionRulesComparison {
 
-	public static void main (String [] args) {
-		for (DrugClass drugClass : DrugClass.values()) {
-			String output =
-				TabularRulesComparison.getInstance(HivdbVersion.getPrevMajorVersion() + ":" + HivdbVersion.getLatestVersion(), drugClass).toString();
-			String filePath = "__output/VersionComparisons/" + drugClass + "-Rules.tsv";
-			MyFileUtils.writeFile(filePath, output);
-			System.out.println(String.format("%s created.", filePath));
-		}
-	}
+//	public static void main (String [] args) {
+//		for (HIVDrugClass drugClass : HIVDrugClass.values()) {
+//			String output =
+//				TabularRulesComparison.getInstance(HivdbVersion.getPrevMajorVersion() + ":" + HivdbVersion.getLatestVersion(), drugClass).toString();
+//			String filePath = "__output/VersionComparisons/" + drugClass + "-Rules.tsv";
+//			MyFileUtils.writeFile(filePath, output);
+//			System.out.println(String.format("%s created.", filePath));
+//		}
+//	}
 
 }

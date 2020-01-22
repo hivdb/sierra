@@ -18,27 +18,27 @@
 
 package edu.stanford.hivdb.drugresistance.scripts;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-import com.amazonaws.util.StringUtils;
-
-import edu.stanford.hivdb.drugresistance.database.HivdbVersion;
-import edu.stanford.hivdb.drugs.DrugClass;
-import edu.stanford.hivdb.mutations.GeneEnum;
-import edu.stanford.hivdb.mutations.MutType;
-import edu.stanford.hivdb.utilities.MyFileUtils;
+// import java.io.BufferedReader;
+// import java.io.File;
+// import java.io.FileInputStream;
+// import java.io.FileNotFoundException;
+// import java.io.IOException;
+// import java.io.InputStream;
+// import java.io.InputStreamReader;
+// import java.util.ArrayList;
+// import java.util.Arrays;
+// import java.util.List;
+// 
+// import org.apache.logging.log4j.LogManager;
+// import org.apache.logging.log4j.Logger;
+// 
+// import com.amazonaws.util.StringUtils;
+// 
+// import edu.stanford.hivdb.drugresistance.database.HivdbVersion;
+// import edu.stanford.hivdb.hivfacts.HIVDrugClass;
+// import edu.stanford.hivdb.mutations.MutationType;
+// import edu.stanford.hivdb.hivfacts.HIVAbstractGene;
+// import edu.stanford.hivdb.utilities.MyFileUtils;
 
 
 /**
@@ -54,70 +54,71 @@ import edu.stanford.hivdb.utilities.MyFileUtils;
  * into tblCommentsWithVersions.
  *
  */
+@Deprecated
 public class MutationCommentsImporter {
-	private static final String INPUT_FILE_DIR = "__input/MutationComments";
-	private static final String OUTPUT_FILE = "__output/mutationComments.sql";
-	private static final boolean HEADER_FLAG = true;
-	private static final HivdbVersion VERSION = HivdbVersion.getLatestVersion();
-	private static final Logger LOGGER = LogManager.getLogger();
-
-
-	public static void main(String[] args) {
-		StringBuilder statements = new StringBuilder();
-		String fileName = String.format("Comments_%s.tsv", VERSION);
-		File file = new File(INPUT_FILE_DIR, fileName);
-		try {
-			InputStream inputStream = new FileInputStream(file);
-			BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
-			String rowLine;
-			boolean headerFlag = HEADER_FLAG;
-			while ((rowLine = br.readLine()) != null) {
-				if (rowLine.length()>0 && !rowLine.substring(0,1).equals("#")){
-					LOGGER.debug("  line:" + rowLine);
-				}
-				if (headerFlag) {
-					headerFlag = false;
-					continue;
-				}
-				rowLine.trim();
-				statements.append(insertRowIntoDB(rowLine));
-				statements.append('\n');
-			}
-			br.close();
-		} catch (FileNotFoundException e) {
-			System.err.println("Cannot locate " + file);
-			throw new RuntimeException(e);
-		} catch (IOException e) {
-			System.err.println("Cannot read line");
-			throw new RuntimeException(e);
-		}
-		MyFileUtils.writeFile(OUTPUT_FILE, statements.toString());
-		System.out.println(String.format("%s created.", OUTPUT_FILE));
-	}
-
-	private static String insertRowIntoDB(String rowLine) {
-		List<String> rowFields =
-			new ArrayList<String>(Arrays.asList(rowLine.split("\t")));
-		GeneEnum gene = GeneEnum.valueOf(rowFields.remove(0));
-		DrugClass drugClass = DrugClass.valueOf(rowFields.remove(0));
-		int pos = Integer.parseInt(rowFields.remove(0));
-		int rank = Integer.parseInt(rowFields.remove(0));
-		String aas = rowFields.remove(0);
-		MutType mutType = MutType.valueOf(rowFields.remove(0));
-		String comment = rowFields.remove(0);
-		StringBuilder statements = new StringBuilder();
-		statements.append("INSERT INTO `tblCommentsWithVersions` ");
-		statements.append(
-			"(Gene, DrugClass, Pos, AAs, Type, " +
-			"Display, Version, Date, Comment) VALUES ");
-		statements.append(String.format(
-			"('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')",
-			gene, drugClass, pos, aas, mutType,
-			rank, VERSION, VERSION.versionDate,
-			StringUtils.replace(comment.trim(), "'", "''")
-		));
-		statements.append(';');
-		return statements.toString();
-	}
+// 	private static final String INPUT_FILE_DIR = "__input/MutationComments";
+// 	private static final String OUTPUT_FILE = "__output/mutationComments.sql";
+// 	private static final boolean HEADER_FLAG = true;
+// 	private static final HivdbVersion VERSION = HivdbVersion.getLatestVersion();
+// 	private static final Logger LOGGER = LogManager.getLogger();
+// 
+// 
+// 	public static void main(String[] args) {
+// 		StringBuilder statements = new StringBuilder();
+// 		String fileName = String.format("Comments_%s.tsv", VERSION);
+// 		File file = new File(INPUT_FILE_DIR, fileName);
+// 		try {
+// 			InputStream inputStream = new FileInputStream(file);
+// 			BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
+// 			String rowLine;
+// 			boolean headerFlag = HEADER_FLAG;
+// 			while ((rowLine = br.readLine()) != null) {
+// 				if (rowLine.length()>0 && !rowLine.substring(0,1).equals("#")){
+// 					LOGGER.debug("  line:" + rowLine);
+// 				}
+// 				if (headerFlag) {
+// 					headerFlag = false;
+// 					continue;
+// 				}
+// 				rowLine.trim();
+// 				statements.append(insertRowIntoDB(rowLine));
+// 				statements.append('\n');
+// 			}
+// 			br.close();
+// 		} catch (FileNotFoundException e) {
+// 			System.err.println("Cannot locate " + file);
+// 			throw new RuntimeException(e);
+// 		} catch (IOException e) {
+// 			System.err.println("Cannot read line");
+// 			throw new RuntimeException(e);
+// 		}
+// 		MyFileUtils.writeFile(OUTPUT_FILE, statements.toString());
+// 		System.out.println(String.format("%s created.", OUTPUT_FILE));
+// 	}
+// 
+// 	private static String insertRowIntoDB(String rowLine) {
+// 		List<String> rowFields =
+// 			new ArrayList<String>(Arrays.asList(rowLine.split("\t")));
+// 		HIVAbstractGene gene = HIVAbstractGene.valueOf(rowFields.remove(0));
+// 		HIVDrugClass drugClass = HIVDrugClass.valueOf(rowFields.remove(0));
+// 		int pos = Integer.parseInt(rowFields.remove(0));
+// 		int rank = Integer.parseInt(rowFields.remove(0));
+// 		String aas = rowFields.remove(0);
+// 		MutationType mutType = MutationType.valueOf(rowFields.remove(0));
+// 		String comment = rowFields.remove(0);
+// 		StringBuilder statements = new StringBuilder();
+// 		statements.append("INSERT INTO `tblCommentsWithVersions` ");
+// 		statements.append(
+// 			"(Gene, DrugClass, Pos, AAs, Type, " +
+// 			"Display, Version, Date, Comment) VALUES ");
+// 		statements.append(String.format(
+// 			"('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')",
+// 			gene, drugClass, pos, aas, mutType,
+// 			rank, VERSION, VERSION.versionDate,
+// 			StringUtils.replace(comment.trim(), "'", "''")
+// 		));
+// 		statements.append(';');
+// 		return statements.toString();
+// 	}
 
 }

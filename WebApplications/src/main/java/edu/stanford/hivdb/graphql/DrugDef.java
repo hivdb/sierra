@@ -23,47 +23,44 @@ import static graphql.Scalars.*;
 import static graphql.schema.GraphQLObjectType.newObject;
 
 import edu.stanford.hivdb.drugs.Drug;
-import static edu.stanford.hivdb.graphql.ExtendedFieldDefinition.*;
+import edu.stanford.hivdb.hivfacts.HIV;
+
 
 public class DrugDef {
 
 	public static GraphQLEnumType oDrugEnum;
-	public static GraphQLObjectType oDrug;
 
 	static {
+		HIV hiv = HIV.getInstance();
 		GraphQLEnumType.Builder
 			newDrugClassEnum = GraphQLEnumType.newEnum()
 			.name("DrugEnum");
-		for (Drug drug : Drug.values()) {
-			newDrugClassEnum.value(drug.toString(), drug);
+		for (Drug<HIV> drug : hiv.getDrugs()) {
+			String drugText = drug.toString();
+			newDrugClassEnum.value(drugText, drugText);
 		}
 		oDrugEnum = newDrugClassEnum.build();
-
-		oDrug = newObject()
-			.name("Drug")
-			.description("HIV drug.")
-			.field(newFieldDefinition()
-				.type(oDrugEnum)
-				.name("name")
-				.description("Name of the drug.")
-				.dataFetcher(pipeLineDataFetcher)
-				.build())
-			.field(newFieldDefinition()
-				.type(GraphQLString)
-				.name("displayAbbr")
-				.description("Display abbreviation of the drug.")
-				.build())
-			.field(newFieldDefinition()
-				.type(GraphQLString)
-				.name("fullName")
-				.description("Full name of the drug.")
-				.build())
-			.field(newFieldDefinition()
-				.type(new GraphQLTypeReference("DrugClass"))
-				.name("drugClass")
-				.description("Drug class the drug belongs to.")
-				.build())
-			.build();
 	}
+
+	public static GraphQLObjectType oDrug = newObject()
+		.name("Drug")
+		.description("HIV drug.")
+		.field(field -> field
+			.type(oDrugEnum)
+			.name("name")
+			.description("Name of the drug."))
+		.field(field -> field
+			.type(GraphQLString)
+			.name("displayAbbr")
+			.description("Display abbreviation of the drug."))
+		.field(field -> field
+			.type(GraphQLString)
+			.name("fullName")
+			.description("Full name of the drug."))
+		.field(field -> field
+			.type(new GraphQLTypeReference("DrugClass"))
+			.name("drugClass")
+			.description("Drug class the drug belongs to."))
+		.build();
 
 }

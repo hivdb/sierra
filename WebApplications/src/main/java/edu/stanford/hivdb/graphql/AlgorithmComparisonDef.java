@@ -27,22 +27,19 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.LinkedHashMap;
 import java.util.stream.Collectors;
 
 import static graphql.schema.GraphQLInputObjectType.newInputObject;
 import static graphql.schema.GraphQLInputObjectField.newInputObjectField;
 
-import edu.stanford.hivdb.drugresistance.algorithm.Algorithm;
-import edu.stanford.hivdb.drugresistance.algorithm.Asi;
-import edu.stanford.hivdb.mutations.Gene;
+import edu.stanford.hivdb.drugs.DrugResistanceAlgorithm;
+import edu.stanford.hivdb.hivfacts.HIV;
 import edu.stanford.hivdb.mutations.MutationSet;
 import edu.stanford.hivdb.drugresistance.algorithm.AlgorithmComparison;
 
 import static edu.stanford.hivdb.graphql.DrugDef.oDrug;
 import static edu.stanford.hivdb.graphql.DrugClassDef.oDrugClass;
 import static edu.stanford.hivdb.graphql.DrugResistanceDef.oSIR;
-import static edu.stanford.hivdb.graphql.ExtendedFieldDefinition.*;
 
 public class AlgorithmComparisonDef {
 
@@ -50,45 +47,29 @@ public class AlgorithmComparisonDef {
 		GraphQLEnumType.Builder builder = GraphQLEnumType.newEnum()
 			.name("ASIAlgorithm")
 			.description("ASI algorithm.");
-		for (Algorithm alg : Algorithm.values()) {
-			builder.value(alg.toString(), alg);
+		HIV hiv = HIV.getInstance();
+		for (DrugResistanceAlgorithm<HIV> alg : hiv.getDrugResistAlgorithms(hiv.getStrain("HIV1"))) {
+			builder.value(alg.getEnumCompatName(), alg.getName());
 		}
 		return builder.build();
 	}
 
-	private static Map<Gene, List<Asi>>
-			getAsiListMap(
-				Map<Gene, MutationSet> allMuts,
-				Collection<Algorithm> algorithms,
-				Map<String, String> customAlgorithms) {
-		return allMuts.entrySet()
-		.stream()
-		.collect(Collectors.toMap(
-			e -> e.getKey(),
-			e -> {
-				Gene gene = e.getKey();
-				MutationSet muts = e.getValue();
-				List<Asi> asiList = AlgorithmComparison
-					.calcAsiListFromAlgorithms(gene, muts, algorithms);
-				asiList.addAll(AlgorithmComparison
-					.calcAsiListFromCustomAlgorithms(
-						gene, muts, customAlgorithms));
-				return asiList;
-			},
-			(l1, l2) -> l1,
-			LinkedHashMap::new
-		));
-	}
-
 	protected static List<Map<String, Object>> fetchAlgorithmComparisonData(
-			Map<Gene, MutationSet> allMuts,
-			Collection<Algorithm> algorithms,
+			MutationSet<HIV> allMuts,
+			Collection<String> algorithmNames,
 			Map<String, String> customAlgorithms) {
-		AlgorithmComparison algCmp =
-			new AlgorithmComparison(getAsiListMap(allMuts, algorithms, customAlgorithms));
+		HIV hiv = HIV.getInstance();
+		Collection<DrugResistanceAlgorithm<HIV>> algorithms = hiv.getDrugResistAlgorithms(algorithmNames); 
+		customAlgorithms.entrySet().stream().forEach(e -> {
+			algorithms.add(new DrugResistanceAlgorithm<>(
+				/* name =        */ e.getKey(),
+				/* strain =      */ hiv.getStrain("HIV1"),
+				/* xmlText =     */ e.getValue()));
+		});
+		AlgorithmComparison<HIV> algCmp = new AlgorithmComparison<>(allMuts, algorithms);
 		return algCmp.getComparisonResults()
 			.stream()
-			.collect(Collectors.groupingBy(cds -> cds.drug.getDrugClass()))
+			.collect(Collectors.groupingBy(cds -> cds.getDrug().getDrugClass()))
 			.entrySet()
 			.stream()
 			.map(e -> {
@@ -131,45 +112,39 @@ public class AlgorithmComparisonDef {
 
 	public static GraphQLObjectType oComparableDrugScore = newObject()
 		.name("ComparableDrugScore")
-		.field(newFieldDefinition()
+		.field(field -> field
 			.name("drug")
 			.type(oDrug)
-			.description("Drug of this score.")
-			.build())
-		.field(newFieldDefinition()
+			.description("Drug of this score."))
+		.field(field -> field
 			.name("algorithm")
 			.type(GraphQLString)
-			.description("The name of algorithm which calculated this score.")
-			.build())
-		.field(newFieldDefinition()
+			.description("The name of algorithm which calculated this score."))
+		.field(field -> field
+			// TODO: verify if field -> field works here
 			.name("SIR")
 			.type(oSIR)
 			.description(
-				"One of the three step resistance levels of the drug.")
-			.build())
-		.field(newFieldDefinition()
+				"One of the three step resistance levels of the drug."))
+		.field(field -> field
 			.type(GraphQLString)
 			.name("interpretation")
 			.description(
-				"Readable resistance level defined by the algorithm for the drug.")
-			.build())
-		.field(newFieldDefinition()
+				"Readable resistance level defined by the algorithm for the drug."))
+		.field(field -> field
 			.type(GraphQLString)
 			.name("explanation")
 			.description(
-				"Text explanation on how this level get calculated.")
-			.build())
+				"Text explanation on how this level get calculated."))
 		.build();
 
 	public static GraphQLObjectType oAlgorithmComparison = newObject()
 		.name("AlgorithmComparison")
-		.field(newFieldDefinition()
+		.field(field -> field
 			.name("drugClass")
-			.type(oDrugClass)
-			.build())
-		.field(newFieldDefinition()
+			.type(oDrugClass))
+		.field(field -> field
 			.name("drugScores")
-			.type(new GraphQLList(oComparableDrugScore))
-			.build())
+			.type(new GraphQLList(oComparableDrugScore)))
 		.build();
 }

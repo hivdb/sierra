@@ -31,14 +31,14 @@ import java.util.Map;
 import org.apache.commons.io.IOUtils;
 import org.junit.Test;
 
-import edu.stanford.hivdb.alignment.AlignedSequence;
-import edu.stanford.hivdb.alignment.Aligner;
 import edu.stanford.hivdb.drugresistance.algorithm.Algorithm;
 import edu.stanford.hivdb.drugresistance.database.HivdbVersion;
 import edu.stanford.hivdb.filetestutils.TestSequencesFiles;
 import edu.stanford.hivdb.filetestutils.TestSequencesFiles.TestSequencesProperties;
+import edu.stanford.hivdb.sequences.AlignedSequence;
+import edu.stanford.hivdb.sequences.NucAminoAligner;
+import edu.stanford.hivdb.sequences.Sequence;
 import edu.stanford.hivdb.utilities.FastaUtils;
-import edu.stanford.hivdb.utilities.Sequence;
 
 public class TabularAlgorithmComparisonTests {
 
@@ -55,7 +55,7 @@ public class TabularAlgorithmComparisonTests {
 		final InputStream v7 = HivdbVersion.V7_0.getResource();
 		customAlgs.put("HIVDB70", IOUtils.toString(v7, StandardCharsets.UTF_8));
 
-		final List<AlignedSequence> alignedSeqs = Aligner.parallelAlign(sequences);
+		final List<AlignedSequence> alignedSeqs = NucAminoAligner.parallelAlign(sequences);
 		TabularAlgorithmsComparison cmp = new TabularAlgorithmsComparison(alignedSeqs, algorithms, customAlgs);
 		String result = cmp.toString();
 		assertEquals(

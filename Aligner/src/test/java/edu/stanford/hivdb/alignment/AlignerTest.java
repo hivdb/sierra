@@ -37,15 +37,17 @@ import org.junit.Test;
 
 import com.google.gson.reflect.TypeToken;
 
-import edu.stanford.hivdb.alignment.AlignedGeneSeq;
-import edu.stanford.hivdb.mutations.FrameShift;
 import edu.stanford.hivdb.filetestutils.TestSequencesFiles;
 import edu.stanford.hivdb.filetestutils.TestSequencesFiles.TestSequencesProperties;
-import edu.stanford.hivdb.mutations.Gene;
+import edu.stanford.hivdb.hivfacts.HIVGene;
+import edu.stanford.hivdb.mutations.FrameShift;
 import edu.stanford.hivdb.mutations.MutationSet;
+import edu.stanford.hivdb.sequences.AlignedGeneSeq;
+import edu.stanford.hivdb.sequences.AlignedSequence;
+import edu.stanford.hivdb.sequences.NucAminoAligner;
+import edu.stanford.hivdb.sequences.Sequence;
 import edu.stanford.hivdb.utilities.Json;
 import edu.stanford.hivdb.utilities.FastaUtils;
-import edu.stanford.hivdb.utilities.Sequence;
 
 public class AlignerTest {
 	private static final Logger LOGGER = LogManager.getLogger();
@@ -68,12 +70,12 @@ public class AlignerTest {
 
 
 			Map<Sequence, AlignedSequence> allAligneds = (
-				Aligner.parallelAlign(sequences)
+				NucAminoAligner.parallelAlign(sequences)
 				.stream()
 				.collect(Collectors.toMap(as -> as.getInputSequence(), as -> as))
 			);
 
-			Type mapType = new TypeToken<Map<Gene, AlignedGeneSeq>>() {}.getType();
+			Type mapType = new TypeToken<Map<HIVGene, AlignedGeneSeq>>() {}.getType();
 
 			for (Sequence seq : sequences) {
 				LOGGER.debug("\nSequence:"  + seq.getHeader());
@@ -84,7 +86,7 @@ public class AlignerTest {
 							"_" + seq.getHeader() + ".json");
 
 				BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(alignedGeneSeqJsonInputStream));
-				Map<Gene, AlignedGeneSeq> alignedGeneSeqsExpected = Json.loads(bufferedReader, mapType);
+				Map<HIVGene, AlignedGeneSeq> alignedGeneSeqsExpected = Json.loads(bufferedReader, mapType);
 
 				// We verify that the number of genes in the alignment results matches the number
 				// of genes in the expected results.
@@ -93,7 +95,7 @@ public class AlignerTest {
 				Assert.assertEquals(alignedGeneSeqsExpected.size(), alignmentResults.size());
 
 				for (AlignedGeneSeq alignedGeneSeq : alignmentResults) {
-					final Gene gene = alignedGeneSeq.getGene();
+					final HIVGene gene = alignedGeneSeq.getGene();
 					final MutationSet mutations = alignedGeneSeq.getMutations();
 					final MutationSet expectedMutations = alignedGeneSeqsExpected.get(gene).getMutations();
 					final String name = alignedGeneSeq.getSequence().getHeader();

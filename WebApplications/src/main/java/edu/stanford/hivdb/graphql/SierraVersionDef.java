@@ -28,41 +28,34 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Properties;
 
-import static edu.stanford.hivdb.graphql.ExtendedFieldDefinition.*;
-
 public class SierraVersionDef {
 
 	public static GraphQLObjectType oSierraVersion = newObject()
 		.name("SierraVersion")
 		.description("Version of Sierra.")
-		.field(newFieldDefinition()
+		.field(field -> field
 			.type(GraphQLString)
 			.name("text")
-			.description("Version text.")
-			.build())
-		.field(newFieldDefinition()
+			.description("Version text."))
+		.field(field -> field
 			.type(GraphQLString)
 			.name("publishDate")
-			.description("Publish date of this version.")
-			.build())
+			.description("Publish date of this version."))
 		.build();
 
-	public static DataFetcher<Map<String, String>> currentSierraVersionFetcher = new DataFetcher<Map<String, String>>() {
-		@Override
-		public Map<String, String> get(DataFetchingEnvironment environment) {
-			Properties prop = new Properties();
-			ClassLoader loader = Thread.currentThread().getContextClassLoader();
-			InputStream stream = loader.getResourceAsStream("version.properties");
-			try {
-				prop.load(stream);
-			} catch (IOException e) {
-				throw new RuntimeException(e);
-			}
-			Map<String, String> result = new LinkedHashMap<>();
-			result.put("text", prop.getProperty("version"));
-			result.put("publishDate", prop.getProperty("versionDate"));
-			return result;
+	public static DataFetcher<Map<String, String>> currentSierraVersionFetcher = env -> {
+		Properties prop = new Properties();
+		ClassLoader loader = Thread.currentThread().getContextClassLoader();
+		InputStream stream = loader.getResourceAsStream("version.properties");
+		try {
+			prop.load(stream);
+		} catch (IOException e) {
+			throw new RuntimeException(e);
 		}
+		Map<String, String> result = new LinkedHashMap<>();
+		result.put("text", prop.getProperty("version"));
+		result.put("publishDate", prop.getProperty("versionDate"));
+		return result;
 	};
 
 

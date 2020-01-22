@@ -27,255 +27,255 @@ import java.util.Map;
 
 import org.junit.Test;
 
-import edu.stanford.hivdb.drugs.Drug;
-import edu.stanford.hivdb.drugs.DrugClass;
-import edu.stanford.hivdb.mutations.Gene;
-import edu.stanford.hivdb.mutations.IUPACMutation;
-import edu.stanford.hivdb.mutations.Mutation;
+import edu.stanford.hivdb.hivfacts.HIVDrug;
+import edu.stanford.hivdb.hivfacts.HIVDrugClass;
+import edu.stanford.hivdb.hivfacts.HIVGene;
+import edu.stanford.hivdb.mutations.ConsensusMutation;
 import edu.stanford.hivdb.mutations.MutationSet;
+import edu.stanford.hivdb.hivfacts.HIVAAMutation;
 
 public class AsiBaseTest {
 
 	@Test
 	public void testGetGene() {
-		Asi asiObj = new AsiHivdb(Gene.valueOf("HIV1RT"), new MutationSet("RT184V"));
-		assertEquals(Gene.valueOf("HIV1RT"), asiObj.getGene());
+		AsiResult asiObj = new AsiHivdb(HIVGene.valueOf("HIV1RT"), new MutationSet("RT184V"));
+		assertEquals(HIVGene.valueOf("HIV1RT"), asiObj.getGene());
 
-		asiObj = new AsiHivdb(Gene.valueOf("HIV1PR"), new MutationSet("PR24I,PR46L,PR54V"));
-		assertEquals(Gene.valueOf("HIV1PR"), asiObj.getGene());
+		asiObj = new AsiHivdb(HIVGene.valueOf("HIV1PR"), new MutationSet("PR24I,PR46L,PR54V"));
+		assertEquals(HIVGene.valueOf("HIV1PR"), asiObj.getGene());
 
-		asiObj = new AsiHivdb(Gene.valueOf("HIV1IN"), new MutationSet("IN140S,IN148H"));
-		assertEquals(Gene.valueOf("HIV1IN"), asiObj.getGene());
+		asiObj = new AsiHivdb(HIVGene.valueOf("HIV1IN"), new MutationSet("IN140S,IN148H"));
+		assertEquals(HIVGene.valueOf("HIV1IN"), asiObj.getGene());
 	}
 
 	@Test
 	public void testGetDrugLevel() {
-		Asi asiObj = new AsiHivdb(Gene.valueOf("HIV1RT"), new MutationSet("RT67N,RT70R,RT184V,RT219Q"));
-		assertEquals(3, asiObj.getDrugLevel(Drug.TDF));
+		AsiResult asiObj = new AsiHivdb(HIVGene.valueOf("HIV1RT"), new MutationSet("RT67N,RT70R,RT184V,RT219Q"));
+		assertEquals(3, asiObj.getDrugLevel(HIVDrug.TDF));
 
-		asiObj = new AsiHivdb(Gene.valueOf("HIV1IN"), new MutationSet("IN184A"));
-		assertEquals(1, asiObj.getDrugLevel(Drug.DTG));
-		assertEquals(1, asiObj.getDrugLevel(Drug.ABC));
+		asiObj = new AsiHivdb(HIVGene.valueOf("HIV1IN"), new MutationSet("IN184A"));
+		assertEquals(1, asiObj.getDrugLevel(HIVDrug.DTG));
+		assertEquals(1, asiObj.getDrugLevel(HIVDrug.ABC));
 	}
 
 	@Test
 	public void testGetDrugLevelText() {
-		Asi asiObj = new AsiHivdb(Gene.valueOf("HIV1RT"), new MutationSet("RT67N,RT70R,RT184V,RT219Q"));
-		assertEquals("Low-Level Resistance", asiObj.getDrugLevelText(Drug.TDF));
+		AsiResult asiObj = new AsiHivdb(HIVGene.valueOf("HIV1RT"), new MutationSet("RT67N,RT70R,RT184V,RT219Q"));
+		assertEquals("Low-Level Resistance", asiObj.getDrugLevelText(HIVDrug.TDF));
 
-		asiObj = new AsiHivdb(Gene.valueOf("HIV1IN"), new MutationSet("IN184A"));
-		assertEquals("Susceptible", asiObj.getDrugLevelText(Drug.DTG));
-		assertEquals("Susceptible", asiObj.getDrugLevelText(Drug.ABC));
+		asiObj = new AsiHivdb(HIVGene.valueOf("HIV1IN"), new MutationSet("IN184A"));
+		assertEquals("Susceptible", asiObj.getDrugLevelText(HIVDrug.DTG));
+		assertEquals("Susceptible", asiObj.getDrugLevelText(HIVDrug.ABC));
 	}
 
 	@Test
 	public void testGetDrugLevelSir() {
-		Asi asiObj;
+		AsiResult asiObj;
 
-		asiObj = new AsiHivdb(Gene.valueOf("HIV1PR"), new MutationSet("PR73V,PR76V,PR84V,PR88S"));
-		assertEquals("R", asiObj.getDrugLevelSir(Drug.FPV));
+		asiObj = new AsiHivdb(HIVGene.valueOf("HIV1PR"), new MutationSet("PR73V,PR76V,PR84V,PR88S"));
+		assertEquals("R", asiObj.getDrugLevelSir(HIVDrug.FPV));
 
-		asiObj = new AsiHivdb(Gene.valueOf("HIV1RT"), new MutationSet("RT67N,RT70R,RT184V,RT219Q"));
-		assertEquals("I", asiObj.getDrugLevelSir(Drug.TDF));
+		asiObj = new AsiHivdb(HIVGene.valueOf("HIV1RT"), new MutationSet("RT67N,RT70R,RT184V,RT219Q"));
+		assertEquals("I", asiObj.getDrugLevelSir(HIVDrug.TDF));
 
-		asiObj = new AsiHivdb(Gene.valueOf("HIV1IN"), new MutationSet("IN184A"));
-		assertEquals("S", asiObj.getDrugLevelSir(Drug.DTG));
-		assertEquals("S", asiObj.getDrugLevelSir(Drug.ABC));
+		asiObj = new AsiHivdb(HIVGene.valueOf("HIV1IN"), new MutationSet("IN184A"));
+		assertEquals("S", asiObj.getDrugLevelSir(HIVDrug.DTG));
+		assertEquals("S", asiObj.getDrugLevelSir(HIVDrug.ABC));
 
-		asiObj = new AsiRega(Gene.valueOf("HIV1PR"), new MutationSet("PR73V,PR76V,PR84V,PR88S"));
-		assertEquals("I", asiObj.getDrugLevelSir(Drug.FPV));
+		asiObj = new AsiRega(HIVGene.valueOf("HIV1PR"), new MutationSet("PR73V,PR76V,PR84V,PR88S"));
+		assertEquals("I", asiObj.getDrugLevelSir(HIVDrug.FPV));
 
-		asiObj = new AsiRega(Gene.valueOf("HIV1RT"), new MutationSet("RT67N,RT70R,RT184V,RT219Q"));
-		assertEquals("S", asiObj.getDrugLevelSir(Drug.TDF));
+		asiObj = new AsiRega(HIVGene.valueOf("HIV1RT"), new MutationSet("RT67N,RT70R,RT184V,RT219Q"));
+		assertEquals("S", asiObj.getDrugLevelSir(HIVDrug.TDF));
 
-		asiObj = new AsiRega(Gene.valueOf("HIV1IN"), new MutationSet("IN184A"));
-		assertEquals("S", asiObj.getDrugLevelSir(Drug.DTG));
-		assertEquals("S", asiObj.getDrugLevelSir(Drug.ABC));
+		asiObj = new AsiRega(HIVGene.valueOf("HIV1IN"), new MutationSet("IN184A"));
+		assertEquals("S", asiObj.getDrugLevelSir(HIVDrug.DTG));
+		assertEquals("S", asiObj.getDrugLevelSir(HIVDrug.ABC));
 
-		asiObj = new AsiAnrs(Gene.valueOf("HIV1PR"), new MutationSet("PR73V,PR76V,PR84V,PR88S"));
-		assertEquals("S", asiObj.getDrugLevelSir(Drug.FPV));
+		asiObj = new AsiAnrs(HIVGene.valueOf("HIV1PR"), new MutationSet("PR73V,PR76V,PR84V,PR88S"));
+		assertEquals("S", asiObj.getDrugLevelSir(HIVDrug.FPV));
 
-		asiObj = new AsiAnrs(Gene.valueOf("HIV1RT"), new MutationSet("RT67N,RT70R,RT184V,RT219Q"));
-		assertEquals("S", asiObj.getDrugLevelSir(Drug.TDF));
+		asiObj = new AsiAnrs(HIVGene.valueOf("HIV1RT"), new MutationSet("RT67N,RT70R,RT184V,RT219Q"));
+		assertEquals("S", asiObj.getDrugLevelSir(HIVDrug.TDF));
 
-		asiObj = new AsiAnrs(Gene.valueOf("HIV1IN"), new MutationSet("IN184A"));
-		assertEquals("S", asiObj.getDrugLevelSir(Drug.DTG));
-		assertEquals("S", asiObj.getDrugLevelSir(Drug.ABC));
+		asiObj = new AsiAnrs(HIVGene.valueOf("HIV1IN"), new MutationSet("IN184A"));
+		assertEquals("S", asiObj.getDrugLevelSir(HIVDrug.DTG));
+		assertEquals("S", asiObj.getDrugLevelSir(HIVDrug.ABC));
 	}
 
 	@Test
 	public void testGetTotalScore() {
-		Asi asiObj = new AsiHivdb(Gene.valueOf("HIV1RT"), new MutationSet("RT67N,RT70R,RT184V,RT219Q"));
-		assertEquals(15.0, asiObj.getTotalScore(Drug.TDF), 1e-6);
+		AsiResult asiObj = new AsiHivdb(HIVGene.valueOf("HIV1RT"), new MutationSet("RT67N,RT70R,RT184V,RT219Q"));
+		assertEquals(15.0, asiObj.getTotalScore(HIVDrug.TDF), 1e-6);
 
-		asiObj = new AsiHivdb(Gene.valueOf("HIV1IN"), new MutationSet("IN184A"));
-		assertEquals(0.0, asiObj.getTotalScore(Drug.DTG), 1e-6);
-		assertEquals(0.0, asiObj.getTotalScore(Drug.ABC), 1e-6);
+		asiObj = new AsiHivdb(HIVGene.valueOf("HIV1IN"), new MutationSet("IN184A"));
+		assertEquals(0.0, asiObj.getTotalScore(HIVDrug.DTG), 1e-6);
+		assertEquals(0.0, asiObj.getTotalScore(HIVDrug.ABC), 1e-6);
 	}
 
 	@Test
 	public void testGetDrugClassTotalDrugScores() {
-		Asi asiObj = new AsiHivdb(Gene.valueOf("HIV1RT"), new MutationSet("RT67N,RT70R,RT184V,RT219Q"));
-		Map<DrugClass, Map<Drug, Double>> expected = new EnumMap<>(DrugClass.class);
-		expected.put(DrugClass.NRTI, new EnumMap<>(Drug.class));
-		expected.put(DrugClass.NNRTI, new EnumMap<>(Drug.class));
-		expected.get(DrugClass.NRTI).put(Drug.D4T, 40.0);
-		expected.get(DrugClass.NRTI).put(Drug.AZT, 55.0);
-		expected.get(DrugClass.NRTI).put(Drug.FTC, 70.0);
-		expected.get(DrugClass.NRTI).put(Drug.TDF, 15.0);
-		expected.get(DrugClass.NRTI).put(Drug.DDI, 40.0);
-		expected.get(DrugClass.NRTI).put(Drug.LMV, 70.0);
-		expected.get(DrugClass.NRTI).put(Drug.ABC, 60.0);
-		expected.get(DrugClass.NNRTI).put(Drug.DOR, 0.0);
-		expected.get(DrugClass.NNRTI).put(Drug.NVP, 0.0);
-		expected.get(DrugClass.NNRTI).put(Drug.RPV, 0.0);
-		expected.get(DrugClass.NNRTI).put(Drug.ETR, 0.0);
-		expected.get(DrugClass.NNRTI).put(Drug.EFV, 0.0);
+		AsiResult asiObj = new AsiHivdb(HIVGene.valueOf("HIV1RT"), new MutationSet("RT67N,RT70R,RT184V,RT219Q"));
+		Map<HIVDrugClass, Map<HIVDrug, Double>> expected = new EnumMap<>(HIVDrugClass.class);
+		expected.put(HIVDrugClass.NRTI, new EnumMap<>(HIVDrug.class));
+		expected.put(HIVDrugClass.NNRTI, new EnumMap<>(HIVDrug.class));
+		expected.get(HIVDrugClass.NRTI).put(HIVDrug.D4T, 40.0);
+		expected.get(HIVDrugClass.NRTI).put(HIVDrug.AZT, 55.0);
+		expected.get(HIVDrugClass.NRTI).put(HIVDrug.FTC, 70.0);
+		expected.get(HIVDrugClass.NRTI).put(HIVDrug.TDF, 15.0);
+		expected.get(HIVDrugClass.NRTI).put(HIVDrug.DDI, 40.0);
+		expected.get(HIVDrugClass.NRTI).put(HIVDrug.LMV, 70.0);
+		expected.get(HIVDrugClass.NRTI).put(HIVDrug.ABC, 60.0);
+		expected.get(HIVDrugClass.NNRTI).put(HIVDrug.DOR, 0.0);
+		expected.get(HIVDrugClass.NNRTI).put(HIVDrug.NVP, 0.0);
+		expected.get(HIVDrugClass.NNRTI).put(HIVDrug.RPV, 0.0);
+		expected.get(HIVDrugClass.NNRTI).put(HIVDrug.ETR, 0.0);
+		expected.get(HIVDrugClass.NNRTI).put(HIVDrug.EFV, 0.0);
 		assertEquals(expected, asiObj.getDrugClassTotalDrugScores());
 		assertEquals(
-			expected.get(DrugClass.NRTI),
-			asiObj.getDrugClassTotalDrugScores(DrugClass.NRTI));
+			expected.get(HIVDrugClass.NRTI),
+			asiObj.getDrugClassTotalDrugScores(HIVDrugClass.NRTI));
 		assertEquals(
-			expected.get(DrugClass.NNRTI),
-			asiObj.getDrugClassTotalDrugScores(DrugClass.NNRTI));
+			expected.get(HIVDrugClass.NNRTI),
+			asiObj.getDrugClassTotalDrugScores(HIVDrugClass.NNRTI));
 	}
 
 	@Test
 	public void testGetTriggeredMutations() {
-		Asi asiObj = new AsiHivdb(
-			Gene.valueOf("HIV1RT"), new MutationSet("RT67AN,RT71R,RT100I,RT101E,RT181C,RT184V,RT219Q"));
+		AsiResult asiObj = new AsiHivdb(
+			HIVGene.valueOf("HIV1RT"), new MutationSet("RT67AN,RT71R,RT100I,RT101E,RT181C,RT184V,RT219Q"));
 		MutationSet expected = new MutationSet("RT67AN,RT100I,RT101E,RT181C,RT184V,RT219Q");
 		assertEquals(expected, asiObj.getTriggeredMutations());
 		assertEquals(expected, asiObj.getTriggeredMutations());
 		expected = new MutationSet("RT67AN,RT184V,RT219Q");
-		assertEquals(expected, asiObj.getTriggeredMutations(DrugClass.NRTI));
-		assertEquals(expected, asiObj.getTriggeredMutations(DrugClass.NRTI));
+		assertEquals(expected, asiObj.getTriggeredMutations(HIVDrugClass.NRTI));
+		assertEquals(expected, asiObj.getTriggeredMutations(HIVDrugClass.NRTI));
 		expected = new MutationSet("RT100I,RT101E,RT181C");
-		assertEquals(expected, asiObj.getTriggeredMutations(DrugClass.NNRTI));
-		assertEquals(expected, asiObj.getTriggeredMutations(DrugClass.NNRTI));
+		assertEquals(expected, asiObj.getTriggeredMutations(HIVDrugClass.NNRTI));
+		assertEquals(expected, asiObj.getTriggeredMutations(HIVDrugClass.NNRTI));
 	}
 
 	@Test
 	public void testGetDrugClassDrugMutScores() {
-		Asi asiObj = new AsiHivdb(
-			Gene.valueOf("HIV1RT"), new MutationSet("RT67AN,RT71R,RT100I,RT101E,RT181C,RT184V,RT219Q"));
-		Map<DrugClass, Map<Drug, Map<Mutation, Double>>> expected = new EnumMap<>(DrugClass.class);
-		expected.put(DrugClass.NRTI, new EnumMap<>(Drug.class));
-		expected.put(DrugClass.NNRTI, new EnumMap<>(Drug.class));
-		expected.get(DrugClass.NNRTI).put(Drug.NVP, new TreeMap<>());
-		expected.get(DrugClass.NNRTI).get(Drug.NVP).put(IUPACMutation.parseString("RT181C"), 60.0);
-		expected.get(DrugClass.NNRTI).get(Drug.NVP).put(IUPACMutation.parseString("RT101E"), 30.0);
-		expected.get(DrugClass.NNRTI).get(Drug.NVP).put(IUPACMutation.parseString("RT100I"), 60.0);
-		expected.get(DrugClass.NNRTI).put(Drug.EFV, new TreeMap<>());
-		expected.get(DrugClass.NNRTI).get(Drug.EFV).put(IUPACMutation.parseString("RT181C"), 30.0);
-		expected.get(DrugClass.NNRTI).get(Drug.EFV).put(IUPACMutation.parseString("RT101E"), 15.0);
-		expected.get(DrugClass.NNRTI).get(Drug.EFV).put(IUPACMutation.parseString("RT100I"), 60.0);
-		expected.get(DrugClass.NNRTI).put(Drug.RPV, new TreeMap<>());
-		expected.get(DrugClass.NNRTI).get(Drug.RPV).put(IUPACMutation.parseString("RT181C"), 45.0);
-		expected.get(DrugClass.NNRTI).get(Drug.RPV).put(IUPACMutation.parseString("RT101E"), 45.0);
-		expected.get(DrugClass.NNRTI).get(Drug.RPV).put(IUPACMutation.parseString("RT100I"), 60.0);
-		expected.get(DrugClass.NNRTI).put(Drug.ETR, new TreeMap<>());
-		expected.get(DrugClass.NNRTI).get(Drug.ETR).put(IUPACMutation.parseString("RT181C"), 30.0);
-		expected.get(DrugClass.NNRTI).get(Drug.ETR).put(IUPACMutation.parseString("RT101E"), 15.0);
-		expected.get(DrugClass.NNRTI).get(Drug.ETR).put(IUPACMutation.parseString("RT100I"), 30.0);
-		expected.get(DrugClass.NNRTI).put(Drug.DOR, new TreeMap<>());
-		expected.get(DrugClass.NNRTI).get(Drug.DOR).put(IUPACMutation.parseString("RT100I"), 15.0);
-		expected.get(DrugClass.NNRTI).get(Drug.DOR).put(IUPACMutation.parseString("RT101E"), 15.0);
-		expected.get(DrugClass.NNRTI).get(Drug.DOR).put(IUPACMutation.parseString("RT181C"), 10.0);
-		expected.get(DrugClass.NRTI).put(Drug.ABC, new TreeMap<>());
-		expected.get(DrugClass.NRTI).get(Drug.ABC).put(IUPACMutation.parseString("RT184V"), 15.0);
-		expected.get(DrugClass.NRTI).get(Drug.ABC).put(IUPACMutation.parseString("RT219Q"), 5.0);
-		expected.get(DrugClass.NRTI).get(Drug.ABC).put(IUPACMutation.parseString("RT67AN"), 5.0);
-		expected.get(DrugClass.NRTI).put(Drug.D4T, new TreeMap<>());
-		expected.get(DrugClass.NRTI).get(Drug.D4T).put(IUPACMutation.parseString("RT184V"), -10.0);
-		expected.get(DrugClass.NRTI).get(Drug.D4T).put(IUPACMutation.parseString("RT219Q"), 10.0);
-		expected.get(DrugClass.NRTI).get(Drug.D4T).put(IUPACMutation.parseString("RT67AN"), 15.0);
-		expected.get(DrugClass.NRTI).put(Drug.TDF, new TreeMap<>());
-		expected.get(DrugClass.NRTI).get(Drug.TDF).put(IUPACMutation.parseString("RT184V"), -10.0);
-		expected.get(DrugClass.NRTI).get(Drug.TDF).put(IUPACMutation.parseString("RT219Q"), 5.0);
-		expected.get(DrugClass.NRTI).get(Drug.TDF).put(IUPACMutation.parseString("RT67AN"), 5.0);
-		expected.get(DrugClass.NRTI).put(Drug.DDI, new TreeMap<>());
-		expected.get(DrugClass.NRTI).get(Drug.DDI).put(IUPACMutation.parseString("RT184V"), 10.0);
-		expected.get(DrugClass.NRTI).get(Drug.DDI).put(IUPACMutation.parseString("RT219Q"), 5.0);
-		expected.get(DrugClass.NRTI).get(Drug.DDI).put(IUPACMutation.parseString("RT67AN"), 5.0);
-		expected.get(DrugClass.NRTI).put(Drug.LMV, new TreeMap<>());
-		expected.get(DrugClass.NRTI).get(Drug.LMV).put(IUPACMutation.parseString("RT184V"), 60.0);
-		expected.get(DrugClass.NRTI).put(Drug.AZT, new TreeMap<>());
-		expected.get(DrugClass.NRTI).get(Drug.AZT).put(IUPACMutation.parseString("RT184V"), -10.0);
-		expected.get(DrugClass.NRTI).get(Drug.AZT).put(IUPACMutation.parseString("RT219Q"), 10.0);
-		expected.get(DrugClass.NRTI).get(Drug.AZT).put(IUPACMutation.parseString("RT67AN"), 15.0);
-		expected.get(DrugClass.NRTI).put(Drug.FTC, new TreeMap<>());
-		expected.get(DrugClass.NRTI).get(Drug.FTC).put(IUPACMutation.parseString("RT184V"), 60.0);
+		AsiResult asiObj = new AsiHivdb(
+			HIVGene.valueOf("HIV1RT"), new MutationSet("RT67AN,RT71R,RT100I,RT101E,RT181C,RT184V,RT219Q"));
+		Map<HIVDrugClass, Map<HIVDrug, Map<HIVAAMutation, Double>>> expected = new EnumMap<>(HIVDrugClass.class);
+		expected.put(HIVDrugClass.NRTI, new EnumMap<>(HIVDrug.class));
+		expected.put(HIVDrugClass.NNRTI, new EnumMap<>(HIVDrug.class));
+		expected.get(HIVDrugClass.NNRTI).put(HIVDrug.NVP, new TreeMap<>());
+		expected.get(HIVDrugClass.NNRTI).get(HIVDrug.NVP).put(ConsensusMutation.parseString("RT181C"), 60.0);
+		expected.get(HIVDrugClass.NNRTI).get(HIVDrug.NVP).put(ConsensusMutation.parseString("RT101E"), 30.0);
+		expected.get(HIVDrugClass.NNRTI).get(HIVDrug.NVP).put(ConsensusMutation.parseString("RT100I"), 60.0);
+		expected.get(HIVDrugClass.NNRTI).put(HIVDrug.EFV, new TreeMap<>());
+		expected.get(HIVDrugClass.NNRTI).get(HIVDrug.EFV).put(ConsensusMutation.parseString("RT181C"), 30.0);
+		expected.get(HIVDrugClass.NNRTI).get(HIVDrug.EFV).put(ConsensusMutation.parseString("RT101E"), 15.0);
+		expected.get(HIVDrugClass.NNRTI).get(HIVDrug.EFV).put(ConsensusMutation.parseString("RT100I"), 60.0);
+		expected.get(HIVDrugClass.NNRTI).put(HIVDrug.RPV, new TreeMap<>());
+		expected.get(HIVDrugClass.NNRTI).get(HIVDrug.RPV).put(ConsensusMutation.parseString("RT181C"), 45.0);
+		expected.get(HIVDrugClass.NNRTI).get(HIVDrug.RPV).put(ConsensusMutation.parseString("RT101E"), 45.0);
+		expected.get(HIVDrugClass.NNRTI).get(HIVDrug.RPV).put(ConsensusMutation.parseString("RT100I"), 60.0);
+		expected.get(HIVDrugClass.NNRTI).put(HIVDrug.ETR, new TreeMap<>());
+		expected.get(HIVDrugClass.NNRTI).get(HIVDrug.ETR).put(ConsensusMutation.parseString("RT181C"), 30.0);
+		expected.get(HIVDrugClass.NNRTI).get(HIVDrug.ETR).put(ConsensusMutation.parseString("RT101E"), 15.0);
+		expected.get(HIVDrugClass.NNRTI).get(HIVDrug.ETR).put(ConsensusMutation.parseString("RT100I"), 30.0);
+		expected.get(HIVDrugClass.NNRTI).put(HIVDrug.DOR, new TreeMap<>());
+		expected.get(HIVDrugClass.NNRTI).get(HIVDrug.DOR).put(ConsensusMutation.parseString("RT100I"), 15.0);
+		expected.get(HIVDrugClass.NNRTI).get(HIVDrug.DOR).put(ConsensusMutation.parseString("RT101E"), 15.0);
+		expected.get(HIVDrugClass.NNRTI).get(HIVDrug.DOR).put(ConsensusMutation.parseString("RT181C"), 10.0);
+		expected.get(HIVDrugClass.NRTI).put(HIVDrug.ABC, new TreeMap<>());
+		expected.get(HIVDrugClass.NRTI).get(HIVDrug.ABC).put(ConsensusMutation.parseString("RT184V"), 15.0);
+		expected.get(HIVDrugClass.NRTI).get(HIVDrug.ABC).put(ConsensusMutation.parseString("RT219Q"), 5.0);
+		expected.get(HIVDrugClass.NRTI).get(HIVDrug.ABC).put(ConsensusMutation.parseString("RT67AN"), 5.0);
+		expected.get(HIVDrugClass.NRTI).put(HIVDrug.D4T, new TreeMap<>());
+		expected.get(HIVDrugClass.NRTI).get(HIVDrug.D4T).put(ConsensusMutation.parseString("RT184V"), -10.0);
+		expected.get(HIVDrugClass.NRTI).get(HIVDrug.D4T).put(ConsensusMutation.parseString("RT219Q"), 10.0);
+		expected.get(HIVDrugClass.NRTI).get(HIVDrug.D4T).put(ConsensusMutation.parseString("RT67AN"), 15.0);
+		expected.get(HIVDrugClass.NRTI).put(HIVDrug.TDF, new TreeMap<>());
+		expected.get(HIVDrugClass.NRTI).get(HIVDrug.TDF).put(ConsensusMutation.parseString("RT184V"), -10.0);
+		expected.get(HIVDrugClass.NRTI).get(HIVDrug.TDF).put(ConsensusMutation.parseString("RT219Q"), 5.0);
+		expected.get(HIVDrugClass.NRTI).get(HIVDrug.TDF).put(ConsensusMutation.parseString("RT67AN"), 5.0);
+		expected.get(HIVDrugClass.NRTI).put(HIVDrug.DDI, new TreeMap<>());
+		expected.get(HIVDrugClass.NRTI).get(HIVDrug.DDI).put(ConsensusMutation.parseString("RT184V"), 10.0);
+		expected.get(HIVDrugClass.NRTI).get(HIVDrug.DDI).put(ConsensusMutation.parseString("RT219Q"), 5.0);
+		expected.get(HIVDrugClass.NRTI).get(HIVDrug.DDI).put(ConsensusMutation.parseString("RT67AN"), 5.0);
+		expected.get(HIVDrugClass.NRTI).put(HIVDrug.LMV, new TreeMap<>());
+		expected.get(HIVDrugClass.NRTI).get(HIVDrug.LMV).put(ConsensusMutation.parseString("RT184V"), 60.0);
+		expected.get(HIVDrugClass.NRTI).put(HIVDrug.AZT, new TreeMap<>());
+		expected.get(HIVDrugClass.NRTI).get(HIVDrug.AZT).put(ConsensusMutation.parseString("RT184V"), -10.0);
+		expected.get(HIVDrugClass.NRTI).get(HIVDrug.AZT).put(ConsensusMutation.parseString("RT219Q"), 10.0);
+		expected.get(HIVDrugClass.NRTI).get(HIVDrug.AZT).put(ConsensusMutation.parseString("RT67AN"), 15.0);
+		expected.get(HIVDrugClass.NRTI).put(HIVDrug.FTC, new TreeMap<>());
+		expected.get(HIVDrugClass.NRTI).get(HIVDrug.FTC).put(ConsensusMutation.parseString("RT184V"), 60.0);
 		assertEquals(expected, asiObj.getDrugClassDrugMutScores());
 	}
 
 	@Test
 	public void testGetDrugClassDrugComboMutScores() {
-		Asi asiObj = new AsiHivdb(
-			Gene.valueOf("HIV1RT"), new MutationSet("RT67AN,RT71R,RT100I,RT101E,RT181C,RT184V,RT219Q"));
-		Map<DrugClass, Map<Drug, Map<MutationSet, Double>>> expected = new EnumMap<>(DrugClass.class);
-		expected.put(DrugClass.NNRTI, new EnumMap<>(Drug.class));
-		expected.get(DrugClass.NNRTI).put(Drug.NVP, new HashMap<>());
-		expected.get(DrugClass.NNRTI).get(Drug.NVP).put(new MutationSet("RT101E,RT181C"), 5.0);
-		expected.get(DrugClass.NNRTI).put(Drug.EFV, new HashMap<>());
-		expected.get(DrugClass.NNRTI).get(Drug.EFV).put(new MutationSet("RT101E,RT181C"), 5.0);
-		expected.get(DrugClass.NNRTI).put(Drug.ETR, new HashMap<>());
-		expected.get(DrugClass.NNRTI).get(Drug.ETR).put(new MutationSet("RT101E,RT181C"), 5.0);
+		AsiResult asiObj = new AsiHivdb(
+			HIVGene.valueOf("HIV1RT"), new MutationSet("RT67AN,RT71R,RT100I,RT101E,RT181C,RT184V,RT219Q"));
+		Map<HIVDrugClass, Map<HIVDrug, Map<MutationSet, Double>>> expected = new EnumMap<>(HIVDrugClass.class);
+		expected.put(HIVDrugClass.NNRTI, new EnumMap<>(HIVDrug.class));
+		expected.get(HIVDrugClass.NNRTI).put(HIVDrug.NVP, new HashMap<>());
+		expected.get(HIVDrugClass.NNRTI).get(HIVDrug.NVP).put(new MutationSet("RT101E,RT181C"), 5.0);
+		expected.get(HIVDrugClass.NNRTI).put(HIVDrug.EFV, new HashMap<>());
+		expected.get(HIVDrugClass.NNRTI).get(HIVDrug.EFV).put(new MutationSet("RT101E,RT181C"), 5.0);
+		expected.get(HIVDrugClass.NNRTI).put(HIVDrug.ETR, new HashMap<>());
+		expected.get(HIVDrugClass.NNRTI).get(HIVDrug.ETR).put(new MutationSet("RT101E,RT181C"), 5.0);
 		assertEquals(expected, asiObj.getDrugClassDrugComboMutScores());
 	}
 
 	@Test
 	public void testGetTriggeredDrugRules() {
-		Asi asiObj = new AsiAnrs(
-			Gene.valueOf("HIV1RT"), new MutationSet("RT184V,RT219Q"));
-		Map<Drug, Map<String, String>> expected = new EnumMap<>(Drug.class);
-		expected.put(Drug.ABC, new TreeMap<>());
-		expected.get(Drug.ABC).put("184VI", "Possible resistance");
-		expected.put(Drug.FTC, new TreeMap<>());
-		expected.get(Drug.FTC).put("184VI", "Resistance");
-		expected.put(Drug.LMV, new TreeMap<>());
-		expected.get(Drug.LMV).put("184VI", "Resistance");
+		AsiResult asiObj = new AsiAnrs(
+			HIVGene.valueOf("HIV1RT"), new MutationSet("RT184V,RT219Q"));
+		Map<HIVDrug, Map<String, String>> expected = new EnumMap<>(HIVDrug.class);
+		expected.put(HIVDrug.ABC, new TreeMap<>());
+		expected.get(HIVDrug.ABC).put("184VI", "Possible resistance");
+		expected.put(HIVDrug.FTC, new TreeMap<>());
+		expected.get(HIVDrug.FTC).put("184VI", "Resistance");
+		expected.put(HIVDrug.LMV, new TreeMap<>());
+		expected.get(HIVDrug.LMV).put("184VI", "Resistance");
 		assertEquals(expected, asiObj.getTriggeredDrugRules());
 	}
 
 	@Test
 	public void testGetDrugMutScores() {
-		Asi asiObj = new AsiHivdb(
-			Gene.valueOf("HIV1RT"), new MutationSet("RT184V,RT219Q"));
-		Map<Drug, Map<Mutation, Double>> expected = new EnumMap<>(Drug.class);
-		expected.put(Drug.ABC, new TreeMap<>());
-		expected.get(Drug.ABC).put(IUPACMutation.parseString("RT184V"), 15.0);
-		expected.get(Drug.ABC).put(IUPACMutation.parseString("RT219Q"), 5.0);
-		expected.put(Drug.D4T, new TreeMap<>());
-		expected.get(Drug.D4T).put(IUPACMutation.parseString("RT184V"), -10.0);
-		expected.get(Drug.D4T).put(IUPACMutation.parseString("RT219Q"), 10.0);
-		expected.put(Drug.TDF, new TreeMap<>());
-		expected.get(Drug.TDF).put(IUPACMutation.parseString("RT184V"), -10.0);
-		expected.get(Drug.TDF).put(IUPACMutation.parseString("RT219Q"), 5.0);
-		expected.put(Drug.DDI, new TreeMap<>());
-		expected.get(Drug.DDI).put(IUPACMutation.parseString("RT184V"), 10.0);
-		expected.get(Drug.DDI).put(IUPACMutation.parseString("RT219Q"), 5.0);
-		expected.put(Drug.LMV, new TreeMap<>());
-		expected.get(Drug.LMV).put(IUPACMutation.parseString("RT184V"), 60.0);
-		expected.put(Drug.AZT, new TreeMap<>());
-		expected.get(Drug.AZT).put(IUPACMutation.parseString("RT184V"), -10.0);
-		expected.get(Drug.AZT).put(IUPACMutation.parseString("RT219Q"), 10.0);
-		expected.put(Drug.FTC, new TreeMap<>());
-		expected.get(Drug.FTC).put(IUPACMutation.parseString("RT184V"), 60.0);
+		AsiResult asiObj = new AsiHivdb(
+			HIVGene.valueOf("HIV1RT"), new MutationSet("RT184V,RT219Q"));
+		Map<HIVDrug, Map<HIVAAMutation, Double>> expected = new EnumMap<>(HIVDrug.class);
+		expected.put(HIVDrug.ABC, new TreeMap<>());
+		expected.get(HIVDrug.ABC).put(ConsensusMutation.parseString("RT184V"), 15.0);
+		expected.get(HIVDrug.ABC).put(ConsensusMutation.parseString("RT219Q"), 5.0);
+		expected.put(HIVDrug.D4T, new TreeMap<>());
+		expected.get(HIVDrug.D4T).put(ConsensusMutation.parseString("RT184V"), -10.0);
+		expected.get(HIVDrug.D4T).put(ConsensusMutation.parseString("RT219Q"), 10.0);
+		expected.put(HIVDrug.TDF, new TreeMap<>());
+		expected.get(HIVDrug.TDF).put(ConsensusMutation.parseString("RT184V"), -10.0);
+		expected.get(HIVDrug.TDF).put(ConsensusMutation.parseString("RT219Q"), 5.0);
+		expected.put(HIVDrug.DDI, new TreeMap<>());
+		expected.get(HIVDrug.DDI).put(ConsensusMutation.parseString("RT184V"), 10.0);
+		expected.get(HIVDrug.DDI).put(ConsensusMutation.parseString("RT219Q"), 5.0);
+		expected.put(HIVDrug.LMV, new TreeMap<>());
+		expected.get(HIVDrug.LMV).put(ConsensusMutation.parseString("RT184V"), 60.0);
+		expected.put(HIVDrug.AZT, new TreeMap<>());
+		expected.get(HIVDrug.AZT).put(ConsensusMutation.parseString("RT184V"), -10.0);
+		expected.get(HIVDrug.AZT).put(ConsensusMutation.parseString("RT219Q"), 10.0);
+		expected.put(HIVDrug.FTC, new TreeMap<>());
+		expected.get(HIVDrug.FTC).put(ConsensusMutation.parseString("RT184V"), 60.0);
 		assertEquals(expected, asiObj.getDrugMutScores());
 	}
 
 	@Test
 	public void testGetDrugComboMutScores() {
-		Asi asiObj = new AsiHivdb(
-			Gene.valueOf("HIV1RT"), new MutationSet("RT67AN,RT71R,RT100I,RT101E,RT181C,RT184V,RT219Q"));
-		Map<Drug, Map<MutationSet, Double>> expected = new EnumMap<>(Drug.class);
-		expected.put(Drug.NVP, new HashMap<>());
-		expected.get(Drug.NVP).put(new MutationSet("RT101E,RT181C"), 5.0);
-		expected.put(Drug.EFV, new HashMap<>());
-		expected.get(Drug.EFV).put(new MutationSet("RT101E,RT181C"), 5.0);
-		expected.put(Drug.ETR, new HashMap<>());
-		expected.get(Drug.ETR).put(new MutationSet("RT101E,RT181C"), 5.0);
+		AsiResult asiObj = new AsiHivdb(
+			HIVGene.valueOf("HIV1RT"), new MutationSet("RT67AN,RT71R,RT100I,RT101E,RT181C,RT184V,RT219Q"));
+		Map<HIVDrug, Map<MutationSet, Double>> expected = new EnumMap<>(HIVDrug.class);
+		expected.put(HIVDrug.NVP, new HashMap<>());
+		expected.get(HIVDrug.NVP).put(new MutationSet("RT101E,RT181C"), 5.0);
+		expected.put(HIVDrug.EFV, new HashMap<>());
+		expected.get(HIVDrug.EFV).put(new MutationSet("RT101E,RT181C"), 5.0);
+		expected.put(HIVDrug.ETR, new HashMap<>());
+		expected.get(HIVDrug.ETR).put(new MutationSet("RT101E,RT181C"), 5.0);
 		assertEquals(expected, asiObj.getDrugComboMutScores());
 	}
 }

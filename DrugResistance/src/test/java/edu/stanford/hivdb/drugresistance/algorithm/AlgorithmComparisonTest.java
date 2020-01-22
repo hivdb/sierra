@@ -37,21 +37,20 @@ import org.junit.Test;
 
 import com.google.gson.reflect.TypeToken;
 
-import edu.stanford.hivdb.alignment.AlignedSequence;
-import edu.stanford.hivdb.alignment.Aligner;
 import edu.stanford.hivdb.drugresistance.algorithm.AlgorithmComparison.ComparableDrugScore;
-import edu.stanford.hivdb.drugresistance.algorithm.Asi.SIREnum;
 import edu.stanford.hivdb.drugresistance.database.HivdbVersion;
-import edu.stanford.hivdb.drugs.Drug;
 import edu.stanford.hivdb.filetestutils.TestSequencesFiles;
 import edu.stanford.hivdb.filetestutils.TestSequencesFiles.TestSequencesProperties;
-import edu.stanford.hivdb.mutations.Gene;
+import edu.stanford.hivdb.hivfacts.HIVDrug;
+import edu.stanford.hivdb.hivfacts.HIVGene;
+import edu.stanford.hivdb.hivfacts.HIVStrain;
 import edu.stanford.hivdb.mutations.MutationSet;
-import edu.stanford.hivdb.mutations.Strain;
+import edu.stanford.hivdb.sequences.AlignedSequence;
+import edu.stanford.hivdb.sequences.NucAminoAligner;
+import edu.stanford.hivdb.sequences.Sequence;
 import edu.stanford.hivdb.utilities.Json;
 import edu.stanford.hivdb.utilities.MyFileUtils;
 import edu.stanford.hivdb.utilities.FastaUtils;
-import edu.stanford.hivdb.utilities.Sequence;
 
 public class AlgorithmComparisonTest {
 
@@ -76,12 +75,12 @@ public class AlgorithmComparisonTest {
 			final List<Sequence> sequences = FastaUtils.readStream(testSequenceInputStream);
 
 			List<AlignedSequence> allAligneds =
-					Aligner.parallelAlign(sequences);
+					NucAminoAligner.parallelAlign(sequences);
 
 			for (AlignedSequence alignedSeq : allAligneds) {
 				Sequence sequence = alignedSeq.getInputSequence();
 				// System.out.println(sequence.getHeader());
-				Map<Gene, MutationSet> mutationSets = alignedSeq.getMutations().groupByGene();
+				Map<HIVGene, MutationSet> mutationSets = alignedSeq.getMutations().groupByGene();
 				List<ComparableDrugScore>
 					 actual = new AlgorithmComparison(mutationSets, Arrays.asList(Algorithm.values())).getComparisonResults();
 				List<ComparableDrugScore>
@@ -97,9 +96,9 @@ public class AlgorithmComparisonTest {
 
 	@Test
 	public void testConstructorAcceptAsiListMap() {
-		Map<Gene, List<Asi>> asiListMap = new TreeMap<>();
+		Map<HIVGene, List<AsiResult>> asiListMap = new TreeMap<>();
 		MutationSet mutations = new MutationSet("PR46I,PR54V,PR73T,RT103N,RT41L,RT215E,RT181C,RT190A,IN66I");
-		for (Gene gene : Gene.values(Strain.HIV1)) {
+		for (HIVGene gene : HIVGene.values(HIVStrain.HIV1)) {
 			asiListMap.put(gene, new ArrayList<>());
 			MutationSet geneMuts = mutations.getGeneMutations(gene);
 			asiListMap.get(gene).add(new AsiHivdb(gene, geneMuts));
@@ -108,19 +107,19 @@ public class AlgorithmComparisonTest {
 		}
 		AlgorithmComparison cmp = new AlgorithmComparison(asiListMap);
 		List<ComparableDrugScore> r = cmp.getComparisonResults();
-		assertEquals(SIREnum.I, getComparableDrugScore(r, Drug.ABC, "ANRS").SIR);
-		assertEquals("Possible resistance", getComparableDrugScore(r, Drug.ABC, "ANRS").interpretation);
-		assertEquals(SIREnum.R, getComparableDrugScore(r, Drug.EFV, "ANRS").SIR);
-		assertEquals("Resistance", getComparableDrugScore(r, Drug.EFV, "ANRS").interpretation);
-		assertEquals(SIREnum.R, getComparableDrugScore(r, Drug.EFV, "HIVDB").SIR);
-		assertEquals("High-Level Resistance", getComparableDrugScore(r, Drug.EFV, "HIVDB").interpretation);
-		assertEquals(SIREnum.R, getComparableDrugScore(r, Drug.EFV, "REGA").SIR);
-		assertEquals("Resistant GSS 0", getComparableDrugScore(r, Drug.EFV, "REGA").interpretation);
-		assertEquals(asiListMap.get(Gene.valueOf("HIV1IN")), cmp.getAsiList(Gene.valueOf("HIV1IN")));
+		assertEquals(SIREnum.I, getComparableDrugScore(r, HIVDrug.ABC, "ANRS").SIR);
+		assertEquals("Possible resistance", getComparableDrugScore(r, HIVDrug.ABC, "ANRS").interpretation);
+		assertEquals(SIREnum.R, getComparableDrugScore(r, HIVDrug.EFV, "ANRS").SIR);
+		assertEquals("Resistance", getComparableDrugScore(r, HIVDrug.EFV, "ANRS").interpretation);
+		assertEquals(SIREnum.R, getComparableDrugScore(r, HIVDrug.EFV, "HIVDB").SIR);
+		assertEquals("High-Level Resistance", getComparableDrugScore(r, HIVDrug.EFV, "HIVDB").interpretation);
+		assertEquals(SIREnum.R, getComparableDrugScore(r, HIVDrug.EFV, "REGA").SIR);
+		assertEquals("Resistant GSS 0", getComparableDrugScore(r, HIVDrug.EFV, "REGA").interpretation);
+		assertEquals(asiListMap.get(HIVGene.valueOf("HIV1IN")), cmp.getAsiList(HIVGene.valueOf("HIV1IN")));
 	}
 
 	private ComparableDrugScore getComparableDrugScore(
-			List<ComparableDrugScore> list, Drug drug, String alg) {
+			List<ComparableDrugScore> list, HIVDrug drug, String alg) {
 		return list
 			.stream()
 			.filter(ds -> ds.drug == drug && ds.algorithm.equals(alg)).findFirst().get();
@@ -132,21 +131,21 @@ public class AlgorithmComparisonTest {
 			HivdbVersion.V7_0,
 			HivdbVersion.V8_0_1
 		};
-		MutationSet mutations = new MutationSet(Gene.valueOf("HIV1RT"), "M41L,L74I,M184V,T215Y");
+		MutationSet mutations = new MutationSet(HIVGene.valueOf("HIV1RT"), "M41L,L74I,M184V,T215Y");
 		AlgorithmComparison cmp = new AlgorithmComparison(mutations.groupByGene(), versions);
 		List<ComparableDrugScore> r = cmp.getComparisonResults();
-		assertEquals("High-level resistance", getComparableDrugScore(r, Drug.AZT, "HIVDB_7.0").interpretation);
-		assertEquals("Intermediate Resistance", getComparableDrugScore(r, Drug.AZT, "HIVDB_8.0.1").interpretation);
+		assertEquals("High-level resistance", getComparableDrugScore(r, HIVDrug.AZT, "HIVDB_7.0").interpretation);
+		assertEquals("Intermediate Resistance", getComparableDrugScore(r, HIVDrug.AZT, "HIVDB_8.0.1").interpretation);
 	}
 
 	@Test
 	public void testCalcAsiListFromCustomAlgorithms() throws IOException {
-		MutationSet mutations = new MutationSet(Gene.valueOf("HIV1RT"), "M41L,L74I,M184V,T215Y");
+		MutationSet mutations = new MutationSet(HIVGene.valueOf("HIV1RT"), "M41L,L74I,M184V,T215Y");
 		BufferedReader reader = MyFileUtils.readResource(AlgorithmComparisonTest.class, "AlgXMLs/HIVDB_7.5.xml");
 		String xml = IOUtils.toString(reader);
 		Map<String, String> xmls = new HashMap<>();
 		xmls.put("test", xml);
-		List<Asi> r = AlgorithmComparison.calcAsiListFromCustomAlgorithms(Gene.valueOf("HIV1RT"), mutations, xmls);
+		List<AsiResult> r = AlgorithmComparison.calcAsiListFromCustomAlgorithms(HIVGene.valueOf("HIV1RT"), mutations, xmls);
 		assertEquals("test", r.get(0).getAlgorithmName());
 	}
 }

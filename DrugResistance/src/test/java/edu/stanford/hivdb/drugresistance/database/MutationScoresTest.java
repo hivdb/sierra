@@ -29,12 +29,12 @@ import org.junit.Test;
 
 import edu.stanford.hivdb.drugresistance.database.MutationScores;
 import edu.stanford.hivdb.drugresistance.database.MutationScores.MutScore;
-import edu.stanford.hivdb.drugs.Drug;
-import edu.stanford.hivdb.drugs.DrugClass;
-import edu.stanford.hivdb.mutations.Gene;
-import edu.stanford.hivdb.mutations.IUPACMutation;
-import edu.stanford.hivdb.mutations.Mutation;
+import edu.stanford.hivdb.hivfacts.HIVDrug;
+import edu.stanford.hivdb.hivfacts.HIVDrugClass;
+import edu.stanford.hivdb.hivfacts.HIVGene;
+import edu.stanford.hivdb.mutations.ConsensusMutation;
 import edu.stanford.hivdb.mutations.MutationSet;
+import edu.stanford.hivdb.hivfacts.HIVAAMutation;
 
 // TODO How to test mutation that are not scored (e.g. 35T) or that have a score of 0 (103N for ETR)
 public class MutationScoresTest {
@@ -47,11 +47,11 @@ public class MutationScoresTest {
 
 	@Test
 	public void testMutScoreConstructor() {
-		final Gene eGene = Gene.valueOf("HIV1RT");
-		final DrugClass eDrugClass = DrugClass.NRTI;
+		final HIVGene eGene = HIVGene.valueOf("HIV1RT");
+		final HIVDrugClass eDrugClass = HIVDrugClass.NRTI;
 		final Integer ePos = 41;
 		final Character eAA = 'L';
-		final Drug eDrug = Drug.ABC;
+		final HIVDrug eDrug = HIVDrug.ABC;
 		final Double eScore = 5.0;
 		final MutScore mutScore = new MutScore(eGene, eDrugClass, ePos, eAA, eDrug, eScore);
 		assertEquals(eGene, mutScore.gene);
@@ -64,7 +64,7 @@ public class MutationScoresTest {
 
 	@Test
 	public void testGetMutScores() {
-		final Gene eGene = Gene.valueOf("HIV1RT");
+		final HIVGene eGene = HIVGene.valueOf("HIV1RT");
 		final Integer ePos = 41;
 		final Character eAA = 'L';
 		final List<MutScore> mutScoresList = MutationScores.getMutScores();
@@ -80,12 +80,12 @@ public class MutationScoresTest {
 	public void testGetMutScoresForDrugClass() {
 		final int ePos = 88;
 		final int eNumScoresAtEPos = 13;
-		final List<MutScore> mutScoresList = MutationScores.getMutScores(DrugClass.PI);
+		final List<MutScore> mutScoresList = MutationScores.getMutScores(HIVDrugClass.PI);
 		int mutScoreCounter = 0;
 		for (MutScore ms : mutScoresList) {
-			assertNotEquals(DrugClass.NRTI, ms.drugClass);
-			assertNotEquals(DrugClass.NNRTI, ms.drugClass);
-			assertNotEquals(DrugClass.INSTI, ms.drugClass);
+			assertNotEquals(HIVDrugClass.NRTI, ms.drugClass);
+			assertNotEquals(HIVDrugClass.NNRTI, ms.drugClass);
+			assertNotEquals(HIVDrugClass.INSTI, ms.drugClass);
 			if (ms.pos == ePos) { mutScoreCounter++; }
 		}
 		assertEquals(eNumScoresAtEPos, mutScoreCounter);
@@ -96,29 +96,29 @@ public class MutationScoresTest {
 		final Integer ePos = 67;
 		final int eNumABCScoresAtEPos = 7;
 		final Map<Integer, List<MutScore>> mutScores
-			= MutationScores.groupMutScoresByPos(Drug.ABC);
+			= MutationScores.groupMutScoresByPos(HIVDrug.ABC);
 		final int numABCScoresAtEPos = mutScores.get(ePos).size();
 		assertEquals(eNumABCScoresAtEPos, numABCScoresAtEPos);
 	}
 
 	@Test
 	public void testMutScoreHash() throws SQLException {
-		Gene gene = Gene.valueOf("HIV1RT");
-		Mutation mut1 = new IUPACMutation(gene, 41, "L");
-		Mutation mut2 = new IUPACMutation(gene, 215, "SY");
-		Mutation mut3 = new IUPACMutation(gene, 35, "T");
-		Mutation mut4 = new IUPACMutation(gene, 103, "N");
+		HIVGene gene = HIVGene.valueOf("HIV1RT");
+		HIVAAMutation mut1 = new ConsensusMutation(gene, 41, "L");
+		HIVAAMutation mut2 = new ConsensusMutation(gene, 215, "SY");
+		HIVAAMutation mut3 = new ConsensusMutation(gene, 35, "T");
+		HIVAAMutation mut4 = new ConsensusMutation(gene, 103, "N");
 		MutationSet mutSet = new MutationSet(mut1, mut2, mut3, mut4);
 
-		Map<DrugClass, Map<Drug, Map<Mutation, Double>>> drugClassDrugMutScores =
+		Map<HIVDrugClass, Map<HIVDrug, Map<HIVAAMutation, Double>>> drugClassDrugMutScores =
 				MutationScores.getDrugClassMutScoresForMutSet(gene, mutSet);
 
-		assertNotEquals(10, drugClassDrugMutScores.get(DrugClass.NRTI).get(Drug.AZT).get(mut1).intValue());
-		assertEquals(40, drugClassDrugMutScores.get(DrugClass.NRTI).get(Drug.AZT).get(mut2).intValue());
+		assertNotEquals(10, drugClassDrugMutScores.get(HIVDrugClass.NRTI).get(HIVDrug.AZT).get(mut1).intValue());
+		assertEquals(40, drugClassDrugMutScores.get(HIVDrugClass.NRTI).get(HIVDrug.AZT).get(mut2).intValue());
 
 		//Need to check for existence of a score
-		//Assert.assertEquals(0, drugClassDrugMutScores.get(DrugClass.NNRTI).get(Drug.ETR).get(mut3).intValue());
+		//Assert.assertEquals(0, drugClassDrugMutScores.get(HIVDrugClass.NNRTI).get(Drug.ETR).get(mut3).intValue());
 
-		assertNotEquals(30, drugClassDrugMutScores.get(DrugClass.NNRTI).get(Drug.EFV).get(mut4).intValue());
+		assertNotEquals(30, drugClassDrugMutScores.get(HIVDrugClass.NNRTI).get(HIVDrug.EFV).get(mut4).intValue());
 	}
 }

@@ -25,15 +25,15 @@ import org.junit.Test;
 
 import edu.stanford.hivdb.drugresistance.database.HivdbVersion;
 import edu.stanford.hivdb.drugresistance.scripts.HivdbRulesForAsiConstructor;
-import edu.stanford.hivdb.drugs.Drug;
-import edu.stanford.hivdb.drugs.DrugClass;
+import edu.stanford.hivdb.hivfacts.HIVDrug;
+import edu.stanford.hivdb.hivfacts.HIVDrugClass;
 
 public class HivdbAsiRulesForDrugTest {
 
 	@Test
 	public void test() throws SQLException {
-		for (DrugClass drugClass : DrugClass.values()) {
-			for (Drug drug : drugClass.getDrugsForHivdbTesting()) {
+		for (HIVDrugClass drugClass : HIVDrugClass.values()) {
+			for (HIVDrug drug : drugClass.getDrugs()) {
 				HivdbRulesForAsiConstructor hivdbAsiRulesForDrug = new HivdbRulesForAsiConstructor(HivdbVersion.getLatestVersion(), drug);
 				List<String> individualMutRules = hivdbAsiRulesForDrug.getIndividualMutRules();
 				System.out.println(drug);

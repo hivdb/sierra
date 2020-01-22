@@ -23,48 +23,44 @@ import graphql.schema.*;
 import static graphql.Scalars.*;
 import static graphql.schema.GraphQLObjectType.newObject;
 
-import edu.stanford.hivdb.subtype.Subtype;
-
-import static edu.stanford.hivdb.graphql.ExtendedFieldDefinition.newFieldDefinition;
+import edu.stanford.hivdb.genotypes.Genotype;
+import edu.stanford.hivdb.hivfacts.HIV;
 
 public class SubtypeDef {
 
-	public static GraphQLEnumType oSubtype;
 
-	public static GraphQLObjectType oBoundSubtype;
-
-	static {
+	private static GraphQLEnumType.Builder createSubtypeBuilder() {
+		HIV hiv = HIV.getInstance();
 		GraphQLEnumType.Builder oSubtypeBuilder = GraphQLEnumType.newEnum()
 			.name("Subtype")
 			.description("SubtypeName");
-		for (Subtype subtype : Subtype.values()) {
-			oSubtypeBuilder = oSubtypeBuilder.value(subtype.toString(), subtype);
+		for (Genotype<HIV> subtype : hiv.getGenotypes()) {
+			oSubtypeBuilder = oSubtypeBuilder.value(subtype.getIndexName(), subtype);
 		}
-
-		oSubtype = oSubtypeBuilder.build();
-
-		oBoundSubtype = newObject()
-			.name("BoundSubtype")
-			.description("Subtype of certain sequence.")
-			.field(newFieldDefinition()
-				.type(oSubtype)
-				.name("name")
-				.description("Name of the subtype.")
-				.build())
-			.field(newFieldDefinition()
-				.type(GraphQLFloat)
-				.name("distancePcnt")
-				.description(
-					"The distance percentage compares to the subtype of given " +
-					"sequence. 0.0 means completely the same.")
-				.build())
-			.field(newFieldDefinition()
-				.type(GraphQLString)
-				.name("display")
-				.description(
-					"String of shown subtype and distance percentage. The shown " +
-					"subtype can be in the form of unknown subtype of recombination " +
-					"like \"B + C\"."))
-			.build();
+		return oSubtypeBuilder;
 	}
+
+	public static GraphQLEnumType oSubtype = createSubtypeBuilder().build();
+
+	public static GraphQLObjectType oBoundSubtype = newObject()
+		.name("BoundSubtype")
+		.description("Subtype of certain sequence.")
+		.field(field -> field
+			.type(oSubtype)
+			.name("name")
+			.description("Name of the subtype."))
+		.field(field -> field
+			.type(GraphQLFloat)
+			.name("distancePcnt")
+			.description(
+				"The distance percentage compares to the subtype of given " +
+				"sequence. 0.0 means completely the same."))
+		.field(field -> field
+			.type(GraphQLString)
+			.name("display")
+			.description(
+				"String of shown subtype and distance percentage. The shown " +
+				"subtype can be in the form of unknown subtype of recombination " +
+				"like \"B + C\"."))
+		.build();
 }

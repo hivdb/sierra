@@ -24,8 +24,6 @@ import static graphql.schema.GraphQLObjectType.newObject;
 
 import edu.stanford.hivdb.utilities.ValidationLevel;
 
-import static edu.stanford.hivdb.graphql.ExtendedFieldDefinition.*;
-
 public class ValidationResultDef {
 
 	private static GraphQLEnumType newValidationLevel() {
@@ -43,15 +41,13 @@ public class ValidationResultDef {
 	public static GraphQLObjectType oValidationResult = newObject()
 		.name("ValidationResult")
 		.description("Validation result for sequence or mutation list.")
-		.field(newFieldDefinition()
+		.field(field -> field
 			.name("level")
 			.type(oValidationLevel)
-			.description("The level of this validation result.")
-			.build())
-		.field(newFieldDefinition()
+			.description("The level of this validation result."))
+		.field(field -> field
 			.name("message")
 			.type(GraphQLString)
-			.description("Description of this validation result.")
-			.build())
+			.description("Description of this validation result."))
 		.build();
 }

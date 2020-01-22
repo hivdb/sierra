@@ -23,18 +23,19 @@ import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import edu.stanford.hivdb.alignment.AlignedSequence;
-import edu.stanford.hivdb.alignment.Aligner;
+
 import edu.stanford.hivdb.drugresistance.algorithm.Algorithm;
 import edu.stanford.hivdb.drugresistance.algorithm.AlgorithmComparison;
 import edu.stanford.hivdb.filetestutils.TestSequencesFiles;
 import edu.stanford.hivdb.filetestutils.TestSequencesFiles.TestSequencesProperties;
-import edu.stanford.hivdb.mutations.Gene;
+import edu.stanford.hivdb.hivfacts.HIVGene;
 import edu.stanford.hivdb.mutations.MutationSet;
+import edu.stanford.hivdb.sequences.AlignedSequence;
+import edu.stanford.hivdb.sequences.NucAminoAligner;
+import edu.stanford.hivdb.sequences.Sequence;
 import edu.stanford.hivdb.utilities.FastaUtils;
 import edu.stanford.hivdb.utilities.Json;
 import edu.stanford.hivdb.utilities.MyFileUtils;
-import edu.stanford.hivdb.utilities.Sequence;
 
 public class AlgorithmComparisonTestExpectedsGenerator {
 
@@ -51,11 +52,11 @@ public class AlgorithmComparisonTestExpectedsGenerator {
 			final List<Sequence> sequences = FastaUtils.readStream(testSequenceInputStream);
 
 			List<AlignedSequence> allAligneds =
-					Aligner.parallelAlign(sequences);
+					NucAminoAligner.parallelAlign(sequences);
 
 			for (AlignedSequence alignedSeq : allAligneds) {
 				Sequence sequence = alignedSeq.getInputSequence();
-				Map<Gene, MutationSet> mutationSets = alignedSeq.getMutations().groupByGene();
+				Map<HIVGene, MutationSet> mutationSets = alignedSeq.getMutations().groupByGene();
 				AlgorithmComparison algorithmComparison =
 					new AlgorithmComparison(mutationSets, Arrays.asList(Algorithm.values()));
 				r.putIfAbsent(property.toString(), new LinkedHashMap<>());

@@ -26,22 +26,22 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import edu.stanford.hivdb.alignment.Aligner;
-import edu.stanford.hivdb.alignment.AlignedGeneSeq;
 import edu.stanford.hivdb.drugresistance.GeneDR;
 import edu.stanford.hivdb.drugresistance.GeneDRFast;
-import edu.stanford.hivdb.drugs.Drug;
-import edu.stanford.hivdb.drugs.DrugClass;
 import edu.stanford.hivdb.filetestutils.TestSequencesFiles;
 import edu.stanford.hivdb.filetestutils.TestSequencesFiles.TestSequencesProperties;
-import edu.stanford.hivdb.mutations.Gene;
-import edu.stanford.hivdb.mutations.Mutation;
+import edu.stanford.hivdb.hivfacts.HIVDrug;
+import edu.stanford.hivdb.hivfacts.HIVDrugClass;
+import edu.stanford.hivdb.hivfacts.HIVGene;
+import edu.stanford.hivdb.hivfacts.HIVAAMutation;
 import edu.stanford.hivdb.mutations.MutationMapUtils;
-import edu.stanford.hivdb.mutations.MutationMapUtils.SortOrder;
 import edu.stanford.hivdb.mutations.MutationSet;
+import edu.stanford.hivdb.mutations.MutationMapUtils.SortOrder;
+import edu.stanford.hivdb.sequences.AlignedGeneSeq;
+import edu.stanford.hivdb.sequences.NucAminoAligner;
+import edu.stanford.hivdb.sequences.Sequence;
 import edu.stanford.hivdb.utilities.MyFileUtils;
 import edu.stanford.hivdb.utilities.FastaUtils;
-import edu.stanford.hivdb.utilities.Sequence;
 
 
 /**
@@ -56,7 +56,7 @@ public class HivdbAsiComparison {
 	private static final String FILE_COMPLETE_COMPARISON = "HivdbAsiComparison.txt";
 	private static final String FILE_DIFFERENCES = "HivdbAsiDifferences.txt";
 	private static final String DELIMITER = "\t";
-	private static final String[] headerFields = {"SeqName", "Gene", "DrugClass", "Drug",
+	private static final String[] headerFields = {"SeqName", "Gene", "HIVDrugClass", "Drug",
 			"TotalScore-HIVDB", "TotalScore-Asi", "TotalScore-Dif",
 			"IndividualScoredMuts-HIVDB", "IndividualScoredMuts-Asi", "IndividualScores-Dif",
 			"CombinationScoredMuts-HIVDB", "CombinationScoredMuts-Asi", "CombinationScores-Dif"};
@@ -72,8 +72,8 @@ public class HivdbAsiComparison {
 		StringBuffer differencesOutput = new StringBuffer();
 
 		for (Sequence seq : sequences) {
-			Map<Gene, AlignedGeneSeq> alignedGeneSeqs = Aligner.align(seq).getAlignedGeneSequenceMap();
-			for (Gene gene : alignedGeneSeqs.keySet()) {
+			Map<HIVGene, AlignedGeneSeq> alignedGeneSeqs = NucAminoAligner.align(seq).getAlignedGeneSequenceMap();
+			for (HIVGene gene : alignedGeneSeqs.keySet()) {
 				AlignedGeneSeq alignedGeneSeq = alignedGeneSeqs.get(gene);
 				final MutationSet mutations = alignedGeneSeq.getMutations();
 
@@ -86,7 +86,7 @@ public class HivdbAsiComparison {
 				// If there are no DRMs belonging to the drugClass then no line will be printed
 				// If there are DRMs belonging to the drugClass; they should be present regardless
 				// of whether the HIVDB algorithm was derived from HIVDB_Scores or from the Asi xml.
-				for (DrugClass drugClass : gene.getDrugClasses()) {
+				for (HIVDrugClass drugClass : gene.getDrugClasses()) {
 					if (geneDRHivdb.drugClassHasScoredMuts(drugClass) || geneDRAsi.drugClassHasScoredMuts(drugClass)) {
 						String seqGeneComparison =
 								compareResults(seq.getHeader(), gene, drugClass, geneDRHivdb, geneDRAsi);
@@ -106,11 +106,11 @@ public class HivdbAsiComparison {
 		}
 	}
 
-	public static String compareResults (final String seqName, final Gene gene, final DrugClass drugClass,
+	public static String compareResults (final String seqName, final HIVGene gene, final HIVDrugClass drugClass,
 			final GeneDR geneHivdbResults, final GeneDR geneAsiResults) {
 		StringBuffer output = new StringBuffer();
 
-		for (Drug drug : drugClass.getDrugsForHivdbTesting()) {
+		for (HIVDrug drug : drugClass.getDrugs()) {
 			output.append(seqName + DELIMITER);
 			output.append(gene + DELIMITER);
 			output.append(drugClass + DELIMITER);
@@ -143,10 +143,10 @@ public class HivdbAsiComparison {
 		return output.toString();
 	}
 
-	public static String getDifferences(final String seqName, final DrugClass drugClass, final GeneDR geneHivdbResults,
+	public static String getDifferences(final String seqName, final HIVDrugClass drugClass, final GeneDR geneHivdbResults,
 			final GeneDR geneAsiResults) {
 		StringBuffer output = new StringBuffer();
-		for (Drug drug : drugClass.getDrugsForHivdbTesting()) {
+		for (HIVDrug drug : drugClass.getDrugs()) {
 			int drugScoreHivdb = geneHivdbResults.getTotalDrugScore(drug).intValue();
 			int drugScoreAsi = geneAsiResults.getTotalDrugScore(drug).intValue();
 			if (drugScoreHivdb - drugScoreAsi != 0) {
@@ -169,15 +169,15 @@ public class HivdbAsiComparison {
 		return output.toString();
 	}
 
-	private static String getScoredMuts(GeneDR geneDR, Drug drug) {
+	private static String getScoredMuts(GeneDR geneDR, HIVDrug drug) {
 		StringBuffer output = new StringBuffer();
 		if (geneDR.drugHasScoredMuts(drug)) {
-			Map<Mutation, Double> individualMutScores = geneDR.getScoredIndividualMutsForDrug(drug);
-			List<Mutation> mutations = new ArrayList<>(individualMutScores.keySet());
+			Map<HIVAAMutation, Double> individualMutScores = geneDR.getScoredIndividualMutsForDrug(drug);
+			List<HIVAAMutation> mutations = new ArrayList<>(individualMutScores.keySet());
 
-			Map<Mutation, Double> mutationsSortedByPosition = new LinkedHashMap<>();
+			Map<HIVAAMutation, Double> mutationsSortedByPosition = new LinkedHashMap<>();
 			Collections.sort(mutations);
-			for (Mutation mutation : mutations) {
+			for (HIVAAMutation mutation : mutations) {
 				mutationsSortedByPosition.put(mutation, individualMutScores.get(mutation));
 			}
 
@@ -189,9 +189,9 @@ public class HivdbAsiComparison {
 		return output.toString();
 	}
 
-	public static String formatMutList(Map<Mutation, Double> map) {
+	public static String formatMutList(Map<HIVAAMutation, Double> map) {
 		StringBuffer output = new StringBuffer();
-		for (Mutation mut : map.keySet()) {
+		for (HIVAAMutation mut : map.keySet()) {
 			int value = map.get(mut).intValue();
 			String formattedMut = "";
 			if (mut.isDeletion()) {
@@ -210,7 +210,7 @@ public class HivdbAsiComparison {
 	}
 
 
-	private static String getComboScoredMuts(GeneDR geneDR, Drug drug) {
+	private static String getComboScoredMuts(GeneDR geneDR, HIVDrug drug) {
 		StringBuffer output = new StringBuffer();
 		if (geneDR.drugHasScoredComboMuts(drug)) {
 			Map<MutationSet, Double> comboMutScores = geneDR.getScoredComboMutsForDrug(drug);

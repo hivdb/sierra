@@ -20,7 +20,7 @@ package edu.stanford.hivdb.drugresistance.scripts;
 
 import java.util.List;
 import edu.stanford.hivdb.drugresistance.database.MutationPatterns;
-import edu.stanford.hivdb.drugs.DrugClass;
+import edu.stanford.hivdb.hivfacts.HIVDrugClass;
 import edu.stanford.hivdb.utilities.MyFileUtils;
 
 /**
@@ -39,7 +39,7 @@ public class MutationPatternFilesCreator {
 	private static final String OUTPUT_DIR = "src/test/resources/MutationPatternsFiles/";
 
 	public static void main (String[] args) {
-		for (DrugClass drugClass : DrugClass.values()) {
+		for (HIVDrugClass drugClass : HIVDrugClass.values()) {
 			MutationPatterns mutPatterns = new MutationPatterns(drugClass);
 			List<String> orderedMutPatterns = mutPatterns.getOrderedMutPatterns();
 

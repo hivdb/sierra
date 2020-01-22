@@ -21,25 +21,30 @@ package edu.stanford.hivdb.graphql;
 import graphql.schema.*;
 import static graphql.Scalars.*;
 import static graphql.schema.GraphQLObjectType.newObject;
+import static graphql.schema.GraphQLCodeRegistry.newCodeRegistry;
+import static graphql.schema.FieldCoordinates.coordinates;
 
 import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
 
 public class DescriptiveStatisticsDef {
 
 
-	private static DataFetcher<Double> percentileDataFetcher = new DataFetcher<Double>() {
-		
-		@Override
-		public Double get(DataFetchingEnvironment environment) {
-			DescriptiveStatistics descStats = (DescriptiveStatistics) environment.getSource();
-			double p = environment.getArgument("p");
-			Double result = descStats.getPercentile(p);
-			if (Double.isNaN(result)) {
-				return null;
-			}
-			return result;
+	private static DataFetcher<Double> percentileDataFetcher = env -> {
+		DescriptiveStatistics descStats = env.getSource();
+		double p = env.getArgument("p");
+		Double result = descStats.getPercentile(p);
+		if (Double.isNaN(result)) {
+			return null;
 		}
+		return result;
 	};
+
+	public static GraphQLCodeRegistry descriptiveStatisticsCodeRegistry = newCodeRegistry()
+		.dataFetcher(
+			coordinates("DescriptiveStatistics", "percentile"),
+			percentileDataFetcher
+		)
+		.build();
 	
 	public static GraphQLObjectType oDescriptiveStatistics = newObject()
 		.name("DescriptiveStatistics")
@@ -88,7 +93,6 @@ public class DescriptiveStatisticsDef {
 				.description("The requested percentile (scaled from 0 - 100)")
 			)
 			.description("An estimate for the pth percentile of the stored values.")
-			.dataFetcher(percentileDataFetcher)
 		)
 		.build();
 

@@ -19,73 +19,66 @@
 package edu.stanford.hivdb.drugresistance.reports;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import edu.stanford.hivdb.alignment.AlignedSequence;
-import edu.stanford.hivdb.drugresistance.algorithm.Algorithm;
-import edu.stanford.hivdb.drugresistance.algorithm.AlgorithmComparison;
-import edu.stanford.hivdb.drugresistance.algorithm.Asi;
-import edu.stanford.hivdb.drugs.Drug;
-import edu.stanford.hivdb.drugs.DrugClass;
-import edu.stanford.hivdb.mutations.Gene;
-import edu.stanford.hivdb.mutations.MutationSet;
-import edu.stanford.hivdb.utilities.TSV;
+import com.google.common.collect.Lists;
 
-public class TabularAlgorithmsComparison {
+import edu.stanford.hivdb.drugresistance.algorithm.AlgorithmComparison;
+import edu.stanford.hivdb.drugresistance.algorithm.AlgorithmComparison.ComparableDrugScore;
+import edu.stanford.hivdb.drugresistance.algorithm.SIREnum;
+import edu.stanford.hivdb.drugs.Drug;
+import edu.stanford.hivdb.drugs.DrugResistanceAlgorithm;
+import edu.stanford.hivdb.mutations.MutationSet;
+import edu.stanford.hivdb.sequences.AlignedSequence;
+import edu.stanford.hivdb.utilities.TSV;
+import edu.stanford.hivdb.viruses.Virus;
+
+public class TabularAlgorithmsComparison<VirusT extends Virus<VirusT>> {
 
 	private List<String> headers;
-	private List<AlignedSequence> alignedSeqs;
-	private List<Algorithm> algorithms;
-	private Map<String, String> customAlgorithms;
+	private List<AlignedSequence<VirusT>> alignedSeqs;
+	private List<DrugResistanceAlgorithm<VirusT>> algorithms;
 
 	public TabularAlgorithmsComparison(
-			List<AlignedSequence> alignedSeqs,
-			List<Algorithm> algorithms,
-			Map<String, String> customAlgorithms) {
+		List<AlignedSequence<VirusT>> alignedSeqs,
+		List<DrugResistanceAlgorithm<VirusT>> algorithms
+	) {
 		this.alignedSeqs = alignedSeqs;
 		this.algorithms = algorithms;
-		this.customAlgorithms = customAlgorithms;
 		headers = new ArrayList<>();
 		headers.add("sequenceName");
 		headers.add("gene");
 		headers.add("drugName");
-		for (Algorithm alg : algorithms) {
-			headers.add(alg + ".drugLevel");
-		}
-		for (String cAlg : customAlgorithms.keySet()) {
-			headers.add(cAlg + ".drugLevel");
+		for (DrugResistanceAlgorithm<VirusT> alg : algorithms) {
+			headers.add(alg.getName() + ".drugLevel");
 		}
 	}
 
 	@Override
 	public String toString() {
-		List<List<String>> rows = new ArrayList<>();
-		for (AlignedSequence alignedSeq : alignedSeqs) {
-			MutationSet allMuts = alignedSeq.getMutations();
-			for (Gene gene : alignedSeq.getAvailableGenes()) {
-				MutationSet muts = allMuts.getGeneMutations(gene);
-				List<Asi> asiList = AlgorithmComparison
-					.calcAsiListFromAlgorithms(gene, muts, algorithms);
-				asiList.addAll(AlgorithmComparison
-					.calcAsiListFromCustomAlgorithms(
-						gene, muts, customAlgorithms));
-				for (DrugClass dc : gene.getDrugClasses()) {
-					for (Drug drug : dc.getDrugsForHivdbTesting()) {
-						List<String> row = new ArrayList<>();
-						row.add(alignedSeq.getInputSequence().getHeader());
-						row.add(gene.getName());
-						row.add(drug.getDisplayAbbr());
-						for (Asi asi : asiList) {
-							String sir = asi.getDrugLevelSir(drug);
-							row.add(sir == null ? "-" : sir);
-						}
-						rows.add(row);
-					}
+		Map<Drug<VirusT>, List<String>> rows = new LinkedHashMap<>();
+		for (AlignedSequence<VirusT> alignedSeq : alignedSeqs) {
+			MutationSet<VirusT> allMuts = alignedSeq.getMutations();
+			AlgorithmComparison<VirusT> algCmp = new AlgorithmComparison<>(allMuts, algorithms);
+			List<ComparableDrugScore<VirusT>> cmpResults = algCmp.getComparisonResults();
+			// an assumption was made here that algorithms are in the same order as the input
+			for (ComparableDrugScore<VirusT> result : cmpResults) {
+				Drug<VirusT> drug = result.getDrug();
+				if (!rows.containsKey(drug)) {
+					rows.put(drug, Lists.newArrayList(
+						alignedSeq.getInputSequence().getHeader(),
+						drug.getDrugClass().getAbstractGene(),
+						drug.getDisplayAbbr()
+					));
 				}
+				List<String> row = rows.get(drug);
+				SIREnum sir = result.getSIR();
+				row.add(sir == null ? "-" : sir.toString());
 			}
 		}
-		return TSV.dumps(headers, rows);
+		return TSV.dumps(headers, rows.values());
 	}
 
 }

@@ -26,13 +26,14 @@ import java.util.Map;
 
 import org.junit.Test;
 
-import edu.stanford.hivdb.alignment.Aligner;
-import edu.stanford.hivdb.alignment.TabularSequenceSummary;
 import edu.stanford.hivdb.filetestutils.TestSequencesFiles;
 import edu.stanford.hivdb.filetestutils.TestSequencesFiles.TestSequencesProperties;
+import edu.stanford.hivdb.hivfacts.extras.TabularSequenceSummary;
+import edu.stanford.hivdb.sequences.AlignedSequence;
+import edu.stanford.hivdb.sequences.NucAminoAligner;
+import edu.stanford.hivdb.sequences.Sequence;
 import edu.stanford.hivdb.utilities.MyFileUtils;
 import edu.stanford.hivdb.utilities.FastaUtils;
-import edu.stanford.hivdb.utilities.Sequence;
 
 public class TabularSequenceSummaryTest {
 	private static List<AlignedSequence> allSequenceResults = new ArrayList<>();
@@ -44,7 +45,7 @@ public class TabularSequenceSummaryTest {
 		final InputStream testSequenceInputStream =
 				TestSequencesFiles.getTestSequenceInputStream(TestSequencesProperties.VGI);
 		final List<Sequence> sequences = FastaUtils.readStream(testSequenceInputStream);
-		allSequenceResults = Aligner.parallelAlign(sequences);
+		allSequenceResults = NucAminoAligner.parallelAlign(sequences);
 		TabularSequenceSummary tabularSequenceSummary = new TabularSequenceSummary(allSequenceResults);
 		tabularSequence= tabularSequenceSummary.getTable();
 		headerFields = tabularSequenceSummary.getHeaderFields();

@@ -22,27 +22,28 @@ import graphql.schema.*;
 import static graphql.Scalars.*;
 import graphql.schema.GraphQLFieldDefinition.Builder;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.stanford.hivdb.drugs.DrugClass;
-import edu.stanford.hivdb.mutations.Apobec;
-import edu.stanford.hivdb.mutations.Gene;
-import edu.stanford.hivdb.mutations.MutType;
+import com.google.gson.reflect.TypeToken;
+
+import edu.stanford.hivdb.hivfacts.HIV;
 import edu.stanford.hivdb.mutations.MutationSet;
-import edu.stanford.hivdb.mutations.Sdrms;
-import edu.stanford.hivdb.mutations.Tsms;
-import edu.stanford.hivdb.mutations.WithGene;
+import edu.stanford.hivdb.viruses.Gene;
+import edu.stanford.hivdb.viruses.WithGene;
 
 import static edu.stanford.hivdb.graphql.MutationDef.oMutation;
-import static edu.stanford.hivdb.graphql.ExtendedFieldDefinition.*;
+import static edu.stanford.hivdb.graphql.ExtGraphQL.*;
 
 public class MutationSetDef {
 
 	private enum mutsFilterOption {
 		APOBEC, APOBEC_DRM,
-		DRM, notDRM, PI_DRM, NRTI_DRM, NNRTI_DRM, INSTI_DRM, SDRM, DRP,
-		PI_TSM, NRTI_TSM, NNRTI_TSM, INSTI_TSM,
+		DRM, notDRM, PI_DRM, NRTI_DRM, NNRTI_DRM, INSTI_DRM,
+		SDRM, notSDRM, PI_SDRM, NRTI_SDRM, NNRTI_SDRM, INSTI_SDRM,
+		DRP,
+		TSM, notTSM, PI_TSM, NRTI_TSM, NNRTI_TSM, INSTI_TSM,
 		GENE_PR, GENE_RT, GENE_IN,
 		TYPE_MAJOR, TYPE_ACCESSORY, TYPE_NRTI, TYPE_NNRTI, TYPE_OTHER,
 		INSERTION, DELETION, UNUSUAL, AMBIGUOUS, STOPCODON,
@@ -87,21 +88,39 @@ public class MutationSetDef {
 			"List only mutations which are surveillance drug resistance " +
 			"mutations (SDRM).")
 		.value(
+			"notSDRM", mutsFilterOption.notSDRM,
+			"List only mutations which are not sruveillance drug resistance " +
+			"mutation (SDRM).")
+		.value(
+			"PI_SDRM", mutsFilterOption.PI_SDRM,
+			"List only mutations which are PI SDRM.")
+		.value(
+			"NRTI_SDRM", mutsFilterOption.NRTI_SDRM,
+			"List only mutations which are NRTI SDRM.")
+		.value(
+			"NNRTI_SDRM", mutsFilterOption.NNRTI_SDRM,
+			"List only mutations which are NNRTI SDRM.")
+		.value(
+			"INSTI_SDRM", mutsFilterOption.INSTI_SDRM,
+			"List only mutations which are INSTI SDRM.")
+		.value(
+			"TSM", mutsFilterOption.TSM,
+			"List only mutations which are treatment-selected mutations (TSM).")
+		.value(
+			"notTSM", mutsFilterOption.notTSM,
+			"List only mutations which are not treatment-selected mutations (TSM).")
+		.value(
 			"PI_TSM", mutsFilterOption.PI_TSM,
-			"List only mutations which are treatment-selected mutations " +
-			"(TSM) for drug class PI.")
+			"List only mutations which are PI TSM.")
 		.value(
 			"NRTI_TSM", mutsFilterOption.NRTI_TSM,
-			"List only mutations which are treatment-selected mutations " +
-			"(TSM) for drug class NRTI.")
+			"List only mutations which are NRTI TSM.")
 		.value(
 			"NNRTI_TSM", mutsFilterOption.NNRTI_TSM,
-			"List only mutations which are treatment-selected mutations " +
-			"(TSM) for drug class NNRTI.")
+			"List only mutations which are NNRTI TSM.")
 		.value(
 			"INSTI_TSM", mutsFilterOption.INSTI_TSM,
-			"List only mutations which are treatment-selected mutations " +
-			"(TSM) for drug class INSTI.")
+			"List only mutations which are INSTI TSM.")
 		.value("GENE_PR", mutsFilterOption.GENE_PR)
 		.value("GENE_RT", mutsFilterOption.GENE_RT)
 		.value("GENE_IN", mutsFilterOption.GENE_IN)
@@ -124,118 +143,141 @@ public class MutationSetDef {
 			"Accept a custom list of mutations and find the intersects.")
 		.build();
 
-	public static Builder newMutationSet(String name) {
 
-		final class MutationSetDataFetcher extends ExtendedPropertyDataFetcher<MutationSet> {
+	final public static class MutationSetDataFetcher extends ExtPropertyDataFetcher<MutationSet<HIV>> {
 
-			public MutationSetDataFetcher(String propertyName) {
-				super(propertyName);
-			}
-
-			@Override
-			protected MutationSet postProcess(MutationSet mutations, DataFetchingEnvironment environment) {
-				List<?> filterOptions = environment.getArgument("filterOptions");
-				if (filterOptions == null) { filterOptions = new ArrayList<>(); }
-				for (Object filterOption : filterOptions) {
-					switch((mutsFilterOption) filterOption) {
-					case APOBEC:
-						mutations = new Apobec(mutations).getApobecMuts();
-						break;
-					case APOBEC_DRM:
-						mutations = new Apobec(mutations).getApobecDRMs();
-						break;
-					case DRM:
-						mutations = mutations.getDRMs();
-						break;
-					case DRP:
-						mutations = mutations.getAtDRPMutations();
-					case notDRM:
-						mutations = mutations.subtractsBy(mutations.getDRMs());
-						break;
-					case PI_DRM:
-						mutations = mutations.getDRMs(DrugClass.PI);
-						break;
-					case NRTI_DRM:
-						mutations = mutations.getDRMs(DrugClass.NRTI);
-						break;
-					case NNRTI_DRM:
-						mutations = mutations.getDRMs(DrugClass.NNRTI);
-						break;
-					case INSTI_DRM:
-						mutations = mutations.getDRMs(DrugClass.INSTI);
-						break;
-					case SDRM:
-						mutations = Sdrms.getSdrms(mutations);
-						break;
-					case PI_TSM:
-						mutations = Tsms.getTsmsForDrugClass(DrugClass.PI, mutations);
-						break;
-					case NRTI_TSM:
-						mutations = Tsms.getTsmsForDrugClass(DrugClass.NRTI, mutations);
-						break;
-					case NNRTI_TSM:
-						mutations = Tsms.getTsmsForDrugClass(DrugClass.NNRTI, mutations);
-						break;
-					case INSTI_TSM:
-						mutations = Tsms.getTsmsForDrugClass(DrugClass.INSTI, mutations);
-						break;
-					case GENE_PR:
-						// TODO: HIV2 support
-						mutations = mutations.getGeneMutations(Gene.valueOf("HIV1PR"));
-						break;
-					case GENE_RT:
-						mutations = mutations.getGeneMutations(Gene.valueOf("HIV1RT"));
-						break;
-					case GENE_IN:
-						mutations = mutations.getGeneMutations(Gene.valueOf("HIV1IN"));
-						break;
-					case TYPE_MAJOR:
-						mutations = mutations.getByMutType(MutType.Major);
-						break;
-					case TYPE_ACCESSORY:
-						mutations = mutations.getByMutType(MutType.Accessory);
-						break;
-					case TYPE_NRTI:
-						mutations = mutations.getByMutType(MutType.NRTI);
-						break;
-					case TYPE_NNRTI:
-						mutations = mutations.getByMutType(MutType.NNRTI);
-						break;
-					case TYPE_OTHER:
-						mutations = mutations.getByMutType(MutType.Other);
-						break;
-					case DELETION:
-						mutations = mutations.getDeletions();
-						break;
-					case INSERTION:
-						mutations = mutations.getInsertions();
-						break;
-					case UNUSUAL:
-						mutations = mutations.getUnusualMutations();
-						break;
-					case AMBIGUOUS:
-						mutations = mutations.getAmbiguousCodons();
-						break;
-					case STOPCODON:
-						mutations = mutations.getStopCodons();
-						break;
-					case CUSTOMLIST:
-						List<String> customList = environment.getArgument("customList");
-						Object source = environment.getSource();
-						Gene gene = null;
-						if (source instanceof WithGene) {
-							gene = ((WithGene) source).getGene();
-						}
-						MutationSet filterSet = new MutationSet(gene, customList);
-						mutations = mutations.intersectsWith(filterSet);
-						break;
-					}
-				}
-				return mutations;
-			}
+		public MutationSetDataFetcher(String propertyName) {
+			super(propertyName);
 		}
 
-		return newFieldDefinition()
+		@Override
+		protected MutationSet<HIV> postProcess(MutationSet<HIV> mutations, DataFetchingEnvironment environment) {
+			HIV hivObj = HIV.getInstance();
+			List<?> filterOptions = environment.getArgument("filterOptions");
+			if (filterOptions == null) { filterOptions = new ArrayList<>(); }
+			for (Object filterOption : filterOptions) {
+				switch((mutsFilterOption) filterOption) {
+				case APOBEC:
+					mutations = mutations.getApobecMutations();
+					break;
+				case APOBEC_DRM:
+					mutations = mutations.getApobecDRMs();
+					break;
+				case DRM:
+					mutations = mutations.getDRMs();
+					break;
+				case DRP:
+					mutations = mutations.getAtDRPMutations();
+				case notDRM:
+					mutations = mutations.subtractsBy(mutations.getDRMs());
+					break;
+				case PI_DRM:
+					mutations = mutations.getDRMs(hivObj.getDrugClass("PI"));
+					break;
+				case NRTI_DRM:
+					mutations = mutations.getDRMs(hivObj.getDrugClass("NRTI"));
+					break;
+				case NNRTI_DRM:
+					mutations = mutations.getDRMs(hivObj.getDrugClass("NNRTI"));
+					break;
+				case INSTI_DRM:
+					mutations = mutations.getDRMs(hivObj.getDrugClass("INSTI"));
+					break;
+				case SDRM:
+					mutations = mutations.getSDRMs();
+					break;
+				case notSDRM:
+					mutations = mutations.subtractsBy(mutations.getSDRMs());
+					break;
+				case PI_SDRM:
+					mutations = mutations.getSDRMs(hivObj.getDrugClass("PI"));
+					break;
+				case NRTI_SDRM:
+					mutations = mutations.getSDRMs(hivObj.getDrugClass("NRTI"));
+					break;
+				case NNRTI_SDRM:
+					mutations = mutations.getSDRMs(hivObj.getDrugClass("NNRTI"));
+					break;
+				case INSTI_SDRM:
+					mutations = mutations.getSDRMs(hivObj.getDrugClass("INSTI"));
+					break;
+				case TSM:
+					mutations = mutations.getTSMs();
+					break;
+				case notTSM:
+					mutations = mutations.subtractsBy(mutations.getTSMs());
+					break;
+				case PI_TSM:
+					mutations = mutations.getTSMs(hivObj.getDrugClass("PI"));
+					break;
+				case NRTI_TSM:
+					mutations = mutations.getTSMs(hivObj.getDrugClass("NRTI"));
+					break;
+				case NNRTI_TSM:
+					mutations = mutations.getTSMs(hivObj.getDrugClass("NNRTI"));
+					break;
+				case INSTI_TSM:
+					mutations = mutations.getTSMs(hivObj.getDrugClass("INSTI"));
+					break;
+				case GENE_PR:
+					// TODO: HIV2 support
+					mutations = mutations.getGeneMutations(hivObj.getGene("HIV1PR"));
+					break;
+				case GENE_RT:
+					mutations = mutations.getGeneMutations(hivObj.getGene("HIV1RT"));
+					break;
+				case GENE_IN:
+					mutations = mutations.getGeneMutations(hivObj.getGene("HIV1IN"));
+					break;
+				case TYPE_MAJOR:
+					mutations = mutations.getByMutType(hivObj.getMutationType("Major"));
+					break;
+				case TYPE_ACCESSORY:
+					mutations = mutations.getByMutType(hivObj.getMutationType("Accessory"));
+					break;
+				case TYPE_NRTI:
+					mutations = mutations.getByMutType(hivObj.getMutationType("NRTI"));
+					break;
+				case TYPE_NNRTI:
+					mutations = mutations.getByMutType(hivObj.getMutationType("NNRTI"));
+					break;
+				case TYPE_OTHER:
+					mutations = mutations.getByMutType(hivObj.getMutationType("Other"));
+					break;
+				case DELETION:
+					mutations = mutations.getDeletions();
+					break;
+				case INSERTION:
+					mutations = mutations.getInsertions();
+					break;
+				case UNUSUAL:
+					mutations = mutations.getUnusualMutations();
+					break;
+				case AMBIGUOUS:
+					mutations = mutations.getAmbiguousCodons();
+					break;
+				case STOPCODON:
+					mutations = mutations.getStopCodons();
+					break;
+				case CUSTOMLIST:
+					List<String> customList = environment.getArgument("customList");
+					Gene<HIV> gene = null;
+					Type withGeneType = new TypeToken<WithGene<HIV>>() {}.getType();
+					if (((Class<?>)(withGeneType)).isInstance(environment.getSource())) {
+						WithGene<HIV> source = environment.getSource();
+						gene = source.getGene();
+					}
+					MutationSet<HIV> filterSet = HIV.getInstance().newMutationSet(gene, customList);
+					mutations = mutations.intersectsWith(filterSet);
+					break;
+				}
+			}
+			return mutations;
+		}
+	}
+
+	public static Builder newMutationSet(Builder field, String name) {
+		return field
 			.name(name)
 			.type(new GraphQLList(oMutation))
 			.argument(arg -> arg
@@ -249,7 +291,6 @@ public class MutationSetDef {
 					"List of possible mutation strings that should be " +
 					"included in this query if presented. Gene need to be " +
 					"prepend if the gene is not able to be inferred from " +
-					"the context."))
-			.dataFetcher(new MutationSetDataFetcher(name));
+					"the context."));
 	}
 }

@@ -18,30 +18,30 @@
 
 package edu.stanford.hivdb.drugresistance.scripts;
 
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-import edu.stanford.hivdb.drugresistance.algorithm.Algorithm;
-import edu.stanford.hivdb.drugresistance.algorithm.AlgorithmComparison;
-import edu.stanford.hivdb.drugresistance.algorithm.AlgorithmComparison.ComparableDrugScore;
-import edu.stanford.hivdb.drugresistance.algorithm.Asi.SIREnum;
-import edu.stanford.hivdb.drugresistance.database.MutationPatterns;
-import edu.stanford.hivdb.drugs.Drug;
-import edu.stanford.hivdb.drugs.DrugClass;
-import edu.stanford.hivdb.mutations.Gene;
-import edu.stanford.hivdb.mutations.MutationSet;
-import edu.stanford.hivdb.mutations.Strain;
-import edu.stanford.hivdb.utilities.MyFileUtils;
-import edu.stanford.hivdb.utilities.TSV;
+// import java.sql.SQLException;
+// import java.util.ArrayList;
+// import java.util.Arrays;
+// import java.util.HashMap;
+// import java.util.LinkedHashMap;
+// import java.util.List;
+// import java.util.Map;
+// import java.util.stream.Collectors;
+// 
+// import org.apache.logging.log4j.LogManager;
+// import org.apache.logging.log4j.Logger;
+// 
+// import edu.stanford.hivdb.drugresistance.algorithm.Algorithm;
+// import edu.stanford.hivdb.drugresistance.algorithm.AlgorithmComparison;
+// import edu.stanford.hivdb.drugresistance.algorithm.AlgorithmComparison.ComparableDrugScore;
+// import edu.stanford.hivdb.drugresistance.algorithm.SIREnum;
+// import edu.stanford.hivdb.drugresistance.database.MutationPatterns;
+// import edu.stanford.hivdb.hivfacts.HIVDrug;
+// import edu.stanford.hivdb.hivfacts.HIVDrugClass;
+// import edu.stanford.hivdb.hivfacts.HIVGene;
+// import edu.stanford.hivdb.hivfacts.HIVStrain;
+// import edu.stanford.hivdb.mutations.MutationSet;
+// import edu.stanford.hivdb.utilities.MyFileUtils;
+// import edu.stanford.hivdb.utilities.TSV;
 
 /**
  * Compare the results obtained using the current version of the algorithm and the new version of
@@ -54,91 +54,92 @@ import edu.stanford.hivdb.utilities.TSV;
  * likely need to be addressed in the future.
  *
  */
+@Deprecated
 public class AlgorithmResultsComparison {
 
-	private static List<Algorithm> algorithms =
-			Arrays.asList(new Algorithm[] {Algorithm.HIVDB, Algorithm.REGA});
-	@SuppressWarnings("unused")
-	private static final Logger LOGGER = LogManager.getLogger();
-
-	public static void main (String [] args) throws SQLException {
-		for (DrugClass drugClass : DrugClass.values()) {
-			// TODO: HIV2 support
-			Gene gene = Gene.valueOf(Strain.HIV1, drugClass.gene());
-			List<String> header = new ArrayList<>();
-			List<List<String>> rows = new ArrayList<>();
-
-			header.add("Pattern");
-			header.add("Count");
-			for (Drug drug : drugClass.getDrugsForHivdbTesting()) {
-				for (Algorithm alg : algorithms) {
-					header.add("" + alg + "-" + drug + "-SIR");
-					header.add("" + alg + "-" + drug + "-Level");
-				}
-			}
-			header.add("NumDiffs");
-			header.add("MaxDiff");
-
-			Map<String, Integer> patternCounts = genPatternCounts(drugClass);
-
-			for (String pattern : patternCounts.keySet()) {
-				System.out.println(pattern);
-				List<String> rowContents = new ArrayList<>();
-				Integer patternCount = patternCounts.get(pattern);
-				MutationSet mutPattern = new MutationSet(gene, pattern);
-				Map<Gene, MutationSet> geneMutSet = new HashMap<>();
-				geneMutSet.put(gene, mutPattern);
-				rowContents.add(pattern);
-				rowContents.add(patternCount.toString());
-
-				AlgorithmComparison algorithmComparison =
-						new AlgorithmComparison(geneMutSet, algorithms);
-				Map<Drug, List<ComparableDrugScore>> results =
-						algorithmComparison.getComparisonResults()
-						.stream()
-						.filter(ds -> ds.drug.getDrugClass() == drugClass)
-						.collect(Collectors.groupingBy(ds -> ds.drug));
-				int numDiffs = 0;
-				int maxDiff = 0;
-				for (Drug drug : results.keySet()) {
-					Map<String, ComparableDrugScore> algResults = results.get(drug)
-						.stream().collect(Collectors.toMap(
-							ds -> ds.algorithm,
-							ds -> ds,
-							(ds1, ds2) -> ds1,
-							LinkedHashMap::new
-						));
-					int diff = 3;
-					for (String algorithm : algResults.keySet()) {
-						ComparableDrugScore result = algResults.get(algorithm);
-						SIREnum sir = result.SIR;
-						if (diff == 3) {
-							diff = sir.ordinal();
-						}
-						else {
-							diff = Math.abs(diff - sir.ordinal());
-							if (diff != 0) {
-								numDiffs ++;
-							}
-							maxDiff = Math.max(diff, maxDiff);
-						}
-						String interpretation = result.interpretation;
-						rowContents.add("" + sir);
-						rowContents.add(interpretation);
-					}
-				}
-				rowContents.add("" + numDiffs);
-				rowContents.add("" + maxDiff);
-				rows.add(rowContents);
-			}
-			String output = TSV.dumps(header, rows);
-			MyFileUtils.writeFile("AlgComparisons/" + drugClass + ".tsv", output);
-		}
-	}
-
-	private static Map<String, Integer> genPatternCounts (DrugClass drugClass) {
-		MutationPatterns mutPatterns = new MutationPatterns(drugClass);
-		return mutPatterns.getAllPatternCounts();
-	}
+//	private static List<Algorithm> algorithms =
+//			Arrays.asList(new Algorithm[] {Algorithm.HIVDB, Algorithm.REGA});
+//	@SuppressWarnings("unused")
+//	private static final Logger LOGGER = LogManager.getLogger();
+//
+//	public static void main (String [] args) throws SQLException {
+//		for (HIVDrugClass drugClass : HIVDrugClass.values()) {
+//			// TODO: HIV2 support
+//			HIVGene gene = HIVGene.valueOf(HIVStrain.HIV1, drugClass.gene());
+//			List<String> header = new ArrayList<>();
+//			List<List<String>> rows = new ArrayList<>();
+//
+//			header.add("Pattern");
+//			header.add("Count");
+//			for (HIVDrug drug : drugClass.getDrugs()) {
+//				for (Algorithm alg : algorithms) {
+//					header.add("" + alg + "-" + drug + "-SIR");
+//					header.add("" + alg + "-" + drug + "-Level");
+//				}
+//			}
+//			header.add("NumDiffs");
+//			header.add("MaxDiff");
+//
+//			Map<String, Integer> patternCounts = genPatternCounts(drugClass);
+//
+//			for (String pattern : patternCounts.keySet()) {
+//				System.out.println(pattern);
+//				List<String> rowContents = new ArrayList<>();
+//				Integer patternCount = patternCounts.get(pattern);
+//				MutationSet mutPattern = new MutationSet(gene, pattern);
+//				Map<HIVGene, MutationSet> geneMutSet = new HashMap<>();
+//				geneMutSet.put(gene, mutPattern);
+//				rowContents.add(pattern);
+//				rowContents.add(patternCount.toString());
+//
+//				AlgorithmComparison algorithmComparison =
+//						new AlgorithmComparison(geneMutSet, algorithms);
+//				Map<HIVDrug, List<ComparableDrugScore>> results =
+//						algorithmComparison.getComparisonResults()
+//						.stream()
+//						.filter(ds -> ds.drug.getDrugClass() == drugClass)
+//						.collect(Collectors.groupingBy(ds -> ds.drug));
+//				int numDiffs = 0;
+//				int maxDiff = 0;
+//				for (HIVDrug drug : results.keySet()) {
+//					Map<String, ComparableDrugScore> algResults = results.get(drug)
+//						.stream().collect(Collectors.toMap(
+//							ds -> ds.algorithm,
+//							ds -> ds,
+//							(ds1, ds2) -> ds1,
+//							LinkedHashMap::new
+//						));
+//					int diff = 3;
+//					for (String algorithm : algResults.keySet()) {
+//						ComparableDrugScore result = algResults.get(algorithm);
+//						SIREnum sir = result.SIR;
+//						if (diff == 3) {
+//							diff = sir.ordinal();
+//						}
+//						else {
+//							diff = Math.abs(diff - sir.ordinal());
+//							if (diff != 0) {
+//								numDiffs ++;
+//							}
+//							maxDiff = Math.max(diff, maxDiff);
+//						}
+//						String interpretation = result.interpretation;
+//						rowContents.add("" + sir);
+//						rowContents.add(interpretation);
+//					}
+//				}
+//				rowContents.add("" + numDiffs);
+//				rowContents.add("" + maxDiff);
+//				rows.add(rowContents);
+//			}
+//			String output = TSV.dumps(header, rows);
+//			MyFileUtils.writeFile("AlgComparisons/" + drugClass + ".tsv", output);
+//		}
+//	}
+//
+//	private static Map<String, Integer> genPatternCounts (HIVDrugClass drugClass) {
+//		MutationPatterns mutPatterns = new MutationPatterns(drugClass);
+//		return mutPatterns.getAllPatternCounts();
+//	}
 
 }

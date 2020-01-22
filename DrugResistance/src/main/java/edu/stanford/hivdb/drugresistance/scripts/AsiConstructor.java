@@ -18,42 +18,42 @@
 
 package edu.stanford.hivdb.drugresistance.scripts;
 
-import java.io.File;
-import java.sql.SQLException;
-import java.util.List;
-import java.util.Map;
-import java.util.LinkedHashMap;
-import java.util.stream.Collectors;
+// import java.io.File;
+// import java.sql.SQLException;
+// import java.util.List;
+// import java.util.Map;
+// import java.util.LinkedHashMap;
+// import java.util.stream.Collectors;
+// 
+// import javax.xml.parsers.DocumentBuilder;
+// import javax.xml.parsers.DocumentBuilderFactory;
+// import javax.xml.parsers.ParserConfigurationException;
+// import javax.xml.transform.OutputKeys;
+// import javax.xml.transform.Transformer;
+// import javax.xml.transform.TransformerConfigurationException;
+// import javax.xml.transform.TransformerException;
+// import javax.xml.transform.TransformerFactory;
+// import javax.xml.transform.dom.DOMSource;
+// import javax.xml.transform.stream.StreamResult;
+// 
+// import org.apache.commons.lang3.StringUtils;
+// import org.w3c.dom.DOMImplementation;
+// import org.w3c.dom.Document;
+// import org.w3c.dom.DocumentType;
+// import org.w3c.dom.Element;
+// import org.w3c.dom.Node;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.OutputKeys;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerConfigurationException;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
-
-import org.apache.commons.lang3.StringUtils;
-import org.w3c.dom.DOMImplementation;
-import org.w3c.dom.Document;
-import org.w3c.dom.DocumentType;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-
-import edu.stanford.hivdb.drugresistance.database.ConditionalComments;
-import edu.stanford.hivdb.drugresistance.database.ConditionalComments.ConditionType;
-import edu.stanford.hivdb.drugresistance.database.ConditionalComments.ConditionalComment;
-import edu.stanford.hivdb.drugresistance.database.HivdbVersion;
-import edu.stanford.hivdb.drugs.Drug;
-import edu.stanford.hivdb.drugs.DrugClass;
-import edu.stanford.hivdb.mutations.AA;
-import edu.stanford.hivdb.mutations.Gene;
-import edu.stanford.hivdb.mutations.GeneEnum;
-import edu.stanford.hivdb.mutations.Strain;
-import edu.stanford.hivdb.utilities.MyEnumUtils;
+// import edu.stanford.hivdb.comments.ConditionType;
+// import edu.stanford.hivdb.comments.ConditionalComment;
+// import edu.stanford.hivdb.comments.ConditionalComments;
+// import edu.stanford.hivdb.drugresistance.database.HivdbVersion;
+// import edu.stanford.hivdb.hivfacts.HIVDrug;
+// import edu.stanford.hivdb.hivfacts.HIVDrugClass;
+// import edu.stanford.hivdb.hivfacts.HIVGene;
+// import edu.stanford.hivdb.hivfacts.HIVAbstractGene;
+// import edu.stanford.hivdb.hivfacts.HIVStrain;
+// import edu.stanford.hivdb.utilities.AAUtils;
+// import edu.stanford.hivdb.utilities.Joining;
 
 
 /**
@@ -68,264 +68,265 @@ import edu.stanford.hivdb.utilities.MyEnumUtils;
  *   documented. Therefore the comments are obtained directly from tblComments.
  *
  */
+@Deprecated
 public class AsiConstructor {
-	private static final String ALG_NAME = "HIVDB";
-	private static final String GLOBALRANGE_CONTENTS = "(-INF TO 9 => 1,  " +
-		"10 TO 14 => 2,  " +
-		"15 TO 29 => 3,  " +
-		"30 TO 59 => 4,  " +
-		"60 TO INF => 5)";
-	private static final String INDENT_FOR_RULES = StringUtils.repeat(" ", 25);
-
-
-	public static void main(String [] args) throws SQLException {
-		AsiConstructor.createXML(HivdbVersion.getLatestVersion());
-	}
-
-
-	public static void createXML(HivdbVersion version) throws SQLException {
-		final String ALG_VERSION = version.readableVersion;
-		final String ALG_DATE = version.versionDate;
-		final String OUTPUT_FILE = "src/main/resources/" + version.resourcePath;
-		try {
-			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
-			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
-			Document doc = docBuilder.newDocument();
-
-			DOMImplementation domImpl = doc.getImplementation();
-			DocumentType docType = domImpl.createDocumentType(
-				"ALGORITHM", "",
-				"https://cms.hivdb.org/prod/downloads/asi/ASI2.2.dtd");
-			doc.appendChild(docType);
-
-
-			Node rootElement = doc.createElement("ALGORITHM");
-			doc.appendChild(rootElement);
-
-			Node algName = doc.createElement("ALGNAME");
-			algName.appendChild(doc.createTextNode(ALG_NAME));
-			rootElement.appendChild(algName);
-
-			Node algVersion = doc.createElement("ALGVERSION");
-			algVersion.appendChild(doc.createTextNode(ALG_VERSION));
-			rootElement.appendChild(algVersion);
-
-			Node algDate = doc.createElement("ALGDATE");
-			algDate.appendChild(doc.createTextNode(ALG_DATE));
-			rootElement.appendChild(algDate);
-
-			Node definition = doc.createElement("DEFINITIONS");
-			rootElement.appendChild(definition);
-
-			// TODO: HIV2 support
-			for (Gene gene : Gene.values(Strain.HIV1)) {
-				List<DrugClass> drugClasses = gene.getDrugClasses();
-				String drugClassListString = MyEnumUtils.join(drugClasses, ",");
-
-				Node geneDefinition = doc.createElement("GENE_DEFINITION");
-				definition.appendChild(geneDefinition);
-
-				Node geneName = doc.createElement("NAME");
-				geneName.appendChild(doc.createTextNode(gene.getName()));
-				geneDefinition.appendChild(geneName);
-
-				Node drugClassList = doc.createElement("DRUGCLASSLIST");
-				drugClassList.appendChild(doc.createTextNode(drugClassListString));
-				geneDefinition.appendChild(drugClassList);
-			}
-
-			for (HivdbLevelDefinitions levelDef : HivdbLevelDefinitions.values()) {
-				Node levelDefinition = doc.createElement("LEVEL_DEFINITION");
-				definition.appendChild(levelDefinition);
-
-				Node levelOrder = doc.createElement("ORDER");
-				levelOrder.appendChild(doc.createTextNode(String.valueOf(levelDef.getLevel())));
-				levelDefinition.appendChild(levelOrder);
-
-				Node levelDescription = doc.createElement("ORIGINAL");
-				levelDescription.appendChild(doc.createTextNode(levelDef.getDescription()));
-				levelDefinition.appendChild(levelDescription);
-
-				Node sir = doc.createElement("SIR");
-				sir.appendChild(doc.createTextNode(levelDef.getSir()));
-				levelDefinition.appendChild(sir);
-
-			}
-
-			for (DrugClass drugClass : DrugClass.values()) {
-				List<Drug> drugs = drugClass.getDrugsForHivdbTesting();
-				String drugList = MyEnumUtils.join(drugs, ",", Drug::getDisplayAbbr);
-				Node drugClassNode = doc.createElement("DRUGCLASS");
-				definition.appendChild(drugClassNode);
-
-				Node drugClassName = doc.createElement("NAME");
-				drugClassName.appendChild(doc.createTextNode(drugClass.toString()));
-				drugClassNode.appendChild(drugClassName);
-
-				Node drugClassDrugs = doc.createElement("DRUGLIST");
-				drugClassDrugs.appendChild(doc.createTextNode(drugList));
-				drugClassNode.appendChild(drugClassDrugs);
-			}
-
-			Node globalRange = doc.createElement("GLOBALRANGE");
-			globalRange.appendChild(doc.createCDATASection(GLOBALRANGE_CONTENTS));
-			definition.appendChild(globalRange);
-			definition.appendChild(createCommentDefinitions(doc));
-
-
-			for (DrugClass drugClass : DrugClass.values()) {
-				for (Drug drug : drugClass.getDrugsForHivdbTesting()) {
-					Node drugs = doc.createElement("DRUG");
-					rootElement.appendChild(drugs);
-
-					Node drugName = doc.createElement("NAME");
-					drugName.appendChild(doc.createTextNode(drug.getDisplayAbbr()));
-					drugs.appendChild(drugName);
-
-					Node fullDrugName = doc.createElement("FULLNAME");
-					fullDrugName.appendChild(doc.createTextNode(drug.getFullName()));
-					drugs.appendChild(fullDrugName);
-
-					Node rule = doc.createElement("RULE");
-					drugs.appendChild(rule);
-
-					HivdbRulesForAsiConstructor hivdbAsiRulesForDrug = new HivdbRulesForAsiConstructor(version, drug);
-					List<String> allRules = hivdbAsiRulesForDrug.getAllRules();
-					String allRulesText = "SCORE FROM(" +
-									String.join(",\n" + INDENT_FOR_RULES, allRules) +
-									")";
-					Node condition = doc.createElement("CONDITION");
-					condition.appendChild(doc.createCDATASection(allRulesText));
-					rule.appendChild(condition);
-
-					Node actions = doc.createElement("ACTIONS");
-					rule.appendChild(actions);
-
-					Node scoreRange = doc.createElement("SCORERANGE");
-					actions.appendChild(scoreRange);
-					scoreRange.appendChild(doc.createElement("USE_GLOBALRANGE"));
-
-				}
-			}
-			rootElement.appendChild(createMutationCommentRules(doc));
-			rootElement.appendChild(createDrugLevelConditionCommentRules(doc));
-
-			TransformerFactory transformerFactory = TransformerFactory.newInstance();
-			Transformer transformer = transformerFactory.newTransformer();
-			transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
-			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-			transformer.setOutputProperty(OutputKeys.DOCTYPE_SYSTEM, docType.getSystemId());
-
-			DOMSource source = new DOMSource(doc);
-			StreamResult streamResult = new StreamResult(new File(OUTPUT_FILE));
-			transformer.transform(source, streamResult);
-
-		} catch (ParserConfigurationException e) {
-			e.printStackTrace();
-		} catch (TransformerConfigurationException e) {
-			e.printStackTrace();
-		} catch (TransformerException e) {
-			e.printStackTrace();
-		}
-	}
-
-
-	private static Element createCommentDefinitions(Document doc) {
-		Element commentDefs = doc.createElement("COMMENT_DEFINITIONS");
-		for (ConditionalComment comment : ConditionalComments.getAllComments()) {
-			/* if (comment.getConditionType() == ConditionType.DRUGLEVEL) {
-				continue;
-			} */
-			if (comment.getMutationGene().getStrain() != Strain.HIV1) {
-				// skip HIV2 comments
-				continue;
-			}
-			Element commentStr = doc.createElement("COMMENT_STRING");
-			commentStr.setAttribute("id", comment.getName());
-			Element text = doc.createElement("TEXT");
-			text.appendChild(doc.createCDATASection(comment.getText()));
-			Element sortTag = doc.createElement("SORT_TAG");
-			sortTag.appendChild(doc.createTextNode("1"));
-			commentStr.appendChild(text);
-			commentStr.appendChild(sortTag);
-			commentDefs.appendChild(commentStr);
-		}
-		return commentDefs;
-	}
-
-	private static Element createMutationCommentRules(Document doc) {
-		Element mutComments = doc.createElement("MUTATION_COMMENTS");
-		Map<GeneEnum, List<ConditionalComment>> commentsByGenes =
-			ConditionalComments.getAllComments()
-			.stream()
-			.filter(cmt -> cmt.getConditionType() == ConditionType.MUTATION)
-			.collect(Collectors.groupingBy(
-				cmt -> cmt.getGene(), LinkedHashMap::new, Collectors.toList()));
-		for (GeneEnum gene : commentsByGenes.keySet()) {
-			List<ConditionalComment> comments = commentsByGenes.get(gene);
-			Element geneNode = doc.createElement("GENE");
-			Element geneNameNode = doc.createElement("NAME");
-			geneNameNode.appendChild(doc.createTextNode(gene.toString()));
-			geneNode.appendChild(geneNameNode);
-			for (ConditionalComment cmt : comments) {
-				if (cmt.getConditionType() == ConditionType.DRUGLEVEL) {
-					continue;
-				}
-				if (cmt.getMutationGene().getStrain() != Strain.HIV1) {
-					// skip HIV2 comments
-					continue;
-				}
-				Element ruleNode = doc.createElement("RULE");
-				Element condNode = doc.createElement("CONDITION");
-				condNode.appendChild(doc.createTextNode(
-					String.format("%d%s", cmt.getMutationPosition(), AA.toASIFormat(cmt.getMutationAAs()))));
-				ruleNode.appendChild(condNode);
-				Element actionsNode = doc.createElement("ACTIONS");
-				Element commentNode = doc.createElement("COMMENT");
-				commentNode.setAttribute("ref", cmt.getName());
-				actionsNode.appendChild(commentNode);
-				ruleNode.appendChild(actionsNode);
-				geneNode.appendChild(ruleNode);
-			}
-			mutComments.appendChild(geneNode);
-		}
-		return mutComments;
-	}
-	
-	private static Element createDrugLevelConditionCommentRules(Document doc) {
-		Element resultComments = doc.createElement("RESULT_COMMENTS");
-		List<ConditionalComment> comments =
-			ConditionalComments.getAllComments()
-			.stream()
-			.filter(cmt -> cmt.getConditionType() == ConditionType.DRUGLEVEL)
-			.collect(Collectors.toList());
-		for (ConditionalComment cmt : comments) {
-			Element ruleNode = doc.createElement("RESULT_COMMENT_RULE");
-			Element condList = doc.createElement("DRUG_LEVEL_CONDITIONS");
-			for (Map.Entry<Drug, List<Integer>> entry : cmt.getDrugLevels().entrySet()) {
-				Drug drug = entry.getKey();
-				List<Integer> levels = entry.getValue();
-				for (Integer level : levels) {
-					Element cond = doc.createElement("DRUG_LEVEL_CONDITION");
-					Element drugName = doc.createElement("DRUG_NAME");
-					drugName.appendChild(doc.createTextNode(drug.getDisplayAbbr()));
-					Element eqLevel = doc.createElement("EQ");
-					eqLevel.appendChild(doc.createTextNode("" + level));
-					cond.appendChild(drugName);
-					cond.appendChild(eqLevel);
-					condList.appendChild(cond);
-				}
-			}
-			ruleNode.appendChild(condList);
-			Element actionNode = doc.createElement("LEVEL_ACTION");
-			Element commentNode = doc.createElement("COMMENT");
-			commentNode.setAttribute("ref", cmt.getName());
-			actionNode.appendChild(commentNode);
-			ruleNode.appendChild(actionNode);
-			resultComments.appendChild(ruleNode);
-		}
-		return resultComments;
-		
-	}
+// 	private static final String ALG_NAME = "HIVDB";
+// 	private static final String GLOBALRANGE_CONTENTS = "(-INF TO 9 => 1,  " +
+// 		"10 TO 14 => 2,  " +
+// 		"15 TO 29 => 3,  " +
+// 		"30 TO 59 => 4,  " +
+// 		"60 TO INF => 5)";
+// 	private static final String INDENT_FOR_RULES = StringUtils.repeat(" ", 25);
+// 
+// 
+// 	public static void main(String [] args) throws SQLException {
+// 		AsiConstructor.createXML(HivdbVersion.getLatestVersion());
+// 	}
+// 
+// 
+// 	public static void createXML(HivdbVersion version) throws SQLException {
+// 		final String ALG_VERSION = version.readableVersion;
+// 		final String ALG_DATE = version.versionDate;
+// 		final String OUTPUT_FILE = "src/main/resources/" + version.resourcePath;
+// 		try {
+// 			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+// 			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+// 			Document doc = docBuilder.newDocument();
+// 
+// 			DOMImplementation domImpl = doc.getImplementation();
+// 			DocumentType docType = domImpl.createDocumentType(
+// 				"ALGORITHM", "",
+// 				"https://cms.hivdb.org/prod/downloads/asi/ASI2.2.dtd");
+// 			doc.appendChild(docType);
+// 
+// 
+// 			Node rootElement = doc.createElement("ALGORITHM");
+// 			doc.appendChild(rootElement);
+// 
+// 			Node algName = doc.createElement("ALGNAME");
+// 			algName.appendChild(doc.createTextNode(ALG_NAME));
+// 			rootElement.appendChild(algName);
+// 
+// 			Node algVersion = doc.createElement("ALGVERSION");
+// 			algVersion.appendChild(doc.createTextNode(ALG_VERSION));
+// 			rootElement.appendChild(algVersion);
+// 
+// 			Node algDate = doc.createElement("ALGDATE");
+// 			algDate.appendChild(doc.createTextNode(ALG_DATE));
+// 			rootElement.appendChild(algDate);
+// 
+// 			Node definition = doc.createElement("DEFINITIONS");
+// 			rootElement.appendChild(definition);
+// 
+// 			// TODO: HIV2 support
+// 			for (HIVGene gene : HIVGene.values(HIVStrain.HIV1)) {
+// 				List<HIVDrugClass> drugClasses = gene.getDrugClasses();
+// 				String drugClassListString = Joining.join(drugClasses, ",");
+// 
+// 				Node geneDefinition = doc.createElement("GENE_DEFINITION");
+// 				definition.appendChild(geneDefinition);
+// 
+// 				Node geneName = doc.createElement("NAME");
+// 				geneName.appendChild(doc.createTextNode(gene.getName()));
+// 				geneDefinition.appendChild(geneName);
+// 
+// 				Node drugClassList = doc.createElement("DRUGCLASSLIST");
+// 				drugClassList.appendChild(doc.createTextNode(drugClassListString));
+// 				geneDefinition.appendChild(drugClassList);
+// 			}
+// 
+// 			for (HivdbLevelDefinitions levelDef : HivdbLevelDefinitions.values()) {
+// 				Node levelDefinition = doc.createElement("LEVEL_DEFINITION");
+// 				definition.appendChild(levelDefinition);
+// 
+// 				Node levelOrder = doc.createElement("ORDER");
+// 				levelOrder.appendChild(doc.createTextNode(String.valueOf(levelDef.getLevel())));
+// 				levelDefinition.appendChild(levelOrder);
+// 
+// 				Node levelDescription = doc.createElement("ORIGINAL");
+// 				levelDescription.appendChild(doc.createTextNode(levelDef.getDescription()));
+// 				levelDefinition.appendChild(levelDescription);
+// 
+// 				Node sir = doc.createElement("SIR");
+// 				sir.appendChild(doc.createTextNode(levelDef.getSir()));
+// 				levelDefinition.appendChild(sir);
+// 
+// 			}
+// 
+// 			for (HIVDrugClass drugClass : HIVDrugClass.values()) {
+// 				List<HIVDrug> drugs = drugClass.getDrugs();
+// 				String drugList = Joining.join(drugs, ",", HIVDrug::getDisplayAbbr);
+// 				Node drugClassNode = doc.createElement("DRUGCLASS");
+// 				definition.appendChild(drugClassNode);
+// 
+// 				Node drugClassName = doc.createElement("NAME");
+// 				drugClassName.appendChild(doc.createTextNode(drugClass.toString()));
+// 				drugClassNode.appendChild(drugClassName);
+// 
+// 				Node drugClassDrugs = doc.createElement("DRUGLIST");
+// 				drugClassDrugs.appendChild(doc.createTextNode(drugList));
+// 				drugClassNode.appendChild(drugClassDrugs);
+// 			}
+// 
+// 			Node globalRange = doc.createElement("GLOBALRANGE");
+// 			globalRange.appendChild(doc.createCDATASection(GLOBALRANGE_CONTENTS));
+// 			definition.appendChild(globalRange);
+// 			definition.appendChild(createCommentDefinitions(doc));
+// 
+// 
+// 			for (HIVDrugClass drugClass : HIVDrugClass.values()) {
+// 				for (HIVDrug drug : drugClass.getDrugs()) {
+// 					Node drugs = doc.createElement("DRUG");
+// 					rootElement.appendChild(drugs);
+// 
+// 					Node drugName = doc.createElement("NAME");
+// 					drugName.appendChild(doc.createTextNode(drug.getDisplayAbbr()));
+// 					drugs.appendChild(drugName);
+// 
+// 					Node fullDrugName = doc.createElement("FULLNAME");
+// 					fullDrugName.appendChild(doc.createTextNode(drug.getFullName()));
+// 					drugs.appendChild(fullDrugName);
+// 
+// 					Node rule = doc.createElement("RULE");
+// 					drugs.appendChild(rule);
+// 
+// 					HivdbRulesForAsiConstructor hivdbAsiRulesForDrug = new HivdbRulesForAsiConstructor(version, drug);
+// 					List<String> allRules = hivdbAsiRulesForDrug.getAllRules();
+// 					String allRulesText = "SCORE FROM(" +
+// 									String.join(",\n" + INDENT_FOR_RULES, allRules) +
+// 									")";
+// 					Node condition = doc.createElement("CONDITION");
+// 					condition.appendChild(doc.createCDATASection(allRulesText));
+// 					rule.appendChild(condition);
+// 
+// 					Node actions = doc.createElement("ACTIONS");
+// 					rule.appendChild(actions);
+// 
+// 					Node scoreRange = doc.createElement("SCORERANGE");
+// 					actions.appendChild(scoreRange);
+// 					scoreRange.appendChild(doc.createElement("USE_GLOBALRANGE"));
+// 
+// 				}
+// 			}
+// 			rootElement.appendChild(createMutationCommentRules(doc));
+// 			rootElement.appendChild(createDrugLevelConditionCommentRules(doc));
+// 
+// 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
+// 			Transformer transformer = transformerFactory.newTransformer();
+// 			transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
+// 			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+// 			transformer.setOutputProperty(OutputKeys.DOCTYPE_SYSTEM, docType.getSystemId());
+// 
+// 			DOMSource source = new DOMSource(doc);
+// 			StreamResult streamResult = new StreamResult(new File(OUTPUT_FILE));
+// 			transformer.transform(source, streamResult);
+// 
+// 		} catch (ParserConfigurationException e) {
+// 			e.printStackTrace();
+// 		} catch (TransformerConfigurationException e) {
+// 			e.printStackTrace();
+// 		} catch (TransformerException e) {
+// 			e.printStackTrace();
+// 		}
+// 	}
+// 
+// 
+// 	private static Element createCommentDefinitions(Document doc) {
+// 		Element commentDefs = doc.createElement("COMMENT_DEFINITIONS");
+// 		for (ConditionalComment comment : ConditionalComments.getAllComments()) {
+// 			/* if (comment.getConditionType() == ConditionType.DRUGLEVEL) {
+// 				continue;
+// 			} */
+// 			if (comment.getMutationGene().getStrain() != HIVStrain.HIV1) {
+// 				// skip HIV2 comments
+// 				continue;
+// 			}
+// 			Element commentStr = doc.createElement("COMMENT_STRING");
+// 			commentStr.setAttribute("id", comment.getName());
+// 			Element text = doc.createElement("TEXT");
+// 			text.appendChild(doc.createCDATASection(comment.getText()));
+// 			Element sortTag = doc.createElement("SORT_TAG");
+// 			sortTag.appendChild(doc.createTextNode("1"));
+// 			commentStr.appendChild(text);
+// 			commentStr.appendChild(sortTag);
+// 			commentDefs.appendChild(commentStr);
+// 		}
+// 		return commentDefs;
+// 	}
+// 
+// 	private static Element createMutationCommentRules(Document doc) {
+// 		Element mutComments = doc.createElement("MUTATION_COMMENTS");
+// 		Map<HIVAbstractGene, List<ConditionalComment>> commentsByGenes =
+// 			ConditionalComments.getAllComments()
+// 			.stream()
+// 			.filter(cmt -> cmt.getConditionType() == ConditionType.MUTATION)
+// 			.collect(Collectors.groupingBy(
+// 				cmt -> cmt.getGene(), LinkedHashMap::new, Collectors.toList()));
+// 		for (HIVAbstractGene gene : commentsByGenes.keySet()) {
+// 			List<ConditionalComment> comments = commentsByGenes.get(gene);
+// 			Element geneNode = doc.createElement("GENE");
+// 			Element geneNameNode = doc.createElement("NAME");
+// 			geneNameNode.appendChild(doc.createTextNode(gene.toString()));
+// 			geneNode.appendChild(geneNameNode);
+// 			for (ConditionalComment cmt : comments) {
+// 				if (cmt.getConditionType() == ConditionType.DRUGLEVEL) {
+// 					continue;
+// 				}
+// 				if (cmt.getMutationGene().getStrain() != HIVStrain.HIV1) {
+// 					// skip HIV2 comments
+// 					continue;
+// 				}
+// 				Element ruleNode = doc.createElement("RULE");
+// 				Element condNode = doc.createElement("CONDITION");
+// 				condNode.appendChild(doc.createTextNode(
+// 					String.format("%d%s", cmt.getMutationPosition(), AAUtils.toASIFormat(cmt.getMutationAAs()))));
+// 				ruleNode.appendChild(condNode);
+// 				Element actionsNode = doc.createElement("ACTIONS");
+// 				Element commentNode = doc.createElement("COMMENT");
+// 				commentNode.setAttribute("ref", cmt.getName());
+// 				actionsNode.appendChild(commentNode);
+// 				ruleNode.appendChild(actionsNode);
+// 				geneNode.appendChild(ruleNode);
+// 			}
+// 			mutComments.appendChild(geneNode);
+// 		}
+// 		return mutComments;
+// 	}
+// 	
+// 	private static Element createDrugLevelConditionCommentRules(Document doc) {
+// 		Element resultComments = doc.createElement("RESULT_COMMENTS");
+// 		List<ConditionalComment> comments =
+// 			ConditionalComments.getAllComments()
+// 			.stream()
+// 			.filter(cmt -> cmt.getConditionType() == ConditionType.DRUGLEVEL)
+// 			.collect(Collectors.toList());
+// 		for (ConditionalComment cmt : comments) {
+// 			Element ruleNode = doc.createElement("RESULT_COMMENT_RULE");
+// 			Element condList = doc.createElement("DRUG_LEVEL_CONDITIONS");
+// 			for (Map.Entry<HIVDrug, List<Integer>> entry : cmt.getDrugLevels().entrySet()) {
+// 				HIVDrug drug = entry.getKey();
+// 				List<Integer> levels = entry.getValue();
+// 				for (Integer level : levels) {
+// 					Element cond = doc.createElement("DRUG_LEVEL_CONDITION");
+// 					Element drugName = doc.createElement("DRUG_NAME");
+// 					drugName.appendChild(doc.createTextNode(drug.getDisplayAbbr()));
+// 					Element eqLevel = doc.createElement("EQ");
+// 					eqLevel.appendChild(doc.createTextNode("" + level));
+// 					cond.appendChild(drugName);
+// 					cond.appendChild(eqLevel);
+// 					condList.appendChild(cond);
+// 				}
+// 			}
+// 			ruleNode.appendChild(condList);
+// 			Element actionNode = doc.createElement("LEVEL_ACTION");
+// 			Element commentNode = doc.createElement("COMMENT");
+// 			commentNode.setAttribute("ref", cmt.getName());
+// 			actionNode.appendChild(commentNode);
+// 			ruleNode.appendChild(actionNode);
+// 			resultComments.appendChild(ruleNode);
+// 		}
+// 		return resultComments;
+// 		
+// 	}
 
 }

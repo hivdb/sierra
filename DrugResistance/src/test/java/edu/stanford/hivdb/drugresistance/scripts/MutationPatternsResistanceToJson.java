@@ -29,18 +29,18 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import edu.stanford.hivdb.comments.ConditionalComments;
 import edu.stanford.hivdb.drugresistance.GeneDR;
 import edu.stanford.hivdb.drugresistance.GeneDRFast;
 import edu.stanford.hivdb.drugresistance.TestMutationPatternFiles;
 import edu.stanford.hivdb.drugresistance.TestMutationPatternFiles.TestMutationPatterns;
-import edu.stanford.hivdb.drugresistance.database.ConditionalComments;
 import edu.stanford.hivdb.drugresistance.database.MutationPatternFileReader;
-import edu.stanford.hivdb.drugs.Drug;
-import edu.stanford.hivdb.drugs.DrugClass;
-import edu.stanford.hivdb.mutations.Gene;
-import edu.stanford.hivdb.mutations.MutType;
+import edu.stanford.hivdb.hivfacts.HIVDrug;
+import edu.stanford.hivdb.hivfacts.HIVDrugClass;
+import edu.stanford.hivdb.hivfacts.HIVGene;
+import edu.stanford.hivdb.hivfacts.HIVStrain;
 import edu.stanford.hivdb.mutations.MutationSet;
-import edu.stanford.hivdb.mutations.Strain;
+import edu.stanford.hivdb.mutations.MutationType;
 import edu.stanford.hivdb.utilities.Json;
 
 public class MutationPatternsResistanceToJson {
@@ -52,33 +52,33 @@ public class MutationPatternsResistanceToJson {
 		for (TestMutationPatterns testMutationPatterns : TestMutationPatterns.values()) {
 			final InputStream mutationPatternsInputStream =
 					TestMutationPatternFiles.getTestMutationPatternsInputStream(testMutationPatterns);
-			DrugClass drugClass = testMutationPatterns.getDrugClass();
+			HIVDrugClass drugClass = testMutationPatterns.getDrugClass();
 			System.out.println("In MutationPatternsResistanceToJson:" + testMutationPatterns.toString());
 			final List<MutationSet> mutationLists =
 					MutationPatternFileReader.readMutationListsForDrugClass(drugClass, mutationPatternsInputStream);
 
-			Map<String, Map<Drug, Integer>> totalDrugScores = new TreeMap<>();
-			Map<String, Map<Drug, Integer>> totalDrugLevels = new TreeMap<>();
-			Map<String, Map<MutType, String>> mutationTypes = new TreeMap<>();
+			Map<String, Map<HIVDrug, Integer>> totalDrugScores = new TreeMap<>();
+			Map<String, Map<HIVDrug, Integer>> totalDrugLevels = new TreeMap<>();
+			Map<String, Map<MutationType, String>> mutationTypes = new TreeMap<>();
 			Map<String, Map<String, String>> mutationComments = new TreeMap<>();
 
 			for (MutationSet mutations : mutationLists) {
 				String fmtMutationList = mutations.join();
-				GeneDR resistanceResults = new GeneDRFast(Gene.valueOf(Strain.HIV1, drugClass.gene()), mutations);
+				GeneDR resistanceResults = new GeneDRFast(HIVGene.valueOf(HIVStrain.HIV1, drugClass.gene()), mutations);
 
-				Map<Drug, Integer> totalScores = new EnumMap<>(Drug.class);
-				Map<Drug, Integer> totalLevels = new EnumMap<>(Drug.class);
-				Map<MutType, String> mutTypeLists = new EnumMap<>(MutType.class);
+				Map<HIVDrug, Integer> totalScores = new EnumMap<>(HIVDrug.class);
+				Map<HIVDrug, Integer> totalLevels = new EnumMap<>(HIVDrug.class);
+				Map<MutationType, String> mutTypeLists = new EnumMap<>(MutationType.class);
 
-				for (Drug drug : drugClass.getDrugsForHivdbTesting()) {
+				for (HIVDrug drug : drugClass.getDrugs()) {
 					double totalScore = resistanceResults.getTotalDrugScore(drug);
 					int level = resistanceResults.getDrugLevel(drug);
 					totalScores.put(drug, (int)totalScore);
 					totalLevels.put(drug,  level);
 				}
 
-				Map<MutType, MutationSet> mutTypes = new EnumMap<>(resistanceResults.groupMutationsByTypes());
-				for (MutType mutType : mutTypes.keySet()) {
+				Map<MutationType, MutationSet> mutTypes = new EnumMap<>(resistanceResults.groupMutationsByTypes());
+				for (MutationType mutType : mutTypes.keySet()) {
 					MutationSet mutList = mutTypes.get(mutType);
 					String mutListString = mutList.join();
 					mutTypeLists.put(mutType,  mutListString);

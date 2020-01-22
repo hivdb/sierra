@@ -23,26 +23,23 @@ import graphql.schema.*;
 import static graphql.Scalars.*;
 import static graphql.schema.GraphQLObjectType.newObject;
 
-import edu.stanford.hivdb.genotyper.BoundGenotype;
-import edu.stanford.hivdb.genotyper.HIVClassificationLevel;
+import edu.stanford.hivdb.genotypes.GenotypeClassificationLevel;
 
 public class SubtypeV2Def {
 
-	public static GraphQLEnumType oSubtypeLevel;
-	public static GraphQLObjectType oSubtype;
-	public static GraphQLObjectType oBoundSubtypeV2;
-
-	static {
+	private static GraphQLEnumType.Builder subtypeLevelBuilder() {
 		GraphQLEnumType.Builder oSubtypeLevelBuilder = GraphQLEnumType.newEnum()
 			.name("HIVClassificationLevel")
 			.description("Classification level of genotypes: species, group or subtype.");
-		for (HIVClassificationLevel level : HIVClassificationLevel.values()) {
+		for (GenotypeClassificationLevel level : GenotypeClassificationLevel.values()) {
 			oSubtypeLevelBuilder = oSubtypeLevelBuilder.value(level.toString(), level);
 		}
+		return oSubtypeLevelBuilder;
+	}
 
-		oSubtypeLevel = oSubtypeLevelBuilder.build();
+	public static GraphQLEnumType oSubtypeLevel = subtypeLevelBuilder().build();
 
-		oSubtype = newObject()
+	public static GraphQLObjectType oSubtype = newObject()
 		.name("HIVSubtype")
 		.field(
 			field -> field
@@ -69,7 +66,7 @@ public class SubtypeV2Def {
 		)
 		.build();
 
-		oBoundSubtypeV2 = newObject()
+	public static GraphQLObjectType oBoundSubtypeV2 = newObject()
 		.name("HIVBoundSubtype")
 		.field(
 			field -> field
@@ -87,7 +84,6 @@ public class SubtypeV2Def {
 			field -> field
 			.type(oSubtype)
 			.name("subtype")
-			.dataFetcher(env -> ((BoundGenotype) env.getSource()).getGenotype())
 			.description(
 				"The original subtype found by comparison. The value of this " +
 				"field is UNPROCESSED. You probably want to use field `display` " +
@@ -103,7 +99,6 @@ public class SubtypeV2Def {
 			field -> field
 			.type(new GraphQLList(oSubtype))
 			.name("displaySubtypes")
-			.dataFetcher(env -> ((BoundGenotype) env.getSource()).getDisplayGenotypes())
 			.description(
 				"There are several rules applied for subtype displaying. " +
 				"This field lists subtypes that were used in constructing " +
@@ -178,5 +173,4 @@ public class SubtypeV2Def {
 			)
 		)
 		.build();
-	}
 }

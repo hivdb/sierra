@@ -28,8 +28,8 @@ import org.junit.Test;
 
 import edu.stanford.hivdb.drugresistance.TestMutationPatternFiles;
 import edu.stanford.hivdb.drugresistance.TestMutationPatternFiles.TestMutationPatterns;
+import edu.stanford.hivdb.hivfacts.HIVDrugClass;
 import edu.stanford.hivdb.mutations.MutationSet;
-import edu.stanford.hivdb.drugs.DrugClass;
 
 public class MutationPatternFileReaderTest {
 
@@ -43,7 +43,7 @@ public class MutationPatternFileReaderTest {
 	public void testReadMutationListsForDrugClass() throws FileNotFoundException {
 		final InputStream mutsStream =
 				TestMutationPatternFiles.getTestMutationPatternsInputStream(TestMutationPatterns.INSTI_PATTERNS);
-		final DrugClass drugClass = DrugClass.INSTI;
+		final HIVDrugClass drugClass = HIVDrugClass.INSTI;
 		final List<MutationSet> mutationLists = MutationPatternFileReader.readMutationListsForDrugClass(drugClass, mutsStream);
 		final String eMutSet0 = "[E157Q]";
 		final String eMutSet9 = "[E138A, G140S, Q148H]";

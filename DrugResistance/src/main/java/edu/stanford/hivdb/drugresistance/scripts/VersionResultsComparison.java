@@ -18,25 +18,26 @@
 
 package edu.stanford.hivdb.drugresistance.scripts;
 
-import edu.stanford.hivdb.drugresistance.reports.TabularPatternsComparison;
-import edu.stanford.hivdb.drugs.DrugClass;
-import edu.stanford.hivdb.utilities.MyFileUtils;
+// import edu.stanford.hivdb.drugresistance.reports.TabularPatternsComparison;
+// import edu.stanford.hivdb.hivfacts.HIVDrugClass;
+// import edu.stanford.hivdb.utilities.MyFileUtils;
 
 /**
  * Compare the results obtained using the current version of the algorithm and the new version of
  * the algorithm using data in HIVDB_Results. Note: the new version of the algorithm is the
  * default "live" version of the algorithm in the HIVDB_Scores database
  */
+@Deprecated
 public class VersionResultsComparison {
 
-	public static void main (String [] args) {
-		for (DrugClass drugClass : DrugClass.values()) {
-			String output =
-				TabularPatternsComparison.getInstance(drugClass).toString();
-			String filePath = "__output/VersionComparisons/" + drugClass + ".tsv";
-			MyFileUtils.writeFile(filePath, output);
-			System.out.println(String.format("%s created.", filePath));
-		}
-	}
+// 	public static void main (String [] args) {
+// 		for (HIVDrugClass drugClass : HIVDrugClass.values()) {
+// 			String output =
+// 				TabularPatternsComparison.getInstance(drugClass).toString();
+// 			String filePath = "__output/VersionComparisons/" + drugClass + ".tsv";
+// 			MyFileUtils.writeFile(filePath, output);
+// 			System.out.println(String.format("%s created.", filePath));
+// 		}
+// 	}
 
 }

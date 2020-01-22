@@ -21,36 +21,49 @@ package edu.stanford.hivdb.graphql;
 import graphql.schema.*;
 import static graphql.Scalars.*;
 import static graphql.schema.GraphQLObjectType.newObject;
+import static graphql.schema.GraphQLCodeRegistry.newCodeRegistry;
+import static graphql.schema.FieldCoordinates.coordinates;
 
-import edu.stanford.hivdb.mutations.Strain;
+import edu.stanford.hivdb.hivfacts.HIV;
+import edu.stanford.hivdb.viruses.Strain;
 
 public class StrainDef {
 
 	public static GraphQLEnumType enumStrain;
-	public static GraphQLObjectType oStrain;
 
 	static {
+		HIV hiv = HIV.getInstance();
 		GraphQLEnumType.Builder newEnumStrain =
 			GraphQLEnumType.newEnum().name("StrainEnum");
-		for (Strain strain : Strain.values()) {
+		for (Strain<HIV> strain : hiv.getStrains()) {
 			newEnumStrain.value(strain.toString(), strain);
 		}
 		enumStrain = newEnumStrain.build();
-
-		oStrain = newObject()
-			.name("Strain")
-			.description("HIV strain.")
-			.field(field -> field
-				.type(GraphQLString)
-				.name("name")
-				.dataFetcher(s -> ((Strain) s.getSource()).toString())
-				.description("Short name of this strain."))
-			.field(field -> field
-				.type(GraphQLString)
-				.name("display")
-				.dataFetcher(s -> ((Strain) s.getSource()).getDisplayText())
-				.description("Full name of this strain."))
-			.build();
 	}
+	
+	private static DataFetcher<String> strainDisplayDataFetcher = env -> {
+		Strain<HIV> strain = env.getSource();
+		return strain.getDisplayText();
+	};
+	
+	public static GraphQLCodeRegistry strainCodeRegistry = newCodeRegistry()
+		.dataFetcher(
+			coordinates("Strain", "display"),
+			strainDisplayDataFetcher
+		)
+		.build();
+	
+	public static GraphQLObjectType oStrain = newObject()
+		.name("Strain")
+		.description("HIV strain.")
+		.field(field -> field
+			.type(GraphQLString)
+			.name("name")
+			.description("Short name of this strain."))
+		.field(field -> field
+			.type(GraphQLString)
+			.name("display")
+			.description("Full name of this strain."))
+		.build();
 
 }

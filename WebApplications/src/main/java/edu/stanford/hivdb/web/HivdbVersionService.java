@@ -23,57 +23,61 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
 
-import edu.stanford.hivdb.drugresistance.reports.TabularPatternsComparison;
-import edu.stanford.hivdb.drugresistance.reports.TabularRulesComparison;
+// import edu.stanford.hivdb.drugresistance.reports.TabularPatternsComparison;
+// import edu.stanford.hivdb.drugresistance.reports.TabularRulesComparison;
 import edu.stanford.hivdb.drugs.DrugClass;
+import edu.stanford.hivdb.hivfacts.HIV;
 
 @Path("hivdb-version")
+@Deprecated
 public class HivdbVersionService {
 
 	@GET
 	@Path("rules-comparison/{versionPair}/{drugClass}.tsv")
 	public Response getRulesComparison(@PathParam("versionPair") String versionPair, @PathParam("drugClass") String drugClassStr) {
-		DrugClass dc = null;
+		HIV hiv = HIV.getInstance();
+		DrugClass<HIV> dc = null;
 		try {
-			dc = DrugClass.valueOf(drugClassStr);
+			dc = hiv.getDrugClass(drugClassStr);
 		} catch (IllegalArgumentException | NullPointerException e) {
 			return Response
 				.status(Response.Status.NOT_FOUND)
 				.entity("Drug Class not found: " + dc).build();
 		}
-		final DrugClass drugClass = dc;
-		String output = TabularRulesComparison.getInstance(versionPair, drugClass).toString();
-		String[] versions = versionPair.split(":");
-		String fileName = String.format(
-			"%sRulesComparison.%s.vs.%s.tsv", drugClass,
-			versions[0], versions[1]);
-		return Response
-		.ok(output, "text/tab-separated-values")
-		.header("Content-Disposition", "attachment; filename=" + fileName)
-		.build();
+		return Response.ok("", "text/plain").build();
+		// String output = TabularRulesComparison.getInstance(versionPair, drugClass).toString();
+		// String[] versions = versionPair.split(":");
+		// String fileName = String.format(
+		// 	"%sRulesComparison.%s.vs.%s.tsv", drugClass,
+		// 	versions[0], versions[1]);
+		// return Response
+		// .ok(output, "text/tab-separated-values")
+		// .header("Content-Disposition", "attachment; filename=" + fileName)
+		// .build();
 	}
 
 	@GET
 	@Path("patterns-comparison/{versionPair}/{drugClass}.tsv")
 	public Response getPatternsComparison(@PathParam("versionPair") String versionPair, @PathParam("drugClass") String drugClassStr) {
-		DrugClass dc = null;
+		HIV hiv = HIV.getInstance();
+		DrugClass<HIV> dc = null;
 		try {
-			dc = DrugClass.valueOf(drugClassStr);
+			dc = hiv.getDrugClass(drugClassStr);
 		} catch (IllegalArgumentException | NullPointerException e) {
 			return Response
 				.status(Response.Status.NOT_FOUND)
 				.entity("Drug Class not found: " + dc).build();
 		}
-		final DrugClass drugClass = dc;
-		String output = TabularPatternsComparison.getInstance(drugClass).toString();
-		String fileName = String.format(
-			"%sPatternsComparison.%s.vs.%s.tsv", drugClass,
-			TabularPatternsComparison.VERSIONS[0],
-			TabularPatternsComparison.VERSIONS[1]);
-		return Response
-		.ok(output, "text/tab-separated-values")
-		.header("Content-Disposition", "attachment; filename=" + fileName)
-		.build();
+		return Response.ok("", "text/plain").build();
+		// String output = TabularPatternsComparison.getInstance(drugClass).toString();
+		// String fileName = String.format(
+		// 	"%sPatternsComparison.%s.vs.%s.tsv", drugClass,
+		// 	TabularPatternsComparison.VERSIONS[0],
+		// 	TabularPatternsComparison.VERSIONS[1]);
+		// return Response
+		// .ok(output, "text/tab-separated-values")
+		// .header("Content-Disposition", "attachment; filename=" + fileName)
+		// .build();
 	}
 
 }

@@ -21,25 +21,48 @@ package edu.stanford.hivdb.graphql;
 import graphql.schema.*;
 import static graphql.Scalars.*;
 import static graphql.schema.GraphQLObjectType.newObject;
+import static graphql.schema.GraphQLCodeRegistry.newCodeRegistry;
+import static graphql.schema.FieldCoordinates.coordinates;
 
-import edu.stanford.hivdb.mutations.Gene;
-import edu.stanford.hivdb.mutations.GeneEnum;
+import edu.stanford.hivdb.hivfacts.HIV;
+
 import static edu.stanford.hivdb.graphql.StrainDef.*;
+import static edu.stanford.hivdb.graphql.ExtGraphQL.*;
 
 public class GeneDef {
 
 	public static GraphQLEnumType enumGene;
-	public static GraphQLObjectType oGene;
 
 	static {
+		HIV hiv = HIV.getInstance();
 		GraphQLEnumType.Builder newEnumGene =
 			GraphQLEnumType.newEnum().name("EnumGene");
-		for (GeneEnum gene : GeneEnum.values()) {
-			newEnumGene.value(gene.toString(), gene);
+		for (String gene : hiv.getAbstractGenes()) {
+			newEnumGene.value(gene, gene);
 		}
 		enumGene = newEnumGene.build();
+	}
+	
+	public static GraphQLCodeRegistry geneCodeRegistry = newCodeRegistry()
+		.dataFetcher(
+			coordinates("Gene", "reference"),
+			new ExtPropertyDataFetcher<String>("refSequence")
+		)
+		.dataFetcher(
+			coordinates("Gene", "consensus"),
+			new ExtPropertyDataFetcher<String>("refSequence")
+		)
+		.dataFetcher(
+			coordinates("Gene", "name"),
+			new ExtPropertyDataFetcher<String>("abstractGene")
+		)
+		.dataFetcher(
+			coordinates("Gene", "nameWithStrain"),
+			new ExtPropertyDataFetcher<String>("name")
+		)
+		.build();
 		
-		oGene = newObject()
+	public static GraphQLObjectType oGene = newObject()
 			.name("Gene")
 			.description("HIV genes. Accept PR, RT or IN.")
 			.field(field -> field
@@ -56,13 +79,16 @@ public class GeneDef {
 				.description("HIV strain referred by this gene."))
 			.field(field -> field
 				.type(GraphQLString)
+				.name("refSequence")
+				.description("Reference sequence of this gene."))
+			.field(field -> field
+				.type(GraphQLString)
 				.name("reference")
-				.description("(Subtype B) reference sequence of the gene."))
+				.deprecate("Use field `refSequence` instead."))
 			.field(field -> field
 				.type(GraphQLString)
 				.name("consensus")
-				.dataFetcher(env -> ((Gene) env.getSource()).getReference())
-				.deprecate("Use field `reference` instead."))
+				.deprecate("Use field `refSequence` instead."))
 			.field(field -> field
 				.type(GraphQLInt)
 				.name("length")
@@ -76,6 +102,5 @@ public class GeneDef {
 				.name("mutationTypes")
 				.description("Supported mutation types of current gene."))
 			.build();
-	}
 
 }

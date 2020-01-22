@@ -21,243 +21,207 @@ package edu.stanford.hivdb.graphql;
 import graphql.schema.*;
 import static graphql.Scalars.*;
 import static graphql.schema.GraphQLObjectType.newObject;
+import static graphql.schema.GraphQLCodeRegistry.newCodeRegistry;
+import static graphql.schema.FieldCoordinates.coordinates;
 
-import java.util.List;
-
-import edu.stanford.hivdb.drugresistance.database.ConditionalComments;
-import edu.stanford.hivdb.drugresistance.database.ConditionalComments.BoundComment;
-import edu.stanford.hivdb.mutations.MutType;
+import edu.stanford.hivdb.hivfacts.HIV;
 import edu.stanford.hivdb.mutations.Mutation;
+import edu.stanford.hivdb.mutations.MutationType;
 
 import static edu.stanford.hivdb.graphql.GeneDef.oGene;
 import static edu.stanford.hivdb.graphql.ConditionalCommentDef.oBoundComment;
-import static edu.stanford.hivdb.graphql.ExtendedFieldDefinition.*;
 
 public class MutationDef {
 
 	private static GraphQLEnumType.Builder newMutationType() {
+		HIV hiv = HIV.getInstance();
 		GraphQLEnumType.Builder mutationTypeBuilder = GraphQLEnumType.newEnum()
 			.name("MutationType")
 			.description("Mutation type.");
-		for (MutType mutType : MutType.values()) {
+		for (MutationType<HIV> mutType : hiv.getMutationTypes()) {
 			mutationTypeBuilder.value(mutType.toString(), mutType);
 		}
 		return mutationTypeBuilder;
 	}
 
+	private static DataFetcher<String> mutConsDataFetcher = env -> {
+		Mutation<HIV> mutation = env.getSource();
+		return mutation.getReference();
+	};
+
 	public static GraphQLEnumType oMutationType = newMutationType()
 		.build();
 
-	private static DataFetcher<List<BoundComment>> commentsDataFetcher = new DataFetcher<List<BoundComment>>() {
-		@Override
-		public List<BoundComment> get(DataFetchingEnvironment environment) {
-			Mutation mut = (Mutation) environment.getSource();
-			return ConditionalComments.getComments(mut);
-		}
-	};
-
 	public static GraphQLObjectType oAAPercent = newObject()
 		.name("AAPercent")
-		.field(newFieldDefinition()
+		.field(field -> field
 			.type(GraphQLChar)
 			.name("AA")
-			.description("A single amino acid.")
-			.build())
-		.field(newFieldDefinition()
+			.description("A single amino acid."))
+		.field(field -> field
 			.type(GraphQLFloat)
 			.name("percent")
-			.description("Percent (max: 100) of this amino acid in the mutation.")
-			.build())
-		.field(newFieldDefinition()
+			.description("Percent (max: 100) of this amino acid in the mutation."))
+		.field(field -> field
 			.type(GraphQLBoolean)
 			.name("isDRM")
 			.description(
-				"The mutated amino acid is a drug resistance mutation (DRM).")
-			.build())
-		.field(newFieldDefinition()
+				"The mutated amino acid is a drug resistance mutation (DRM)."))
+		.field(field -> field
 			.type(GraphQLBoolean)
 			.name("isUnusual")
 			.description(
-				"The mutated amino acid is a low prevalence (unusual) mutation.")
-			.build())
-		.field(newFieldDefinition()
+				"The mutated amino acid is a low prevalence (unusual) mutation."))
+		.field(field -> field
 			.type(GraphQLBoolean)
 			.name("isApobecMutation")
-			.description("The mutated amino acid is a signature APOBEC-mediated hypermutation.")
-			.build())
-		.field(newFieldDefinition()
+			.description("The mutated amino acid is a signature APOBEC-mediated hypermutation."))
+		.field(field -> field
 			.type(GraphQLBoolean)
 			.name("isApobecDRM")
 			.description(
 				"The mutated amino acid is a drug resistance mutation (DRM) might " +
-				"be caused by APOBEC-mediated G-to-A hypermutation.")
-			.build())
-		.field(newFieldDefinition()
+				"be caused by APOBEC-mediated G-to-A hypermutation."))
+		.field(field -> field
 			.type(GraphQLBoolean)
 			.name("isStop")
 			.description(
-				"The mutation is a stop codon.")
-			.build())
+				"The mutation is a stop codon."))
 		.build();
 
+	
+	public static GraphQLCodeRegistry mutationCodeRegistry = newCodeRegistry()
+		.dataFetcher(
+			coordinates("Mutation", "consensus"),
+			mutConsDataFetcher
+		)
+		.build();
+	
 	public static GraphQLObjectType oMutation = newObject()
 		.name("Mutation")
-		.field(newFieldDefinition()
+		.field(field -> field
 			.type(oGene)
 			.name("gene")
-			.description("Mutation gene.")
-			.build())
-		.field(newFieldDefinition()
+			.description("Mutation gene."))
+		.field(field -> field
 			.type(GraphQLString)
 			.name("reference")
 			.description(
-				"(Subtype B) Amino acid reference at this gene sequence position.")
-			.build())
-		.field(newFieldDefinition()
+				"Amino acid reference at this gene sequence position."))
+		.field(field -> field
 			.type(GraphQLString)
 			.name("consensus")
-			.dataFetcher(env -> ((Mutation) env.getSource()).getReference())
-			.deprecate("Use field `reference` instead.")
-			.build())
-		.field(newFieldDefinition()
+			.deprecate("Use field `reference` instead."))
+		.field(field -> field
 			.type(GraphQLInt)
 			.name("position")
-			.description("Position of the mutation.")
-			.build())
-		.field(newFieldDefinition()
+			.description("Position of the mutation."))
+		.field(field -> field
 			.type(GraphQLString)
 			.name("displayAAs")
 			.description(
-				"The mutated AA(s) with possibly inserted AA(s).")
-			.build())
-		.field(newFieldDefinition()
+				"The mutated AA(s) with possibly inserted AA(s)."))
+		.field(field -> field
 			.type(GraphQLString)
 			.name("AAs")
 			.description(
-				"The mutated AA(s) with possibly inserted AA(s). Highly ambiguous mixture is not replaced to X.")
-			.build())
-		.field(newFieldDefinition()
+				"The mutated AA(s) with possibly inserted AA(s). Highly ambiguous mixture is not replaced to X."))
+		.field(field -> field
 			.type(new GraphQLList(GraphQLString))
 			.name("displayAAChars")
-			.description("A list of AAs.")
-			.build())
-		.field(newFieldDefinition()
+			.description("A list of AAs."))
+		.field(field -> field
 			.type(new GraphQLList(GraphQLString))
 			.name("AAChars")
-			.description("A list of AAs. Highly ambiguous mixture is not replaced to X.")
-			.build())
-		.field(newFieldDefinition()
-			.type(new GraphQLList(oAAPercent))
-			.name("AAPercents")
-			.description("A list of AAs with their percents (only available for CodFISH input).")
-			.build())
-		.field(newFieldDefinition()
+			.description("A list of AAs. Highly ambiguous mixture is not replaced to X."))
+		.field(field -> field
 			.type(GraphQLString)
 			.name("triplet")
 			.description(
 				"The mutated codon when the mutation is extracting from " +
-				"an aligned sequence.")
-			.build())
-		.field(newFieldDefinition()
+				"an aligned sequence."))
+		.field(field -> field
 			.type(GraphQLString)
 			.name("insertedNAs")
 			.description(
 				"The inserted codon(s) when the mutation is extracting from " +
-				"an aligned sequence.")
-			.build())
-		.field(newFieldDefinition()
+				"an aligned sequence."))
+		.field(field -> field
 			.type(GraphQLBoolean)
 			.name("isInsertion")
-			.description("The mutation is an insertion or not.")
-			.build())
-		.field(newFieldDefinition()
+			.description("The mutation is an insertion or not."))
+		.field(field -> field
 			.type(GraphQLBoolean)
 			.name("isDeletion")
-			.description("The mutation is a deletion or not.")
-			.build())
-		.field(newFieldDefinition()
+			.description("The mutation is a deletion or not."))
+		.field(field -> field
 			.type(GraphQLBoolean)
 			.name("isIndel")
-			.description("The mutation is an insertion/deletion, or not.")
-			.build())
-		.field(newFieldDefinition()
+			.description("The mutation is an insertion/deletion, or not."))
+		.field(field -> field
 			.type(GraphQLBoolean)
 			.name("isAmbiguous")
-			.description("The mutation is a highly ambiguous mutation or not.")
-			.build())
-		.field(newFieldDefinition()
+			.description("The mutation is a highly ambiguous mutation or not."))
+		.field(field -> field
 			.type(GraphQLBoolean)
 			.name("isApobecMutation")
 			.description(
 				"The mutation is a signature APOBEC-mediated G-to-A " +
-				"hypermutation or not.")
-			.build())
-		.field(newFieldDefinition()
+				"hypermutation or not."))
+		.field(field -> field
 			.type(GraphQLBoolean)
 			.name("isApobecDRM")
 			.description(
 				"The mutation is a drug resistance mutation (DRM) might " +
-				"be caused by APOBEC-mediated G-to-A hypermutation or not.")
-			.build())
-		.field(newFieldDefinition()
+				"be caused by APOBEC-mediated G-to-A hypermutation or not."))
+		.field(field -> field
 			.type(GraphQLBoolean)
 			.name("isUnsequenced")
 			.description(
-				"If the mutation is from unsequenced region.")
-			.build())
-		.field(newFieldDefinition()
+				"If the mutation is from unsequenced region."))
+		.field(field -> field
 			.type(GraphQLBoolean)
 			.name("isDRM")
 			.description(
-				"If the mutation is a drug resistance mutation (DRM) or not.")
-			.build())
-		.field(newFieldDefinition()
+				"If the mutation is a drug resistance mutation (DRM) or not."))
+		.field(field -> field
 			.type(GraphQLBoolean)
 			.name("hasStop")
 			.description(
-				"The mutation contains stop codon or not.")
-			.build())
-		.field(newFieldDefinition()
+				"The mutation contains stop codon or not."))
+		.field(field -> field
 			.type(GraphQLBoolean)
 			.name("isUnusual")
 			.description(
-				"The mutation is a low prevalence (unusual) mutation or not.")
-			.build())
-		.field(newFieldDefinition()
+				"The mutation is a low prevalence (unusual) mutation or not."))
+		.field(field -> field
 			.type(GraphQLBoolean)
 			.name("isSDRM")
 			.description(
-				"The mutation is a Surveillance Drug Resistance Mutation (SDRM) or not.")
-			.build())
-		.field(newFieldDefinition()
+				"The mutation is a Surveillance Drug Resistance Mutation (SDRM) or not."))
+		.field(field -> field
 			.type(new GraphQLList(oMutationType))
 			.name("types")
 			.description(
 				"Ordered list of mutation type(s). List size can be " +
-				"larger than 1 when the mutation is a mixture.")
-			.build())
-		.field(newFieldDefinition()
+				"larger than 1 when the mutation is a mixture."))
+		.field(field -> field
 			.type(oMutationType)
 			.name("primaryType")
-			.description("Primary type of the mutation.")
-			.build())
-		.field(newFieldDefinition()
+			.description("Primary type of the mutation."))
+		.field(field -> field
 			.type(new GraphQLList(oBoundComment))
 			.name("comments")
-			.description("Mutation comments.")
-			.dataFetcher(commentsDataFetcher)
-			.build())
-		.field(newFieldDefinition()
+			.description("Mutation comments."))
+		.field(field -> field
 			.type(GraphQLString)
 			.name("text")
-			.description("Formatted text of the mutation (without gene).")
-			.build())
-		.field(newFieldDefinition()
+			.description("Formatted text of the mutation (without gene)."))
+		.field(field -> field
 			.type(GraphQLString)
 			.name("shortText")
 			.description(
-				"Formatted short text of the mutation (without gene).")
-			.build())
+				"Formatted short text of the mutation (without gene)."))
 		.build();
 
 }

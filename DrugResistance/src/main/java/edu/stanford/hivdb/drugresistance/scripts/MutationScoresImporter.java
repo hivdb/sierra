@@ -18,30 +18,30 @@
 
 package edu.stanford.hivdb.drugresistance.scripts;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import org.apache.commons.lang3.StringUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-import edu.stanford.hivdb.drugresistance.database.HivdbVersion;
-import edu.stanford.hivdb.drugs.Drug;
-import edu.stanford.hivdb.drugs.DrugClass;
-import edu.stanford.hivdb.mutations.AA;
-import edu.stanford.hivdb.mutations.Gene;
-import edu.stanford.hivdb.mutations.IUPACMutation;
-import edu.stanford.hivdb.mutations.Mutation;
-import edu.stanford.hivdb.mutations.Strain;
-import edu.stanford.hivdb.utilities.MyFileUtils;
+// import java.io.BufferedReader;
+// import java.io.File;
+// import java.io.FileInputStream;
+// import java.io.FileNotFoundException;
+// import java.io.IOException;
+// import java.io.InputStream;
+// import java.io.InputStreamReader;
+// import java.util.ArrayList;
+// import java.util.Arrays;
+// import java.util.List;
+// 
+// import org.apache.commons.lang3.StringUtils;
+// import org.apache.logging.log4j.LogManager;
+// import org.apache.logging.log4j.Logger;
+// 
+// import edu.stanford.hivdb.drugresistance.database.HivdbVersion;
+// import edu.stanford.hivdb.hivfacts.HIVDrug;
+// import edu.stanford.hivdb.hivfacts.HIVDrugClass;
+// import edu.stanford.hivdb.hivfacts.HIVGene;
+// import edu.stanford.hivdb.hivfacts.HIVStrain;
+// import edu.stanford.hivdb.mutations.ConsensusMutation;
+// import edu.stanford.hivdb.hivfacts.HIVAAMutation;
+// import edu.stanford.hivdb.utilities.AAUtils;
+// import edu.stanford.hivdb.utilities.MyFileUtils;
 
 
 /**
@@ -58,116 +58,117 @@ import edu.stanford.hivdb.utilities.MyFileUtils;
  * tblCombinationScoresWithVersions and tblCompoundScoresWithVersions.
  *
  */
+@Deprecated
 public class MutationScoresImporter {
-	private static final String INPUT_FILE_DIR = "__input/MutationScores";
-	private static final String OUTPUT_FILE = "__output/mutationScores.sql";
-	private static final boolean HEADER_FLAG = true;
-	private static final HivdbVersion VERSION = HivdbVersion.getLatestVersion();
-	private static final Logger LOGGER = LogManager.getLogger();
-
-
-	/**
-	 * Read the tab-delimited text files containing each of individual and combination mutation scores
-	 * for each of the drug classes. The header contains: Mutation, Type(Individual vs Combination),
-	 * followed by each of the drugs in that class in alphabetical order. The file contents are insert into
-	 * tblScores and tblCombinatonScores
-	 *
-	 * For now tblCompoundScores are done manually
-	 *
-	 */
-	public static void main(String[] args) {
-		StringBuilder statements = new StringBuilder();
-		for (DrugClass drugClass : DrugClass.values()) {
-			String fileName = String.format("Scores%s_%s.tsv",drugClass, VERSION);
-			File file = new File(INPUT_FILE_DIR, fileName);
-			try {
-				InputStream inputStream = new FileInputStream(file);
-				BufferedReader br = new BufferedReader (new InputStreamReader(inputStream));
-				String rowLine;
-				boolean headerFlag = HEADER_FLAG;
-				while ((rowLine = br.readLine()) != null) {
-					if (rowLine.length()>0 && !rowLine.substring(0,1).equals("#")){
-						LOGGER.debug("  line:" + rowLine);
-					}
-					if (headerFlag) {
-						headerFlag = false;
-						continue;
-					}
-					rowLine.trim();
-					statements.append(insertRowIntoDB(drugClass, rowLine));
-					statements.append('\n');
-				}
-				br.close();
-			} catch (FileNotFoundException e) {
-				System.err.println("Cannot locate " + file);
-				throw new RuntimeException(e);
-			} catch (IOException e) {
-				System.err.println("Cannot read line");
-				throw new RuntimeException(e);
-			}
-		}
-		MyFileUtils.writeFile(OUTPUT_FILE, statements.toString());
-		System.out.println(String.format("%s created.", OUTPUT_FILE));
-	}
-
-	private static String insertRowIntoDB(DrugClass drugClass, String rowLine) {
-		List<String> rowFields =
-			new ArrayList<String>(Arrays.asList(rowLine.split("\t")));
-		String mutText = rowFields.remove(0);
-		String type = rowFields.remove(0);
-		List<Drug> drugList = drugClass.getAllDrugs();
-		// TODO: HIV2 support
-		Gene gene = Gene.valueOf(Strain.HIV1, drugClass.gene());
-		StringBuilder statements = new StringBuilder();
-		boolean noScores = true;
-		if ("Individual".equals(type)) {
-			Mutation mut = IUPACMutation.parseString(gene, mutText);
-			int pos = mut.getPosition();
-			String aa = AA.toHIVDBFormat(mut.getAAs());
-			String tblName = "tblScoresWithVersions";
-			statements.append(String.format("INSERT INTO `%s` ", tblName));
-			statements.append(
-				"(Gene, DrugClass, Pos, AA, Drug, Score, Version) VALUES ");
-			List<String> values = new ArrayList<>();
-			for (int i = 0; i<drugList.size(); i++) {
-				Drug drug = drugList.get(i);
-				int score = Integer.parseInt(rowFields.get(i));
-				if (score == 0) {
-					continue;
-				}
-				noScores = false;
-				values.add(String.format(
-					"('%s', '%s', '%s', '%s', '%s', '%s', '%s')",
-					gene, drugClass, pos, aa, drug, score, VERSION
-				));
-			}
-			statements.append(String.join(",", values));
-			statements.append(';');
-		} else if ("Combination".equals(type)) {
-			String tblName = "tblCombinationScoresWithVersions";
-			statements.append(String.format("INSERT INTO `%s` ", tblName));
-			statements.append(
-				"(Gene, DrugClass, Rule, Drug, Score, Version, CompoundRule) VALUES ");
-			List<String> values = new ArrayList<>();
-			for (int i = 0; i<drugList.size(); i++) {
-				Drug drug = drugList.get(i);
-				int score = Integer.parseInt(rowFields.get(i));
-				if (score == 0) {
-					continue;
-				}
-				noScores = false;
-				values.add(String.format(
-					"('%s', '%s', '%s', '%s', '%s', '%s', 0)",
-					gene, drugClass,
-					StringUtils.replace(AA.toHIVDBFormat(mutText), "'", "''"),
-					drug, score, VERSION
-				));
-			}
-			statements.append(String.join(",", values));
-			statements.append(';');
-		}
-		return noScores ? "" : statements.toString();
-	}
+// 	private static final String INPUT_FILE_DIR = "__input/MutationScores";
+// 	private static final String OUTPUT_FILE = "__output/mutationScores.sql";
+// 	private static final boolean HEADER_FLAG = true;
+// 	private static final HivdbVersion VERSION = HivdbVersion.getLatestVersion();
+// 	private static final Logger LOGGER = LogManager.getLogger();
+// 
+// 
+// 	/**
+// 	 * Read the tab-delimited text files containing each of individual and combination mutation scores
+// 	 * for each of the drug classes. The header contains: Mutation, Type(Individual vs Combination),
+// 	 * followed by each of the drugs in that class in alphabetical order. The file contents are insert into
+// 	 * tblScores and tblCombinatonScores
+// 	 *
+// 	 * For now tblCompoundScores are done manually
+// 	 *
+// 	 */
+// 	public static void main(String[] args) {
+// 		StringBuilder statements = new StringBuilder();
+// 		for (HIVDrugClass drugClass : HIVDrugClass.values()) {
+// 			String fileName = String.format("Scores%s_%s.tsv",drugClass, VERSION);
+// 			File file = new File(INPUT_FILE_DIR, fileName);
+// 			try {
+// 				InputStream inputStream = new FileInputStream(file);
+// 				BufferedReader br = new BufferedReader (new InputStreamReader(inputStream));
+// 				String rowLine;
+// 				boolean headerFlag = HEADER_FLAG;
+// 				while ((rowLine = br.readLine()) != null) {
+// 					if (rowLine.length()>0 && !rowLine.substring(0,1).equals("#")){
+// 						LOGGER.debug("  line:" + rowLine);
+// 					}
+// 					if (headerFlag) {
+// 						headerFlag = false;
+// 						continue;
+// 					}
+// 					rowLine.trim();
+// 					statements.append(insertRowIntoDB(drugClass, rowLine));
+// 					statements.append('\n');
+// 				}
+// 				br.close();
+// 			} catch (FileNotFoundException e) {
+// 				System.err.println("Cannot locate " + file);
+// 				throw new RuntimeException(e);
+// 			} catch (IOException e) {
+// 				System.err.println("Cannot read line");
+// 				throw new RuntimeException(e);
+// 			}
+// 		}
+// 		MyFileUtils.writeFile(OUTPUT_FILE, statements.toString());
+// 		System.out.println(String.format("%s created.", OUTPUT_FILE));
+// 	}
+// 
+// 	private static String insertRowIntoDB(HIVDrugClass drugClass, String rowLine) {
+// 		List<String> rowFields =
+// 			new ArrayList<String>(Arrays.asList(rowLine.split("\t")));
+// 		String mutText = rowFields.remove(0);
+// 		String type = rowFields.remove(0);
+// 		List<HIVDrug> drugList = drugClass.getDrugs();
+// 		// TODO: HIV2 support
+// 		HIVGene gene = HIVGene.valueOf(HIVStrain.HIV1, drugClass.gene());
+// 		StringBuilder statements = new StringBuilder();
+// 		boolean noScores = true;
+// 		if ("Individual".equals(type)) {
+// 			HIVAAMutation mut = ConsensusMutation.parseString(gene, mutText);
+// 			int pos = mut.getPosition();
+// 			String aa = AAUtils.toHIVDBFormat(mut.getAAs());
+// 			String tblName = "tblScoresWithVersions";
+// 			statements.append(String.format("INSERT INTO `%s` ", tblName));
+// 			statements.append(
+// 				"(Gene, DrugClass, Pos, AA, Drug, Score, Version) VALUES ");
+// 			List<String> values = new ArrayList<>();
+// 			for (int i = 0; i<drugList.size(); i++) {
+// 				HIVDrug drug = drugList.get(i);
+// 				int score = Integer.parseInt(rowFields.get(i));
+// 				if (score == 0) {
+// 					continue;
+// 				}
+// 				noScores = false;
+// 				values.add(String.format(
+// 					"('%s', '%s', '%s', '%s', '%s', '%s', '%s')",
+// 					gene, drugClass, pos, aa, drug, score, VERSION
+// 				));
+// 			}
+// 			statements.append(String.join(",", values));
+// 			statements.append(';');
+// 		} else if ("Combination".equals(type)) {
+// 			String tblName = "tblCombinationScoresWithVersions";
+// 			statements.append(String.format("INSERT INTO `%s` ", tblName));
+// 			statements.append(
+// 				"(Gene, DrugClass, Rule, Drug, Score, Version, CompoundRule) VALUES ");
+// 			List<String> values = new ArrayList<>();
+// 			for (int i = 0; i<drugList.size(); i++) {
+// 				HIVDrug drug = drugList.get(i);
+// 				int score = Integer.parseInt(rowFields.get(i));
+// 				if (score == 0) {
+// 					continue;
+// 				}
+// 				noScores = false;
+// 				values.add(String.format(
+// 					"('%s', '%s', '%s', '%s', '%s', '%s', 0)",
+// 					gene, drugClass,
+// 					StringUtils.replace(AAUtils.toHIVDBFormat(mutText), "'", "''"),
+// 					drug, score, VERSION
+// 				));
+// 			}
+// 			statements.append(String.join(",", values));
+// 			statements.append(';');
+// 		}
+// 		return noScores ? "" : statements.toString();
+// 	}
 
 
 

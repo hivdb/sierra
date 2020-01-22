@@ -26,15 +26,15 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
 
-import edu.stanford.hivdb.alignment.AlignedGeneSeq;
-import edu.stanford.hivdb.alignment.AlignedSequence;
-import edu.stanford.hivdb.mutations.Gene;
 import edu.stanford.hivdb.utilities.Json;
 import edu.stanford.hivdb.utilities.FastaUtils;
-import edu.stanford.hivdb.utilities.Sequence;
-import edu.stanford.hivdb.alignment.Aligner;
 import edu.stanford.hivdb.filetestutils.TestSequencesFiles;
 import edu.stanford.hivdb.filetestutils.TestSequencesFiles.TestSequencesProperties;
+import edu.stanford.hivdb.hivfacts.HIVGene;
+import edu.stanford.hivdb.sequences.AlignedGeneSeq;
+import edu.stanford.hivdb.sequences.AlignedSequence;
+import edu.stanford.hivdb.sequences.NucAminoAligner;
+import edu.stanford.hivdb.sequences.Sequence;
 
 public class AlignerTestExpectedsGenerator {
 
@@ -53,11 +53,11 @@ public class AlignerTestExpectedsGenerator {
 			System.out.println("In AlignedGeneSeqToJson:" + testSequenceProperty.toString());
 			final List<Sequence> sequences = FastaUtils.readStream(testSequenceInputStream);
 
-			List<AlignedSequence> alignedSeqs = Aligner.parallelAlign(sequences);
+			List<AlignedSequence> alignedSeqs = NucAminoAligner.parallelAlign(sequences);
 			for (AlignedSequence alignedSeq : alignedSeqs) {
 				Sequence seq = alignedSeq.getInputSequence();
 				System.out.println("In AlignedGeneSeqToJson:" + seq.getHeader());
-				Map<Gene, AlignedGeneSeq> alignmentResults = alignedSeq.getAlignedGeneSequenceMap();
+				Map<HIVGene, AlignedGeneSeq> alignmentResults = alignedSeq.getAlignedGeneSequenceMap();
 				for (AlignedGeneSeq geneSeq : alignmentResults.values()) {
 					geneSeq.getMatchPcnt();  // refresh cache
 				}

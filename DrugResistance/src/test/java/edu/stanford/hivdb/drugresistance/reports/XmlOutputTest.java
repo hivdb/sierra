@@ -28,20 +28,21 @@ import java.util.Map;
 
 import org.junit.Test;
 
-import edu.stanford.hivdb.alignment.AlignedSequence;
-import edu.stanford.hivdb.alignment.Aligner;
 import edu.stanford.hivdb.drugresistance.GeneDR;
 import edu.stanford.hivdb.drugresistance.GeneDRFast;
 import edu.stanford.hivdb.filetestutils.TestSequencesFiles;
 import edu.stanford.hivdb.filetestutils.TestSequencesFiles.TestSequencesProperties;
-import edu.stanford.hivdb.mutations.Gene;
+import edu.stanford.hivdb.hivfacts.HIVGene;
+import edu.stanford.hivdb.hivfacts.extras.XmlOutput;
+import edu.stanford.hivdb.sequences.AlignedSequence;
+import edu.stanford.hivdb.sequences.NucAminoAligner;
+import edu.stanford.hivdb.sequences.Sequence;
 import edu.stanford.hivdb.utilities.MyFileUtils;
 import edu.stanford.hivdb.utilities.FastaUtils;
-import edu.stanford.hivdb.utilities.Sequence;
 
 public class XmlOutputTest {
 	private List<AlignedSequence> alignedSequences;
-	private List<Map<Gene, GeneDR>> allResistanceResults;
+	private List<Map<HIVGene, GeneDR>> allResistanceResults;
 
 	@Test
 	public void test() {
@@ -65,9 +66,9 @@ public class XmlOutputTest {
 	private void runAnalysis(List<Sequence> sequences) {
 		alignedSequences = new ArrayList<>();
 		allResistanceResults = new ArrayList<>();
-		alignedSequences = Aligner.parallelAlign(sequences);
+		alignedSequences = NucAminoAligner.parallelAlign(sequences);
 		for (AlignedSequence alignedSeq : alignedSequences) {
-			Map<Gene, GeneDR> resistanceResults =
+			Map<HIVGene, GeneDR> resistanceResults =
 				GeneDRFast.getResistanceByGeneFromAlignedGeneSeqs(
 					alignedSeq.getAlignedGeneSequences()
 				);

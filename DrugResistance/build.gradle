@@ -21,96 +21,91 @@ repositories {
 }
 
 dependencies {
-    compile 'org.apache.commons:commons-math3:3.0'
-    compile 'org.apache.commons:commons-lang3:3.0'
-
-    compile 'org.apache.logging.log4j:log4j-api:2.5'
-    compile 'org.apache.logging.log4j:log4j-core:2.5'
-    compile 'mysql:mysql-connector-java:5.1.38'
-    compile 'com.google.guava:guava:21.0'
-    compile 'com.mchange:c3p0:0.9.5.2'
-    compile 'com.google.code.gson:gson:2.6.2'
-    compile project(':Aligner')
-    compile project(':NGS')
+    implementation 'org.apache.commons:commons-lang3:3.9'
+    implementation 'org.apache.commons:commons-math3:3.6.1'
+    implementation 'org.apache.logging.log4j:log4j-api:2.12.1'
+    implementation 'org.apache.logging.log4j:log4j-core:2.12.1'
+    implementation 'com.google.guava:guava:28.1-jre'
+    implementation 'com.google.code.gson:gson:2.8.6'
     compile project(':asi_interpreter')
-    compile 'edu.stanford.hivdb.hivfacts:hivfacts-java:2019.8'
-    testCompile 'junit:junit:4.12'
-    testCompile 'org.mockito:mockito-core:1.9.5'
-    testCompile project(':Utilities')
+    compile project(':sierra-core')
+    compile project(':hivfacts-java')
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'org.mockito:mockito-core:3.2.0'
     testCompile project(':TestResources')
 }
 
-task updateCachableExceptMutPatterns(type: JavaExec) {
-    dependsOn classes
-    doFirst {
-        delete "$projectDir/src/main/resources/__cached_classes"
-    }
-    main = 'edu.stanford.hivdb.utilities.Cachable'
-    classpath = sourceSets.main.runtimeClasspath
-    systemProperty 'hivdb.updateCachable', """
-        edu.stanford.hivdb.drugresistance.database.MutationScores
-        edu.stanford.hivdb.drugresistance.database.MutationComboScores
-        edu.stanford.hivdb.drugresistance.database.ConditionalComments
-        edu.stanford.hivdb.drugresistance.reports.TabularRulesComparison
-    """
-    doLast {
-        copy {
-            from "$projectDir/src/main/resources/__cached_classes"
-            into "$buildDir/resources/main/__cached_classes"
-            include '**/*.json'
-        }
-    }
-}
-
-task updateAsi(type: JavaExec) {
-    dependsOn classes
-    dependsOn updateCachableExceptMutPatterns
-    main = 'edu.stanford.hivdb.drugresistance.scripts.AsiConstructor'
-    classpath = sourceSets.main.runtimeClasspath
-    doLast {
-        copy {
-            from "$projectDir/src/main/resources/AlgXMLs"
-            into "$buildDir/resources/main/AlgXMLs"
-            include '*.xml'
-        }
-    }
-}
-
-task updateCachableOnlyMutPatterns(type: JavaExec) {
-    dependsOn classes
-    dependsOn updateAsi
-    main = 'edu.stanford.hivdb.utilities.Cachable'
-    classpath = sourceSets.main.runtimeClasspath
-    systemProperty 'hivdb.updateCachable', """
-        edu.stanford.hivdb.drugresistance.database.MutationPatterns
-    """
-    doLast {
-        copy {
-            from "$projectDir/src/main/resources/__cached_classes"
-            into "$buildDir/resources/main/__cached_classes"
-            include '**/*.json'
-        }
-    }
-}
-
-
-task updateCachable(type: JavaExec, group: 'Generator', description: 'Generate files with Cachable.') {
-    dependsOn classes
-    dependsOn updateCachableOnlyMutPatterns
-    dependsOn ':Aligner:updateCachable'
-    main = 'edu.stanford.hivdb.utilities.Cachable'
-    classpath = sourceSets.main.runtimeClasspath
-    systemProperty 'hivdb.updateCachable', """
-        edu.stanford.hivdb.drugresistance.reports.TabularPatternsComparison
-    """
-    doLast {
-        copy {
-            from "$projectDir/src/main/resources/__cached_classes"
-            into "$buildDir/resources/main/__cached_classes"
-            include '**/*.json'
-        }
-    }
-}
+// task updateCachableExceptMutPatterns(type: JavaExec) {
+//     dependsOn classes
+//     doFirst {
+//         delete "$projectDir/src/main/resources/__cached_classes"
+//     }
+//     main = 'edu.stanford.hivdb.utilities.Cachable'
+//     classpath = sourceSets.main.runtimeClasspath
+//     systemProperty 'hivdb.updateCachable', """
+//         edu.stanford.hivdb.drugresistance.database.MutationScores
+//         edu.stanford.hivdb.drugresistance.database.MutationComboScores
+//         edu.stanford.hivdb.drugresistance.database.ConditionalComments
+//         edu.stanford.hivdb.drugresistance.reports.TabularRulesComparison
+//     """
+//     doLast {
+//         copy {
+//             from "$projectDir/src/main/resources/__cached_classes"
+//             into "$buildDir/resources/main/__cached_classes"
+//             include '**/*.json'
+//         }
+//     }
+// }
+// 
+// task updateAsi(type: JavaExec) {
+//     dependsOn classes
+//     dependsOn updateCachableExceptMutPatterns
+//     main = 'edu.stanford.hivdb.drugresistance.scripts.AsiConstructor'
+//     classpath = sourceSets.main.runtimeClasspath
+//     doLast {
+//         copy {
+//             from "$projectDir/src/main/resources/AlgXMLs"
+//             into "$buildDir/resources/main/AlgXMLs"
+//             include '*.xml'
+//         }
+//     }
+// }
+// 
+// task updateCachableOnlyMutPatterns(type: JavaExec) {
+//     dependsOn classes
+//     dependsOn updateAsi
+//     main = 'edu.stanford.hivdb.utilities.Cachable'
+//     classpath = sourceSets.main.runtimeClasspath
+//     systemProperty 'hivdb.updateCachable', """
+//         edu.stanford.hivdb.drugresistance.database.MutationPatterns
+//     """
+//     doLast {
+//         copy {
+//             from "$projectDir/src/main/resources/__cached_classes"
+//             into "$buildDir/resources/main/__cached_classes"
+//             include '**/*.json'
+//         }
+//     }
+// }
+// 
+// 
+// task updateCachable(type: JavaExec, group: 'Generator', description: 'Generate files with Cachable.') {
+//     dependsOn classes
+//     dependsOn updateCachableOnlyMutPatterns
+//     dependsOn ':Aligner:updateCachable'
+//     main = 'edu.stanford.hivdb.utilities.Cachable'
+//     classpath = sourceSets.main.runtimeClasspath
+//     systemProperty 'hivdb.updateCachable', """
+//         edu.stanford.hivdb.drugresistance.reports.TabularPatternsComparison
+//     """
+//     doLast {
+//         copy {
+//             from "$projectDir/src/main/resources/__cached_classes"
+//             into "$buildDir/resources/main/__cached_classes"
+//             include '**/*.json'
+//         }
+//     }
+// }
 
 task compareVersionResults(type: JavaExec, group: 'Comparison') {
     main = 'edu.stanford.hivdb.drugresistance.scripts.VersionResultsComparison'

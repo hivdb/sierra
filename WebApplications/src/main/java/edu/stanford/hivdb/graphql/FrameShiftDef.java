@@ -22,48 +22,40 @@ import graphql.schema.*;
 import static graphql.Scalars.*;
 import static graphql.schema.GraphQLObjectType.newObject;
 import static edu.stanford.hivdb.graphql.GeneDef.*;
-import static edu.stanford.hivdb.graphql.ExtendedFieldDefinition.newFieldDefinition;
 
 public class FrameShiftDef {
 
 	public static GraphQLObjectType oFrameShift = newObject()
 		.name("FrameShift")
 		.description("Frame shift (NAs length < 3) found in aligned sequence.")
-		.field(newFieldDefinition()
+		.field(field -> field
 			.type(oGene)
 			.name("gene")
-			.description("Gene the frame shift belongs to.")
-			.build())
-		.field(newFieldDefinition()
+			.description("Gene the frame shift belongs to."))
+		.field(field -> field
 			.type(GraphQLInt)
 			.name("position")
-			.description("Position of the frame shift.")
-			.build())
-		.field(newFieldDefinition()
+			.description("Position of the frame shift."))
+		.field(field -> field
 			.type(GraphQLBoolean)
 			.name("isInsertion")
-			.description("The frame shift is an insertion or not.")
-			.build())
-		.field(newFieldDefinition()
+			.description("The frame shift is an insertion or not."))
+		.field(field -> field
 			.type(GraphQLBoolean)
 			.name("isDeletion")
-			.description("The frame shift is a deletion or not.")
-			.build())
-		.field(newFieldDefinition()
+			.description("The frame shift is a deletion or not."))
+		.field(field -> field
 			.type(GraphQLInt)
 			.name("size")
-			.description("DNA size of the frame shift.")
-			.build())
-		.field(newFieldDefinition()
+			.description("DNA size of the frame shift."))
+		.field(field -> field
 			.type(GraphQLString)
 			.name("NAs")
-			.description("Nucleic acid(s) of the frame shift.")
-			.build())
-		.field(newFieldDefinition()
+			.description("Nucleic acid(s) of the frame shift."))
+		.field(field -> field
 			.type(GraphQLString)
 			.name("text")
-			.description("Formatted readable text of this frame shift.")
-			.build())
+			.description("Formatted readable text of this frame shift."))
 		.build();
 
 }

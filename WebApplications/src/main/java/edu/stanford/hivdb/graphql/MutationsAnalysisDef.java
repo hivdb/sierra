@@ -20,6 +20,8 @@ package edu.stanford.hivdb.graphql;
 
 import graphql.schema.*;
 import static graphql.schema.GraphQLObjectType.newObject;
+import static graphql.schema.GraphQLCodeRegistry.newCodeRegistry;
+import static graphql.schema.FieldCoordinates.coordinates;
 
 import java.util.Collections;
 import java.util.LinkedHashMap;
@@ -28,12 +30,15 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import edu.stanford.hivdb.alignment.MutationListValidator;
+import org.apache.commons.lang3.tuple.Pair;
+
+import edu.stanford.hivdb.drugresistance.GeneDR;
 import edu.stanford.hivdb.drugresistance.GeneDRAsi;
-import edu.stanford.hivdb.drugresistance.GeneDRFast;
-import edu.stanford.hivdb.drugresistance.algorithm.Algorithm;
-import edu.stanford.hivdb.mutations.Gene;
+import edu.stanford.hivdb.viruses.Gene;
+import edu.stanford.hivdb.hivfacts.HIV;
 import edu.stanford.hivdb.mutations.MutationSet;
+import edu.stanford.hivdb.utilities.ValidationResult;
+
 import static edu.stanford.hivdb.graphql.DrugResistanceDef.*;
 import static edu.stanford.hivdb.graphql.ValidationResultDef.*;
 import static edu.stanford.hivdb.graphql.MutationPrevalenceDef.*;
@@ -41,84 +46,108 @@ import static edu.stanford.hivdb.graphql.AlgorithmComparisonDef.*;
 
 public class MutationsAnalysisDef {
 
-	private static Map<Gene, MutationSet> getMutationsByGeneFromSource(DataFetchingEnvironment env) {
-		List<?> data = (List<?>) env.getSource();
-		Set<Gene> knownGenes = ((Set<?>) data.get(0)).stream().map(g -> ((Gene) g)).collect(Collectors.toSet());
-		MutationSet mutations = (MutationSet) data.get(1);
-		Map<Gene, MutationSet> mutationsByGene = mutations.groupByGene();
-		for (Gene gene : knownGenes) {
+	private static Map<Gene<HIV>, MutationSet<HIV>> getMutationsByGeneFromSource(DataFetchingEnvironment env) {
+		Pair<Set<Gene<HIV>>, MutationSet<HIV>> data = env.getSource();
+		Set<Gene<HIV>> knownGenes = data.getLeft();
+		MutationSet<HIV> mutations = data.getRight();
+		
+		Map<Gene<HIV>, MutationSet<HIV>> mutationsByGene = mutations.groupByGene();
+		for (Gene<HIV> gene : knownGenes) {
 			if (!mutationsByGene.containsKey(gene)) {
-				mutationsByGene.put(gene, new MutationSet());
+				mutationsByGene.put(gene, new MutationSet<>());
 			}
 		}
 		return mutationsByGene;
 	}
 
-	private static MutationSet getMutationSetFromSource(DataFetchingEnvironment env) {
-		List<?> data = (List<?>) env.getSource();
-		return (MutationSet) data.get(1);
+	private static MutationSet<HIV> getMutationSetFromSource(DataFetchingEnvironment env) {
+		Pair<Set<Gene<HIV>>, MutationSet<HIV>> data = env.getSource();
+		return data.getRight();
 	}
+	
+	private static DataFetcher<List<ValidationResult>> mutValidationResultDataFetcher = env -> {
+		HIV hiv = HIV.getInstance();
+		MutationSet<HIV> mutations = getMutationSetFromSource(env);
+		return hiv.validateMutations(mutations);
+	};
+	
 
+	private static DataFetcher<List<GeneDR<HIV>>> mutDRDataFetcher = env -> {
+		HIV hiv = HIV.getInstance();
+		Map<Gene<HIV>, MutationSet<HIV>> mutationsByGene = getMutationsByGeneFromSource(env);
+		return mutationsByGene
+			.entrySet()
+			.stream()
+			.map(e -> new GeneDRAsi<>(e.getKey(), e.getValue(), hiv.getLatestDrugResistAlgorithm("HIVDB")))
+			.collect(Collectors.toList());
+	};
+	
+	private static DataFetcher<List<Map<String, Object>>> mutMutPrevDataFetcher = env -> {
+		MutationSet<HIV> mutations = getMutationSetFromSource(env);
+		return getBoundMutationPrevalenceList(mutations);
+	};
+	
+	private static DataFetcher<List<Map<String, Object>>> mutAlgCmpDataFetcher = env -> {
+		List<String> asiAlgs = env.getArgument("algorithms");
+		List<Map<String, String>> customAlgs = env.getArgument("customAlgorithms");
+		if (asiAlgs == null) { asiAlgs = Collections.emptyList(); }
+		if (customAlgs == null) { customAlgs = Collections.emptyList(); }
+		if (asiAlgs.isEmpty() && customAlgs.isEmpty()) {
+			return Collections.emptyList();
+		}
+		asiAlgs = asiAlgs
+			.stream().filter(alg -> alg != null)
+			.collect(Collectors.toList());
+		Map<String, String> customAlgs2 = customAlgs
+			.stream()
+			.filter(map -> map != null)
+			.collect(Collectors.toMap(
+				map -> map.get("name"),
+				map -> map.get("xml"),
+				(x1, x2) -> x2,
+				LinkedHashMap::new
+			));
+		MutationSet<HIV> mutations = getMutationSetFromSource(env);
+		return fetchAlgorithmComparisonData(mutations, asiAlgs, customAlgs2);
+	};
+
+	public static GraphQLCodeRegistry mutationsAnalysisCodeRegistry = newCodeRegistry()
+		.dataFetcher(
+			coordinates("MutationsAnalysis", "validationResults"),
+			mutValidationResultDataFetcher
+		)
+		.dataFetcher(
+			coordinates("MutationsAnalysis", "drugResistance"),
+			mutDRDataFetcher
+		)
+		.dataFetcher(
+			coordinates("MutationsAnalysis", "mutationPrevalences"),
+			mutMutPrevDataFetcher
+		)
+		.dataFetcher(
+			coordinates("MutationsAnalysis", "algorithmComparison"),
+			mutAlgCmpDataFetcher
+		)
+		.build();
+	
 	public static GraphQLObjectType oMutationsAnalysis = newObject()
 		.name("MutationsAnalysis")
 		.field(field -> field
 			.type(new GraphQLList(oValidationResult))
 			.name("validationResults")
-			.description("Validation results for the mutation list.")
-			.dataFetcher(env -> {
-				MutationSet mutations = getMutationSetFromSource(env);
-				MutationListValidator validator = new MutationListValidator(mutations);
-				return validator.getValidationResults();
-			}))
+			.description("Validation results for the mutation list."))
 		.field(field -> field
 			.type(new GraphQLList(oDrugResistance))
 			.name("drugResistance")
-			.description("List of drug resistance results by genes.")
-			.dataFetcher(env -> {
-				Map<Gene, MutationSet> mutationsByGene = getMutationsByGeneFromSource(env);
-				return mutationsByGene
-					.entrySet()
-					.stream()
-					.map(e -> new GeneDRAsi(e.getKey(), e.getValue()))
-					.collect(Collectors.toList());
-				
-			}))
+			.description("List of drug resistance results by genes."))
 		.field(field -> field
 			.type(new GraphQLList(oBoundMutationPrevalence))
 			.name("mutationPrevalences")
-			.description("List of mutation prevalence results.")
-			.dataFetcher(env -> {
-				MutationSet mutations = getMutationSetFromSource(env);
-				return getBoundMutationPrevalenceList(mutations);
-			}))
+			.description("List of mutation prevalence results."))
 		.field(field -> field
 			.type(new GraphQLList(oAlgorithmComparison))
 			.name("algorithmComparison")
 			.description("List of ASI comparison results.")
-			.dataFetcher(env -> {
-				List<Algorithm> asiAlgs = env.getArgument("algorithms");
-				List<Map<String, String>> customAlgs = env.getArgument("customAlgorithms");
-				if (asiAlgs == null) { asiAlgs = Collections.emptyList(); }
-				if (customAlgs == null) { customAlgs = Collections.emptyList(); }
-				if (asiAlgs.isEmpty() && customAlgs.isEmpty()) {
-					return Collections.emptyList();
-				}
-				asiAlgs = asiAlgs
-					.stream().filter(alg -> alg != null)
-					.collect(Collectors.toList());
-				Map<String, String> customAlgs2 = customAlgs
-					.stream()
-					.filter(map -> map != null)
-					.collect(Collectors.toMap(
-						map -> map.get("name"),
-						map -> map.get("xml"),
-						(x1, x2) -> x2,
-						LinkedHashMap::new
-					));
-				Map<Gene, MutationSet> mutationsByGene = getMutationsByGeneFromSource(env);
-				return fetchAlgorithmComparisonData(mutationsByGene, asiAlgs, customAlgs2);
-			
-			})
 			.argument(aASIAlgorithmArgument)
 			.argument(aASICustomAlgorithmArgument))
 		.build();

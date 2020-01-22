@@ -22,34 +22,34 @@ import graphql.schema.*;
 import static graphql.Scalars.*;
 import static graphql.schema.GraphQLObjectType.newObject;
 
-import edu.stanford.hivdb.drugresistance.database.HivdbVersion;
+import java.util.HashMap;
+import java.util.Map;
 
-import static edu.stanford.hivdb.graphql.ExtendedFieldDefinition.*;
+import edu.stanford.hivdb.drugs.DrugResistanceAlgorithm;
+import edu.stanford.hivdb.hivfacts.HIV;
 
 public class HivdbVersionDef {
 
 	public static GraphQLObjectType oHivdbVersion = newObject()
 		.name("HivdbVersion")
 		.description("Version of HIVDB algorithm.")
-		.field(newFieldDefinition()
+		.field(field -> field
 			.type(GraphQLString)
 			.name("text")
-			.description("Version text.")
-			.build())
-		.field(newFieldDefinition()
+			.description("Version text."))
+		.field(field -> field
 			.type(GraphQLString)
 			.name("publishDate")
-			.description("Publish date of this version.")
-			.build())
+			.description("Publish date of this version."))
 		.build();
 
-	public static DataFetcher<HivdbVersion> currentHIVDBVersionFetcher = new DataFetcher<HivdbVersion>() {
-		@Override
-		public HivdbVersion get(DataFetchingEnvironment environment) {
-			HivdbVersion current = HivdbVersion.getLatestVersion();
-			return current;
-		}
+	public static DataFetcher<Map<String, String>> currentHIVDBVersionFetcher = env -> {
+		HIV hiv = HIV.getInstance();
+		DrugResistanceAlgorithm<HIV> latestAlg = hiv.getLatestDrugResistAlgorithm("HIVDB");
+		Map<String, String> result = new HashMap<>();
+		result.put("text", latestAlg.getVersion());
+		result.put("publishDate", latestAlg.getPublishDate());
+		return result;
 	};
-
 
 }

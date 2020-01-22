@@ -18,9 +18,10 @@
 
 package edu.stanford.hivdb.subtype;
 
-import edu.stanford.hivdb.genotyper.BoundGenotype;
-import edu.stanford.hivdb.genotyper.Genotype;
+import edu.stanford.hivdb.genotypes.BoundGenotype;
+import edu.stanford.hivdb.genotypes.Genotype;
 
+@Deprecated
 public enum Subtype {
 	A,
 	A2,

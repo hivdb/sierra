@@ -21,33 +21,28 @@ package edu.stanford.hivdb.graphql;
 import graphql.schema.*;
 import static graphql.Scalars.*;
 import static graphql.schema.GraphQLObjectType.newObject;
-import static edu.stanford.hivdb.graphql.ExtendedFieldDefinition.newFieldDefinition;
 
 public class PrettyPairwiseDef {
 
 	public static GraphQLObjectType oPrettyPairwise = newObject()
 		.name("PrettyPairwise")
 		.description("Formatted pairwise result of the aligned sequence.")
-		.field(newFieldDefinition()
+		.field(field -> field
 			.type(new GraphQLList(GraphQLString))
 			.name("positionLine")
-			.description("Formmated numeric position line.")
-			.build())
-		.field(newFieldDefinition()
+			.description("Formmated numeric position line."))
+		.field(field -> field
 			.type(new GraphQLList(GraphQLString))
 			.name("refAALine")
-			.description("Formmated reference protein sequence line.")
-			.build())
-		.field(newFieldDefinition()
+			.description("Formmated reference protein sequence line."))
+		.field(field -> field
 			.type(new GraphQLList(GraphQLString))
 			.name("alignedNAsLine")
-			.description("Formmated aligned DNA sequence line.")
-			.build())
-		.field(newFieldDefinition()
+			.description("Formmated aligned DNA sequence line."))
+		.field(field -> field
 			.type(new GraphQLList(GraphQLString))
 			.name("mutationLine")
-			.description("Formmated amino acid mutation line.")
-			.build())
+			.description("Formmated amino acid mutation line."))
 		.build();
 
 }

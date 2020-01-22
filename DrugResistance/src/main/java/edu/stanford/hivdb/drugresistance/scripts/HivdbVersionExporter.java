@@ -18,21 +18,21 @@
 
 package edu.stanford.hivdb.drugresistance.scripts;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-
-import edu.stanford.hivdb.drugresistance.database.HivdbVersion;
-import edu.stanford.hivdb.utilities.Json;
-import edu.stanford.hivdb.utilities.MyFileUtils;
+// import java.util.LinkedHashMap;
+// import java.util.Map;
+// 
+// import edu.stanford.hivdb.drugresistance.database.HivdbVersion;
+// import edu.stanford.hivdb.utilities.Json;
+// import edu.stanford.hivdb.utilities.MyFileUtils;
 
 public class HivdbVersionExporter {
 
-	public static void main(String[] args) {
-		HivdbVersion latest = HivdbVersion.getLatestVersion();
-		Map<String, Object> version = new LinkedHashMap<>();
-		version.put("text", latest.toString());
-		version.put("publishDate", latest.getPublishDate());
-		MyFileUtils.writeFile("__output/hivdb-version.json", Json.dumps(version));
-	}
+// 	public static void main(String[] args) {
+// 		HivdbVersion latest = HivdbVersion.getLatestVersion();
+// 		Map<String, Object> version = new LinkedHashMap<>();
+// 		version.put("text", latest.toString());
+// 		version.put("publishDate", latest.getPublishDate());
+// 		MyFileUtils.writeFile("__output/hivdb-version.json", Json.dumps(version));
+// 	}
 
 }

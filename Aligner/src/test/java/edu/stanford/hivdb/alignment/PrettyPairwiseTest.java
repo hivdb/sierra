@@ -29,10 +29,13 @@ import org.junit.Test;
 import edu.stanford.hivdb.filetestutils.TestSequencesFiles;
 import edu.stanford.hivdb.filetestutils.TestSequencesFiles.TestSequencesProperties;
 import edu.stanford.hivdb.mutations.FrameShift;
+import edu.stanford.hivdb.sequences.AlignedGeneSeq;
+import edu.stanford.hivdb.sequences.AlignedSequence;
+import edu.stanford.hivdb.sequences.NucAminoAligner;
+import edu.stanford.hivdb.sequences.Sequence;
 import edu.stanford.hivdb.utilities.MyFileUtils;
 import edu.stanford.hivdb.utilities.PrettyPairwise;
 import edu.stanford.hivdb.utilities.FastaUtils;
-import edu.stanford.hivdb.utilities.Sequence;
 
 public class PrettyPairwiseTest {
 	final String OUTPUT_FILE = "PrettyPairwise.txt";
@@ -48,7 +51,7 @@ public class PrettyPairwiseTest {
 
 		StringBuilder output = new StringBuilder();
 		for (Sequence seq : sequences) {
-			AlignedSequence alignedSeq = Aligner.align(seq);
+			AlignedSequence alignedSeq = NucAminoAligner.align(seq);
 			for (AlignedGeneSeq alignedGeneSeq : alignedSeq.getAlignedGeneSequences()) {
 				PrettyPairwise prettyPairwise = alignedGeneSeq.getPrettyPairwise();
 				List<String> positionHeader = prettyPairwise.getPositionLine();

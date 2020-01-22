@@ -28,24 +28,26 @@ import java.util.Map;
 import org.junit.Before;
 import org.junit.Test;
 
+import edu.stanford.hivdb.comments.BoundComment;
+import edu.stanford.hivdb.comments.CommentType;
+import edu.stanford.hivdb.comments.ConditionType;
+import edu.stanford.hivdb.comments.ConditionalComment;
+import edu.stanford.hivdb.comments.ConditionalComments;
 import edu.stanford.hivdb.drugresistance.GeneDR;
 import edu.stanford.hivdb.drugresistance.GeneDRFast;
-import edu.stanford.hivdb.drugresistance.database.ConditionalComments.BoundComment;
-import edu.stanford.hivdb.drugresistance.database.ConditionalComments.ConditionType;
-import edu.stanford.hivdb.drugresistance.database.ConditionalComments.ConditionalComment;
-import edu.stanford.hivdb.drugs.DrugClass;
-import edu.stanford.hivdb.mutations.Gene;
-import edu.stanford.hivdb.mutations.GeneEnum;
-import edu.stanford.hivdb.mutations.Mutation;
+import edu.stanford.hivdb.hivfacts.HIVDrugClass;
+import edu.stanford.hivdb.hivfacts.HIVGene;
+import edu.stanford.hivdb.mutations.ConsensusMutation;
 import edu.stanford.hivdb.mutations.MutationSet;
-import edu.stanford.hivdb.mutations.IUPACMutation;
+import edu.stanford.hivdb.hivfacts.HIVAbstractGene;
+import edu.stanford.hivdb.hivfacts.HIVAAMutation;
 
 public class ConditionalCommentsTest {
 
 	final private String eName = "name";
 	final private String eComment = "comment";
-	final private DrugClass eDrugClassPI = DrugClass.PI;
-	final private DrugClass eDrugClassNRTI = DrugClass.NRTI;
+	final private HIVDrugClass eDrugClassPI = HIVDrugClass.PI;
+	final private HIVDrugClass eDrugClassNRTI = HIVDrugClass.NRTI;
 	final private ConditionType eConTypeMut = ConditionType.MUTATION;
 	final private ConditionType eConTypeDL = ConditionType.DRUGLEVEL;
 	final private Map<String, Object> eConValue = new HashMap<>();
@@ -72,7 +74,7 @@ public class ConditionalCommentsTest {
 		assertEquals(eDrugClassNRTI, cmt.getDrugClass());
 		assertEquals(eConTypeDL, cmt.getConditionType());
 		assertEquals(eName, cmt.getName());
-		assertEquals(GeneEnum.RT, cmt.getGene());
+		assertEquals(HIVAbstractGene.RT, cmt.getGene());
 	}
 
 	@Test
@@ -80,7 +82,7 @@ public class ConditionalCommentsTest {
 		eConValue.put("gene", "PR");
 		final ConditionalComment cmt 
 			= new ConditionalComment(eName, eDrugClassPI, eConTypeMut, eConValue, eComment);
-		assertEquals(GeneEnum.PR, cmt.getMutationGene());
+		assertEquals(HIVAbstractGene.PR, cmt.getMutationGene());
 	}
 
 	@Test
@@ -148,7 +150,7 @@ public class ConditionalCommentsTest {
 	public void testBndCmtConstructor() {
 		final CommentType eCmtType = CommentType.NRTI;
 		final List<String> eHighlightText = Arrays.asList("D67P");
-		final Mutation eMut = IUPACMutation.parseString("RT67P");
+		final HIVAAMutation eMut = ConsensusMutation.parseString("RT67P");
 		final BoundComment cmt =
 			new BoundComment(eName, eDrugClassNRTI, eCmtType, eComment, eHighlightText, eMut);
 		assertEquals(eName, cmt.getName());
@@ -157,13 +159,13 @@ public class ConditionalCommentsTest {
 		assertEquals(eComment, cmt.getText());
 		assertEquals(eHighlightText, cmt.getHighlightText());
 		assertEquals(eMut, cmt.getBoundMutation());
-		assertEquals(GeneEnum.RT, cmt.getGene());
+		assertEquals(HIVAbstractGene.RT, cmt.getGene());
 	}
 
 	@Test
 	public void testGetCommentsofDrugResistance() {
 		final MutationSet mutSet = new MutationSet("PR84A");
-		final GeneDR dr = new GeneDRFast(Gene.valueOf("HIV1PR"), mutSet);
+		final GeneDR dr = new GeneDRFast(HIVGene.valueOf("HIV1PR"), mutSet);
 		final List<BoundComment> cmts = ConditionalComments.getComments(dr);
 		final String eTextPrefix = "There is evidence for intermediate DRV resistance.";
 		final String textPrefix = cmts.get(0).getText();
@@ -172,7 +174,7 @@ public class ConditionalCommentsTest {
 
 	@Test
 	public void testGetCommentsFromMutOfInsertion() {
-		final Mutation mut = new IUPACMutation(Gene.valueOf("HIV1RT"), 69, "_SS");
+		final HIVAAMutation mut = new ConsensusMutation(HIVGene.valueOf("HIV1RT"), 69, "_SS");
 		final List<BoundComment> result = ConditionalComments.getComments(mut);
 		for (BoundComment cmt : result) {
 			assertEquals(cmt.getBoundMutation().getAAs(), "_");
@@ -181,7 +183,7 @@ public class ConditionalCommentsTest {
 
 	@Test
 	public void testGetCommentsFromMutOfDeletion() {
-		final Mutation mut = new IUPACMutation(Gene.valueOf("HIV1RT"), 67, "-");
+		final HIVAAMutation mut = new ConsensusMutation(HIVGene.valueOf("HIV1RT"), 67, "-");
 		final List<BoundComment> result = ConditionalComments.getComments(mut);
 		for (BoundComment cmt : result) {
 			assertEquals(cmt.getBoundMutation().getAAs(), "-");

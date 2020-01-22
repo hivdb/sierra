@@ -28,20 +28,20 @@ import java.util.stream.Collectors;
 import org.junit.Test;
 import edu.stanford.hivdb.drugresistance.database.MutationPatterns;
 import edu.stanford.hivdb.drugresistance.reports.TabularPatternsComparison.ComparisonDataLoader;
-import edu.stanford.hivdb.drugs.DrugClass;
+import edu.stanford.hivdb.hivfacts.HIVDrugClass;
 
 public class TabularPatternsComparisonTest {
 
 	@Test
 	public void testGetInstance() {
-		TabularPatternsComparison instance1 = TabularPatternsComparison.getInstance(DrugClass.INSTI);
-		TabularPatternsComparison instance2 = TabularPatternsComparison.getInstance(DrugClass.INSTI);
+		TabularPatternsComparison instance1 = TabularPatternsComparison.getInstance(HIVDrugClass.INSTI);
+		TabularPatternsComparison instance2 = TabularPatternsComparison.getInstance(HIVDrugClass.INSTI);
 		assertEquals(instance1, instance2);
 	}
 
 	@Test
 	public void testToString() {
-		TabularPatternsComparison instance = TabularPatternsComparison.getInstance(DrugClass.INSTI);
+		TabularPatternsComparison instance = TabularPatternsComparison.getInstance(HIVDrugClass.INSTI);
 		assertEquals(
 			"Pattern\tCount\tBIC\tDTG\tEVG\tRAL\tNum Diffs\tMax Diff",
 			instance.toString().split("\n")[0]);
@@ -50,7 +50,7 @@ public class TabularPatternsComparisonTest {
 	@Test
 	public void testComparisonDataLoader() throws Exception {
 		ComparisonDataLoader dl = spy(new ComparisonDataLoader());
-		for (DrugClass drugClass : DrugClass.values()) {
+		for (HIVDrugClass drugClass : HIVDrugClass.values()) {
 			MutationPatterns mp = new MutationPatterns(drugClass);
 			Map<String, Integer> pCount = mp.getAllPatternCounts()
 				.entrySet()

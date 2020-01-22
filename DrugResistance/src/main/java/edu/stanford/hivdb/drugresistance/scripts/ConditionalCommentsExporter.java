@@ -18,40 +18,41 @@
 
 package edu.stanford.hivdb.drugresistance.scripts;
 
-import java.util.stream.Collectors;
+// import java.util.stream.Collectors;
+// 
+// import edu.stanford.hivdb.comments.ConditionalComments;
+// import edu.stanford.hivdb.hivfacts.HIVDrugClass;
+// import edu.stanford.hivdb.utilities.MyFileUtils;
 
-import edu.stanford.hivdb.drugresistance.database.ConditionalComments;
-import edu.stanford.hivdb.drugs.DrugClass;
-import edu.stanford.hivdb.utilities.MyFileUtils;
-
+@Deprecated
 public class ConditionalCommentsExporter {
 
-	private static final String OUTPUT_FILE_PREFIX =
-		"__output/ConditionalComments";
-
-	public static void main(String[] args) {
-
-		for (DrugClass drugClass : DrugClass.values()) {
-			StringBuilder output = new StringBuilder();
-			String header = "CommentName\tDrugClass\tConditionType\tGene\tPosition\tAAs\tDrugLevels\tComment\n";
-			output.append(header);
-
-			output.append(
-				ConditionalComments.getAllComments()
-					.stream()
-					.filter(cc -> cc.getDrugClass() == drugClass)
-					.map(cc -> String.format(
-						"%s\t%s\t%s\t%s\t%d\t%s\t%s\t%s",
-						cc.getName(), cc.getDrugClass(), cc.getConditionType(), cc.getMutationGene(),
-						cc.getMutationPosition(), cc.getMutationAAs(), cc.getDrugLevelsText(), cc.getText()))
-					.collect(Collectors.joining("\n")
-				)
-			);
-
-			String outputFile = OUTPUT_FILE_PREFIX + "/" + drugClass + ".tsv";
-			MyFileUtils.writeFile(outputFile, output.toString());
-		}
-	}
+//	private static final String OUTPUT_FILE_PREFIX =
+//		"__output/ConditionalComments";
+//
+//	public static void main(String[] args) {
+//
+//		for (HIVDrugClass drugClass : HIVDrugClass.values()) {
+//			StringBuilder output = new StringBuilder();
+//			String header = "CommentName\tDrugClass\tConditionType\tGene\tPosition\tAAs\tDrugLevels\tComment\n";
+//			output.append(header);
+//
+//			output.append(
+//				ConditionalComments.getAllComments()
+//					.stream()
+//					.filter(cc -> cc.getDrugClass() == drugClass)
+//					.map(cc -> String.format(
+//						"%s\t%s\t%s\t%s\t%d\t%s\t%s\t%s",
+//						cc.getName(), cc.getDrugClass(), cc.getConditionType(), cc.getMutationGene(),
+//						cc.getMutationPosition(), cc.getMutationAAs(), cc.getDrugLevelsText(), cc.getText()))
+//					.collect(Collectors.joining("\n")
+//				)
+//			);
+//
+//			String outputFile = OUTPUT_FILE_PREFIX + "/" + drugClass + ".tsv";
+//			MyFileUtils.writeFile(outputFile, output.toString());
+//		}
+//	}
 
 
 }
