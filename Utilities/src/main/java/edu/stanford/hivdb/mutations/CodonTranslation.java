@@ -37,7 +37,7 @@ import com.google.common.base.Splitter;
 public class CodonTranslation {
 	private CodonTranslation() {};
 
-	private static final int DEFAULT_AAS_LIMIT = 4;
+	private static final int DEFAULT_AAS_LIMIT = 8;
 	private static final String [] nas = {
 		"A", "C", "G", "T", "R", "Y", "M", "W",
 		"S", "K", "B", "D", "H", "V", "N"
@@ -196,7 +196,7 @@ public class CodonTranslation {
 
 	/*
 	 * Translates a triplet into its corresponding amino acid or amino acids (if the triplet encodes > 1 amino acid)
-	 * The amino acid "X" is returned if the codon encodes > 4 (DEFAULT_AAS_LIMIT) amino acids or
+	 * The amino acid "X" is returned if the codon encodes > 8 (DEFAULT_AAS_LIMIT) amino acids or
 	 * if there is no entry for the codon in the tripletsTable (occurs when triplet contains one or two '-'
 	 * consistent with an edited frame-shift deletion).
 	 * @param nas nucleotide triplet

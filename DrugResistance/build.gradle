@@ -6,7 +6,7 @@ plugins {
 }
 
 group = 'edu.stanford.hivdb'
-version = '2.4.2'
+version = '2.5.0'
 
 description = """DrugResistance"""
 

@@ -13,7 +13,7 @@ case $1 in
         /usr/share/tomcat/bin/catalina.sh run
         ;;
     *)
-        echo "Usage: docker run tomcat-with-clap {inspect|dev|prod}"
+        echo "Usage: docker run hivdb/tomcat-with-nucamino:latest {inspect|dev|prod}"
         exit 1
         ;;
 esac

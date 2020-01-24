@@ -25764,29 +25764,29 @@
           "drug": "EFV",
           "algorithm": "HIVDB",
           "SIR": "S",
-          "interpretation": "Susceptible",
-          "explanation": "No rules were triggered"
+          "interpretation": "Potential Low-Level Resistance",
+          "explanation": "Total score: 10\nE138EADGV (10) "
         },
         {
           "drug": "ETR",
           "algorithm": "HIVDB",
           "SIR": "S",
-          "interpretation": "Susceptible",
-          "explanation": "No rules were triggered"
+          "interpretation": "Potential Low-Level Resistance",
+          "explanation": "Total score: 10\nE138EADGV (10) "
         },
         {
           "drug": "NVP",
           "algorithm": "HIVDB",
           "SIR": "S",
-          "interpretation": "Susceptible",
-          "explanation": "No rules were triggered"
+          "interpretation": "Potential Low-Level Resistance",
+          "explanation": "Total score: 10\nE138EADGV (10) "
         },
         {
           "drug": "RPV",
           "algorithm": "HIVDB",
-          "SIR": "S",
-          "interpretation": "Susceptible",
-          "explanation": "No rules were triggered"
+          "SIR": "I",
+          "interpretation": "Low-Level Resistance",
+          "explanation": "Total score: 15\nE138EADGV (15) "
         },
         {
           "drug": "ABC",
@@ -25854,9 +25854,9 @@
         {
           "drug": "ETR",
           "algorithm": "ANRS",
-          "SIR": "S",
-          "interpretation": "Susceptible",
-          "explanation": "No rules were triggered"
+          "SIR": "I",
+          "interpretation": "Possible resistance",
+          "explanation": "138AGQRS (Possible resistance)"
         },
         {
           "drug": "NVP",
@@ -25868,9 +25868,9 @@
         {
           "drug": "RPV",
           "algorithm": "ANRS",
-          "SIR": "S",
-          "interpretation": "Susceptible",
-          "explanation": "No rules were triggered"
+          "SIR": "R",
+          "interpretation": "Resistance",
+          "explanation": "138AGKQRS (Resistance)"
         },
         {
           "drug": "ABC",
@@ -25940,7 +25940,7 @@
           "algorithm": "REGA",
           "SIR": "S",
           "interpretation": "Susceptible GSS 1",
-          "explanation": "No rules were triggered"
+          "explanation": "Total score: 0\nE138EADGV (0) "
         },
         {
           "drug": "NVP",
@@ -25952,9 +25952,9 @@
         {
           "drug": "RPV",
           "algorithm": "REGA",
-          "SIR": "S",
-          "interpretation": "Susceptible GSS 1",
-          "explanation": "Total score: 0\nV179VI (0) "
+          "SIR": "I",
+          "interpretation": "Intermediate Resistant GSS 0.25",
+          "explanation": "Total score: 2\nE138EADGV (1), V179VI (0) "
         }
       ]
     },
