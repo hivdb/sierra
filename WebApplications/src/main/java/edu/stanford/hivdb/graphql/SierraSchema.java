@@ -52,7 +52,7 @@ import static edu.stanford.hivdb.graphql.UnalignedSequenceDef.*;
 import static edu.stanford.hivdb.graphql.StrainDef.*;
 import static edu.stanford.hivdb.graphql.GeneDef.*;
 import static edu.stanford.hivdb.graphql.MutationDef.*;
-import static edu.stanford.hivdb.graphql.HivdbVersionDef.*;
+import static edu.stanford.hivdb.graphql.DrugResistanceAlgorithmDef.*;
 import static edu.stanford.hivdb.graphql.SierraVersionDef.*;
 import static edu.stanford.hivdb.graphql.DrugResistanceDef.*;
 import static edu.stanford.hivdb.graphql.SequenceAnalysisDef.*;
@@ -178,11 +178,11 @@ public class SierraSchema {
 		}
 		return myCodeRegistryBuilder.dataFetchers(codeRegistry).build();
 	}
-
+	
 	public static GraphQLObjectType oRoot = newObject()
 		.name("Root")
 		.field(field -> field
-			.type(oHivdbVersion)
+			.type(oDrugResistanceAlgorithm)
 			.name("currentVersion")
 			.description("Current HIVDB algorithm version."))
 		.field(field -> field
@@ -193,11 +193,10 @@ public class SierraSchema {
 			.type(new GraphQLList(oSequenceAnalysis))
 			.name("sequenceAnalysis")
 			.description("Analyze sequences and output results.")
-			.argument(newArgument()
+			.argument(arg -> arg
 				.name("sequences")
 				.type(new GraphQLList(iUnalignedSequence))
-				.description("Sequences to be analyzed.")
-				.build()))
+				.description("Sequences to be analyzed.")))
 		.field(field -> field
 			.type(new GraphQLList(oSequenceReadsAnalysis))
 			.name("sequenceReadsAnalysis")

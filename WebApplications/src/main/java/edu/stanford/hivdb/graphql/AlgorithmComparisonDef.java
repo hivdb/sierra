@@ -40,19 +40,9 @@ import edu.stanford.hivdb.drugresistance.algorithm.AlgorithmComparison;
 import static edu.stanford.hivdb.graphql.DrugDef.oDrug;
 import static edu.stanford.hivdb.graphql.DrugClassDef.oDrugClass;
 import static edu.stanford.hivdb.graphql.DrugResistanceDef.oSIR;
+import static edu.stanford.hivdb.graphql.DrugResistanceAlgorithmDef.oASIAlgorithm;
 
 public class AlgorithmComparisonDef {
-
-	private static GraphQLEnumType newASIAlgorithmEnum() {
-		GraphQLEnumType.Builder builder = GraphQLEnumType.newEnum()
-			.name("ASIAlgorithm")
-			.description("ASI algorithm.");
-		HIV hiv = HIV.getInstance();
-		for (DrugResistanceAlgorithm<HIV> alg : hiv.getDrugResistAlgorithms(hiv.getStrain("HIV1"))) {
-			builder.value(alg.getEnumCompatName(), alg.getName());
-		}
-		return builder.build();
-	}
 
 	protected static List<Map<String, Object>> fetchAlgorithmComparisonData(
 			MutationSet<HIV> allMuts,
@@ -80,8 +70,6 @@ public class AlgorithmComparisonDef {
 			})
 			.collect(Collectors.toList());
 	}
-
-	public static GraphQLEnumType oASIAlgorithm = newASIAlgorithmEnum();
 
 	public static GraphQLInputObjectType
 		iASICustomAlgorithm = newInputObject()

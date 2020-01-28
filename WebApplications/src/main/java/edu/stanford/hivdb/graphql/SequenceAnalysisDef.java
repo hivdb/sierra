@@ -55,8 +55,11 @@ import static edu.stanford.hivdb.graphql.ValidationResultDef.*;
 import static edu.stanford.hivdb.graphql.SubtypeV2Def.*;
 import static edu.stanford.hivdb.graphql.MutationPrevalenceDef.*;
 import static edu.stanford.hivdb.graphql.AlgorithmComparisonDef.*;
+import static edu.stanford.hivdb.graphql.DrugResistanceAlgorithmDef.*;
 
 public class SequenceAnalysisDef {
+	
+	private static HIV hiv = HIV.getInstance();
 
 	private static DataFetcher<List<Map<String, Object>>> subtypesDataFetcher = env -> {
 		int first = env.getArgument("first");
@@ -93,12 +96,12 @@ public class SequenceAnalysisDef {
 	};
 
 	private static DataFetcher<List<GeneDR<HIV>>> drugResistanceDataFetcher = env -> {
-		HIV hiv = HIV.getInstance();
 		AlignedSequence<HIV> alignedSeq = env.getSource();
+		String algName = env.getArgument("algorithm");
 		List<AlignedGeneSeq<HIV>> geneSeqs = alignedSeq.getAlignedGeneSequences();
 		return Lists.newArrayList(
 			GeneDRAsi.getResistanceByGeneFromAlignedGeneSeqs(
-				geneSeqs, hiv.getDrugResistAlgorithm("HIVDB", "8.9-1")
+				geneSeqs, hiv.getDrugResistAlgorithm(algName)
 			).values()
 		);
 	};
@@ -244,6 +247,11 @@ public class SequenceAnalysisDef {
 		.field(field -> field
 			.type(new GraphQLList(oDrugResistance))
 			.name("drugResistance")
+			.argument(arg -> arg
+				.name("algorithm")
+				.type(oASIAlgorithm)
+				.defaultValue(hiv.getLatestDrugResistAlgorithm("HIVDB").getName())
+				.description("One of the built-in ASI algorithms."))
 			.description("List of drug resistance results by genes."))
 		.field(field -> field
 			.type(new GraphQLList(oBoundMutationPrevalence))

@@ -50,8 +50,7 @@ import static edu.stanford.hivdb.graphql.DrugClassDef.oDrugClass;
 import static edu.stanford.hivdb.graphql.DrugClassDef.oDrugClassEnum;
 import static edu.stanford.hivdb.graphql.MutationDef.oMutation;
 import static edu.stanford.hivdb.graphql.MutationDef.oMutationType;
-import static edu.stanford.hivdb.graphql.HivdbVersionDef.oHivdbVersion;
-import static edu.stanford.hivdb.graphql.HivdbVersionDef.currentHIVDBVersionFetcher;
+import static edu.stanford.hivdb.graphql.DrugResistanceAlgorithmDef.oDrugResistanceAlgorithm;
 import static edu.stanford.hivdb.graphql.ConditionalCommentDef.oCommentsByType;
 
 public class DrugResistanceDef {
@@ -176,7 +175,6 @@ public class DrugResistanceDef {
 			.collect(Collectors.toList());
 	};
 
-
 	public static GraphQLObjectType oDrugPartialScore = newObject()
 		.name("DrugPartialScore")
 		.description("Partial score by mutation.")
@@ -238,10 +236,6 @@ public class DrugResistanceDef {
 
 	public static GraphQLCodeRegistry drugResistanceCodeRegistry = newCodeRegistry()
 		.dataFetcher(
-			coordinates("DrugResistance", "version"),
-			currentHIVDBVersionFetcher
-		)
-		.dataFetcher(
 			coordinates("DrugResistance", "drugScores"),
 			drugScoresDataFetcher
 		)
@@ -258,9 +252,13 @@ public class DrugResistanceDef {
 	public static GraphQLObjectType oDrugResistance = newObject()
 		.name("DrugResistance")
 		.field(field -> field
-			.type(oHivdbVersion)
+			.type(oDrugResistanceAlgorithm)
 			.name("version")
-			.description("Current algorithm version."))
+			.deprecate("Use field `algorithm` instead."))
+		.field(field -> field
+			.type(oDrugResistanceAlgorithm)
+			.name("algorithm")
+			.description("Get used drug resistance algorithm."))
 		.field(field -> field
 			.type(new GraphQLTypeReference("Gene"))
 			.name("gene")

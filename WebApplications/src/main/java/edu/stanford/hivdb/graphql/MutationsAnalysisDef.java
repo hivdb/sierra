@@ -43,8 +43,11 @@ import static edu.stanford.hivdb.graphql.DrugResistanceDef.*;
 import static edu.stanford.hivdb.graphql.ValidationResultDef.*;
 import static edu.stanford.hivdb.graphql.MutationPrevalenceDef.*;
 import static edu.stanford.hivdb.graphql.AlgorithmComparisonDef.*;
+import static edu.stanford.hivdb.graphql.DrugResistanceAlgorithmDef.*;
 
 public class MutationsAnalysisDef {
+	
+	private static HIV hiv = HIV.getInstance();
 
 	private static Map<Gene<HIV>, MutationSet<HIV>> getMutationsByGeneFromSource(DataFetchingEnvironment env) {
 		Pair<Set<Gene<HIV>>, MutationSet<HIV>> data = env.getSource();
@@ -66,19 +69,20 @@ public class MutationsAnalysisDef {
 	}
 	
 	private static DataFetcher<List<ValidationResult>> mutValidationResultDataFetcher = env -> {
-		HIV hiv = HIV.getInstance();
 		MutationSet<HIV> mutations = getMutationSetFromSource(env);
 		return hiv.validateMutations(mutations);
 	};
 	
 
 	private static DataFetcher<List<GeneDR<HIV>>> mutDRDataFetcher = env -> {
-		HIV hiv = HIV.getInstance();
 		Map<Gene<HIV>, MutationSet<HIV>> mutationsByGene = getMutationsByGeneFromSource(env);
+		String algName = env.getArgument("algorithm");
 		return mutationsByGene
 			.entrySet()
 			.stream()
-			.map(e -> new GeneDRAsi<>(e.getKey(), e.getValue(), hiv.getLatestDrugResistAlgorithm("HIVDB")))
+			.map(e -> new GeneDRAsi<>(
+				e.getKey(), e.getValue(), hiv.getDrugResistAlgorithm(algName)
+			))
 			.collect(Collectors.toList());
 	};
 	
@@ -139,6 +143,11 @@ public class MutationsAnalysisDef {
 		.field(field -> field
 			.type(new GraphQLList(oDrugResistance))
 			.name("drugResistance")
+			.argument(arg -> arg
+				.name("algorithm")
+				.type(oASIAlgorithm)
+				.defaultValue(hiv.getLatestDrugResistAlgorithm("HIVDB").getName())
+				.description("One of the built-in ASI algorithms."))
 			.description("List of drug resistance results by genes."))
 		.field(field -> field
 			.type(new GraphQLList(oBoundMutationPrevalence))
