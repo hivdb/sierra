@@ -1,5 +1,6 @@
 plugins {
     id "org.gradle.java"
+    id "org.gradle.jacoco"
     id "org.gradle.eclipse"
     id "com.scuilion.syntastic" version "0.3.6"
 }
@@ -7,7 +8,7 @@ plugins {
 group = 'edu.stanford.hivdb'
 version = '3.0.0b2'
 
-description = """Test resources"""
+description = """Sierra Unit Tests"""
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -15,3 +16,11 @@ targetCompatibility = 1.8
 repositories {
     mavenCentral()
 }
+
+dependencies {
+    compile project(':sierra-core')
+    compile project(':hivfacts-java')
+    testImplementation 'junit:junit:4.12'
+}
+
+check.dependsOn jacocoTestReport

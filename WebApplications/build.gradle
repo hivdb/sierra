@@ -33,7 +33,6 @@ dependencies {
     compile project(':sierra-core')
     compile project(':hivfacts-java')
     testImplementation 'junit:junit:4.12'
-    testImplementation project(':TestResources')
 }
 
 task graphqlSchema(type: JavaExec, group: 'Generator', description: 'Generate GraphQL Schema.') {
