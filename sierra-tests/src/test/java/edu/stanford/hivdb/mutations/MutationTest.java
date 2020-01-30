@@ -50,18 +50,21 @@ public class MutationTest {
 		new AAMutation<>(hiv.getGene("HIV1PR"), 100, 'A');
 	}
 
+	@SuppressWarnings("deprecation")
 	@Test(expected=IllegalArgumentException.class)
 	public void testMergesWithNotSameGene() {
 		new AAMutation<>(hiv.getGene("HIV1PR"), 68, 'A')
 			.mergesWith(new AAMutation<>(hiv.getGene("HIV1RT"), 68, 'C'));
 	}
 
+	@SuppressWarnings("deprecation")
 	@Test(expected=IllegalArgumentException.class)
 	public void testMergesWithNotSamePos() {
 		new AAMutation<HIV>(hiv.getGene("HIV1RT"), 67, 'A')
 			.mergesWith(new AAMutation<HIV>(hiv.getGene("HIV1RT"), 68, 'C'));
 	}
 
+	@SuppressWarnings("deprecation")
 	public void testMergesWithIndel() {
 		assertEquals(
 			new AAMutation<HIV>(hiv.getGene("HIV1RT"), 69, new char[] {'A', '-'}),
@@ -69,6 +72,7 @@ public class MutationTest {
 				.mergesWith(new AAMutation<HIV>(hiv.getGene("HIV1RT"), 67, '-')));
 	}
 
+	@SuppressWarnings("deprecation")
 	public void testIndelMergesWith() {
 		assertEquals(
 			new AAMutation<HIV>(hiv.getGene("HIV1RT"), 69, new char[] {'A', '-'}),
@@ -76,6 +80,7 @@ public class MutationTest {
 				.mergesWith(new AAMutation<HIV>(hiv.getGene("HIV1RT"), 67, 'A')));
 	}
 
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testMergesWith() {
 		assertEquals(
@@ -88,6 +93,7 @@ public class MutationTest {
 				.mergesWith(new AAMutation<HIV>(hiv.getGene("HIV1RT"), 67, 'C')));
 	}
 
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testSubtractsBy() {
 		AAMutation<HIV> pr67ANXDMut = new AAMutation<HIV>(hiv.getGene("HIV1PR"), 67, "ANXD".toCharArray());
@@ -105,41 +111,48 @@ public class MutationTest {
 		assertEquals(eDiffADX, pr67ANXDMut.subtractsBy(pr67ADXMut));
 	}
 
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testSubtractsByEdgeCases() {
 		AAMutation<HIV> pr68AMut = new AAMutation<HIV>(hiv.getGene("HIV1PR"), 68, 'A');
 		assertEquals(null, new AAMutation<HIV>(hiv.getGene("HIV1PR"), 68, 'A').subtractsBy(pr68AMut));
 	}
 
+	@SuppressWarnings("deprecation")
 	@Test(expected=IllegalArgumentException.class)
 	public void testSubtractsByNull() {
 		new AAMutation<HIV>(hiv.getGene("HIV1PR"), 67, 'A').subtractsBy((AAMutation<HIV>) null);
 	}
 
+	@SuppressWarnings("deprecation")
 	@Test(expected=IllegalArgumentException.class)
 	public void testSubtractsByNotSamePos() {
 		AAMutation<HIV> pr67AMut = new AAMutation<HIV>(hiv.getGene("HIV1PR"), 67, 'A');
 		new AAMutation<HIV>(hiv.getGene("HIV1PR"), 68, 'A').subtractsBy(pr67AMut);
 	}
 
+	@SuppressWarnings("deprecation")
 	@Test(expected=IllegalArgumentException.class)
 	public void testSubtractsByNotSameGene() {
 		AAMutation<HIV> rt67AMut = new AAMutation<HIV>(hiv.getGene("HIV1RT"), 68, 'A');
 		new AAMutation<HIV>(hiv.getGene("HIV1PR"), 67, 'A').subtractsBy(rt67AMut);
 	}
 
+	@SuppressWarnings("deprecation")
 	@Test(expected=IllegalArgumentException.class)
 	public void testIntersectsWithNotSameGene() {
 		new AAMutation<HIV>(hiv.getGene("HIV1PR"), 68, "AC".toCharArray())
 			.intersectsWith(new AAMutation<HIV>(hiv.getGene("HIV1RT"), 68, 'C'));
 	}
 
+	@SuppressWarnings("deprecation")
 	@Test(expected=IllegalArgumentException.class)
 	public void testIntersectsWithNotSamePos() {
 		new AAMutation<HIV>(hiv.getGene("HIV1RT"), 67, "AC".toCharArray())
 			.intersectsWith(new AAMutation<HIV>(hiv.getGene("HIV1RT"), 68, 'C'));
 	}
 
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testIntersectsWith() {
 		assertEquals(
