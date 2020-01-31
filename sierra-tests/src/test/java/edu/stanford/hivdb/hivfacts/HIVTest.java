@@ -275,4 +275,15 @@ public class HIVTest {
 		assertNull(hiv.getDrugSynonymMap().get("EVH"));
 	}
 
+	@Test
+	public void testGetApobecMutations() {
+		assertNotNull(hiv.getApobecMutations());
+	}
+
+
+	@Test
+	public void testGetApobecDRMs() {
+		assertNotNull(hiv.getApobecDRMs());
+	}
+
 }
