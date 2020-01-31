@@ -19,7 +19,7 @@ public class AminoAcidPercentsTest {
 	public ExpectedException expectedEx = ExpectedException.none();
 
 	@Test
-	public void testGetInstanceSuccess() {
+	public void testGetInstance() {
 
 		AminoAcidPercents<HIV> allall01 = hiv.getAminoAcidPercents(hiv.getStrain("HIV1"), "all", "all");
 		AminoAcidPercents<HIV> allall02 = hiv.getAminoAcidPercents(hiv.getStrain("HIV1"), "all", "all");

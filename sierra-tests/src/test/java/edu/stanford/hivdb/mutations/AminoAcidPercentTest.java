@@ -10,7 +10,7 @@ import edu.stanford.hivdb.mutations.AminoAcidPercent;
 public class AminoAcidPercentTest {
 
 	final static HIV hiv = HIV.getInstance();
-	
+
 	@Test
 	public void test() {
 		AminoAcidPercent<HIV> mPR5A = new AminoAcidPercent<HIV>(

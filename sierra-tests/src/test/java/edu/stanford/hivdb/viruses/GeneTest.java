@@ -173,6 +173,8 @@ public class GeneTest {
     @Test
     public void testGetName() {
         assertEquals(hiv.getGene("HIV1RT").getName(), "HIV1RT");
+		assertEquals(hiv.getGene("HIV2ART").getName(), "HIV2ART");
+		assertEquals(hiv.getGene("HIV2BRT").getName(), "HIV2BRT");
     }
 
     @Test
@@ -180,36 +182,42 @@ public class GeneTest {
 		assertEquals(
 			Strings.repeat(".", 4) + "ABCDEF" + Strings.repeat(".", 89),
 			hiv.getGene("HIV1PR").applyCodonModifiersForAASeq(
-                "ABCDEF", 5, 10, hiv.getStrain("HIV")));
+                "ABCDEF", 5, 10, hiv.getStrain("HIV1")));
+
 		assertEquals(
 			Strings.repeat(".", 342) + "FEDCBA" + Strings.repeat(".", 212),
 			hiv.getGene("HIV1RT").applyCodonModifiersForAASeq(
-                "FEDCBA", 343, 348, hiv.getStrain("HIV")));
+                "FEDCBA", 343, 348, hiv.getStrain("HIV1")));
+
 		assertEquals(
 			// RT346 Deletion
 			Strings.repeat(".", 342) + "FED.CBA" + Strings.repeat(".", 211),
 			hiv.getGene("HIV2ART").applyCodonModifiersForAASeq(
-                "FEDCBA", 343, 348, hiv.getStrain("HIV")));
+				"FEDCBA", 343, 348, hiv.getStrain("HIV1")));
+
 		assertEquals(
 			// RT346 Deletion
 			Strings.repeat(".", 342) + "FED.CBA" + Strings.repeat(".", 211),
 			hiv.getGene("HIV2BRT").applyCodonModifiersForAASeq(
-                "FEDCBA", 343, 348, hiv.getStrain("HIV")));
+                "FEDCBA", 343, 348, hiv.getStrain("HIV1")));
+
 		assertEquals(
 			// IN272 Insertion
 			Strings.repeat(".", 270) + "ABEF" + Strings.repeat(".", 14),
 			hiv.getGene("HIV2AIN").applyCodonModifiersForAASeq(
-                "ABCDEF", 271, 276, hiv.getStrain("HIV")));
+                "ABCDEF", 271, 276, hiv.getStrain("HIV1")));
+
 		assertEquals(
 			// IN283 Insertion + IN272 two AAs shift
 			Strings.repeat(".", 278) + "ABCDEG....",
 			hiv.getGene("HIV2AIN").applyCodonModifiersForAASeq(
-                "ABCDEFG", 281, 287, hiv.getStrain("HIV")));
+                "ABCDEFG", 281, 287, hiv.getStrain("HIV1")));
+
 		assertEquals(
 			// IN after 288 (IN272 + IN283 three AAs shift)
 			Strings.repeat(".", 283) + "ABCDE",
 			hiv.getGene("HIV2AIN").applyCodonModifiersForAASeq(
-                "ABCDEFG", 287, 293, hiv.getStrain("HIV")));
+                "ABCDEFG", 287, 293, hiv.getStrain("HIV1")));
 
     }
 
@@ -238,6 +246,70 @@ public class GeneTest {
 	// 		}, 2253);
 	// 	fakePRGene.adjustAAAlignment("ABCDEF", 20, 25);
 	// }
+
+	@Test
+	public void testapplyCodonModifiersForNASeq() {
+		assertEquals(
+			Strings.repeat("...", 4) + "AAABBBCCCDDDEEEFFF" + Strings.repeat("...", 89),
+			hiv.getGene("HIV1PR").applyCodonModifiersForNASeq(
+				"AAABBBCCCDDDEEEFFF", 5, 10, hiv.getStrain("HIV1")));
+		assertEquals(
+			Strings.repeat("...", 342) + "FFFEEEDDDCCCBBBAAA" + Strings.repeat("...", 212),
+			hiv.getGene("HIV1RT").applyCodonModifiersForNASeq(
+				"FFFEEEDDDCCCBBBAAA", 343, 348, hiv.getStrain("HIV1")));
+		assertEquals(
+			// RT346 Deletion
+			Strings.repeat("...", 342) + "FFFEEEDDD...CCCBBBAAA" + Strings.repeat("...", 211),
+			hiv.getGene("HIV2ART").applyCodonModifiersForNASeq(
+				"FFFEEEDDDCCCBBBAAA", 343, 348, hiv.getStrain("HIV1")));
+		assertEquals(
+			// RT346 Deletion
+			Strings.repeat("...", 342) + "FFFEEEDDD...CCCBBBAAA" + Strings.repeat("...", 211),
+			hiv.getGene("HIV2BRT").applyCodonModifiersForNASeq(
+				"FFFEEEDDDCCCBBBAAA", 343, 348, hiv.getStrain("HIV1")));
+		assertEquals(
+			// IN272 Insertion
+			Strings.repeat("...", 270) + "AAABBBEEEFFF" + Strings.repeat("...", 14),
+			hiv.getGene("HIV2AIN").applyCodonModifiersForNASeq(
+				"AAABBBCCCDDDEEEFFF", 271, 276, hiv.getStrain("HIV1")));
+		assertEquals(
+			// IN283 Insertion + IN272 two AAs shift
+			Strings.repeat("...", 278) + "AAABBBCCCDDDEEEGGG............",
+			hiv.getGene("HIV2AIN").applyCodonModifiersForNASeq(
+				"AAABBBCCCDDDEEEFFFGGG", 281, 287, hiv.getStrain("HIV1")));
+		assertEquals(
+			// IN after 288 (IN272 + IN283 three AAs shift)
+			Strings.repeat("...", 283) + "AAABBBCCCDDDEEE",
+			hiv.getGene("HIV2AIN").applyCodonModifiersForNASeq(
+				"AAABBBCCCDDDEEEFFFGGG", 287, 293, hiv.getStrain("HIV1")));
+	}
+
+    // Inherit from old Unittest
+    //
+	/*@Test(expected = RuntimeException.class)
+	public void testAdjustNAAlignmentWithException1() {
+		HIVGene fakePRGene = new HIVGene(
+			HIVStrain.HIV2A, HIVAbstractGene.PR,
+			"PQFSLWRRPVVKATIEGQSVEVLLDTGADDSIVAGIELGSNYTPKIVGGI" +
+			"GGFINTNEYKNVEIEVVGKRVRATVMTGDTPINIFGRNILNSLGMTLNF",
+			new Integer[] {
+				+22, -1
+			}, 2253);
+		fakePRGene.adjustNAAlignment("ABCDEF", 20, 25);
+	}
+
+	@Test(expected = RuntimeException.class)
+	public void testAdjustNAAlignmentWithException2() {
+		HIVGene fakePRGene = new HIVGene(
+			HIVStrain.HIV2A, HIVAbstractGene.PR,
+			"PQFSLWRRPVVKATIEGQSVEVLLDTGADDSIVAGIELGSNYTPKIVGGI" +
+			"GGFINTNEYKNVEIEVVGKRVRATVMTGDTPINIFGRNILNSLGMTLNF",
+			new Integer[] {
+				-22, -1
+			}, 2253);
+		fakePRGene.adjustNAAlignment("ABCDEF", 20, 25);
+	}*/
+
 
 	@Test
 	public void testCompareTo() {
