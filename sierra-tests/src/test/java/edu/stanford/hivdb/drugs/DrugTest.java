@@ -10,7 +10,12 @@ public class DrugTest {
     final static HIV hiv = HIV.getInstance();
 
     @Test
-    public void testDrugClass() {
+    public void testGetDrugInstance() {
+    	assertNotNull(hiv.getDrug("ABC"));
+    }
+
+    @Test
+    public void testGetDrugClass() {
 
     	final DrugClass<HIV> PI = hiv.getDrugClass("PI");
     	final DrugClass<HIV> NRTI = hiv.getDrugClass("NRTI");
@@ -46,7 +51,7 @@ public class DrugTest {
     }
 
     @Test
-    public void testSize() {
+    public void testDrugSize() {
     	assertEquals(hiv.getDrugs().size(), 24);
 
     }

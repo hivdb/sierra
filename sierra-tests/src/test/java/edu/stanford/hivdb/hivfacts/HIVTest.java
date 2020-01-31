@@ -20,12 +20,8 @@ package edu.stanford.hivdb.hivfacts;
 
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import org.junit.Test;
-
-import edu.stanford.hivdb.drugs.Drug;
 
 
 public class HIVTest {
@@ -69,49 +65,9 @@ public class HIVTest {
 
     }
 
-    @Test
-    public void testGetDrugs() {
-
-    	List<Drug<HIV>> piExpecteds = new ArrayList<>();
-    	piExpecteds.add(hiv.getDrug("ATV"));
-    	piExpecteds.add(hiv.getDrug("DRV"));
-    	piExpecteds.add(hiv.getDrug("FPV"));
-    	piExpecteds.add(hiv.getDrug("IDV"));
-    	piExpecteds.add(hiv.getDrug("LPV"));
-    	piExpecteds.add(hiv.getDrug("NFV"));
-    	piExpecteds.add(hiv.getDrug("SQV"));
-    	piExpecteds.add(hiv.getDrug("TPV"));
-    	assertEquals(new ArrayList<Drug<HIV>>(hiv.getDrugClass("PI").getDrugs()), piExpecteds);
-
-    	List<Drug<HIV>> nrtiExpecteds = new ArrayList<>();
-    	nrtiExpecteds.add(hiv.getDrug("ABC"));
-    	nrtiExpecteds.add(hiv.getDrug("AZT"));
-    	nrtiExpecteds.add(hiv.getDrug("D4T"));
-    	nrtiExpecteds.add(hiv.getDrug("DDI"));
-    	nrtiExpecteds.add(hiv.getDrug("FTC"));
-    	nrtiExpecteds.add(hiv.getDrug("LMV"));
-    	nrtiExpecteds.add(hiv.getDrug("TDF"));
-    	assertEquals(new ArrayList<Drug<HIV>>(hiv.getDrugClass("NRTI").getDrugs()), nrtiExpecteds);
-
-    	List<Drug<HIV>> nnrtiExpecteds = new ArrayList<>();
-    	nnrtiExpecteds.add(hiv.getDrug("DOR"));
-    	nnrtiExpecteds.add(hiv.getDrug("EFV"));
-    	nnrtiExpecteds.add(hiv.getDrug("ETR"));
-    	nnrtiExpecteds.add(hiv.getDrug("NVP"));
-    	nnrtiExpecteds.add(hiv.getDrug("RPV"));
-    	assertEquals(new ArrayList<Drug<HIV>>(hiv.getDrugClass("NNRTI").getDrugs()), nnrtiExpecteds);
-
-    	List<Drug<HIV>> instiExpecteds = new ArrayList<>();
-
-    	instiExpecteds.add(hiv.getDrug("BIC"));
-    	instiExpecteds.add(hiv.getDrug("DTG"));
-    	instiExpecteds.add(hiv.getDrug("EVG"));
-    	instiExpecteds.add(hiv.getDrug("RAL"));
-    	assertEquals(new ArrayList<Drug<HIV>>(hiv.getDrugClass("INSTI").getDrugs()), instiExpecteds);
-    }
 
 	@Test
-	public void testDrugGetSynonym() {
+	public void testGetDrugSynonymMap() {
 
 		assertEquals(hiv.getDrugSynonymMap().get("ABC"),   hiv.getDrug("ABC"));
 		assertEquals(hiv.getDrugSynonymMap().get("AZT"),   hiv.getDrug("AZT"));
@@ -146,7 +102,7 @@ public class HIVTest {
 	}
 
 	@Test
-	public void testDrugGetSynonymWithException() {
+	public void testGetDrugSynonymMapWithException() {
 
 		assertNull(hiv.getDrugSynonymMap().get(""));
 		assertNull(hiv.getDrugSynonymMap().get("EVH"));

@@ -29,7 +29,7 @@ public class GenePositionTest {
 	// Potential issues:
 	// 1. Doesn't throw out of bounds exceptions.
     @Test
-    public void testConstruction() {
+    public void testGetInstance_int() {
 
     	GenePosition<HIV> prGP = new GenePosition<HIV>(hiv.getGene("HIV1PR"), MAX_PR_POS);
     	assertEquals(prGP.getGene(), hiv.getGene("HIV1PR"));
@@ -52,6 +52,13 @@ public class GenePositionTest {
     	assertEquals(inGPMax.getPosition(), Integer.valueOf(Integer.MAX_VALUE));
 
     }
+
+	@Test
+	public void testGetInstance_Integer() {
+		GenePosition<HIV> prGP = new GenePosition<HIV>(hiv.getGene("HIV1PR"), Integer.valueOf(MAX_PR_POS));
+    	assertEquals(prGP.getGene(), hiv.getGene("HIV1PR"));
+    	assertEquals(prGP.getPosition(), Integer.valueOf(MAX_PR_POS));
+	}
 
     @SuppressWarnings("unchecked")
 	@Test
@@ -145,7 +152,7 @@ public class GenePositionTest {
 	}
 
 	@Test
-	 @SuppressWarnings("unlikely-arg-type")
+	@SuppressWarnings("unlikely-arg-type")
 	public void testEquals() {
 		GenePosition<HIV> gpPR5 = new GenePosition<HIV>(hiv.getGene("HIV1PR"), 5);
 		assertFalse(gpPR5.equals(null));
@@ -154,7 +161,7 @@ public class GenePositionTest {
 		assertFalse(gpPR5.equals(new GenePosition<HIV>(hiv.getGene("HIV1PR"), 6)));
 		assertFalse(gpPR5.equals(new GenePosition<HIV>(hiv.getGene("HIV1RT"), 5)));
 		assertFalse(gpPR5.equals(new GenePosition<HIV>(hiv.getGene("HIV1RT"), 6)));
-		
+
 		assertFalse(gpPR5.equals("HIV1PR:5"));
 	}
 

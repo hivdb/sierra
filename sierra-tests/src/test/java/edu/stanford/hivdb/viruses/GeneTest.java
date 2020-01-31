@@ -36,7 +36,12 @@ public class GeneTest {
 	final static HIV hiv = HIV.getInstance();
 
 	@Test
-	public void testGetGene() {
+	public void testGetGeneInstance() {
+		assertNotNull(hiv.getGene("HIV1PR"));
+	}
+
+	@Test
+	public void testGetGenes() {
 
 		assertArrayEquals(hiv.getGenes(hiv.getStrain("HIV1")).toArray(), new Gene[] {
 				hiv.getGene("HIV1PR"),
@@ -138,25 +143,18 @@ public class GeneTest {
 	assertEquals(560, hiv.getGene("HIV1RT").getRefSequence().length());
 	}
 
-	// @Test
-	// public void testGetNASize() {
-	// 	assertEquals(2253, hiv.getGene("HIV1PR").getRefSequence()  .getFirstNA());
-	// 	assertEquals(2550, hiv.getGene("HIV1RT").getFirstNA());
-	// 	assertEquals(4230, hiv.getGene("HIV1IN").getFirstNA());
-	// }
-
-	// @Test
-	// public void testGetNASize() {
-	// 	assertEquals(297, hiv.getGene("HIV1PR").getNASize());
-	// 	assertEquals(1680, hiv.getGene("HIV1RT").getNASize());
-	// 	assertEquals(864, hiv.getGene("HIV1IN").getNASize());
-	// 	assertEquals(297, hiv.getGene("HIV2APR").getNASize());
-	// 	assertEquals(1677, hiv.getGene("HIV2ART").getNASize());
-	// 	assertEquals(879, hiv.getGene("HIV2AIN").getNASize());
-	// 	assertEquals(297, hiv.getGene("HIV2BPR").getNASize());
-	// 	assertEquals(1677, hiv.getGene("HIV2BRT").getNASize());
-	// 	assertEquals(888, hiv.getGene("HIV2BIN").getNASize());
-	// }
+	@Test
+	public void testGetNASize() {
+		assertEquals(297, hiv.getGene("HIV1PR").getNASize());
+		assertEquals(1680, hiv.getGene("HIV1RT").getNASize());
+		assertEquals(864, hiv.getGene("HIV1IN").getNASize());
+		assertEquals(297, hiv.getGene("HIV2APR").getNASize());
+		assertEquals(1677, hiv.getGene("HIV2ART").getNASize());
+		assertEquals(879, hiv.getGene("HIV2AIN").getNASize());
+		assertEquals(297, hiv.getGene("HIV2BPR").getNASize());
+		assertEquals(1677, hiv.getGene("HIV2BRT").getNASize());
+		assertEquals(888, hiv.getGene("HIV2BIN").getNASize());
+	}
 
 	@Test
 	public void testGetStrain() {
