@@ -31,6 +31,8 @@ import edu.stanford.hivdb.drugs.DrugClass;
 
 public class HIVTest {
 
+	final static HIV hiv = HIV.getInstance();
+
 	@Test
 	public void testGetInstance() {
 		HIV hiv1 = HIV.getInstance();
@@ -40,19 +42,16 @@ public class HIVTest {
 
     @Test
     public void testgetDrugClasses() {
-        HIV hiv = HIV.getInstance();
         assertNotNull(hiv.getDrugClasses());
     }
 
     @Test
     public void testGetStrain() {
-    	HIV hiv = HIV.getInstance();
     	assertNotNull(hiv.getStrain("HIV1"));
     }
 
     @Test
     public void testGetDrugClass() {
-    	HIV hiv = HIV.getInstance();
     	assertEquals(hiv.getDrugClass("PI").getAbstractGene(), "PR");
     	assertEquals(hiv.getDrugClass("NRTI").getAbstractGene(), "RT");
     	assertEquals(hiv.getDrugClass("NNRTI").getAbstractGene(), "RT");
@@ -61,7 +60,6 @@ public class HIVTest {
 
     @Test
     public void testDrugClassesFullName() {
-    	HIV hiv = HIV.getInstance();
     	assertEquals(
     			hiv.getDrugClass("PI").getFullName(),
     			"Protease Inhibitor"
@@ -84,7 +82,6 @@ public class HIVTest {
 
     @Test
     public void testGetDrugClassSynonymMap() {
-    	HIV hiv = HIV.getInstance();
     	assertEquals(hiv.getDrugClassSynonymMap().get("PI").getName(), "PI");
     	assertEquals(hiv.getDrugClassSynonymMap().get("NRTI").getName(), "NRTI");
     	assertEquals(hiv.getDrugClassSynonymMap().get("NNRTI").getName(), "NNRTI");
@@ -95,7 +92,6 @@ public class HIVTest {
 
     @Test
     public void testGetDrugs() {
-    	HIV hiv = HIV.getInstance();
 
     	List<Drug<HIV>> piExpecteds = new ArrayList<>();
     	piExpecteds.add(hiv.getDrug("ATV"));
@@ -137,7 +133,6 @@ public class HIVTest {
 
     @Test
     public void testClassOfDrugs() {
-    	HIV hiv = HIV.getInstance();
 
     	final DrugClass<HIV> PI = hiv.getDrugClass("PI");
     	final DrugClass<HIV> NRTI = hiv.getDrugClass("NRTI");
@@ -174,14 +169,12 @@ public class HIVTest {
 
     @Test
     public void testNumberOfDrugs() {
-    	HIV hiv = HIV.getInstance();
     	assertEquals(hiv.getDrugs().size(), 24);
 
     }
 
     @Test
     public void testDrugFullName() {
-    	HIV hiv = HIV.getInstance();
 
 		assertEquals(hiv.getDrug("ABC").getFullName(), "abacavir");
 		assertEquals(hiv.getDrug("AZT").getFullName(), "zidovudine");
@@ -212,7 +205,6 @@ public class HIVTest {
 
 	@Test
 	public void testDrugDisplayAbbr() {
-		HIV hiv = HIV.getInstance();
 
 		assertEquals(hiv.getDrug("ABC").getDisplayAbbr(), "ABC");
 		assertEquals(hiv.getDrug("AZT").getDisplayAbbr(), "AZT");
@@ -243,7 +235,6 @@ public class HIVTest {
 
 	@Test
 	public void testDrugGetSynonym() {
-		HIV hiv = HIV.getInstance();
 
 		assertEquals(hiv.getDrugSynonymMap().get("ABC"),   hiv.getDrug("ABC"));
 		assertEquals(hiv.getDrugSynonymMap().get("AZT"),   hiv.getDrug("AZT"));
@@ -279,8 +270,7 @@ public class HIVTest {
 
 	@Test
 	public void testDrugGetSynonymWithException() {
-		HIV hiv = HIV.getInstance();
-		
+
 		assertNull(hiv.getDrugSynonymMap().get(""));
 		assertNull(hiv.getDrugSynonymMap().get("EVH"));
 	}
