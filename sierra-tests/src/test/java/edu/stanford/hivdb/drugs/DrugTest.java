@@ -52,6 +52,9 @@ public class DrugTest {
 
     @Test
     public void testDrugSize() {
+		// WARNING: This test will fail every time a drug is added.
+		// WARNING: Don't just fix this test case. Add the new drug
+		// to all following cases too.
     	assertEquals(hiv.getDrugs().size(), 24);
 
     }
