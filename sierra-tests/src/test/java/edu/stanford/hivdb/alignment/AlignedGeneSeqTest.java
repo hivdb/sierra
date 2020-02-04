@@ -25,13 +25,14 @@ import java.util.Collections;
 
 import org.junit.Test;
 
-import edu.stanford.hivdb.hivfacts.HIVGene;
+import edu.stanford.hivdb.hivfacts.HIV;
 import edu.stanford.hivdb.sequences.AlignedGeneSeq;
 import edu.stanford.hivdb.sequences.AlignedSite;
 import edu.stanford.hivdb.sequences.Sequence;
 
 public class AlignedGeneSeqTest {
 
+	final static HIV hiv = HIV.getInstance();
 	// private AlignedGeneSeq getAlignedGeneSeq() {
 	// 	Sequence seq = new Sequence(
 	// 		"SmallFSIns4_LargeFSdel17-18",
@@ -54,8 +55,8 @@ public class AlignedGeneSeqTest {
 	@Test
 	public void testReversedSeqGetAlignedNAs() {
 		Sequence revSeq = new Sequence("ReversedSeq", "CCAAAGAGTGATTTGAGG");
-		AlignedGeneSeq alignedGeneSeq = new AlignedGeneSeq(
-			revSeq, HIVGene.valueOf("HIV1PR"),
+		AlignedGeneSeq<HIV> alignedGeneSeq = new AlignedGeneSeq<HIV>(
+			revSeq, hiv.getGene("HIV1PR"),
 			1, 6, 1, 18, Arrays.asList(
 				new AlignedSite(1, 1, 3),
 				new AlignedSite(2, 4, 3),
@@ -67,8 +68,8 @@ public class AlignedGeneSeqTest {
 			Collections.emptyList(), Collections.emptyList(), 0, 0, true);
 		assertEquals("CCTCAAATCACTCTTTGG", alignedGeneSeq.getAlignedNAs());
 
-		AlignedGeneSeq alignedGeneSeq2 = new AlignedGeneSeq(
-			revSeq, HIVGene.valueOf("HIV1PR"),
+		AlignedGeneSeq<HIV> alignedGeneSeq2 = new AlignedGeneSeq<HIV>(
+			revSeq, hiv.getGene("HIV1PR"),
 			1, 6, 1, 18, Arrays.asList(
 				new AlignedSite(1, 1, 3),
 				new AlignedSite(2, 4, 3),
@@ -84,8 +85,8 @@ public class AlignedGeneSeqTest {
 	@Test
 	public void testReversedSeqGetAlignedAAs() {
 		Sequence revSeq = new Sequence("ReversedSeq", "CCAAAGAGTGATTTGAGG");
-		AlignedGeneSeq alignedGeneSeq = new AlignedGeneSeq(
-			revSeq, HIVGene.valueOf("HIV1PR"),
+		AlignedGeneSeq<HIV> alignedGeneSeq = new AlignedGeneSeq<HIV>(
+			revSeq, hiv.getGene("HIV1PR"),
 			1, 6, 1, 18, Arrays.asList(
 				new AlignedSite(1, 1, 3),
 				new AlignedSite(2, 4, 3),
@@ -97,8 +98,8 @@ public class AlignedGeneSeqTest {
 			Collections.emptyList(), Collections.emptyList(), 0, 0, true);
 		assertEquals("PQITLW", alignedGeneSeq.getAlignedAAs());
 
-		AlignedGeneSeq alignedGeneSeq2 = new AlignedGeneSeq(
-			revSeq, HIVGene.valueOf("HIV1PR"),
+		AlignedGeneSeq<HIV> alignedGeneSeq2 = new AlignedGeneSeq<HIV>(
+			revSeq, hiv.getGene("HIV1PR"),
 			1, 6, 1, 18, Arrays.asList(
 				new AlignedSite(1, 1, 3),
 				new AlignedSite(2, 4, 3),
