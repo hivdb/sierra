@@ -28,6 +28,7 @@ import org.junit.Test;
 
 import edu.stanford.hivdb.filetestutils.TestSequencesFiles;
 import edu.stanford.hivdb.filetestutils.TestSequencesFiles.TestSequencesProperties;
+import edu.stanford.hivdb.hivfacts.HIV;
 import edu.stanford.hivdb.mutations.FrameShift;
 import edu.stanford.hivdb.sequences.AlignedGeneSeq;
 import edu.stanford.hivdb.sequences.AlignedSequence;
@@ -42,6 +43,8 @@ public class PrettyPairwiseTest {
 
 	@SuppressWarnings("unused")
 	private static final Logger LOGGER = LogManager.getLogger();
+	
+	private static final HIV hiv = HIV.getInstance();
 
 	@Test
 	public void test() {
@@ -51,16 +54,18 @@ public class PrettyPairwiseTest {
 
 		StringBuilder output = new StringBuilder();
 		for (Sequence seq : sequences) {
-			AlignedSequence alignedSeq = NucAminoAligner.align(seq);
-			for (AlignedGeneSeq alignedGeneSeq : alignedSeq.getAlignedGeneSequences()) {
-				PrettyPairwise prettyPairwise = alignedGeneSeq.getPrettyPairwise();
+			AlignedSequence<HIV> alignedSeq = NucAminoAligner.getInstance(hiv).align(seq);
+			for (AlignedGeneSeq<HIV> alignedGeneSeq : alignedSeq.getAlignedGeneSequences() ) {
+				PrettyPairwise<HIV> prettyPairwise = alignedGeneSeq.getPrettyPairwise();
 				List<String> positionHeader = prettyPairwise.getPositionLine();
 				List<String> referenceAAs = prettyPairwise.getRefAALine();
 				List<String> alignedNAs = prettyPairwise.getAlignedNAsLine();
 				List<String> mutationLine = prettyPairwise.getMutationLine();
 				output.append(seq.getHeader() + "\n");
 				output.append(alignedGeneSeq.getMutationListString() + "\n");
-				output.append(FrameShift.getHumanReadableList(alignedGeneSeq.getFrameShifts()) + "\n");
+				for (FrameShift<HIV> fs: alignedGeneSeq.getFrameShifts()) {
+					output.append(fs.getHumanFormat() + "\n");
+				}
 				output.append(joinCodonsWithSpaces(positionHeader, 2) + "\n");
 				output.append(joinCodonsWithSpaces(referenceAAs, 2) + "\n");
 				output.append(joinCodonsWithSpaces(alignedNAs, 2) + "\n");

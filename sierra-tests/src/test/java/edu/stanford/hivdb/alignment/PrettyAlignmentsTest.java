@@ -28,17 +28,19 @@ import org.junit.Test;
 
 import edu.stanford.hivdb.filetestutils.TestSequencesFiles;
 import edu.stanford.hivdb.filetestutils.TestSequencesFiles.TestSequencesProperties;
-import edu.stanford.hivdb.hivfacts.HIVGene;
-import edu.stanford.hivdb.hivfacts.HIVStrain;
+import edu.stanford.hivdb.hivfacts.HIV;
 import edu.stanford.hivdb.sequences.AlignedGeneSeq;
 import edu.stanford.hivdb.sequences.AlignedSequence;
 import edu.stanford.hivdb.sequences.NucAminoAligner;
 import edu.stanford.hivdb.sequences.PrettyAlignments;
 import edu.stanford.hivdb.sequences.Sequence;
 import edu.stanford.hivdb.utilities.MyFileUtils;
+import edu.stanford.hivdb.viruses.Gene;
 import edu.stanford.hivdb.utilities.FastaUtils;
 
 public class PrettyAlignmentsTest {
+	
+	private final static HIV hiv = HIV.getInstance();
 
 	@Test
 	public void test() {
@@ -48,15 +50,15 @@ public class PrettyAlignmentsTest {
 		}
 		final InputStream testSequenceInputStream = TestSequencesFiles.getTestSequenceInputStream(TestSequencesProperties.MALDARELLI2);
 		final List<Sequence> sequences = FastaUtils.readStream(testSequenceInputStream);
-		Map<Sequence, AlignedSequence> allAligneds = (
-			NucAminoAligner.parallelAlign(sequences)
+		Map<Sequence, AlignedSequence<HIV>> allAligneds = (
+			NucAminoAligner.getInstance(hiv).parallelAlign(sequences)
 			.stream().collect(Collectors.toMap(as -> as.getInputSequence(), as -> as))
 		);
-		for (HIVGene gene : HIVGene.values(HIVStrain.HIV1)) {
-			List<AlignedGeneSeq> alignmentResults = new ArrayList<>();
+		for (Gene<HIV> gene : hiv.getGenes(hiv.getStrain("HIV1"))) {
+			List<AlignedGeneSeq<HIV>> alignmentResults = new ArrayList<>();
 
 			for (Sequence seq : sequences) {
-				AlignedGeneSeq alignedGeneSeq = allAligneds.get(seq).getAlignedGeneSequence(gene);
+				AlignedGeneSeq<HIV> alignedGeneSeq = allAligneds.get(seq).getAlignedGeneSequence(gene);
 				if (alignedGeneSeq != null) {
 					alignmentResults.add(alignedGeneSeq);
 				}
@@ -64,13 +66,13 @@ public class PrettyAlignmentsTest {
 			if (alignmentResults.isEmpty()) {
 				continue;
 			}
-			PrettyAlignments prettyAlignment = new PrettyAlignments(gene, alignmentResults);
+			PrettyAlignments<HIV> prettyAlignment = new PrettyAlignments<HIV>(gene, alignmentResults);
 			Map<String, Map<Integer, String>> sequenceAllPosAAs = prettyAlignment.getSequenceAllPosAAs();
 			printOutAlignment(gene, prettyAlignment, sequenceAllPosAAs);
 		}
 	}
 
-	private void printOutAlignment(HIVGene gene, PrettyAlignments prettyAlignment,
+	private void printOutAlignment(Gene<HIV> gene, PrettyAlignments<HIV> prettyAlignment,
 			Map<String, Map<Integer, String>> sequenceAllPosAAs) {
 		StringBuilder output = new StringBuilder();
 		String header = String.format("%25s\t", "Sequence Names");

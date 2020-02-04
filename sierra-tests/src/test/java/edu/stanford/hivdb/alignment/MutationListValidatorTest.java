@@ -25,33 +25,28 @@ import static org.junit.Assert.*;
 
 import edu.stanford.hivdb.filetestutils.TestMutationsFiles;
 import edu.stanford.hivdb.filetestutils.TestMutationsFiles.TestMutationsProperties;
-import edu.stanford.hivdb.hivfacts.HIVGene;
+import edu.stanford.hivdb.mutations.AAMutation;
 import edu.stanford.hivdb.mutations.ConsensusMutation;
 import edu.stanford.hivdb.mutations.MutationFileReader;
 import edu.stanford.hivdb.mutations.MutationSet;
-import edu.stanford.hivdb.hivfacts.HIVAAMutation;
-import edu.stanford.hivdb.hivfacts.HIVDefaultMutationsValidator;
+import edu.stanford.hivdb.hivfacts.HIV;
 import edu.stanford.hivdb.utilities.ValidationLevel;
 import edu.stanford.hivdb.utilities.ValidationResult;
 
 public class MutationListValidatorTest {
 
+	final static HIV hiv = HIV.getInstance();
+
 	private void assertValidationResult(
-			HIVAAMutation[] mutations, ValidationLevel[] levels, String[] messages) {
-		MutationSet mutSet = new MutationSet(mutations);
-		HIVDefaultMutationsValidator validator = new HIVDefaultMutationsValidator(mutSet);
+			AAMutation<HIV>[] mutations, ValidationLevel[] levels, String[] messages) {
+		MutationSet<HIV> mutSet = new MutationSet<HIV>(mutations);
+		
 		if (levels.length == 0) {
-			try {
-				assertTrue(validator.validate());
-			} catch (AssertionError e) {
-				List<ValidationResult> results = validator.getValidationResults();
-				System.out.println(results.get(0).getMessage());
-				throw e;
+			List<ValidationResult> results = hiv.validateMutations(mutSet);	
+			System.out.println(results.get(0).getMessage());
 			}
-		}
 		else {
-			assertFalse(validator.validate());
-			List<ValidationResult> results = validator.getValidationResults();
+			List<ValidationResult> results = hiv.validateMutations(mutSet);	
 			assertEquals(levels.length, results.size());
 			for (int i=0; i < levels.length; i ++) {
 				assertEquals(levels[i], results.get(i).getLevel());
@@ -60,7 +55,7 @@ public class MutationListValidatorTest {
 		}
 	}
 
-	private void assertValidationResult(HIVAAMutation[] mutations) {
+	private void assertValidationResult(AAMutation<HIV>[] mutations) {
 		assertValidationResult(
 			mutations, new ValidationLevel[] {}, new String[] {});
 	}
@@ -70,11 +65,9 @@ public class MutationListValidatorTest {
 	public void testMutationsFromFile() {
 		final InputStream testMutationsInputStream =
 				TestMutationsFiles.getTestMutationsInputStream(TestMutationsProperties.VALIDATION_TEST);
-		final List<MutationSet> mutationSets = MutationFileReader.readMutationLists(testMutationsInputStream);
-		for (MutationSet mutSet : mutationSets) {
-			HIVDefaultMutationsValidator validator = new HIVDefaultMutationsValidator(mutSet);
-			validator.validate();
-			List<ValidationResult> results = validator.getValidationResults();
+		final List<MutationSet<HIV>> mutationSets = MutationFileReader.readMutationLists(testMutationsInputStream, hiv);
+		for (MutationSet<HIV> mutSet : mutationSets) {
+			List<ValidationResult> results = hiv.validateMutations(mutSet);
 			for (ValidationResult result : results) {
 				System.out.println(" Level:" + result.getLevel());
 				System.out.println(" Message:" + result.getMessage());
@@ -84,14 +77,15 @@ public class MutationListValidatorTest {
 	}
 
 
+	@SuppressWarnings("unchecked")
 	@Test
 	public void testMutationsWithTooManyStopCodons() {
 
 		assertValidationResult(
 			/* mutations as the input for MutationListValidator */
-			new HIVAAMutation[] {
-				new ConsensusMutation(HIVGene.valueOf("HIV1RT"), 122, "*"),
-				new ConsensusMutation(HIVGene.valueOf("HIV1IN"), 23, "*"),
+			new AAMutation[] {
+				new ConsensusMutation<HIV>(hiv.getGene("HIV1RT"), 122, "*"),
+				new ConsensusMutation<HIV>(hiv.getGene("HIV1IN"), 23, "*"),
 			},
 			/* expected result level(s) */
 			new ValidationLevel[] {
@@ -101,18 +95,19 @@ public class MutationListValidatorTest {
 			/* expected result message(s) */
 			new String[] {
 				"The submitted mutations contain 2 stop codons.",
-				"There are 2 unusual mutations: RT_K122*, IN_A23*."
+				"There are 2 unusual mutations: HIV1RT_K122*, HIV1IN_A23*."
 			});
 
 	}
 
+	@SuppressWarnings("unchecked")
 	@Test
 	public void testMutationsWithStopCodon() {
 
 		assertValidationResult(
 			/* mutations as the input for MutationListValidator */
-			new HIVAAMutation[] {
-				new ConsensusMutation(HIVGene.valueOf("HIV1RT"), 43, "*"),
+			new AAMutation[] {
+				new ConsensusMutation<HIV>(hiv.getGene("HIV1RT"), 43, "*"),
 			},
 			/* expected result level(s) */
 			new ValidationLevel[] {
@@ -125,15 +120,16 @@ public class MutationListValidatorTest {
 
 	}
 
+	@SuppressWarnings("unchecked")
 	@Test
 	public void testMutationsAllAtDRM() {
-		assertValidationResult(
-			/* mutations as the input for MutationListValidator */
-			new HIVAAMutation[] {
-				new ConsensusMutation(HIVGene.valueOf("HIV1PR"), 54, "V"),
-			}
-			/* the expected result should be empty */
-		);
+		MutationSet<HIV> mutset =  new MutationSet<HIV>(new AAMutation[] {
+				new ConsensusMutation<HIV>(hiv.getGene("HIV1PR"), 54, "V"),
+			});
+		/* mutations as the input for MutationListValidator */
+		List<ValidationResult> results = hiv.validateMutations(mutset);
+		assertEquals(0, results.size());
+		/* the expected result should be empty */
 	}
 
 }

@@ -26,7 +26,8 @@ import org.junit.Test;
 
 import org.apache.commons.lang3.StringUtils;
 
-import edu.stanford.hivdb.hivfacts.HIVGene;
+import edu.stanford.hivdb.hivfacts.HIV;
+
 import edu.stanford.hivdb.hivfacts.extras.HIV1Sample;
 import edu.stanford.hivdb.sequences.AlignedSequence;
 import edu.stanford.hivdb.sequences.NucAminoAligner;
@@ -34,14 +35,16 @@ import edu.stanford.hivdb.sequences.Sequence;
 
 public class AlignedSequenceTest {
 
+	final static HIV hiv = HIV.getInstance();
+
 	@Test
 	public void testEmptySeq() {
 		Sequence seq = new Sequence("empty", "EMPTY");
-		AlignedSequence alignedSeq = NucAminoAligner.align(seq);
+		AlignedSequence<HIV> alignedSeq = NucAminoAligner.getInstance(hiv).align(seq);
 		assertTrue(alignedSeq.isEmpty());
 		assertEquals(Collections.emptyMap(), alignedSeq.getAlignedGeneSequenceMap());
 		assertEquals(Collections.emptyList(), alignedSeq.getAlignedGeneSequences());
-		assertEquals(null, alignedSeq.getAlignedGeneSequence(HIVGene.valueOf("HIV1PR")));
+		assertEquals(null, alignedSeq.getAlignedGeneSequence(hiv.getGene("HIV1PR")));
 		assertEquals(seq, alignedSeq.getInputSequence());
 		assertEquals(Collections.emptyList(), alignedSeq.getAvailableGenes());
 
@@ -49,14 +52,11 @@ public class AlignedSequenceTest {
 		assertEquals(1, alignedSeq.getValidationResults().size());
 		assertEquals(1, alignedSeq.getValidationResults().size());
 
-		assertEquals(-1, alignedSeq.getAbsoluteFirstNA());
-		assertEquals(-1, alignedSeq.getAbsoluteFirstNA());
-
 		assertEquals(Collections.emptySet(), alignedSeq.getSdrms());
 		assertEquals(Collections.emptySet(), alignedSeq.getSdrms());
 
-		assertEquals(Collections.emptySet(), alignedSeq.getApobec().getApobecDRMs());
-		assertEquals(Collections.emptySet(), alignedSeq.getApobec().getApobecMuts());
+		assertEquals(Collections.emptySet(), alignedSeq.getMutations().getApobecDRMs());
+		assertEquals(Collections.emptySet(), alignedSeq.getMutations().getApobecMutations());
 
 		assertEquals(Collections.emptyList(), alignedSeq.getFrameShifts());
 		assertEquals(Collections.emptyList(), alignedSeq.getFrameShifts());
@@ -76,19 +76,19 @@ public class AlignedSequenceTest {
 		HIV1Sample sample = new HIV1Sample();
 
 		// PR (nts): 33 to 282
-		sample.addSubstitutionRule(HIVGene.valueOf("HIV1PR"), 282, 297, "");
-		sample.addSubstitutionRule(HIVGene.valueOf("HIV1PR"), 0, 33, "");
+		sample.addSubstitutionRule(hiv.getGene("HIV1PR"), 282, 297, "");
+		sample.addSubstitutionRule(hiv.getGene("HIV1PR"), 0, 33, "");
 
 		// RT (nts): 123 to 1653
-		sample.addSubstitutionRule(HIVGene.valueOf("HIV1RT"), 1653, 1680, "");
-		sample.addSubstitutionRule(HIVGene.valueOf("HIV1RT"), 0, 123, "");
+		sample.addSubstitutionRule(hiv.getGene("HIV1RT"), 1653, 1680, "");
+		sample.addSubstitutionRule(hiv.getGene("HIV1RT"), 0, 123, "");
 
 		// IN: empty
-		sample.addSubstitutionRule(HIVGene.valueOf("HIV1IN"), 0, 864, "");
+		sample.addSubstitutionRule(hiv.getGene("HIV1IN"), 0, 864, "");
 
 		Sequence seq = sample.getSequence();
 
-		AlignedSequence alignedSeq = NucAminoAligner.align(seq);
+		AlignedSequence<HIV> alignedSeq = NucAminoAligner.getInstance(hiv).align(seq);
 
 		assertEquals(Collections.emptyList(), alignedSeq.getValidationResults());
 
@@ -120,19 +120,19 @@ public class AlignedSequenceTest {
 		HIV1Sample sample = new HIV1Sample();
 
 		// PR (nts): 33 to 282
-		sample.addSubstitutionRule(HIVGene.valueOf("HIV1PR"), 282, 297, StringUtils.repeat("N", 15));
-		sample.addSubstitutionRule(HIVGene.valueOf("HIV1PR"), 0, 33, "");
+		sample.addSubstitutionRule(hiv.getGene("HIV1PR"), 282, 297, StringUtils.repeat("N", 15));
+		sample.addSubstitutionRule(hiv.getGene("HIV1PR"), 0, 33, "");
 
 		// RT: empty
-		sample.addSubstitutionRule(HIVGene.valueOf("HIV1RT"), 0, 1680, StringUtils.repeat("N", 1680));
+		sample.addSubstitutionRule(hiv.getGene("HIV1RT"), 0, 1680, StringUtils.repeat("N", 1680));
 
 		// IN (nts): 78 to 831
-		sample.addSubstitutionRule(HIVGene.valueOf("HIV1IN"), 831, 864, "");
-		sample.addSubstitutionRule(HIVGene.valueOf("HIV1IN"), 0, 78, StringUtils.repeat("N", 78));
+		sample.addSubstitutionRule(hiv.getGene("HIV1IN"), 831, 864, "");
+		sample.addSubstitutionRule(hiv.getGene("HIV1IN"), 0, 78, StringUtils.repeat("N", 78));
 
 		Sequence seq = sample.getSequence();
 
-		AlignedSequence alignedSeq = NucAminoAligner.align(seq);
+		AlignedSequence<HIV> alignedSeq = NucAminoAligner.getInstance(hiv).align(seq);
 
 		String alignedSeqStr = alignedSeq.getConcatenatedSeq();
 
@@ -141,7 +141,8 @@ public class AlignedSequenceTest {
 
 		// there should be exactly 31 "..." between PR and IN
 		int endPR = 282 - 33;
-		int startIN = 297 - 33 + 78;
+		int startIN = 297 - 33 + 1680 + 78;
+
 		assertEquals(
 			StringUtils.repeat(".", startIN - endPR),
 			alignedSeqStr.substring(endPR, startIN));
@@ -162,19 +163,19 @@ public class AlignedSequenceTest {
 		HIV1Sample sample = new HIV1Sample();
 
 		// PR: Empty
-		sample.addSubstitutionRule(HIVGene.valueOf("HIV1PR"), 0, 297, "");
+		sample.addSubstitutionRule(hiv.getGene("HIV1PR"), 0, 297, "");
 
 		// RT (nts): 123 to 1653
-		sample.addSubstitutionRule(HIVGene.valueOf("HIV1RT"), 1653, 1680, "");
-		sample.addSubstitutionRule(HIVGene.valueOf("HIV1RT"), 0, 123, "");
+		sample.addSubstitutionRule(hiv.getGene("HIV1RT"), 1653, 1680, "");
+		sample.addSubstitutionRule(hiv.getGene("HIV1RT"), 0, 123, "");
 
 		// IN (nts): 78 to 831
-		sample.addSubstitutionRule(HIVGene.valueOf("HIV1IN"), 831, 864, "");
-		sample.addSubstitutionRule(HIVGene.valueOf("HIV1IN"), 0, 78, "");
+		sample.addSubstitutionRule(hiv.getGene("HIV1IN"), 831, 864, "");
+		sample.addSubstitutionRule(hiv.getGene("HIV1IN"), 0, 78, "");
 
 		Sequence seq = sample.getSequence();
 
-		AlignedSequence alignedSeq = NucAminoAligner.align(seq);
+		AlignedSequence<HIV> alignedSeq = NucAminoAligner.getInstance(hiv).align(seq);
 
 		String alignedSeqStr = alignedSeq.getConcatenatedSeq();
 
@@ -204,20 +205,20 @@ public class AlignedSequenceTest {
 		HIV1Sample sample = new HIV1Sample();
 
 		// PR (nts): 33 to 282
-		sample.addSubstitutionRule(HIVGene.valueOf("HIV1PR"), 282, 297, "");
-		sample.addSubstitutionRule(HIVGene.valueOf("HIV1PR"), 0, 33, "");
+		sample.addSubstitutionRule(hiv.getGene("HIV1PR"), 282, 297, "");
+		sample.addSubstitutionRule(hiv.getGene("HIV1PR"), 0, 33, "");
 
 		// RT (nts): 123 to 1653
-		sample.addSubstitutionRule(HIVGene.valueOf("HIV1RT"), 1653, 1680, "");
-		sample.addSubstitutionRule(HIVGene.valueOf("HIV1RT"), 0, 123, "");
+		sample.addSubstitutionRule(hiv.getGene("HIV1RT"), 1653, 1680, "");
+		sample.addSubstitutionRule(hiv.getGene("HIV1RT"), 0, 123, "");
 
 		// IN (nts): 78 to 831
-		sample.addSubstitutionRule(HIVGene.valueOf("HIV1IN"), 831, 864, "");
-		sample.addSubstitutionRule(HIVGene.valueOf("HIV1IN"), 0, 78, "");
+		sample.addSubstitutionRule(hiv.getGene("HIV1IN"), 831, 864, "");
+		sample.addSubstitutionRule(hiv.getGene("HIV1IN"), 0, 78, "");
 
 		Sequence seq = sample.getSequence();
 
-		AlignedSequence alignedSeq = NucAminoAligner.align(seq);
+		AlignedSequence<HIV> alignedSeq = NucAminoAligner.getInstance(hiv).align(seq);
 
 		String alignedSeqStr = alignedSeq.getConcatenatedSeq();
 
@@ -261,18 +262,18 @@ public class AlignedSequenceTest {
 		HIV1Sample sample = new HIV1Sample();
 
 		// PR (nts): 33 to 282
-		sample.addSubstitutionRule(HIVGene.valueOf("HIV1PR"), 282, 297, "");
-		sample.addSubstitutionRule(HIVGene.valueOf("HIV1PR"), 0, 33, "");
+		sample.addSubstitutionRule(hiv.getGene("HIV1PR"), 282, 297, "");
+		sample.addSubstitutionRule(hiv.getGene("HIV1PR"), 0, 33, "");
 
 		// RT: empty
-		sample.addSubstitutionRule(HIVGene.valueOf("HIV1RT"), 0, 1680, "");
+		sample.addSubstitutionRule(hiv.getGene("HIV1RT"), 0, 1680, "");
 
 		// IN: empty
-		sample.addSubstitutionRule(HIVGene.valueOf("HIV1IN"), 0, 864, "");
+		sample.addSubstitutionRule(hiv.getGene("HIV1IN"), 0, 864, "");
 
 		Sequence seq = sample.getSequence();
 
-		AlignedSequence alignedSeq = NucAminoAligner.align(seq);
+		AlignedSequence<HIV> alignedSeq = NucAminoAligner.getInstance(hiv).align(seq);
 
 		String alignedSeqStr = alignedSeq.getConcatenatedSeq();
 
@@ -292,18 +293,18 @@ public class AlignedSequenceTest {
 		HIV1Sample sample = new HIV1Sample();
 
 		// PR: empty
-		sample.addSubstitutionRule(HIVGene.valueOf("HIV1PR"), 0, 297, "");
+		sample.addSubstitutionRule(hiv.getGene("HIV1PR"), 0, 297, "");
 
 		// RT: 45 to 1626
-		sample.addSubstitutionRule(HIVGene.valueOf("HIV1RT"), 1626, 1680, "");
-		sample.addSubstitutionRule(HIVGene.valueOf("HIV1RT"), 0, 45, "");
+		sample.addSubstitutionRule(hiv.getGene("HIV1RT"), 1626, 1680, "");
+		sample.addSubstitutionRule(hiv.getGene("HIV1RT"), 0, 45, "");
 
 		// IN: empty
-		sample.addSubstitutionRule(HIVGene.valueOf("HIV1IN"), 0, 864, "");
+		sample.addSubstitutionRule(hiv.getGene("HIV1IN"), 0, 864, "");
 
 		Sequence seq = sample.getSequence();
 
-		AlignedSequence alignedSeq = NucAminoAligner.align(seq);
+		AlignedSequence<HIV> alignedSeq = NucAminoAligner.getInstance(hiv).align(seq);
 
 		String alignedSeqStr = alignedSeq.getConcatenatedSeq();
 
@@ -323,18 +324,18 @@ public class AlignedSequenceTest {
 		HIV1Sample sample = new HIV1Sample();
 
 		// PR: empty
-		sample.addSubstitutionRule(HIVGene.valueOf("HIV1PR"), 0, 297, "");
+		sample.addSubstitutionRule(hiv.getGene("HIV1PR"), 0, 297, "");
 
 		// RT: empty
-		sample.addSubstitutionRule(HIVGene.valueOf("HIV1RT"), 0, 1680, "");
+		sample.addSubstitutionRule(hiv.getGene("HIV1RT"), 0, 1680, "");
 
 		// IN: 12 to 837
-		sample.addSubstitutionRule(HIVGene.valueOf("HIV1IN"), 837, 864, "");
-		sample.addSubstitutionRule(HIVGene.valueOf("HIV1IN"), 0, 12, "");
+		sample.addSubstitutionRule(hiv.getGene("HIV1IN"), 837, 864, "");
+		sample.addSubstitutionRule(hiv.getGene("HIV1IN"), 0, 12, "");
 
 		Sequence seq = sample.getSequence();
 
-		AlignedSequence alignedSeq = NucAminoAligner.align(seq);
+		AlignedSequence<HIV> alignedSeq = NucAminoAligner.getInstance(hiv).align(seq);
 
 		String alignedSeqStr = alignedSeq.getConcatenatedSeq();
 
