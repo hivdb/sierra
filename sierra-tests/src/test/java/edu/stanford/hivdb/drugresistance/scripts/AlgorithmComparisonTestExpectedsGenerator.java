@@ -19,16 +19,19 @@
 package edu.stanford.hivdb.drugresistance.scripts;
 
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 import edu.stanford.hivdb.drugresistance.algorithm.Algorithm;
 import edu.stanford.hivdb.drugresistance.algorithm.AlgorithmComparison;
+import edu.stanford.hivdb.drugs.DrugResistanceAlgorithm;
 import edu.stanford.hivdb.filetestutils.TestSequencesFiles;
 import edu.stanford.hivdb.filetestutils.TestSequencesFiles.TestSequencesProperties;
-import edu.stanford.hivdb.hivfacts.HIVGene;
+import edu.stanford.hivdb.hivfacts.HIV;
 import edu.stanford.hivdb.mutations.MutationSet;
 import edu.stanford.hivdb.sequences.AlignedSequence;
 import edu.stanford.hivdb.sequences.NucAminoAligner;
@@ -36,12 +39,16 @@ import edu.stanford.hivdb.sequences.Sequence;
 import edu.stanford.hivdb.utilities.FastaUtils;
 import edu.stanford.hivdb.utilities.Json;
 import edu.stanford.hivdb.utilities.MyFileUtils;
+import edu.stanford.hivdb.viruses.Gene;
 
+@SuppressWarnings("deprecation")
 public class AlgorithmComparisonTestExpectedsGenerator {
+	
+	private static final HIV hiv = HIV.getInstance();
 
 	public static void main(String[] args) {
 
-		Map<String, Map<String, AlgorithmComparison>> r = new LinkedHashMap<>();
+		Map<String, Map<String, AlgorithmComparison<HIV>>> r = new LinkedHashMap<>();
 		for (TestSequencesProperties property : TestSequencesProperties.values()) {
 			if (!property.forRoutineTesting) {
 				continue;
@@ -51,14 +58,20 @@ public class AlgorithmComparisonTestExpectedsGenerator {
 					TestSequencesFiles.getTestSequenceInputStream(property);
 			final List<Sequence> sequences = FastaUtils.readStream(testSequenceInputStream);
 
-			List<AlignedSequence> allAligneds =
-					NucAminoAligner.parallelAlign(sequences);
+			List<AlignedSequence<HIV>> allAligneds =
+					NucAminoAligner.getInstance(hiv).parallelAlign(sequences);
+			
+			
 
-			for (AlignedSequence alignedSeq : allAligneds) {
+			for (AlignedSequence<HIV> alignedSeq : allAligneds) {
 				Sequence sequence = alignedSeq.getInputSequence();
-				Map<HIVGene, MutationSet> mutationSets = alignedSeq.getMutations().groupByGene();
-				AlgorithmComparison algorithmComparison =
-					new AlgorithmComparison(mutationSets, Arrays.asList(Algorithm.values()));
+				MutationSet<HIV> mutationSets = alignedSeq.getMutations();
+				List<DrugResistanceAlgorithm<HIV>> hivAlgo = new ArrayList<>();
+				
+				hivAlgo.add(hiv.getLatestDrugResistAlgorithm("HIVDB"));
+				hivAlgo.add(hiv.getLatestDrugResistAlgorithm("Rega"));
+				AlgorithmComparison<HIV> algorithmComparison =
+					new AlgorithmComparison<HIV>(mutationSets, hivAlgo);
 				r.putIfAbsent(property.toString(), new LinkedHashMap<>());
 				r.get(property.toString()).put(sequence.getHeader() + "-" + sequence.getSHA512(), algorithmComparison);
 			}
