@@ -31,7 +31,7 @@ import edu.stanford.hivdb.drugresistance.GeneDRFast;
 import edu.stanford.hivdb.filetestutils.TestSequencesFiles;
 import edu.stanford.hivdb.filetestutils.TestSequencesFiles.TestSequencesProperties;
 import edu.stanford.hivdb.hivfacts.HIVGene;
-import edu.stanford.hivdb.hivfacts.extras.TabularResistanceSummary;
+import edu.stanford.hivdb.reports.ResistanceSummaryTSV;
 import edu.stanford.hivdb.sequences.AlignedGeneSeq;
 import edu.stanford.hivdb.sequences.AlignedSequence;
 import edu.stanford.hivdb.sequences.NucAminoAligner;
@@ -49,7 +49,7 @@ public class TabularResistanceSummaryTest {
 				TestSequencesFiles.getTestSequenceInputStream(TestSequencesProperties.SMALL);
 		final List<Sequence> sequences = FastaUtils.readStream(testSequenceInputStream);
 		List<Map<HIVGene, GeneDR>> allResistanceResults = determineAllResistanceResults(sequences);
-		TabularResistanceSummary tabularResistanceSummary = new TabularResistanceSummary(sequences, allResistanceResults);
+		ResistanceSummaryTSV tabularResistanceSummary = new ResistanceSummaryTSV(sequences, allResistanceResults);
 		tabularResistance = tabularResistanceSummary.getTable();
 		headerFields = tabularResistanceSummary.getHeaderFields();
 		printOutTable();
