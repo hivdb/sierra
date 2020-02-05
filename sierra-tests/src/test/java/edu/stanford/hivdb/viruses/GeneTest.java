@@ -26,6 +26,7 @@ import org.junit.Test;
 import com.google.common.base.Strings;
 
 import edu.stanford.hivdb.hivfacts.HIV;
+import edu.stanford.hivdb.hivfacts.hiv2.HIV2;
 import edu.stanford.hivdb.drugs.DrugClass;
 import edu.stanford.hivdb.mutations.MutationType;
 import edu.stanford.hivdb.viruses.Gene;
@@ -34,6 +35,7 @@ import edu.stanford.hivdb.viruses.Gene;
 public class GeneTest {
 
 	final static HIV hiv = HIV.getInstance();
+	final static HIV2 hiv2 = HIV2.getInstance();
 
 	@Test
 	public void testGetGeneInstance() {
@@ -49,10 +51,10 @@ public class GeneTest {
 				hiv.getGene("HIV1IN")
 			});
 
-		assertArrayEquals(hiv.getGenes(hiv.getStrain("HIV2B")).toArray(), new Gene[] {
-				hiv.getGene("HIV2BPR"),
-				hiv.getGene("HIV2BRT"),
-				hiv.getGene("HIV2BIN")
+		assertArrayEquals(hiv2.getGenes(hiv2.getStrain("HIV2B")).toArray(), new Gene[] {
+				hiv2.getGene("HIV2BPR"),
+				hiv2.getGene("HIV2BRT"),
+				hiv2.getGene("HIV2BIN")
 			});
 
 		assertArrayEquals(hiv.getGenes(hiv.getStrain("HIV-1")).toArray(), new Gene[] {});
@@ -70,12 +72,12 @@ public class GeneTest {
 				hiv.getGene("HIV1RT").getDrugClasses().toArray()
 				);
 		assertArrayEquals(
-				new DrugClass[] {hiv.getDrugClass("NRTI")},
-				hiv.getGene("HIV2ART").getDrugClasses().toArray()
+				new DrugClass[] {hiv2.getDrugClass("NRTI")},
+				hiv2.getGene("HIV2ART").getDrugClasses().toArray()
 				);
 		assertArrayEquals(
-				new DrugClass[] {hiv.getDrugClass("NRTI")},
-				hiv.getGene("HIV2BRT").getDrugClasses().toArray()
+				new DrugClass[] {hiv2.getDrugClass("NRTI")},
+				hiv2.getGene("HIV2BRT").getDrugClasses().toArray()
 				);
 		assertArrayEquals(
 				new DrugClass[] {hiv.getDrugClass("INSTI")},
@@ -102,18 +104,18 @@ public class GeneTest {
 				hiv.getGene("HIV1RT").getMutationTypes().toArray());
 		assertArrayEquals(
 				new MutationType[] {
-					hiv.getMutationType("Major"),
-					hiv.getMutationType("Accessory"),
-					hiv.getMutationType("Other")
+					hiv2.getMutationType("Major"),
+					hiv2.getMutationType("Accessory"),
+					hiv2.getMutationType("Other")
 				},
-				hiv.getGene("HIV2ART").getMutationTypes().toArray());
+				hiv2.getGene("HIV2ART").getMutationTypes().toArray());
 		assertArrayEquals(
 				new MutationType[] {
-					hiv.getMutationType("Major"),
-					hiv.getMutationType("Accessory"),
-					hiv.getMutationType("Other")
+					hiv2.getMutationType("Major"),
+					hiv2.getMutationType("Accessory"),
+					hiv2.getMutationType("Other")
 				},
-				hiv.getGene("HIV2BRT").getMutationTypes().toArray()
+				hiv2.getGene("HIV2BRT").getMutationTypes().toArray()
 				);
 		assertArrayEquals(
 				new MutationType[] {
@@ -148,33 +150,33 @@ public class GeneTest {
 		assertEquals(297, hiv.getGene("HIV1PR").getNASize());
 		assertEquals(1680, hiv.getGene("HIV1RT").getNASize());
 		assertEquals(864, hiv.getGene("HIV1IN").getNASize());
-		assertEquals(297, hiv.getGene("HIV2APR").getNASize());
-		assertEquals(1677, hiv.getGene("HIV2ART").getNASize());
-		assertEquals(879, hiv.getGene("HIV2AIN").getNASize());
-		assertEquals(297, hiv.getGene("HIV2BPR").getNASize());
-		assertEquals(1677, hiv.getGene("HIV2BRT").getNASize());
-		assertEquals(888, hiv.getGene("HIV2BIN").getNASize());
+		assertEquals(297, hiv2.getGene("HIV2APR").getNASize());
+		assertEquals(1677, hiv2.getGene("HIV2ART").getNASize());
+		assertEquals(879, hiv2.getGene("HIV2AIN").getNASize());
+		assertEquals(297, hiv2.getGene("HIV2BPR").getNASize());
+		assertEquals(1677, hiv2.getGene("HIV2BRT").getNASize());
+		assertEquals(888, hiv2.getGene("HIV2BIN").getNASize());
 	}
 
 	@Test
 	public void testGetStrain() {
-		assertEquals(hiv.getGene("HIV2APR").getStrain(), hiv.getStrain("HIV2A"));
-        assertEquals(hiv.getGene("HIV2BRT").getStrain(), hiv.getStrain("HIV2B"));
-        assertEquals(hiv.getGene("HIV2BRT").getStrain(), hiv.getStrain("HIV2B"));
+		assertEquals(hiv2.getGene("HIV2APR").getStrain(), hiv2.getStrain("HIV2A"));
+        assertEquals(hiv2.getGene("HIV2BRT").getStrain(), hiv2.getStrain("HIV2B"));
+        assertEquals(hiv2.getGene("HIV2BRT").getStrain(), hiv2.getStrain("HIV2B"));
 	}
 
 	@Test
 	public void testGetAbstractGene() {
-		assertEquals("PR", hiv.getGene("HIV2APR").getAbstractGene());
-		assertEquals("RT", hiv.getGene("HIV2BRT").getAbstractGene());
+		assertEquals("PR", hiv2.getGene("HIV2APR").getAbstractGene());
+		assertEquals("RT", hiv2.getGene("HIV2BRT").getAbstractGene());
 		assertEquals("IN", hiv.getGene("HIV1IN").getAbstractGene());
 	}
 
     @Test
     public void testGetName() {
         assertEquals(hiv.getGene("HIV1RT").getName(), "HIV1RT");
-		assertEquals(hiv.getGene("HIV2ART").getName(), "HIV2ART");
-		assertEquals(hiv.getGene("HIV2BRT").getName(), "HIV2BRT");
+		assertEquals(hiv2.getGene("HIV2ART").getName(), "HIV2ART");
+		assertEquals(hiv2.getGene("HIV2BRT").getName(), "HIV2BRT");
     }
 
     @Test
@@ -189,35 +191,38 @@ public class GeneTest {
 			hiv.getGene("HIV1RT").applyCodonModifiersForAASeq(
                 "FEDCBA", 343, 348, hiv.getStrain("HIV1")));
 
-		assertEquals(
-			// RT346 Deletion
-			Strings.repeat(".", 342) + "FED.CBA" + Strings.repeat(".", 211),
-			hiv.getGene("HIV2ART").applyCodonModifiersForAASeq(
-				"FEDCBA", 343, 348, hiv.getStrain("HIV1")));
+		// TODO: codonModifiers no longer convert HIV-2 to HIV-1
+		// Instead, we can test HIV2BIN to HIV2AIN (296 -> 293) 
+		//
+		// assertEquals(
+		// 	// RT346 Deletion
+		// 	Strings.repeat(".", 342) + "FED.CBA" + Strings.repeat(".", 211),
+		// 	hiv.getGene("HIV2ART").applyCodonModifiersForAASeq(
+		// 		"FEDCBA", 343, 348, hiv.getStrain("HIV1")));
 
-		assertEquals(
-			// RT346 Deletion
-			Strings.repeat(".", 342) + "FED.CBA" + Strings.repeat(".", 211),
-			hiv.getGene("HIV2BRT").applyCodonModifiersForAASeq(
-                "FEDCBA", 343, 348, hiv.getStrain("HIV1")));
+		// assertEquals(
+		// 	// RT346 Deletion
+		// 	Strings.repeat(".", 342) + "FED.CBA" + Strings.repeat(".", 211),
+		// 	hiv.getGene("HIV2BRT").applyCodonModifiersForAASeq(
+        //         "FEDCBA", 343, 348, hiv.getStrain("HIV1")));
 
-		assertEquals(
-			// IN272 Insertion
-			Strings.repeat(".", 270) + "ABEF" + Strings.repeat(".", 14),
-			hiv.getGene("HIV2AIN").applyCodonModifiersForAASeq(
-                "ABCDEF", 271, 276, hiv.getStrain("HIV1")));
+		// assertEquals(
+		// 	// IN272 Insertion
+		// 	Strings.repeat(".", 270) + "ABEF" + Strings.repeat(".", 14),
+		// 	hiv.getGene("HIV2AIN").applyCodonModifiersForAASeq(
+        //         "ABCDEF", 271, 276, hiv.getStrain("HIV1")));
 
-		assertEquals(
-			// IN283 Insertion + IN272 two AAs shift
-			Strings.repeat(".", 278) + "ABCDEG....",
-			hiv.getGene("HIV2AIN").applyCodonModifiersForAASeq(
-                "ABCDEFG", 281, 287, hiv.getStrain("HIV1")));
+		// assertEquals(
+		// 	// IN283 Insertion + IN272 two AAs shift
+		// 	Strings.repeat(".", 278) + "ABCDEG....",
+		// 	hiv.getGene("HIV2AIN").applyCodonModifiersForAASeq(
+        //         "ABCDEFG", 281, 287, hiv.getStrain("HIV1")));
 
-		assertEquals(
-			// IN after 288 (IN272 + IN283 three AAs shift)
-			Strings.repeat(".", 283) + "ABCDE",
-			hiv.getGene("HIV2AIN").applyCodonModifiersForAASeq(
-                "ABCDEFG", 287, 293, hiv.getStrain("HIV1")));
+		// assertEquals(
+		// 	// IN after 288 (IN272 + IN283 three AAs shift)
+		// 	Strings.repeat(".", 283) + "ABCDE",
+		// 	hiv.getGene("HIV2AIN").applyCodonModifiersForAASeq(
+        //         "ABCDEFG", 287, 293, hiv.getStrain("HIV1")));
 
     }
 
@@ -257,6 +262,11 @@ public class GeneTest {
 			Strings.repeat("...", 342) + "FFFEEEDDDCCCBBBAAA" + Strings.repeat("...", 212),
 			hiv.getGene("HIV1RT").applyCodonModifiersForNASeq(
 				"FFFEEEDDDCCCBBBAAA", 343, 348, hiv.getStrain("HIV1")));
+		/*
+		 *  TODO: codonModifiers no longer convert HIV-2 to HIV-1
+		 *  Instead, we can test HIV2BIN to HIV2AIN (296 -> 293) 
+		 *
+		
 		assertEquals(
 			// RT346 Deletion
 			Strings.repeat("...", 342) + "FFFEEEDDD...CCCBBBAAA" + Strings.repeat("...", 211),
@@ -282,6 +292,7 @@ public class GeneTest {
 			Strings.repeat("...", 283) + "AAABBBCCCDDDEEE",
 			hiv.getGene("HIV2AIN").applyCodonModifiersForNASeq(
 				"AAABBBCCCDDDEEEFFFGGG", 287, 293, hiv.getStrain("HIV1")));
+		*/
 	}
 
     // Inherit from old Unittest
@@ -315,13 +326,11 @@ public class GeneTest {
 	public void testCompareTo() {
         assertSame(0, hiv.getGene("HIV1PR").compareTo(hiv.getGene("HIV1PR")));
         assertEquals(-1, hiv.getGene("HIV1PR").compareTo(hiv.getGene("HIV1RT")));
-        assertEquals(1,  hiv.getGene("HIV2AIN").compareTo(hiv.getGene("HIV2APR")));
-        assertEquals(-1, hiv.getGene("HIV1IN").compareTo(hiv.getGene("HIV2APR")));
-        assertEquals(-1, hiv.getGene("HIV1IN").compareTo(hiv.getGene("HIV2ART")));
-        assertEquals(-1, hiv.getGene("HIV1IN").compareTo(hiv.getGene("HIV2AIN")));
-        assertEquals(-1, hiv.getGene("HIV1IN").compareTo(hiv.getGene("HIV2BPR")));
-        assertEquals(-1, hiv.getGene("HIV1RT").compareTo(hiv.getGene("HIV2BPR")));
-        assertEquals(1,  hiv.getGene("HIV2ART").compareTo(hiv.getGene("HIV1PR")));
+        assertEquals(1,  hiv2.getGene("HIV2AIN").compareTo(hiv2.getGene("HIV2APR")));
+        assertEquals(-1, hiv2.getGene("HIV2AIN").compareTo(hiv2.getGene("HIV2BPR")));
+        assertEquals(-1, hiv2.getGene("HIV2AIN").compareTo(hiv2.getGene("HIV2BRT")));
+        assertEquals(-1, hiv2.getGene("HIV2AIN").compareTo(hiv2.getGene("HIV2BIN")));
+        assertEquals(1,  hiv2.getGene("HIV2BRT").compareTo(hiv2.getGene("HIV2APR")));
 	}
 
 	@Test(expected = NullPointerException.class)

@@ -23,6 +23,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import edu.stanford.hivdb.hivfacts.HIV;
+import edu.stanford.hivdb.hivfacts.hiv2.HIV2;
 import edu.stanford.hivdb.mutations.MutationSet;
 import edu.stanford.hivdb.sequences.AlignedGeneSeq;
 import edu.stanford.hivdb.sequences.AlignedSequence;
@@ -32,6 +33,7 @@ import edu.stanford.hivdb.sequences.Sequence;
 public class NucAminoAlignerTest {
 
 	private final static HIV hiv = HIV.getInstance();
+	private final static HIV2 hiv2 = HIV2.getInstance();
 
 	@Test
 	public void testSingleSequence() {
@@ -79,92 +81,96 @@ public class NucAminoAlignerTest {
 	@Test
 	public void testHIV2ASequence() {		
 		Sequence testSeq = Sequence.fromGenbank("Z48731");
-		AlignedSequence<HIV> alignedSeq = NucAminoAligner.getInstance(hiv).align(testSeq);
-		assertEquals(hiv.getStrain("HIV2A"), alignedSeq.getStrain());
+		AlignedSequence<HIV2> alignedSeq = NucAminoAligner.getInstance(hiv2).align(testSeq);
+		assertEquals(hiv2.getStrain("HIV2A"), alignedSeq.getStrain());
 		assertEquals("HIV-2 Group A (0.00%)", alignedSeq.getGenotypeText());
-		AlignedGeneSeq<HIV> seqPR = alignedSeq.getAlignedGeneSequence(hiv.getGene("HIV2APR"));
+		AlignedGeneSeq<HIV2> seqPR = alignedSeq.getAlignedGeneSequence(hiv2.getGene("HIV2APR"));
 		assertEquals(1, seqPR.getFirstAA());
 		assertEquals(2081 + 1, seqPR.getFirstNA());
 		assertEquals(99, seqPR.getLastAA());
 		assertEquals(2081 + 297, seqPR.getLastNA());
 		assertEquals(
 			MutationSet.parseString(
-				hiv.getGene("HIV2APR"),
+				hiv2.getGene("HIV2APR"),
 				"K7N, Y14H, N40S, N68G, K70R"),
 			seqPR.getMutations()
 		);
-		AlignedGeneSeq<HIV> seqRT = alignedSeq.getAlignedGeneSequence(hiv.getGene("HIV2ART"));
+		AlignedGeneSeq<HIV2> seqRT = alignedSeq.getAlignedGeneSequence(hiv2.getGene("HIV2ART"));
 		assertEquals(1, seqRT.getFirstAA());
 		assertEquals(2081 + 298, seqRT.getFirstNA());
 		assertEquals(559, seqRT.getLastAA());
 		assertEquals(2081 + 1974, seqRT.getLastNA());
 		assertEquals(
 			MutationSet.parseString(
-				hiv.getGene("HIV2ART"),
+				hiv2.getGene("HIV2ART"),
 				"V5I, K43R, K64R, P126Q, H162Y, K176Q, G211S, H228R, I251V, L270I, " +
 				"V293I, I308V, E334D, I341V, E344G, I347T, I364V, N403D, A425V, G430K, " +
 				"R460K, K462R, K467V, V492A, S505V, A506V, S507G, S514N, K515R"),
 			seqRT.getMutations()
 		);
-		assertEquals(seqRT.getAdjustedAlignedAAs().length(), 560);
-		AlignedGeneSeq<HIV> seqIN = alignedSeq.getAlignedGeneSequence(hiv.getGene("HIV2AIN"));
+		assertEquals(seqRT.getAdjustedAlignedAAs().length(), 559);
+		AlignedGeneSeq<HIV2> seqIN = alignedSeq.getAlignedGeneSequence(hiv2.getGene("HIV2AIN"));
 		assertEquals(1, seqIN.getFirstAA());
 		assertEquals(2081 + 1975, seqIN.getFirstNA());
 		assertEquals(293, seqIN.getLastAA());
 		assertEquals(2081 + 2853, seqIN.getLastNA());
 		assertEquals(
 			MutationSet.parseString(
-				hiv.getGene("HIV2AIN"),
+				hiv2.getGene("HIV2AIN"),
 				"I28L, N30Q, S39T, E57D, I72V, S93T, E167D, I172V, I180V, D222N, E246D, " +
 				"L250I, I260V, E276D, S281P, A286T, M292V"),
 			seqIN.getMutations()
 		);
-		assertEquals(seqIN.getAdjustedAlignedAAs().length(), 288);
+		assertEquals(seqIN.getAlignedAAs().length(), 293);
+		assertEquals(seqIN.getAdjustedAlignedAAs().length(), 293);
 	}
 
 	@Test
 	public void testHIV2BSequence() {
 		Sequence testSeq = Sequence.fromGenbank("L07625");
-		AlignedSequence<HIV> alignedSeq = NucAminoAligner.getInstance(hiv).align(testSeq);
-		assertEquals(hiv.getStrain("HIV2B"), alignedSeq.getStrain());
+		AlignedSequence<HIV2> alignedSeq = NucAminoAligner.getInstance(hiv2).align(testSeq);
+		assertEquals(hiv2.getStrain("HIV2B"), alignedSeq.getStrain());
 		assertEquals("HIV-2 Group B (0.00%)", alignedSeq.getGenotypeText());
-		AlignedGeneSeq<HIV> seqPR = alignedSeq.getAlignedGeneSequence(hiv.getGene("HIV2BPR"));
+		AlignedGeneSeq<HIV2> seqPR = alignedSeq.getAlignedGeneSequence(hiv2.getGene("HIV2BPR"));
 		assertEquals(1, seqPR.getFirstAA());
 		assertEquals(2618 + 1, seqPR.getFirstNA());
 		assertEquals(99, seqPR.getLastAA());
 		assertEquals(2618 + 297, seqPR.getLastNA());
 		assertEquals(
 			MutationSet.parseString(
-				hiv.getGene("HIV2BPR"),
+				hiv2.getGene("HIV2BPR"),
 				"K12R, T14C, S19P, N57K, N61D, V75I, S92T"),
 			seqPR.getMutations()
 		);
-		AlignedGeneSeq<HIV> seqRT = alignedSeq.getAlignedGeneSequence(hiv.getGene("HIV2BRT"));
+		AlignedGeneSeq<HIV2> seqRT = alignedSeq.getAlignedGeneSequence(hiv2.getGene("HIV2BRT"));
 		assertEquals(1, seqRT.getFirstAA());
 		assertEquals(2618 + 298, seqRT.getFirstNA());
 		assertEquals(559, seqRT.getLastAA());
 		assertEquals(2618 + 1974, seqRT.getLastNA());
 		assertEquals(
 			MutationSet.parseString(
-				hiv.getGene("HIV2BRT"),
+				hiv2.getGene("HIV2BRT"),
 				"R4K, Q11K, E15G, S58T, K66R, E86D, S102E, K104R, V118I, D123N, A134S, " +
 				"V135I, L145I, T163S, A165R, N176S, T179I, V189I, N211D, K238R, F303L, " +
 				"D345N, K346R, M387V, I422V, G435K, K447R, P467V, A507G, I516L, R518N, " +
 				"E519Q, K529A, K539R, I558V"),
 			seqRT.getMutations()
 		);
-		AlignedGeneSeq<HIV> seqIN = alignedSeq.getAlignedGeneSequence(hiv.getGene("HIV2BIN"));
+		assertEquals(seqRT.getAdjustedAlignedAAs().length(), 559);
+		AlignedGeneSeq<HIV2> seqIN = alignedSeq.getAlignedGeneSequence(hiv2.getGene("HIV2BIN"));
 		assertEquals(1, seqIN.getFirstAA());
 		assertEquals(2618 + 1975, seqIN.getFirstNA());
 		assertEquals(296, seqIN.getLastAA());
 		assertEquals(2618 + 2862, seqIN.getLastNA());
 		assertEquals(
 			MutationSet.parseString(
-				hiv.getGene("HIV2BIN"),
+				hiv2.getGene("HIV2BIN"),
 				"N17G, I28L, R34K, I50V, S56A, E146Q, T180A, I200L, L213F, T215A, R224Q, " +
 				"D240E, I250L, N270H, S280G, A281T, V283M, M287R, V292M, N296G"),
 			seqIN.getMutations()
 		);
+		assertEquals(seqIN.getAlignedAAs().length(), 296);
+		assertEquals(seqIN.getAdjustedAlignedAAs().length(), 293);
 	}
 
 	@Test

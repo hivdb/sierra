@@ -1,12 +1,12 @@
-Aligner/*.txt
+sierra-tests/*.txt
 WebApplications/*.txt
 WebApplications/*.json
 DrugResistance/*.txt
-DrugResistance/*.tsv
-DrugResistance/*.json
-DrugResistance/Results.xml
-DrugResistance/AlgComparisons
-DrugResistance/VersionComparisons
+sierra-tests/*.tsv
+sierra-tests/*.json
+sierra-tests/Results.xml
+sierra-tests/AlgComparisons
+sierra-tests/VersionComparisons
 
 OutputFiles/
 bin/

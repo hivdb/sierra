@@ -13,6 +13,7 @@ import org.junit.rules.ExpectedException;
 import com.google.common.collect.Sets;
 
 import edu.stanford.hivdb.hivfacts.HIV;
+import edu.stanford.hivdb.hivfacts.hiv2.HIV2;
 
 
 public class GenePositionTest {
@@ -22,6 +23,7 @@ public class GenePositionTest {
 	static final int TOTAL_POS = MAX_PR_POS + MAX_RT_POS + MAX_IN_POS;
 
 	static final HIV hiv = HIV.getInstance();
+	static final HIV2 hiv2 = HIV2.getInstance();
 
 	@Rule
 	public ExpectedException expectedEx = ExpectedException.none();
@@ -82,9 +84,9 @@ public class GenePositionTest {
     		);
     	assertEquals(660, gps1.size());
 
-    	Set<GenePosition<HIV>> gps2 = GenePosition.getGenePositionsBetween(
-    			new GenePosition<HIV>(hiv.getGene("HIV2APR"), 50),
-    			new GenePosition<HIV>(hiv.getGene("HIV2AIN"), 50)
+    	Set<GenePosition<HIV2>> gps2 = GenePosition.getGenePositionsBetween(
+    			new GenePosition<HIV2>(hiv2.getGene("HIV2APR"), 50),
+    			new GenePosition<HIV2>(hiv2.getGene("HIV2AIN"), 50)
     		);
     	assertEquals(659, gps2.size());
 
@@ -94,9 +96,9 @@ public class GenePositionTest {
     		);
     	assertEquals(46, gps3.size());
 
-    	Set<GenePosition<HIV>> gps4 = GenePosition.getGenePositionsBetween(
-    			new GenePosition<HIV>(hiv.getGene("HIV2BPR"), 50),
-    			new GenePosition<HIV>(hiv.getGene("HIV2BRT"), 50)
+    	Set<GenePosition<HIV2>> gps4 = GenePosition.getGenePositionsBetween(
+    			new GenePosition<HIV2>(hiv2.getGene("HIV2BPR"), 50),
+    			new GenePosition<HIV2>(hiv2.getGene("HIV2BRT"), 50)
     		);
     	assertEquals(100, gps4.size());
 
@@ -107,10 +109,10 @@ public class GenePositionTest {
 		assertEquals(1,   (int) new GenePosition<HIV>(hiv.getGene("HIV1PR"), 1).getPositionInStrain());
 		assertEquals(100, (int) new GenePosition<HIV>(hiv.getGene("HIV1RT"), 1).getPositionInStrain());
 		assertEquals(660, (int) new GenePosition<HIV>(hiv.getGene("HIV1IN"), 1).getPositionInStrain());
-		assertEquals(444, (int) new GenePosition<HIV>(hiv.getGene("HIV2ART"), 345).getPositionInStrain());
-		assertEquals(445, (int) new GenePosition<HIV>(hiv.getGene("HIV2ART"), 346).getPositionInStrain());
-		assertEquals(658, (int) new GenePosition<HIV>(hiv.getGene("HIV2ART"), 559).getPositionInStrain());
-		assertEquals(659, (int) new GenePosition<HIV>(hiv.getGene("HIV2AIN"), 1).getPositionInStrain());
+		assertEquals(444, (int) new GenePosition<HIV2>(hiv2.getGene("HIV2ART"), 345).getPositionInStrain());
+		assertEquals(445, (int) new GenePosition<HIV2>(hiv2.getGene("HIV2ART"), 346).getPositionInStrain());
+		assertEquals(658, (int) new GenePosition<HIV2>(hiv2.getGene("HIV2ART"), 559).getPositionInStrain());
+		assertEquals(659, (int) new GenePosition<HIV2>(hiv2.getGene("HIV2AIN"), 1).getPositionInStrain());
 	}
 
 	 @Test
@@ -118,8 +120,8 @@ public class GenePositionTest {
 	 	expectedEx.expect(IllegalArgumentException.class);
 	 	expectedEx.expectMessage("Virus strain of `start` and `end` positions must be the same.");
 	 	GenePosition.getGenePositionsBetween(
-	 		new GenePosition<HIV>(hiv.getGene("HIV1PR"), 50),
-	 		new GenePosition<HIV>(hiv.getGene("HIV2AIN"), 50)
+	 		new GenePosition<HIV2>(hiv2.getGene("HIV2BPR"), 50),
+	 		new GenePosition<HIV2>(hiv2.getGene("HIV2AIN"), 50)
 	 	);
 	}
 
