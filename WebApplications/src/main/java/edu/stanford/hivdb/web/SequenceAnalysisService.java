@@ -43,9 +43,9 @@ import edu.stanford.hivdb.utilities.Json;
 import edu.stanford.hivdb.utilities.FastaUtils;
 import edu.stanford.hivdb.viruses.Gene;
 import edu.stanford.hivdb.hivfacts.HIV;
-import edu.stanford.hivdb.hivfacts.extras.TabularSequenceSummary;
 import edu.stanford.hivdb.hivfacts.extras.XmlOutput;
 import edu.stanford.hivdb.reports.ResistanceSummaryTSV;
+import edu.stanford.hivdb.reports.SequenceSummaryTSV;
 import edu.stanford.hivdb.sequences.AlignedGeneSeq;
 import edu.stanford.hivdb.sequences.AlignedSequence;
 import edu.stanford.hivdb.sequences.NucAminoAligner;
@@ -123,7 +123,7 @@ public class SequenceAnalysisService {
 				.stream(sequences)
 				.map(this::getAlignedSeq)
 				.collect(Collectors.toList());
-			return new TabularSequenceSummary(overallResults).toString();
+			return SequenceSummaryTSV.getInstance(hiv).getReport(overallResults);
 		}
 
 		private String getAlgorithmComparisonTsv() {
@@ -179,7 +179,7 @@ public class SequenceAnalysisService {
 				.map(this::getDRs)
 				.collect(Collectors.toList());
 			DrugResistanceAlgorithm<HIV> algorithm = hiv.getDrugResistAlgorithm(drAlgorithm);
-			return ResistanceSummaryTSV.getInstance(hiv).makeReport(
+			return ResistanceSummaryTSV.getInstance(hiv).getReport(
 				alignedSequences, allResistanceResults, algorithm
 			).toString();
 		}

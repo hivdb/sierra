@@ -16,10 +16,9 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package edu.stanford.hivdb.alignment;
+package edu.stanford.hivdb.reports;
 
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,67 +28,65 @@ import org.junit.Test;
 import edu.stanford.hivdb.filetestutils.TestSequencesFiles;
 import edu.stanford.hivdb.filetestutils.TestSequencesFiles.TestSequencesProperties;
 import edu.stanford.hivdb.hivfacts.HIV;
-import edu.stanford.hivdb.hivfacts.extras.TabularSequenceSummary;
+import edu.stanford.hivdb.reports.SequenceSummaryTSV;
 import edu.stanford.hivdb.sequences.AlignedSequence;
 import edu.stanford.hivdb.sequences.NucAminoAligner;
 import edu.stanford.hivdb.sequences.Sequence;
-import edu.stanford.hivdb.utilities.MyFileUtils;
 import edu.stanford.hivdb.utilities.FastaUtils;
 
-public class TabularSequenceSummaryTest {
+public class SequenceSummaryTSVTest {
 	
 	private final static HIV hiv = HIV.getInstance();
 	
-	private static List<AlignedSequence<HIV>> allSequenceResults = new ArrayList<>();
-	private static String[] headerFields;
-	private static Map<String, Map<String, String>> tabularSequence = new HashMap<>();
 
 	@Test
 	public void test() {
 		final InputStream testSequenceInputStream =
 				TestSequencesFiles.getTestSequenceInputStream(TestSequencesProperties.VGI);
 		final List<Sequence> sequences = FastaUtils.readStream(testSequenceInputStream);
-		allSequenceResults = NucAminoAligner.getInstance(hiv).parallelAlign(sequences);
-		TabularSequenceSummary tabularSequenceSummary = new TabularSequenceSummary(allSequenceResults);
-		tabularSequence= tabularSequenceSummary.getTable();
-		headerFields = tabularSequenceSummary.getHeaderFields();
-		printOutTable();
+		final List<AlignedSequence<HIV>> allSequenceResults = NucAminoAligner.getInstance(hiv).parallelAlign(sequences);
+		SequenceSummaryTSV<HIV> seqSummaryTSV = SequenceSummaryTSV.getInstance(hiv);
+		printOutTable(
+			seqSummaryTSV.getHeaderFields(),
+			seqSummaryTSV.getReportRows(allSequenceResults)
+		);
 	}
 
 
-	private static void printOutTable() {
-		List<Integer> maxFieldSizes = new ArrayList<>();
-		for (int i=0; i<headerFields.length; i++) {
-			int maxFieldSize = headerFields[i].length();
-			for (String seqName : tabularSequence.keySet()) {
-				String dataItem = tabularSequence.get(seqName).get(headerFields[i]);
+	private static void printOutTable(
+		List<String> headerFields,
+		List<Map<String, String>> tabularSequence
+	) {
+		Map<String, Integer> maxFieldSizes = new HashMap<>();
+		for (String header : headerFields) {
+			int maxFieldSize = header.length();
+			for (Map<String, String> row : tabularSequence) {
+				String dataItem = row.getOrDefault(header, "NA");
 				if (dataItem.length() > maxFieldSize) {
 					maxFieldSize = dataItem.length();
 				}
 			}
-			maxFieldSizes.add(maxFieldSize+2);
+			maxFieldSizes.put(header, maxFieldSize + 2);
 		}
 
 		StringBuffer output = new StringBuffer();
-		String header = String.format("%25s", "Sequence Names");
-		for (int i=0; i<headerFields.length; i++) {
-			int maxFieldSize = maxFieldSizes.get(i);
-			header += String.format("%" + maxFieldSize + "s", headerFields[i]);
+		for (String header : headerFields) {
+			int maxFieldSize = maxFieldSizes.get(header);
+			output.append(String.format("%" + maxFieldSize + "s", header));
 		}
-		output.append(header + "\n");
+		output.append("\n");
 
-		for (String seqName : tabularSequence.keySet()) {
-			output.append(String.format("%25s", seqName));
-			for (int i=0; i<headerFields.length; i++) {
-				int maxFieldSize = maxFieldSizes.get(i);
-				String dataItem = tabularSequence.get(seqName).get(headerFields[i]);
+		for (Map<String, String> seqRow : tabularSequence) {
+			for (String header : headerFields) {
+				int maxFieldSize = maxFieldSizes.get(header);
+				String dataItem = seqRow.getOrDefault(header, "NA");
 				output.append(String.format("%" + maxFieldSize + "s", dataItem));
 			}
 			output.append("\n");
 		}
 		System.out.println(output.toString());
-		final String outputFile =  "TabularSequenceSummaryOutput.txt";
-		MyFileUtils.writeFile(outputFile, output.toString());
+		// final String outputFile =  "TabularSequenceSummaryOutput.txt";
+		// MyFileUtils.writeFile(outputFile, output.toString());
 	}
 
 }
