@@ -1,4 +1,4 @@
-package edu.stanford.hivdb.genotyper;
+package edu.stanford.hivdb.genotypes;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
