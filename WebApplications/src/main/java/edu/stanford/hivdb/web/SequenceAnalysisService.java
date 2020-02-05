@@ -58,11 +58,14 @@ import edu.stanford.hivdb.drugs.DrugResistanceAlgorithm;
 @Path("sequence-analysis")
 public class SequenceAnalysisService {
 
-	@FormParam("algorithms")
+	@FormParam("compareAlgorithms")
 	protected String algorithmsCSV;
 
-	@FormParam("customAlgorithms")
+	@FormParam("compareCustomAlgorithms")
 	protected String customAlgorithmsStr;
+	
+	@FormParam("drugResistanceAlgorithm")
+	protected String drAlgorithm;
 
 	private class SequenceAnalysisServiceOutput {
 		
@@ -108,7 +111,7 @@ public class SequenceAnalysisService {
 			if (!drsMap.containsKey(seq)) {
 				List<AlignedGeneSeq<HIV>> aligneds =
 					getAlignedSeq(seq).getAlignedGeneSequences();
-				DrugResistanceAlgorithm<HIV> alg = hiv.getLatestDrugResistAlgorithm("HIVDB");
+				DrugResistanceAlgorithm<HIV> alg = hiv.getDrugResistAlgorithm(drAlgorithm);
 				drsMap.put(
 					seq, GeneDRAsi.getResistanceByGeneFromAlignedGeneSeqs(aligneds, alg));
 			}
@@ -175,8 +178,10 @@ public class SequenceAnalysisService {
 				.stream(sequences)
 				.map(this::getDRs)
 				.collect(Collectors.toList());
+			DrugResistanceAlgorithm<HIV> algorithm = hiv.getDrugResistAlgorithm(drAlgorithm);
 			return new TabularResistanceSummary(
-				alignedSequences, allResistanceResults).toString();
+				alignedSequences, allResistanceResults, algorithm
+			).toString();
 		}
 
 		private String getDRXml() {
