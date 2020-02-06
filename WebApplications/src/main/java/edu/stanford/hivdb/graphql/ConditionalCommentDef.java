@@ -23,6 +23,7 @@ import static graphql.Scalars.*;
 import static graphql.schema.GraphQLObjectType.newObject;
 
 import edu.stanford.hivdb.comments.CommentType;
+import edu.stanford.hivdb.utilities.SimpleMemoizer;
 
 import static edu.stanford.hivdb.graphql.GeneDef.oGene;
 import static edu.stanford.hivdb.graphql.DrugClassDef.*;
@@ -42,63 +43,71 @@ public class ConditionalCommentDef {
 	public static GraphQLEnumType oCommentType = newCommentType()
 		.build();
 
-	public static GraphQLObjectType oBoundComment = newObject()
-		.name("BoundMutationComment")
-		.description("Comment bound to a certain mutation object.")
-		.field(field -> field
-			.type(GraphQLString)
-			.name("name")
-			.description("Unique name of the comment.")
+	public static SimpleMemoizer<GraphQLObjectType> oBoundComment = new SimpleMemoizer<>(
+		name -> (
+			newObject()
+			.name("BoundMutationComment")
+			.description("Comment bound to a certain mutation object.")
+			.field(field -> field
+				.type(GraphQLString)
+				.name("name")
+				.description("Unique name of the comment.")
+			)
+			.field(field -> field
+				.type(oGene.get(name))
+				.name("gene")
+				.description("Corresponding gene.")
+			)
+			.field(field -> field
+				.type(oDrugClass.get(name))
+				.name("drugClass")
+				.description("Corresponding drug class.")
+			)
+			.field(field -> field
+				.type(oCommentType)
+				.name("type")
+				.description("Mutation type of this comment.")
+			)
+			.field(field -> field
+				.type(GraphQLString)
+				.name("text")
+				.description("Comment text.")
+			)
+			.field(field -> field
+				.type(new GraphQLTypeReference("Mutation"))
+				.name("boundMutation")
+				.description("The mutation that bound to this comment.")
+			)
+			.field(field -> field
+				.type(new GraphQLList(GraphQLString))
+				.name("highlightText")
+				.description("Text should be highlighted in the comment.")
+			)
+			.build()
 		)
-		.field(field -> field
-			.type(oGene)
-			.name("gene")
-			.description("Corresponding gene.")
-		)
-		.field(field -> field
-			.type(oDrugClass)
-			.name("drugClass")
-			.description("Corresponding drug class.")
-		)
-		.field(field -> field
-			.type(oCommentType)
-			.name("type")
-			.description("Mutation type of this comment.")
-		)
-		.field(field -> field
-			.type(GraphQLString)
-			.name("text")
-			.description("Comment text.")
-		)
-		.field(field -> field
-			.type(new GraphQLTypeReference("Mutation"))
-			.name("boundMutation")
-			.description("The mutation that bound to this comment.")
-		)
-		.field(field -> field
-			.type(new GraphQLList(GraphQLString))
-			.name("highlightText")
-			.description("Text should be highlighted in the comment.")
-		)
-		.build();
+	);
 
-	public static GraphQLObjectType oCommentsByType = newObject()
-		.name("CommentsByType")
-		.field(field -> field
-			.type(oCommentType)
-			.name("mutationType")
-			.deprecate("Use `commentType` instead.")
-			.description("Type of these comments.")
+	public static SimpleMemoizer<GraphQLObjectType> oCommentsByType = new SimpleMemoizer<>(
+		name -> (
+			newObject()
+			.name("CommentsByType")
+			.field(field -> field
+				.type(oCommentType)
+				.name("mutationType")
+				.deprecate("Use `commentType` instead.")
+				.description("Type of these comments.")
+			)
+			.field(field -> field
+				.type(oCommentType)
+				.name("commentType")
+				.description("Type of these comments.")
+			)
+			.field(field -> field
+				.type(new GraphQLList(oBoundComment.get(name)))
+				.name("comments")
+				.description("Comments belong to this type.")
+			)
+			.build()
 		)
-		.field(field -> field
-			.type(oCommentType)
-			.name("commentType")
-			.description("Type of these comments.")
-		)
-		.field(field -> field
-			.type(new GraphQLList(oBoundComment))
-			.name("comments")
-			.description("Comments belong to this type.")
-		)
-		.build();
+	);
 }

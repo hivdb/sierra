@@ -23,43 +23,48 @@ import static graphql.Scalars.*;
 import static graphql.schema.GraphQLObjectType.newObject;
 
 import edu.stanford.hivdb.drugs.DrugClass;
-import edu.stanford.hivdb.hivfacts.HIV;
+import edu.stanford.hivdb.utilities.SimpleMemoizer;
+import edu.stanford.hivdb.viruses.Virus;
 
 
 public class DrugClassDef {
 
-	public static GraphQLEnumType oDrugClassEnum;
-
-	static {
-		HIV hiv = HIV.getInstance();
-		GraphQLEnumType.Builder
-			newDrugClassEnum = GraphQLEnumType.newEnum()
-			.name("DrugClassEnum");
-		for (DrugClass<HIV> drugClass : hiv.getDrugClasses()) {
-			String dcText = drugClass.toString();
-			newDrugClassEnum.value(dcText, dcText);
+	public static SimpleMemoizer<GraphQLEnumType> oDrugClassEnum = new SimpleMemoizer<>(
+		name -> {
+			Virus<?> virusIns = Virus.getInstance(name);
+			GraphQLEnumType.Builder
+				newDrugClassEnum = GraphQLEnumType.newEnum()
+				.name("DrugClassEnum");
+			for (DrugClass<?> drugClass : virusIns.getDrugClasses()) {
+				String dcText = drugClass.toString();
+				newDrugClassEnum.value(dcText, dcText);
+			}
+			return newDrugClassEnum.build();
 		}
-		oDrugClassEnum = newDrugClassEnum.build();
-	}
+	);
 
-	public static GraphQLObjectType oDrugClass = newObject()
-		.name("DrugClass")
-		.description("HIV drug class.")
-		.field(field -> field
-			.type(oDrugClassEnum)
-			.name("name")
-			.description("Name of the drug class."))
-		.field(field -> field
-			.type(GraphQLString)
-			.name("fullName")
-			.description("Full name of the drug class."))
-		.field(field -> field
-			.type(new GraphQLList(new GraphQLTypeReference("Drug")))
-			.name("drugs")
-			.description("Drugs of this drug class."))
-		.field(field -> field
-			.type(new GraphQLTypeReference("Gene"))
-			.name("gene")
-			.description("Gene the drug class belongs to."))
-		.build();
+	public static SimpleMemoizer<GraphQLObjectType> oDrugClass = new SimpleMemoizer<>(
+		name -> (
+			newObject()
+			.name("DrugClass")
+			.description("HIV drug class.")
+			.field(field -> field
+				.type(oDrugClassEnum.get(name))
+				.name("name")
+				.description("Name of the drug class."))
+			.field(field -> field
+				.type(GraphQLString)
+				.name("fullName")
+				.description("Full name of the drug class."))
+			.field(field -> field
+				.type(new GraphQLList(new GraphQLTypeReference("Drug")))
+				.name("drugs")
+				.description("Drugs of this drug class."))
+			.field(field -> field
+				.type(new GraphQLTypeReference("Gene"))
+				.name("gene")
+				.description("Gene the drug class belongs to."))
+			.build()
+		)
+	);
 }

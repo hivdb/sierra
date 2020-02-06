@@ -24,33 +24,33 @@ import static graphql.schema.GraphQLObjectType.newObject;
 import static graphql.schema.GraphQLCodeRegistry.newCodeRegistry;
 import static graphql.schema.FieldCoordinates.coordinates;
 
-import edu.stanford.hivdb.hivfacts.HIV;
 import edu.stanford.hivdb.mutations.Mutation;
 import edu.stanford.hivdb.mutations.MutationType;
+import edu.stanford.hivdb.utilities.SimpleMemoizer;
+import edu.stanford.hivdb.viruses.Virus;
 
 import static edu.stanford.hivdb.graphql.GeneDef.oGene;
 import static edu.stanford.hivdb.graphql.ConditionalCommentDef.oBoundComment;
 
 public class MutationDef {
 
-	private static GraphQLEnumType.Builder newMutationType() {
-		HIV hiv = HIV.getInstance();
-		GraphQLEnumType.Builder mutationTypeBuilder = GraphQLEnumType.newEnum()
-			.name("MutationType")
-			.description("Mutation type.");
-		for (MutationType<HIV> mutType : hiv.getMutationTypes()) {
-			mutationTypeBuilder.value(mutType.toString(), mutType);
-		}
-		return mutationTypeBuilder;
-	}
-
 	private static DataFetcher<String> mutConsDataFetcher = env -> {
-		Mutation<HIV> mutation = env.getSource();
+		Mutation<?> mutation = env.getSource();
 		return mutation.getReference();
 	};
 
-	public static GraphQLEnumType oMutationType = newMutationType()
-		.build();
+	public static SimpleMemoizer<GraphQLEnumType> oMutationType = new SimpleMemoizer<>(
+		name -> {
+			Virus<?> virusIns = Virus.getInstance(name);
+			GraphQLEnumType.Builder mutationTypeBuilder = GraphQLEnumType.newEnum()
+				.name("MutationType")
+				.description("Mutation type.");
+			for (MutationType<?> mutType : virusIns.getMutationTypes()) {
+				mutationTypeBuilder.value(mutType.toString(), mutType);
+			}
+			return mutationTypeBuilder.build();
+		}
+	);
 
 	public static GraphQLObjectType oAAPercent = newObject()
 		.name("AAPercent")
@@ -97,131 +97,135 @@ public class MutationDef {
 		)
 		.build();
 	
-	public static GraphQLObjectType oMutation = newObject()
-		.name("Mutation")
-		.field(field -> field
-			.type(oGene)
-			.name("gene")
-			.description("Mutation gene."))
-		.field(field -> field
-			.type(GraphQLString)
-			.name("reference")
-			.description(
-				"Amino acid reference at this gene sequence position."))
-		.field(field -> field
-			.type(GraphQLString)
-			.name("consensus")
-			.deprecate("Use field `reference` instead."))
-		.field(field -> field
-			.type(GraphQLInt)
-			.name("position")
-			.description("Position of the mutation."))
-		.field(field -> field
-			.type(GraphQLString)
-			.name("displayAAs")
-			.description(
-				"The mutated AA(s) with possibly inserted AA(s)."))
-		.field(field -> field
-			.type(GraphQLString)
-			.name("AAs")
-			.description(
-				"The mutated AA(s) with possibly inserted AA(s). Highly ambiguous mixture is not replaced to X."))
-		.field(field -> field
-			.type(new GraphQLList(GraphQLString))
-			.name("displayAAChars")
-			.description("A list of AAs."))
-		.field(field -> field
-			.type(new GraphQLList(GraphQLString))
-			.name("AAChars")
-			.description("A list of AAs. Highly ambiguous mixture is not replaced to X."))
-		.field(field -> field
-			.type(GraphQLString)
-			.name("triplet")
-			.description(
-				"The mutated codon when the mutation is extracting from " +
-				"an aligned sequence."))
-		.field(field -> field
-			.type(GraphQLString)
-			.name("insertedNAs")
-			.description(
-				"The inserted codon(s) when the mutation is extracting from " +
-				"an aligned sequence."))
-		.field(field -> field
-			.type(GraphQLBoolean)
-			.name("isInsertion")
-			.description("The mutation is an insertion or not."))
-		.field(field -> field
-			.type(GraphQLBoolean)
-			.name("isDeletion")
-			.description("The mutation is a deletion or not."))
-		.field(field -> field
-			.type(GraphQLBoolean)
-			.name("isIndel")
-			.description("The mutation is an insertion/deletion, or not."))
-		.field(field -> field
-			.type(GraphQLBoolean)
-			.name("isAmbiguous")
-			.description("The mutation is a highly ambiguous mutation or not."))
-		.field(field -> field
-			.type(GraphQLBoolean)
-			.name("isApobecMutation")
-			.description(
-				"The mutation is a signature APOBEC-mediated G-to-A " +
-				"hypermutation or not."))
-		.field(field -> field
-			.type(GraphQLBoolean)
-			.name("isApobecDRM")
-			.description(
-				"The mutation is a drug resistance mutation (DRM) might " +
-				"be caused by APOBEC-mediated G-to-A hypermutation or not."))
-		.field(field -> field
-			.type(GraphQLBoolean)
-			.name("isUnsequenced")
-			.description(
-				"If the mutation is from unsequenced region."))
-		.field(field -> field
-			.type(GraphQLBoolean)
-			.name("isDRM")
-			.description(
-				"If the mutation is a drug resistance mutation (DRM) or not."))
-		.field(field -> field
-			.type(GraphQLBoolean)
-			.name("hasStop")
-			.description(
-				"The mutation contains stop codon or not."))
-		.field(field -> field
-			.type(GraphQLBoolean)
-			.name("isUnusual")
-			.description(
-				"The mutation is a low prevalence (unusual) mutation or not."))
-		.field(field -> field
-			.type(GraphQLBoolean)
-			.name("isSDRM")
-			.description(
-				"The mutation is a Surveillance Drug Resistance Mutation (SDRM) or not."))
-		.field(field -> field
-			.type(new GraphQLList(oMutationType))
-			.name("types")
-			.description(
-				"Ordered list of mutation type(s). List size can be " +
-				"larger than 1 when the mutation is a mixture."))
-		.field(field -> field
-			.type(oMutationType)
-			.name("primaryType")
-			.description("Primary type of the mutation."))
-		.field(field -> field
-			.type(new GraphQLList(oBoundComment))
-			.name("comments")
-			.description("Mutation comments."))
-		.field(field -> field
-			.type(GraphQLString)
-			.name("text")
-			.description("Formatted text of the mutation (without gene)."))
-		.field(field -> field
-			.type(GraphQLString)
-			.name("shortText")
-			.description(
-				"Formatted short text of the mutation (without gene)."))
-		.build();
+	public static SimpleMemoizer<GraphQLObjectType> oMutation = new SimpleMemoizer<>(
+		name -> (
+			newObject()
+			.name("Mutation")
+			.field(field -> field
+				.type(oGene.get(name))
+				.name("gene")
+				.description("Mutation gene."))
+			.field(field -> field
+				.type(GraphQLString)
+				.name("reference")
+				.description(
+					"Amino acid reference at this gene sequence position."))
+			.field(field -> field
+				.type(GraphQLString)
+				.name("consensus")
+				.deprecate("Use field `reference` instead."))
+			.field(field -> field
+				.type(GraphQLInt)
+				.name("position")
+				.description("Position of the mutation."))
+			.field(field -> field
+				.type(GraphQLString)
+				.name("displayAAs")
+				.description(
+					"The mutated AA(s) with possibly inserted AA(s)."))
+			.field(field -> field
+				.type(GraphQLString)
+				.name("AAs")
+				.description(
+					"The mutated AA(s) with possibly inserted AA(s). Highly ambiguous mixture is not replaced to X."))
+			.field(field -> field
+				.type(new GraphQLList(GraphQLString))
+				.name("displayAAChars")
+				.description("A list of AAs."))
+			.field(field -> field
+				.type(new GraphQLList(GraphQLString))
+				.name("AAChars")
+				.description("A list of AAs. Highly ambiguous mixture is not replaced to X."))
+			.field(field -> field
+				.type(GraphQLString)
+				.name("triplet")
+				.description(
+					"The mutated codon when the mutation is extracting from " +
+					"an aligned sequence."))
+			.field(field -> field
+				.type(GraphQLString)
+				.name("insertedNAs")
+				.description(
+					"The inserted codon(s) when the mutation is extracting from " +
+					"an aligned sequence."))
+			.field(field -> field
+				.type(GraphQLBoolean)
+				.name("isInsertion")
+				.description("The mutation is an insertion or not."))
+			.field(field -> field
+				.type(GraphQLBoolean)
+				.name("isDeletion")
+				.description("The mutation is a deletion or not."))
+			.field(field -> field
+				.type(GraphQLBoolean)
+				.name("isIndel")
+				.description("The mutation is an insertion/deletion, or not."))
+			.field(field -> field
+				.type(GraphQLBoolean)
+				.name("isAmbiguous")
+				.description("The mutation is a highly ambiguous mutation or not."))
+			.field(field -> field
+				.type(GraphQLBoolean)
+				.name("isApobecMutation")
+				.description(
+					"The mutation is a signature APOBEC-mediated G-to-A " +
+					"hypermutation or not."))
+			.field(field -> field
+				.type(GraphQLBoolean)
+				.name("isApobecDRM")
+				.description(
+					"The mutation is a drug resistance mutation (DRM) might " +
+					"be caused by APOBEC-mediated G-to-A hypermutation or not."))
+			.field(field -> field
+				.type(GraphQLBoolean)
+				.name("isUnsequenced")
+				.description(
+					"If the mutation is from unsequenced region."))
+			.field(field -> field
+				.type(GraphQLBoolean)
+				.name("isDRM")
+				.description(
+					"If the mutation is a drug resistance mutation (DRM) or not."))
+			.field(field -> field
+				.type(GraphQLBoolean)
+				.name("hasStop")
+				.description(
+					"The mutation contains stop codon or not."))
+			.field(field -> field
+				.type(GraphQLBoolean)
+				.name("isUnusual")
+				.description(
+					"The mutation is a low prevalence (unusual) mutation or not."))
+			.field(field -> field
+				.type(GraphQLBoolean)
+				.name("isSDRM")
+				.description(
+					"The mutation is a Surveillance Drug Resistance Mutation (SDRM) or not."))
+			.field(field -> field
+				.type(new GraphQLList(oMutationType.get(name)))
+				.name("types")
+				.description(
+					"Ordered list of mutation type(s). List size can be " +
+					"larger than 1 when the mutation is a mixture."))
+			.field(field -> field
+				.type(oMutationType.get(name))
+				.name("primaryType")
+				.description("Primary type of the mutation."))
+			.field(field -> field
+				.type(new GraphQLList(oBoundComment.get(name)))
+				.name("comments")
+				.description("Mutation comments."))
+			.field(field -> field
+				.type(GraphQLString)
+				.name("text")
+				.description("Formatted text of the mutation (without gene)."))
+			.field(field -> field
+				.type(GraphQLString)
+				.name("shortText")
+				.description(
+					"Formatted short text of the mutation (without gene)."))
+			.build()
+		)
+	);
 
 }

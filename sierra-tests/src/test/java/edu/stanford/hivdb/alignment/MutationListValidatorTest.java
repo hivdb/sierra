@@ -55,10 +55,10 @@ public class MutationListValidatorTest {
 		}
 	}
 
-	private void assertValidationResult(AAMutation<HIV>[] mutations) {
+	/* private void assertValidationResult(AAMutation<HIV>[] mutations) {
 		assertValidationResult(
 			mutations, new ValidationLevel[] {}, new String[] {});
-	}
+	} */
 
 
 	@Test

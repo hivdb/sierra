@@ -24,25 +24,26 @@ import static graphql.schema.GraphQLObjectType.newObject;
 import static graphql.schema.GraphQLCodeRegistry.newCodeRegistry;
 import static graphql.schema.FieldCoordinates.coordinates;
 
-import edu.stanford.hivdb.hivfacts.HIV;
+import edu.stanford.hivdb.utilities.SimpleMemoizer;
 import edu.stanford.hivdb.viruses.Strain;
+import edu.stanford.hivdb.viruses.Virus;
 
 public class StrainDef {
 
-	public static GraphQLEnumType enumStrain;
-
-	static {
-		HIV hiv = HIV.getInstance();
-		GraphQLEnumType.Builder newEnumStrain =
-			GraphQLEnumType.newEnum().name("StrainEnum");
-		for (Strain<HIV> strain : hiv.getStrains()) {
-			newEnumStrain.value(strain.toString(), strain);
+	public static SimpleMemoizer<GraphQLEnumType> enumStrain = new SimpleMemoizer<>(
+		name -> {
+			Virus<?> virusIns = Virus.getInstance(name);
+			GraphQLEnumType.Builder newEnumStrain =
+				GraphQLEnumType.newEnum().name("StrainEnum");
+			for (Strain<?> strain : virusIns.getStrains()) {
+				newEnumStrain.value(strain.toString(), strain);
+			}
+			return newEnumStrain.build();
 		}
-		enumStrain = newEnumStrain.build();
-	}
+	);
 	
 	private static DataFetcher<String> strainDisplayDataFetcher = env -> {
-		Strain<HIV> strain = env.getSource();
+		Strain<?> strain = env.getSource();
 		return strain.getDisplayText();
 	};
 	

@@ -33,8 +33,9 @@ import static graphql.schema.GraphQLInputObjectType.newInputObject;
 import static graphql.schema.GraphQLInputObjectField.newInputObjectField;
 
 import edu.stanford.hivdb.drugs.DrugResistanceAlgorithm;
-import edu.stanford.hivdb.hivfacts.HIV;
 import edu.stanford.hivdb.mutations.MutationSet;
+import edu.stanford.hivdb.utilities.SimpleMemoizer;
+import edu.stanford.hivdb.viruses.Virus;
 import edu.stanford.hivdb.drugresistance.algorithm.AlgorithmComparison;
 
 import static edu.stanford.hivdb.graphql.DrugDef.oDrug;
@@ -44,19 +45,19 @@ import static edu.stanford.hivdb.graphql.DrugResistanceAlgorithmDef.oASIAlgorith
 
 public class AlgorithmComparisonDef {
 
-	protected static List<Map<String, Object>> fetchAlgorithmComparisonData(
-			MutationSet<HIV> allMuts,
+	protected static <VirusT extends Virus<VirusT>> List<Map<String, Object>> fetchAlgorithmComparisonData(
+			Virus<VirusT> virusIns,
+			MutationSet<VirusT> allMuts,
 			Collection<String> algorithmNames,
 			Map<String, String> customAlgorithms) {
-		HIV hiv = HIV.getInstance();
-		Collection<DrugResistanceAlgorithm<HIV>> algorithms = hiv.getDrugResistAlgorithms(algorithmNames); 
+		Collection<DrugResistanceAlgorithm<VirusT>> algorithms = virusIns.getDrugResistAlgorithms(algorithmNames); 
 		customAlgorithms.entrySet().stream().forEach(e -> {
 			algorithms.add(new DrugResistanceAlgorithm<>(
 				/* name =        */ e.getKey(),
-				/* strain =      */ hiv.getStrain("HIV1"),
+				/* strain =      */ virusIns.getMainStrain(),
 				/* xmlText =     */ e.getValue()));
 		});
-		AlgorithmComparison<HIV> algCmp = new AlgorithmComparison<>(allMuts, algorithms);
+		AlgorithmComparison<VirusT> algCmp = new AlgorithmComparison<>(allMuts, algorithms);
 		return algCmp.getComparisonResults()
 			.stream()
 			.collect(Collectors.groupingBy(cds -> cds.getDrug().getDrugClass()))
@@ -86,11 +87,15 @@ public class AlgorithmComparisonDef {
 			.build())
 		.build();
 
-	public static GraphQLArgument aASIAlgorithmArgument = newArgument()
-		.name("algorithms")
-		.description("One or more of the built-in ASI algorithms.")
-		.type(new GraphQLList(oASIAlgorithm))
-		.build();
+	public static SimpleMemoizer<GraphQLArgument> aASIAlgorithmArgument = new SimpleMemoizer<>(
+		name -> (
+			newArgument()
+			.name("algorithms")
+			.description("One or more of the built-in ASI algorithms.")
+			.type(new GraphQLList(oASIAlgorithm.get(name)))
+			.build()
+		)
+	);
 
 	public static GraphQLArgument aASICustomAlgorithmArgument = newArgument()
 		.name("customAlgorithms")
@@ -98,41 +103,49 @@ public class AlgorithmComparisonDef {
 		.type(new GraphQLList(iASICustomAlgorithm))
 		.build();
 
-	public static GraphQLObjectType oComparableDrugScore = newObject()
-		.name("ComparableDrugScore")
-		.field(field -> field
-			.name("drug")
-			.type(oDrug)
-			.description("Drug of this score."))
-		.field(field -> field
-			.name("algorithm")
-			.type(GraphQLString)
-			.description("The name of algorithm which calculated this score."))
-		.field(field -> field
-			// TODO: verify if field -> field works here
-			.name("SIR")
-			.type(oSIR)
-			.description(
-				"One of the three step resistance levels of the drug."))
-		.field(field -> field
-			.type(GraphQLString)
-			.name("interpretation")
-			.description(
-				"Readable resistance level defined by the algorithm for the drug."))
-		.field(field -> field
-			.type(GraphQLString)
-			.name("explanation")
-			.description(
-				"Text explanation on how this level get calculated."))
-		.build();
+	public static SimpleMemoizer<GraphQLObjectType> oComparableDrugScore = new SimpleMemoizer<>(
+		name -> (
+			newObject()
+			.name("ComparableDrugScore")
+			.field(field -> field
+				.name("drug")
+				.type(oDrug.get(name))
+				.description("Drug of this score."))
+			.field(field -> field
+				.name("algorithm")
+				.type(GraphQLString)
+				.description("The name of algorithm which calculated this score."))
+			.field(field -> field
+				// TODO: verify if field -> field works here
+				.name("SIR")
+				.type(oSIR)
+				.description(
+					"One of the three step resistance levels of the drug."))
+			.field(field -> field
+				.type(GraphQLString)
+				.name("interpretation")
+				.description(
+					"Readable resistance level defined by the algorithm for the drug."))
+			.field(field -> field
+				.type(GraphQLString)
+				.name("explanation")
+				.description(
+					"Text explanation on how this level get calculated."))
+			.build()
+		)
+	);
 
-	public static GraphQLObjectType oAlgorithmComparison = newObject()
-		.name("AlgorithmComparison")
-		.field(field -> field
-			.name("drugClass")
-			.type(oDrugClass))
-		.field(field -> field
-			.name("drugScores")
-			.type(new GraphQLList(oComparableDrugScore)))
-		.build();
+	public static SimpleMemoizer<GraphQLObjectType> oAlgorithmComparison = new SimpleMemoizer<>(
+		name -> (
+			newObject()
+			.name("AlgorithmComparison")
+			.field(field -> field
+				.name("drugClass")
+				.type(oDrugClass.get(name)))
+			.field(field -> field
+				.name("drugScores")
+				.type(new GraphQLList(oComparableDrugScore.get(name))))
+			.build()
+		)
+	);
 }

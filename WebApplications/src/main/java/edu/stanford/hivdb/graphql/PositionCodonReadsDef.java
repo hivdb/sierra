@@ -33,16 +33,17 @@ import java.util.function.UnaryOperator;
 import java.util.stream.Collectors;
 
 import edu.stanford.hivdb.viruses.Strain;
-import edu.stanford.hivdb.hivfacts.HIV;
+import edu.stanford.hivdb.viruses.Virus;
 import edu.stanford.hivdb.mutations.CodonReads;
 import edu.stanford.hivdb.mutations.PositionCodonReads;
+import edu.stanford.hivdb.utilities.SimpleMemoizer;
 
 import static edu.stanford.hivdb.graphql.GeneDef.oGene;
 import static edu.stanford.hivdb.graphql.GeneDef.enumGene;
 
 public class PositionCodonReadsDef {
 
-	public static PositionCodonReads<HIV> toPositionCodonReads(Strain<HIV> strain, Map<?, ?> input) {
+	public static <VirusT extends Virus<VirusT>> PositionCodonReads<VirusT> toPositionCodonReads(Strain<VirusT> strain, Map<?, ?> input) {
 		Map<String, Long> allCodonReads = (
 			((List<?>) input.get("allCodonReads"))
 			.stream()
@@ -80,7 +81,7 @@ public class PositionCodonReadsDef {
 		.build();
 	
 	private static DataFetcher<Double> aaPercentDataFetcher = env -> {
-		CodonReads<HIV> cr = env.getSource();
+		CodonReads<?> cr = env.getSource();
 		return cr.getAAPercent();
 	};
 	
@@ -167,69 +168,82 @@ public class PositionCodonReadsDef {
 			.description("Exclude codons with proportions lower than specified value (0 - 1).")
 		);
 	
-	public static GraphQLInputObjectType iPositionCodonReads = newInputObject()
-		.name("PositionCodonReadsInput")
-		.description("Codon reads at a single position.")
-		.field(field -> field
-			.type(enumGene)
-			.name("gene")
-			.description("Gene of this position."))
-		.field(field -> field
-			.type(GraphQLInt)
-			.name("position")
-			.description("Codon/amino acid position."))
-		.field(field -> field
-			.type(GraphQLLong)
-			.name("totalReads")
-			.description(
-				"Total reads at this position. The field will be automatically " +
-				"calculated from `allCodonReads` if it's absent.")
-			.defaultValue((long) -1))
-		.field(field -> field
-			.type(new GraphQLList(iOneCodonReads))
-			.name("allCodonReads")
-			.description("All codon reads at this position."))
-		.build();
+	public static SimpleMemoizer<GraphQLInputObjectType> iPositionCodonReads = new SimpleMemoizer<>(
+		name -> (
+			newInputObject()
+			.name("PositionCodonReadsInput")
+			.description("Codon reads at a single position.")
+			.field(field -> field
+				.type(enumGene.get(name))
+				.name("gene")
+				.description("Gene of this position."))
+			.field(field -> field
+				.type(GraphQLInt)
+				.name("position")
+				.description("Codon/amino acid position."))
+			.field(field -> field
+				.type(GraphQLLong)
+				.name("totalReads")
+				.description(
+					"Total reads at this position. The field will be automatically " +
+					"calculated from `allCodonReads` if it's absent.")
+				.defaultValue((long) -1))
+			.field(field -> field
+				.type(new GraphQLList(iOneCodonReads))
+				.name("allCodonReads")
+				.description("All codon reads at this position."))
+			.build()
+		)
+	);
 	
-	private static DataFetcher<List<CodonReads<HIV>>> oneCodonReadsDataFetcher = env -> {
-		PositionCodonReads<HIV> pcr = env.getSource();
-		return pcr.getCodonReads(
-			(Boolean) env.getArgument("mutationOnly"),
-			(double) env.getArgument("maxProportion"),
-			(double) env.getArgument("minProportion")
-		);
+	private static <VirusT extends Virus<VirusT>> DataFetcher<List<CodonReads<VirusT>>> makeOneCodonReadsDataFetcher(VirusT virusIns) {
+		return env -> {
+			PositionCodonReads<VirusT> pcr = env.getSource();
+			return pcr.getCodonReads(
+				(Boolean) env.getArgument("mutationOnly"),
+				(double) env.getArgument("maxProportion"),
+				(double) env.getArgument("minProportion")
+			);
+		};
 	};
 	
-	public static GraphQLCodeRegistry positionCodonCodeRegistry = newCodeRegistry()
-		.dataFetcher(
-			coordinates("PositionCodonReads", "codonReads"),
-			oneCodonReadsDataFetcher
+	public static <VirusT extends Virus<VirusT>> GraphQLCodeRegistry makePositionCodonCodeRegistry(VirusT virusIns) {
+		return (
+			newCodeRegistry()
+			.dataFetcher(
+				coordinates("PositionCodonReads", "codonReads"),
+				makeOneCodonReadsDataFetcher(virusIns)
+			)
+			.dataFetchers(oneCodonReadsCodeRegistry)
+			.build()
+		);
+	}
+
+	public static SimpleMemoizer<GraphQLObjectType> oPositionCodonReads = new SimpleMemoizer<>(
+		name -> (
+			newObject()
+			.name("PositionCodonReads")
+			.description("Codon reads at a single position.")
+			.field(field -> field
+				.type(oGene.get(name))
+				.name("gene")
+				.description("Gene of this position."))
+			.field(field -> field
+				.type(GraphQLInt)
+				.name("position")
+				.description("Codon/amino acid position."))
+			.field(field -> field
+				.type(GraphQLLong)
+				.name("totalReads")
+				.description(
+					"Total reads at this position. The field will be automatically " +
+					"calculated from `allCodonReads` if it's absent."))
+			.field(field -> codonReadsArgs.apply(field)
+				.type(new GraphQLList(oOneCodonReads))
+				.name("codonReads")
+				.description("All codon reads at this position."))
+			.build()
 		)
-		.dataFetchers(oneCodonReadsCodeRegistry)
-		.build();
-
-	public static GraphQLObjectType oPositionCodonReads = newObject()
-		.name("PositionCodonReads")
-		.description("Codon reads at a single position.")
-		.field(field -> field
-			.type(oGene)
-			.name("gene")
-			.description("Gene of this position."))
-		.field(field -> field
-			.type(GraphQLInt)
-			.name("position")
-			.description("Codon/amino acid position."))
-		.field(field -> field
-			.type(GraphQLLong)
-			.name("totalReads")
-			.description(
-				"Total reads at this position. The field will be automatically " +
-				"calculated from `allCodonReads` if it's absent."))
-		.field(field -> codonReadsArgs.apply(field)
-			.type(new GraphQLList(oOneCodonReads))
-			.name("codonReads")
-			.description("All codon reads at this position."))
-		.build();
-
+	);
 
 }

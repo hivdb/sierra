@@ -21,41 +21,48 @@ package edu.stanford.hivdb.graphql;
 import graphql.schema.*;
 import static graphql.Scalars.*;
 import static graphql.schema.GraphQLObjectType.newObject;
+
+import edu.stanford.hivdb.utilities.SimpleMemoizer;
+
 import static edu.stanford.hivdb.graphql.GeneDef.*;
 
 public class FrameShiftDef {
 
-	public static GraphQLObjectType oFrameShift = newObject()
-		.name("FrameShift")
-		.description("Frame shift (NAs length < 3) found in aligned sequence.")
-		.field(field -> field
-			.type(oGene)
-			.name("gene")
-			.description("Gene the frame shift belongs to."))
-		.field(field -> field
-			.type(GraphQLInt)
-			.name("position")
-			.description("Position of the frame shift."))
-		.field(field -> field
-			.type(GraphQLBoolean)
-			.name("isInsertion")
-			.description("The frame shift is an insertion or not."))
-		.field(field -> field
-			.type(GraphQLBoolean)
-			.name("isDeletion")
-			.description("The frame shift is a deletion or not."))
-		.field(field -> field
-			.type(GraphQLInt)
-			.name("size")
-			.description("DNA size of the frame shift."))
-		.field(field -> field
-			.type(GraphQLString)
-			.name("NAs")
-			.description("Nucleic acid(s) of the frame shift."))
-		.field(field -> field
-			.type(GraphQLString)
-			.name("text")
-			.description("Formatted readable text of this frame shift."))
-		.build();
+	public static SimpleMemoizer<GraphQLObjectType> oFrameShift = new SimpleMemoizer<>(
+		name -> (
+			newObject()
+			.name("FrameShift")
+			.description("Frame shift (NAs length < 3) found in aligned sequence.")
+			.field(field -> field
+				.type(oGene.get(name))
+				.name("gene")
+				.description("Gene the frame shift belongs to."))
+			.field(field -> field
+				.type(GraphQLInt)
+				.name("position")
+				.description("Position of the frame shift."))
+			.field(field -> field
+				.type(GraphQLBoolean)
+				.name("isInsertion")
+				.description("The frame shift is an insertion or not."))
+			.field(field -> field
+				.type(GraphQLBoolean)
+				.name("isDeletion")
+				.description("The frame shift is a deletion or not."))
+			.field(field -> field
+				.type(GraphQLInt)
+				.name("size")
+				.description("DNA size of the frame shift."))
+			.field(field -> field
+				.type(GraphQLString)
+				.name("NAs")
+				.description("Nucleic acid(s) of the frame shift."))
+			.field(field -> field
+				.type(GraphQLString)
+				.name("text")
+				.description("Formatted readable text of this frame shift."))
+			.build()
+		)
+	);
 
 }

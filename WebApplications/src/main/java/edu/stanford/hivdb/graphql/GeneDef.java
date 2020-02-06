@@ -24,24 +24,25 @@ import static graphql.schema.GraphQLObjectType.newObject;
 import static graphql.schema.GraphQLCodeRegistry.newCodeRegistry;
 import static graphql.schema.FieldCoordinates.coordinates;
 
-import edu.stanford.hivdb.hivfacts.HIV;
+import edu.stanford.hivdb.utilities.SimpleMemoizer;
+import edu.stanford.hivdb.viruses.Virus;
 
 import static edu.stanford.hivdb.graphql.StrainDef.*;
 import static edu.stanford.hivdb.graphql.ExtGraphQL.*;
 
 public class GeneDef {
 
-	public static GraphQLEnumType enumGene;
-
-	static {
-		HIV hiv = HIV.getInstance();
-		GraphQLEnumType.Builder newEnumGene =
-			GraphQLEnumType.newEnum().name("EnumGene");
-		for (String gene : hiv.getAbstractGenes()) {
-			newEnumGene.value(gene, gene);
+	public static SimpleMemoizer<GraphQLEnumType> enumGene = new SimpleMemoizer<>(
+		name -> {
+			Virus<?> virusIns = Virus.getInstance(name);
+			GraphQLEnumType.Builder newEnumGene =
+				GraphQLEnumType.newEnum().name("EnumGene");
+			for (String gene : virusIns.getAbstractGenes()) {
+				newEnumGene.value(gene, gene);
+			}
+			return newEnumGene.build();
 		}
-		enumGene = newEnumGene.build();
-	}
+	);
 	
 	public static GraphQLCodeRegistry geneCodeRegistry = newCodeRegistry()
 		.dataFetcher(
@@ -62,7 +63,9 @@ public class GeneDef {
 		)
 		.build();
 		
-	public static GraphQLObjectType oGene = newObject()
+	public static SimpleMemoizer<GraphQLObjectType> oGene = new SimpleMemoizer<>(
+		name -> (
+			newObject()
 			.name("Gene")
 			.description("HIV genes. Accept PR, RT or IN.")
 			.field(field -> field
@@ -70,7 +73,7 @@ public class GeneDef {
 				.name("nameWithStrain")
 				.description("Name of the gene (with strain name)."))
 			.field(field -> field
-				.type(enumGene)
+				.type(enumGene.get(name))
 				.name("name")
 				.description("Name of the gene (without strain name)."))
 			.field(field -> field
@@ -101,6 +104,8 @@ public class GeneDef {
 				.type(new GraphQLList(new GraphQLTypeReference("MutationType")))
 				.name("mutationTypes")
 				.description("Supported mutation types of current gene."))
-			.build();
+			.build()
+		)
+	);
 
 }

@@ -23,24 +23,27 @@ import static graphql.Scalars.*;
 import static graphql.schema.GraphQLObjectType.newObject;
 
 import edu.stanford.hivdb.drugs.DrugResistanceAlgorithm;
-import edu.stanford.hivdb.hivfacts.HIV;
+import edu.stanford.hivdb.utilities.SimpleMemoizer;
+import edu.stanford.hivdb.viruses.Virus;
+
 import static edu.stanford.hivdb.graphql.StrainDef.oStrain;
 
 public class DrugResistanceAlgorithmDef {
 
 
-	private static GraphQLEnumType newASIAlgorithmEnum() {
-		GraphQLEnumType.Builder builder = GraphQLEnumType.newEnum()
-			.name("ASIAlgorithm")
-			.description("ASI algorithm.");
-		HIV hiv = HIV.getInstance();
-		for (DrugResistanceAlgorithm<HIV> alg : hiv.getDrugResistAlgorithms(hiv.getStrain("HIV1"))) {
-			builder.value(alg.getEnumCompatName(), alg.getName());
+	public static SimpleMemoizer<GraphQLEnumType> oASIAlgorithm = new SimpleMemoizer<>(
+		name -> {
+			GraphQLEnumType.Builder builder = GraphQLEnumType.newEnum()
+				.name("ASIAlgorithm")
+				.description("ASI algorithm.");
+			Virus<?> virusIns = Virus.getInstance(name);
+			for (DrugResistanceAlgorithm<?> alg : virusIns.getDrugResistAlgorithms()) {
+				builder.value(alg.getEnumCompatName(), alg.getName());
+			}
+			return builder.build();
+		
 		}
-		return builder.build();
-	}
-
-	public static GraphQLEnumType oASIAlgorithm = newASIAlgorithmEnum();
+	);
 
 	public static GraphQLObjectType oDrugResistanceAlgorithm = newObject()
 		.name("DrugResistanceAlgorithm")
@@ -71,10 +74,11 @@ public class DrugResistanceAlgorithmDef {
 			.description("Publish date of this version."))
 		.build();
 
-	public static DataFetcher<DrugResistanceAlgorithm<HIV>> currentHIVDBVersionFetcher = env -> {
-		HIV hiv = HIV.getInstance();
-		DrugResistanceAlgorithm<HIV> latestAlg = hiv.getLatestDrugResistAlgorithm("HIVDB");
-		return latestAlg;
+	public static <VirusT extends Virus<VirusT>> DataFetcher<DrugResistanceAlgorithm<VirusT>> makeCurrentHIVDBVersionFetcher(VirusT virusIns) {
+		return env -> {
+			DrugResistanceAlgorithm<VirusT> latestAlg = virusIns.getLatestDrugResistAlgorithm("HIVDB");
+			return latestAlg;
+		};
 	};
 
 }

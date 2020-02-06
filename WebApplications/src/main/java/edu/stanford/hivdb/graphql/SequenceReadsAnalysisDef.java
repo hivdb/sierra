@@ -37,13 +37,14 @@ import edu.stanford.hivdb.drugresistance.GeneDRAsi;
 import edu.stanford.hivdb.drugs.DrugResistanceAlgorithm;
 import edu.stanford.hivdb.genotypes.BoundGenotype;
 import edu.stanford.hivdb.genotypes.GenotypeResult;
-import edu.stanford.hivdb.hivfacts.HIV;
 import edu.stanford.hivdb.mutations.PositionCodonReads;
 import edu.stanford.hivdb.seqreads.GeneSequenceReads;
 import edu.stanford.hivdb.seqreads.OneCodonReadsCoverage;
 import edu.stanford.hivdb.seqreads.SequenceReads;
 import edu.stanford.hivdb.utilities.Json;
+import edu.stanford.hivdb.utilities.SimpleMemoizer;
 import edu.stanford.hivdb.viruses.Strain;
+import edu.stanford.hivdb.viruses.Virus;
 
 import static edu.stanford.hivdb.graphql.MutationSetDef.*;
 import static edu.stanford.hivdb.graphql.GeneDef.*;
@@ -59,34 +60,36 @@ import static edu.stanford.hivdb.graphql.DescriptiveStatisticsDef.*;
 
 public class SequenceReadsAnalysisDef {
 	
-	private static HIV hiv = HIV.getInstance();
-
-	private static DataFetcher<List<BoundGenotype<HIV>>> subtypesDataFetcher = env -> {
-		int first = env.getArgument("first");
-		SequenceReads<HIV> seqReads = env.getSource();
-		GenotypeResult<HIV> subtypeResult = seqReads.getSubtypeResult();
-		if (subtypeResult == null) {
-			return Collections.emptyList();
-		}
-		return subtypeResult.getAllMatches().subList(0, first);
+	private static <VirusT extends Virus<VirusT>> DataFetcher<List<BoundGenotype<VirusT>>> makeSubtypesDataFetcher(VirusT virusIns) {
+		return env -> {
+			int first = env.getArgument("first");
+			SequenceReads<VirusT> seqReads = env.getSource();
+			GenotypeResult<VirusT> subtypeResult = seqReads.getSubtypeResult();
+			if (subtypeResult == null) {
+				return Collections.emptyList();
+			}
+			return subtypeResult.getAllMatches().subList(0, first);
+		};
 	};
 
-	private static DataFetcher<List<GeneDR<HIV>>> drugResistanceDataFetcher = env -> {
-		SequenceReads<HIV> seqReads = env.getSource();
-		String algName = env.getArgument("algorithm");
-		DrugResistanceAlgorithm<HIV> alg = hiv.getDrugResistAlgorithm(algName);
-		List<GeneSequenceReads<HIV>> allGeneSeqReads = seqReads.getAllGeneSequenceReads();
-		return new ArrayList<>(GeneDRAsi.getResistanceByGeneFromReads(allGeneSeqReads, alg).values());
+	private static <VirusT extends Virus<VirusT>> DataFetcher<List<GeneDR<VirusT>>> makeDrugResistanceDataFetcher(VirusT virusIns) {
+		return env -> {
+			SequenceReads<VirusT> seqReads = env.getSource();
+			String algName = env.getArgument("algorithm");
+			DrugResistanceAlgorithm<VirusT> alg = virusIns.getDrugResistAlgorithm(algName);
+			List<GeneSequenceReads<VirusT>> allGeneSeqReads = seqReads.getAllGeneSequenceReads();
+			return new ArrayList<>(GeneDRAsi.getResistanceByGeneFromReads(allGeneSeqReads, alg).values());
+		};
 	};
 	
-	public static SequenceReads<HIV> toSequenceReadsList(Map<String, Object> input) {
+	public static <VirusT extends Virus<VirusT>> SequenceReads<VirusT> toSequenceReadsList(Map<String, Object> input) {
 		String name = (String) input.get("name");
 		if (name == null) {
 			throw new GraphQLException("`name` is a required field but doesn't have value");
 		}
 		@SuppressWarnings("unchecked")
-		Strain<HIV> strain = (Strain<HIV>) input.get("strain");
-		List<PositionCodonReads<HIV>> allReads = (
+		Strain<VirusT> strain = (Strain<VirusT>) input.get("strain");
+		List<PositionCodonReads<VirusT>> allReads = (
 			((List<?>) input.get("allReads"))
 			.stream()
 			.map(pcr -> toPositionCodonReads(strain, (Map<?, ?>) pcr))
@@ -106,40 +109,44 @@ public class SequenceReadsAnalysisDef {
 			(Long) input.get("minReadDepth"));
 	}
 
-	public static GraphQLInputType iSequenceReads = newInputObject()
-		.name("SequenceReadsInput")
-		.field(field -> field
-			.type(GraphQLString)
-			.name("name")
-			.description("An identifiable name for identifying the result from the returning list."))
-		.field(field -> field
-			.type(enumStrain)
-			.name("strain")
-			.description("Strain of this sequence, choice: HIV1, HIV2A, HIV2B."))
-		.field(field -> field
-			.type(new GraphQLList(iPositionCodonReads))
-			.name("allReads")
-			.description("List of all reads belong to this sequence."))
-		.field(field -> field
-			.type(GraphQLFloat)
-			.name("minPrevalence")
-			.defaultValue(-1.0d)
-			.description(
-				"The minimal prevalence cutoff to apply on each codon. " +
-				"Leave this field empty or specify a negative number to " +
-				"use the dynamic cutoff based on sequencing quality."))
-		.field(field -> field
-			.type(GraphQLLong)
-			.name("minReadDepth")
-			.defaultValue(1000L)
-			.description(
-				"The minal read depth for each codon. Default to 1000 " +
-				"if this field was left empty or had a negative number" +
-				"specified."))
-		.build();
+	public static SimpleMemoizer<GraphQLInputType> iSequenceReads = new SimpleMemoizer<>(
+		name -> (
+			newInputObject()
+			.name("SequenceReadsInput")
+			.field(field -> field
+				.type(GraphQLString)
+				.name("name")
+				.description("An identifiable name for identifying the result from the returning list."))
+			.field(field -> field
+				.type(enumStrain.get(name))
+				.name("strain")
+				.description("Strain of this sequence, choice: HIV1, HIV2A, HIV2B."))
+			.field(field -> field
+				.type(new GraphQLList(iPositionCodonReads.get(name)))
+				.name("allReads")
+				.description("List of all reads belong to this sequence."))
+			.field(field -> field
+				.type(GraphQLFloat)
+				.name("minPrevalence")
+				.defaultValue(-1.0d)
+				.description(
+					"The minimal prevalence cutoff to apply on each codon. " +
+					"Leave this field empty or specify a negative number to " +
+					"use the dynamic cutoff based on sequencing quality."))
+			.field(field -> field
+				.type(GraphQLLong)
+				.name("minReadDepth")
+				.defaultValue(1000L)
+				.description(
+					"The minal read depth for each codon. Default to 1000 " +
+					"if this field was left empty or had a negative number" +
+					"specified."))
+			.build()
+		)
+	);
 
 	private static DataFetcher<Boolean> isTrimmedDataFetcher = env -> {
-		OneCodonReadsCoverage<HIV> ocrc = env.getSource();
+		OneCodonReadsCoverage<?> ocrc = env.getSource();
 		return ocrc.isTrimmed();
 	};
 	
@@ -150,32 +157,36 @@ public class SequenceReadsAnalysisDef {
 		)
 		.build();
 
-	public static GraphQLObjectType oOneCodonReadsCoverage = newObject()
-		.name("OneCodonReadsCoverage")
-		.field(field -> field
-			.type(oGene)
-			.name("gene")
-			.description("Gene of this record.")
+	public static SimpleMemoizer<GraphQLObjectType> oOneCodonReadsCoverage = new SimpleMemoizer<>(
+		name -> (
+			newObject()
+			.name("OneCodonReadsCoverage")
+			.field(field -> field
+				.type(oGene.get(name))
+				.name("gene")
+				.description("Gene of this record.")
+			)
+			.field(field -> field
+				.type(GraphQLLong)
+				.name("position")
+				.description("Codon position in this gene.")
+			)
+			.field(field -> field
+				.type(GraphQLLong)
+				.name("totalReads")
+				.description("Total reads of this position.")
+			)
+			.field(field -> field
+				.type(GraphQLBoolean)
+				.name("isTrimmed")
+				.description("This position is trimmed or not.")
+			)
+			.build()
 		)
-		.field(field -> field
-			.type(GraphQLLong)
-			.name("position")
-			.description("Codon position in this gene.")
-		)
-		.field(field -> field
-			.type(GraphQLLong)
-			.name("totalReads")
-			.description("Total reads of this position.")
-		)
-		.field(field -> field
-			.type(GraphQLBoolean)
-			.name("isTrimmed")
-			.description("This position is trimmed or not.")
-		)
-		.build();
+	);
 	
 	private static DataFetcher<String> internalJsonCodonReadsCoverageDataFetcher = env -> {
-		SequenceReads<HIV> sr = env.getSource();
+		SequenceReads<?> sr = env.getSource();
 		return Json.dumpsUgly(
 			sr
 			.getCodonReadsCoverage()
@@ -185,129 +196,138 @@ public class SequenceReadsAnalysisDef {
 	};
 
 
-	public static GraphQLCodeRegistry sequenceReadsCodeRegistry = newCodeRegistry()
-		.dataFetcher(
-			coordinates("SequenceReadsAnalysis", "subtypes"),
-			subtypesDataFetcher
-		)
-		.dataFetcher(
-			coordinates("SequenceReadsAnalysis", "drugResistance"),
-			drugResistanceDataFetcher
-		)
-		.dataFetcher(
-			coordinates("SequenceReadsAnalysis", "internalJsonCodonReadsCoverage"),
-			internalJsonCodonReadsCoverageDataFetcher
-		)
-		.dataFetcher(
-			coordinates("SequenceReadsAnalysis", "histogram"),
-			seqReadsHistogramDataFetcher
-		)
-		.dataFetcher(
-			coordinates("SequenceReadsAnalysis", "mutations"),
-			new MutationSetDataFetcher("mutations")
-		)
-		.dataFetchers(oneCodonReadsCoverageCodeRegistry)
-		.dataFetchers(geneSequenceReadsCodeRegistry)
-		.build();
+	public static <VirusT extends Virus<VirusT>> GraphQLCodeRegistry makeSequenceReadsCodeRegistry(VirusT virusIns) {
+		return (
+			newCodeRegistry()
+			.dataFetcher(
+				coordinates("SequenceReadsAnalysis", "subtypes"),
+				makeSubtypesDataFetcher(virusIns)
+			)
+			.dataFetcher(
+				coordinates("SequenceReadsAnalysis", "drugResistance"),
+				makeDrugResistanceDataFetcher(virusIns)
+			)
+			.dataFetcher(
+				coordinates("SequenceReadsAnalysis", "internalJsonCodonReadsCoverage"),
+				internalJsonCodonReadsCoverageDataFetcher
+			)
+			.dataFetcher(
+				coordinates("SequenceReadsAnalysis", "histogram"),
+				seqReadsHistogramDataFetcher
+			)
+			.dataFetcher(
+				coordinates("SequenceReadsAnalysis", "mutations"),
+				new MutationSetDataFetcher<>(virusIns, "mutations")
+			)
+			.dataFetchers(oneCodonReadsCoverageCodeRegistry)
+			.dataFetchers(makeGeneSequenceReadsCodeRegistry(virusIns))
+			.build()
+		);
+	}
+			
 	
-	public static GraphQLObjectType oSequenceReadsAnalysis = newObject()
-		.name("SequenceReadsAnalysis")
-		.field(field -> field
-			.type(GraphQLString)
-			.name("name")
-			.description("Name of this sequence."))
-		.field(field -> field
-			.type(oStrain)
-			.name("strain")
-			.description("Strain of this sequence."))
-		.field(field -> field
-			.type(GraphQLFloat)
-			.name("cutoffSuggestionLooserLimit")
-			.description(
-				"Algorithm suggested minimal prevalence cutoff. " +
-				"This cutoff is looser and may include more problematic mutations."))
-		.field(field -> field
-			.type(GraphQLFloat)
-			.name("cutoffSuggestionStricterLimit")
-			.description(
-				"Algorithm suggested minimal prevalence cutoff. " +
-				"This cutoff is stricter and include less problematic mutations."))
-		.field(field -> field
-			.type(new GraphQLList(oValidationResult))
-			.name("validationResults")
-			.description("Validation results for the sequence reads."))
-		.field(field -> field
-			.type(GraphQLFloat)
-			.name("minPrevalence")
-			.description(
-				"The minimal prevalence cutoff applied on this sequence. " +
-				"If the same name field didn't specified in `SequenceReadsInput`, " +
-				"this value was dynamically selected by the program " +
-				"based on sequencing quality."))
-		.field(field -> field
-			.type(GraphQLLong)
-			.name("minReadDepth")
-			.description(
-				"The minimal read depth for each codon of the sequence reads."
-			))
-		.field(field -> field
-			.type(new GraphQLList(oGene))
-			.name("availableGenes")
-			.description("Available genes found in the sequence reads."))
-		.field(field -> field
-			.type(new GraphQLList(oGeneSequenceReads))
-			.name("allGeneSequenceReads")
-			.description("List of sequence reads distinguished by genes."))
-		.field(field -> field
-			.type(new GraphQLList(oBoundSubtypeV2))
-			.name("subtypes")
-			.argument(arg -> arg
-				.type(GraphQLInt)
-				.name("first")
-				.defaultValue(2)
+	public static SimpleMemoizer<GraphQLObjectType> oSequenceReadsAnalysis = new SimpleMemoizer<>(
+		virusName -> (
+			newObject()
+			.name("SequenceReadsAnalysis")
+			.field(field -> field
+				.type(GraphQLString)
+				.name("name")
+				.description("Name of this sequence."))
+			.field(field -> field
+				.type(oStrain)
+				.name("strain")
+				.description("Strain of this sequence."))
+			.field(field -> field
+				.type(GraphQLFloat)
+				.name("cutoffSuggestionLooserLimit")
 				.description(
-					"Fetch only the first nth closest subtypes. Default to 2."))
-			.description(
-				"List of HIV1 groups or subtypes, or HIV species. " +
-				"Sorted by the similarity from most to least."))
-		.field(field -> field
-			.type(oBoundSubtypeV2)
-			.name("bestMatchingSubtype")
-			.description(
-				"The best matching subtype."))
-		.field(field -> field
-			.type(GraphQLFloat)
-			.name("mixturePcnt")
-			.description(
-				"Mixture pecentage of the consensus. Notes only RYMWKS " +
-				"are counted."))
-		.field(field -> newMutationSet(field, "mutations")
-			.description("All mutations found in the sequence reads."))
-		.field(field -> field
-			.type(new GraphQLList(oDrugResistance))
-			.name("drugResistance")
-			.argument(arg -> arg
-				.name("algorithm")
-				.type(oASIAlgorithm)
-				.defaultValue(hiv.getLatestDrugResistAlgorithm("HIVDB").getName())
-				.description("One of the built-in ASI algorithms."))
-			.description("List of drug resistance results by genes."))
-		.field(oSeqReadsHistogramBuilder)
-		.field(field -> field
-			.name("readDepthStats")
-			.type(oDescriptiveStatistics)
-			.description("Descriptive statistics of all read depth.")
+					"Algorithm suggested minimal prevalence cutoff. " +
+					"This cutoff is looser and may include more problematic mutations."))
+			.field(field -> field
+				.type(GraphQLFloat)
+				.name("cutoffSuggestionStricterLimit")
+				.description(
+					"Algorithm suggested minimal prevalence cutoff. " +
+					"This cutoff is stricter and include less problematic mutations."))
+			.field(field -> field
+				.type(new GraphQLList(oValidationResult))
+				.name("validationResults")
+				.description("Validation results for the sequence reads."))
+			.field(field -> field
+				.type(GraphQLFloat)
+				.name("minPrevalence")
+				.description(
+					"The minimal prevalence cutoff applied on this sequence. " +
+					"If the same name field didn't specified in `SequenceReadsInput`, " +
+					"this value was dynamically selected by the program " +
+					"based on sequencing quality."))
+			.field(field -> field
+				.type(GraphQLLong)
+				.name("minReadDepth")
+				.description(
+					"The minimal read depth for each codon of the sequence reads."
+				))
+			.field(field -> field
+				.type(new GraphQLList(oGene.get(virusName)))
+				.name("availableGenes")
+				.description("Available genes found in the sequence reads."))
+			.field(field -> field
+				.type(new GraphQLList(oGeneSequenceReads.get(virusName)))
+				.name("allGeneSequenceReads")
+				.description("List of sequence reads distinguished by genes."))
+			.field(field -> field
+				.type(new GraphQLList(oBoundSubtypeV2))
+				.name("subtypes")
+				.argument(arg -> arg
+					.type(GraphQLInt)
+					.name("first")
+					.defaultValue(2)
+					.description(
+						"Fetch only the first nth closest subtypes. Default to 2."))
+				.description(
+					"List of HIV1 groups or subtypes, or HIV species. " +
+					"Sorted by the similarity from most to least."))
+			.field(field -> field
+				.type(oBoundSubtypeV2)
+				.name("bestMatchingSubtype")
+				.description(
+					"The best matching subtype."))
+			.field(field -> field
+				.type(GraphQLFloat)
+				.name("mixturePcnt")
+				.description(
+					"Mixture pecentage of the consensus. Notes only RYMWKS " +
+					"are counted."))
+			.field(field -> newMutationSet(virusName, field, "mutations")
+				.description("All mutations found in the sequence reads."))
+			.field(field -> field
+				.type(new GraphQLList(oDrugResistance.get(virusName)))
+				.name("drugResistance")
+				.argument(arg -> arg
+					.name("algorithm")
+					.type(oASIAlgorithm.get(virusName))
+					.defaultValue(Virus.getInstance(virusName).getLatestDrugResistAlgorithm("HIVDB").getName())
+					.description("One of the built-in ASI algorithms."))
+				.description("List of drug resistance results by genes."))
+			.field(oSeqReadsHistogramBuilder)
+			.field(field -> field
+				.name("readDepthStats")
+				.type(oDescriptiveStatistics)
+				.description("Descriptive statistics of all read depth.")
+			)
+			.field(field -> field
+				.name("codonReadsCoverage")
+				.type(new GraphQLList(oOneCodonReadsCoverage.get(virusName)))
+				.description("Codon reads coverage.")
+			)
+			.field(field -> field
+				.type(GraphQLString)
+				.name("internalJsonCodonReadsCoverage")
+				.description(
+					"Position codon reads in this gene sequence (json formated)."))
+			.build()
 		)
-		.field(field -> field
-			.name("codonReadsCoverage")
-			.type(new GraphQLList(oOneCodonReadsCoverage))
-			.description("Codon reads coverage.")
-		)
-		.field(field -> field
-			.type(GraphQLString)
-			.name("internalJsonCodonReadsCoverage")
-			.description(
-				"Position codon reads in this gene sequence (json formated)."))
-		.build();
+	);
 
 }

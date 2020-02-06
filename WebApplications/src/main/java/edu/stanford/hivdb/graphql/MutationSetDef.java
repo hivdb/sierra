@@ -28,9 +28,9 @@ import java.util.List;
 
 import com.google.gson.reflect.TypeToken;
 
-import edu.stanford.hivdb.hivfacts.HIV;
 import edu.stanford.hivdb.mutations.MutationSet;
 import edu.stanford.hivdb.viruses.Gene;
+import edu.stanford.hivdb.viruses.Virus;
 import edu.stanford.hivdb.viruses.WithGene;
 
 import static edu.stanford.hivdb.graphql.MutationDef.oMutation;
@@ -144,15 +144,17 @@ public class MutationSetDef {
 		.build();
 
 
-	final public static class MutationSetDataFetcher extends ExtPropertyDataFetcher<MutationSet<HIV>> {
+	final public static class MutationSetDataFetcher<VirusT extends Virus<VirusT>> extends ExtPropertyDataFetcher<MutationSet<VirusT>> {
 
-		public MutationSetDataFetcher(String propertyName) {
+		private final VirusT virusIns;
+		
+		public MutationSetDataFetcher(VirusT virusIns, String propertyName) {
 			super(propertyName);
+			this.virusIns = virusIns;
 		}
 
 		@Override
-		protected MutationSet<HIV> postProcess(MutationSet<HIV> mutations, DataFetchingEnvironment environment) {
-			HIV hivObj = HIV.getInstance();
+		protected MutationSet<VirusT> postProcess(MutationSet<VirusT> mutations, DataFetchingEnvironment environment) {
 			List<?> filterOptions = environment.getArgument("filterOptions");
 			if (filterOptions == null) { filterOptions = new ArrayList<>(); }
 			for (Object filterOption : filterOptions) {
@@ -172,16 +174,16 @@ public class MutationSetDef {
 					mutations = mutations.subtractsBy(mutations.getDRMs());
 					break;
 				case PI_DRM:
-					mutations = mutations.getDRMs(hivObj.getDrugClass("PI"));
+					mutations = mutations.getDRMs(virusIns.getDrugClass("PI"));
 					break;
 				case NRTI_DRM:
-					mutations = mutations.getDRMs(hivObj.getDrugClass("NRTI"));
+					mutations = mutations.getDRMs(virusIns.getDrugClass("NRTI"));
 					break;
 				case NNRTI_DRM:
-					mutations = mutations.getDRMs(hivObj.getDrugClass("NNRTI"));
+					mutations = mutations.getDRMs(virusIns.getDrugClass("NNRTI"));
 					break;
 				case INSTI_DRM:
-					mutations = mutations.getDRMs(hivObj.getDrugClass("INSTI"));
+					mutations = mutations.getDRMs(virusIns.getDrugClass("INSTI"));
 					break;
 				case SDRM:
 					mutations = mutations.getSDRMs();
@@ -190,16 +192,16 @@ public class MutationSetDef {
 					mutations = mutations.subtractsBy(mutations.getSDRMs());
 					break;
 				case PI_SDRM:
-					mutations = mutations.getSDRMs(hivObj.getDrugClass("PI"));
+					mutations = mutations.getSDRMs(virusIns.getDrugClass("PI"));
 					break;
 				case NRTI_SDRM:
-					mutations = mutations.getSDRMs(hivObj.getDrugClass("NRTI"));
+					mutations = mutations.getSDRMs(virusIns.getDrugClass("NRTI"));
 					break;
 				case NNRTI_SDRM:
-					mutations = mutations.getSDRMs(hivObj.getDrugClass("NNRTI"));
+					mutations = mutations.getSDRMs(virusIns.getDrugClass("NNRTI"));
 					break;
 				case INSTI_SDRM:
-					mutations = mutations.getSDRMs(hivObj.getDrugClass("INSTI"));
+					mutations = mutations.getSDRMs(virusIns.getDrugClass("INSTI"));
 					break;
 				case TSM:
 					mutations = mutations.getTSMs();
@@ -208,41 +210,41 @@ public class MutationSetDef {
 					mutations = mutations.subtractsBy(mutations.getTSMs());
 					break;
 				case PI_TSM:
-					mutations = mutations.getTSMs(hivObj.getDrugClass("PI"));
+					mutations = mutations.getTSMs(virusIns.getDrugClass("PI"));
 					break;
 				case NRTI_TSM:
-					mutations = mutations.getTSMs(hivObj.getDrugClass("NRTI"));
+					mutations = mutations.getTSMs(virusIns.getDrugClass("NRTI"));
 					break;
 				case NNRTI_TSM:
-					mutations = mutations.getTSMs(hivObj.getDrugClass("NNRTI"));
+					mutations = mutations.getTSMs(virusIns.getDrugClass("NNRTI"));
 					break;
 				case INSTI_TSM:
-					mutations = mutations.getTSMs(hivObj.getDrugClass("INSTI"));
+					mutations = mutations.getTSMs(virusIns.getDrugClass("INSTI"));
 					break;
 				case GENE_PR:
 					// TODO: HIV2 support
-					mutations = mutations.getGeneMutations(hivObj.getGene("HIV1PR"));
+					mutations = mutations.getGeneMutations(virusIns.getGene("HIV1PR"));
 					break;
 				case GENE_RT:
-					mutations = mutations.getGeneMutations(hivObj.getGene("HIV1RT"));
+					mutations = mutations.getGeneMutations(virusIns.getGene("HIV1RT"));
 					break;
 				case GENE_IN:
-					mutations = mutations.getGeneMutations(hivObj.getGene("HIV1IN"));
+					mutations = mutations.getGeneMutations(virusIns.getGene("HIV1IN"));
 					break;
 				case TYPE_MAJOR:
-					mutations = mutations.getByMutType(hivObj.getMutationType("Major"));
+					mutations = mutations.getByMutType(virusIns.getMutationType("Major"));
 					break;
 				case TYPE_ACCESSORY:
-					mutations = mutations.getByMutType(hivObj.getMutationType("Accessory"));
+					mutations = mutations.getByMutType(virusIns.getMutationType("Accessory"));
 					break;
 				case TYPE_NRTI:
-					mutations = mutations.getByMutType(hivObj.getMutationType("NRTI"));
+					mutations = mutations.getByMutType(virusIns.getMutationType("NRTI"));
 					break;
 				case TYPE_NNRTI:
-					mutations = mutations.getByMutType(hivObj.getMutationType("NNRTI"));
+					mutations = mutations.getByMutType(virusIns.getMutationType("NNRTI"));
 					break;
 				case TYPE_OTHER:
-					mutations = mutations.getByMutType(hivObj.getMutationType("Other"));
+					mutations = mutations.getByMutType(virusIns.getMutationType("Other"));
 					break;
 				case DELETION:
 					mutations = mutations.getDeletions();
@@ -261,13 +263,13 @@ public class MutationSetDef {
 					break;
 				case CUSTOMLIST:
 					List<String> customList = environment.getArgument("customList");
-					Gene<HIV> gene = null;
-					Type withGeneType = new TypeToken<WithGene<HIV>>() {}.getType();
+					Gene<VirusT> gene = null;
+					Type withGeneType = new TypeToken<WithGene<VirusT>>() {}.getType();
 					if (((Class<?>)(withGeneType)).isInstance(environment.getSource())) {
-						WithGene<HIV> source = environment.getSource();
+						WithGene<VirusT> source = environment.getSource();
 						gene = source.getGene();
 					}
-					MutationSet<HIV> filterSet = HIV.getInstance().newMutationSet(gene, customList);
+					MutationSet<VirusT> filterSet = virusIns.newMutationSet(gene, customList);
 					mutations = mutations.intersectsWith(filterSet);
 					break;
 				}
@@ -276,10 +278,10 @@ public class MutationSetDef {
 		}
 	}
 
-	public static Builder newMutationSet(Builder field, String name) {
+	public static Builder newMutationSet(String virusName, Builder field, String name) {
 		return field
 			.name(name)
-			.type(new GraphQLList(oMutation))
+			.type(new GraphQLList(oMutation.get(virusName)))
 			.argument(arg -> arg
 				.name("filterOptions")
 				.type(new GraphQLList(oMutationSetFilterOption))

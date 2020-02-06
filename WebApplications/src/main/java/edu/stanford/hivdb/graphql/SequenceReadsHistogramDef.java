@@ -10,7 +10,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.UnaryOperator;
 
-import edu.stanford.hivdb.hivfacts.HIV;
 import edu.stanford.hivdb.seqreads.SequenceReadsHistogram;
 import edu.stanford.hivdb.seqreads.SequenceReadsHistogram.AggregationOption;
 import edu.stanford.hivdb.seqreads.SequenceReadsHistogram.WithSequenceReadsHistogram;
@@ -20,8 +19,8 @@ public class SequenceReadsHistogramDef {
 	public static GraphQLEnumType enumAggregationOption;
 	public static GraphQLObjectType oSeqReadsHistogramBin;
 
-	public static DataFetcher<SequenceReadsHistogram<HIV>> seqReadsHistogramDataFetcher = env -> {
-		WithSequenceReadsHistogram<HIV> seqReads = env.getSource();
+	public static DataFetcher<SequenceReadsHistogram<?>> seqReadsHistogramDataFetcher = env -> {
+		WithSequenceReadsHistogram<?> seqReads = env.getSource();
 		double lowerLimit = env.getArgument("pcntLowerLimit");
 		double upperLimit = env.getArgument("pcntUpperLimit");
 		Integer numBins = env.getArgument("numBins");

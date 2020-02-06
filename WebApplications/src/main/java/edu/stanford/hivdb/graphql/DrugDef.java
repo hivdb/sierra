@@ -23,44 +23,49 @@ import static graphql.Scalars.*;
 import static graphql.schema.GraphQLObjectType.newObject;
 
 import edu.stanford.hivdb.drugs.Drug;
-import edu.stanford.hivdb.hivfacts.HIV;
+import edu.stanford.hivdb.utilities.SimpleMemoizer;
+import edu.stanford.hivdb.viruses.Virus;
 
 
 public class DrugDef {
 
-	public static GraphQLEnumType oDrugEnum;
-
-	static {
-		HIV hiv = HIV.getInstance();
-		GraphQLEnumType.Builder
-			newDrugClassEnum = GraphQLEnumType.newEnum()
-			.name("DrugEnum");
-		for (Drug<HIV> drug : hiv.getDrugs()) {
-			String drugText = drug.toString();
-			newDrugClassEnum.value(drugText, drugText);
+	public static SimpleMemoizer<GraphQLEnumType> oDrugEnum = new SimpleMemoizer<>(
+		name -> {
+			Virus<?> virusIns = Virus.getInstance(name);
+			GraphQLEnumType.Builder
+				newDrugClassEnum = GraphQLEnumType.newEnum()
+				.name("DrugEnum");
+			for (Drug<?> drug : virusIns.getDrugs()) {
+				String drugText = drug.toString();
+				newDrugClassEnum.value(drugText, drugText);
+			}
+			return newDrugClassEnum.build();
 		}
-		oDrugEnum = newDrugClassEnum.build();
-	}
+	);
 
-	public static GraphQLObjectType oDrug = newObject()
-		.name("Drug")
-		.description("HIV drug.")
-		.field(field -> field
-			.type(oDrugEnum)
-			.name("name")
-			.description("Name of the drug."))
-		.field(field -> field
-			.type(GraphQLString)
-			.name("displayAbbr")
-			.description("Display abbreviation of the drug."))
-		.field(field -> field
-			.type(GraphQLString)
-			.name("fullName")
-			.description("Full name of the drug."))
-		.field(field -> field
-			.type(new GraphQLTypeReference("DrugClass"))
-			.name("drugClass")
-			.description("Drug class the drug belongs to."))
-		.build();
+	public static SimpleMemoizer<GraphQLObjectType> oDrug = new SimpleMemoizer<>(
+		name -> (
+			newObject()
+			.name("Drug")
+			.description("HIV drug.")
+			.field(field -> field
+				.type(oDrugEnum.get(name))
+				.name("name")
+				.description("Name of the drug."))
+			.field(field -> field
+				.type(GraphQLString)
+				.name("displayAbbr")
+				.description("Display abbreviation of the drug."))
+			.field(field -> field
+				.type(GraphQLString)
+				.name("fullName")
+				.description("Full name of the drug."))
+			.field(field -> field
+				.type(new GraphQLTypeReference("DrugClass"))
+				.name("drugClass")
+				.description("Drug class the drug belongs to."))
+			.build()
+		)
+	);
 
 }

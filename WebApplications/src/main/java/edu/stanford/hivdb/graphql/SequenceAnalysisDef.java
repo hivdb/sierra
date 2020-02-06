@@ -38,10 +38,11 @@ import edu.stanford.hivdb.drugresistance.GeneDR;
 import edu.stanford.hivdb.drugresistance.GeneDRAsi;
 import edu.stanford.hivdb.genotypes.BoundGenotype;
 import edu.stanford.hivdb.genotypes.GenotypeResult;
-import edu.stanford.hivdb.hivfacts.HIV;
 import edu.stanford.hivdb.mutations.MutationSet;
 import edu.stanford.hivdb.sequences.AlignedGeneSeq;
 import edu.stanford.hivdb.sequences.AlignedSequence;
+import edu.stanford.hivdb.utilities.SimpleMemoizer;
+import edu.stanford.hivdb.viruses.Virus;
 
 import static edu.stanford.hivdb.graphql.UnalignedSequenceDef.*;
 import static edu.stanford.hivdb.graphql.MutationSetDef.*;
@@ -59,230 +60,240 @@ import static edu.stanford.hivdb.graphql.DrugResistanceAlgorithmDef.*;
 
 public class SequenceAnalysisDef {
 	
-	private static HIV hiv = HIV.getInstance();
-
-	private static DataFetcher<List<Map<String, Object>>> subtypesDataFetcher = env -> {
-		int first = env.getArgument("first");
-		AlignedSequence<HIV> alignedSeq = env.getSource();
-		GenotypeResult<HIV> subtypeResult = alignedSeq.getGenotypeResult();
-		if (subtypeResult == null) {
-			return Collections.emptyList();
-		}
-		List<BoundGenotype<HIV>> subtypes = subtypeResult.getAllMatches().subList(0, first);
-		return subtypes
-		.stream()
-		.map(g -> {
-			Map<String, Object> r = new HashMap<>();
-			String distancePcnt = g.getDistancePcnt();
-			distancePcnt = distancePcnt.substring(0, distancePcnt.length() - 1);
-			r.put("name", g.getGenotype().getIndexName());
-			r.put("distancePcnt", Double.parseDouble(distancePcnt));
-			r.put("display", g.getDisplay());
-			return r;
-		})
-		.collect(Collectors.toList());
-		
+	private static <VirusT extends Virus<VirusT>> DataFetcher<List<Map<String, Object>>> makeSubtypesDataFetcher(VirusT virusIns) {
+		return env -> {
+			int first = env.getArgument("first");
+			AlignedSequence<VirusT> alignedSeq = env.getSource();
+			GenotypeResult<VirusT> subtypeResult = alignedSeq.getGenotypeResult();
+			if (subtypeResult == null) {
+				return Collections.emptyList();
+			}
+			List<BoundGenotype<VirusT>> subtypes = subtypeResult.getAllMatches().subList(0, first);
+			return subtypes
+			.stream()
+			.map(g -> {
+				Map<String, Object> r = new HashMap<>();
+				String distancePcnt = g.getDistancePcnt();
+				distancePcnt = distancePcnt.substring(0, distancePcnt.length() - 1);
+				r.put("name", g.getGenotype().getIndexName());
+				r.put("distancePcnt", Double.parseDouble(distancePcnt));
+				r.put("display", g.getDisplay());
+				return r;
+			})
+			.collect(Collectors.toList());
+		};
 	};
 
-	private static DataFetcher<List<BoundGenotype<HIV>>> subtypesDataFetcherV2 = env -> {
-		int first = env.getArgument("first");
-		AlignedSequence<HIV> alignedSeq = env.getSource();
-		GenotypeResult<HIV> subtypeResult = alignedSeq.getGenotypeResult();
-		if (subtypeResult == null) {
-			return Collections.emptyList();
-		}
-		return subtypeResult.getAllMatches().subList(0, first);
-		
+	private static <VirusT extends Virus<VirusT>> DataFetcher<List<BoundGenotype<VirusT>>> makeSubtypesDataFetcherV2(VirusT virusIns) {
+		return env -> {
+			int first = env.getArgument("first");
+			AlignedSequence<VirusT> alignedSeq = env.getSource();
+			GenotypeResult<VirusT> subtypeResult = alignedSeq.getGenotypeResult();
+			if (subtypeResult == null) {
+				return Collections.emptyList();
+			}
+			return subtypeResult.getAllMatches().subList(0, first);
+		};
 	};
 
-	private static DataFetcher<List<GeneDR<HIV>>> drugResistanceDataFetcher = env -> {
-		AlignedSequence<HIV> alignedSeq = env.getSource();
-		String algName = env.getArgument("algorithm");
-		List<AlignedGeneSeq<HIV>> geneSeqs = alignedSeq.getAlignedGeneSequences();
-		return Lists.newArrayList(
-			GeneDRAsi.getResistanceByGeneFromAlignedGeneSeqs(
-				geneSeqs, hiv.getDrugResistAlgorithm(algName)
-			).values()
-		);
+	private static <VirusT extends Virus<VirusT>> DataFetcher<List<GeneDR<VirusT>>> makeDrugResistanceDataFetcher(VirusT virusIns) {
+		return env -> {
+			AlignedSequence<VirusT> alignedSeq = env.getSource();
+			String algName = env.getArgument("algorithm");
+			List<AlignedGeneSeq<VirusT>> geneSeqs = alignedSeq.getAlignedGeneSequences();
+			return Lists.newArrayList(
+				GeneDRAsi.getResistanceByGeneFromAlignedGeneSeqs(
+					geneSeqs, virusIns.getDrugResistAlgorithm(algName)
+				).values()
+			);
+		};
 	};
 	
 	private static DataFetcher<List<Map<String, Object>>> boundMutPrevListDataFetcher = env -> {
-		AlignedSequence<HIV> alignedSeq = env.getSource();
-		MutationSet<HIV> mutations = alignedSeq.getMutations();
+		AlignedSequence<?> alignedSeq = env.getSource();
+		MutationSet<?> mutations = alignedSeq.getMutations();
 		return getBoundMutationPrevalenceList(mutations);
 	};
 	
-	private static DataFetcher<List<Map<String, Object>>> algComparisonDataFetcher = env -> {
-		List<String> asiAlgs = env.getArgument("algorithms");
-		List<Map<String, String>> customAlgs = env.getArgument("customAlgorithms");
-		if (asiAlgs == null) { asiAlgs = Collections.emptyList(); }
-		if (customAlgs == null) { customAlgs = Collections.emptyList(); }
-		if (asiAlgs.isEmpty() && customAlgs.isEmpty()) {
-			return Collections.emptyList();
-		}
-		asiAlgs = asiAlgs
-			.stream().filter(alg -> alg != null)
-			.collect(Collectors.toList());
-		Map<String, String> customAlgs2 = customAlgs
-			.stream()
-			.filter(map -> map != null)
-			.collect(Collectors.toMap(
-				map -> map.get("name"),
-				map -> map.get("xml"),
-				(x1, x2) -> x2,
-				LinkedHashMap::new
-			));
-		AlignedSequence<HIV> alignedSeq = env.getSource();
-		return fetchAlgorithmComparisonData(alignedSeq.getMutations(), asiAlgs, customAlgs2);
+	private static <VirusT extends Virus<VirusT>> DataFetcher<List<Map<String, Object>>> makeAlgComparisonDataFetcher(VirusT virusIns) {
+		return env -> {
+			List<String> asiAlgs = env.getArgument("algorithms");
+			List<Map<String, String>> customAlgs = env.getArgument("customAlgorithms");
+			if (asiAlgs == null) { asiAlgs = Collections.emptyList(); }
+			if (customAlgs == null) { customAlgs = Collections.emptyList(); }
+			if (asiAlgs.isEmpty() && customAlgs.isEmpty()) {
+				return Collections.emptyList();
+			}
+			asiAlgs = asiAlgs
+				.stream().filter(alg -> alg != null)
+				.collect(Collectors.toList());
+			Map<String, String> customAlgs2 = customAlgs
+				.stream()
+				.filter(map -> map != null)
+				.collect(Collectors.toMap(
+					map -> map.get("name"),
+					map -> map.get("xml"),
+					(x1, x2) -> x2,
+					LinkedHashMap::new
+				));
+			AlignedSequence<VirusT> alignedSeq = env.getSource();
+			return fetchAlgorithmComparisonData(virusIns, alignedSeq.getMutations(), asiAlgs, customAlgs2);
+		};
 	};
 			
-	public static GraphQLCodeRegistry sequenceAnalysisCodeRegistry = newCodeRegistry()
-		.dataFetcher(
-			coordinates("SequenceAnalysis", "subtypes"),
-			subtypesDataFetcher
-		)
-		.dataFetcher(
-			coordinates("SequenceAnalysis", "subtypesV2"),
-			subtypesDataFetcherV2
-		)
-		.dataFetcher(
-			coordinates("SequenceAnalysis", "genotypes"),
-			subtypesDataFetcherV2
-		)
-		.dataFetcher(
-			coordinates("SequenceAnalysis", "drugResistance"),
-			drugResistanceDataFetcher
-		)
-		.dataFetcher(
-			coordinates("SequenceAnalysis", "mutationPrevalences"),
-			boundMutPrevListDataFetcher
-		)
-		.dataFetcher(
-			coordinates("SequenceAnalysis", "algorithmComparison"),
-			algComparisonDataFetcher
-		)
-		.dataFetcher(
-			coordinates("SequenceAnalysis", "mutations"),
-			new MutationSetDataFetcher("mutations")
-		)
-		.dataFetchers(alignedGeneSequenceCodeRegistry)
-		.build();
+	public static <VirusT extends Virus<VirusT>> GraphQLCodeRegistry makeSequenceAnalysisCodeRegistry(VirusT virusIns) {
+		return newCodeRegistry()
+			.dataFetcher(
+				coordinates("SequenceAnalysis", "subtypes"),
+				makeSubtypesDataFetcher(virusIns)
+			)
+			.dataFetcher(
+				coordinates("SequenceAnalysis", "subtypesV2"),
+				makeSubtypesDataFetcherV2(virusIns)
+			)
+			.dataFetcher(
+				coordinates("SequenceAnalysis", "genotypes"),
+				makeSubtypesDataFetcherV2(virusIns)
+			)
+			.dataFetcher(
+				coordinates("SequenceAnalysis", "drugResistance"),
+				makeDrugResistanceDataFetcher(virusIns)
+			)
+			.dataFetcher(
+				coordinates("SequenceAnalysis", "mutationPrevalences"),
+				boundMutPrevListDataFetcher
+			)
+			.dataFetcher(
+				coordinates("SequenceAnalysis", "algorithmComparison"),
+				makeAlgComparisonDataFetcher(virusIns)
+			)
+			.dataFetcher(
+				coordinates("SequenceAnalysis", "mutations"),
+				new MutationSetDataFetcher<>(virusIns, "mutations")
+			)
+			.dataFetchers(makeAlignedGeneSequenceCodeRegistry(virusIns))
+			.build();
+	}
 
-	public static GraphQLObjectType oSequenceAnalysis = newObject()
-		.name("SequenceAnalysis")
-		.field(field -> field
-			.type(oUnalignedSequence)
-			.name("inputSequence")
-			.description("The original unaligned sequence."))
-		.field(field -> field
-			.type(oStrain)
-			.name("strain")
-			.description("HIV strain of this sequence."))
-		.field(field -> field
-			.type(GraphQLBoolean)
-			.name("isReverseComplement")
-			.description("True if the alignment result was based on the reverse complement of input sequence."))
-		.field(field -> field
-			.type(new GraphQLList(oGene))
-			.name("availableGenes")
-			.description("Available genes found in the sequence."))
-		.field(field -> field
-			.type(new GraphQLList(oValidationResult))
-			.name("validationResults")
-			.description("Validation results for this sequence."))
-		.field(field -> field
-			.type(new GraphQLList(oAlignedGeneSequence))
-			.name("alignedGeneSequences")
-			.description("List of aligned sequence distinguished by genes."))
-		.field(field -> field
-			.type(new GraphQLList(oBoundSubtypeV2))
-			.name("subtypesV2")
-			.argument(newArgument()
-				.type(GraphQLInt)
-				.name("first")
-				.defaultValue(2)
+	public static SimpleMemoizer<GraphQLObjectType> oSequenceAnalysis = new SimpleMemoizer<>(
+		virusName -> (
+			newObject()
+			.name("SequenceAnalysis")
+			.field(field -> field
+				.type(oUnalignedSequence)
+				.name("inputSequence")
+				.description("The original unaligned sequence."))
+			.field(field -> field
+				.type(oStrain)
+				.name("strain")
+				.description("HIV strain of this sequence."))
+			.field(field -> field
+				.type(GraphQLBoolean)
+				.name("isReverseComplement")
+				.description("True if the alignment result was based on the reverse complement of input sequence."))
+			.field(field -> field
+				.type(new GraphQLList(oGene.get(virusName)))
+				.name("availableGenes")
+				.description("Available genes found in the sequence."))
+			.field(field -> field
+				.type(new GraphQLList(oValidationResult))
+				.name("validationResults")
+				.description("Validation results for this sequence."))
+			.field(field -> field
+				.type(new GraphQLList(oAlignedGeneSequence.get(virusName)))
+				.name("alignedGeneSequences")
+				.description("List of aligned sequence distinguished by genes."))
+			.field(field -> field
+				.type(new GraphQLList(oBoundSubtypeV2))
+				.name("subtypesV2")
+				.argument(newArgument()
+					.type(GraphQLInt)
+					.name("first")
+					.defaultValue(2)
+					.description(
+						"Fetch only the first nth closest subtypes. Default to 2.")
+					.build())
 				.description(
+					"List of HIV1 groups or subtypes, or HIV species. " +
+					"Sorted by the similarity from most to least."))
+			.field(field -> field
+				.type(oBoundSubtypeV2)
+				.name("bestMatchingSubtype")
+				.description(
+					"The best matching subtype."))
+			.field(field -> field
+				.type(new GraphQLList(oBoundSubtypeV2))
+				.name("genotypes")
+				.argument(newArgument()
+					.type(GraphQLInt)
+					.name("first")
+					.defaultValue(2)
+					.description(
+						"Fetch only the first nth closest genotypes. Default to 2.")
+					.build())
+				.deprecate("Use field `subtypesV2` instead.")
+				.description(
+					"List of HIV1 groups or subtypes, or HIV species. " +
+					"Sorted by the similarity from most to least."))
+			.field(field -> field
+				.type(oBoundSubtypeV2)
+				.name("bestMatchingGenotype")
+				.deprecate("Use field `bestMatchingSubtype` instead.")
+				.description(
+					"The best matching genotype."))
+			.field(field -> field
+				.type(GraphQLFloat)
+				.name("mixturePcnt")
+				.description(
+					"Mixture pecentage of the sequence. Notes only RYMWKS " +
+					"are counted."))
+			.field(field -> newMutationSet(virusName, field, "mutations")
+				.description("All mutations found in the aligned sequence."))
+			.field(field -> field
+				.type(new GraphQLList(oFrameShift.get(virusName)))
+				.name("frameShifts")
+				.description("All frame shifts found in the aligned sequence."))
+			.field(field -> field
+				.type(new GraphQLList(oDrugResistance.get(virusName)))
+				.name("drugResistance")
+				.argument(arg -> arg
+					.name("algorithm")
+					.type(oASIAlgorithm.get(virusName))
+					.defaultValue(Virus.getInstance(virusName).getLatestDrugResistAlgorithm("HIVDB").getName())
+					.description("One of the built-in ASI algorithms."))
+				.description("List of drug resistance results by genes."))
+			.field(field -> field
+				.type(new GraphQLList(oBoundMutationPrevalence.get(virusName)))
+				.name("mutationPrevalences")
+				.description("List of mutation prevalence results."))
+			.field(field -> field
+				.type(new GraphQLList(oBoundSubtype.get(virusName)))
+				.name("subtypes")
+				.deprecate("Use field `subtypesV2` instead.")
+				.argument(newArgument()
+					.type(GraphQLInt)
+					.name("first")
+					.defaultValue(2)
+					.description(
 					"Fetch only the first nth closest subtypes. Default to 2.")
 				.build())
 			.description(
 				"List of HIV1 groups or subtypes, or HIV species. " +
 				"Sorted by the similarity from most to least."))
-		.field(field -> field
-			.type(oBoundSubtypeV2)
-			.name("bestMatchingSubtype")
-			.description(
-				"The best matching subtype."))
-		.field(field -> field
-			.type(new GraphQLList(oBoundSubtypeV2))
-			.name("genotypes")
-			.argument(newArgument()
-				.type(GraphQLInt)
-				.name("first")
-				.defaultValue(2)
+			.field(field -> field
+				.type(GraphQLString)
+				.name("subtypeText")
+				.deprecate("Use field `bestMatchingSubtype { display }` instead.")
 				.description(
-					"Fetch only the first nth closest genotypes. Default to 2.")
-				.build())
-			.deprecate("Use field `subtypesV2` instead.")
-			.description(
-				"List of HIV1 groups or subtypes, or HIV species. " +
-				"Sorted by the similarity from most to least."))
-		.field(field -> field
-			.type(oBoundSubtypeV2)
-			.name("bestMatchingGenotype")
-			.deprecate("Use field `bestMatchingSubtype` instead.")
-			.description(
-				"The best matching genotype."))
-		.field(field -> field
-			.type(GraphQLFloat)
-			.name("mixturePcnt")
-			.description(
-				"Mixture pecentage of the sequence. Notes only RYMWKS " +
-				"are counted."))
-		.field(field -> newMutationSet(field, "mutations")
-			.description("All mutations found in the aligned sequence."))
-		.field(field -> field
-			.type(new GraphQLList(oFrameShift))
-			.name("frameShifts")
-			.description("All frame shifts found in the aligned sequence."))
-		.field(field -> field
-			.type(new GraphQLList(oDrugResistance))
-			.name("drugResistance")
-			.argument(arg -> arg
-				.name("algorithm")
-				.type(oASIAlgorithm)
-				.defaultValue(hiv.getLatestDrugResistAlgorithm("HIVDB").getName())
-				.description("One of the built-in ASI algorithms."))
-			.description("List of drug resistance results by genes."))
-		.field(field -> field
-			.type(new GraphQLList(oBoundMutationPrevalence))
-			.name("mutationPrevalences")
-			.description("List of mutation prevalence results."))
-		.field(field -> field
-			.type(new GraphQLList(oBoundSubtype))
-			.name("subtypes")
-			.deprecate("Use field `subtypesV2` instead.")
-			.argument(newArgument()
-				.type(GraphQLInt)
-				.name("first")
-				.defaultValue(2)
-				.description(
-					"Fetch only the first nth closest subtypes. Default to 2.")
-				.build())
-			.description(
-				"List of HIV1 groups or subtypes, or HIV species. " +
-				"Sorted by the similarity from most to least."))
-		.field(field -> field
-			.type(GraphQLString)
-			.name("subtypeText")
-			.deprecate("Use field `bestMatchingSubtype { display }` instead.")
-			.description(
-				"Formatted text for best matching subtype."))
-		.field(field -> field
-			.type(new GraphQLList(oAlgorithmComparison))
-			.name("algorithmComparison")
-			.description("List of ASI comparison results.")
-			.argument(aASIAlgorithmArgument)
-			.argument(aASICustomAlgorithmArgument))
-		.build();
+					"Formatted text for best matching subtype."))
+			.field(field -> field
+				.type(new GraphQLList(oAlgorithmComparison.get(virusName)))
+				.name("algorithmComparison")
+				.description("List of ASI comparison results.")
+				.argument(aASIAlgorithmArgument.get(virusName))
+				.argument(aASICustomAlgorithmArgument))
+			.build()
+		)
+	);
 
 }

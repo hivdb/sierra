@@ -21,6 +21,10 @@ package edu.stanford.hivdb.graphql;
 import graphql.schema.*;
 import static graphql.Scalars.*;
 import static graphql.schema.GraphQLObjectType.newObject;
+
+import edu.stanford.hivdb.utilities.SimpleMemoizer;
+import edu.stanford.hivdb.viruses.Virus;
+
 import static graphql.schema.GraphQLCodeRegistry.newCodeRegistry;
 import static graphql.schema.FieldCoordinates.coordinates;
 
@@ -32,99 +36,107 @@ import static edu.stanford.hivdb.graphql.FrameShiftDef.*;
 public class AlignedGeneSequenceDef {
 
 
-	public static GraphQLCodeRegistry alignedGeneSequenceCodeRegistry = newCodeRegistry()
-		.dataFetcher(
-			coordinates("AlignedGeneSequence", "mutations"),
-			new MutationSetDataFetcher("mutations")
-		)
-		.build();
+	public static <VirusT extends Virus<VirusT>> GraphQLCodeRegistry makeAlignedGeneSequenceCodeRegistry(VirusT virusIns) {
+		return (
+			newCodeRegistry()
+			.dataFetcher(
+				coordinates("AlignedGeneSequence", "mutations"),
+				new MutationSetDataFetcher<>(virusIns, "mutations")
+			)
+			.build()
+		);
+	}
 
-	public static GraphQLObjectType oAlignedGeneSequence = newObject()
-		.name("AlignedGeneSequence")
-		.field(field -> field
-			.type(oGene)
-			.name("gene")
-			.description("Sequence gene and the reference sequence.")
-		)
-		.field(field -> field
-			.type(GraphQLInt)
-			.name("firstAA")
-			.description(
-				"The first aligned position (start from 1) " +
-				"in protein relative to the reference sequence.")
-		)
-		.field(field -> field
-			.type(GraphQLInt)
-			.name("lastAA")
-			.description(
-				"The last aligned position (start from 1) " +
-				"in protein relative to the reference sequence.")
-		)
-		.field(field -> field
-			.type(GraphQLInt)
-			.name("firstNA")
-			.description(
-				"The first aligned position (start from 1) " +
-				"in DNA relative to the input sequence.")
-		)
-		.field(field -> field
-			.type(GraphQLInt)
-			.name("lastNA")
-			.description(
-				"The last aligned position (start from 1) " +
-				"in DNA relative to the input sequence.")
-		)
-		.field(field -> field
-			.type(GraphQLFloat)
-			.name("matchPcnt")
-			.description(
-				"The match percentage of input sequence aligned " +
-				"to the reference sequence.")
-		)
-		.field(field -> field
-			.type(GraphQLInt)
-			.name("size")
-			.description(
-				"The amino acid size of this sequence without unsequenced region (Ns).")
-		)
-		.field(field -> field
-			.type(oPrettyPairwise)
-			.name("prettyPairwise")
-			.description("Formatted pairwise output of the aligned sequence.")
-		)
-		.field(field -> field
-			.type(GraphQLString)
-			.name("alignedNAs")
-			.description("Aligned DNA sequence without insertions and insertion gaps.")
-		)
-		.field(field -> field
-			.type(GraphQLString)
-			.name("alignedAAs")
-			.description(
-				"Aligned protein sequence without insertions and insertion gaps. " +
-				"Mixtures are represented as \"X\"."
+	public static SimpleMemoizer<GraphQLObjectType> oAlignedGeneSequence = new SimpleMemoizer<>(
+		virusName -> (
+			newObject()
+			.name("AlignedGeneSequence")
+			.field(field -> field
+				.type(oGene.get(virusName))
+				.name("gene")
+				.description("Sequence gene and the reference sequence.")
 			)
-		)
-		.field(field -> field
-			.type(GraphQLString)
-			.name("adjustedAlignedNAs")
-			.description("(HXB2 numbering) adjusted aligned DNA sequence without insertions and insertion gaps.")
-		)
-		.field(field -> field
-			.type(GraphQLString)
-			.name("adjustedAlignedAAs")
-			.description(
-				"(HXB2 numbering) adjusted aligned protein sequence without insertions and insertion gaps. " +
-				"Mixtures are represented as \"X\"."
+			.field(field -> field
+				.type(GraphQLInt)
+				.name("firstAA")
+				.description(
+					"The first aligned position (start from 1) " +
+					"in protein relative to the reference sequence.")
 			)
+			.field(field -> field
+				.type(GraphQLInt)
+				.name("lastAA")
+				.description(
+					"The last aligned position (start from 1) " +
+					"in protein relative to the reference sequence.")
+			)
+			.field(field -> field
+				.type(GraphQLInt)
+				.name("firstNA")
+				.description(
+					"The first aligned position (start from 1) " +
+					"in DNA relative to the input sequence.")
+			)
+			.field(field -> field
+				.type(GraphQLInt)
+				.name("lastNA")
+				.description(
+					"The last aligned position (start from 1) " +
+					"in DNA relative to the input sequence.")
+			)
+			.field(field -> field
+				.type(GraphQLFloat)
+				.name("matchPcnt")
+				.description(
+					"The match percentage of input sequence aligned " +
+					"to the reference sequence.")
+			)
+			.field(field -> field
+				.type(GraphQLInt)
+				.name("size")
+				.description(
+					"The amino acid size of this sequence without unsequenced region (Ns).")
+			)
+			.field(field -> field
+				.type(oPrettyPairwise)
+				.name("prettyPairwise")
+				.description("Formatted pairwise output of the aligned sequence.")
+			)
+			.field(field -> field
+				.type(GraphQLString)
+				.name("alignedNAs")
+				.description("Aligned DNA sequence without insertions and insertion gaps.")
+			)
+			.field(field -> field
+				.type(GraphQLString)
+				.name("alignedAAs")
+				.description(
+					"Aligned protein sequence without insertions and insertion gaps. " +
+					"Mixtures are represented as \"X\"."
+				)
+			)
+			.field(field -> field
+				.type(GraphQLString)
+				.name("adjustedAlignedNAs")
+				.description("(HXB2 numbering) adjusted aligned DNA sequence without insertions and insertion gaps.")
+			)
+			.field(field -> field
+				.type(GraphQLString)
+				.name("adjustedAlignedAAs")
+				.description(
+					"(HXB2 numbering) adjusted aligned protein sequence without insertions and insertion gaps. " +
+					"Mixtures are represented as \"X\"."
+				)
+			)
+			.field(field -> newMutationSet(virusName, field, "mutations")
+				.description("All mutations found in the aligned sequence."))
+			.field(field -> field
+				.type(new GraphQLList(oFrameShift.get(virusName)))
+				.name("frameShifts")
+				.description("All frame shifts found in the aligned sequence.")
+			)
+			.build()
 		)
-		.field(field -> newMutationSet(field, "mutations")
-			.description("All mutations found in the aligned sequence."))
-		.field(field -> field
-			.type(new GraphQLList(oFrameShift))
-			.name("frameShifts")
-			.description("All frame shifts found in the aligned sequence.")
-		)
-		.build();
+	);
 
 }
