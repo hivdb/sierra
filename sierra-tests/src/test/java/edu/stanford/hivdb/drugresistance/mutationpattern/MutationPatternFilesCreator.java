@@ -16,11 +16,10 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package edu.stanford.hivdb.drugresistance.scripts;
+package edu.stanford.hivdb.drugresistance.mutationpattern;
 
 import java.util.List;
-import edu.stanford.hivdb.drugresistance.database.MutationPatterns;
-import edu.stanford.hivdb.hivfacts.HIVDrugClass;
+//import edu.stanford.hivdb.drugresistance.database.MutationPatterns;
 import edu.stanford.hivdb.utilities.MyFileUtils;
 
 /**
@@ -35,25 +34,25 @@ import edu.stanford.hivdb.utilities.MyFileUtils;
  * where they can be used for j-unit testing
  *
  */
-public class MutationPatternFilesCreator {
-	private static final String OUTPUT_DIR = "src/test/resources/MutationPatternsFiles/";
-
-	public static void main (String[] args) {
-		for (HIVDrugClass drugClass : HIVDrugClass.values()) {
-			MutationPatterns mutPatterns = new MutationPatterns(drugClass);
-			List<String> orderedMutPatterns = mutPatterns.getOrderedMutPatterns();
-
-			String filePath = OUTPUT_DIR + "Patterns" + drugClass + ".txt";
-			StringBuffer output = new StringBuffer();
-			int patternNo = 0;
-			for (String pattern : orderedMutPatterns) {
-				patternNo++;
-				int count = mutPatterns.getPatternCount(pattern);
-				output.append(">" + drugClass + patternNo + " count:" + count + "\n");
-				output.append(pattern + "\n");
-			}
-			output.append("#comment for testing\n" + ">blank line for testing\n");
-			MyFileUtils.writeFile(filePath, output.toString());
-		}
-	}
-}
+//public class MutationPatternFilesCreator {
+//	private static final String OUTPUT_DIR = "src/test/resources/MutationPatternsFiles/";
+//
+//	public static void main (String[] args) {
+//		for (HIVDrugClass drugClass : HIVDrugClass.values()) {
+//			MutationPatterns mutPatterns = new MutationPatterns(drugClass);
+//			List<String> orderedMutPatterns = mutPatterns.getOrderedMutPatterns();
+//
+//			String filePath = OUTPUT_DIR + "Patterns" + drugClass + ".txt";
+//			StringBuffer output = new StringBuffer();
+//			int patternNo = 0;
+//			for (String pattern : orderedMutPatterns) {
+//				patternNo++;
+//				int count = mutPatterns.getPatternCount(pattern);
+//				output.append(">" + drugClass + patternNo + " count:" + count + "\n");
+//				output.append(pattern + "\n");
+//			}
+//			output.append("#comment for testing\n" + ">blank line for testing\n");
+//			MyFileUtils.writeFile(filePath, output.toString());
+//		}
+//	}
+//}
