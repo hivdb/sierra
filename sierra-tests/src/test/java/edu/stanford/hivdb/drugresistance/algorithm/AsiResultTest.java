@@ -144,12 +144,12 @@ public class AsiResultTest {
 		mutationSets = MutationSet.parseString(hiv.getGene("HIV1PR"), "PR73V,PR76V,PR84V,PR88S");
 		algorithmComparison = new AlgorithmComparison<HIV>(mutationSets, regaAlgo);
 		asiObj = algorithmComparison.getAsiList(hiv.getGene("HIV1PR")).get(0);
-		assertEquals("R", asiObj.getDrugLevelSir(hiv.getDrug("FPV")));
+		assertEquals("I", asiObj.getDrugLevelSir(hiv.getDrug("FPV")));
 
 		mutationSets = MutationSet.parseString(hiv.getGene("HIV1RT"), "RT67N,RT70R,RT184V,RT219Q");
 		algorithmComparison = new AlgorithmComparison<HIV>(mutationSets, regaAlgo);
 		asiObj = algorithmComparison.getAsiList(hiv.getGene("HIV1RT")).get(0);
-		assertEquals("I", asiObj.getDrugLevelSir(hiv.getDrug("TDF")));
+		assertEquals("S", asiObj.getDrugLevelSir(hiv.getDrug("TDF")));
 
 		mutationSets = MutationSet.parseString(hiv.getGene("HIV1IN"), "IN184A");
 		algorithmComparison = new AlgorithmComparison<HIV>(mutationSets, regaAlgo);
@@ -159,17 +159,17 @@ public class AsiResultTest {
 
 
 		List<DrugResistanceAlgorithm<HIV>> ansrAlgo = new ArrayList<>();
-		ansrAlgo.add(hiv.getLatestDrugResistAlgorithm("ANSR"));
+		ansrAlgo.add(hiv.getLatestDrugResistAlgorithm("ANRS"));
 
 		mutationSets = MutationSet.parseString(hiv.getGene("HIV1PR"), "PR73V,PR76V,PR84V,PR88S");
 		algorithmComparison = new AlgorithmComparison<HIV>(mutationSets, ansrAlgo);
 		asiObj = algorithmComparison.getAsiList(hiv.getGene("HIV1PR")).get(0);
-		assertEquals("R", asiObj.getDrugLevelSir(hiv.getDrug("FPV")));
+		assertEquals("S", asiObj.getDrugLevelSir(hiv.getDrug("FPV")));
 
 		mutationSets = MutationSet.parseString(hiv.getGene("HIV1RT"), "RT67N,RT70R,RT184V,RT219Q");
 		algorithmComparison = new AlgorithmComparison<HIV>(mutationSets, ansrAlgo);
 		asiObj = algorithmComparison.getAsiList(hiv.getGene("HIV1RT")).get(0);
-		assertEquals("I", asiObj.getDrugLevelSir(hiv.getDrug("TDF")));
+		assertEquals("S", asiObj.getDrugLevelSir(hiv.getDrug("TDF")));
 
 		mutationSets = MutationSet.parseString(hiv.getGene("HIV1IN"), "IN184A");
 		algorithmComparison = new AlgorithmComparison<HIV>(mutationSets, ansrAlgo);
