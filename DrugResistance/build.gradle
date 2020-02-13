@@ -55,7 +55,7 @@ dependencies {
 //         }
 //     }
 // }
-// 
+//
 // task updateAsi(type: JavaExec) {
 //     dependsOn classes
 //     dependsOn updateCachableExceptMutPatterns
@@ -69,7 +69,7 @@ dependencies {
 //         }
 //     }
 // }
-// 
+//
 // task updateCachableOnlyMutPatterns(type: JavaExec) {
 //     dependsOn classes
 //     dependsOn updateAsi
@@ -86,8 +86,8 @@ dependencies {
 //         }
 //     }
 // }
-// 
-// 
+//
+//
 // task updateCachable(type: JavaExec, group: 'Generator', description: 'Generate files with Cachable.') {
 //     dependsOn classes
 //     dependsOn updateCachableOnlyMutPatterns
@@ -116,10 +116,10 @@ task compareVersionRules(type: JavaExec, group: 'Comparison') {
     classpath = sourceSets.main.runtimeClasspath
 }
 
-task generateMutationPatternsExpecteds(type: JavaExec, group: 'Test Generator') {
-    main = 'edu.stanford.hivdb.drugresistance.scripts.MutationPatternsResistanceToJson'
-    classpath = sourceSets.test.runtimeClasspath
-}
+// task generateMutationPatternsExpecteds(type: JavaExec, group: 'Test Generator') {
+//     main = 'edu.stanford.hivdb.drugresistance.scripts.MutationPatternsResistanceToJson'
+//     classpath = sourceSets.test.runtimeClasspath
+// }
 
 task exportMutationScores(type: JavaExec, group: 'Generator', description: 'Export mutation score JSON file.') {
     main = 'edu.stanford.hivdb.drugresistance.scripts.MutationScoresExporter'
@@ -148,7 +148,7 @@ task exportTypedMutations(type: JavaExec, group: 'Generator', description: 'Expo
 //     }
 //     afterEvaluate {
 //         classDirectories = files(classDirectories.files.collect {
-//             fileTree(dir: it, 
+//             fileTree(dir: it,
 //                     exclude: ['edu/stanford/hivdb/drugresistance/scripts/**',
 //                               'edu/stanford/hivdb/drugresistance/GeneDRAsi.java'])
 //         })

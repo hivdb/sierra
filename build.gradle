@@ -4,7 +4,7 @@ plugins {
 
 subprojects {
     apply plugin: 'java'
-    
+
     repositories {
         mavenCentral()
         maven {
@@ -21,6 +21,8 @@ subprojects {
 
     compileTestJava {
         options.compilerArgs += '-proc:none'
+        exclude '**/edu/stanford/hivdb/drugresistance/**'
+        exclude '**/edu/stanford/hivdb/graphql/**'
     }
 
     dependencies {}

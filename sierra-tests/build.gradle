@@ -1,6 +1,5 @@
 plugins {
     id "org.gradle.java"
-    id "org.gradle.jacoco"
     id "org.gradle.eclipse"
     id "com.scuilion.syntastic" version "0.3.6"
 }
@@ -20,7 +19,20 @@ repositories {
 dependencies {
     compile project(':sierra-core')
     compile project(':hivfacts-java')
+    implementation 'com.google.guava:guava:28.1-jre'
+    implementation 'org.apache.commons:commons-lang3:3.9'
+    implementation 'org.apache.logging.log4j:log4j-api:2.12.1'
+    implementation 'org.apache.logging.log4j:log4j-core:2.12.1'
+    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'com.google.code.gson:gson-extras:2.8.5'
     testImplementation 'junit:junit:4.12'
 }
+
+// ignore regression test
+// test {
+//     exclude 'edu/stanford/hivdb/genotypes/GenotypeRegressionTest.class'
+//     exclude 'edu/stanford/hivdb/alignment/PrettyAlignmentsTest.class'
+//     exclude 'edu/stanford/hivdb/subtype/GenotypeResultTest.class'
+// }
 
 check.dependsOn jacocoTestReport
