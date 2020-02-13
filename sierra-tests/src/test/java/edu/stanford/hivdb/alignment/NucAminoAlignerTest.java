@@ -38,7 +38,7 @@ public class NucAminoAlignerTest {
 	private final static HIV hiv = HIV.getInstance();
 	private final static HIV2 hiv2 = HIV2.getInstance();
 
-	
+
 	/**
 	 * Instead of fetching test fasta sequence from Genbank,
 	 * use local fasta file
@@ -47,11 +47,16 @@ public class NucAminoAlignerTest {
 	 * @return     		 first sequence in fasta file
 	 */
 	private Sequence fallbackFromGenBank(String accession) {
+		String executable = System.getenv("NUCAMINO_PROGRAM");
+		System.out.println("========NUCAMINO_PROGRAM========");
+		System.out.println(executable);
+		System.out.println("========NUCAMINO_PROGRAM========");
+
 		String filePath = "Aligner/" + accession + ".fasta";
 		ClassLoader classLoader = getClass().getClassLoader();
 		System.out.println(filePath);
 		System.out.println(classLoader.getResource(filePath).getPath());
-		
+
 		InputStream input = classLoader.getResourceAsStream(filePath);
 		return FastaUtils.readStream(input).get(0);
 	}

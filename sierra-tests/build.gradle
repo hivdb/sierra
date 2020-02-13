@@ -30,11 +30,14 @@ dependencies {
 }
 
 // ignore regression test
-// test {
-//     exclude 'edu/stanford/hivdb/genotypes/GenotypeRegressionTest.class'
-//     exclude 'edu/stanford/hivdb/alignment/PrettyAlignmentsTest.class'
-//     exclude 'edu/stanford/hivdb/subtype/GenotypeResultTest.class'
-// }
+test {
+    // exclude 'edu/stanford/hivdb/genotypes/GenotypeRegressionTest.class'
+    // exclude 'edu/stanford/hivdb/alignment/PrettyAlignmentsTest.class'
+    // exclude 'edu/stanford/hivdb/subtype/GenotypeResultTest.class'
+    testLogging {
+        showStandardStreams = true
+    }
+}
 
 jacocoTestReport {
     reports {
