@@ -1,6 +1,7 @@
 plugins {
     id "org.gradle.java"
     id "org.gradle.eclipse"
+    id "org.gradle.jacoco"
     id "com.scuilion.syntastic" version "0.3.6"
 }
 
@@ -34,5 +35,12 @@ dependencies {
 //     exclude 'edu/stanford/hivdb/alignment/PrettyAlignmentsTest.class'
 //     exclude 'edu/stanford/hivdb/subtype/GenotypeResultTest.class'
 // }
+
+jacocoTestReport {
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+}
 
 check.dependsOn jacocoTestReport
