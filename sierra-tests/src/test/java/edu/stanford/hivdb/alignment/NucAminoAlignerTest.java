@@ -20,6 +20,8 @@ package edu.stanford.hivdb.alignment;
 
 import static org.junit.Assert.*;
 
+import java.io.InputStream;
+
 import org.junit.Test;
 
 import edu.stanford.hivdb.hivfacts.HIV;
@@ -29,15 +31,35 @@ import edu.stanford.hivdb.sequences.AlignedGeneSeq;
 import edu.stanford.hivdb.sequences.AlignedSequence;
 import edu.stanford.hivdb.sequences.NucAminoAligner;
 import edu.stanford.hivdb.sequences.Sequence;
+import edu.stanford.hivdb.utilities.FastaUtils;
 
 public class NucAminoAlignerTest {
 
 	private final static HIV hiv = HIV.getInstance();
 	private final static HIV2 hiv2 = HIV2.getInstance();
 
+	
+	/**
+	 * Instead of fetching test fasta sequence from Genbank,
+	 * use local fasta file
+	 *
+	 * @param  accession accession id
+	 * @return     		 first sequence in fasta file
+	 */
+	private Sequence fallbackFromGenBank(String accession) {
+		String filePath = "Aligner/" + accession + ".fasta";
+		ClassLoader classLoader = getClass().getClassLoader();
+		System.out.println(filePath);
+		System.out.println(classLoader.getResource(filePath).getPath());
+		
+		InputStream input = classLoader.getResourceAsStream(filePath);
+		return FastaUtils.readStream(input).get(0);
+	}
+
 	@Test
 	public void testSingleSequence() {
-		Sequence testSeq = Sequence.fromGenbank("AF096883");
+//		Sequence testSeq = Sequence.fromGenbank("AF096883");
+		Sequence testSeq = fallbackFromGenBank("AF096883");
 		AlignedSequence<HIV> alignedSeq = NucAminoAligner.getInstance(hiv).align(testSeq);
 		assertEquals("B (1.69%)", alignedSeq.getGenotypeText());
 		AlignedGeneSeq<HIV> seqPR = alignedSeq.getAlignedGeneSequence(hiv.getGene("HIV1PR"));
@@ -79,8 +101,9 @@ public class NucAminoAlignerTest {
 	}
 
 	@Test
-	public void testHIV2ASequence() {		
-		Sequence testSeq = Sequence.fromGenbank("Z48731");
+	public void testHIV2ASequence() {
+//		Sequence testSeq = Sequence.fromGenbank("Z48731");
+		Sequence testSeq = fallbackFromGenBank("Z48731");
 		AlignedSequence<HIV2> alignedSeq = NucAminoAligner.getInstance(hiv2).align(testSeq);
 		assertEquals(hiv2.getStrain("HIV2A"), alignedSeq.getStrain());
 		assertEquals("HIV-2 Group A (0.00%)", alignedSeq.getGenotypeText());
@@ -127,7 +150,8 @@ public class NucAminoAlignerTest {
 
 	@Test
 	public void testHIV2BSequence() {
-		Sequence testSeq = Sequence.fromGenbank("L07625");
+//		Sequence testSeq = Sequence.fromGenbank("L07625");
+		Sequence testSeq = fallbackFromGenBank("L07625");
 		AlignedSequence<HIV2> alignedSeq = NucAminoAligner.getInstance(hiv2).align(testSeq);
 		assertEquals(hiv2.getStrain("HIV2B"), alignedSeq.getStrain());
 		assertEquals("HIV-2 Group B (0.00%)", alignedSeq.getGenotypeText());
