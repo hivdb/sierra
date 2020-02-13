@@ -47,11 +47,6 @@ public class NucAminoAlignerTest {
 	 * @return     		 first sequence in fasta file
 	 */
 	private Sequence fallbackFromGenBank(String accession) {
-		String executable = System.getenv("NUCAMINO_PROGRAM");
-		System.out.println("========NUCAMINO_PROGRAM========");
-		System.out.println(executable);
-		System.out.println("========NUCAMINO_PROGRAM========");
-
 		String filePath = "Aligner/" + accession + ".fasta";
 		ClassLoader classLoader = getClass().getClassLoader();
 		System.out.println(filePath);

@@ -36,6 +36,8 @@ test {
     // exclude 'edu/stanford/hivdb/subtype/GenotypeResultTest.class'
     testLogging {
         showStandardStreams = true
+		events "failed"
+		exceptionFormat "full"
     }
 }
 
