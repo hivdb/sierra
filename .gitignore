@@ -1,4 +1,6 @@
 sierra-tests/*.txt
+sierra-tests/test/*.txt
+
 WebApplications/*.txt
 WebApplications/*.json
 DrugResistance/*.txt
