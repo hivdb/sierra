@@ -49,9 +49,6 @@ public class NucAminoAlignerTest {
 	private Sequence fallbackFromGenBank(String accession) {
 		String filePath = "Aligner/" + accession + ".fasta";
 		ClassLoader classLoader = getClass().getClassLoader();
-		System.out.println(filePath);
-		System.out.println(classLoader.getResource(filePath).getPath());
-
 		InputStream input = classLoader.getResourceAsStream(filePath);
 		return FastaUtils.readStream(input).get(0);
 	}
