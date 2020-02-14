@@ -20,8 +20,17 @@ package edu.stanford.hivdb.hivfacts;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 import org.junit.Test;
+
+import edu.stanford.hivdb.drugs.DrugResistanceAlgorithm;
+import edu.stanford.hivdb.mutations.GenePosition;
+import edu.stanford.hivdb.mutations.Mutation;
+import edu.stanford.hivdb.viruses.Gene;
+import edu.stanford.hivdb.viruses.Strain;
 
 
 public class HIVTest {
@@ -34,27 +43,60 @@ public class HIVTest {
 		HIV hiv2 = HIV.getInstance();
 		assertSame(hiv1, hiv2);
     }
+	
+	@Test
+	public void testGetName() {
+		assertEquals(hiv.getName(), "HIV");
+	}
 
-    @Test
-    public void testgetDrugClasses() {
-        assertNotNull(hiv.getDrugClasses());
-    }
-
+	@Test
+	public void testGetStrains() {
+		Collection<Strain<HIV>> strains = hiv.getStrains();
+		assertEquals(strains.size(), 1);
+		Strain<HIV> strain = strains.iterator().next();
+		assertEquals(strain.getName(), "HIV1");
+	}
+	
     @Test
     public void testGetStrain() {
+    	assertNull(hiv.getStrain(null));
     	assertNotNull(hiv.getStrain("HIV1"));
+    	assertNull(hiv.getStrain("HIV2"));
     }
-
-
+	
+    
     @Test
-    public void testGetDrugClass() {
-    	assertNotNull(hiv.getDrugClass("PI"));
-    	assertNotNull(hiv.getDrugClass("NRTI"));
-    	assertNotNull(hiv.getDrugClass("NNRTI"));
-    	assertNotNull(hiv.getDrugClass("INSTI"));
+    public void testGetGenes() {
+    	Strain<HIV> strain = hiv.getStrain("HIV1");
+    	Collection<Gene<HIV>> genes = hiv.getGenes(strain);
+    	
+    	assertNotNull(genes);
+    	assertEquals(genes.size(), 3);
+    	
+    	Strain<HIV> strain2 = hiv.getStrain("HIV2");
+    	Collection<Gene<HIV>> genes2 = hiv.getGenes(strain2);
+    	assertEquals(genes2.size(), 0);
+    }
+    
+    @Test
+    public void testGetGene() {
+    	assertNotNull(hiv.getGene("HIV1PR"));
+    	assertEquals(hiv.getGene("HIV1PR").getName(), "HIV1PR");
+    	assertEquals(hiv.getGene("HIV1PR").getAbstractGene(), "PR");
+    	
+    	assertNotNull(hiv.getGene("HIV1RT"));
+    	assertNotNull(hiv.getGene("HIV1IN"));
+    }
+	
+    @Test
+    public void testGetDrugClasses() {
+        assertNotNull(hiv.getDrugClasses());
+        assertEquals(hiv.getDrugClasses().size(), 4);
+        
+        assertEquals(hiv.getDrugClasses().iterator().next().getName(), "PI");
     }
 
-
+    
     @Test
     public void testGetDrugClassSynonymMap() {
     	assertEquals(hiv.getDrugClassSynonymMap().get("PI").getName(), "PI");
@@ -65,10 +107,22 @@ public class HIVTest {
 
     }
 
+    @Test
+    public void testGetDrugClass() {
+    	assertNotNull(hiv.getDrugClass("PI"));
+    	assertNotNull(hiv.getDrugClass("NRTI"));
+    	assertNotNull(hiv.getDrugClass("NNRTI"));
+    	assertNotNull(hiv.getDrugClass("INSTI"));
+    }
+    
+    @Test
+    public void testGetDrugs() {
+    	assertNotNull(hiv.getDrugs());
+    	assertEquals(hiv.getDrugs().size(), 24);
+    }
 
 	@Test
 	public void testGetDrugSynonymMap() {
-
 		assertEquals(hiv.getDrugSynonymMap().get("ABC"),   hiv.getDrug("ABC"));
 		assertEquals(hiv.getDrugSynonymMap().get("AZT"),   hiv.getDrug("AZT"));
 		assertEquals(hiv.getDrugSynonymMap().get("D4T"),   hiv.getDrug("D4T"));
@@ -100,12 +154,117 @@ public class HIVTest {
 		assertEquals(hiv.getDrugSynonymMap().get("EVG"),   hiv.getDrug("EVG"));
 		assertEquals(hiv.getDrugSynonymMap().get("RAL"),   hiv.getDrug("RAL"));
 	}
-
+	
 	@Test
 	public void testGetDrugSynonymMapWithException() {
 
 		assertNull(hiv.getDrugSynonymMap().get(""));
 		assertNull(hiv.getDrugSynonymMap().get("EVH"));
+	}
+	
+	@Test
+	public void testGetDrugResistAlgorithms() {
+		assertNotNull(hiv.getDrugResistAlgorithms());
+		// 20200214, 28 algorithms
+		assertEquals(hiv.getDrugResistAlgorithms().size(), 28);
+	}
+
+	@Test
+	public void testGetDrugResistAlgorithms2() {
+		List<String> algoNames = new ArrayList<>();
+		algoNames.add("HIVDB_8.9");
+		algoNames.add("Rega_10.0");
+		algoNames.add("ANRS_30");
+		
+		assertEquals(hiv.getDrugResistAlgorithms(algoNames).size(), 3);
+		
+		// 20200214 no HIVDB_9.0
+		List<String> algoNames2 = new ArrayList<>();
+		algoNames2.add("HIVDB_9.0");
+		assertEquals(hiv.getDrugResistAlgorithms(algoNames2).size(), 1);
+		assertNull(hiv.getDrugResistAlgorithms(algoNames2).iterator().next());
+	}
+	
+	@Test
+	public void testGetDrugResistAlgorithm() {
+		DrugResistanceAlgorithm<HIV> algo = hiv.getDrugResistAlgorithm("HIVDB_8.9");
+		assertNotNull(algo);
+		assertEquals(algo.getFamily(), "HIVDB");
+	}
+	
+	@Test
+	public void testGetDrugResistAlgorithm2() {
+		DrugResistanceAlgorithm<HIV> algo = hiv.getDrugResistAlgorithm("HIVDB", "8.9");
+		assertNotNull(algo);
+		assertEquals(algo.getVersion(), "8.9");
+	}
+	
+	
+	@Test
+	public void testExtractMutationGene() {
+		assertNotNull(hiv.extractMutationGene("RT:M184V"));
+		assertNull(hiv.extractMutationGene("RRRRR"));
+	}
+	
+	@Test
+	public void testExtractMutationGeneWithException() {
+		assertNull(hiv.extractMutationGene("RR:M184V"));
+	}
+	
+	@Test
+	public void testParseMutationString() {
+		Gene<HIV> gene = hiv.getGene("HIV1RT");
+		assertNotNull(hiv.parseMutationString(gene, "RT:M184V"));
+	}
+
+	@Test(expected=Mutation.InvalidMutationException.class)
+	public void testParseMutationStringeWithException() {
+		Gene<HIV> gene = hiv.getGene("HIV1RT");
+		assertNotNull(hiv.parseMutationString(gene, "RR:M184V"));
+	}
+	
+	@Test
+	public void testParseMutationString2() {
+		assertNotNull(hiv.parseMutationString("RT:M184V"));
+	}
+	
+	
+	@Test
+	public void testNewMutationSet() {
+		assertEquals(hiv.newMutationSet(hiv.getGene("HIV1RT"), "M184V, E44A").size(), 2);
+	}
+	
+	@Test
+	public void testNewMutationSet2() {
+		List<String> formattedMuts = new ArrayList<>();
+		formattedMuts.add("M184V");
+		formattedMuts.add("E44A");
+		
+		assertEquals(hiv.newMutationSet(hiv.getGene("HIV1RT"), formattedMuts).size(), 2);
+	}
+	
+	@Test(expected=Mutation.InvalidMutationException.class)
+	public void testNewMutationSet3() {
+		assertEquals(hiv.newMutationSet("M184V, E44A").size(), 2);
+	}
+	
+	@Test
+	public void testGetDrugResistMutations() {
+		assertNotNull(hiv.getDrugResistMutations());
+		assertEquals(hiv.getDrugResistMutations().size(), 4);
+	}
+
+	@Test
+	public void testGetSurveilDrugResistMutations() {
+		assertNotNull(hiv.getSurveilDrugResistMutations());
+		assertEquals(hiv.getSurveilDrugResistMutations().size(), 4);
+	}
+
+	
+	@Test
+	public void testGetRxSelectedMutations() {
+		assertNotNull(hiv.getRxSelectedMutations());
+		assertEquals(hiv.getRxSelectedMutations().size(), 4);
 	}
 
 	@Test
@@ -118,5 +277,96 @@ public class HIVTest {
 	public void testGetApobecDRMs() {
 		assertNotNull(hiv.getApobecDRMs());
 	}
+	
+	@Test
+	public void testGetMutationTypes() {
+		assertNotNull(hiv.getMutationTypes());
+		assertEquals(hiv.getMutationTypes().size(), 5);
+	}
+	
+	@Test
+	public void testGetMutationType() {
+		assertNotNull(hiv.getMutationType("Major"));
+		assertNull(hiv.getMutationType("Error"));
+	}
+	
+	@Test
+	public void testGetMutationTypePairs() {
+		assertNotNull(hiv.getMutationTypePairs());
+		// 20200214, 260 mutation type pairs
+		assertEquals(hiv.getMutationTypePairs().size(), 260);
+	}
+	
+	@Test
+	public void testGetAminoAcidPercents() {
+		Strain<HIV> strain = hiv.getStrain("HIV1");
+		assertNotNull(hiv.getAminoAcidPercents(strain, "all", "A").get());
+	}
+	
+	@Test
+	public void testGetCodonPercents() {
+		Strain<HIV> strain = hiv.getStrain("HIV1");
+		assertNotNull(hiv.getCodonPercents(strain, "all", "A").get());
+	}
 
+	@Test
+	public void testGetMutationPrevalence() {
+		Gene<HIV> gene = hiv.getGene("HIV1RT");
+		GenePosition<HIV> pos = new GenePosition<HIV>(gene, 184);
+		assertNotNull(hiv.getMutationPrevalence(pos));
+	}
+	
+	@Test
+	public void testGetConditionalComments() {
+		assertNotNull(hiv.getConditionalComments());
+	}
+	
+	@Test
+	public void testGetMainSubtypes() {
+		Strain<HIV> strain = hiv.getStrain("HIV1");
+		assertEquals(hiv.getMainSubtypes(strain).size(), 8);
+	}
+	
+	@Test
+	public void testGetNumPatientsForAAPercents() {
+		Strain<HIV> strain = hiv.getStrain("HIV1");
+		assertEquals(hiv.getNumPatientsForAAPercents(strain).size(), 3);
+	}
+	
+	@Test
+	public void testGetGenotypes() {
+		assertNotNull(hiv.getGenotypes());
+	}
+	
+	@Test
+	public void testGetGenotype() {
+		assertNotNull(hiv.getGenotype("B"));
+	}
+	
+	@Test
+	public void testGetGenotypeUnknown() {
+		assertNotNull(hiv.getGenotypeUnknown());
+		assertEquals(hiv.getGenotypeUnknown().getDisplayName(), "Unknown");
+	}
+	
+	@Test
+	public void testGetGenotypeReferences() {
+		assertNotNull(hiv.getGenotypeReferences());
+	}
+	
+	@Test
+	public void testGetGenotyper() {
+		assertNotNull(hiv.getGenotyper());
+	}
+
+	
+	@Test
+	public void testGetMainStrain() {
+		assertSame(hiv.getStrain("HIV1"), hiv.getMainStrain());
+	}
+	
+	@Test
+	public void testEquals() {
+		hiv.equals(HIV.getInstance());
+	}
 }
