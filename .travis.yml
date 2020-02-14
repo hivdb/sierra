@@ -18,7 +18,7 @@ env:
   #     NUCAMINO_PROGRAM="${TRAVIS_BUILD_DIR}/nucamino"
   global:
     - |-
-      NUCAMINO_PROGRAM="${TRAVIS_BUILD_DIR}/sierra/docker/tomcat-with-nucamino-dev/nucamino-linux-amd64"
+      NUCAMINO_PROGRAM="${HOME}/sierra/docker/tomcat-with-nucamino-dev/nucamino-linux-amd64"
 script:
   - ./gradlew assemble
   - ./gradlew -D java.util.concurrent.ForkJoinPool.common.parallelism=2 check
