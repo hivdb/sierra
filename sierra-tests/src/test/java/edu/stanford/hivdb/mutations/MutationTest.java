@@ -31,7 +31,7 @@ import java.util.List;
 import java.util.Set;
 
 public class MutationTest {
-	
+
 	private static HIV hiv = HIV.getInstance();
 
 	@Test
@@ -609,7 +609,7 @@ public class MutationTest {
 	}
 
 	@Test
-	public void testGetHighestMutPrevalance() {
+	public void testGetHighestMutPrevalence() {
 		// Since we update prevalence data periodically, we
 		// expects the following assertions to ultimately fail.
 		// Hence we must manually update these assertions every time
