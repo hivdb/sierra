@@ -34,6 +34,8 @@ dependencies {
 //     exclude 'edu/stanford/hivdb/genotypes/GenotypeRegressionTest.class'
 //     exclude 'edu/stanford/hivdb/alignment/PrettyAlignmentsTest.class'
 //     exclude 'edu/stanford/hivdb/subtype/GenotypeResultTest.class'
+//     exclude 'edu/stanford/hivdb/alignment/SequenceValidatorTest.class'
+//     exclude 'edu/stanford/hivdb/reports/SequenceSummaryTSVTest.class'
 //     testLogging {
 //         showStandardStreams = true
 // 		events "failed"
