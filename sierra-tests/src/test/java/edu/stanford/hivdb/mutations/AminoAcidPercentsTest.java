@@ -41,15 +41,17 @@ public class AminoAcidPercentsTest {
 	}
 
 	@Test
-	public void testGsonLoad() {
+	public void testGetAll() {
 		AminoAcidPercents<HIV> allall = hiv.getAminoAcidPercents(hiv.getStrain("HIV1"), "all", "all");
+		
+		// all gene positions * all AAs+indel+stop codon
 		assertEquals((99 + 560 + 288) * 23, allall.get().size());
+		
 		AminoAcidPercent<HIV> mutPR1A = allall.get().get(0);
 		assertEquals(hiv.getGene("HIV1PR"), mutPR1A.getGene());
 		assertEquals(1, (int) mutPR1A.getPosition());
 		assertEquals('A', (char) mutPR1A.getAA());
 	}
-
 
 	@Test
 	public void testGetByGene() {
@@ -68,7 +70,7 @@ public class AminoAcidPercentsTest {
 	}
 
 	@Test
-	public void testGetByGenePos() {
+	public void testGetByGeneIntPos() {
 		AminoAcidPercents<HIV> allall = hiv.getAminoAcidPercents(hiv.getStrain("HIV1"), "all", "all");
 		List<AminoAcidPercent<HIV>> gpIN263AAPcnts = allall.get(hiv.getGene("HIV1IN"), 263);
 		assertEquals(23, gpIN263AAPcnts.size());
@@ -80,11 +82,33 @@ public class AminoAcidPercentsTest {
 			assertEquals(aa, (char) mut.getAA());
 		}
 	}
+	
+	@Test
+	public void testGetByGenePos() {
+		AminoAcidPercents<HIV> allall = hiv.getAminoAcidPercents(hiv.getStrain("HIV1"), "all", "all");
+		GenePosition<HIV> genPos = new GenePosition<HIV>(hiv.getGene("HIV1IN"), 263);
+		List<AminoAcidPercent<HIV>> gpIN263AAPcnts = allall.get(genPos);
+		assertEquals(23, gpIN263AAPcnts.size());
+		int i = 0;
+		for (char aa : "ACDEFGHIKLMNPQRSTVWY_-*".toCharArray()) {
+			AminoAcidPercent<HIV> mut = gpIN263AAPcnts.get(i ++);
+			assertEquals(hiv.getGene("HIV1IN"), mut.getGene());
+			assertEquals(263, (int) mut.getPosition());
+			assertEquals(aa, (char) mut.getAA());
+		}
+	}
+
 
 	@Test
 	public void testGetByMut() {
 		AminoAcidPercents<HIV> allall = hiv.getAminoAcidPercents(hiv.getStrain("HIV1"), "all", "all");
 		AminoAcidPercent<HIV> mutIN263R = allall.get(hiv.getGene("HIV1IN"), 263, 'R');
+		assertEquals(hiv.getGene("HIV1IN"), mutIN263R.getGene());
+		assertEquals(263, (int) mutIN263R.getPosition());
+		assertEquals('R', (char) mutIN263R.getAA());
+		
+		GenePosition<HIV> genPos = new GenePosition<HIV>(hiv.getGene("HIV1IN"), 263);
+		mutIN263R = allall.get(genPos, 'R');
 		assertEquals(hiv.getGene("HIV1IN"), mutIN263R.getGene());
 		assertEquals(263, (int) mutIN263R.getPosition());
 		assertEquals('R', (char) mutIN263R.getAA());
