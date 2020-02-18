@@ -142,7 +142,7 @@ public class SequenceAnalysisService {
 				customAlgorithmList
 				.stream()
 				.map(m -> new DrugResistanceAlgorithm<>(
-					m.get("name"), hiv.getStrain("HIV1"), m.get("xml")
+					m.get("name"), hiv, m.get("xml")
 				))
 				.collect(Collectors.toList())
 			);

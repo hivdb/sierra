@@ -46,16 +46,16 @@ import static edu.stanford.hivdb.graphql.DrugResistanceAlgorithmDef.oASIAlgorith
 public class AlgorithmComparisonDef {
 
 	protected static <VirusT extends Virus<VirusT>> List<Map<String, Object>> fetchAlgorithmComparisonData(
-			Virus<VirusT> virusIns,
+			VirusT virusIns,
 			MutationSet<VirusT> allMuts,
 			Collection<String> algorithmNames,
 			Map<String, String> customAlgorithms) {
 		Collection<DrugResistanceAlgorithm<VirusT>> algorithms = virusIns.getDrugResistAlgorithms(algorithmNames); 
 		customAlgorithms.entrySet().stream().forEach(e -> {
 			algorithms.add(new DrugResistanceAlgorithm<>(
-				/* name =        */ e.getKey(),
-				/* strain =      */ virusIns.getMainStrain(),
-				/* xmlText =     */ e.getValue()));
+				/* name =      */ e.getKey(),
+				/* virus =     */ virusIns,
+				/* xmlText =   */ e.getValue()));
 		});
 		AlgorithmComparison<VirusT> algCmp = new AlgorithmComparison<>(allMuts, algorithms);
 		return algCmp.getComparisonResults()

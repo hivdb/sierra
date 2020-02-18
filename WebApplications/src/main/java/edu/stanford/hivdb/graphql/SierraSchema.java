@@ -308,8 +308,8 @@ public class SierraSchema {
 		.codeRegistry(makeCodeRegistry(hiv))
 		.build();
 
-//	public static GraphQLSchema hiv2Schema = GraphQLSchema.newSchema()
-//			.query(oRoot.get("HIV2"))
-//			.codeRegistry(makeCodeRegistry(hiv2))
-//			.build();
+	public static GraphQLSchema hiv2Schema = GraphQLSchema.newSchema()
+			.query(oRoot.get("HIV2"))
+			.codeRegistry(makeCodeRegistry(hiv2))
+			.build();
 }
