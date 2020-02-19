@@ -36,6 +36,7 @@ public class WebApplication extends Application {
 	public WebApplication(@Context Dispatcher dispatcher) {
 		singletons.add(new HivdbVersionService());
 		singletons.add(new GraphQLService());
+		singletons.add(new HIV2Service());
 		classes.add(SequenceAnalysisService.class);
 	    CorsFilter corsFilter = new CorsFilter();
 	    corsFilter.getAllowedOrigins().add("*");
