@@ -35,9 +35,9 @@ import edu.stanford.hivdb.sequences.Sequence;
 import edu.stanford.hivdb.utilities.FastaUtils;
 
 public class SequenceSummaryTSVTest {
-	
+
 	private final static HIV hiv = HIV.getInstance();
-	
+
 
 	@Test
 	public void test() {
@@ -86,7 +86,7 @@ public class SequenceSummaryTSVTest {
 		}
 		System.out.println(output.toString());
 		// final String outputFile =  "TabularSequenceSummaryOutput.txt";
-		// MyFileUtils.writeFile(outputFile, output.toString());
+		// TestUtils.writeFile(outputFile, output.toString());
 	}
 
 }

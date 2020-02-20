@@ -34,7 +34,7 @@ import edu.stanford.hivdb.sequences.AlignedGeneSeq;
 import edu.stanford.hivdb.sequences.AlignedSequence;
 import edu.stanford.hivdb.sequences.NucAminoAligner;
 import edu.stanford.hivdb.sequences.Sequence;
-import edu.stanford.hivdb.utilities.MyFileUtils;
+import edu.stanford.hivdb.testutils.TestUtils;
 import edu.stanford.hivdb.utilities.PrettyPairwise;
 import edu.stanford.hivdb.utilities.FastaUtils;
 
@@ -43,7 +43,7 @@ public class PrettyPairwiseTest {
 
 	@SuppressWarnings("unused")
 	private static final Logger LOGGER = LogManager.getLogger();
-	
+
 	private static final HIV hiv = HIV.getInstance();
 
 	@Test
@@ -73,7 +73,7 @@ public class PrettyPairwiseTest {
 				output.append("\n\n");
 			}
 		}
-		MyFileUtils.writeFile(OUTPUT_FILE, output.toString());
+		TestUtils.writeFile(OUTPUT_FILE, output.toString());
 	}
 
 	public String joinCodonsWithSpaces (List<String> positions, int numSpaces) {

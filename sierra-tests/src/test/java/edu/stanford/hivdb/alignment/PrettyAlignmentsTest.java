@@ -34,12 +34,12 @@ import edu.stanford.hivdb.sequences.AlignedSequence;
 import edu.stanford.hivdb.sequences.NucAminoAligner;
 import edu.stanford.hivdb.sequences.PrettyAlignments;
 import edu.stanford.hivdb.sequences.Sequence;
-import edu.stanford.hivdb.utilities.MyFileUtils;
+import edu.stanford.hivdb.testutils.TestUtils;
 import edu.stanford.hivdb.viruses.Gene;
 import edu.stanford.hivdb.utilities.FastaUtils;
 
 public class PrettyAlignmentsTest {
-	
+
 	private final static HIV hiv = HIV.getInstance();
 
 	@Test
@@ -90,7 +90,7 @@ public class PrettyAlignmentsTest {
 			}
 			output.append(row + "\n");
 		}
-		MyFileUtils.writeFile(gene.getName() + "PrettyAlignmentTestOutput.txt", output.toString());
+		TestUtils.writeFile(gene.getName() + "PrettyAlignmentTestOutput.txt", output.toString());
 	}
 
 }

@@ -16,7 +16,7 @@ import edu.stanford.hivdb.genotypes.GenotypeResult;
 import edu.stanford.hivdb.hivfacts.HIV;
 import edu.stanford.hivdb.mutations.MutationSet;
 import edu.stanford.hivdb.utilities.FastaUtils;
-import edu.stanford.hivdb.utilities.MyFileUtils;
+import edu.stanford.hivdb.testutils.TestUtils;
 import edu.stanford.hivdb.sequences.AlignedSequence;
 import edu.stanford.hivdb.sequences.NucAminoAligner;
 import edu.stanford.hivdb.sequences.Sequence;
@@ -80,7 +80,7 @@ public class GenotypeResultTest {
 
 		}
 
-		MyFileUtils.writeFile(filePath, output.toString());
+		TestUtils.writeFile(filePath, output.toString());
     }
 
 	/*private static String printOutSubypeResults(Map<Integer, Map<Subtype, Map<String, Double>>> subtypeResults) {

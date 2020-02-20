@@ -20,7 +20,7 @@ package edu.stanford.hivdb.drugresistance.mutationpattern;
 
 import java.util.List;
 //import edu.stanford.hivdb.drugresistance.database.MutationPatterns;
-import edu.stanford.hivdb.utilities.MyFileUtils;
+import edu.stanford.hivdb.testutils.TestUtils;
 
 /**
  * Creates 4 files, each containing all patterns of drug-resistance mutations for a drug class
@@ -52,7 +52,7 @@ import edu.stanford.hivdb.utilities.MyFileUtils;
 //				output.append(pattern + "\n");
 //			}
 //			output.append("#comment for testing\n" + ">blank line for testing\n");
-//			MyFileUtils.writeFile(filePath, output.toString());
+//			TestUtils.writeFile(filePath, output.toString());
 //		}
 //	}
 //}

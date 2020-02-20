@@ -38,12 +38,12 @@ import edu.stanford.hivdb.sequences.NucAminoAligner;
 import edu.stanford.hivdb.sequences.Sequence;
 import edu.stanford.hivdb.utilities.FastaUtils;
 import edu.stanford.hivdb.utilities.Json;
-import edu.stanford.hivdb.utilities.MyFileUtils;
+import edu.stanford.hivdb.testutils.TestUtils;
 import edu.stanford.hivdb.viruses.Gene;
 
 @SuppressWarnings("deprecation")
 public class AlgorithmComparisonTestExpectedsGenerator {
-	
+
 	private static final HIV hiv = HIV.getInstance();
 
 	public static void main(String[] args) {
@@ -60,14 +60,14 @@ public class AlgorithmComparisonTestExpectedsGenerator {
 
 			List<AlignedSequence<HIV>> allAligneds =
 					NucAminoAligner.getInstance(hiv).parallelAlign(sequences);
-			
-			
+
+
 
 			for (AlignedSequence<HIV> alignedSeq : allAligneds) {
 				Sequence sequence = alignedSeq.getInputSequence();
 				MutationSet<HIV> mutationSets = alignedSeq.getMutations();
 				List<DrugResistanceAlgorithm<HIV>> hivAlgo = new ArrayList<>();
-				
+
 				hivAlgo.add(hiv.getLatestDrugResistAlgorithm("HIVDB"));
 				hivAlgo.add(hiv.getLatestDrugResistAlgorithm("Rega"));
 				AlgorithmComparison<HIV> algorithmComparison =
@@ -80,7 +80,7 @@ public class AlgorithmComparisonTestExpectedsGenerator {
 
 		String fileName = "src/test/resources/AlgorithmComparisonTestExpecteds.json";
 		System.out.println(String.format("Write to file %s. Done.", fileName));
-		MyFileUtils.writeFile(fileName, result);
+		TestUtils.writeFile(fileName, result);
 
 	}
 

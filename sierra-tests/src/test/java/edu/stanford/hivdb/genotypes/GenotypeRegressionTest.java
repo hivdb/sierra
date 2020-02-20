@@ -20,6 +20,8 @@ import com.google.gson.reflect.TypeToken;
 import edu.stanford.hivdb.genotypes.Genotype.RegionalGenotype;
 import edu.stanford.hivdb.hivfacts.HIV;
 
+import edu.stanford.hivdb.testutils.TestUtils;
+
 public class GenotypeRegressionTest {
 
 	private static Set<String> skippedSequences = new HashSet<>();
@@ -45,7 +47,7 @@ public class GenotypeRegressionTest {
 		List<SequenceWithExpectedGenotype> lots = new Gson().fromJson(
 				new BufferedReader(new InputStreamReader(json)),
 			    new TypeToken<List<SequenceWithExpectedGenotype>>(){}.getType());
-		System.setOut(new PrintStream(new BufferedOutputStream(new FileOutputStream("regressionresult.tsv")), true));
+		System.setOut(new PrintStream(new BufferedOutputStream(TestUtils.getFileOutputStream("regressionresult.tsv")), true));
 		System.out.println(
 			"AccessionID\tFirstNA\tLastNA\tExpectedGenotype\tResultGenotype\t" +
 			"Distance\tRegionalGenotypes\tReferenceAccessionID\tPrimaryGenotype\t" +
