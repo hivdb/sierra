@@ -26,7 +26,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 import java.lang.reflect.Type;
 
 import org.junit.Test;
@@ -45,7 +44,6 @@ import edu.stanford.hivdb.sequences.NucAminoAligner;
 import edu.stanford.hivdb.sequences.Sequence;
 import edu.stanford.hivdb.utilities.Json;
 import edu.stanford.hivdb.utilities.MyFileUtils;
-import edu.stanford.hivdb.viruses.Gene;
 import edu.stanford.hivdb.utilities.FastaUtils;
 
 public class AlgorithmComparisonTest {
@@ -102,7 +100,7 @@ public class AlgorithmComparisonTest {
 				}
 
 				// Issue, the AlgorithmComparisonTestExpecteds.json file is not fit with algorithm
-				assertEquals(expected.size(), actual.size());
+				assertEquals(Json.dumps(expected), Json.dumps(actual));
 			}
 		}
 	}
