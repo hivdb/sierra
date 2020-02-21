@@ -16,7 +16,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package edu.stanford.hivdb.alignment;
+package edu.stanford.hivdb.sequences;
 
 import java.util.List;
 import java.io.InputStream;
