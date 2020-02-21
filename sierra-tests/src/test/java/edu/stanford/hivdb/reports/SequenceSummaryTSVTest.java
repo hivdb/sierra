@@ -18,6 +18,8 @@
 
 package edu.stanford.hivdb.reports;
 
+import static org.junit.Assert.*;
+
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
@@ -51,7 +53,24 @@ public class SequenceSummaryTSVTest {
 			seqSummaryTSV.getReportRows(allSequenceResults)
 		);
 	}
+	
+	@Test
+	public void testGetReport() {
+		final InputStream testSequenceInputStream =
+				TestSequencesFiles.getTestSequenceInputStream(TestSequencesProperties.VGI);
+		final List<Sequence> sequences = FastaUtils.readStream(testSequenceInputStream);
+		final List<AlignedSequence<HIV>> allSequenceResults = NucAminoAligner.getInstance(hiv).parallelAlign(sequences);
+		
+		SequenceSummaryTSV<HIV> seqSummaryTSV = SequenceSummaryTSV.getInstance(hiv);
+		
+		System.out.println(seqSummaryTSV.getReport(allSequenceResults));
+	}
 
+	@Test
+	public void testGetInstance() {
+		final HIV hiv = HIV.getInstance();
+		assertNotNull(SequenceSummaryTSV.getInstance(hiv));
+	}
 
 	private static void printOutTable(
 		List<String> headerFields,

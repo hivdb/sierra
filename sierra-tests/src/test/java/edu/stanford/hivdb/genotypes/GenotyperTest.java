@@ -20,6 +20,18 @@ public class GenotyperTest {
 		assertEquals("KJ485697", primary.getReference().getAccession());
 		assertEquals(65.0 / 2841, primary.getDistance(), 1e-10);
 		assertEquals("B", result.getFallbackMatch().getGenotype().getIndexName());
+		
+		GenotypeResult<HIV> result2 = hiv.getGenotyper().compareAll(
+				seqX51.sequence,
+				seqX51.firstNA);
+		
+		BoundGenotype<HIV> primary2 = result.getFirstMatch();
+		assertEquals("X51", primary2.getGenotype().getIndexName());
+		assertEquals("KJ485697", primary2.getReference().getAccession());
+		assertEquals(65.0 / 2841, primary2.getDistance(), 1e-10);
+		assertEquals("B", result2.getFallbackMatch().getGenotype().getIndexName());
+		
+		
 
 		// test boundary cases
 		StringBuffer buf = new StringBuffer(seqX51.sequence);
