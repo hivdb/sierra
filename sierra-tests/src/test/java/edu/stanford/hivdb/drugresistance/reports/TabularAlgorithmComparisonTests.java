@@ -22,19 +22,16 @@ import static org.junit.Assert.*;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import org.apache.commons.io.IOUtils;
 import org.junit.Test;
 
-import edu.stanford.hivdb.drugresistance.algorithm.Algorithm;
-import edu.stanford.hivdb.drugresistance.database.HivdbVersion;
+
+import edu.stanford.hivdb.drugs.DrugResistanceAlgorithm;
 import edu.stanford.hivdb.filetestutils.TestSequencesFiles;
 import edu.stanford.hivdb.filetestutils.TestSequencesFiles.TestSequencesProperties;
+import edu.stanford.hivdb.hivfacts.HIV;
 import edu.stanford.hivdb.sequences.AlignedSequence;
 import edu.stanford.hivdb.sequences.NucAminoAligner;
 import edu.stanford.hivdb.sequences.Sequence;
@@ -42,27 +39,35 @@ import edu.stanford.hivdb.utilities.FastaUtils;
 
 public class TabularAlgorithmComparisonTests {
 
+	
+	private final static HIV hiv = HIV.getInstance();
+	
 	@Test
 	public void test() throws IOException {
 		final InputStream testSequenceInputStream =
 				TestSequencesFiles.getTestSequenceInputStream(TestSequencesProperties.SMALL);
 		final List<Sequence> sequences = FastaUtils.readStream(testSequenceInputStream);
-		final List<Algorithm> algorithms = new ArrayList<>();
-		algorithms.add(Algorithm.ANRS);
-		algorithms.add(Algorithm.HIVDB);
-		algorithms.add(Algorithm.REGA);
-		final Map<String, String> customAlgs = new HashMap<>();
-		final InputStream v7 = HivdbVersion.V7_0.getResource();
-		customAlgs.put("HIVDB70", IOUtils.toString(v7, StandardCharsets.UTF_8));
+		
+		final List<DrugResistanceAlgorithm<HIV>> algorithms = new ArrayList<>();
+		
+		
+		algorithms.add(hiv.getLatestDrugResistAlgorithm("ANRS"));
+		algorithms.add(hiv.getLatestDrugResistAlgorithm("HIVDB"));
+		algorithms.add(hiv.getLatestDrugResistAlgorithm("Rega"));
+		algorithms.add(hiv.getDrugResistAlgorithm("HIVDB_7.0"));
+		
 
-		final List<AlignedSequence> alignedSeqs = NucAminoAligner.parallelAlign(sequences);
-		TabularAlgorithmsComparison cmp = new TabularAlgorithmsComparison(alignedSeqs, algorithms, customAlgs);
+		NucAminoAligner<HIV> aligner = NucAminoAligner.getInstance(hiv);
+		final List<AlignedSequence<HIV>> alignedSeqs = aligner.parallelAlign(sequences);
+		TabularAlgorithmsComparison<HIV> cmp = new TabularAlgorithmsComparison<HIV>(alignedSeqs, algorithms);
+		
+		
 		String result = cmp.toString();
 		assertEquals(
-			"sequenceName\tgene\tdrugName\tANRS.drugLevel\tHIVDB.drugLevel\tREGA.drugLevel\tHIVDB70.drugLevel",
+			"sequenceName\tgene\tdrugName\tANRS_30.drugLevel\tHIVDB_8.9-1.drugLevel\tRega_9.1.drugLevel\tHIVDB_7.0.drugLevel",
 			result.split("\n", 2)[0]
 		);
-		assertEquals(201, result.split("\n").length);
+		assertEquals(21, result.split("\n").length);
 	}
 
 }
