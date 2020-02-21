@@ -38,6 +38,11 @@ import edu.stanford.hivdb.viruses.Strain;
 public class HIVTest {
 
 	final static HIV hiv = HIV.getInstance();
+	
+	@Test(expected=ExceptionInInitializerError.class)
+	public void testLoadResourceError() {
+		HIV.loadResource("hiv12345.json");
+	}
 
 	@Test
 	public void testGetInstance() {
@@ -228,11 +233,13 @@ public class HIVTest {
 	public void testExtractMutationGene() {
 		assertNotNull(hiv.extractMutationGene("RT:M184V"));
 		assertNull(hiv.extractMutationGene("RRRRR"));
-	}
-
-	@Test
-	public void testExtractMutationGeneWithException() {
+		
 		assertNull(hiv.extractMutationGene("RR:M184V"));
+	}
+	
+	@Test(expected=Mutation.InvalidMutationException.class)
+	public void testExtractMutationGeneWithException() {
+		hiv.extractMutationGene(":123V");
 	}
 
 	@Test
@@ -255,7 +262,14 @@ public class HIVTest {
 
 	@Test
 	public void testNewMutationSet() {
+		assertNotNull(hiv.newMutationSet("RT:M184V"));
+		
 		assertEquals(hiv.newMutationSet(hiv.getGene("HIV1RT"), "M184V, E44A").size(), 2);
+		
+		List<String> formattedMuts = new ArrayList<>();
+		formattedMuts.add("RT:M184V");
+		assertNotNull(hiv.newMutationSet(formattedMuts));
+		
 	}
 
 	@Test
@@ -265,6 +279,9 @@ public class HIVTest {
 		formattedMuts.add("E44A");
 
 		assertEquals(hiv.newMutationSet(hiv.getGene("HIV1RT"), formattedMuts).size(), 2);
+		
+		String nullString = null;
+		assertEquals(hiv.newMutationSet(hiv.getGene("HIV1RT"), nullString).size(), 0);
 	}
 
 	@Test(expected=Mutation.InvalidMutationException.class)
@@ -414,6 +431,7 @@ public class HIVTest {
 
 	@Test
 	public void testEquals() {
-		hiv.equals(HIV.getInstance());
+		assertTrue(hiv.equals(HIV.getInstance()));
+		assertFalse(hiv.equals(null));
 	}
 }
