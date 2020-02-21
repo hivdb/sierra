@@ -19,7 +19,6 @@
 package edu.stanford.hivdb.drugresistance.reports;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
 
 import java.sql.SQLException;
 import java.util.List;

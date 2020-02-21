@@ -8,6 +8,7 @@ sierra-tests/*.txt
 sierra-tests/test/*.txt
 sierra-tests/test/*.tsv
 sierra-tests/test/*.json
+sierra-tests/test/*.xml
 sierra-tests/Results.xml
 sierra-tests/AlgComparisons
 sierra-tests/VersionComparisons

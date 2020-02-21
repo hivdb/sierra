@@ -29,20 +29,23 @@ import java.util.Map;
 import org.junit.Test;
 
 import edu.stanford.hivdb.drugresistance.GeneDR;
-import edu.stanford.hivdb.drugresistance.GeneDRFast;
+import edu.stanford.hivdb.drugresistance.GeneDRAsi;
 import edu.stanford.hivdb.filetestutils.TestSequencesFiles;
 import edu.stanford.hivdb.filetestutils.TestSequencesFiles.TestSequencesProperties;
-import edu.stanford.hivdb.hivfacts.HIVGene;
+import edu.stanford.hivdb.viruses.Gene;
+import edu.stanford.hivdb.hivfacts.HIV;
 import edu.stanford.hivdb.hivfacts.extras.XmlOutput;
 import edu.stanford.hivdb.sequences.AlignedSequence;
 import edu.stanford.hivdb.sequences.NucAminoAligner;
 import edu.stanford.hivdb.sequences.Sequence;
-import edu.stanford.hivdb.utilities.MyFileUtils;
+import edu.stanford.hivdb.testutils.TestUtils;
 import edu.stanford.hivdb.utilities.FastaUtils;
 
 public class XmlOutputTest {
-	private List<AlignedSequence> alignedSequences;
-	private List<Map<HIVGene, GeneDR>> allResistanceResults;
+	private List<AlignedSequence<HIV>> alignedSequences;
+	private List<Map<Gene<HIV>, GeneDR<HIV>>> allResistanceResults;
+	
+	private static final HIV hiv = HIV.getInstance();
 
 	@Test
 	public void test() {
@@ -51,7 +54,7 @@ public class XmlOutputTest {
 		final List<Sequence> sequences = FastaUtils.readStream(testSequenceInputStream);
 		runAnalysis(sequences);
 		XmlOutput xml = new XmlOutput(alignedSequences, allResistanceResults);
-		MyFileUtils.writeFile("Results.xml", xml.toString());
+		TestUtils.writeFile("Results.xml", xml.toString());
 		System.out.println("Finished");
 	}
 
@@ -66,11 +69,12 @@ public class XmlOutputTest {
 	private void runAnalysis(List<Sequence> sequences) {
 		alignedSequences = new ArrayList<>();
 		allResistanceResults = new ArrayList<>();
-		alignedSequences = NucAminoAligner.parallelAlign(sequences);
-		for (AlignedSequence alignedSeq : alignedSequences) {
-			Map<HIVGene, GeneDR> resistanceResults =
-				GeneDRFast.getResistanceByGeneFromAlignedGeneSeqs(
-					alignedSeq.getAlignedGeneSequences()
+		NucAminoAligner<HIV> aligner = NucAminoAligner.getInstance(hiv);
+		alignedSequences = aligner.parallelAlign(sequences);
+		for (AlignedSequence<HIV> alignedSeq : alignedSequences) {
+			Map<Gene<HIV>, GeneDR<HIV>> resistanceResults =
+				GeneDRAsi.getResistanceByGeneFromAlignedGeneSeqs(
+					alignedSeq.getAlignedGeneSequences(), hiv.getLatestDrugResistAlgorithm("HIVDB")
 				);
 			allResistanceResults.add(resistanceResults);
 		}
