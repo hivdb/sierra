@@ -52,4 +52,8 @@ public class TestUtils {
 		
 		return;
 	}
+	
+	public static boolean isTravisBuild() {
+		return System.getenv().getOrDefault("TRAVIS", "false").equals("true");
+	}
 }
