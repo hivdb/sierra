@@ -41,6 +41,16 @@ import edu.stanford.hivdb.hivfacts.HIV;
 public class AsiResultTest {
 
 	private static final HIV hiv = HIV.getInstance();
+	
+	@Test
+	public void testConstructor() {
+		MutationSet<HIV> mutations = MutationSet.parseString(hiv,
+				"PR46I,PR54V,PR73T,RT103N,RT41L,RT215E,RT181C,RT190A,IN66I");
+		final DrugResistanceAlgorithm<HIV> hivdbAlgo = hiv.getLatestDrugResistAlgorithm("HIVDB");
+		AsiResult<HIV> result = new AsiResult<HIV>(hiv.getGene("HIV1PR"), mutations, hivdbAlgo);
+		
+		assertNotNull(result);
+	}
 
 	@Test
 	public void testGetGene() {
