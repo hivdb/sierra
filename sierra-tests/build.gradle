@@ -51,19 +51,15 @@ dependencies {
 ext {
     jacocoReportClasses = []
     rootProject.subprojects.each { project ->
-        if (project.name in ["DrugResistance", "hivfacts-java", "sierra-core"]) {
+        if (project.name in ["hivfacts-java", "sierra-core"]) {
             jacocoReportClasses.add(project.sourceSets.main.output)
         }
     }
 }
 
 test {
-    // Regression Test List
-    // exclude 'edu/stanford/hivdb/genotypes/GenotypeRegressionTest.class'
-    // exclude 'edu/stanford/hivdb/sequences/PrettyAlignmentsRegressionTest.class'
-    // exclude 'edu/stanford/hivdb/genotypes/GenotypeResultRegressionTest.class'
-    // exclude 'edu/stanford/hivdb/sequences/SequenceValidatorTest.class'
-    // exclude 'edu/stanford/hivdb/reports/SequenceSummaryTSVTest.class'
+    // exclude '**/*Regression*.class'
+
     // testLogging {
     //     showStandardStreams = true
 	// 	events "failed"
