@@ -16,7 +16,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package edu.stanford.hivdb.alignment.scripts;
+package edu.stanford.hivdb.sequences.scripts;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -27,16 +27,19 @@ import java.util.List;
 import java.util.Map;
 
 import edu.stanford.hivdb.utilities.Json;
+import edu.stanford.hivdb.viruses.Gene;
 import edu.stanford.hivdb.utilities.FastaUtils;
 import edu.stanford.hivdb.filetestutils.TestSequencesFiles;
 import edu.stanford.hivdb.filetestutils.TestSequencesFiles.TestSequencesProperties;
-import edu.stanford.hivdb.hivfacts.HIVGene;
+import edu.stanford.hivdb.hivfacts.HIV;
 import edu.stanford.hivdb.sequences.AlignedGeneSeq;
 import edu.stanford.hivdb.sequences.AlignedSequence;
 import edu.stanford.hivdb.sequences.NucAminoAligner;
 import edu.stanford.hivdb.sequences.Sequence;
 
 public class AlignerTestExpectedsGenerator {
+	
+	public final static HIV hiv = HIV.getInstance();
 
 	/** Generate expected results for AlignerTest.
 	 */
@@ -53,12 +56,13 @@ public class AlignerTestExpectedsGenerator {
 			System.out.println("In AlignedGeneSeqToJson:" + testSequenceProperty.toString());
 			final List<Sequence> sequences = FastaUtils.readStream(testSequenceInputStream);
 
-			List<AlignedSequence> alignedSeqs = NucAminoAligner.parallelAlign(sequences);
-			for (AlignedSequence alignedSeq : alignedSeqs) {
+			NucAminoAligner<HIV> aligner = NucAminoAligner.getInstance(hiv);
+			List<AlignedSequence<HIV>> alignedSeqs = aligner.parallelAlign(sequences);
+			for (AlignedSequence<HIV> alignedSeq : alignedSeqs) {
 				Sequence seq = alignedSeq.getInputSequence();
 				System.out.println("In AlignedGeneSeqToJson:" + seq.getHeader());
-				Map<HIVGene, AlignedGeneSeq> alignmentResults = alignedSeq.getAlignedGeneSequenceMap();
-				for (AlignedGeneSeq geneSeq : alignmentResults.values()) {
+				Map<Gene<HIV>, AlignedGeneSeq<HIV>> alignmentResults = alignedSeq.getAlignedGeneSequenceMap();
+				for (AlignedGeneSeq<HIV> geneSeq : alignmentResults.values()) {
 					geneSeq.getMatchPcnt();  // refresh cache
 				}
 

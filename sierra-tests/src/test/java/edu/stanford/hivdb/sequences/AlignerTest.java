@@ -16,7 +16,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package edu.stanford.hivdb.alignment;
+package edu.stanford.hivdb.sequences;
 
 import static org.junit.Assert.*;
 
@@ -39,7 +39,8 @@ import com.google.gson.reflect.TypeToken;
 
 import edu.stanford.hivdb.filetestutils.TestSequencesFiles;
 import edu.stanford.hivdb.filetestutils.TestSequencesFiles.TestSequencesProperties;
-import edu.stanford.hivdb.hivfacts.HIVGene;
+import edu.stanford.hivdb.hivfacts.HIV;
+import edu.stanford.hivdb.viruses.Gene;
 import edu.stanford.hivdb.mutations.FrameShift;
 import edu.stanford.hivdb.mutations.MutationSet;
 import edu.stanford.hivdb.sequences.AlignedGeneSeq;
@@ -51,8 +52,9 @@ import edu.stanford.hivdb.utilities.FastaUtils;
 
 public class AlignerTest {
 	private static final Logger LOGGER = LogManager.getLogger();
+	private static final HIV hiv = HIV.getInstance();
 
-	@Test
+//	@Test
 	public void test() throws FileNotFoundException, IOException {
 
 		for (TestSequencesProperties testSequenceProperty : TestSequencesProperties.values()) {
@@ -68,25 +70,24 @@ public class AlignerTest {
 					TestSequencesFiles.getTestSequenceInputStream(testSequenceProperty);
 			final List<Sequence> sequences = FastaUtils.readStream(testSequenceInputStream);
 
-
-			Map<Sequence, AlignedSequence> allAligneds = (
-				NucAminoAligner.parallelAlign(sequences)
+			NucAminoAligner<HIV> aligner = NucAminoAligner.getInstance(hiv);
+			Map<Sequence, AlignedSequence<HIV>> allAligneds = 
+				aligner.parallelAlign(sequences)
 				.stream()
-				.collect(Collectors.toMap(as -> as.getInputSequence(), as -> as))
-			);
+				.collect(Collectors.toMap(as -> as.getInputSequence(), as -> as));
 
-			Type mapType = new TypeToken<Map<HIVGene, AlignedGeneSeq>>() {}.getType();
+			Type mapType = new TypeToken<Map<Gene<HIV>, AlignedGeneSeq<HIV>>>() {}.getType();
 
 			for (Sequence seq : sequences) {
 				LOGGER.debug("\nSequence:"  + seq.getHeader());
-				AlignedSequence alignedSeq = allAligneds.get(seq);
-				List<AlignedGeneSeq> alignmentResults = alignedSeq.getAlignedGeneSequences();
+				AlignedSequence<HIV> alignedSeq = allAligneds.get(seq);
+				List<AlignedGeneSeq<HIV>> alignmentResults = alignedSeq.getAlignedGeneSequences();
 				final InputStream alignedGeneSeqJsonInputStream =
 					AlignerTest.class.getClassLoader().getResourceAsStream(testSequenceProperty.name() +
 							"_" + seq.getHeader() + ".json");
 
 				BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(alignedGeneSeqJsonInputStream));
-				Map<HIVGene, AlignedGeneSeq> alignedGeneSeqsExpected = Json.loads(bufferedReader, mapType);
+				Map<Gene<HIV>, AlignedGeneSeq<HIV>> alignedGeneSeqsExpected = Json.loads(bufferedReader, mapType);
 
 				// We verify that the number of genes in the alignment results matches the number
 				// of genes in the expected results.
@@ -94,10 +95,10 @@ public class AlignerTest {
 				//System.out.println(  "NumAlignedGenesActual:" + alignmentResults.size());
 				Assert.assertEquals(alignedGeneSeqsExpected.size(), alignmentResults.size());
 
-				for (AlignedGeneSeq alignedGeneSeq : alignmentResults) {
-					final HIVGene gene = alignedGeneSeq.getGene();
-					final MutationSet mutations = alignedGeneSeq.getMutations();
-					final MutationSet expectedMutations = alignedGeneSeqsExpected.get(gene).getMutations();
+				for (AlignedGeneSeq<HIV> alignedGeneSeq : alignmentResults) {
+					final Gene<HIV> gene = alignedGeneSeq.getGene();
+					final MutationSet<HIV> mutations = alignedGeneSeq.getMutations();
+					final MutationSet<HIV> expectedMutations = alignedGeneSeqsExpected.get(gene).getMutations();
 					final String name = alignedGeneSeq.getSequence().getHeader();
 					final String msg = String.format("%s mismatched:", name);
 
@@ -129,8 +130,8 @@ public class AlignerTest {
 					//System.out.println("  Acutal:" + alignedNAs);
 					assertEquals(msg, expectedAlignedNAs, alignedNAs);
 
-					final List<FrameShift> frameShifts = alignedGeneSeq.getFrameShifts();
-					final List<FrameShift> expectedFrameShifts = alignedGeneSeqsExpected.get(gene).getFrameShifts();
+					final List<FrameShift<HIV>> frameShifts = alignedGeneSeq.getFrameShifts();
+					final List<FrameShift<HIV>> expectedFrameShifts = alignedGeneSeqsExpected.get(gene).getFrameShifts();
 					/*for (FrameShift fs: expectedFrameShifts) {
 						System.out.print(fs.toString());
 					}
