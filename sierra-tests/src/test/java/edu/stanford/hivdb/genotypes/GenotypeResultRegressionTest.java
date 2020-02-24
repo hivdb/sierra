@@ -1,4 +1,4 @@
-package edu.stanford.hivdb.subtype;
+package edu.stanford.hivdb.genotypes;
 
 import java.io.InputStream;
 import java.util.List;
@@ -21,7 +21,7 @@ import edu.stanford.hivdb.sequences.AlignedSequence;
 import edu.stanford.hivdb.sequences.NucAminoAligner;
 import edu.stanford.hivdb.sequences.Sequence;
 
-public class GenotypeResultTest {
+public class GenotypeResultRegressionTest {
     private static final Logger LOGGER = LogManager.getLogger();
 	private static final String filePath = "SubtypeResults.txt";
 
@@ -29,13 +29,14 @@ public class GenotypeResultTest {
 
     @Test
     public void test() {
-		final boolean isTravisBuild = System.getenv().getOrDefault("TRAVIS", "false").equals("true");
-		if (isTravisBuild) {
-			return;
-		}
+    	if (TestUtils.isTravisBuild()) {
+    		return;
+    	}
+
 		final InputStream testSequenceInputStream =
 				TestSequencesFiles.getTestSequenceInputStream(TestSequencesProperties.SUBTYPE_TESTS_ALL);
 		List<Sequence> sequences = FastaUtils.readStream(testSequenceInputStream);
+		
 		StringBuffer output = new StringBuffer();
 		sequences = sequences.subList(0, 1000);
 
