@@ -83,14 +83,13 @@ public class SierraSchemaTest {
 				"        isUnusual\n" +
 				"        types\n" +
 				"        primaryType\n" +
-				"        comments { consensus triggeredAAs type text }\n" +
+				"        comments { type text }\n" +
 				"        shortText\n" +
 				"        text\n" +
 				"      }\n" +
 				"      mixturePcnt\n" +
-				"      subtypes {name, distancePcnt} \n" +
+				"      genotypes {display, distancePcnt} \n" +
 				"      subtypeText\n" +
-				"      absoluteFirstNA\n" +
 				"      frameShifts {gene {name}, position, isInsertion, isDeletion, size, NAs, text}\n" +
 				"    }\n" +
 				//"  }\n" +

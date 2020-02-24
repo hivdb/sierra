@@ -21,12 +21,14 @@ dependencies {
     compile project(':sierra-core')
     compile project(':hivfacts-java')
     compile project(':DrugResistance')
+    compile project(':WebApplications')
     implementation 'com.google.guava:guava:28.1-jre'
     implementation 'org.apache.commons:commons-lang3:3.9'
     implementation 'org.apache.logging.log4j:log4j-api:2.12.1'
     implementation 'org.apache.logging.log4j:log4j-core:2.12.1'
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'com.google.code.gson:gson-extras:2.8.5'
+    implementation 'com.graphql-java:graphql-java:13.0'
     testImplementation 'junit:junit:4.12'
 }
 
