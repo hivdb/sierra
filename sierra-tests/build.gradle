@@ -55,10 +55,11 @@ ext {
             jacocoReportClasses.add(project.sourceSets.main.output)
         }
     }
+    isTravisBuild = System.getenv().get("TRAVIS") == 'true'
 }
 
 test {
-    isTravisBuild = System.getenv().get("TRAVIS") == 'true'
+
     if (isTravisBuild) {
         exclude '**/*Regression*.class'
     }
