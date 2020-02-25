@@ -12,6 +12,7 @@ import java.util.List;
 import edu.stanford.hivdb.sequences.Sequence;
 import edu.stanford.hivdb.testutils.TestSequencesFiles;
 import edu.stanford.hivdb.testutils.TestSequencesFiles.TestSequencesProperties;
+import edu.stanford.hivdb.testutils.TestUtils;
 
 
 public class FastaUtilsTest {
@@ -76,7 +77,7 @@ public class FastaUtilsTest {
 				TestSequencesFiles.getTestSequenceInputStream(TestSequencesProperties.SMALL);
     	List<Sequence> sequences = FastaUtils.readStream(testSequenceInputStream);
     	
-    	String testPath = "./test/";
+    	String testPath = TestUtils.TEST_RESULT_FOLDER;
     	String filePath = testPath + "FastaUtilsTest.txt";
     	
     	FastaUtils.writeFile(sequences, filePath);
@@ -89,7 +90,7 @@ public class FastaUtilsTest {
 				TestSequencesFiles.getTestSequenceInputStream(TestSequencesProperties.SMALL);
     	List<Sequence> sequences = FastaUtils.readStream(testSequenceInputStream);
     	
-    	String testPath = "./test/";
+    	String testPath = TestUtils.TEST_RESULT_FOLDER;
     	String filePath = testPath + "FastaUtilsTest.txt";
     	
     	FastaUtils.writeFile(sequences.get(0), filePath);

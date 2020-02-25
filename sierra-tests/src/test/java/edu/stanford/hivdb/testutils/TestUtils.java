@@ -10,7 +10,7 @@ import edu.stanford.hivdb.utilities.MyFileUtils;
 
 public class TestUtils {
 	
-	private static String TEST_RESULT_FOLDER = "./test/"; 
+	public static String TEST_RESULT_FOLDER = "testResult/"; 
 
 
 	public static void writeFile(String filePath, String output) {
