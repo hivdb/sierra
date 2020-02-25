@@ -16,7 +16,7 @@ public class TestSequence {
 	public static TestSequence loadResource(String fileName) {
 		InputStream json = (
 			TestSequence.class.getClassLoader()
-			.getResourceAsStream("testSequences/" + fileName));
+			.getResourceAsStream("GenotypeTestSequences/" + fileName));
 		return new Gson().fromJson(
 				new BufferedReader(new InputStreamReader(json)),
 			    TestSequence.class);
