@@ -52,12 +52,12 @@ public class SequenceValidatorTest {
 				TestSequencesFiles.getTestSequenceInputStream(TestSequencesProperties.JUST_IN);
 		final List<Sequence> sequences = FastaUtils.readStream(testSequenceInputStream);
 		List<AlignedSequence<HIV>> allAligneds = NucAminoAligner.getInstance(hiv).parallelAlign(sequences);
-		for (AlignedSequence<HIV> alignedSeq : allAligneds) {
-			System.out.println("\n" + alignedSeq.getInputSequence().getHeader());
-			for (ValidationResult vr : hiv.validateSequence(alignedSeq)) {
-				System.out.println(vr.getLevel().toString() + ": " + vr.getMessage());
-			}
-		}
+//		for (AlignedSequence<HIV> alignedSeq : allAligneds) {
+//			System.out.println("\n" + alignedSeq.getInputSequence().getHeader());
+//			for (ValidationResult vr : hiv.validateSequence(alignedSeq)) {
+//				System.out.println(vr.getLevel().toString() + ": " + vr.getMessage());
+//			}
+//		}
 	}
 
 //	public void testValidateOverlap() {

@@ -43,7 +43,7 @@ import edu.stanford.hivdb.hivfacts.HIV;
 import edu.stanford.hivdb.mutations.AAMutation;
 
 public class ConditionalCommentTest {
-	
+
 	private static final HIV hiv = HIV.getInstance();
 	private ConditionalComment<HIV> comment1;
 	private Map<String, Object> conditionValue1 = new HashMap<>();
@@ -51,7 +51,7 @@ public class ConditionalCommentTest {
 	private DrugClass<HIV> drugclass1 = hiv.getDrugClass("PI");
 	private String comment_text1 = "There is evidence for high-level DRV "
 			+ "resistance. If DRV is administered it should be used twice daily.";
-	
+
 	private ConditionalComment<HIV> comment2;
 	private String comment_name2 = "IN151A";
 	private Map<String, Object> conditionValue2 = new HashMap<>();
@@ -59,18 +59,18 @@ public class ConditionalCommentTest {
 	private String comment_text2 = "V151A is an extremely rare non-polymorphic mutation "
 			+ "associated with minimally reduced susceptibility to RAL and EVG.";
 
-	
+
 	// ConditionalComment Class is only used inside of ConditionalComments
 	// The Constructor is for load json object.
 	@Before
 	public void testConstructor() {
-		
+
 		conditionValue1.put("drug", "DRV");
 		List<Double> levels = new ArrayList<>();
 		levels.add(new Double(5.0));
 		conditionValue1.put("levels", levels);
-		
-		
+
+
 		comment1 = new ConditionalComment<HIV>(
 					hiv.getStrain("HIV1"),
 					comment_name1,
@@ -94,7 +94,7 @@ public class ConditionalCommentTest {
 	@Test
 	public void testGetMutationGene() {
 		assertNull(comment1.getMutationGene());
-		
+
 		assertNotNull(comment2.getMutationGene());
 		assertTrue(comment2.getMutationGene() instanceof Gene);
 		assertEquals(comment2.getMutationGene().getName(), "HIV1IN");
@@ -103,35 +103,35 @@ public class ConditionalCommentTest {
 	@Test
 	public void testGetMutationPosition() {
 		assertNull(comment1.getMutationPosition());
-		
+
 		assertEquals(comment2.getMutationPosition(), Integer.valueOf(151));
 	}
 
 	@Test
 	public void testGetMutationAAs() {
 		assertNull(comment1.getMutationAAs());
-		
+
 		assertEquals(comment2.getMutationAAs(), "A");
 	}
-	
+
 	@Test
 	public void testGetMutationGenePosition() {
 		assertNull(comment1.getMutationPosition());
-		
+
 		assertEquals(comment2.getMutationGenePosition().getPosition(), new Integer(151));
 	}
-	
+
 	@Test
 	public void testGetDrugLevels() {
-		System.out.println(comment1.getDrugLevels());
-		
+		assertEquals(comment1.getDrugLevels().size(), 1);
+
 		assertEquals(comment2.getDrugLevels().size(), 0);
 	}
 
 	@Test
 	public void testGetDrugLevelsText() {
 		assertEquals(comment1.getDrugLevelsText(), "DRV: 5");
-		
+
 		assertEquals(comment2.getDrugLevelsText(), "");
 	}
 
@@ -139,17 +139,17 @@ public class ConditionalCommentTest {
 	public void testGetName() {
 		assertEquals("DRVHigh", comment1.getName());
 	}
-	
+
 	@Test
 	public void testGetText() {
 		assertEquals(comment_text1, comment1.getText());
 	}
-	
+
 	@Test
 	public void testGetDrugClass() {
 		assertEquals(hiv.getDrugClass("PI"), comment1.getDrugClass());
 	}
-	
+
 	@Test
 	public void testGetConditionType() {
 		assertEquals(ConditionType.DRUGLEVEL, comment1.getConditionType());
@@ -158,7 +158,7 @@ public class ConditionalCommentTest {
 	@Test
 	public void testGetGene() {
 		assertEquals(hiv.getGene("HIV1PR"), comment1.getGene());
-		
+
 		//WithGene Interface
 		assertEquals(comment1.getAbstractGene(), "PR");
 	}

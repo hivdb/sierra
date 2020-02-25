@@ -43,7 +43,7 @@ public class MutationListValidatorTest {
 		
 		if (levels.length == 0) {
 			List<ValidationResult> results = hiv.validateMutations(mutSet);	
-			System.out.println(results.get(0).getMessage());
+//			System.out.println(results.get(0).getMessage());
 			}
 		else {
 			List<ValidationResult> results = hiv.validateMutations(mutSet);	
@@ -68,10 +68,10 @@ public class MutationListValidatorTest {
 		final List<MutationSet<HIV>> mutationSets = MutationFileReader.readMutationLists(testMutationsInputStream, hiv);
 		for (MutationSet<HIV> mutSet : mutationSets) {
 			List<ValidationResult> results = hiv.validateMutations(mutSet);
-			for (ValidationResult result : results) {
-				System.out.println(" Level:" + result.getLevel());
-				System.out.println(" Message:" + result.getMessage());
-			}
+//			for (ValidationResult result : results) {
+//				System.out.println(" Level:" + result.getLevel());
+//				System.out.println(" Message:" + result.getMessage());
+//			}
 		}
 
 	}

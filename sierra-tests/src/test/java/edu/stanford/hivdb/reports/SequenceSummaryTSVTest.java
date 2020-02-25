@@ -34,6 +34,7 @@ import edu.stanford.hivdb.sequences.NucAminoAligner;
 import edu.stanford.hivdb.sequences.Sequence;
 import edu.stanford.hivdb.testutils.TestSequencesFiles;
 import edu.stanford.hivdb.testutils.TestSequencesFiles.TestSequencesProperties;
+import edu.stanford.hivdb.testutils.TestUtils;
 import edu.stanford.hivdb.utilities.FastaUtils;
 
 public class SequenceSummaryTSVTest {
@@ -63,7 +64,7 @@ public class SequenceSummaryTSVTest {
 		
 		SequenceSummaryTSV<HIV> seqSummaryTSV = SequenceSummaryTSV.getInstance(hiv);
 		
-		System.out.println(seqSummaryTSV.getReport(allSequenceResults));
+		TestUtils.writeFile("SequenceSummaryTSV-getReport.tsv", seqSummaryTSV.getReport(allSequenceResults));
 	}
 
 	@Test
@@ -103,7 +104,7 @@ public class SequenceSummaryTSVTest {
 			}
 			output.append("\n");
 		}
-		System.out.println(output.toString());
+		TestUtils.writeFile("SequenceSummaryTSV.tsv", output.toString());
 		// final String outputFile =  "TabularSequenceSummaryOutput.txt";
 		// TestUtils.writeFile(outputFile, output.toString());
 	}
