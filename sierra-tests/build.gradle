@@ -58,7 +58,10 @@ ext {
 }
 
 test {
-    // exclude '**/*Regression*.class'
+    isTravisBuild = System.getenv().get("TRAVIS") == 'true'
+    if (isTravisBuild) {
+        exclude '**/*Regression*.class'
+    }
 
     // testLogging {
     //     showStandardStreams = true
