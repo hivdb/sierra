@@ -27,8 +27,6 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-import edu.stanford.hivdb.filetestutils.TestSequencesFiles;
-import edu.stanford.hivdb.filetestutils.TestSequencesFiles.TestSequencesProperties;
 import edu.stanford.hivdb.genotypes.BoundGenotype;
 import edu.stanford.hivdb.genotypes.GenotypeResult;
 import edu.stanford.hivdb.hivfacts.HIV;
@@ -38,6 +36,8 @@ import edu.stanford.hivdb.sequences.AlignedGeneSeq;
 import edu.stanford.hivdb.sequences.AlignedSequence;
 import edu.stanford.hivdb.sequences.NucAminoAligner;
 import edu.stanford.hivdb.sequences.Sequence;
+import edu.stanford.hivdb.testutils.TestSequencesFiles;
+import edu.stanford.hivdb.testutils.TestSequencesFiles.TestSequencesProperties;
 import edu.stanford.hivdb.utilities.FastaUtils;
 import edu.stanford.hivdb.utilities.ValidationLevel;
 import edu.stanford.hivdb.utilities.ValidationResult;

@@ -16,7 +16,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package edu.stanford.hivdb.filetestutils;
+package edu.stanford.hivdb.testutils;
 
 import java.io.InputStream;
 

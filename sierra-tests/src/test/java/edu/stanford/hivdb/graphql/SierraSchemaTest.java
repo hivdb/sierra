@@ -27,11 +27,11 @@ import java.util.stream.Collectors;
 
 import org.junit.Test;
 
-import edu.stanford.hivdb.filetestutils.TestSequencesFiles;
-import edu.stanford.hivdb.filetestutils.TestSequencesFiles.TestSequencesProperties;
 import edu.stanford.hivdb.hivfacts.HIV;
 import edu.stanford.hivdb.mutations.AAMutation;
 import edu.stanford.hivdb.mutations.Mutation;
+import edu.stanford.hivdb.testutils.TestSequencesFiles;
+import edu.stanford.hivdb.testutils.TestSequencesFiles.TestSequencesProperties;
 import edu.stanford.hivdb.utilities.FastaUtils;
 import edu.stanford.hivdb.utilities.Json;
 import graphql.ExceptionWhileDataFetching;

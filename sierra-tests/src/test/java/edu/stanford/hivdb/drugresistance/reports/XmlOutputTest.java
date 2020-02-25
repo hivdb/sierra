@@ -30,15 +30,15 @@ import org.junit.Test;
 
 import edu.stanford.hivdb.drugresistance.GeneDR;
 import edu.stanford.hivdb.drugresistance.GeneDRAsi;
-import edu.stanford.hivdb.filetestutils.TestSequencesFiles;
-import edu.stanford.hivdb.filetestutils.TestSequencesFiles.TestSequencesProperties;
 import edu.stanford.hivdb.viruses.Gene;
 import edu.stanford.hivdb.hivfacts.HIV;
 import edu.stanford.hivdb.hivfacts.extras.XmlOutput;
 import edu.stanford.hivdb.sequences.AlignedSequence;
 import edu.stanford.hivdb.sequences.NucAminoAligner;
 import edu.stanford.hivdb.sequences.Sequence;
+import edu.stanford.hivdb.testutils.TestSequencesFiles;
 import edu.stanford.hivdb.testutils.TestUtils;
+import edu.stanford.hivdb.testutils.TestSequencesFiles.TestSequencesProperties;
 import edu.stanford.hivdb.utilities.FastaUtils;
 
 public class XmlOutputTest {

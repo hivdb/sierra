@@ -27,14 +27,14 @@ import java.util.List;
 import java.util.Map;
 
 import edu.stanford.hivdb.drugresistance.GeneDR;
-import edu.stanford.hivdb.filetestutils.TestSequencesFiles;
-import edu.stanford.hivdb.filetestutils.TestSequencesFiles.TestSequencesProperties;
 import edu.stanford.hivdb.mutations.MutationMapUtils;
 import edu.stanford.hivdb.mutations.MutationSet;
 import edu.stanford.hivdb.mutations.MutationMapUtils.SortOrder;
 import edu.stanford.hivdb.sequences.AlignedGeneSeq;
 import edu.stanford.hivdb.sequences.NucAminoAligner;
 import edu.stanford.hivdb.sequences.Sequence;
+import edu.stanford.hivdb.testutils.TestSequencesFiles;
+import edu.stanford.hivdb.testutils.TestSequencesFiles.TestSequencesProperties;
 import edu.stanford.hivdb.utilities.MyFileUtils;
 import edu.stanford.hivdb.utilities.FastaUtils;
 

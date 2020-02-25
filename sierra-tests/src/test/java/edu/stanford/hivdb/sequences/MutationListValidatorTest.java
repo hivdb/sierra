@@ -23,12 +23,12 @@ import java.io.InputStream;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-import edu.stanford.hivdb.filetestutils.TestMutationsFiles;
-import edu.stanford.hivdb.filetestutils.TestMutationsFiles.TestMutationsProperties;
 import edu.stanford.hivdb.mutations.AAMutation;
 import edu.stanford.hivdb.mutations.ConsensusMutation;
 import edu.stanford.hivdb.mutations.MutationFileReader;
 import edu.stanford.hivdb.mutations.MutationSet;
+import edu.stanford.hivdb.testutils.TestMutationsFiles;
+import edu.stanford.hivdb.testutils.TestMutationsFiles.TestMutationsProperties;
 import edu.stanford.hivdb.hivfacts.HIV;
 import edu.stanford.hivdb.utilities.ValidationLevel;
 import edu.stanford.hivdb.utilities.ValidationResult;

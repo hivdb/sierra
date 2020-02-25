@@ -37,8 +37,6 @@ import org.junit.Test;
 
 import com.google.gson.reflect.TypeToken;
 
-import edu.stanford.hivdb.filetestutils.TestSequencesFiles;
-import edu.stanford.hivdb.filetestutils.TestSequencesFiles.TestSequencesProperties;
 import edu.stanford.hivdb.hivfacts.HIV;
 import edu.stanford.hivdb.viruses.Gene;
 import edu.stanford.hivdb.mutations.FrameShift;
@@ -47,6 +45,8 @@ import edu.stanford.hivdb.sequences.AlignedGeneSeq;
 import edu.stanford.hivdb.sequences.AlignedSequence;
 import edu.stanford.hivdb.sequences.NucAminoAligner;
 import edu.stanford.hivdb.sequences.Sequence;
+import edu.stanford.hivdb.testutils.TestSequencesFiles;
+import edu.stanford.hivdb.testutils.TestSequencesFiles.TestSequencesProperties;
 import edu.stanford.hivdb.utilities.Json;
 import edu.stanford.hivdb.utilities.FastaUtils;
 

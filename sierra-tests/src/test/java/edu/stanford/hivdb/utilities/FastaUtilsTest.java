@@ -9,9 +9,9 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.stanford.hivdb.filetestutils.TestSequencesFiles;
-import edu.stanford.hivdb.filetestutils.TestSequencesFiles.TestSequencesProperties;
 import edu.stanford.hivdb.sequences.Sequence;
+import edu.stanford.hivdb.testutils.TestSequencesFiles;
+import edu.stanford.hivdb.testutils.TestSequencesFiles.TestSequencesProperties;
 
 
 public class FastaUtilsTest {
