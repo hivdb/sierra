@@ -1,0 +1,39 @@
+package edu.stanford.hivdb.hivfacts.hiv2;
+
+import static org.junit.Assert.*;
+
+import java.util.List;
+
+import org.junit.Test;
+
+import edu.stanford.hivdb.hivfacts.HIV;
+import edu.stanford.hivdb.hivfacts.HIVDefaultSequenceValidator;
+import edu.stanford.hivdb.mutations.MutationSet;
+import edu.stanford.hivdb.sequences.AlignedSequence;
+import edu.stanford.hivdb.sequences.NucAminoAligner;
+import edu.stanford.hivdb.sequences.Sequence;
+import edu.stanford.hivdb.utilities.ValidationResult;
+
+public class HIV2DefaultSequenceValidatorTest {
+
+	final static HIV2 hiv = HIV2.getInstance();
+	
+	@Test
+	public void test() {
+		HIV2DefaultSequenceValidator validator =  new HIV2DefaultSequenceValidator();
+		
+		Sequence seq = new Sequence("empty", "EMPTY");
+		AlignedSequence<HIV2> alignedSeq = NucAminoAligner.getInstance(hiv).align(seq);
+		
+		List<ValidationResult> results = validator.validate(alignedSeq);
+		assertEquals(results.size(), 1);
+		
+		Sequence testSeq = Sequence.fromGenbank("AF096883");
+		
+		alignedSeq = NucAminoAligner.getInstance(hiv).align(testSeq);
+		
+		results = validator.validate(alignedSeq);
+		assertEquals(results.size(), 1);
+	}
+}
+	
