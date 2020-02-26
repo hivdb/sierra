@@ -5,7 +5,6 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.util.List;
 
-import edu.stanford.hivdb.genotypes.GenotypeRegressionTest;
 import edu.stanford.hivdb.utilities.MyFileUtils;
 
 public class TestUtils {
