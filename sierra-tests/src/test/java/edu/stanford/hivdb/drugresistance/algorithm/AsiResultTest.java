@@ -21,7 +21,6 @@ package edu.stanford.hivdb.drugresistance.algorithm;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
-import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.List;
 import java.util.TreeMap;
