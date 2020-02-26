@@ -43,11 +43,11 @@ import graphql.GraphQLError;
 @Path("/hiv2/graphql")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class HIV2Service {
+public class HIV2GraphQLService {
 
 	private final GraphQL graphql;
 
-	public HIV2Service() {
+	public HIV2GraphQLService() {
 		graphql = GraphQL.newGraphQL(SierraSchema.hiv2Schema).build();
 	}
 

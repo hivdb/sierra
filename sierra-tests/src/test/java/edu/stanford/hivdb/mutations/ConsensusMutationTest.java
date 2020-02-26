@@ -9,7 +9,6 @@ import org.junit.Test;
 
 
 import edu.stanford.hivdb.hivfacts.HIV;
-import edu.stanford.hivdb.viruses.Gene;
 
 public class ConsensusMutationTest {
 	
