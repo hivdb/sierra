@@ -26,11 +26,11 @@ public class TestUtils {
 	}
 	
 	public static InputStream readTestResource(String filePath) throws FileNotFoundException {
-		InputStream json = (
+		InputStream input = (
 				TestUtils.class.getClassLoader()
 				.getResourceAsStream(filePath));
 		
-		return json;
+		return input;
 	}
 
 	public static void writeTSVFile(String filePath, String[] header, List<List<String>> rows) {
