@@ -53,7 +53,7 @@ public class XmlOutputTest {
 				TestSequencesFiles.getTestSequenceInputStream(TestSequencesProperties.SMALL);
 		final List<Sequence> sequences = FastaUtils.readStream(testSequenceInputStream);
 		runAnalysis(sequences);
-		XmlOutput xml = new XmlOutput(alignedSequences, allResistanceResults);
+		XmlOutput<HIV> xml = new XmlOutput<HIV>(hiv, alignedSequences, allResistanceResults);
 		TestUtils.writeFile("XmlOutputTestResults.xml", xml.toString());
 		System.out.println("Finished");
 	}
@@ -62,7 +62,7 @@ public class XmlOutputTest {
 	public void testEmptySeq() {
 		Sequence seq = new Sequence("empty", "EMPTY");
 		runAnalysis(Arrays.asList(new Sequence[] {seq}));
-		XmlOutput xml = new XmlOutput(alignedSequences, allResistanceResults);
+		XmlOutput<HIV> xml = new XmlOutput<HIV>(hiv, alignedSequences, allResistanceResults);
 		assertTrue(xml.toString().matches("^[\\s\\S]+refuse to process[\\s\\S]+$"));
 	}
 

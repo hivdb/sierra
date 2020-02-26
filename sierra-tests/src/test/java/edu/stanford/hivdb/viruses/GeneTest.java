@@ -28,12 +28,12 @@ import com.google.common.base.Strings;
 import edu.stanford.hivdb.hivfacts.HIV;
 import edu.stanford.hivdb.hivfacts.hiv2.HIV2;
 import edu.stanford.hivdb.drugs.DrugClass;
-
+import edu.stanford.hivdb.mutations.StrainModifier;
 
 public class GeneTest {
 
-	final static HIV hiv = HIV.getInstance();
-	final static HIV2 hiv2 = HIV2.getInstance();
+	private final static HIV hiv = HIV.getInstance();
+	private final static HIV2 hiv2 = HIV2.getInstance();
 
 	@Test
 	public void testGetGeneInstance() {
@@ -135,84 +135,60 @@ public class GeneTest {
 
     @Test
     public void testApplyCodonModifiersForAASeq() {
+    	StrainModifier modifier = hiv.getGene("HIV1PR").getTargetStrainModifier("HIV1");
 		assertEquals(
 			Strings.repeat(".", 4) + "ABCDEF" + Strings.repeat(".", 89),
-			hiv.getGene("HIV1PR").applyStrainModifierForAASeq(
-                "ABCDEF", 5, 10, "HIV1"));
+			modifier.modifyAASeq(hiv.getGene("HIV1PR"), "ABCDEF", 5, 10)
+			);
 
+		modifier = hiv.getGene("HIV1RT").getTargetStrainModifier("HIV1");
 		assertEquals(
 			Strings.repeat(".", 342) + "FEDCBA" + Strings.repeat(".", 212),
-			hiv.getGene("HIV1RT").applyStrainModifierForAASeq(
-                "FEDCBA", 343, 348, "HIV1"));
+			modifier.modifyAASeq(hiv.getGene("HIV1RT"), "FEDCBA", 343, 348));
 
+		modifier = hiv2.getGene("HIV2ART").getTargetStrainModifier("HIV1");
 		assertEquals(
 			// RT346 Deletion
 			Strings.repeat(".", 342) + "FED.CBA" + Strings.repeat(".", 211),
-			hiv2.getGene("HIV2ART").applyStrainModifierForAASeq(
-				"FEDCBA", 343, 348, "HIV1"));
+			modifier.modifyAASeq(hiv2.getGene("HIV2ART"), "FEDCBA", 343, 348));
 
+		modifier = hiv2.getGene("HIV2BRT").getTargetStrainModifier("HIV1");
 		assertEquals(
 			// RT346 Deletion
 			Strings.repeat(".", 342) + "FED.CBA" + Strings.repeat(".", 211),
-			hiv2.getGene("HIV2BRT").applyStrainModifierForAASeq(
-                "FEDCBA", 343, 348, "HIV1"));
+			modifier.modifyAASeq(hiv2.getGene("HIV2BRT"), "FEDCBA", 343, 348));
 
+		modifier = hiv2.getGene("HIV2AIN").getTargetStrainModifier("HIV1");
 		assertEquals(
 			// IN272 Insertion
 			Strings.repeat(".", 270) + "ABEF" + Strings.repeat(".", 14),
-			hiv2.getGene("HIV2AIN").applyStrainModifierForAASeq(
-                "ABCDEF", 271, 276, "HIV1"));
+			modifier.modifyAASeq(hiv2.getGene("HIV2AIN"), "ABCDEF", 271, 276));
 
+		modifier = hiv2.getGene("HIV2AIN").getTargetStrainModifier("HIV1");
 		assertEquals(
 			// IN283 Insertion + IN272 two AAs shift
 			Strings.repeat(".", 278) + "ABCDEG....",
-			hiv2.getGene("HIV2AIN").applyStrainModifierForAASeq(
-                "ABCDEFG", 281, 287, "HIV1"));
+			modifier.modifyAASeq(hiv2.getGene("HIV2AIN"), "ABCDEFG", 281, 287));
 
+		modifier = hiv2.getGene("HIV2AIN").getTargetStrainModifier("HIV1");
 		assertEquals(
 			// IN after 288 (IN272 + IN283 three AAs shift)
 			Strings.repeat(".", 283) + "ABCDE",
-			hiv2.getGene("HIV2AIN").applyStrainModifierForAASeq(
-                "ABCDEFG", 287, 293, "HIV1"));
+			modifier.modifyAASeq(hiv2.getGene("HIV2AIN"), "ABCDEFG", 287, 293));
 
     }
 
 	@Test
 	public void testapplyCodonModifiersForNASeq() {
+		StrainModifier modifier = hiv.getGene("HIV1PR").getTargetStrainModifier("HIV1");
 		assertEquals(
 			Strings.repeat("...", 4) + "AAABBBCCCDDDEEEFFF" + Strings.repeat("...", 89),
-			hiv.getGene("HIV1PR").applyStrainModifierForNASeq(
-				"AAABBBCCCDDDEEEFFF", 5, 10, "HIV1"));
+			modifier.modifyNASeq(hiv.getGene("HIV1PR"), "AAABBBCCCDDDEEEFFF", 5, 10));
+		
+		modifier = hiv.getGene("HIV1RT").getTargetStrainModifier("HIV1");
 		assertEquals(
 			Strings.repeat("...", 342) + "FFFEEEDDDCCCBBBAAA" + Strings.repeat("...", 212),
-			hiv.getGene("HIV1RT").applyStrainModifierForNASeq(
-				"FFFEEEDDDCCCBBBAAA", 343, 348, "HIV1"));
-		
-		assertEquals(
-			// RT346 Deletion
-			Strings.repeat("...", 342) + "FFFEEEDDD...CCCBBBAAA" + Strings.repeat("...", 211),
-			hiv2.getGene("HIV2ART").applyStrainModifierForNASeq(
-				"FFFEEEDDDCCCBBBAAA", 343, 348, "HIV1"));
-		assertEquals(
-			// RT346 Deletion
-			Strings.repeat("...", 342) + "FFFEEEDDD...CCCBBBAAA" + Strings.repeat("...", 211),
-			hiv2.getGene("HIV2BRT").applyStrainModifierForNASeq(
-				"FFFEEEDDDCCCBBBAAA", 343, 348, "HIV1"));
-		assertEquals(
-			// IN272 Insertion
-			Strings.repeat("...", 270) + "AAABBBEEEFFF" + Strings.repeat("...", 14),
-			hiv2.getGene("HIV2AIN").applyStrainModifierForNASeq(
-				"AAABBBCCCDDDEEEFFF", 271, 276, "HIV1"));
-		assertEquals(
-			// IN283 Insertion + IN272 two AAs shift
-			Strings.repeat("...", 278) + "AAABBBCCCDDDEEEGGG............",
-			hiv2.getGene("HIV2AIN").applyStrainModifierForNASeq(
-				"AAABBBCCCDDDEEEFFFGGG", 281, 287, "HIV1"));
-		assertEquals(
-			// IN after 288 (IN272 + IN283 three AAs shift)
-			Strings.repeat("...", 283) + "AAABBBCCCDDDEEE",
-			hiv2.getGene("HIV2AIN").applyStrainModifierForNASeq(
-				"AAABBBCCCDDDEEEFFFGGG", 287, 293, "HIV1"));
+			modifier.modifyNASeq(hiv.getGene("HIV1RT"), "FFFEEEDDDCCCBBBAAA", 343, 348));
 	}
 
 	@Test

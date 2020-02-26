@@ -24,12 +24,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import edu.stanford.hivdb.drugs.DrugClass;
 import edu.stanford.hivdb.drugs.DrugResistanceAlgorithm;
-import edu.stanford.hivdb.hivfacts.HIV;
-import edu.stanford.hivdb.mutations.GenePosition;
 import edu.stanford.hivdb.mutations.Mutation;
 import edu.stanford.hivdb.mutations.MutationType;
 import edu.stanford.hivdb.viruses.Gene;
@@ -39,6 +39,9 @@ import edu.stanford.hivdb.viruses.Strain;
 public class HIV2Test {
 
 	final static HIV2 hiv2 = HIV2.getInstance();
+	
+	@Rule
+	public ExpectedException thrown = ExpectedException.none();
 
 	@Test(expected=ExceptionInInitializerError.class)
 	public void testLoadResourceError() {
@@ -66,11 +69,37 @@ public class HIV2Test {
 
     @Test
     public void testGetStrain() {
-    	assertNull(hiv2.getStrain(null));
     	assertNotNull(hiv2.getStrain("HIV2A"));
-    	assertNull(hiv2.getStrain("HIV1"));
+    	
     }
 
+    @Test
+    public void testGetStrainWithException() {
+    	thrown.expect(IllegalArgumentException.class);
+    	thrown.expectMessage("Strain \"null\" not found");
+    	hiv2.getStrain(null);
+    }
+    
+    @Test
+    public void testGetStrainWithException2() {
+    	thrown.expect(IllegalArgumentException.class);
+    	thrown.expectMessage("Strain \"HIV1\" not found");
+    	hiv2.getStrain("HIV1");
+    }
+    
+    @Test
+    public void testGetStrainWithException3() {
+    	thrown.expect(IllegalArgumentException.class);
+    	thrown.expectMessage("Strain \"HIV2\" not found");
+    	hiv2.getStrain("HIV2");
+    }
+    
+    @Test
+    public void testGetStrainWithException4() {
+    	thrown.expect(IllegalArgumentException.class);
+    	thrown.expectMessage("Strain \"HIV-2A\" not found");
+    	hiv2.getStrain("HIV-2A");
+    }
 
     @Test
     public void testGetGenes() {
@@ -80,17 +109,11 @@ public class HIV2Test {
     	assertNotNull(genes);
     	assertEquals(genes.size(), 3);
 
-    	Strain<HIV2> strain2 = hiv2.getStrain("HIV2");
-    	Collection<Gene<HIV2>> genes2 = hiv2.getGenes(strain2);
-    	assertEquals(genes2.size(), 0);
-
 		assertArrayEquals(hiv2.getGenes(hiv2.getStrain("HIV2A")).toArray(), new Gene[] {
 				hiv2.getGene("HIV2APR"),
 				hiv2.getGene("HIV2ART"),
 				hiv2.getGene("HIV2AIN")
 			});
-
-		assertArrayEquals(hiv2.getGenes(hiv2.getStrain("HIV-2A")).toArray(), new Gene[] {});
 
     }
 
@@ -218,9 +241,13 @@ public class HIV2Test {
 		DrugResistanceAlgorithm<HIV2> algo = hiv2.getDrugResistAlgorithm("HIVDB_9.0a2");
 		assertNotNull(algo);
 		assertEquals(algo.getFamily(), "HIVDB");
-		
-		 algo = hiv2.getDrugResistAlgorithm("HIVDB_8.9");
-		 assertNull(algo);
+	}
+	
+	@Test
+	public void testGetDrugResistAlgorithmWithException() {
+		thrown.expect(IllegalArgumentException.class);
+		thrown.expectMessage("Unable to locate algorithm HIVDB_1.0");
+		hiv2.getDrugResistAlgorithm("HIVDB_1.0");
 	}
 
 	@Test

@@ -24,7 +24,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import edu.stanford.hivdb.drugs.DrugClass;
 import edu.stanford.hivdb.drugs.DrugResistanceAlgorithm;
@@ -38,6 +40,9 @@ import edu.stanford.hivdb.viruses.Strain;
 public class HIVTest {
 
 	final static HIV hiv = HIV.getInstance();
+	
+	@Rule
+	public ExpectedException thrown = ExpectedException.none();
 	
 	@Test(expected=ExceptionInInitializerError.class)
 	public void testLoadResourceError() {
@@ -66,11 +71,34 @@ public class HIVTest {
 
     @Test
     public void testGetStrain() {
-    	assertNull(hiv.getStrain(null));
+    	
     	assertNotNull(hiv.getStrain("HIV1"));
-    	assertNull(hiv.getStrain("HIV2"));
+    }
+    
+    @Test
+    public void testGetStrainWithException() {
+    	thrown.expect(IllegalArgumentException.class);
+    	thrown.expectMessage("Strain \"null\" not found");
+    	assertNull(hiv.getStrain(null));
     }
 
+    @Test
+    public void testGetStrainWithException2() {
+    	
+    	thrown.expect(IllegalArgumentException.class);
+    	thrown.expectMessage("Strain \"HIV2\" not found");
+    	
+    	hiv.getStrain("HIV2");
+    }
+    
+    @Test
+    public void testGetStrainWithException3() {
+    	
+    	thrown.expect(IllegalArgumentException.class);
+    	thrown.expectMessage("Strain \"HIV-1\" not found");
+    	
+    	hiv.getStrain("HIV-1");
+    }
 
     @Test
     public void testGetGenes() {
@@ -80,19 +108,14 @@ public class HIVTest {
     	assertNotNull(genes);
     	assertEquals(genes.size(), 3);
 
-    	Strain<HIV> strain2 = hiv.getStrain("HIV2");
-    	Collection<Gene<HIV>> genes2 = hiv.getGenes(strain2);
-    	assertEquals(genes2.size(), 0);
-
 		assertArrayEquals(hiv.getGenes(hiv.getStrain("HIV1")).toArray(), new Gene[] {
 				hiv.getGene("HIV1PR"),
 				hiv.getGene("HIV1RT"),
 				hiv.getGene("HIV1IN")
 			});
-
-		assertArrayEquals(hiv.getGenes(hiv.getStrain("HIV-1")).toArray(), new Gene[] {});
-
     }
+    
+
 
     @Test
     public void testGetGene() {
