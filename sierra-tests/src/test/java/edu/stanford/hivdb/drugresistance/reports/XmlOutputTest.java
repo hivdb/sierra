@@ -44,7 +44,7 @@ import edu.stanford.hivdb.utilities.FastaUtils;
 public class XmlOutputTest {
 	private List<AlignedSequence<HIV>> alignedSequences;
 	private List<Map<Gene<HIV>, GeneDR<HIV>>> allResistanceResults;
-	
+
 	private static final HIV hiv = HIV.getInstance();
 
 	@Test
@@ -54,7 +54,7 @@ public class XmlOutputTest {
 		final List<Sequence> sequences = FastaUtils.readStream(testSequenceInputStream);
 		runAnalysis(sequences);
 		XmlOutput xml = new XmlOutput(alignedSequences, allResistanceResults);
-		TestUtils.writeFile("Results.xml", xml.toString());
+		TestUtils.writeFile("XmlOutputTestResults.xml", xml.toString());
 		System.out.println("Finished");
 	}
 

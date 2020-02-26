@@ -23,7 +23,7 @@ import edu.stanford.hivdb.sequences.Sequence;
 
 public class GenotypeResultRegressionTest {
     private static final Logger LOGGER = LogManager.getLogger();
-	private static final String filePath = "SubtypeResults.txt";
+	private static final String filePath = "GenotypeResultRegressionTest.txt";
 
     private static final HIV hiv = HIV.getInstance();
 
@@ -36,7 +36,7 @@ public class GenotypeResultRegressionTest {
 		final InputStream testSequenceInputStream =
 				TestSequencesFiles.getTestSequenceInputStream(TestSequencesProperties.SUBTYPE_TESTS_ALL);
 		List<Sequence> sequences = FastaUtils.readStream(testSequenceInputStream);
-		
+
 		StringBuffer output = new StringBuffer();
 		sequences = sequences.subList(0, 1000);
 
