@@ -56,11 +56,12 @@ ext {
         }
     }
     isTravisBuild = System.getenv().get("TRAVIS") == 'true'
+    enableRegressionTest = System.getenv().get("ENABLEREGRESSIONTEST") == 'true'
 }
 
 test {
 
-    if (isTravisBuild) {
+    if (!enableRegressionTest) {
         exclude '**/*Regression*.class'
     }
 
