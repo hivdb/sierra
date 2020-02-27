@@ -21,7 +21,6 @@ package edu.stanford.hivdb.drugresistance;
 import static org.junit.Assert.*;
 //import static org.mockito.Mockito.*;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
@@ -33,9 +32,7 @@ import edu.stanford.hivdb.comments.CommentType;
 import edu.stanford.hivdb.drugs.DrugResistanceAlgorithm;
 import edu.stanford.hivdb.hivfacts.HIV;
 import edu.stanford.hivdb.mutations.MutationSet;
-import edu.stanford.hivdb.mutations.MutationType;
 import edu.stanford.hivdb.sequences.AlignedGeneSeq;
-import edu.stanford.hivdb.sequences.AlignedSequence;
 import edu.stanford.hivdb.sequences.NucAminoAligner;
 import edu.stanford.hivdb.sequences.Sequence;
 

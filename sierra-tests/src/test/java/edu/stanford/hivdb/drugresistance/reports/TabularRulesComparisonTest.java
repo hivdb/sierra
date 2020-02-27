@@ -18,17 +18,17 @@
 
 package edu.stanford.hivdb.drugresistance.reports;
 
-import static org.junit.Assert.*;
+//import static org.junit.Assert.*;
 
-import java.sql.SQLException;
-import java.util.List;
-import java.util.Map;
-
-import org.junit.Test;
-
-import edu.stanford.hivdb.drugresistance.database.HivdbVersion;
-
-import edu.stanford.hivdb.utilities.Json;
+//import java.sql.SQLException;
+//import java.util.List;
+//import java.util.Map;
+//
+//import org.junit.Test;
+//
+//import edu.stanford.hivdb.drugresistance.database.HivdbVersion;
+//
+//import edu.stanford.hivdb.utilities.Json;
 
 public class TabularRulesComparisonTest {
 //

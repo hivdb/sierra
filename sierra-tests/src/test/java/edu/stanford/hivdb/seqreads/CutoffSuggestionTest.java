@@ -52,7 +52,7 @@ public class CutoffSuggestionTest {
 		List<PositionCodonReads<HIV>> allReads = new ArrayList<>();
 		allReads.add(posCodonReads);
     	
-    	CutoffSuggestion<HIV> cutoff = new CutoffSuggestion(allReads);
+    	CutoffSuggestion<HIV> cutoff = new CutoffSuggestion<HIV>(allReads);
     	
     	assertEquals(cutoff.getLooserLimit(), 0.1, 0.1);
     }
@@ -73,7 +73,7 @@ public class CutoffSuggestionTest {
 		List<PositionCodonReads<HIV>> allReads = new ArrayList<>();
 		allReads.add(posCodonReads);
     	
-    	CutoffSuggestion<HIV> cutoff = new CutoffSuggestion(allReads);
+    	CutoffSuggestion<HIV> cutoff = new CutoffSuggestion<HIV>(allReads);
     	
     	assertEquals(cutoff.getStricterLimit(), 0.1, 0.1);
     }

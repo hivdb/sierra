@@ -20,13 +20,10 @@ package edu.stanford.hivdb.drugresistance.scripts;
 
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import edu.stanford.hivdb.drugresistance.algorithm.Algorithm;
 import edu.stanford.hivdb.drugresistance.algorithm.AlgorithmComparison;
 import edu.stanford.hivdb.drugs.DrugResistanceAlgorithm;
 import edu.stanford.hivdb.hivfacts.HIV;
@@ -39,9 +36,7 @@ import edu.stanford.hivdb.utilities.Json;
 import edu.stanford.hivdb.testutils.TestSequencesFiles;
 import edu.stanford.hivdb.testutils.TestUtils;
 import edu.stanford.hivdb.testutils.TestSequencesFiles.TestSequencesProperties;
-import edu.stanford.hivdb.viruses.Gene;
 
-@SuppressWarnings("deprecation")
 public class AlgorithmComparisonTestExpectedsGenerator {
 
 	private static final HIV hiv = HIV.getInstance();

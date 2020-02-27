@@ -20,6 +20,7 @@ package edu.stanford.hivdb.genotypes;
 
 import edu.stanford.hivdb.genotypes.BoundGenotype;
 import edu.stanford.hivdb.genotypes.Genotype;
+import edu.stanford.hivdb.hivfacts.HIV;
 
 @Deprecated
 public enum Subtype {
@@ -130,11 +131,11 @@ public enum Subtype {
 	HIV2I,
 	HIV2X01;
 
-	public static Subtype valueOf(Genotype genotype) {
+	public static Subtype valueOf(Genotype<HIV> genotype) {
 		return valueOf(genotype.getIndexName());
 	}
 
-	public static Subtype valueOf(BoundGenotype genotype) {
+	public static Subtype valueOf(BoundGenotype<HIV> genotype) {
 		return valueOf(genotype.getGenotype().getIndexName());
 	}
 }

@@ -18,7 +18,7 @@
 
 package edu.stanford.hivdb.drugresistance.mutationpattern;
 
-import java.io.InputStream;
+//import java.io.InputStream;
 
 
 /**

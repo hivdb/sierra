@@ -18,27 +18,27 @@
 
 package edu.stanford.hivdb.drugresistance.mutationpattern;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.EnumMap;
-import java.util.TreeMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-
-import edu.stanford.hivdb.comments.ConditionalComments;
-import edu.stanford.hivdb.drugresistance.GeneDR;
+//import java.io.IOException;
+//import java.io.InputStream;
+//import java.nio.file.Files;
+//import java.nio.file.Path;
+//import java.nio.file.Paths;
+//import java.util.EnumMap;
+//import java.util.TreeMap;
+//import java.util.List;
+//import java.util.Map;
+//import java.util.stream.Collectors;
+//
+//import edu.stanford.hivdb.comments.ConditionalComments;
+//import edu.stanford.hivdb.drugresistance.GeneDR;
 //import edu.stanford.hivdb.drugresistance.GeneDRFast;
 //import edu.stanford.hivdb.drugresistance.TestMutationPatternFiles;
 //import edu.stanford.hivdb.drugresistance.TestMutationPatternFiles.TestMutationPatterns;
 //import edu.stanford.hivdb.drugresistance.database.MutationPatternFileReader;
 
-import edu.stanford.hivdb.mutations.MutationSet;
-import edu.stanford.hivdb.mutations.MutationType;
-import edu.stanford.hivdb.utilities.Json;
+//import edu.stanford.hivdb.mutations.MutationSet;
+//import edu.stanford.hivdb.mutations.MutationType;
+//import edu.stanford.hivdb.utilities.Json;
 
 //public class MutationPatternsResistanceToJson {
 //	private static final String PATH_PATTERN =

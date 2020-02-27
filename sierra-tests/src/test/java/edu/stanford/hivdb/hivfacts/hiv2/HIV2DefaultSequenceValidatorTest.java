@@ -6,9 +6,6 @@ import java.util.List;
 
 import org.junit.Test;
 
-import edu.stanford.hivdb.hivfacts.HIV;
-import edu.stanford.hivdb.hivfacts.HIVDefaultSequenceValidator;
-import edu.stanford.hivdb.mutations.MutationSet;
 import edu.stanford.hivdb.sequences.AlignedSequence;
 import edu.stanford.hivdb.sequences.NucAminoAligner;
 import edu.stanford.hivdb.sequences.Sequence;

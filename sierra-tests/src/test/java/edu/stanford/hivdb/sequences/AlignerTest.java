@@ -33,8 +33,6 @@ import java.util.stream.Collectors;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
-import org.junit.Test;
-
 import com.google.gson.reflect.TypeToken;
 
 import edu.stanford.hivdb.hivfacts.HIV;

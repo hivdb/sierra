@@ -18,25 +18,25 @@
 
 package edu.stanford.hivdb.drugresistance.scripts;
 
-import java.io.InputStream;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-
-import edu.stanford.hivdb.drugresistance.GeneDR;
-import edu.stanford.hivdb.mutations.MutationMapUtils;
-import edu.stanford.hivdb.mutations.MutationSet;
-import edu.stanford.hivdb.mutations.MutationMapUtils.SortOrder;
-import edu.stanford.hivdb.sequences.AlignedGeneSeq;
-import edu.stanford.hivdb.sequences.NucAminoAligner;
-import edu.stanford.hivdb.sequences.Sequence;
-import edu.stanford.hivdb.testutils.TestSequencesFiles;
-import edu.stanford.hivdb.testutils.TestSequencesFiles.TestSequencesProperties;
-import edu.stanford.hivdb.utilities.MyFileUtils;
-import edu.stanford.hivdb.utilities.FastaUtils;
+//import java.io.InputStream;
+//import java.sql.SQLException;
+//import java.util.ArrayList;
+//import java.util.Collections;
+//import java.util.LinkedHashMap;
+//import java.util.List;
+//import java.util.Map;
+//
+//import edu.stanford.hivdb.drugresistance.GeneDR;
+//import edu.stanford.hivdb.mutations.MutationMapUtils;
+//import edu.stanford.hivdb.mutations.MutationSet;
+//import edu.stanford.hivdb.mutations.MutationMapUtils.SortOrder;
+//import edu.stanford.hivdb.sequences.AlignedGeneSeq;
+//import edu.stanford.hivdb.sequences.NucAminoAligner;
+//import edu.stanford.hivdb.sequences.Sequence;
+//import edu.stanford.hivdb.testutils.TestSequencesFiles;
+//import edu.stanford.hivdb.testutils.TestSequencesFiles.TestSequencesProperties;
+//import edu.stanford.hivdb.utilities.MyFileUtils;
+//import edu.stanford.hivdb.utilities.FastaUtils;
 
 
 /**

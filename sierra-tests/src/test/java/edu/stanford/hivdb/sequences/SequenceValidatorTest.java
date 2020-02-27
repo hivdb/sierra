@@ -20,27 +20,27 @@ package edu.stanford.hivdb.sequences;
 
 import java.io.InputStream;
 import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+//import java.util.Map;
+//import java.util.TreeMap;
 
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-import edu.stanford.hivdb.genotypes.BoundGenotype;
-import edu.stanford.hivdb.genotypes.GenotypeResult;
+//import edu.stanford.hivdb.genotypes.BoundGenotype;
+//import edu.stanford.hivdb.genotypes.GenotypeResult;
 import edu.stanford.hivdb.hivfacts.HIV;
-import edu.stanford.hivdb.hivfacts.HIVDefaultSequenceValidator;
-import edu.stanford.hivdb.mutations.MutationSet;
-import edu.stanford.hivdb.sequences.AlignedGeneSeq;
+//import edu.stanford.hivdb.hivfacts.HIVDefaultSequenceValidator;
+//import edu.stanford.hivdb.mutations.MutationSet;
+//import edu.stanford.hivdb.sequences.AlignedGeneSeq;
 import edu.stanford.hivdb.sequences.AlignedSequence;
 import edu.stanford.hivdb.sequences.NucAminoAligner;
 import edu.stanford.hivdb.sequences.Sequence;
 import edu.stanford.hivdb.testutils.TestSequencesFiles;
 import edu.stanford.hivdb.testutils.TestSequencesFiles.TestSequencesProperties;
 import edu.stanford.hivdb.utilities.FastaUtils;
-import edu.stanford.hivdb.utilities.ValidationLevel;
-import edu.stanford.hivdb.utilities.ValidationResult;
+//import edu.stanford.hivdb.utilities.ValidationLevel;
+//import edu.stanford.hivdb.utilities.ValidationResult;
 
 public class SequenceValidatorTest {
 	
@@ -52,6 +52,7 @@ public class SequenceValidatorTest {
 				TestSequencesFiles.getTestSequenceInputStream(TestSequencesProperties.JUST_IN);
 		final List<Sequence> sequences = FastaUtils.readStream(testSequenceInputStream);
 		List<AlignedSequence<HIV>> allAligneds = NucAminoAligner.getInstance(hiv).parallelAlign(sequences);
+		assertNotNull(allAligneds);
 //		for (AlignedSequence<HIV> alignedSeq : allAligneds) {
 //			System.out.println("\n" + alignedSeq.getInputSequence().getHeader());
 //			for (ValidationResult vr : hiv.validateSequence(alignedSeq)) {

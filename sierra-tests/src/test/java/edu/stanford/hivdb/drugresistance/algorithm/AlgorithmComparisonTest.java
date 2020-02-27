@@ -32,7 +32,6 @@ import edu.stanford.hivdb.drugs.Drug;
 import edu.stanford.hivdb.drugs.DrugResistanceAlgorithm;
 import edu.stanford.hivdb.hivfacts.HIV;
 import edu.stanford.hivdb.mutations.MutationSet;
-import edu.stanford.hivdb.viruses.Gene;
 
 
 public class AlgorithmComparisonTest {

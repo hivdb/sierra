@@ -2,16 +2,11 @@ package edu.stanford.hivdb.seqreads;
 
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
-
 import org.junit.Test;
 
 import edu.stanford.hivdb.hivfacts.HIV;
 import edu.stanford.hivdb.mutations.GenePosition;
-import edu.stanford.hivdb.mutations.PositionCodonReads;
 
 
 public class OneCodonReadsCoverageTest {

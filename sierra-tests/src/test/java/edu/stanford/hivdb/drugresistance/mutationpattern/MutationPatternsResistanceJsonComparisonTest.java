@@ -18,29 +18,29 @@
 
 package edu.stanford.hivdb.drugresistance.mutationpattern;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-
-import org.junit.Test;
-import org.junit.Assert;
-
-import com.google.gson.reflect.TypeToken;
-
-import edu.stanford.hivdb.comments.ConditionalComments;
+//import java.io.BufferedReader;
+//import java.io.IOException;
+//import java.io.InputStream;
+//import java.io.InputStreamReader;
+//import java.lang.reflect.Type;
+//import java.util.HashMap;
+//import java.util.HashSet;
+//import java.util.List;
+//import java.util.Map;
+//import java.util.stream.Collectors;
+//
+//import org.junit.Test;
+//import org.junit.Assert;
+//
+//import com.google.gson.reflect.TypeToken;
+//
+//import edu.stanford.hivdb.comments.ConditionalComments;
 //import edu.stanford.hivdb.drugresistance.TestMutationPatternFiles.TestMutationPatterns;
 //import edu.stanford.hivdb.drugresistance.database.MutationPatternFileReader;
 
-import edu.stanford.hivdb.mutations.MutationSet;
-import edu.stanford.hivdb.mutations.MutationType;
-import edu.stanford.hivdb.utilities.Json;
+//import edu.stanford.hivdb.mutations.MutationSet;
+//import edu.stanford.hivdb.mutations.MutationType;
+//import edu.stanford.hivdb.utilities.Json;
 
 /**
  * 1. Read each of the files containing lists of mutation files from src/test/resources/MutationPatternsFiles

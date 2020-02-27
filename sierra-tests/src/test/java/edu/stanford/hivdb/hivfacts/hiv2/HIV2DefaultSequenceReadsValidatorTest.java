@@ -9,9 +9,6 @@ import java.util.TreeMap;
 
 import org.junit.Test;
 
-import edu.stanford.hivdb.hivfacts.HIV;
-import edu.stanford.hivdb.hivfacts.HIVDefaultSequenceReadsValidator;
-import edu.stanford.hivdb.mutations.MutationSet;
 import edu.stanford.hivdb.mutations.PositionCodonReads;
 import edu.stanford.hivdb.seqreads.SequenceReads;
 import edu.stanford.hivdb.utilities.ValidationResult;

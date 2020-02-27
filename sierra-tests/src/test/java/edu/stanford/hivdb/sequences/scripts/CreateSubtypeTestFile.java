@@ -18,14 +18,14 @@
 
 package edu.stanford.hivdb.sequences.scripts;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import edu.stanford.hivdb.genotypes.Subtype;
-import edu.stanford.hivdb.utilities.MyFileUtils;
-import edu.stanford.hivdb.utilities.Database;
-import edu.stanford.hivdb.utilities.ProgramProperties;
+//import java.sql.Connection;
+//import java.sql.PreparedStatement;
+//import java.sql.ResultSet;
+//import java.sql.SQLException;
+//import edu.stanford.hivdb.genotypes.Subtype;
+//import edu.stanford.hivdb.utilities.MyFileUtils;
+//import edu.stanford.hivdb.utilities.Database;
+//import edu.stanford.hivdb.utilities.ProgramProperties;
 
 /**
  * Query all the subtype test sequences from HIVDB_Results. Write the sequences to a fasta file in

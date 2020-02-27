@@ -2,13 +2,10 @@ package edu.stanford.hivdb.genotypes;
 
 import static org.junit.Assert.assertEquals;
 
-import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;

@@ -18,9 +18,9 @@
 
 package edu.stanford.hivdb.drugresistance.mutationpattern;
 
-import java.util.List;
+//import java.util.List;
 //import edu.stanford.hivdb.drugresistance.database.MutationPatterns;
-import edu.stanford.hivdb.testutils.TestUtils;
+//import edu.stanford.hivdb.testutils.TestUtils;
 
 /**
  * Creates 4 files, each containing all patterns of drug-resistance mutations for a drug class

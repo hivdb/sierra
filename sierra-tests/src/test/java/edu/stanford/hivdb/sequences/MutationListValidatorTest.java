@@ -42,6 +42,7 @@ public class MutationListValidatorTest {
 		MutationSet<HIV> mutSet = new MutationSet<HIV>(mutations);
 		
 		if (levels.length == 0) {
+			@SuppressWarnings("unused")
 			List<ValidationResult> results = hiv.validateMutations(mutSet);	
 //			System.out.println(results.get(0).getMessage());
 			}
@@ -67,6 +68,7 @@ public class MutationListValidatorTest {
 				TestMutationsFiles.getTestMutationsInputStream(TestMutationsProperties.VALIDATION_TEST);
 		final List<MutationSet<HIV>> mutationSets = MutationFileReader.readMutationLists(testMutationsInputStream, hiv);
 		for (MutationSet<HIV> mutSet : mutationSets) {
+			@SuppressWarnings("unused")
 			List<ValidationResult> results = hiv.validateMutations(mutSet);
 //			for (ValidationResult result : results) {
 //				System.out.println(" Level:" + result.getLevel());

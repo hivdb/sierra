@@ -18,13 +18,13 @@
 
 package edu.stanford.hivdb.drugresistance.scripts;
 
-import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.TreeMap;
-
-import edu.stanford.hivdb.drugresistance.GeneDR;
-import edu.stanford.hivdb.mutations.MutationSet;
+//import java.sql.SQLException;
+//import java.util.HashMap;
+//import java.util.Map;
+//import java.util.TreeMap;
+//
+//import edu.stanford.hivdb.drugresistance.GeneDR;
+//import edu.stanford.hivdb.mutations.MutationSet;
 
 /**
  * Initialize with gene, mutClassification, mutComments, individual mut scores, combination mut scores

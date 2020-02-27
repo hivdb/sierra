@@ -2,13 +2,7 @@ package edu.stanford.hivdb.drugresistance.algorithm;
 
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
-
-import java.util.List;
-
 import org.junit.Test;
-
-import edu.stanford.hivdb.hivfacts.HIV;
 
 public class AsiDrugComparableResultTest {
 	
