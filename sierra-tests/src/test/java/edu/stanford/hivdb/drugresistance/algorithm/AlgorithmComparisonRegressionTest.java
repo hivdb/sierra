@@ -2,7 +2,7 @@ package edu.stanford.hivdb.drugresistance.algorithm;
 
 import static org.junit.Assert.*;
 
-import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -22,9 +22,9 @@ import edu.stanford.hivdb.sequences.AlignedSequence;
 import edu.stanford.hivdb.sequences.NucAminoAligner;
 import edu.stanford.hivdb.sequences.Sequence;
 import edu.stanford.hivdb.testutils.TestSequencesFiles;
+import edu.stanford.hivdb.testutils.TestUtils;
 import edu.stanford.hivdb.testutils.TestSequencesFiles.TestSequencesProperties;
 import edu.stanford.hivdb.utilities.Json;
-import edu.stanford.hivdb.utilities.MyFileUtils;
 import edu.stanford.hivdb.utilities.FastaUtils;
 
 public class AlgorithmComparisonRegressionTest {
@@ -32,26 +32,22 @@ public class AlgorithmComparisonRegressionTest {
 	private static final HIV hiv1 = HIV.getInstance();
 	
 	@Test
-	public void testRegression() {
+	public void testRegression() throws FileNotFoundException {
 		Type mapType =
 			new TypeToken<
 				Map<String, Map<String, AlgorithmComparison<HIV>>>
 			>() {}.getType();
-		BufferedReader bufferedReader = MyFileUtils.readResource(
-			AlgorithmComparisonTest.class,
-			"AlgorithmComparisonTestExpecteds.json");
+		InputStream input = TestUtils.readTestResource("AlgorithmComparisonTestExpecteds.json");
 		Map<TestSequencesProperties, Map<String, AlgorithmComparison<HIV>>>
-			expecteds = Json.loads(bufferedReader, mapType);
+			expecteds = Json.loads(input.toString(), mapType);
 		
-		List<DrugResistanceAlgorithm<HIV>> algos = new ArrayList<>();
+		List<DrugResistanceAlgorithm<HIV>> algorithms = new ArrayList<>();
 		
-//		System.out.println(hiv1.getDrugResistAlgorithms());
-		DrugResistanceAlgorithm<HIV> algo1 = hiv1.getDrugResistAlgorithm("HIVDB_8.9-1");
-		DrugResistanceAlgorithm<HIV> algo2 = hiv1.getDrugResistAlgorithm("Rega_9.1");
-//		DrugResistanceAlgorithm<HIV> algo1 = hiv1.getDrugResistAlgorithm("HIVDB_8.9.1");
+		DrugResistanceAlgorithm<HIV> hivdbAlgo = hiv1.getDrugResistAlgorithm("HIVDB_8.9-1");
+		DrugResistanceAlgorithm<HIV> regaAlgo = hiv1.getDrugResistAlgorithm("Rega_9.1");
 		
-		algos.add(algo1);
-		algos.add(algo2);
+		algorithms.add(hivdbAlgo);
+		algorithms.add(regaAlgo);
 		
 		for (TestSequencesProperties property :
 				TestSequencesProperties.values()) {
@@ -67,20 +63,19 @@ public class AlgorithmComparisonRegressionTest {
 
 			for (AlignedSequence<HIV> alignedSeq : allAligneds) {
 				Sequence sequence = alignedSeq.getInputSequence();
-				// System.out.println(sequence.getHeader());
 				MutationSet<HIV> mutations = alignedSeq.getMutations();
 				
 				List<ComparableDrugScore<HIV>>
-					 actual = new AlgorithmComparison<HIV>(mutations, algos).getComparisonResults();
+					 actual = new AlgorithmComparison<HIV>(mutations, algorithms).getComparisonResults();
 				
 				List<ComparableDrugScore<HIV>>
 					expected = expecteds.get((Object) property.toString()).get(sequence.getHeader() + "-" + sequence.getSHA512()).getComparisonResults();
 				if (expected == null) {
-					// fix gson error
 					expected = Collections.emptyList();
 				}
 
-				// Issue, the AlgorithmComparisonTestExpecteds.json file is not fit with algorithm
+				// TODO: update AlgorithmComparisonTestExpecteds.json
+				// Compare expected with actual without using Json.dumps
 				assertEquals(Json.dumps(expected), Json.dumps(actual));
 			}
 		}
