@@ -57,7 +57,7 @@ ext {
         }
     }
     isTravisBuild = System.getenv().get("TRAVIS") == 'true'
-    enableRegressionTest = System.getenv().get("ENABLEREGRESSIONTEST") == 'true'
+    enableRegressionTest = System.getenv().get("ENABLE_REGRESSION_TEST") == 'true'
 }
 
 test {

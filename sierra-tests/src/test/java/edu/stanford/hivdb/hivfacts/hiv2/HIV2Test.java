@@ -43,11 +43,6 @@ public class HIV2Test {
 	@Rule
 	public ExpectedException thrown = ExpectedException.none();
 
-	@Test(expected=ExceptionInInitializerError.class)
-	public void testLoadResourceError() {
-		HIV2.loadResource("hiv12345.json");
-	}
-
 	@Test
 	public void testGetInstance() {
 		assertSame(HIV2.getInstance(), HIV2.getInstance());

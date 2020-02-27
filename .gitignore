@@ -5,6 +5,7 @@ DrugResistance/*.txt
 sierra-tests/*.tsv
 sierra-tests/*.json
 sierra-tests/*.txt
+sierra-tests/test/*
 sierra-tests/testResult/*
 !sierra-tests/testResult/.keep
 sierra-tests/AlgComparisons
