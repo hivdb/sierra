@@ -638,6 +638,7 @@ public class AAMutationTest {
 	}
 
 
+	@SuppressWarnings("unlikely-arg-type")
 	@Test
 	public void testEquals() {
 
@@ -663,21 +664,28 @@ public class AAMutationTest {
 		mutation2 = new AAMutation<HIV>(hiv.getGene("HIV1PR"), 10,
 				new char[] {'A', 'C', 'D', 'E'});
 		assertFalse(mutation1.equals(mutation2));
+		
+		assertFalse(mutation1.equals("A"));
 	}
 
 	@Test
 	public void testHashCode() {
-		Gene<HIV> gene = hiv.getGene("HIV1PR");
-		AAMutation<HIV> mutation = new AAMutation<HIV>(gene, 10,
+		AAMutation<HIV> mutation1 = new AAMutation<HIV>(hiv.getGene("HIV1PR"), 10,
 				new char[] {'A', 'C', 'D', 'E', 'F'});
+		
+		AAMutation<HIV> mutation2 = new AAMutation<HIV>(hiv.getGene("HIV1PR"), 10,
+				new char[] {'A', 'C', 'D', 'E'});
 
-		assertEquals(mutation.hashCode(), 1766230873);
+		assertEquals(mutation1.hashCode(), mutation1.hashCode());
+		assertEquals(mutation1.hashCode(), mutation1.hashCode());
+		
+		assertFalse(mutation1.hashCode() == mutation2.hashCode());
+		assertFalse(mutation1.hashCode() == mutation2.hashCode());
 	}
 
 	@Test
 	public void testToString() {
-		Gene<HIV> gene = hiv.getGene("HIV1PR");
-		AAMutation<HIV> mutation = new AAMutation<HIV>(gene, 10,
+		AAMutation<HIV> mutation = new AAMutation<HIV>(hiv.getGene("HIV1PR"), 10,
 				new char[] {'A', 'C', 'D', 'E', 'F'});
 
 		assertEquals(mutation.toString(), "L10ACDEF");
@@ -686,8 +694,7 @@ public class AAMutationTest {
 	@Test
 	public void testGetShortText() {
 
-		Gene<HIV> gene = hiv.getGene("HIV1PR");
-		AAMutation<HIV> mutation = new AAMutation<HIV>(gene, 10,
+		AAMutation<HIV> mutation = new AAMutation<HIV>(hiv.getGene("HIV1PR"), 10,
 				new char[] {'A', 'C', 'D', 'E', 'F'});
 
 		assertEquals(mutation.getShortText(), "L10ACDEF");
@@ -695,57 +702,48 @@ public class AAMutationTest {
 
 	@Test
 	public void testCompareTo() {
-		Gene<HIV> prGene = hiv.getGene("HIV1PR");
-		Gene<HIV> rtGene = hiv.getGene("HIV1RT");
 
-		AAMutation<HIV> mutation1 = new AAMutation<HIV>(prGene, 10,
+		AAMutation<HIV> mutation1 = new AAMutation<HIV>(hiv.getGene("HIV1PR"), 10,
 				new char[] {'A', 'C', 'D', 'E', 'F'});
 
-		AAMutation<HIV> mutation2 = new AAMutation<HIV>(prGene, 10,
+		AAMutation<HIV> mutation2 = new AAMutation<HIV>(hiv.getGene("HIV1PR"), 10,
 				new char[] {'A', 'C', 'D', 'E', 'F'});
 
 		assertEquals(mutation1.compareTo(mutation2), 0);
 
-		mutation2 = new AAMutation<HIV>(rtGene, 10,
+		mutation2 =new AAMutation<HIV>(hiv.getGene("HIV1RT"), 10,
 				new char[] {'A', 'C', 'D', 'E', 'F'});
-
 		assertEquals(mutation1.compareTo(mutation2), -1);
 
-		mutation2 = new AAMutation<HIV>(prGene, 11,
+		mutation2 = new AAMutation<HIV>(hiv.getGene("HIV1PR"), 11,
 				new char[] {'A', 'C', 'D', 'E', 'F'});
-
 		assertEquals(mutation1.compareTo(mutation2), -1);
 
-		mutation2 = new AAMutation<HIV>(prGene, 11,
+		mutation2 = new AAMutation<HIV>(hiv.getGene("HIV1PR"), 10,
 				new char[] {'A', 'C', 'D', 'E'});
-
-		assertEquals(mutation1.compareTo(mutation2), -1);
+		assertEquals(mutation1.compareTo(mutation2), 1);
 	}
 
 	@Test
 	public void testContainsSharedA() {
-		Gene<HIV> prGene = hiv.getGene("HIV1PR");
-		Gene<HIV> rtGene = hiv.getGene("HIV1RT");
 
-		AAMutation<HIV> mutation1 = new AAMutation<HIV>(prGene, 10,
+		AAMutation<HIV> mutation1 = new AAMutation<HIV>(hiv.getGene("HIV1PR"), 10,
 				new char[] {'A', 'C', 'D', 'E', 'F'});
 
-		AAMutation<HIV> mutation2 = new AAMutation<HIV>(prGene, 10,
+		AAMutation<HIV> mutation2 = new AAMutation<HIV>(hiv.getGene("HIV1PR"), 10,
 				new char[] {'A', 'C', 'D', 'E', 'F'});
 
 		assertTrue(mutation1.containsSharedAA(mutation2));
 
-		mutation2 = new AAMutation<HIV>(rtGene, 10,
+		mutation2 = new AAMutation<HIV>(hiv.getGene("HIV1RT"), 10,
 				new char[] {'A', 'C', 'D', 'E', 'F'});
-
 		assertFalse(mutation1.containsSharedAA(mutation2));
 
-		mutation2 = new AAMutation<HIV>(prGene, 11,
+		mutation2 = new AAMutation<HIV>(hiv.getGene("HIV1RT"), 11,
 				new char[] {'A', 'C', 'D', 'E', 'F'});
-
 		assertFalse(mutation1.containsSharedAA(mutation2));
 
-		mutation2 = new AAMutation<HIV>(prGene, 11,
+		mutation2 = new AAMutation<HIV>(hiv.getGene("HIV1RT"), 11,
 				new char[] {'A', 'C', 'D', 'E'});
 
 		assertFalse(mutation1.containsSharedAA(mutation2));
@@ -753,230 +751,302 @@ public class AAMutationTest {
 
 	@Test
 	public void testContainsSharedAA() {
-		Gene<HIV> prGene = hiv.getGene("HIV1PR");
 
-		AAMutation<HIV> mutation1 = new AAMutation<HIV>(prGene, 10,
-				new char[] {'A', 'C', 'D', 'E', 'F'});
-
-		AAMutation<HIV> mutation2 = new AAMutation<HIV>(prGene, 10,
-				new char[] {'A', 'C', 'D', 'E', 'F'});
-
+		AAMutation<HIV> mutation1 = new AAMutation<HIV>(hiv.getGene("HIV1PR"), 10,
+				new char[] {'A', 'C', 'D', 'E', 'F', 'L', '*'});
+		AAMutation<HIV> mutation2 = new AAMutation<HIV>(hiv.getGene("HIV1PR"), 10,
+				new char[] {'A', 'C', 'D', 'E', 'F', 'L', '*'});
 		assertTrue(mutation1.containsSharedAA(mutation2.getAAChars(), true));
+		assertTrue(mutation1.containsSharedAA(mutation2.getAAChars(), false));
 
-		mutation2 = new AAMutation<HIV>(prGene, 10,
-				new char[] {'A', 'C', 'D', 'E', 'F', '*'});
-
-		assertTrue(mutation1.containsSharedAA(mutation2.getAAChars(), true));
-
-
-		mutation1 = new AAMutation<HIV>(prGene, 10,
+		mutation1 = new AAMutation<HIV>(hiv.getGene("HIV1PR"), 10,
+				new char[] {'A', 'C', 'D', 'E', 'F', 'L', '*'});
+		mutation2 = new AAMutation<HIV>(hiv.getGene("HIV1PR"), 10,
 				new char[] {'A', 'C', 'D', 'E', 'F', 'L'});
-
-		mutation2 = new AAMutation<HIV>(prGene, 10,
-				new char[] {'L'});
-
+		assertTrue(mutation1.containsSharedAA(mutation2.getAAChars(), true));
+		assertTrue(mutation1.containsSharedAA(mutation2.getAAChars(), false));
+		
+		mutation1 = new AAMutation<HIV>(hiv.getGene("HIV1PR"), 10,
+				new char[] {'A', 'C', 'D', 'E', 'F', 'L', '*'});
+		mutation2 = new AAMutation<HIV>(hiv.getGene("HIV1PR"), 10,
+				new char[] {'*'});
 		assertFalse(mutation1.containsSharedAA(mutation2.getAAChars(), true));
+		assertTrue(mutation1.containsSharedAA(mutation2.getAAChars(), false));
 
-		mutation2 = new AAMutation<HIV>(prGene, 10,
-				new char[] {'L'});
-
+		mutation1 = new AAMutation<HIV>(hiv.getGene("HIV1PR"), 10,
+				new char[] {'A', 'D',});
+		mutation2 = new AAMutation<HIV>(hiv.getGene("HIV1PR"), 10,
+				new char[] {'A', 'C'});
+		assertTrue(mutation1.containsSharedAA(mutation2.getAAChars(), true));
 		assertTrue(mutation1.containsSharedAA(mutation2.getAAChars(), false));
 	}
 
 	@Test
 	public void testIsAtDrugResistancePosition() {
-		Gene<HIV> gene = hiv.getGene("HIV1RT");
-		AAMutation<HIV> mutation = new AAMutation<HIV>(gene, 184,
+		AAMutation<HIV> mutation = new AAMutation<HIV>(hiv.getGene("HIV1RT"), 184,
 				new char[] {'A', 'C', 'D', 'E', 'F'});
 
 		assertTrue(mutation.isAtDrugResistancePosition());
+		
+		// INFO: isAtDrugRessitancePosition is cached
+		assertTrue(mutation.isAtDrugResistancePosition());
+		
+		mutation = new AAMutation<HIV>(hiv.getGene("HIV1RT"), 10,
+				new char[] {'A', 'C', 'D', 'E', 'F'});
+		assertFalse(mutation.isAtDrugResistancePosition());
 	}
 
 	@Test
 	public void testIsDRM() {
-		Gene<HIV> gene = hiv.getGene("HIV1RT");
-		AAMutation<HIV> mutation = new AAMutation<HIV>(gene, 184,
+		AAMutation<HIV> mutation = new AAMutation<HIV>(hiv.getGene("HIV1RT"), 184,
 				new char[] {'A', 'C', 'D', 'E', 'F', 'V'});
 
 		assertTrue(mutation.isDRM());
+		assertTrue(mutation.isDRM());
+		
+		mutation = new AAMutation<HIV>(hiv.getGene("HIV1RT"), 184,
+				new char[] {'A', 'C', 'D', 'E', 'F'});
+		
+		assertFalse(mutation.isDRM());
 	}
 
 	@Test
 	public void testGetDRMDrugClass() {
-		Gene<HIV> gene = hiv.getGene("HIV1RT");
-		AAMutation<HIV> mutation = new AAMutation<HIV>(gene, 184,
+		AAMutation<HIV> mutation = new AAMutation<HIV>(hiv.getGene("HIV1RT"), 184,
 				new char[] {'A', 'C', 'D', 'E', 'F', 'V'});
 
 		assertEquals(mutation.getDRMDrugClass(), hiv.getDrugClass("NRTI"));
+		assertEquals(mutation.getDRMDrugClass(), hiv.getDrugClass("NRTI"));
 
-		mutation = new AAMutation<HIV>(gene, 184,
+		mutation = new AAMutation<HIV>(hiv.getGene("HIV1RT"), 184,
 				new char[] {'A', 'C', 'D', 'E', 'F'});
 
 		assertNull(mutation.getDRMDrugClass());
+		
+		// INFO: lookupDrugClass last line won't be reached
+		//       because getDRMDrugClass has a if statement to tell if isDRM
 	}
 
 	@Test
 	public void testIsTSM() {
-		Gene<HIV> gene = hiv.getGene("HIV1RT");
-		AAMutation<HIV> mutation = new AAMutation<HIV>(gene, 184,
+		AAMutation<HIV> mutation = new AAMutation<HIV>(hiv.getGene("HIV1RT"), 184,
 				new char[] {'A', 'C', 'D', 'E', 'F', 'V'});
 
 		assertTrue(mutation.isTSM());
+		assertTrue(mutation.isTSM());
+		
+		mutation = new AAMutation<HIV>(hiv.getGene("HIV1PR"), 10,
+				new char[] {'L'});
+		assertFalse(mutation.isTSM());
 	}
 
 	@Test
 	public void testGetTSMDrugclass() {
-		Gene<HIV> gene = hiv.getGene("HIV1RT");
-		AAMutation<HIV> mutation = new AAMutation<HIV>(gene, 184,
+		AAMutation<HIV> mutation = new AAMutation<HIV>(hiv.getGene("HIV1RT"), 184,
 				new char[] {'A', 'C', 'D', 'E', 'F', 'V'});
 
 		assertEquals(mutation.getTSMDrugClass(), hiv.getDrugClass("NRTI"));
+		assertEquals(mutation.getTSMDrugClass(), hiv.getDrugClass("NRTI"));
+		
+		mutation = new AAMutation<HIV>(hiv.getGene("HIV1PR"), 10,
+				new char[] {'L'});
+		assertNull(mutation.getTSMDrugClass());
 	}
 
 	@Test
 	public void testGetGenePosition() {
 
-		Gene<HIV> gene = hiv.getGene("HIV1RT");
-		AAMutation<HIV> mutation = new AAMutation<HIV>(gene, 184,
+		AAMutation<HIV> mutation = new AAMutation<HIV>(hiv.getGene("HIV1RT"), 184,
 				new char[] {'A', 'C', 'D', 'E', 'F', 'V'});
 
-		GenePosition<HIV> position = new GenePosition<HIV>(gene, 184);
+		GenePosition<HIV> position = new GenePosition<HIV>(hiv.getGene("HIV1RT"), 184);
 
 		assertEquals(mutation.getGenePosition(), position);
 	}
 
 	@Test
 	public void testIsUnusual() {
-		Gene<HIV> gene = hiv.getGene("HIV1RT");
-		AAMutation<HIV> mutation = new AAMutation<HIV>(gene, 184,
+		AAMutation<HIV> mutation = new AAMutation<HIV>(hiv.getGene("HIV1RT"), 184,
 				new char[] {'A', 'C', 'D', 'E', 'F', 'V'});
 
 		assertTrue(mutation.isUnusual());
+		assertTrue(mutation.isUnusual());
 
-		mutation = new AAMutation<HIV>(gene, 184,
+		mutation = new AAMutation<HIV>(hiv.getGene("HIV1RT"), 184,
 				new char[] {'X'});
 
 		assertTrue(mutation.isUnusual());
+		
+		mutation = new AAMutation<HIV>(hiv.getGene("HIV1RT"), 184,
+				new char[] {'M'});
+		
+		assertFalse(mutation.isUnusual());
 	}
 
 	@Test
 	public void testIsSDRM() {
-		Gene<HIV> gene = hiv.getGene("HIV1RT");
-		AAMutation<HIV> mutation = new AAMutation<HIV>(gene, 184,
+		AAMutation<HIV> mutation = new AAMutation<HIV>(hiv.getGene("HIV1RT"), 184,
 				new char[] {'A', 'C', 'D', 'E', 'F', 'V'});
-
+		assertTrue(mutation.isSDRM());
 		assertTrue(mutation.isSDRM());
 
-		mutation = new AAMutation<HIV>(gene, 184,
+		mutation = new AAMutation<HIV>(hiv.getGene("HIV1RT"), 184,
 				new char[] {'A', 'C', 'D', 'E', 'F'});
-
 		assertFalse(mutation.isSDRM());
 	}
 
 	@Test
 	public void testGeSDRMDrugclass() {
-		Gene<HIV> gene = hiv.getGene("HIV1RT");
-		AAMutation<HIV> mutation = new AAMutation<HIV>(gene, 184,
+		AAMutation<HIV> mutation = new AAMutation<HIV>(hiv.getGene("HIV1RT"), 184,
 				new char[] {'A', 'C', 'D', 'E', 'F', 'V'});
 
 		assertEquals(mutation.getSDRMDrugClass(), hiv.getDrugClass("NRTI"));
+		assertEquals(mutation.getSDRMDrugClass(), hiv.getDrugClass("NRTI"));
+		
+		mutation = new AAMutation<HIV>(hiv.getGene("HIV1RT"), 184,
+				new char[] {'A', 'C', 'D', 'E', 'F'});
+		assertNull(mutation.getSDRMDrugClass());
 	}
 
 	@Test
 	public void testIsApobecMutation() {
-		Mutation<HIV> mut = new AAMutation<HIV>(hiv.getGene("HIV1PR"), 27, 'E');
-		assertTrue(mut.isApobecMutation());
-		Mutation<HIV> mut2 = new AAMutation<HIV>(hiv.getGene("HIV1PR"), 27, 'G');
-		assertFalse(mut2.isApobecMutation());
-		Mutation<HIV> mut3 = new AAMutation<HIV>(hiv.getGene("HIV1IN"), 263, 'K');
-		assertFalse(mut3.isApobecMutation());
+		Mutation<HIV> mutation = new AAMutation<HIV>(hiv.getGene("HIV1PR"), 27, 'E');
+		assertTrue(mutation.isApobecMutation());
+		
+		mutation = new AAMutation<HIV>(hiv.getGene("HIV1PR"), 27, 'G');
+		assertFalse(mutation.isApobecMutation());
+		
+		mutation = new AAMutation<HIV>(hiv.getGene("HIV1IN"), 263, 'K');
+		assertFalse(mutation.isApobecMutation());
+		assertFalse(mutation.isApobecMutation());
 	}
 
 	 @Test
 	 public void testIsApobecDRM() {
-		Mutation<HIV> mut = new AAMutation<HIV>(hiv.getGene("HIV1PR"), 27, 'E');
-		assertFalse(mut.isApobecDRM());
-		Mutation<HIV> mut2 = new AAMutation<HIV>(hiv.getGene("HIV1PR"), 27, 'G');
-		assertFalse(mut2.isApobecDRM());
-		Mutation<HIV> mut3 = new AAMutation<HIV>(hiv.getGene("HIV1IN"), 263, 'K');
-		assertTrue(mut3.isApobecDRM());
-		Mutation<HIV> mut4 = new AAMutation<HIV>(hiv.getGene("HIV1IN"), 263, 'R');
-		assertFalse(mut4.isApobecDRM());
+		Mutation<HIV> mutation = new AAMutation<HIV>(hiv.getGene("HIV1PR"), 27, 'E');
+		assertFalse(mutation.isApobecDRM());
+		
+		mutation = new AAMutation<HIV>(hiv.getGene("HIV1PR"), 27, 'G');
+		assertFalse(mutation.isApobecDRM());
+		
+		mutation = new AAMutation<HIV>(hiv.getGene("HIV1IN"), 263, 'K');
+		assertTrue(mutation.isApobecDRM());
+		
+		mutation = new AAMutation<HIV>(hiv.getGene("HIV1IN"), 263, 'R');
+		assertFalse(mutation.isApobecDRM());
+		assertFalse(mutation.isApobecDRM());
 
 	 }
 
 	 @Test
 	 public void testGetHighestMutPrevalence() {
-		 Gene<HIV> gene = hiv.getGene("HIV1RT");
-		 AAMutation<HIV> mutation = new AAMutation<HIV>(gene, 184,
-					new char[] {'A', 'C', 'D', 'E', 'F', 'V'});
+		 AAMutation<HIV> mutation = new AAMutation<HIV>(hiv.getGene("HIV1RT"), 184,
+					new char[] {'A', 'C', 'D', 'E', 'F', 'V', 'M', 'X'});
 
-		 assertEquals(19.8080, mutation.getHighestMutPrevalence(), 0.01);
+		 assertTrue(mutation.getHighestMutPrevalence() > 0.0);
+		 
+		 mutation = new AAMutation<HIV>(hiv.getGene("HIV1RT"), 184,
+					new char[] {'M', 'X'});
+		 assertEquals(0.0, mutation.getHighestMutPrevalence(), 0.0);
+		 assertEquals(0.0, mutation.getHighestMutPrevalence(), 0.0);
 	 }
 
 	 @Test
 	 public void testGetPrevalences() {
-		 Gene<HIV> gene = hiv.getGene("HIV1RT");
-		 AAMutation<HIV> mutation = new AAMutation<HIV>(gene, 184,
+		 AAMutation<HIV> mutation = new AAMutation<HIV>(hiv.getGene("HIV1RT"), 184,
 					new char[] {'A', 'C', 'D', 'E', 'F', 'V'});
 
 		 List<MutationPrevalence<HIV>> prevalence = mutation.getPrevalences();
 		 
-		 assertTrue(prevalence.size() > 0);
+		 assertEquals(prevalence.size(), 26);
 	 }
 	 
 	 @Test
 	 public void testGetTypes() {
-		 Gene<HIV> gene = hiv.getGene("HIV1RT");
-		 AAMutation<HIV> mutation = new AAMutation<HIV>(gene, 184,
+		 AAMutation<HIV> mutation = new AAMutation<HIV>(hiv.getGene("HIV1RT"), 184,
 					new char[] {'A', 'C', 'D', 'E', 'F', 'V'});
-
-		 assertTrue(mutation.getTypes().size() > 0);
+		 assertEquals(mutation.getTypes().size(), 2);
+		 
+		 mutation = new AAMutation<HIV>(hiv.getGene("HIV1RT"), 184,
+					new char[] {'M'});
+		 
+		 assertEquals(mutation.getTypes().size(), 1);
 	 }
 	 
 	 @Test
 	 public void testGetASIFormat() {
-		 Gene<HIV> gene = hiv.getGene("HIV1RT");
-		 AAMutation<HIV> mutation = new AAMutation<HIV>(gene, 184,
-					new char[] {'A', 'C', 'D', 'E', 'F', 'V', '_', '*', '-'});
+		 AAMutation<HIV> mutation = new AAMutation<HIV>(hiv.getGene("HIV1RT"), 184,
+					new char[] {'A', 'C', 'D', 'E', 'F', 'V', 'X', '_', '*', '-'});
 		 
-		 assertEquals(mutation.getASIFormat(), "M184ZdACDEFVi");
+		 assertEquals(mutation.getASIFormat(), "M184ZdACDEFVZi");
 	 }
 
 	 @Test
 	 public void testHIVDBFormat() {
-		 Gene<HIV> gene = hiv.getGene("HIV1RT");
-		 AAMutation<HIV> mutation = new AAMutation<HIV>(gene, 184,
-					new char[] {'A', 'C', 'D', 'E', 'F', 'V', '_', '*', '-'});
+		 AAMutation<HIV> mutation = new AAMutation<HIV>(hiv.getGene("HIV1RT"), 184,
+				 	new char[] {'A', 'C', 'D', 'E', 'F', 'V', 'X', '_', '*', '-'});
 		 
-		 assertEquals(mutation.getHIVDBFormat(), "184*~ACDEFV#");
+		 assertEquals(mutation.getHIVDBFormat(), "184*~ACDEFVX#");
 	 }
 	 
 	 @Test
 	 public void testGetHumanFormat() {
-		 Gene<HIV> gene = hiv.getGene("HIV1RT");
-		 AAMutation<HIV> mutation = new AAMutation<HIV>(gene, 184,
-					new char[] {'A', 'C', 'D', 'E', 'F', 'V', '_', '*', '-'});
-		 
+		 AAMutation<HIV> mutation = new AAMutation<HIV>(hiv.getGene("HIV1RT"), 184,
+				 	new char[] {'A', 'C', 'D', 'E', 'F', 'V', 'X', '_', '*', '-'});
 		 assertEquals(mutation.getHumanFormat(), "M184X");
+		 
+		 mutation = new AAMutation<HIV>(hiv.getGene("HIV1RT"), 184,
+				 	new char[] {'A', 'X', '_', '*', '-'});
+		 assertEquals(mutation.getHumanFormat(), "M184*-AX_");
+		 
+		 mutation = new AAMutation<HIV>(hiv.getGene("HIV1RT"), 184,
+				 	new char[] {'_'});
+		 assertEquals(mutation.getHumanFormat(), "M184Insertion");
+		 
+		 mutation = new AAMutation<HIV>(hiv.getGene("HIV1RT"), 184,
+				 	new char[] {'-'});
+		 assertEquals(mutation.getHumanFormat(), "M184Deletion");
 	 }
 
 	 @Test
 	 public void testGetShortHumanFormat() {
-		 Gene<HIV> gene = hiv.getGene("HIV1RT");
-		 AAMutation<HIV> mutation = new AAMutation<HIV>(gene, 184,
-					new char[] {'A', 'C', 'D', 'E', 'F', 'V', '_', '*', '-'});
-		 
+		 AAMutation<HIV> mutation = new AAMutation<HIV>(hiv.getGene("HIV1RT"), 184,
+				 	new char[] {'A', 'C', 'D', 'E', 'F', 'V', 'X', '_', '*', '-'});
 		 assertEquals(mutation.getShortHumanFormat(), "M184X");
+		 
+		 mutation = new AAMutation<HIV>(hiv.getGene("HIV1RT"), 184,
+				 	new char[] {'A', 'X', '_', '*', '-'});
+		 assertEquals(mutation.getShortHumanFormat(), "M184*-AX_");
+		 
+		 mutation = new AAMutation<HIV>(hiv.getGene("HIV1RT"), 184,
+				 	new char[] {'_'});
+		 assertEquals(mutation.getShortHumanFormat(), "M184i");
+		 
+		 mutation = new AAMutation<HIV>(hiv.getGene("HIV1RT"), 184,
+				 	new char[] {'-'});
+		 assertEquals(mutation.getShortHumanFormat(), "M184d");
 	 }
 	 
 	 @Test
 	 public void testGetHumanFormatWithoutLeadingRef() {
-		 Gene<HIV> gene = hiv.getGene("HIV1RT");
-		 AAMutation<HIV> mutation = new AAMutation<HIV>(gene, 184,
+		 AAMutation<HIV> mutation = new AAMutation<HIV>( hiv.getGene("HIV1RT"), 184,
 					new char[] {'A', 'C', 'D', 'E', 'F', 'M'});
-		 
 		 assertEquals(mutation.getHumanFormatWithoutLeadingRef(), "184MACDEF");
+		 
+		 mutation = new AAMutation<HIV>( hiv.getGene("HIV1RT"), 184,
+				 	new char[] {'A', 'C', 'D', 'E', 'F', 'G', 'H'});
+		 assertEquals(mutation.getHumanFormatWithoutLeadingRef(), "184X");
+		 
+		 mutation = new AAMutation<HIV>( hiv.getGene("HIV1RT"), 184,
+				 	new char[] {'A', 'C', 'D', 'E', 'F', 'V', 'X', '_', '*', '-'});
+		 assertEquals(mutation.getHumanFormatWithoutLeadingRef(), "184X");
+	 }
+	 
+	 @Test
+	 public void testGetHumanFormatWithGene() {
+		 AAMutation<HIV> mutation = new AAMutation<HIV>( hiv.getGene("HIV1RT"), 184,
+					new char[] {'A', 'C', 'D', 'E', 'F', 'M'});
+		 assertEquals(mutation.getHumanFormatWithGene(), "HIV1RT_M184MACDEF");
 	 }
 	 
 	 @Test
@@ -985,8 +1055,7 @@ public class AAMutationTest {
 		 AAMutation<HIV> mutation = new AAMutation<HIV>(gene, 184,
 					new char[] {'A', 'C', 'D', 'E', 'F', 'M'});
 		 
-		 
-		 assertTrue(mutation.getComments().size() > 0);
+		 assertEquals(mutation.getComments().size(), 1);
 		 
 	 }
 }
