@@ -10,7 +10,7 @@ import org.junit.Test;
 
 import edu.stanford.hivdb.hivfacts.HIV;
 
-public class ConsensusMutationTest {
+public class CodonMutationTest {
 	
 	final private static HIV hiv = HIV.getInstance();
 	
@@ -25,85 +25,85 @@ public class ConsensusMutationTest {
 		mut.put("CodonText", "GGT");
 		mut.put("InsertedCodonsText", "GGA");
 		
-		assertNotNull(ConsensusMutation.fromNucAminoMutation(hiv.getGene("HIV1PR"), 10, mut));
+		assertNotNull(CodonMutation.fromNucAminoMutation(hiv.getGene("HIV1PR"), 10, mut));
 		
 	}
 	
 	@Test
 	public void testConstructor1() {
-		new ConsensusMutation<HIV>(hiv.getGene("HIV1PR"), 10, "A", "GGT");
+		new CodonMutation<HIV>(hiv.getGene("HIV1PR"), 10, "A", "GGT");
 	}
 	
 	@Test
 	public void testConstructor2() {
-		new ConsensusMutation<HIV>(hiv.getGene("HIV1PR"), 10, "A");
+		new CodonMutation<HIV>(hiv.getGene("HIV1PR"), 10, "A");
 	}
 	
 	@Test
 	public void testConstructor3() {
-		new ConsensusMutation<HIV>(hiv.getGene("HIV1PR"), 10, 'A');
+		new CodonMutation<HIV>(hiv.getGene("HIV1PR"), 10, 'A');
 	}
 	
 	@SuppressWarnings("deprecation")
 	@Test(expected=UnsupportedOperationException.class)
 	public void testMergeWith() {
-		ConsensusMutation<HIV> mutation1 = new ConsensusMutation<HIV>(hiv.getGene("HIV1PR"), 10, 'A');
-		ConsensusMutation<HIV> mutation2 = new ConsensusMutation<HIV>(hiv.getGene("HIV1PR"), 10, '_');
+		CodonMutation<HIV> mutation1 = new CodonMutation<HIV>(hiv.getGene("HIV1PR"), 10, 'A');
+		CodonMutation<HIV> mutation2 = new CodonMutation<HIV>(hiv.getGene("HIV1PR"), 10, '_');
 		
 		mutation1.mergesWith(mutation2);
 	}
 	
 	@Test
 	public void testIsUnsequenced() {
-		ConsensusMutation<HIV> mutation = new ConsensusMutation<HIV>(hiv.getGene("HIV1PR"), 10, "A", "NNN");
+		CodonMutation<HIV> mutation = new CodonMutation<HIV>(hiv.getGene("HIV1PR"), 10, "A", "NNN");
 		assertTrue(mutation.isUnsequenced());
 
-		mutation = new ConsensusMutation<HIV>(hiv.getGene("HIV1PR"), 10, "_", "NNN");
+		mutation = new CodonMutation<HIV>(hiv.getGene("HIV1PR"), 10, "_", "NNN");
 		assertFalse(mutation.isUnsequenced());
 	}
 	
 	@Test
 	public void testGetDisplayAAs() {
-		ConsensusMutation<HIV> mutation = new ConsensusMutation<HIV>(hiv.getGene("HIV1PR"), 10, 'A');
+		CodonMutation<HIV> mutation = new CodonMutation<HIV>(hiv.getGene("HIV1PR"), 10, 'A');
 		
 		assertEquals(mutation.getDisplayAAs(), "A");
 	}
 	
 	@Test
 	public void testGetAAs() {
-		ConsensusMutation<HIV> mutation = new ConsensusMutation<HIV>(hiv.getGene("HIV1PR"), 10, 'A');
+		CodonMutation<HIV> mutation = new CodonMutation<HIV>(hiv.getGene("HIV1PR"), 10, 'A');
 		
 		assertEquals(mutation.getAAs(), "A");
 	}
 	
 	@Test
 	public void testGetTriplet() {
-		ConsensusMutation<HIV> mutation = new ConsensusMutation<HIV>(hiv.getGene("HIV1PR"), 10, 'A');
+		CodonMutation<HIV> mutation = new CodonMutation<HIV>(hiv.getGene("HIV1PR"), 10, 'A');
 		
 		assertEquals(mutation.getTriplet(), "");
 	}
 	
 	@Test
 	public void testGetInsertedNAs() {
-		ConsensusMutation<HIV> mutation = new ConsensusMutation<HIV>(hiv.getGene("HIV1PR"), 10, 'A');
+		CodonMutation<HIV> mutation = new CodonMutation<HIV>(hiv.getGene("HIV1PR"), 10, 'A');
 		
 		assertEquals(mutation.getInsertedNAs(), "");
 	}
 	
 	@Test
 	public void testAAsWithRefFirst() {
-		ConsensusMutation<HIV> mutation = new ConsensusMutation<HIV>(hiv.getGene("HIV1PR"), 10, "AL");
+		CodonMutation<HIV> mutation = new CodonMutation<HIV>(hiv.getGene("HIV1PR"), 10, "AL");
 		
 		assertEquals(mutation.getAAsWithRefFirst(), "LA");
 		
-		mutation = new ConsensusMutation<HIV>(hiv.getGene("HIV1PR"), 10, "A");
+		mutation = new CodonMutation<HIV>(hiv.getGene("HIV1PR"), 10, "A");
 		
 		assertEquals(mutation.getAAsWithRefFirst(), "A");
 	}
 	
 	@Test
 	public void testGetAAsWithoutReference() {
-		ConsensusMutation<HIV> mutation = new ConsensusMutation<HIV>(hiv.getGene("HIV1PR"), 10, "AL");
+		CodonMutation<HIV> mutation = new CodonMutation<HIV>(hiv.getGene("HIV1PR"), 10, "AL");
 		
 		assertEquals(mutation.getAAsWithoutReference(), "A");
 	}

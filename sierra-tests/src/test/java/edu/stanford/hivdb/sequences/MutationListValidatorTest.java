@@ -24,7 +24,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 import edu.stanford.hivdb.mutations.AAMutation;
-import edu.stanford.hivdb.mutations.ConsensusMutation;
+import edu.stanford.hivdb.mutations.CodonMutation;
 import edu.stanford.hivdb.mutations.MutationFileReader;
 import edu.stanford.hivdb.mutations.MutationSet;
 import edu.stanford.hivdb.testutils.TestMutationsFiles;
@@ -84,8 +84,8 @@ public class MutationListValidatorTest {
 		assertValidationResult(
 			/* mutations as the input for MutationListValidator */
 			new AAMutation[] {
-				new ConsensusMutation<HIV>(hiv.getGene("HIV1RT"), 122, "*"),
-				new ConsensusMutation<HIV>(hiv.getGene("HIV1IN"), 23, "*"),
+				new CodonMutation<HIV>(hiv.getGene("HIV1RT"), 122, "*"),
+				new CodonMutation<HIV>(hiv.getGene("HIV1IN"), 23, "*"),
 			},
 			/* expected result level(s) */
 			new ValidationLevel[] {
@@ -107,7 +107,7 @@ public class MutationListValidatorTest {
 		assertValidationResult(
 			/* mutations as the input for MutationListValidator */
 			new AAMutation[] {
-				new ConsensusMutation<HIV>(hiv.getGene("HIV1RT"), 43, "*"),
+				new CodonMutation<HIV>(hiv.getGene("HIV1RT"), 43, "*"),
 			},
 			/* expected result level(s) */
 			new ValidationLevel[] {
@@ -124,7 +124,7 @@ public class MutationListValidatorTest {
 	@Test
 	public void testMutationsAllAtDRM() {
 		MutationSet<HIV> mutset =  new MutationSet<HIV>(new AAMutation[] {
-				new ConsensusMutation<HIV>(hiv.getGene("HIV1PR"), 54, "V"),
+				new CodonMutation<HIV>(hiv.getGene("HIV1PR"), 54, "V"),
 			});
 		/* mutations as the input for MutationListValidator */
 		List<ValidationResult> results = hiv.validateMutations(mutset);
