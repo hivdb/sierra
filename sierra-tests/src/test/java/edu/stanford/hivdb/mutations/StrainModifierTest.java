@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import com.google.common.collect.Lists;
 
+import edu.stanford.hivdb.hivfacts.HIV;
 import edu.stanford.hivdb.hivfacts.hiv2.HIV2;
 import edu.stanford.hivdb.mutations.StrainModifier.CIGARFlag;
 import edu.stanford.hivdb.mutations.StrainModifier.PosModifier;
@@ -18,6 +19,7 @@ import java.util.Map;
 public class StrainModifierTest {
 	
 	
+	private final static HIV hiv = HIV.getInstance();
 	private final static HIV2 hiv2 = HIV2.getInstance();
 	
 	@Test
@@ -150,6 +152,72 @@ public class StrainModifierTest {
 			assertEquals(1, (int) posMod.getSize());
 			assertEquals(CIGARFlag.M, posMod.getFlag());
 		}
+	}
+	
+	@Test
+	public void testModifyMutationsCase1() {
+		Gene<HIV2> srcGene = hiv2.getGene("HIV2ART");
+		Gene<HIV> tgtGene = hiv.getGene("HIV1RT");
+		StrainModifier strainModifier = srcGene.getTargetStrainModifier("HIV1");
+		MutationSet<HIV2> mutations = MutationSet.parseString(
+			hiv2,
+			"RT:345A, RT:346C"
+		);
+		assertEquals(
+			MutationSet.parseString(hiv, "RT:345A, RT346-, RT347C"),
+			strainModifier.modifyMutationSet(srcGene, tgtGene, mutations)
+		);
+	}
+
+	@Test
+	public void testModifyMutationCase2() {
+		Gene<HIV2> srcGene = hiv2.getGene("HIV2BIN");
+		Gene<HIV2> tgtGene = hiv2.getGene("HIV2AIN");
+		StrainModifier strainModifier = srcGene.getTargetStrainModifier("HIV2A");
+		MutationSet<HIV2> mutations = new MutationSet<>(
+			new AAMutation<>(srcGene, 293, 'C'),
+			new AAMutation<>(srcGene, 294, 'Q'),
+			new AAMutation<>(srcGene, 295, 'S'),
+			new AAMutation<>(srcGene, 296, 'N')
+		);
+		assertEquals(
+			MutationSet.parseString(hiv2, "IN:293C"),
+			strainModifier.modifyMutationSet(srcGene, tgtGene, mutations)
+		);
+	}
+
+	@Test
+	public void testModifyMutationCase3() {
+		Gene<HIV2> srcGene = hiv2.getGene("HIV2AIN");
+		Gene<HIV2> tgtGene = hiv2.getGene("HIV2BIN");
+		StrainModifier strainModifier = srcGene.getTargetStrainModifier("HIV2B");
+		MutationSet<HIV2> mutations = new MutationSet<>(
+			new AAMutation<>(srcGene, 293, 'C')
+		);
+		assertEquals(
+			new MutationSet<>(
+				new AAMutation<>(tgtGene, 293, 'C'),
+				new AAMutation<>(tgtGene, 294, '-'),
+				new AAMutation<>(tgtGene, 295, '-'),
+				new AAMutation<>(tgtGene, 296, '-')
+			),
+			strainModifier.modifyMutationSet(srcGene, tgtGene, mutations)
+		);
+	}
+
+	@Test
+	public void testModifyMutationsCase4() {
+		Gene<HIV2> srcGene = hiv2.getGene("HIV2AIN");
+		Gene<HIV> tgtGene = hiv.getGene("HIV1IN");
+		StrainModifier strainModifier = srcGene.getTargetStrainModifier("HIV1");
+		MutationSet<HIV2> mutations = MutationSet.parseString(
+			hiv2,
+			"IN:272A, IN:273C, IN:274D, IN:275E, IN:276F"
+		);
+		assertEquals(
+			MutationSet.parseString(hiv, "IN:272A, IN:273E, IN:274F"),
+			strainModifier.modifyMutationSet(srcGene, tgtGene, mutations)
+		);
 	}
 	
 }
