@@ -266,15 +266,14 @@ public class HIV2Test {
 		hiv2.extractMutationGene(":123V");
 	}
 
-	@Test
+	@Test(expected=IllegalArgumentException.class)
 	public void testParseMutationString() {
-		Gene<HIV2> gene = hiv2.getGene("HIV2RT");
-		assertNotNull(hiv2.parseMutationString(gene, "RT:M184V"));
+		hiv2.getGene("HIV2RT");
 	}
 
 	@Test(expected=Mutation.InvalidMutationException.class)
 	public void testParseMutationStringeWithException() {
-		Gene<HIV2> gene = hiv2.getGene("HIV2RT");
+		Gene<HIV2> gene = hiv2.getGene("HIV2ART");
 		assertNotNull(hiv2.parseMutationString(gene, "RR:M184V"));
 	}
 

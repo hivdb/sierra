@@ -139,7 +139,7 @@ public class AAMutationTest {
 		Set<Character> aaChars = new HashSet<>();
 		
 		thrown.expect(IllegalArgumentException.class);
-		thrown.expectMessage("Length is out of bounds for this gene.");
+		thrown.expectMessage("Position is out of bounds for HIV1PR: 100 (1-99).");
 		new AAMutation<HIV>(gene, position, aaChars, 6);
 	}
 

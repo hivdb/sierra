@@ -3,6 +3,7 @@ package edu.stanford.hivdb.sequences;
 import static org.junit.Assert.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.junit.Test;
 
@@ -21,11 +22,27 @@ public class PrettyAlignmentsTest {
 
 		NucAminoAligner<HIV> aligner = NucAminoAligner.getInstance(hiv);
 		
-		List<AlignedGeneSeq<HIV>> alignedGeneSeq = aligner.align(seq).getAlignedGeneSequences();
+		List<AlignedGeneSeq<HIV>> alignedGeneSeq = (
+			aligner.align(seq).getAlignedGeneSequences()
+			.stream()
+			.filter(geneseq -> geneseq.getAbstractGene().equals("PR"))
+			.collect(Collectors.toList())
+		);
 		
 		PrettyAlignments<HIV> prettyAlignment = new PrettyAlignments<HIV>(hiv.getGene("HIV1PR"), alignedGeneSeq);
 		
 		assertNotNull(prettyAlignment);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testToStringWithException() {
+		GenotypeReference<HIV> refGene = hiv.getGenotypeReferences().get(0);
+		Sequence seq = new Sequence("> test", refGene.getSequence());
+
+		NucAminoAligner<HIV> aligner = NucAminoAligner.getInstance(hiv);
+		List<AlignedGeneSeq<HIV>> alignedGeneSeq = aligner.align(seq).getAlignedGeneSequences();
+		PrettyAlignments<HIV> prettyAlignment = new PrettyAlignments<HIV>(hiv.getGene("HIV1PR"), alignedGeneSeq);
+		
 	}
 	
 	@Test
@@ -35,7 +52,12 @@ public class PrettyAlignmentsTest {
 
 		NucAminoAligner<HIV> aligner = NucAminoAligner.getInstance(hiv);
 		
-		List<AlignedGeneSeq<HIV>> alignedGeneSeq = aligner.align(seq).getAlignedGeneSequences();
+		List<AlignedGeneSeq<HIV>> alignedGeneSeq = (
+			aligner.align(seq).getAlignedGeneSequences()
+			.stream()
+			.filter(geneseq -> geneseq.getAbstractGene().equals("PR"))
+			.collect(Collectors.toList())
+		);
 		
 		PrettyAlignments<HIV> prettyAlignment = new PrettyAlignments<HIV>(hiv.getGene("HIV1PR"), alignedGeneSeq);
 		
@@ -49,7 +71,12 @@ public class PrettyAlignmentsTest {
 
 		NucAminoAligner<HIV> aligner = NucAminoAligner.getInstance(hiv);
 		
-		List<AlignedGeneSeq<HIV>> alignedGeneSeq = aligner.align(seq).getAlignedGeneSequences();
+		List<AlignedGeneSeq<HIV>> alignedGeneSeq = (
+			aligner.align(seq).getAlignedGeneSequences()
+			.stream()
+			.filter(geneseq -> geneseq.getAbstractGene().equals("PR"))
+			.collect(Collectors.toList())
+		);
 		
 		PrettyAlignments<HIV> prettyAlignment = new PrettyAlignments<HIV>(hiv.getGene("HIV1PR"), alignedGeneSeq);
 		
