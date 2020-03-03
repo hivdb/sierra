@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.Map;
 
 import edu.stanford.hivdb.drugresistance.algorithm.AlgorithmComparison;
-import edu.stanford.hivdb.drugs.DrugResistanceAlgorithm;
+import edu.stanford.hivdb.drugresistance.algorithm.DrugResistanceAlgorithm;
 import edu.stanford.hivdb.hivfacts.HIV;
 import edu.stanford.hivdb.mutations.MutationSet;
 import edu.stanford.hivdb.sequences.AlignedSequence;

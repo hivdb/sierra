@@ -33,8 +33,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import edu.stanford.hivdb.drugresistance.GeneDR;
-import edu.stanford.hivdb.drugresistance.GeneDRAsi;
-import edu.stanford.hivdb.drugs.DrugResistanceAlgorithm;
+import edu.stanford.hivdb.drugresistance.algorithm.DrugResistanceAlgorithm;
 import edu.stanford.hivdb.genotypes.BoundGenotype;
 import edu.stanford.hivdb.genotypes.GenotypeResult;
 import edu.stanford.hivdb.mutations.PositionCodonReads;
@@ -78,7 +77,7 @@ public class SequenceReadsAnalysisDef {
 			String algName = env.getArgument("algorithm");
 			DrugResistanceAlgorithm<VirusT> alg = virusIns.getDrugResistAlgorithm(algName);
 			List<GeneSequenceReads<VirusT>> allGeneSeqReads = seqReads.getAllGeneSequenceReads();
-			return new ArrayList<>(GeneDRAsi.getResistanceByGeneFromReads(allGeneSeqReads, alg).values());
+			return new ArrayList<>(GeneDR.newFromGeneSequenceReads(allGeneSeqReads, alg).values());
 		};
 	};
 	

@@ -25,11 +25,11 @@ import java.util.Map;
 
 import com.google.common.collect.Lists;
 
+import edu.stanford.hivdb.drugresistance.algorithm.ASIDrugSusc;
 import edu.stanford.hivdb.drugresistance.algorithm.AlgorithmComparison;
-import edu.stanford.hivdb.drugresistance.algorithm.AlgorithmComparison.ComparableDrugScore;
+import edu.stanford.hivdb.drugresistance.algorithm.DrugResistanceAlgorithm;
 import edu.stanford.hivdb.drugresistance.algorithm.SIREnum;
 import edu.stanford.hivdb.drugs.Drug;
-import edu.stanford.hivdb.drugs.DrugResistanceAlgorithm;
 import edu.stanford.hivdb.mutations.MutationSet;
 import edu.stanford.hivdb.sequences.AlignedSequence;
 import edu.stanford.hivdb.utilities.TSV;
@@ -62,9 +62,9 @@ public class TabularAlgorithmsComparison<VirusT extends Virus<VirusT>> {
 		for (AlignedSequence<VirusT> alignedSeq : alignedSeqs) {
 			MutationSet<VirusT> allMuts = alignedSeq.getMutations();
 			AlgorithmComparison<VirusT> algCmp = new AlgorithmComparison<>(allMuts, algorithms);
-			List<ComparableDrugScore<VirusT>> cmpResults = algCmp.getComparisonResults();
+			List<ASIDrugSusc<VirusT>> cmpResults = algCmp.getComparisonResults();
 			// an assumption was made here that algorithms are in the same order as the input
-			for (ComparableDrugScore<VirusT> result : cmpResults) {
+			for (ASIDrugSusc<VirusT> result : cmpResults) {
 				Drug<VirusT> drug = result.getDrug();
 				if (!rows.containsKey(drug)) {
 					rows.put(drug, Lists.newArrayList(

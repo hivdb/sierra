@@ -41,8 +41,7 @@ public class PrettyAlignmentsTest {
 
 		NucAminoAligner<HIV> aligner = NucAminoAligner.getInstance(hiv);
 		List<AlignedGeneSeq<HIV>> alignedGeneSeq = aligner.align(seq).getAlignedGeneSequences();
-		PrettyAlignments<HIV> prettyAlignment = new PrettyAlignments<HIV>(hiv.getGene("HIV1PR"), alignedGeneSeq);
-		
+		new PrettyAlignments<HIV>(hiv.getGene("HIV1PR"), alignedGeneSeq);
 	}
 	
 	@Test

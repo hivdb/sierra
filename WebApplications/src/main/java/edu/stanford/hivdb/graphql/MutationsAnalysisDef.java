@@ -33,7 +33,6 @@ import java.util.stream.Collectors;
 import org.apache.commons.lang3.tuple.Pair;
 
 import edu.stanford.hivdb.drugresistance.GeneDR;
-import edu.stanford.hivdb.drugresistance.GeneDRAsi;
 import edu.stanford.hivdb.viruses.Gene;
 import edu.stanford.hivdb.viruses.Virus;
 import edu.stanford.hivdb.mutations.MutationSet;
@@ -82,7 +81,7 @@ public class MutationsAnalysisDef {
 			return mutationsByGene
 				.entrySet()
 				.stream()
-				.map(e -> new GeneDRAsi<>(
+				.map(e -> new GeneDR<>(
 					e.getKey(), e.getValue(), virusIns.getDrugResistAlgorithm(algName)
 				))
 				.collect(Collectors.toList());

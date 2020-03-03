@@ -29,7 +29,6 @@ import java.util.Map;
 import org.junit.Test;
 
 import edu.stanford.hivdb.drugresistance.GeneDR;
-import edu.stanford.hivdb.drugresistance.GeneDRAsi;
 import edu.stanford.hivdb.viruses.Gene;
 import edu.stanford.hivdb.web.XmlOutput;
 import edu.stanford.hivdb.hivfacts.HIV;
@@ -73,7 +72,7 @@ public class XmlOutputTest {
 		alignedSequences = aligner.parallelAlign(sequences);
 		for (AlignedSequence<HIV> alignedSeq : alignedSequences) {
 			Map<Gene<HIV>, GeneDR<HIV>> resistanceResults =
-				GeneDRAsi.getResistanceByGeneFromAlignedGeneSeqs(
+				GeneDR.newFromAlignedGeneSeqs(
 					alignedSeq.getAlignedGeneSequences(), hiv.getLatestDrugResistAlgorithm("HIVDB")
 				);
 			allResistanceResults.add(resistanceResults);

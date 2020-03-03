@@ -27,8 +27,7 @@ import java.util.List;
 
 import org.junit.Test;
 
-
-import edu.stanford.hivdb.drugs.DrugResistanceAlgorithm;
+import edu.stanford.hivdb.drugresistance.algorithm.DrugResistanceAlgorithm;
 import edu.stanford.hivdb.hivfacts.HIV;
 import edu.stanford.hivdb.sequences.AlignedSequence;
 import edu.stanford.hivdb.sequences.NucAminoAligner;

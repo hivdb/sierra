@@ -28,7 +28,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import edu.stanford.hivdb.drugresistance.GeneDR;
-import edu.stanford.hivdb.drugs.DrugResistanceAlgorithm;
+import edu.stanford.hivdb.drugresistance.algorithm.DrugResistanceAlgorithm;
 import edu.stanford.hivdb.hivfacts.HIV;
 import edu.stanford.hivdb.mutations.MutationSet;
 import edu.stanford.hivdb.reports.ResistanceSummaryTSV;
@@ -39,7 +39,6 @@ import edu.stanford.hivdb.testutils.TestSequencesFiles;
 import edu.stanford.hivdb.testutils.TestSequencesFiles.TestSequencesProperties;
 import edu.stanford.hivdb.utilities.FastaUtils;
 import edu.stanford.hivdb.viruses.Gene;
-import edu.stanford.hivdb.drugresistance.GeneDRAsi;
 
 
 public class ResistanceSummaryTSVTest {
@@ -86,7 +85,7 @@ public class ResistanceSummaryTSVTest {
 	 		
 	 		Map<Gene<HIV>, GeneDR<HIV>> resistanceResults = new TreeMap<>();
 	 		for (Gene<HIV> gene: genes) {
-	 			GeneDR<HIV> geneDR = new GeneDRAsi<HIV>(gene, new MutationSet<HIV>(), algo);
+	 			GeneDR<HIV> geneDR = new GeneDR<HIV>(gene, new MutationSet<HIV>(), algo);
 	 			resistanceResults.put(gene, geneDR);
 	 		}
 	 		

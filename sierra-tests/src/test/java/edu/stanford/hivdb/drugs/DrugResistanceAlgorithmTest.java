@@ -5,6 +5,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import edu.stanford.hivdb.drugresistance.algorithm.DrugResistanceAlgorithm;
+import edu.stanford.hivdb.drugresistance.algorithm.SIREnum;
 import edu.stanford.hivdb.hivfacts.HIV;
 
 import static org.junit.Assert.*;
@@ -121,7 +123,7 @@ public class DrugResistanceAlgorithmTest {
     
     @Test
     public void testGetOriginalLevelSIR() {
-    	assertEquals(algorithm.getOriginalLevelSIR(), "S");
+    	assertEquals(algorithm.getOriginalLevelSIR(), SIREnum.S);
     }
     
     @Test

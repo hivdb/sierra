@@ -21,15 +21,13 @@ package edu.stanford.hivdb.drugresistance.algorithm;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
-
+import java.util.Collections;
 import java.util.List;
 
 import org.junit.Test;
 
-
-import edu.stanford.hivdb.drugresistance.algorithm.AlgorithmComparison.ComparableDrugScore;
+import edu.stanford.hivdb.drugresistance.GeneDR;
 import edu.stanford.hivdb.drugs.Drug;
-import edu.stanford.hivdb.drugs.DrugResistanceAlgorithm;
 import edu.stanford.hivdb.hivfacts.HIV;
 import edu.stanford.hivdb.mutations.MutationSet;
 
@@ -57,59 +55,134 @@ public class AlgorithmComparisonTest {
 		
 		assertNotNull(algoCompare);
 	}
+
+	@Test
+	public void testGetGene() {
+		List<DrugResistanceAlgorithm<HIV>> hivdbAlgo = new ArrayList<>();
+		hivdbAlgo.add(hiv1.getLatestDrugResistAlgorithm("HIVDB"));
+
+		MutationSet<HIV> mutationSets = MutationSet.parseString(hiv1.getGene("HIV1RT"), "RT184V");
+		AlgorithmComparison<HIV> algorithmComparison = new AlgorithmComparison<HIV>(mutationSets, hivdbAlgo);
+		GeneDR<HIV> geneDR = algorithmComparison.getGeneDR(hiv1.getGene("HIV1RT")).get(0);
+		assertEquals(hiv1.getGene("HIV1RT"), geneDR.getGene());
+
+
+		MutationSet<HIV> mutationSets2 = MutationSet.parseString(hiv1.getGene("HIV1PR"), "PR24I,PR46L,PR54V");
+		AlgorithmComparison<HIV> algorithmComparison2 = new AlgorithmComparison<HIV>(mutationSets2, hivdbAlgo);
+		GeneDR<HIV> geneDR2 = algorithmComparison2.getGeneDR(hiv1.getGene("HIV1PR")).get(0);
+		assertEquals(hiv1.getGene("HIV1PR"), geneDR2.getGene());
+
+
+		MutationSet<HIV> mutationSets3 = MutationSet.parseString(hiv1.getGene("HIV1IN"), "IN140S,IN148H");
+		AlgorithmComparison<HIV> algorithmComparison3 = new AlgorithmComparison<HIV>(mutationSets3, hivdbAlgo);
+		GeneDR<HIV> geneDR3 = algorithmComparison3.getGeneDR(hiv1.getGene("HIV1IN")).get(0);
+		assertEquals(hiv1.getGene("HIV1IN"), geneDR3.getGene());
+	}
 	
 	@Test
-	public void testComparableDrugScore() {
-		ComparableDrugScore<HIV> compDrugScore = new ComparableDrugScore<HIV>(
-				hiv1.getDrug("ABC"), "HIVDB_8.9", SIREnum.R, "Interpretation", "Explanation"
-				);
-		assertNotNull(compDrugScore);
+	public void testASIDrugSusc() {
+		ASIDrugSusc<HIV> drugSusc = new ASIDrugSusc<HIV>(
+			hiv1.getDrug("ABC"),
+			hiv1.getDrugResistAlgorithm("HIVDB_8.9"),
+			/* score */ 90.,
+			/* level */ 5,
+			/* levelText */ "LevelText",
+			/* SIR */ SIREnum.R,
+			/* partialScores */ Collections.emptyMap(),
+			/* statement */ "Statement",
+			/* triggered */ true
+		);
+		assertNotNull(drugSusc);
 		
-		assertEquals(compDrugScore.getDrug(), hiv1.getDrug("ABC"));
-		assertEquals(compDrugScore.getAlgorithm(), "HIVDB_8.9");
-		assertEquals(compDrugScore.getSIR(), SIREnum.R);
-		assertEquals(compDrugScore.getInterpretation(), "Interpretation");
-		assertEquals(compDrugScore.getExplanation(), "Explanation");
+		assertEquals(drugSusc.getDrug(), hiv1.getDrug("ABC"));
+		assertEquals(drugSusc.getAlgorithm(), "HIVDB_8.9");
+		assertEquals(drugSusc.getSIR(), SIREnum.R);
+		assertEquals(drugSusc.getInterpretation(), "LevelText");
+		assertEquals(drugSusc.getExplanation(), "Statement (LevelText)");
+		assertEquals(drugSusc.toString(), "ABC (HIVDB_8.9): R");
+	
+		ASIDrugSusc<HIV> compDrugScoreOther = new ASIDrugSusc<HIV>(
+			hiv1.getDrug("ABC"),
+			hiv1.getDrugResistAlgorithm("HIVDB_8.9"),
+			/* score */ 90.,
+			/* level */ 5,
+			/* levelText */ "LevelText",
+			/* SIR */ SIREnum.R,
+			/* partialScores */ Collections.emptyMap(),
+			/* statement */ "Statement",
+			/* triggered */ true
+		);
+		assertEquals(drugSusc, compDrugScoreOther);
+		assertEquals(drugSusc.hashCode(), compDrugScoreOther.hashCode());
 		
-		assertEquals(compDrugScore.toString(), "ABC (HIVDB_8.9): R");
+		assertEquals(drugSusc, drugSusc);
+		assertNotEquals(drugSusc, null);
+		assertNotEquals(drugSusc, Integer.valueOf(1));
 		
+		compDrugScoreOther = new ASIDrugSusc<HIV>(
+			hiv1.getDrug("EFV"),
+			hiv1.getDrugResistAlgorithm("HIVDB_8.9"),
+			/* score */ 90.,
+			/* level */ 5,
+			/* levelText */ "LevelText",
+			/* SIR */ SIREnum.R,
+			/* partialScores */ Collections.emptyMap(),
+			/* statement */ "Statement",
+			/* triggered */ true
+		);
+		assertNotEquals(drugSusc, compDrugScoreOther);
 		
-		ComparableDrugScore<HIV> compDrugScoreOther = new ComparableDrugScore<HIV>(
-				hiv1.getDrug("ABC"), "HIVDB_8.9", SIREnum.R, "Interpretation", "Explanation"
-				);
-		assertTrue(compDrugScore.equals(compDrugScoreOther));
+		compDrugScoreOther = new ASIDrugSusc<HIV>(
+			hiv1.getDrug("ABC"),
+			hiv1.getDrugResistAlgorithm("HIVDB_8.8"),
+			/* score */ 90.,
+			/* level */ 5,
+			/* levelText */ "LevelText",
+			/* SIR */ SIREnum.R,
+			/* partialScores */ Collections.emptyMap(),
+			/* statement */ "Statement",
+			/* triggered */ true
+		);
+		assertNotEquals(drugSusc, compDrugScoreOther);
 		
-		assertTrue(compDrugScore.equals(compDrugScore));
-		assertFalse(compDrugScore.equals(null));
-		assertFalse(compDrugScore.equals(Integer.valueOf(1)));
+		compDrugScoreOther = new ASIDrugSusc<HIV>(
+			hiv1.getDrug("ABC"),
+			hiv1.getDrugResistAlgorithm("HIVDB_8.9"),
+			/* score */ 90.,
+			/* level */ 5,
+			/* levelText */ "LevelText",
+			/* SIR */ SIREnum.I,
+			/* partialScores */ Collections.emptyMap(),
+			/* statement */ "Statement",
+			/* triggered */ true
+		);
+		assertNotEquals(drugSusc, compDrugScoreOther);
 		
-		compDrugScoreOther = new ComparableDrugScore<HIV>(
-				hiv1.getDrug("EFV"), "HIVDB_8.9", SIREnum.R, "Interpretation", "Explanation"
-				);
-		assertFalse(compDrugScore.equals(compDrugScoreOther));
+		compDrugScoreOther = new ASIDrugSusc<HIV>(
+			hiv1.getDrug("ABC"),
+			hiv1.getDrugResistAlgorithm("HIVDB_8.9"),
+			/* score */ 90.,
+			/* level */ 5,
+			/* levelText */ "LevelTextOther",
+			/* SIR */ SIREnum.R,
+			/* partialScores */ Collections.emptyMap(),
+			/* statement */ "Statement",
+			/* triggered */ true
+		);
+		assertNotEquals(drugSusc, compDrugScoreOther);
 		
-		compDrugScoreOther = new ComparableDrugScore<HIV>(
-				hiv1.getDrug("ABC"), "HIVDB_9.0", SIREnum.R, "Interpretation", "Explanation"
-				);
-		assertFalse(compDrugScore.equals(compDrugScoreOther));
-		
-		compDrugScoreOther = new ComparableDrugScore<HIV>(
-				hiv1.getDrug("ABC"), "HIVDB_8.9", SIREnum.I, "Interpretation", "Explanation"
-				);
-		assertFalse(compDrugScore.equals(compDrugScoreOther));
-		
-		compDrugScoreOther = new ComparableDrugScore<HIV>(
-				hiv1.getDrug("ABC"), "HIVDB_8.9", SIREnum.R, "InterpretationOther", "Explanation"
-				);
-		assertFalse(compDrugScore.equals(compDrugScoreOther));
-		
-		compDrugScoreOther = new ComparableDrugScore<HIV>(
-				hiv1.getDrug("ABC"), "HIVDB_8.9", SIREnum.R, "Interpretation", "ExplanationOther"
-				);
-		assertFalse(compDrugScore.equals(compDrugScoreOther));
-		
-		assertTrue(compDrugScore.hashCode() != compDrugScoreOther.hashCode());
-
+		compDrugScoreOther = new ASIDrugSusc<HIV>(
+			hiv1.getDrug("ABC"),
+			hiv1.getDrugResistAlgorithm("HIVDB_8.9"),
+			/* score */ 90.,
+			/* level */ 5,
+			/* levelText */ "LevelText",
+			/* SIR */ SIREnum.R,
+			/* partialScores */ Collections.emptyMap(),
+			/* statement */ "StatementOther",
+			/* triggered */ true
+		);
+		assertNotEquals(drugSusc, compDrugScoreOther);
 	}
 	
 
@@ -119,29 +192,29 @@ public class AlgorithmComparisonTest {
 
 		AlgorithmComparison<HIV> algoCompare = new AlgorithmComparison<HIV>(mutations, algos);
 		
-		List<ComparableDrugScore<HIV>> result = algoCompare.getComparisonResults();
+		List<ASIDrugSusc<HIV>> result = algoCompare.getComparisonResults();
 		
 		assertFalse(result.isEmpty());
 		
-		assertEquals(SIREnum.I, getComparableDrugScore(result, hiv1.getDrug("ABC"), anrsAlgo30).getSIR());
-		assertEquals("Possible resistance", getComparableDrugScore(result, hiv1.getDrug("ABC"), anrsAlgo30).getInterpretation());
+		assertEquals(SIREnum.I, getDrugSusc(result, hiv1.getDrug("ABC"), anrsAlgo30).getSIR());
+		assertEquals("Possible resistance", getDrugSusc(result, hiv1.getDrug("ABC"), anrsAlgo30).getInterpretation());
 
 		
-		assertEquals(SIREnum.R, getComparableDrugScore(result, hiv1.getDrug("EFV"), anrsAlgo30).getSIR());
-		assertEquals("Resistance", getComparableDrugScore(result, hiv1.getDrug("EFV"), anrsAlgo30).getInterpretation());
+		assertEquals(SIREnum.R, getDrugSusc(result, hiv1.getDrug("EFV"), anrsAlgo30).getSIR());
+		assertEquals("Resistance", getDrugSusc(result, hiv1.getDrug("EFV"), anrsAlgo30).getInterpretation());
 		
-		assertEquals(SIREnum.R, getComparableDrugScore(result, hiv1.getDrug("EFV"), hivdbAlgo8).getSIR());
-		assertEquals("High-Level Resistance", getComparableDrugScore(result, hiv1.getDrug("EFV"), hivdbAlgo8).getInterpretation());
+		assertEquals(SIREnum.R, getDrugSusc(result, hiv1.getDrug("EFV"), hivdbAlgo8).getSIR());
+		assertEquals("High-Level Resistance", getDrugSusc(result, hiv1.getDrug("EFV"), hivdbAlgo8).getInterpretation());
 		
-		assertEquals(SIREnum.R, getComparableDrugScore(result, hiv1.getDrug("EFV"), regaAlgo10).getSIR());
-		assertEquals("Resistant GSS 0", getComparableDrugScore(result, hiv1.getDrug("EFV"), regaAlgo10).getInterpretation());
+		assertEquals(SIREnum.R, getDrugSusc(result, hiv1.getDrug("EFV"), regaAlgo10).getSIR());
+		assertEquals("Resistant GSS 0", getDrugSusc(result, hiv1.getDrug("EFV"), regaAlgo10).getInterpretation());
 	}
 
-	private ComparableDrugScore<HIV> getComparableDrugScore(
-			List<ComparableDrugScore<HIV>> list, Drug<HIV> drug, DrugResistanceAlgorithm<HIV> alg) {
+	private ASIDrugSusc<HIV> getDrugSusc(
+			List<ASIDrugSusc<HIV>> list, Drug<HIV> drug, DrugResistanceAlgorithm<HIV> alg) {
 		return list
 			.stream()
-			.filter(ds -> ds.getDrug() == drug && ds.getAlgorithm() == alg.getName()).findFirst().get();
+			.filter(ds -> ds.getDrug() == drug && ds.getAlgorithmObj() == alg).findFirst().get();
 	}
 
 
@@ -152,7 +225,7 @@ public class AlgorithmComparisonTest {
 
 		AlgorithmComparison<HIV> algoCompare = new AlgorithmComparison<HIV>(mutations, algos);
 		
-		List<AsiResult<HIV>> asiResults = algoCompare.getAsiList(hiv1.getGene("HIV1PR"));
+		List<GeneDR<HIV>> asiResults = algoCompare.getGeneDR(hiv1.getGene("HIV1PR"));
 		assertEquals(asiResults.size(), 3);
 	}
 	

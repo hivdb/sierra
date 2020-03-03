@@ -22,7 +22,7 @@ import graphql.schema.*;
 import static graphql.Scalars.*;
 import static graphql.schema.GraphQLObjectType.newObject;
 
-import edu.stanford.hivdb.drugs.DrugResistanceAlgorithm;
+import edu.stanford.hivdb.drugresistance.algorithm.DrugResistanceAlgorithm;
 import edu.stanford.hivdb.utilities.SimpleMemoizer;
 import edu.stanford.hivdb.viruses.Virus;
 

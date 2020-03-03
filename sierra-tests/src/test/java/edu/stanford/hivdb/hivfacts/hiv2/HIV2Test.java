@@ -28,8 +28,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import edu.stanford.hivdb.drugresistance.algorithm.DrugResistanceAlgorithm;
 import edu.stanford.hivdb.drugs.DrugClass;
-import edu.stanford.hivdb.drugs.DrugResistanceAlgorithm;
 import edu.stanford.hivdb.mutations.Mutation;
 import edu.stanford.hivdb.mutations.MutationType;
 import edu.stanford.hivdb.viruses.Gene;

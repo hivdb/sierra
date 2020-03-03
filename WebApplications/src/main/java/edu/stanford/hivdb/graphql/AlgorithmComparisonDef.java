@@ -32,11 +32,11 @@ import java.util.stream.Collectors;
 import static graphql.schema.GraphQLInputObjectType.newInputObject;
 import static graphql.schema.GraphQLInputObjectField.newInputObjectField;
 
-import edu.stanford.hivdb.drugs.DrugResistanceAlgorithm;
 import edu.stanford.hivdb.mutations.MutationSet;
 import edu.stanford.hivdb.utilities.SimpleMemoizer;
 import edu.stanford.hivdb.viruses.Virus;
 import edu.stanford.hivdb.drugresistance.algorithm.AlgorithmComparison;
+import edu.stanford.hivdb.drugresistance.algorithm.DrugResistanceAlgorithm;
 
 import static edu.stanford.hivdb.graphql.DrugDef.oDrug;
 import static edu.stanford.hivdb.graphql.DrugClassDef.oDrugClass;

@@ -34,9 +34,10 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
 
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.tuple.Pair;
 
 import edu.stanford.hivdb.drugresistance.GeneDR;
+import edu.stanford.hivdb.drugresistance.algorithm.ASIDrugSusc;
 import edu.stanford.hivdb.drugresistance.algorithm.SIREnum;
 import edu.stanford.hivdb.drugs.Drug;
 import edu.stanford.hivdb.drugs.DrugClass;
@@ -44,7 +45,6 @@ import edu.stanford.hivdb.viruses.Gene;
 import edu.stanford.hivdb.viruses.Virus;
 import edu.stanford.hivdb.mutations.MutationSet;
 import edu.stanford.hivdb.utilities.SimpleMemoizer;
-import edu.stanford.hivdb.mutations.Mutation;
 
 import static edu.stanford.hivdb.graphql.DrugDef.oDrug;
 import static edu.stanford.hivdb.graphql.DrugClassDef.oDrugClass;
@@ -80,58 +80,20 @@ public class DrugResistanceDef {
 			}
 			for (DrugClass<VirusT> drugClass : drugClasses) {
 				for (Drug<VirusT> drug : drugClass.getDrugs()) {
+					ASIDrugSusc<VirusT> drugSusc = geneDR.getDrugSusc(drug);
 					Map<String, Object> map = new HashMap<>();
 					map.put("drug", drug);
 					map.put("drugClass", drugClass);
-					map.put("SIR", SIREnum.valueOf(geneDR.getDrugLevelSIR(drug)));
-					map.put("score", geneDR.getTotalDrugScore(drug));
-					map.put("level", geneDR.getDrugLevel(drug));
-					map.put("text", geneDR.getDrugLevelText(drug));
+					map.put("SIR", drugSusc.getSIR());
+					map.put("score", drugSusc.getScore());
+					map.put("level", drugSusc.getLevel());
+					map.put("text", drugSusc.getLevelText());
 					List<Map<String, Object>> partialScores = new ArrayList<>();
      
-					// aggregate scores by positions instead of mutations
-					// TODO: this should be moved to GeneDR
-					Map<String, MutationSet<VirusT>> gpMutations = new TreeMap<>();
-					Map<String, Double> gpPartialScores = new HashMap<>();
-					for (Map.Entry<Mutation<VirusT>, Double> e :
-							geneDR.getScoredIndividualMutsForDrug(drug).entrySet()) {
-						Mutation<VirusT> mut = e.getKey();
-     
-						List<String> gpKeyList = new ArrayList<>();
-						gpKeyList.add(mut.getGenePosition().toString());
-						String gpKey = StringUtils.join(gpKeyList, "+");
-     
-						MutationSet<VirusT> muts = gpMutations.getOrDefault(gpKey, new MutationSet<>());
-						muts = muts.mergesWith(mut);
-     
-						gpMutations.put(gpKey, muts);
-						gpPartialScores.put(gpKey, gpPartialScores.getOrDefault(gpKey, .0) + e.getValue());
-					}
-					for (Map.Entry<MutationSet<VirusT>, Double> e :
-							geneDR.getScoredComboMutsForDrug(drug).entrySet()) {
-						MutationSet<VirusT> muts = e.getKey();
-     
-						List<String> gpKeyList = (
-							muts.stream()
-							.map(m -> m.getGenePosition().toString())
-							.collect(Collectors.toList())
-						);
-						String gpKey = StringUtils.join(gpKeyList, "+");
-     
-						MutationSet<VirusT> prevMuts = gpMutations.getOrDefault(gpKey, new MutationSet<>());
-						muts = muts.mergesWith(prevMuts);
-     
-						gpMutations.put(gpKey, muts);
-						gpPartialScores.put(gpKey, gpPartialScores.getOrDefault(gpKey, .0) + e.getValue());
-					}
-     
-					for (String gpkey : gpMutations.keySet()) {
-						MutationSet<VirusT> muts = gpMutations.get(gpkey);
-						Double score = gpPartialScores.get(gpkey);
-     
-						Map<String, Object> partialScore = new HashMap<>();
-						partialScore.put("mutations", muts);
-						partialScore.put("score", score);
+					for (Pair<MutationSet<VirusT>, Double> pair : drugSusc.getParialScorePairs()) {
+						Map<String, Object> partialScore = new LinkedHashMap<>();
+						partialScore.put("mutations", pair.getLeft());
+						partialScore.put("score", pair.getRight());
 						partialScores.add(partialScore);
 					}
 					/*partialScores.sort((ps1, ps2) -> {
@@ -158,7 +120,7 @@ public class DrugResistanceDef {
 				.map(mutType -> {
 					Map<String, Object> result = new TreeMap<>();
 					result.put("mutationType", mutType);
-					result.put("mutations", geneDR.getMutationsByType(mutType));
+					result.put("mutations", geneDR.getMutations(mutType));
 					return result;
 				})
 				.collect(Collectors.toList());

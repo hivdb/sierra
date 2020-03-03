@@ -14,9 +14,8 @@ import com.google.common.collect.Lists;
 import com.google.gson.reflect.TypeToken;
 
 import edu.stanford.hivdb.drugresistance.GeneDR;
-import edu.stanford.hivdb.drugresistance.GeneDRAsi;
+import edu.stanford.hivdb.drugresistance.algorithm.DrugResistanceAlgorithm;
 import edu.stanford.hivdb.drugresistance.reports.TabularAlgorithmsComparison;
-import edu.stanford.hivdb.drugs.DrugResistanceAlgorithm;
 import edu.stanford.hivdb.reports.ResistanceSummaryTSV;
 import edu.stanford.hivdb.reports.SequenceSummaryTSV;
 import edu.stanford.hivdb.sequences.AlignedGeneSeq;
@@ -85,7 +84,7 @@ public class SequenceAnalysisServiceOutput<VirusT extends Virus<VirusT>> {
 		if (!drsMap.containsKey(seq)) {
 			List<AlignedGeneSeq<VirusT>> aligneds = getAlignedSeq(seq).getAlignedGeneSequences();
 			DrugResistanceAlgorithm<VirusT> alg = virusIns.getDrugResistAlgorithm(sequenceAnalysisService.drAlgorithm);
-			drsMap.put(seq, GeneDRAsi.getResistanceByGeneFromAlignedGeneSeqs(aligneds, alg));
+			drsMap.put(seq, GeneDR.newFromAlignedGeneSeqs(aligneds, alg));
 		}
 		return drsMap.get(seq);
 	}

@@ -26,6 +26,8 @@ import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.function.Function;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -37,6 +39,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+import org.apache.commons.lang3.tuple.Pair;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -45,11 +48,12 @@ import com.google.common.collect.Lists;
 import edu.stanford.hivdb.comments.BoundComment;
 import edu.stanford.hivdb.comments.CommentType;
 import edu.stanford.hivdb.drugresistance.GeneDR;
+import edu.stanford.hivdb.drugresistance.algorithm.ASIDrugSusc;
+import edu.stanford.hivdb.drugresistance.algorithm.DrugResistanceAlgorithm;
 import edu.stanford.hivdb.genotypes.BoundGenotype;
 import edu.stanford.hivdb.genotypes.GenotypeResult;
 import edu.stanford.hivdb.drugs.Drug;
 import edu.stanford.hivdb.drugs.DrugClass;
-import edu.stanford.hivdb.drugs.DrugResistanceAlgorithm;
 import edu.stanford.hivdb.viruses.Gene;
 import edu.stanford.hivdb.viruses.Virus;
 import edu.stanford.hivdb.mutations.Mutation;
@@ -457,6 +461,7 @@ public class XmlOutput<VirusT extends Virus<VirusT>> {
 
 	private Element createDrugScoreElement(Drug<VirusT> drug, GeneDR<VirusT> geneDR) {
 		Element drugScore = document.createElement("drugScore");
+		ASIDrugSusc<VirusT> drugSusc = geneDR.getDrugSusc(drug);
 
 		// name="drugCode" type="xs:string"
 		drugScore.appendChild(
@@ -472,39 +477,29 @@ public class XmlOutput<VirusT extends Virus<VirusT>> {
 
 		// name="score" type="xs:float" minOccurs="0" maxOccurs="1"
 		drugScore.appendChild(
-			newSimpleElement("score", geneDR.getTotalDrugScore(drug).intValue()));
+			newSimpleElement("score", drugSusc.getScore().intValue()));
 
 		// name="resistanceLevel" type="xs:float" minOccurs="0" maxOccurs="1"
 		drugScore.appendChild(newSimpleElement(
-			"resistanceLevel", geneDR.getDrugLevel(drug)));
+			"resistanceLevel", drugSusc.getLevel()));
 
 		// name="resistanceLevelText" type="xs:string" minOccurs="0" maxOccurs="1"
 		drugScore.appendChild(newSimpleElement(
-			"resistanceLevelText", geneDR.getDrugLevelText(drug)));
+			"resistanceLevelText", drugSusc.getLevelText()));
 
 		// name="threeStepResistanceLevel" type="xs:string"
 		drugScore.appendChild(newSimpleElement(
-			"threeStepResistanceLevel", geneDR.getDrugLevelSIR(drug)));
+			"threeStepResistanceLevel", drugSusc.getSIR().toString()));
 
 		// name="partialScore" type="PartialScore" minOccurs="0" maxOccurs="unbounded"
-		if (geneDR.drugHasScoredIndividualMuts(drug)) {
-			for (Map.Entry<Mutation<VirusT>, Double> entry :
-					geneDR.getScoredIndividualMutsForDrug(drug).entrySet()) {
-				Mutation<VirusT> mut = entry.getKey();
-				Double mutScore = entry.getValue();
-				drugScore.appendChild(
-					createPartialScore(Lists.newArrayList(mut), mutScore));
-			}
-		}
-
-		if (geneDR.drugHasScoredComboMuts(drug)) {
-			for (Map.Entry<MutationSet<VirusT>, Double> entry :
-					geneDR.getScoredComboMutsForDrug(drug).entrySet()) {
-				MutationSet<VirusT> comboMuts = entry.getKey();
-				Double comboMutScore = entry.getValue();
-				drugScore.appendChild(createPartialScore(
-					comboMuts, comboMutScore));
-			}
+		for (
+			Pair<MutationSet<VirusT>, Double> pair :
+			geneDR.getDrugSusc(drug).getParialScorePairs()
+		) {
+			MutationSet<VirusT> mut = pair.getKey();
+			Double mutScore = pair.getValue();
+			drugScore.appendChild(
+				createPartialScore(Lists.newArrayList(mut), mutScore));
 		}
 		return drugScore;
 	}
@@ -542,54 +537,31 @@ public class XmlOutput<VirusT extends Virus<VirusT>> {
 	}
 
 	private Element createScoreRowElement(
-			String title,
-			DrugClass<VirusT> drugClass,
-			Map<Drug<VirusT>, Double> drugScores,
-			Map<String, String> addAttrs) {
-
+		String title,
+		DrugClass<VirusT> drugClass,
+		Function<Drug<VirusT>, Double> scoreGetter
+		
+	) {
 		Collection<Drug<VirusT>> drugs = drugClass.getDrugs();
 		List<Map<String, String>> cols = new ArrayList<>();
 		Map<String, String> titleCol = new LinkedHashMap<>();
 
 		// name="value" type="xs:string"
 		titleCol.put("value", title);
-		titleCol.putAll(addAttrs);
 		cols.add(titleCol);
 
 		for (Drug<VirusT> drug: drugs) {
 			Map<String, String> col = new LinkedHashMap<>();
-			Double score = drugScores.getOrDefault(drug, 0.0);
+			Double score = scoreGetter.apply(drug);
 			// name="value" type="xs:string"
 			col.put("value", "" + score.intValue());
 			// name="class" type="xs:string" use="optional"
 			col.put("class", drugClass.toString());
 			// name="drug" type="xs:string" use="optional"
 			col.put("drug", drug.getDisplayAbbr());
-			col.putAll(addAttrs);
 			cols.add(col);
 		}
 		return createScoreRowElement(cols);
-	}
-
-	private Element createScoreRowElement(
-			Mutation<VirusT> mut, DrugClass<VirusT> drugClass,
-			Map<Drug<VirusT>, Double> drugScores) {
-
-		int pos = mut.getPosition();
-		Map<String, String> addAttrs = new LinkedHashMap<>();
-		// name="pos" type="xs:nonNegativeInteger" use="optional"
-		addAttrs.put("pos", "" + pos);
-
-		return createScoreRowElement(
-				mut.getHumanFormat(), drugClass, drugScores, addAttrs);
-	}
-
-	private Element createScoreRowElement(
-			MutationSet<VirusT> muts, DrugClass<VirusT> drugClass,
-			Map<Drug<VirusT>, Double> drugScores) {
-
-		return createScoreRowElement(
-				muts.join('+'), drugClass, drugScores, new LinkedHashMap<>());
 	}
 
 	private Element createScoreTableElement(DrugClass<VirusT> drugClass, GeneDR<VirusT> geneDR) {
@@ -598,34 +570,21 @@ public class XmlOutput<VirusT extends Virus<VirusT>> {
 		// header
 		scoreTable.appendChild(createScoreRowElement(drugClass));
 
-		// body for individual muts
-		if (geneDR.drugClassHasScoredIndividualMuts(drugClass)) {
-			for (Map.Entry<Mutation<VirusT>, Map<Drug<VirusT>, Double>> entry :
-					geneDR
-					.getIndividualMutAllDrugScoresForDrugClass(drugClass)
-					.entrySet()) {
-				scoreTable.appendChild(createScoreRowElement(
-					entry.getKey(), drugClass, entry.getValue()));
-			}
-		}
-
-		// body for combo muts
-		if (geneDR.drugClassHasScoredComboMuts(drugClass)) {
-			for (Map.Entry<MutationSet<VirusT>, Map<Drug<VirusT>, Double>> entry :
-					geneDR
-					.getComboMutAllDrugScoresForDrugClass(drugClass)
-					.entrySet()) {
-				scoreTable.appendChild(createScoreRowElement(
-					entry.getKey(), drugClass, entry.getValue()));
-			}
+		// body for partial scores
+		Set<MutationSet<VirusT>> scoredMuts = geneDR.getScoredMutations(ds -> ds.drugClassIs(drugClass));
+		for (MutationSet<VirusT> muts : scoredMuts) {
+			scoreTable.appendChild(createScoreRowElement(
+				muts.join('+'), drugClass,
+				drug -> geneDR.getDrugSusc(drug).getPartialScore(muts)
+			));
 		}
 
 		// body for total score
 		scoreTable.appendChild(createScoreRowElement(
 			"Total:",
 			drugClass,
-			geneDR.getDrugClassTotalDrugScores(drugClass),
-			new LinkedHashMap<>()));
+			drug -> geneDR.getDrugSusc(drug).getScore()
+		));
 
 		return scoreTable;
 	}

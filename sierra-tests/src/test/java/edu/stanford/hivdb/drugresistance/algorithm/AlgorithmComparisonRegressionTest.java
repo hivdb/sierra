@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -14,8 +15,6 @@ import org.junit.Test;
 
 import com.google.gson.reflect.TypeToken;
 
-import edu.stanford.hivdb.drugresistance.algorithm.AlgorithmComparison.ComparableDrugScore;
-import edu.stanford.hivdb.drugs.DrugResistanceAlgorithm;
 import edu.stanford.hivdb.hivfacts.HIV;
 import edu.stanford.hivdb.mutations.MutationSet;
 import edu.stanford.hivdb.sequences.AlignedSequence;
@@ -35,11 +34,11 @@ public class AlgorithmComparisonRegressionTest {
 	public void testRegression() throws FileNotFoundException {
 		Type mapType =
 			new TypeToken<
-				Map<String, Map<String, AlgorithmComparison<HIV>>>
+				Map<String, Map<String, Object>>
 			>() {}.getType();
 		InputStream input = TestUtils.readTestResource("AlgorithmComparisonTestExpecteds.json");
-		Map<TestSequencesProperties, Map<String, AlgorithmComparison<HIV>>>
-			expecteds = Json.loads(input.toString(), mapType);
+		InputStreamReader inputReader = new InputStreamReader(input);
+		Map<String, Map<String, Object>> expecteds = Json.loads(inputReader, mapType);
 		
 		List<DrugResistanceAlgorithm<HIV>> algorithms = new ArrayList<>();
 		
@@ -65,18 +64,22 @@ public class AlgorithmComparisonRegressionTest {
 				Sequence sequence = alignedSeq.getInputSequence();
 				MutationSet<HIV> mutations = alignedSeq.getMutations();
 				
-				List<ComparableDrugScore<HIV>>
-					 actual = new AlgorithmComparison<HIV>(mutations, algorithms).getComparisonResults();
+				AlgorithmComparison<HIV>
+					 actual = new AlgorithmComparison<HIV>(mutations, algorithms);
 				
-				List<ComparableDrugScore<HIV>>
-					expected = expecteds.get((Object) property.toString()).get(sequence.getHeader() + "-" + sequence.getSHA512()).getComparisonResults();
+				Object
+					expected = expecteds.get((Object) property.toString()).get(sequence.getHeader() + "-" + sequence.getSHA512());
 				if (expected == null) {
 					expected = Collections.emptyList();
 				}
 
 				// TODO: update AlgorithmComparisonTestExpecteds.json
 				// Compare expected with actual without using Json.dumps
-				assertEquals(Json.dumps(expected), Json.dumps(actual));
+				assertEquals(
+					Json.dumps(expected),
+					// Workaround: bypass the integer/float conversion by nesting loads/dumps
+					Json.dumps(Json.loads(Json.dumps(actual), Object.class))
+				);
 			}
 		}
 	}

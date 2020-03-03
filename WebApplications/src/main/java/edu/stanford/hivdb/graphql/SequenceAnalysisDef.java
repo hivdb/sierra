@@ -35,7 +35,6 @@ import java.util.stream.Collectors;
 import com.google.common.collect.Lists;
 
 import edu.stanford.hivdb.drugresistance.GeneDR;
-import edu.stanford.hivdb.drugresistance.GeneDRAsi;
 import edu.stanford.hivdb.genotypes.BoundGenotype;
 import edu.stanford.hivdb.genotypes.GenotypeResult;
 import edu.stanford.hivdb.mutations.MutationSet;
@@ -102,7 +101,7 @@ public class SequenceAnalysisDef {
 			String algName = env.getArgument("algorithm");
 			List<AlignedGeneSeq<VirusT>> geneSeqs = alignedSeq.getAlignedGeneSequences();
 			return Lists.newArrayList(
-				GeneDRAsi.getResistanceByGeneFromAlignedGeneSeqs(
+				GeneDR.newFromAlignedGeneSeqs(
 					geneSeqs, virusIns.getDrugResistAlgorithm(algName)
 				).values()
 			);
