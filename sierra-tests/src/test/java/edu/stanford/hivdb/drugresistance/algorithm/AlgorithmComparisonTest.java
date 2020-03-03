@@ -99,7 +99,7 @@ public class AlgorithmComparisonTest {
 		assertEquals(drugSusc.getSIR(), SIREnum.R);
 		assertEquals(drugSusc.getInterpretation(), "LevelText");
 		assertEquals(drugSusc.getExplanation(), "Statement (LevelText)");
-		assertEquals(drugSusc.toString(), "ABC (HIVDB_8.9): R");
+		assertEquals(drugSusc.toString(), "ABC (HIVDB_8.9): R, LevelText, 90.0");
 	
 		ASIDrugSusc<HIV> compDrugScoreOther = new ASIDrugSusc<HIV>(
 			hiv1.getDrug("ABC"),
