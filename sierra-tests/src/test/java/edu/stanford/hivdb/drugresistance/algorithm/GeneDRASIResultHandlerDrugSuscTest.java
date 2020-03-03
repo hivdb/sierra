@@ -423,4 +423,35 @@ public class GeneDRASIResultHandlerDrugSuscTest {
 			))
 		);
 	}
+	
+	@Test
+	public void testNotTriggered() {
+		List<DrugResistanceAlgorithm<HIV>> hivAlgo = new ArrayList<>();
+		hivAlgo.add(hiv.getLatestDrugResistAlgorithm("HIVDB"));
+		hivAlgo.add(hiv.getLatestDrugResistAlgorithm("ANRS"));
+		hivAlgo.add(hiv.getLatestDrugResistAlgorithm("Rega"));
+
+		MutationSet<HIV> mutationSet;
+		AlgorithmComparison<HIV> algorithmComparison;
+
+		mutationSet = hiv.newMutationSet("RT99E");
+		algorithmComparison = new AlgorithmComparison<HIV>(mutationSet, hivAlgo);
+		for (GeneDR<HIV> geneDR : algorithmComparison.getGeneDR(hiv.getGene("HIV1RT"))) {
+			ASIDrugSusc<HIV> drugSusc = geneDR.getDrugSusc(hiv.getDrug("ABC"));
+			assertFalse(drugSusc.isTriggered());
+		}
+
+		mutationSet = hiv.newMutationSet("PR99E");
+		algorithmComparison = new AlgorithmComparison<HIV>(mutationSet, hivAlgo);
+		for (GeneDR<HIV> geneDR : algorithmComparison.getGeneDR(hiv.getGene("HIV1PR"))) {
+			ASIDrugSusc<HIV> drugSusc = geneDR.getDrugSusc(hiv.getDrug("DRV"));
+			if (drugSusc.getAlgorithmObj().getFamily().equals("Rega")) {
+				// For rega, the "SELECT ATLEAST 0 FROM (1P)" triggered almost everything
+				assertTrue(drugSusc.isTriggered());
+			}
+			else {
+				assertFalse(drugSusc.isTriggered());
+			}
+		}
+	}
 }
