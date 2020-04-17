@@ -620,12 +620,12 @@ public class MutationTest {
 		final AAMutation<HIV> prevMutsZero = new AAMutation<HIV>(hiv.getGene("HIV1IN"), 45, "CDEFH".toCharArray());
 		final AAMutation<HIV> prevMutsWCons = new AAMutation<HIV>(hiv.getGene("HIV1IN"), 45, "LHKQ".toCharArray());
 		final AAMutation<HIV> prevMutsWConsAndStop = new AAMutation<HIV>(hiv.getGene("HIV1IN"), 45, "*LHKQ".toCharArray());
-		assertEquals(0.03118, prevMut.getHighestMutPrevalence(), 1e-5);
-		assertEquals(3.92463, prevMuts.getHighestMutPrevalence(), 1e-5);
+		assertEquals(0.02814, prevMut.getHighestMutPrevalence(), 1e-5);
+		assertEquals(4.08073, prevMuts.getHighestMutPrevalence(), 1e-5);
 		assertEquals(0.0, prevMutZero.getHighestMutPrevalence(), 1e-5);
-		assertEquals(0.00445, prevMutsZero.getHighestMutPrevalence(), 1e-5);
-		assertEquals(3.92463, prevMutsWCons.getHighestMutPrevalence(), 1e-5);
-		assertEquals(3.92463, prevMutsWConsAndStop.getHighestMutPrevalence(), 1e-5);
+		assertEquals(0.00402, prevMutsZero.getHighestMutPrevalence(), 1e-5);
+		assertEquals(4.08073, prevMutsWCons.getHighestMutPrevalence(), 1e-5);
+		assertEquals(4.08073, prevMutsWConsAndStop.getHighestMutPrevalence(), 1e-5);
 		assertEquals(0.0, new AAMutation<HIV>(hiv.getGene("HIV1PR"), 1, "PX".toCharArray()).getHighestMutPrevalence(), 1e-5);
 	}
 }

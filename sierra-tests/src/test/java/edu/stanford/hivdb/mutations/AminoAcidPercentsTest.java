@@ -139,11 +139,11 @@ public class AminoAcidPercentsTest {
 
 		// These are intended to fail for every version update.
 		// You must manually check and correct these numbers.
-		assertEquals(0.00193290, highestVal, 1e-8);
-		assertEquals(0.08111958, aaPcnts.getHighestAAPercentValue(hiv.getGene("HIV1RT"), 67, "N"), 1e-8);
-		assertEquals(0.00822416, aaPcnts.getHighestAAPercentValue(hiv.getGene("HIV1RT"), 69, "KS"), 1e-8);
-		assertEquals(0.04712358, aaPcnts.getHighestAAPercentValue(hiv.getGene("HIV1PR"), 82, "IA"), 1e-8);
-		assertEquals(0.08111958, aaPcnts.getHighestAAPercentValue(hiv.getGene("HIV1RT"), 67, "N*"), 1e-8);
+		assertEquals(0.00190681, highestVal, 1e-8);
+		assertEquals(0.07966083, aaPcnts.getHighestAAPercentValue(hiv.getGene("HIV1RT"), 67, "N"), 1e-8);
+		assertEquals(0.00836295, aaPcnts.getHighestAAPercentValue(hiv.getGene("HIV1RT"), 69, "KS"), 1e-8);
+		assertEquals(0.04738156, aaPcnts.getHighestAAPercentValue(hiv.getGene("HIV1PR"), 82, "IA"), 1e-8);
+		assertEquals(0.07966083, aaPcnts.getHighestAAPercentValue(hiv.getGene("HIV1RT"), 67, "N*"), 1e-8);
 		assertEquals(0.0, aaPcnts.getHighestAAPercentValue(hiv.getGene("HIV1RT"), 67, "*"), 1e-8);
 		assertEquals(0.0, aaPcnts.getHighestAAPercentValue(hiv.getGene("HIV1IN"), 1, ""), 1e-8);
 	}
