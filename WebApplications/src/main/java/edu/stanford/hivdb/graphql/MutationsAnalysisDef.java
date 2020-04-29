@@ -68,6 +68,7 @@ public class MutationsAnalysisDef {
 			.dataFetcher(env -> {
 				MutationSet mutations = getMutationSetFromSource(env);
 				MutationListValidator validator = new MutationListValidator(mutations);
+				validator.validate();
 				return validator.getValidationResults();
 			}))
 		.field(field -> field
