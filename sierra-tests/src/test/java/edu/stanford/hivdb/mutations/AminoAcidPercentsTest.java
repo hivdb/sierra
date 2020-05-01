@@ -152,8 +152,9 @@ public class AminoAcidPercentsTest {
 	public void testContainsUnusualAA() {
 		assertTrue(aaPcnts.containsUnusualAA(hiv.getGene("HIV1PR"), 1, "A"));
 		assertFalse(aaPcnts.containsUnusualAA(hiv.getGene("HIV1RT"), 184, "M"));
-		
-		assertFalse(aaPcnts.containsUnusualAA(hiv.getGene("HIV1RT"), 184, "O"));
+		assertFalse(aaPcnts.containsUnusualAA(hiv.getGene("HIV1RT"), 184, "T"));
+		// "O" is an invalid amino acid
+		assertTrue(aaPcnts.containsUnusualAA(hiv.getGene("HIV1RT"), 184, "O"));
 	}
 
 }

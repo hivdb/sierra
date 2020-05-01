@@ -388,13 +388,13 @@ public class HIV2Test {
 	@Test
 	public void testGetAminoAcidPercents() {
 		Strain<HIV2> strain = hiv2.getStrain("HIV2A");
-		assertNotNull(hiv2.getAminoAcidPercents(strain, "all", "A").get());
+		assertNotNull(hiv2.getAminoAcidPercents(strain, "all", "all").get());
 	}
 
 	@Test
 	public void testGetCodonPercents() {
 		Strain<HIV2> strain = hiv2.getStrain("HIV2A");
-		assertNotNull(hiv2.getCodonPercents(strain, "all", "A").get());
+		assertNotNull(hiv2.getCodonPercents(strain, "all", "all").get());
 	}
 
 	@Test

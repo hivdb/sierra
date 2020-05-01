@@ -24,8 +24,9 @@ public class HIV2DefaultMutationValidatorTest {
 		
 		muts = hiv.newMutationSet(hiv.getGene("HIV2ART"), "M184VZ, E44A");
 		results = validator.validate(muts);
-		assertEquals(results.size(), 1);
+		assertEquals(results.size(), 2);
 		assertEquals(results.get(0).getLevel().name(), "WARNING");
+		assertEquals(results.get(1).getLevel().name(), "WARNING");
 		
 		muts = hiv.newMutationSet(hiv.getGene("HIV2ART"), "M184VZ, E44AZ");
 		results = validator.validate(muts);
@@ -35,7 +36,7 @@ public class HIV2DefaultMutationValidatorTest {
 		// Test UnUsual mutations
 		muts = hiv.newMutationSet(hiv.getGene("HIV2ART"), "1A, 2T");
 		results = validator.validate(muts);
-		assertEquals(results.size(), 0);
+		assertEquals(results.size(), 1);
 		
 		muts = hiv.newMutationSet(hiv.getGene("HIV2ART"), "181R, 180S");
 		results = validator.validate(muts);
@@ -53,7 +54,7 @@ public class HIV2DefaultMutationValidatorTest {
 		assertEquals(results.size(), 1);
 		assertEquals(results.get(0).getLevel().name(), "WARNING");
 		assertEquals(results.get(0).getMessage(),
-				"There are 5 unusual mutations: HIV2ART_D17K, HIV2ART_P25N, HIV2ART_E29N, HIV2ART_K30N, HIV2ART_Q46I.");
+				"There are 6 unusual mutations: HIV2ART_D17K, HIV2ART_P25N, HIV2ART_E29N, HIV2ART_K30N, HIV2ART_Q46I, HIV2ART_E48S.");
 		
 		muts = hiv.newMutationSet(hiv.getGene("HIV2ART"), "17K, 25N");
 		results = validator.validate(muts);
