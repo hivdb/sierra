@@ -442,20 +442,35 @@ public class MutationTest {
 		AAMutation<HIV> mut16 = new AAMutation<HIV>(hiv.getGene("HIV1IN"), 263, "RKGY".toCharArray());
 		AAMutation<HIV> mut17 = new AAMutation<HIV>(hiv.getGene("HIV1IN"), 263, "X".toCharArray());
 		assertEquals("HIV1RT_K65KN", mut1.getHumanFormatWithGene());
+		assertEquals("RT_K65KN", mut1.getHumanFormatWithAbstractGene());
 		assertEquals("HIV1RT_K65KN", mut2.getHumanFormatWithGene());
+		assertEquals("RT_K65KN", mut2.getHumanFormatWithAbstractGene());
 		assertEquals("HIV1RT_V118Insertion", mut3.getHumanFormatWithGene());
+		assertEquals("RT_V118Insertion", mut3.getHumanFormatWithAbstractGene());
 		assertEquals("HIV1RT_V118Insertion", mut4.getHumanFormatWithGene());
+		assertEquals("RT_V118Insertion", mut4.getHumanFormatWithAbstractGene());
 		assertEquals("HIV1RT_T69Deletion", mut6.getHumanFormatWithGene());
+		assertEquals("RT_T69Deletion", mut6.getHumanFormatWithAbstractGene());
 		assertEquals("HIV1IN_N155S", mut8.getHumanFormatWithGene());
+		assertEquals("IN_N155S", mut8.getHumanFormatWithAbstractGene());
 		assertEquals("HIV1IN_N155NS", mut9.getHumanFormatWithGene());
+		assertEquals("IN_N155NS", mut9.getHumanFormatWithAbstractGene());
 		assertEquals("HIV1RT_V10S", mut10.getHumanFormatWithGene());
+		assertEquals("RT_V10S", mut10.getHumanFormatWithAbstractGene());
 		assertEquals("HIV1PR_L10S", mut11.getHumanFormatWithGene());
+		assertEquals("PR_L10S", mut11.getHumanFormatWithAbstractGene());
 		assertEquals("HIV1RT_T215TFIS", mut12.getHumanFormatWithGene());
+		assertEquals("RT_T215TFIS", mut12.getHumanFormatWithAbstractGene());
 		assertEquals("HIV1RT_T215TNSY", mut13.getHumanFormatWithGene());
+		assertEquals("RT_T215TNSY", mut13.getHumanFormatWithAbstractGene());
 		assertEquals("HIV1RT_Y188Y*L", mut14.getHumanFormatWithGene());
+		assertEquals("RT_Y188Y*L", mut14.getHumanFormatWithAbstractGene());
 		assertEquals("HIV1RT_Y188*", mut15.getHumanFormatWithGene());
+		assertEquals("RT_Y188*", mut15.getHumanFormatWithAbstractGene());
 		assertEquals("HIV1IN_R263RGKY", mut16.getHumanFormatWithGene());
+		assertEquals("IN_R263RGKY", mut16.getHumanFormatWithAbstractGene());
 		assertEquals("HIV1IN_R263X", mut17.getHumanFormatWithGene());
+		assertEquals("IN_R263X", mut17.getHumanFormatWithAbstractGene());
 	}
 
 	@Test

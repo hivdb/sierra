@@ -5,6 +5,7 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import edu.stanford.hivdb.hivfacts.HIV;
+import edu.stanford.hivdb.hivfacts.hiv2.HIV2;
 import edu.stanford.hivdb.viruses.Gene;
 
 import static org.junit.Assert.*;
@@ -19,6 +20,7 @@ import java.util.TreeSet;
 public class AAMutationTest {
 
 	private final static HIV hiv = HIV.getInstance();
+	private final static HIV2 hiv2 = HIV2.getInstance();
 	
 	@Rule
 	public ExpectedException thrown = ExpectedException.none();
@@ -476,6 +478,15 @@ public class AAMutationTest {
 		
 		assertEquals(mutation.split(), mutations);
 	}
+	
+	@Test
+	public void testSplitUnsequenced() {
+		// unsequenced mutation is not splittable
+		Mutation<HIV> unsequenced = hiv.parseMutationString("RT:67X:NNN");
+		Set<Mutation<HIV>> splitted = unsequenced.split();
+		assertEquals(1, splitted.size());
+		assertTrue(splitted.contains(unsequenced));
+	}
 
 
 	@Test
@@ -808,6 +819,22 @@ public class AAMutationTest {
 				new char[] {'A', 'C', 'D', 'E', 'F'});
 		
 		assertFalse(mutation.isDRM());
+	}
+	
+	@Test
+	public void testIsDRMHIV2() {
+		AAMutation<HIV2> mutation = new AAMutation<>(hiv2.getGene("HIV2AIN"), 92, 'G');
+		assertTrue(mutation.isDRM());
+		AAMutation<HIV2> mutation2 = new AAMutation<>(hiv2.getGene("HIV2BIN"), 92, 'G');
+		assertTrue(mutation2.isDRM());
+	}
+
+	@Test
+	public void testIsUnusualHIV2() {
+		AAMutation<HIV2> mutation = new AAMutation<>(hiv2.getGene("HIV2AIN"), 195, 'R');
+		assertTrue(mutation.isUnusual());
+		AAMutation<HIV2> mutation2 = new AAMutation<>(hiv2.getGene("HIV2BIN"), 195, 'R');
+		assertTrue(mutation2.isUnusual());
 	}
 
 	@Test

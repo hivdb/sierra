@@ -55,7 +55,7 @@ public class CodonMutationTest {
 	
 	@Test
 	public void testIsUnsequenced() {
-		CodonMutation<HIV> mutation = new CodonMutation<HIV>(hiv.getGene("HIV1PR"), 10, "A", "NNN");
+		Mutation<HIV> mutation = new CodonMutation<HIV>(hiv.getGene("HIV1PR"), 10, "X", "NNN");
 		assertTrue(mutation.isUnsequenced());
 
 		mutation = new CodonMutation<HIV>(hiv.getGene("HIV1PR"), 10, "_", "NNN");

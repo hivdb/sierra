@@ -2,6 +2,7 @@ package edu.stanford.hivdb.mutations;
 import org.junit.Test;
 
 import edu.stanford.hivdb.hivfacts.HIV;
+import edu.stanford.hivdb.hivfacts.hiv2.HIV2;
 
 import static org.junit.Assert.*;
 
@@ -11,6 +12,7 @@ import java.util.List;
 public class MutationSetTest {
 	
 	private static final HIV hiv = HIV.getInstance();
+	private static final HIV2 hiv2 = HIV2.getInstance();
 	
 	@Test
 	public void testParseString() {
@@ -362,7 +364,7 @@ public class MutationSetTest {
 	}
 	
 	@Test
-	public void testGetStopCodons() {
+	public void testGetStopCodonsCase1() {
 		
 		List<Mutation<HIV>> mutations = new ArrayList<>();
 		mutations.add(hiv.parseMutationString("RT215V"));
@@ -370,6 +372,23 @@ public class MutationSetTest {
 		
 		MutationSet<HIV> mSet = new MutationSet<HIV>(mutations);
 		assertNotNull(mSet.getStopCodons());
+		assertTrue(mSet.getStopCodons().isEmpty());
+	}
+
+	@Test
+	public void testGetStopCodonsCase2() {
+		
+		List<Mutation<HIV2>> mutations = new ArrayList<>();
+		mutations.add(hiv2.parseMutationString("RT215*"));
+		mutations.add(hiv2.parseMutationString("RT67X:NNN"));
+		
+		MutationSet<HIV2> mSet = new MutationSet<HIV2>(mutations);
+		MutationSet<HIV2> stops = mSet.getStopCodons();
+		assertNotNull(stops);
+		assertFalse(stops.isEmpty());
+		assertEquals(1, stops.size());
+		assertTrue(stops.contains(mutations.get(0)));
+		assertFalse(stops.contains(mutations.get(1)));
 	}
 
 	@Test

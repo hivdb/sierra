@@ -23,14 +23,14 @@ public class HIV2DefaultSequenceValidatorTest {
 		AlignedSequence<HIV2> alignedSeq = NucAminoAligner.getInstance(hiv).align(seq);
 		
 		List<ValidationResult> results = validator.validate(alignedSeq);
-		assertEquals(results.size(), 1);
+		assertEquals(1, results.size());
 		
 		Sequence testSeq = Sequence.fromGenbank("AF096883");
 		
 		alignedSeq = NucAminoAligner.getInstance(hiv).align(testSeq);
 		
 		results = validator.validate(alignedSeq);
-		assertEquals(results.size(), 1);
+		assertEquals(5, results.size());
 	}
 }
 	
