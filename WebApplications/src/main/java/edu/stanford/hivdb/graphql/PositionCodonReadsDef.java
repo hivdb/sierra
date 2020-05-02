@@ -44,13 +44,14 @@ import static edu.stanford.hivdb.graphql.GeneDef.enumGene;
 public class PositionCodonReadsDef {
 
 	public static <VirusT extends Virus<VirusT>> PositionCodonReads<VirusT> toPositionCodonReads(Strain<VirusT> strain, Map<?, ?> input) {
-		Map<String, Long> allCodonReads = (
+		Map<String, Long> allCodonReads;
+		allCodonReads = (
 			((List<?>) input.get("allCodonReads"))
 			.stream()
 			.map(o -> (Map<?, ?>) o)
 			.collect(Collectors.toMap(
 				o -> ((String) o.get("codon")).toUpperCase(),
-				o -> (Long) o.get("reads"),
+				o -> o.containsKey("reads") ? ((Long) o.get("reads")) : 0L,
 				(r1, r2) -> r1 + r2,
 				HashMap::new))
 		);
