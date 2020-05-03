@@ -21,7 +21,7 @@ public class AAUtilsTest {
 
 		assertEquals(AAUtils.normalizeAAs("D"), "D");
 
-		assertEquals(AAUtils.normalizeAAs("~a"), "A~");
+		assertEquals("-A", AAUtils.normalizeAAs("~a"));
 		assertEquals(AAUtils.normalizeAAs("a~"), "-A");
 		assertEquals(AAUtils.normalizeAAs("ad"), "-A");
 		assertEquals(AAUtils.normalizeAAs("da"), "-A");
@@ -46,7 +46,7 @@ public class AAUtilsTest {
 		assertEquals(AAUtils.normalizeAAs("I"), "I");
 
 
-		assertEquals(AAUtils.normalizeAAs("ia"), "AI");
+		assertEquals("_A", AAUtils.normalizeAAs("ia"));
 		assertEquals(AAUtils.normalizeAAs("ai"), "A_");
 		assertEquals(AAUtils.normalizeAAs("abci"), "ABC_");
 		assertEquals(AAUtils.normalizeAAs("inserta"), "_A");
@@ -56,7 +56,7 @@ public class AAUtilsTest {
 		assertEquals(AAUtils.normalizeAAs("Z"), "*");
 
 
-		assertEquals(AAUtils.normalizeAAs("jkihgfedca"), "-ACEFGHIJK");
+		assertEquals(AAUtils.normalizeAAs("jkihgfedca"), "JK_HGFE-CA");
 
 
 	}
