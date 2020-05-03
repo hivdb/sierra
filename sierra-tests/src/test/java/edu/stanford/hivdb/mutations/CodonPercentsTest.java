@@ -176,11 +176,11 @@ public class CodonPercentsTest {
 
 		// These are intended to fail for every version update.
 		// You must manually check and correct these numbers.
-		assertEquals(0.00166933, highestVal, 1e-8);
-		assertEquals(0.76700478, allall.getHighestCodonPercentValue(hiv.getGene("HIV1RT"), 67, "GAC"), 1e-8);
-		assertEquals(0.00381235, allall.getHighestCodonPercentValue(hiv.getGene("HIV1RT"), 69, "AAA", "AGC", "AGT"), 1e-8);
+		assertEquals(0.00167819, highestVal, 1e-8);
+		assertEquals(0.76229487, allall.getHighestCodonPercentValue(hiv.getGene("HIV1RT"), 67, "GAC"), 1e-8);
+		assertEquals(0.00382740, allall.getHighestCodonPercentValue(hiv.getGene("HIV1RT"), 69, "AAA", "AGC", "AGT"), 1e-8);
 		assertEquals(0.0, allall.getHighestCodonPercentValue(hiv.getGene("HIV1RT"), 67, "TGG"), 1e-8);
-		assertEquals(0.06986288, allall.getHighestCodonPercentValue(hiv.getGene("HIV1RT"), 67, "AAC", "TGA"), 1e-8);
+		assertEquals(0.06849608, allall.getHighestCodonPercentValue(hiv.getGene("HIV1RT"), 67, "AAC", "TGA"), 1e-8);
 		assertEquals(0.0, allall.getHighestCodonPercentValue(hiv.getGene("HIV1RT"), 67, "TGA"), 1e-8);
 
 		expectedEx.expect(IllegalArgumentException.class);

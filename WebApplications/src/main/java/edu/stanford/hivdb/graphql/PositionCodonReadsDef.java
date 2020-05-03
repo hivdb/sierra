@@ -50,7 +50,13 @@ public class PositionCodonReadsDef {
 			.stream()
 			.map(o -> (Map<?, ?>) o)
 			.collect(Collectors.toMap(
-				o -> ((String) o.get("codon")).toUpperCase(),
+				o -> {
+					String codon = ((String) o.get("codon")).toUpperCase();
+					if (codon.length() < 3) {
+						codon = (codon + "---").substring(0, 3);
+					}
+					return codon;
+				},
 				o -> o.containsKey("reads") ? ((Long) o.get("reads")) : 0L,
 				(r1, r2) -> r1 + r2,
 				HashMap::new))
