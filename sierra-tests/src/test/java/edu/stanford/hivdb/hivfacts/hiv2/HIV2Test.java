@@ -233,7 +233,7 @@ public class HIV2Test {
 
 	@Test
 	public void testGetDrugResistAlgorithm() {
-		DrugResistanceAlgorithm<HIV2> algo = hiv2.getDrugResistAlgorithm("HIVDB_9.0a2");
+		DrugResistanceAlgorithm<HIV2> algo = hiv2.getDrugResistAlgorithm("HIVDB_9.0a3");
 		assertNotNull(algo);
 		assertEquals(algo.getFamily(), "HIVDB");
 	}
@@ -247,9 +247,9 @@ public class HIV2Test {
 
 	@Test
 	public void testGetDrugResistAlgorithm2() {
-		DrugResistanceAlgorithm<HIV2> algo = hiv2.getDrugResistAlgorithm("HIVDB", "9.0a2");
+		DrugResistanceAlgorithm<HIV2> algo = hiv2.getDrugResistAlgorithm("HIVDB", "9.0a3");
 		assertNotNull(algo);
-		assertEquals(algo.getVersion(), "9.0a2");
+		assertEquals(algo.getVersion(), "9.0a3");
 	}
 
 

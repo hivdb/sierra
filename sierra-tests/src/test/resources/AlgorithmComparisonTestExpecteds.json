@@ -66140,15 +66140,13 @@
             "version": "8.9-1",
             "publishDate": "2019-10-25"
           },
-          "score": 10.0,
-          "level": 2,
-          "levelText": "Potential Low-Level Resistance",
+          "score": 0.0,
+          "level": 1,
+          "levelText": "Susceptible",
           "sir": "S",
-          "partialScores": {
-            "[E138EADGV]": 10.0
-          },
-          "statement": "SCORE FROM(98G \u003d\u003e 15, MAX ( 100I \u003d\u003e 60, 100V \u003d\u003e 30 ), MAX ( 101E \u003d\u003e 15, 101H \u003d\u003e 10, 101P \u003d\u003e 60 ), MAX ( 103H \u003d\u003e 60, 103N \u003d\u003e 60, 103S \u003d\u003e 45, 103T \u003d\u003e 15 ), MAX ( 106A \u003d\u003e 45, 106M \u003d\u003e 60 ), 108I \u003d\u003e 10, MAX ( 138G \u003d\u003e 10, 138K \u003d\u003e 10, 138Q \u003d\u003e 10, 138R \u003d\u003e 10 ), MAX ( 179D \u003d\u003e 10, 179E \u003d\u003e 10, 179F \u003d\u003e 10, 179L \u003d\u003e 10 ), MAX ( 181C \u003d\u003e 30, 181F \u003d\u003e 15, 181G \u003d\u003e 15, 181I \u003d\u003e 30, 181S \u003d\u003e 15, 181V \u003d\u003e 30 ), MAX ( 188C \u003d\u003e 60, 188F \u003d\u003e 60, 188H \u003d\u003e 30, 188L \u003d\u003e 60 ), MAX ( 190A \u003d\u003e 45, 190C \u003d\u003e 60, 190E \u003d\u003e 60, 190Q \u003d\u003e 60, 190S \u003d\u003e 60, 190T \u003d\u003e 60, 190V \u003d\u003e 60 ), 221Y \u003d\u003e 10, 225H \u003d\u003e 45, MAX ( 227C \u003d\u003e 45, 227I \u003d\u003e 10, 227L \u003d\u003e 15, 227V \u003d\u003e 10 ), MAX ( 230I \u003d\u003e 15, 230L \u003d\u003e 45 ), MAX ( 238N \u003d\u003e 10, 238T \u003d\u003e 30 ), 318F \u003d\u003e 10, (101E AND 181C) \u003d\u003e 5, (103R AND 179D) \u003d\u003e 20, (106A AND 227L) \u003d\u003e 15, (98G AND 181C) \u003d\u003e 5, (98G AND 227C) \u003d\u003e 15)",
-          "triggered": true
+          "partialScores": {},
+          "statement": "",
+          "triggered": false
         },
         {
           "drug": {
@@ -66164,15 +66162,13 @@
             "version": "8.9-1",
             "publishDate": "2019-10-25"
           },
-          "score": 10.0,
-          "level": 2,
-          "levelText": "Potential Low-Level Resistance",
+          "score": 0.0,
+          "level": 1,
+          "levelText": "Susceptible",
           "sir": "S",
-          "partialScores": {
-            "[E138EADGV]": 20.0
-          },
-          "statement": "SCORE FROM(98G \u003d\u003e 10, MAX ( 100I \u003d\u003e 30, 100V \u003d\u003e 10 ), MAX ( 101E \u003d\u003e 15, 101H \u003d\u003e 10, 101P \u003d\u003e 60 ), 106I \u003d\u003e 10, MAX ( 138A \u003d\u003e 10, 138G \u003d\u003e 10, 138K \u003d\u003e 10, 138Q \u003d\u003e 10, 138R \u003d\u003e 10 ), MAX ( 179D \u003d\u003e 10, 179E \u003d\u003e 10, 179F \u003d\u003e 15, 179L \u003d\u003e 10 ), MAX ( 181C \u003d\u003e 30, 181F \u003d\u003e 15, 181G \u003d\u003e 15, 181I \u003d\u003e 60, 181S \u003d\u003e 15, 181V \u003d\u003e 60 ), 188L \u003d\u003e 10, MAX ( 190A \u003d\u003e 10, 190C \u003d\u003e 10, 190E \u003d\u003e 45, 190Q \u003d\u003e 45, 190S \u003d\u003e 10, 190T \u003d\u003e 10, 190V \u003d\u003e 10 ), 221Y \u003d\u003e 10, 227C \u003d\u003e 30, MAX ( 230I \u003d\u003e 15, 230L \u003d\u003e 30 ), (101E AND 181C) \u003d\u003e 5, (101E AND 188L) \u003d\u003e 5, (181C AND 190ACSTV) \u003d\u003e 10, (98G AND 181C) \u003d\u003e 5, (98G AND 227C) \u003d\u003e 15, MAX ((101E AND 190A) \u003d\u003e 5, (101E AND 190S) \u003d\u003e 5), MAX ((179F AND 181C) \u003d\u003e 15, (179T AND 181C) \u003d\u003e 10))",
-          "triggered": true
+          "partialScores": {},
+          "statement": "",
+          "triggered": false
         },
         {
           "drug": {
@@ -66238,15 +66234,13 @@
             "version": "8.9-1",
             "publishDate": "2019-10-25"
           },
-          "score": 10.0,
-          "level": 2,
-          "levelText": "Potential Low-Level Resistance",
+          "score": 0.0,
+          "level": 1,
+          "levelText": "Susceptible",
           "sir": "S",
-          "partialScores": {
-            "[E138EADGV]": 10.0
-          },
-          "statement": "SCORE FROM(98G \u003d\u003e 30, MAX ( 100I \u003d\u003e 60, 100V \u003d\u003e 30 ), MAX ( 101E \u003d\u003e 30, 101H \u003d\u003e 15, 101P \u003d\u003e 60 ), MAX ( 103H \u003d\u003e 60, 103N \u003d\u003e 60, 103S \u003d\u003e 60, 103T \u003d\u003e 60 ), MAX ( 106A \u003d\u003e 60, 106I \u003d\u003e 10, 106M \u003d\u003e 60 ), 108I \u003d\u003e 15, MAX ( 138G \u003d\u003e 10, 138K \u003d\u003e 10, 138Q \u003d\u003e 10, 138R \u003d\u003e 10 ), MAX ( 179D \u003d\u003e 10, 179E \u003d\u003e 10, 179F \u003d\u003e 15, 179L \u003d\u003e 10 ), MAX ( 181C \u003d\u003e 60, 181F \u003d\u003e 60, 181G \u003d\u003e 60, 181I \u003d\u003e 60, 181S \u003d\u003e 60, 181V \u003d\u003e 60 ), MAX ( 188C \u003d\u003e 60, 188F \u003d\u003e 60, 188H \u003d\u003e 60, 188L \u003d\u003e 60 ), MAX ( 190A \u003d\u003e 60, 190C \u003d\u003e 60, 190E \u003d\u003e 60, 190Q \u003d\u003e 60, 190S \u003d\u003e 60, 190T \u003d\u003e 60, 190V \u003d\u003e 60 ), 221Y \u003d\u003e 15, 225H \u003d\u003e 45, MAX ( 227C \u003d\u003e 45, 227I \u003d\u003e 30, 227L \u003d\u003e 30, 227V \u003d\u003e 30 ), MAX ( 230I \u003d\u003e 30, 230L \u003d\u003e 60 ), MAX ( 238N \u003d\u003e 10, 238T \u003d\u003e 30 ), 318F \u003d\u003e 30, 348I \u003d\u003e 15, (101E AND 181C) \u003d\u003e 5, (103R AND 179D) \u003d\u003e 20, (98G AND 181C) \u003d\u003e 5, (98G AND 227C) \u003d\u003e 15)",
-          "triggered": true
+          "partialScores": {},
+          "statement": "",
+          "triggered": false
         },
         {
           "drug": {
@@ -66262,15 +66256,13 @@
             "version": "8.9-1",
             "publishDate": "2019-10-25"
           },
-          "score": 15.0,
-          "level": 3,
-          "levelText": "Low-Level Resistance",
-          "sir": "I",
-          "partialScores": {
-            "[E138EADGV]": 30.0
-          },
-          "statement": "SCORE FROM(98G \u003d\u003e 15, MAX ( 100I \u003d\u003e 60, 100V \u003d\u003e 15 ), MAX ( 101E \u003d\u003e 45, 101H \u003d\u003e 10, 101P \u003d\u003e 60 ), 106I \u003d\u003e 10, MAX ( 138A \u003d\u003e 15, 138G \u003d\u003e 15, 138K \u003d\u003e 45, 138Q \u003d\u003e 15, 138R \u003d\u003e 15 ), MAX ( 179D \u003d\u003e 10, 179E \u003d\u003e 10, 179F \u003d\u003e 15, 179L \u003d\u003e 15 ), MAX ( 181C \u003d\u003e 45, 181F \u003d\u003e 30, 181G \u003d\u003e 30, 181I \u003d\u003e 60, 181S \u003d\u003e 30, 181V \u003d\u003e 60 ), MAX ( 188F \u003d\u003e 30, 188L \u003d\u003e 60 ), MAX ( 190A \u003d\u003e 15, 190C \u003d\u003e 10, 190E \u003d\u003e 60, 190Q \u003d\u003e 45, 190S \u003d\u003e 15, 190T \u003d\u003e 10, 190V \u003d\u003e 10 ), 221Y \u003d\u003e 15, 227C \u003d\u003e 45, MAX ( 230I \u003d\u003e 30, 230L \u003d\u003e 60 ), (101E AND 184I) \u003d\u003e 15, (103R AND 179D) \u003d\u003e 15, (106I AND 181C) \u003d\u003e 10, (138K AND 184I) \u003d\u003e 15, (181C AND 190ACSTV) \u003d\u003e 10, (181CIV AND 221Y) \u003d\u003e 10, (98G AND 181C) \u003d\u003e 5, (98G AND 227C) \u003d\u003e 15, MAX ((179F AND 181C) \u003d\u003e 15, (179T AND 181C) \u003d\u003e 10))",
-          "triggered": true
+          "score": 0.0,
+          "level": 1,
+          "levelText": "Susceptible",
+          "sir": "S",
+          "partialScores": {},
+          "statement": "",
+          "triggered": false
         },
         {
           "drug": {
@@ -66424,15 +66416,13 @@
             "version": "9.1",
             "publishDate": "2004-09-08"
           },
-          "score": 0.5,
+          "score": 0.0,
           "level": 1,
           "levelText": "Susceptible GSS 1",
           "sir": "S",
-          "partialScores": {
-            "[E138EADGV]": 0.5
-          },
-          "statement": "SCORE FROM ( 90I \u003d\u003e 0.25, 98G \u003d\u003e 0.25, 100I \u003d\u003e 1.5, MAX ( 101P \u003d\u003e 1.5, 101EHNQ \u003d\u003e 0.5, 101R \u003d\u003e 0.25 ), 103HNST \u003d\u003e 0.25, MAX ( 106I \u003d\u003e 0.5, 106AM \u003d\u003e 0.25 ), 108I \u003d\u003e 0.25, MAX ( 138KQ \u003d\u003e 0.75, 138A \u003d\u003e 0.5 ), MAX ( 179F \u003d\u003e 0.75, 179DET \u003d\u003e 0.25 ), 181CIV \u003d\u003e 1.5, 188CHFL \u003d\u003e 0.25, MAX ( 190CEQSTV \u003d\u003e 0.75, 190A \u003d\u003e 0.5 ), 221Y \u003d\u003e 0.25, 225H \u003d\u003e 0.25, MAX ( 227C \u003d\u003e 1.5, 227L \u003d\u003e 0.25 ), 230IL \u003d\u003e 1.5, 234I \u003d\u003e 0.25, 236L \u003d\u003e 0.25, 238NT \u003d\u003e 0.25, 318F \u003d\u003e 0.25 )",
-          "triggered": true
+          "partialScores": {},
+          "statement": "",
+          "triggered": false
         },
         {
           "drug": {
@@ -66514,12 +66504,11 @@
             "version": "9.1",
             "publishDate": "2004-09-08"
           },
-          "score": 2.0,
-          "level": 5,
-          "levelText": "Intermediate Resistant GSS 0.25",
-          "sir": "I",
+          "score": 0.5,
+          "level": 1,
+          "levelText": "Susceptible GSS 1",
+          "sir": "S",
           "partialScores": {
-            "[E138EADGV]": 1.5,
             "[V179VI]": 0.5
           },
           "statement": "SCORE FROM ( 90I \u003d\u003e 0.5, MAX(101E \u003d\u003e 1.5, 101P \u003d\u003e 2.5, 101QT \u003d\u003e 0.5, (101E AND 184IV) \u003d\u003e 2.5), 103S \u003d\u003e 0.5, 106AI \u003d\u003e 0.5, 108I \u003d\u003e 0.5, MAX(138AGKQRS \u003d\u003e 1.5, (138K AND 184IV) \u003d\u003e 2.5), MAX(179DTI \u003d\u003e 0.5, 179L \u003d\u003e 1.5), MAX(181C \u003d\u003e 1.5, 181IV \u003d\u003e 2.5), 188L \u003d\u003e 2.5, 189I \u003d\u003e 0.5, 190E \u003d\u003e 0.5, 221Y \u003d\u003e 1.5, 227C \u003d\u003e 1.5, 230IL \u003d\u003e 1.5, (100I AND 103N) \u003d\u003e 2.5)",

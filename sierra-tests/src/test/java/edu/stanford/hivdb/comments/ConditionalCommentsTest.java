@@ -134,15 +134,15 @@ public class ConditionalCommentsTest {
 		ConditionalComments<HIV2> comments = hiv2.getConditionalComments();
 		
 		// HIV2B RT201A comment
-		CommentDefinition commentDef = new CommentDefinition("HIV2BRT210ACDEFGHIKLMPQRSTVWY_",
+		CommentDefinition commentDef = new CommentDefinition("HIV2ART210ACDEFGHIKLMPQRSTVWY_-",
 				"210W is an HIV-1 associated TAM.");
 		List<CommentDefinition> defs = new ArrayList<>();
 		defs.add(commentDef);
 		
-		// HIV2A RT210A mutation
-		MutationSet<HIV2> muts = MutationSet.parseString(hiv2.getGene("HIV2ART"), "RT210A");
+		// HIV2B RT210A mutation
+		MutationSet<HIV2> muts = MutationSet.parseString(hiv2.getGene("HIV2BRT"), "RT210A");
 		
-		assertEquals(comments.fromAsiMutationComments(defs, muts).size(), 0);
+		assertEquals(1, comments.fromAsiMutationComments(defs, muts).size());
 	}
 	
 	private List<EvaluatedResultCommentRule> getResultComments(
