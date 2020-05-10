@@ -19,6 +19,7 @@
 package edu.stanford.hivdb.graphql;
 
 import graphql.schema.*;
+import graphql.schema.GraphQLCodeRegistry.Builder;
 
 import static graphql.Scalars.*;
 import static graphql.schema.GraphQLArgument.newArgument;
@@ -26,15 +27,19 @@ import static graphql.schema.GraphQLObjectType.newObject;
 import static graphql.schema.GraphQLCodeRegistry.newCodeRegistry;
 import static graphql.schema.FieldCoordinates.coordinates;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.Stack;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.tuple.Pair;
+import org.apache.commons.lang3.tuple.Triple;
 
 import edu.stanford.hivdb.hivfacts.HIV;
 import edu.stanford.hivdb.hivfacts.hiv2.HIV2;
@@ -96,27 +101,39 @@ public class SierraSchema {
 			.collect(Collectors.toList()));
 	};
 
-	private static <VirusT extends Virus<VirusT>> Pair<Set<Gene<VirusT>>, MutationSet<VirusT>> prepareMutationsAnalysisData(VirusT virusIns, List<String> mutations) {
-		return Pair.of(
+	private static <VirusT extends Virus<VirusT>> Triple<Set<Gene<VirusT>>, MutationSet<VirusT>, String>
+	prepareMutationsAnalysisData(VirusT virusIns, List<String> mutations, String name) {
+		return Triple.of(
 			virusIns.extractMutationGenes(mutations),
-			virusIns.newMutationSet(mutations)
+			virusIns.newMutationSet(mutations),
+			name
 		);
 	}
 	
-	private static <VirusT extends Virus<VirusT>> DataFetcher<Pair<Set<Gene<VirusT>>, MutationSet<VirusT>>> makeMutationsAnalysisDataFetcher(VirusT virusIns) {
+	private static <VirusT extends Virus<VirusT>> DataFetcher<Triple<Set<Gene<VirusT>>, MutationSet<VirusT>, String>>
+	makeMutationsAnalysisDataFetcher(VirusT virusIns) {
 		return env -> {
 			List<String> mutations = env.getArgument("mutations");
-			return prepareMutationsAnalysisData(virusIns, mutations);
+			return prepareMutationsAnalysisData(virusIns, mutations, null);
 		};
 	};
 
-	private static <VirusT extends Virus<VirusT>> DataFetcher<List<Pair<Set<Gene<VirusT>>, MutationSet<VirusT>>>> makePatternAnalysisDataFetcher(VirusT virusIns) {
+	private static <VirusT extends Virus<VirusT>> DataFetcher<List<Triple<Set<Gene<VirusT>>, MutationSet<VirusT>, String>>>
+	makePatternAnalysisDataFetcher(VirusT virusIns) {
 		return env -> {
 			List<List<String>> patterns = env.getArgument("patterns");
-			return patterns
-				.stream()
-				.map(mutations -> prepareMutationsAnalysisData(virusIns, mutations))
-				.collect(Collectors.toList());
+			List<String> patternNames = env.getArgument("patternNames");
+			List<Triple<Set<Gene<VirusT>>, MutationSet<VirusT>, String>> results = new ArrayList<>();
+			for (int i=0; i < patterns.size(); i ++) {
+				String patternName = null;
+				if (patternNames != null && patternNames.size() > i) {
+					patternName = patternNames.get(i);
+				}
+				results.add(
+					prepareMutationsAnalysisData(virusIns, patterns.get(i), patternName)
+				);
+			}
+			return results;
 		};
 	};
 
@@ -183,9 +200,8 @@ public class SierraSchema {
 	}
 	
 	public static SimpleMemoizer<GraphQLObjectType> oRoot = new SimpleMemoizer<>(
-		name -> (
-			newObject()
-			.name("Root")
+		name -> {
+			Supplier<graphql.schema.GraphQLObjectType.Builder> rootBuilder = () -> newObject()
 			.field(field -> field
 				.type(oDrugResistanceAlgorithm)
 				.name("currentVersion")
@@ -226,65 +242,87 @@ public class SierraSchema {
 				.description(
 					"Analyze mutation patterns (multiple lists of mutations) and output result.\n" +
 					"The output list will be in the same order as the input list.")
-				.argument(newArgument()
+				.argument(arg -> arg
 					.name("patterns")
 					.type(new GraphQLList(new GraphQLList(GraphQLString)))
 					.description("Lists of mutations to be analyzed.")
-					.build()))
+				)
+				.argument(arg -> arg
+					.name("patternNames")
+					.type(new GraphQLList(GraphQLString))
+					.description("Optional name for each mutation set. Length must be same to patterns.")
+				))
 			.field(field -> field
 				.type(new GraphQLList(oGene.get(name)))
 				.name("genes")
 				.description("List all supported genes.")
-				.argument(newArgument()
+				.argument(arg -> arg
 					.name("names")
 					.type(new GraphQLList(enumGene.get(name)))
 					.description("Genes to be requested.")
-					.build()))
+				))
 			.field(field -> field
 				.type(new GraphQLList(oMutationPrevalenceSubtype.get(name)))
 				.name("mutationPrevalenceSubtypes")
 				.description("List all supported HIV-1 subtypes by mutation prevalence.")
-			)
-			.build()
-		)
+			);
+			
+			return rootBuilder.get()
+				.name("Root")
+				.field(field -> field
+					.type(rootBuilder.get().name("Viewer").build())
+					.name("viewer")
+					.deprecate("Use `Root` directly.")
+					.description("Same as Root. Keep for compatible reason.")
+				)
+				.build();
+		}
 	);
+	
+	private static <VirusT extends Virus<VirusT>> Builder makeRootRegistryBuilder(VirusT virusIns, String rootNodeName) {
+		return newCodeRegistry()
+			.dataFetcher(
+				coordinates(rootNodeName, "currentVersion"),
+				makeCurrentHIVDBVersionFetcher(virusIns)
+			)
+			.dataFetcher(
+				coordinates(rootNodeName, "currentProgramVersion"),
+				currentSierraVersionFetcher
+			)
+			.dataFetcher(
+				coordinates(rootNodeName, "sequenceAnalysis"),
+				makeSequenceAnalysisDataFetcher(virusIns)
+			)
+			.dataFetcher(
+				coordinates(rootNodeName, "sequenceReadsAnalysis"),
+				sequenceReadsAnalysisDataFetcher
+			)
+			.dataFetcher(
+				coordinates(rootNodeName, "mutationsAnalysis"),
+				makeMutationsAnalysisDataFetcher(virusIns)
+			)
+			.dataFetcher(
+				coordinates(rootNodeName, "patternAnalysis"),
+				makePatternAnalysisDataFetcher(virusIns)
+			)
+			.dataFetcher(
+				coordinates(rootNodeName, "genes"),
+				makeGeneDataFetcher(virusIns)
+			)
+			.dataFetcher(
+				coordinates(rootNodeName, "mutationPrevalenceSubtypes"),
+				makeMutationPrevalenceSubtypesDataFetcher(virusIns)
+			);
+	}
+	
+	private static DataFetcher<Object> viewerDataFetcher = env -> Collections.emptyMap();
  
 	private static <VirusT extends Virus<VirusT>> GraphQLCodeRegistry makeCodeRegistry(VirusT virusIns) {
 		return attachDefaultDataFetcher(
 			oRoot.get(virusIns.getName()),
-			newCodeRegistry()
-			.dataFetcher(
-				coordinates("Root", "currentVersion"),
-				makeCurrentHIVDBVersionFetcher(virusIns)
-			)
-			.dataFetcher(
-				coordinates("Root", "currentProgramVersion"),
-				currentSierraVersionFetcher
-			)
-			.dataFetcher(
-				coordinates("Root", "sequenceAnalysis"),
-				makeSequenceAnalysisDataFetcher(virusIns)
-			)
-			.dataFetcher(
-				coordinates("Root", "sequenceReadsAnalysis"),
-				sequenceReadsAnalysisDataFetcher
-			)
-			.dataFetcher(
-				coordinates("Root", "mutationsAnalysis"),
-				makeMutationsAnalysisDataFetcher(virusIns)
-			)
-			.dataFetcher(
-				coordinates("Root", "patternAnalysis"),
-				makePatternAnalysisDataFetcher(virusIns)
-			)
-			.dataFetcher(
-				coordinates("Root", "genes"),
-				makeGeneDataFetcher(virusIns)
-			)
-			.dataFetcher(
-				coordinates("Root", "mutationPrevalenceSubtypes"),
-				makeMutationPrevalenceSubtypesDataFetcher(virusIns)
-			)
+			makeRootRegistryBuilder(virusIns, "Root")
+			.dataFetcher(coordinates("Root", "viewer"), viewerDataFetcher)
+			.dataFetchers(makeRootRegistryBuilder(virusIns, "Viewer").build())
 			.dataFetchers(makeSequenceAnalysisCodeRegistry(virusIns))
 			.dataFetchers(descriptiveStatisticsCodeRegistry)
 			.dataFetchers(geneCodeRegistry)

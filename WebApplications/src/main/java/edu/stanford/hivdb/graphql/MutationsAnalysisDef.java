@@ -19,6 +19,7 @@
 package edu.stanford.hivdb.graphql;
 
 import graphql.schema.*;
+import static graphql.Scalars.*;
 import static graphql.schema.GraphQLObjectType.newObject;
 import static graphql.schema.GraphQLCodeRegistry.newCodeRegistry;
 import static graphql.schema.FieldCoordinates.coordinates;
@@ -30,7 +31,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import org.apache.commons.lang3.tuple.Pair;
+import org.apache.commons.lang3.tuple.Triple;
 
 import edu.stanford.hivdb.drugresistance.GeneDR;
 import edu.stanford.hivdb.viruses.Gene;
@@ -48,9 +49,9 @@ import static edu.stanford.hivdb.graphql.DrugResistanceAlgorithmDef.*;
 public class MutationsAnalysisDef {
 	
 	private static <VirusT extends Virus<VirusT>> Map<Gene<VirusT>, MutationSet<VirusT>> getMutationsByGeneFromSource(DataFetchingEnvironment env) {
-		Pair<Set<Gene<VirusT>>, MutationSet<VirusT>> data = env.getSource();
+		Triple<Set<Gene<VirusT>>, MutationSet<VirusT>, String> data = env.getSource();
 		Set<Gene<VirusT>> knownGenes = data.getLeft();
-		MutationSet<VirusT> mutations = data.getRight();
+		MutationSet<VirusT> mutations = data.getMiddle();
 		
 		Map<Gene<VirusT>, MutationSet<VirusT>> mutationsByGene = mutations.groupByGene();
 		for (Gene<VirusT> gene : knownGenes) {
@@ -62,8 +63,8 @@ public class MutationsAnalysisDef {
 	}
 
 	private static <VirusT extends Virus<VirusT>> MutationSet<VirusT> getMutationSetFromSource(DataFetchingEnvironment env) {
-		Pair<Set<Gene<VirusT>>, MutationSet<VirusT>> data = env.getSource();
-		return data.getRight();
+		Triple<Set<Gene<VirusT>>, MutationSet<VirusT>, String> data = env.getSource();
+		return data.getMiddle();
 	}
 	
 	private static <VirusT extends Virus<VirusT>> DataFetcher<List<ValidationResult>> makeMutValidationResultDataFetcher(VirusT virusIns) {
@@ -72,7 +73,11 @@ public class MutationsAnalysisDef {
 			return virusIns.validateMutations(mutations);
 		};
 	};
-	
+
+	private static DataFetcher<String> mutsNameDataFetcher = env -> {
+		Triple<Set<Gene<?>>, MutationSet<?>, String> data = env.getSource();
+		return data.getRight();
+	};
 
 	private static <VirusT extends Virus<VirusT>> DataFetcher<List<GeneDR<VirusT>>> makeMutDRDataFetcher(VirusT virusIns) {
 		return env -> {
@@ -123,6 +128,10 @@ public class MutationsAnalysisDef {
 		return (
 			newCodeRegistry()
 			.dataFetcher(
+				coordinates("MutationsAnalysis", "name"),
+				mutsNameDataFetcher
+			)
+			.dataFetcher(
 				coordinates("MutationsAnalysis", "validationResults"),
 				makeMutValidationResultDataFetcher(virusIns)
 			)
@@ -146,6 +155,10 @@ public class MutationsAnalysisDef {
 		name -> (
 			newObject()
 			.name("MutationsAnalysis")
+			.field(field -> field
+				.type(GraphQLString)
+				.name("name")
+				.description("Optional name provided by client to identify this mutation list."))
 			.field(field -> field
 				.type(new GraphQLList(oValidationResult))
 				.name("validationResults")

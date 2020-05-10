@@ -1,7 +1,12 @@
 package edu.stanford.hivdb.viruses;
 
 import static org.junit.Assert.*;
+
+import java.util.Collections;
+
 import org.junit.Test;
+
+import com.google.common.collect.Lists;
 
 import edu.stanford.hivdb.hivfacts.HIV;
 
@@ -33,5 +38,10 @@ public class VirusTest {
 	@Test
 	public void testGetDrug() {
 		assertNotNull(hiv.getDrug("3TC"));
+	}
+	
+	@Test
+	public void testExtractMutationGenesInvaid() {
+		assertEquals(Collections.emptySet(), hiv.extractMutationGenes(Lists.newArrayList("RT:69B")));
 	}
 }
