@@ -10,7 +10,7 @@
 
 Here're the full prerequisites of Sierra project:
 
-1. JDK 8 (tested with Oracle Java; maybe also work with OpenJDK);
+1. JDK 11 (tested with Oracle Java; maybe also work with OpenJDK);
 2. Apache Tomcat for starting an HTTP server. If you just need to make small
    modifications and run the tests, you may not need Tomcat.
 3. NucAmino Alignment Program. It is an open source protein-DNA alignment
