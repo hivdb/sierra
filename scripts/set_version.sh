@@ -8,7 +8,7 @@ if [ -z "$1" -o -z "$2" ]; then
     exit 1
 fi
 
-find . -name "build.gradle" -a -not -path "./hiv-genotyper/*" -a -not -path "./asi_interpreter/*" | xargs sed -i "" "s/^version = '.*'$/version = '$1'/g"
+find . -name "build.gradle" -a -not -path "./hivfacts/*" -a -not -path "./asi_interpreter/*" | xargs sed -i "" "s/^version = '.*'$/version = '$1'/g"
 mkdir -p WebApplications/src/main/resources/
 echo "version = $1
 versionDate = $2" > WebApplications/src/main/resources/version.properties
