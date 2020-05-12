@@ -74,6 +74,12 @@ public class ConditionalCommentDef {
 				.description("Comment text.")
 			)
 			.field(field -> field
+				.type(GraphQLString)
+				.name("triggeredAAs")
+				.deprecate("Use `boundMutation { displayAAs }` instead.")
+				.description("Mutated amino acid(s) that triggered the comment.")
+			)
+			.field(field -> field
 				.type(new GraphQLTypeReference("Mutation"))
 				.name("boundMutation")
 				.description("The mutation that bound to this comment.")
