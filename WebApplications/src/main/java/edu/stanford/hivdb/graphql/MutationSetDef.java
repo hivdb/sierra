@@ -22,11 +22,8 @@ import graphql.schema.*;
 import static graphql.Scalars.*;
 import graphql.schema.GraphQLFieldDefinition.Builder;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.google.gson.reflect.TypeToken;
 
 import edu.stanford.hivdb.mutations.MutationSet;
 import edu.stanford.hivdb.viruses.Gene;
@@ -264,8 +261,7 @@ public class MutationSetDef {
 				case CUSTOMLIST:
 					List<String> customList = environment.getArgument("customList");
 					Gene<VirusT> gene = null;
-					Type withGeneType = new TypeToken<WithGene<VirusT>>() {}.getType();
-					if (((Class<?>)(withGeneType)).isInstance(environment.getSource())) {
+					if (WithGene.class.isInstance(environment.getSource())) {
 						WithGene<VirusT> source = environment.getSource();
 						gene = source.getGene();
 					}
