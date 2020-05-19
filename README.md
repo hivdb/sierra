@@ -55,7 +55,7 @@ Docker images are released publicly for each version of Sierra since 2.2.6.
 To pull and start a Sierra instance:
 
     docker pull hivdb/sierra:latest
-    docker run -it --publish=8080 hivdb/sierra dev
+    docker run -it --publish=8080:8080 hivdb/sierra dev
 
 After started the instance, the local Sierra web service is accessable
 through this URL:
