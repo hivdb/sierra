@@ -58,7 +58,7 @@ public class NucAminoAlignerTest {
 //		Sequence testSeq = Sequence.fromGenbank("AF096883");
 		Sequence testSeq = fallbackFromGenBank("AF096883");
 		AlignedSequence<HIV> alignedSeq = NucAminoAligner.getInstance(hiv).align(testSeq);
-		assertEquals("B (1.69%)", alignedSeq.getGenotypeText());
+		assertEquals("B (4.86%)", alignedSeq.getGenotypeText());
 		AlignedGeneSeq<HIV> seqPR = alignedSeq.getAlignedGeneSequence(hiv.getGene("HIV1PR"));
 		assertEquals(1, seqPR.getFirstAA());
 		assertEquals(1, seqPR.getFirstNA());
