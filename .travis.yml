@@ -1,8 +1,7 @@
 language: java
 sudo: required
 jdk:
-  - openjdk11
-  - oraclejdk14
+  - openjdk10
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
   - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
@@ -19,7 +18,7 @@ env:
   #     NUCAMINO_PROGRAM="${TRAVIS_BUILD_DIR}/nucamino"
   global:
     - |-
-      NUCAMINO_PROGRAM="${TRAVIS_BUILD_DIR}/docker/tomcat-with-nucamino-dev/nucamino-linux-amd64"
+      NUCAMINO_PROGRAM="${TRAVIS_BUILD_DIR}/docker/tomcat-with-nucamino/nucamino-linux-amd64"
 script:
   - ./gradlew assemble
   - ./gradlew -D java.util.concurrent.ForkJoinPool.common.parallelism=2 check
