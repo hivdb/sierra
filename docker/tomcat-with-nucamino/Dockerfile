@@ -1,7 +1,7 @@
 FROM ubuntu:18.04
 ENV LC_ALL=C.UTF-8
 ENV LANG=C.UTF-8
-ENV TOMCAT_VERSION=9.0.30
+ENV TOMCAT_VERSION=9.0.35
 ENV CATALINA_OPTS "-Xms512M -Xmx1024M"
 RUN apt-get update -qy && \
     apt-get install -qqy software-properties-common curl && \
@@ -9,9 +9,9 @@ RUN apt-get update -qy && \
     apt-get update -qy && \
     echo debconf shared/accepted-oracle-license-v1-2 select true | debconf-set-selections && \
     echo debconf shared/accepted-oracle-license-v1-2 seen true | debconf-set-selections && \
-    apt-get install -qqy oracle-java13-installer oracle-java13-set-default && \
+    apt-get install -qqy oracle-java14-installer oracle-java14-set-default && \
     cd /tmp && \
-    curl http://www.apache.org/dist/tomcat/tomcat-9/v${TOMCAT_VERSION}/bin/apache-tomcat-${TOMCAT_VERSION}.tar.gz -o tomcat9.tar.gz && \
+    curl -sSL https://www.apache.org/dist/tomcat/tomcat-9/v${TOMCAT_VERSION}/bin/apache-tomcat-${TOMCAT_VERSION}.tar.gz -o tomcat9.tar.gz && \
     tar zxf tomcat9.tar.gz && \
     mkdir -p /usr/share/tomcat9 && \
     mv /tmp/apache-tomcat-${TOMCAT_VERSION} /usr/share/tomcat9 && \

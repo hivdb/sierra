@@ -1,5 +1,5 @@
 build:
-	@docker pull ubuntu:16.04
+	@docker pull ubuntu:18.04
 	@docker build -t hivdb/tomcat-with-nucamino:latest .
 
 force-build:
