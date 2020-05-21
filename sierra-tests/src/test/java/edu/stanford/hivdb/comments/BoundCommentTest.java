@@ -3,6 +3,7 @@ package edu.stanford.hivdb.comments;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import org.junit.Test;
@@ -18,21 +19,27 @@ import edu.stanford.hivdb.mutations.MutationSet;
 public class BoundCommentTest {
 	
 	final static HIV hiv = HIV.getInstance();
-	private static BoundComment<HIV> comment = null;
+	private static BoundComment<HIV> mutationComment = null;
+	private static BoundComment<HIV> dosageComment = null;
 	private final static Mutation<HIV> mutation = new AAMutation<HIV>(hiv.getGene("HIV1RT"), 215, 'V');
 	
 	private static void initInstance() {
-		List<String> highlightTest = new ArrayList<>();
-		
-		comment = new BoundComment<HIV>(
+		mutationComment = new BoundComment<HIV>(
 				hiv.getStrain("HIV1"),
 				"Comment Name",
 				hiv.getDrugClass("NRTI"),
 				CommentType.NRTI,
 				"Comment",
-				highlightTest,
-				mutation
-				);
+				Collections.emptyList(),
+				mutation);
+		dosageComment = new BoundComment<HIV>(
+				hiv.getStrain("HIV1"),
+				"Dossage Comment",
+				hiv.getDrugClass("NRTI"),
+				CommentType.Dosage,
+				"Dosage comment content",
+				Collections.emptyList(),
+				null);
 	}
 	
 	static {
@@ -41,42 +48,53 @@ public class BoundCommentTest {
 	
 	@Test
 	public void testBoundComment() {
-		assertNotNull(comment);
+		assertNotNull(mutationComment);
 	}
 	
 	@Test
 	public void testGetName() {
-		assertEquals(comment.getName(), "Comment Name");
+		assertEquals(mutationComment.getName(), "Comment Name");
 	}
 	
 	@Test
 	public void testGetType() {
-		assertEquals(comment.getType(), CommentType.NRTI);
+		assertEquals(mutationComment.getType(), CommentType.NRTI);
 	}
 	
 	@Test
 	public void testGetText() {
-		assertEquals(comment.getText(), "Comment");
+		assertEquals(mutationComment.getText(), "Comment");
 	}
 	
 	@Test
 	public void testGetHighlightText() {
-		assertTrue(comment.getHighlightText().isEmpty());
+		assertTrue(mutationComment.getHighlightText().isEmpty());
 	}
 	
 	@Test
 	public void testGetBoundMutation() {
-		assertEquals(comment.getBoundMutation(), mutation);
+		assertEquals(mutationComment.getBoundMutation(), mutation);
+	}
+	
+	@Test
+	public void testGetBoundMutationFromDosageComment() {
+		assertNull(dosageComment.getBoundMutation());
+	}
+	
+	@Test
+	public void testGetTriggeredAAs() {
+		assertEquals("V", mutationComment.getTriggeredAAs());
+		assertNull(dosageComment.getTriggeredAAs());
 	}
 	
 	@Test
 	public void testGetGene() {
-		assertEquals(comment.getGene(), hiv.getGene("HIV1RT"));
+		assertEquals(mutationComment.getGene(), hiv.getGene("HIV1RT"));
 	}
 	
 	@Test
 	public void testDrugClass() {
-		assertEquals(comment.drugClass(), hiv.getDrugClass("NRTI"));
+		assertEquals(mutationComment.drugClass(), hiv.getDrugClass("NRTI"));
 	}
 
 	// Common Usage Test Case
