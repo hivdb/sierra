@@ -19,11 +19,10 @@
 package edu.stanford.hivdb.drugresistance.reports;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-
-import com.google.common.collect.Lists;
 
 import edu.stanford.hivdb.drugresistance.algorithm.ASIDrugSusc;
 import edu.stanford.hivdb.drugresistance.algorithm.AlgorithmComparison;
@@ -58,8 +57,9 @@ public class TabularAlgorithmsComparison<VirusT extends Virus<VirusT>> {
 
 	@Override
 	public String toString() {
-		Map<Drug<VirusT>, List<String>> rows = new LinkedHashMap<>();
+		List<Map<String, String>> allRows = new ArrayList<>();
 		for (AlignedSequence<VirusT> alignedSeq : alignedSeqs) {
+			Map<Drug<VirusT>, Map<String, String>> rows = new LinkedHashMap<>();
 			MutationSet<VirusT> allMuts = alignedSeq.getMutations();
 			AlgorithmComparison<VirusT> algCmp = new AlgorithmComparison<>(allMuts, algorithms);
 			List<ASIDrugSusc<VirusT>> cmpResults = algCmp.getComparisonResults();
@@ -67,18 +67,20 @@ public class TabularAlgorithmsComparison<VirusT extends Virus<VirusT>> {
 			for (ASIDrugSusc<VirusT> result : cmpResults) {
 				Drug<VirusT> drug = result.getDrug();
 				if (!rows.containsKey(drug)) {
-					rows.put(drug, Lists.newArrayList(
-						alignedSeq.getInputSequence().getHeader(),
-						drug.getDrugClass().getAbstractGene(),
-						drug.getDisplayAbbr()
-					));
+					Map<String, String> row = new HashMap<>();
+					row.put("sequenceName", alignedSeq.getInputSequence().getHeader());
+					row.put("gene", drug.getDrugClass().getAbstractGene());
+					row.put("drugName", drug.getDisplayAbbr());
+					rows.put(drug, row);
 				}
-				List<String> row = rows.get(drug);
+				Map<String, String> row = rows.get(drug);
 				SIREnum sir = result.getSIR();
-				row.add(sir == null ? "-" : sir.toString());
+				DrugResistanceAlgorithm<VirusT> alg = result.getAlgorithmObj();
+				row.put(alg.getName() + ".drugLevel", sir == null ? "-" : sir.toString());
 			}
+			allRows.addAll(rows.values());
 		}
-		return TSV.dumps(headers, rows.values());
+		return TSV.dumpMaps(headers, allRows, "-");
 	}
 
 }
