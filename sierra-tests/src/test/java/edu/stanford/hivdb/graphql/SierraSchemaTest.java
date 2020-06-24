@@ -85,7 +85,7 @@ public class SierraSchemaTest {
 				"        text\n" +
 				"      }\n" +
 				"      mixturePcnt\n" +
-				"      genotypes {display, distancePcnt} \n" +
+				"      genotypes {name, display, distancePcnt} \n" +
 				"      subtypeText\n" +
 				"      frameShifts {gene {name}, position, isInsertion, isDeletion, size, NAs, text}\n" +
 				"    }\n" +
@@ -94,6 +94,47 @@ public class SierraSchemaTest {
 			.variables(arguments)
 			.build();
 
+		ExecutionResult result = gql.execute(input);
+		for (GraphQLError error : result.getErrors()) {
+			if (error instanceof ExceptionWhileDataFetching) {
+				((ExceptionWhileDataFetching) error).getException().printStackTrace();
+			}
+			else if (error instanceof InvalidSyntaxError) {
+				System.err.println(((InvalidSyntaxError) error).getMessage());
+				System.err.println(((InvalidSyntaxError) error).getLocations());
+			}
+		}
+		assertTrue(
+			"Found errors in query: " + Json.dumps(result.getErrors()),
+			result.getErrors().isEmpty());
+		System.out.println(Json.dumps(result.getData()));
+	}
+
+	@Test
+	public void testSubtypeEnum() {
+		Map<String, Object> arguments = new LinkedHashMap<>();
+		List<Map<String, String>> sequences =
+			FastaUtils.readStream(TestSequencesFiles.getTestSequenceInputStream(TestSequencesProperties.PROBLEM_SEQUENCES))
+			.stream()
+			.map(seq -> {
+				Map<String, String> seqMap = new LinkedHashMap<>();
+				seqMap.put("header", seq.getHeader());
+				seqMap.put("sequence", seq.getSequence());
+				return seqMap;
+			})
+			.collect(Collectors.toList());
+		arguments.put("sequences", sequences);
+		GraphQL gql = GraphQL.newGraphQL(SierraSchema.schema).build();
+		ExecutionInput input = ExecutionInput.newExecutionInput()
+			.query(
+				"query ($sequences: [UnalignedSequenceInput]) {\n" +
+				"  sequenceAnalysis(sequences: $sequences) {\n" +
+				"    subtypes {name} \n" +
+				"  }\n" +
+				"}")
+			.variables(arguments)
+			.build();
+	
 		ExecutionResult result = gql.execute(input);
 		for (GraphQLError error : result.getErrors()) {
 			if (error instanceof ExceptionWhileDataFetching) {

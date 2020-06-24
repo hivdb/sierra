@@ -36,7 +36,7 @@ public class SubtypeDef {
 				.name("Subtype")
 				.description("SubtypeName");
 			for (Genotype<?> subtype : Virus.getInstance(name).getGenotypes()) {
-				oSubtypeBuilder = oSubtypeBuilder.value(subtype.getIndexName(), subtype);
+				oSubtypeBuilder = oSubtypeBuilder.value(subtype.getIndexName(), subtype.getIndexName());
 			}
 			return oSubtypeBuilder.build();
 		}

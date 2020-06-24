@@ -39,6 +39,8 @@ import graphql.ExecutionInput;
 import graphql.ExecutionResult;
 import graphql.GraphQL;
 import graphql.GraphQLError;
+import graphql.SerializationError;
+import graphql.UnresolvedTypeError;
 
 @Path("/graphql")
 @Produces(MediaType.APPLICATION_JSON)
@@ -95,8 +97,17 @@ public class GraphQLService {
 			errorMap.put("type", error.getErrorType());
 			errorMap.put("message", error.getMessage());
 			errorMap.put("locations", error.getLocations());
-			if (error instanceof ExceptionWhileDataFetching) {
-				Throwable innerExc = ((ExceptionWhileDataFetching) error).getException();
+			Throwable innerExc = null;
+			if (error instanceof SerializationError) {
+				innerExc = ((SerializationError) error).getException();
+			}
+			else if (error instanceof ExceptionWhileDataFetching) {
+				innerExc = ((ExceptionWhileDataFetching) error).getException();
+			}
+			else if (error instanceof UnresolvedTypeError) {
+				innerExc = ((UnresolvedTypeError) error).getException();
+			}
+			if (innerExc != null) {
 				List<Map<String, Object>> details = new ArrayList<>();
 				do {
 					Map<String, Object> errDetail = new LinkedHashMap<>();
@@ -107,9 +118,6 @@ public class GraphQLService {
 					innerExc = innerExc.getCause();
 				} while (innerExc != null);
 				errorMap.put("details", details);
-				/*if (!(innerExc instanceof InvalidMutationStringException)) {
-					throw new RuntimeException("Unhandled exception", innerExc);
-				}*/
 			}
 			errors.add(errorMap);
 			/*else if (error instanceof InvalidSyntaxError) {
