@@ -85,7 +85,7 @@ public class SierraSchemaTest {
 				"        text\n" +
 				"      }\n" +
 				"      mixturePcnt\n" +
-				"      genotypes {name, display, distancePcnt} \n" +
+				"      genotypes {display, distancePcnt} \n" +
 				"      subtypeText\n" +
 				"      frameShifts {gene {name}, position, isInsertion, isDeletion, size, NAs, text}\n" +
 				"    }\n" +
