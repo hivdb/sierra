@@ -1005,7 +1005,17 @@ public class AAMutationTest {
 		 AAMutation<HIV> mutation = new AAMutation<HIV>(hiv.getGene("HIV1RT"), 184,
 					new char[] {'A', 'C', 'D', 'E', 'F', 'V', 'X', '_', '*', '-'});
 		 
-		 assertEquals(mutation.getASIFormat(), "M184ZdACDEFVZi");
+		 assertEquals(mutation.getASIFormat(), "M184X");
+		 
+		 mutation = new AAMutation<HIV>(hiv.getGene("HIV1RT"), 184,
+					new char[] {'A', 'C', 'D', 'E', '_', '-'});
+		 
+		 assertEquals(mutation.getASIFormat(), "M184dACDEi");
+		 
+		 mutation = new AAMutation<HIV>(hiv.getGene("HIV1RT"), 184,
+					new char[] {'A', 'C', 'D', 'E', 'F', '_', '-'});
+		 
+		 assertEquals(mutation.getASIFormat(), "M184X");
 	 }
 
 	 @Test
@@ -1013,7 +1023,12 @@ public class AAMutationTest {
 		 AAMutation<HIV> mutation = new AAMutation<HIV>(hiv.getGene("HIV1RT"), 184,
 				 	new char[] {'A', 'C', 'D', 'E', 'F', 'V', 'X', '_', '*', '-'});
 		 
-		 assertEquals(mutation.getHIVDBFormat(), "184*~ACDEFVX#");
+		 assertEquals(mutation.getHIVDBFormat(), "184X");
+		 
+		 mutation = new AAMutation<HIV>(hiv.getGene("HIV1RT"), 184,
+				 	new char[] {'F', 'V', 'X', '_', '*', '-'});
+		 
+		 assertEquals(mutation.getHIVDBFormat(), "184*~FVX#");
 	 }
 	 
 	 @Test
@@ -1083,6 +1098,5 @@ public class AAMutationTest {
 					new char[] {'A', 'C', 'D', 'E', 'F', 'M'});
 		 
 		 assertEquals(mutation.getComments().size(), 1);
-		 
 	 }
 }
