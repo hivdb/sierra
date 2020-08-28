@@ -22,7 +22,9 @@ import static org.junit.Assert.*;
 //import static org.mockito.Mockito.*;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -276,6 +278,16 @@ public class GeneDRTest {
 		GeneDR<HIV> geneDR = new GeneDR<HIV>(hiv.getGene("HIV1RT"), mutations, algorithm);
 		
 		assertFalse(geneDR.getMutScores(hiv.getDrug("NVP")).isEmpty());
+	}
+	
+	@Test
+	public void testGetMutScores$UseMaxScore() {
+		MutationSet<HIV> mutations = MutationSet.parseString(hiv.getGene("HIV1RT"), "RT184IV");
+		DrugResistanceAlgorithm<HIV> algorithm = hiv.getDrugResistAlgorithm("HIVDB_8.9");
+		GeneDR<HIV> geneDR = new GeneDR<HIV>(hiv.getGene("HIV1RT"), mutations, algorithm);
+		Map<MutationSet<HIV>, Double> expects = new HashMap<>();
+		expects.put(mutations, -10.0);
+		assertEquals(expects, geneDR.getDrugSusc(hiv.getDrug("AZT")).getPartialScores());
 	}
 	
 	@Test

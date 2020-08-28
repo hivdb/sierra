@@ -74,7 +74,7 @@ test {
 }
 
 jacocoTestReport {
-    classDirectories =  files(jacocoReportClasses)
+    classDirectories.from = files(jacocoReportClasses)
     reports {
         xml.enabled = true
         html.enabled = true
