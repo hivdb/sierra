@@ -313,7 +313,12 @@ public class SequenceReadsAnalysisDef {
 			.field(field -> field
 				.name("readDepthStats")
 				.type(oDescriptiveStatistics)
-				.description("Descriptive statistics of all read depth.")
+				.description("Descriptive statistics of read depth for all positions.")
+			)
+			.field(field -> field
+				.name("readDepthStatsDRP")
+				.type(oDescriptiveStatistics)
+				.description("Descriptive statistics of read depth for drug resistance positions.")
 			)
 			.field(field -> field
 				.name("codonReadsCoverage")
