@@ -20,8 +20,10 @@ package edu.stanford.hivdb.graphql;
 
 import graphql.schema.*;
 import static graphql.Scalars.*;
+import static graphql.schema.GraphQLArgument.newArgument;
 import static graphql.schema.GraphQLObjectType.newObject;
 
+import edu.stanford.hivdb.sequences.AlignedGeneSeq;
 import edu.stanford.hivdb.utilities.SimpleMemoizer;
 import edu.stanford.hivdb.viruses.Virus;
 
@@ -43,9 +45,37 @@ public class AlignedGeneSequenceDef {
 				coordinates("AlignedGeneSequence", "mutations"),
 				new MutationSetDataFetcher<>(virusIns, "mutations")
 			)
+			.dataFetcher(
+				coordinates("AlignedGeneSequence", "adjustedAlignedAAs"),
+				adjustedAlignedAAsFetcher
+			)
+			.dataFetcher(
+				coordinates("AlignedGeneSequence", "adjustedAlignedNAs"),
+				adjustedAlignedNAsFetcher
+			)
 			.build()
 		);
 	}
+
+	public static DataFetcher<String> adjustedAlignedAAsFetcher = env -> {
+		AlignedGeneSeq<?> seq = env.getSource();
+		String strain = env.getArgument("targetStrain");
+		if (strain == null) {
+			return seq.getAdjustedAlignedAAs();
+		} else {
+			return seq.getAdjustedAlignedAAs(strain);
+		}
+	};
+
+	public static DataFetcher<String> adjustedAlignedNAsFetcher = env -> {
+		AlignedGeneSeq<?> seq = env.getSource();
+		String strain = env.getArgument("targetStrain");
+		if (strain == null) {
+			return seq.getAdjustedAlignedNAs();
+		} else {
+			return seq.getAdjustedAlignedNAs(strain);
+		}
+	};
 
 	public static SimpleMemoizer<GraphQLObjectType> oAlignedGeneSequence = new SimpleMemoizer<>(
 		virusName -> (
@@ -119,6 +149,11 @@ public class AlignedGeneSequenceDef {
 				.type(GraphQLString)
 				.name("adjustedAlignedNAs")
 				.description("(HXB2 numbering) adjusted aligned DNA sequence without insertions and insertion gaps.")
+				.argument(newArgument()
+					.name("targetStrain")
+					.type(GraphQLString)
+					.description("Sequences alignment target strain.")
+				)
 			)
 			.field(field -> field
 				.type(GraphQLString)
@@ -126,6 +161,11 @@ public class AlignedGeneSequenceDef {
 				.description(
 					"(HXB2 numbering) adjusted aligned protein sequence without insertions and insertion gaps. " +
 					"Mixtures are represented as \"X\"."
+				)
+				.argument(newArgument()
+					.name("targetStrain")
+					.type(GraphQLString)
+					.description("Sequences alignment target strain.")
 				)
 			)
 			.field(field -> newMutationSet(virusName, field, "mutations")
