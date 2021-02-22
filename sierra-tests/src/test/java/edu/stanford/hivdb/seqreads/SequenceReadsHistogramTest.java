@@ -48,7 +48,7 @@ public class SequenceReadsHistogramTest {
 		posList.add(posCodonReads);
     	
     	GeneSequenceReads<HIV> seqReads = new GeneSequenceReads<HIV>(
-    			hiv.getGene("HIV1RT"), posList, 0.1);
+    			hiv.getGene("HIV1RT"), posList, 0.1, 0);
     	List<GeneSequenceReads<HIV>> allGeneSequenceReads = new ArrayList<>();
     	allGeneSequenceReads.add(seqReads);
     	
@@ -71,7 +71,7 @@ public class SequenceReadsHistogramTest {
 		posList.add(posCodonReads);
     	
     	GeneSequenceReads<HIV> seqReads = new GeneSequenceReads<HIV>(
-    			hiv.getGene("HIV1RT"), posList, 0.1);
+    			hiv.getGene("HIV1RT"), posList, 0.1, 0);
     	List<GeneSequenceReads<HIV>> allGeneSequenceReads = new ArrayList<>();
     	allGeneSequenceReads.add(seqReads);
     	
@@ -95,7 +95,7 @@ public class SequenceReadsHistogramTest {
 		posList.add(posCodonReads);
     	
     	GeneSequenceReads<HIV> seqReads = new GeneSequenceReads<HIV>(
-    			hiv.getGene("HIV1RT"), posList, 0.1);
+    			hiv.getGene("HIV1RT"), posList, 0.1, 0);
     	List<GeneSequenceReads<HIV>> allGeneSequenceReads = new ArrayList<>();
     	allGeneSequenceReads.add(seqReads);
     	
@@ -130,7 +130,7 @@ public class SequenceReadsHistogramTest {
 		posList.add(posCodonReads);
     	
     	GeneSequenceReads<HIV> seqReads = new GeneSequenceReads<HIV>(
-    			hiv.getGene("HIV1RT"), posList, 0.1);
+    			hiv.getGene("HIV1RT"), posList, 0.1, 0);
     	List<GeneSequenceReads<HIV>> allGeneSequenceReads = new ArrayList<>();
     	allGeneSequenceReads.add(seqReads);
     	
@@ -165,7 +165,7 @@ public class SequenceReadsHistogramTest {
 		posList.add(posCodonReads);
     	
     	GeneSequenceReads<HIV> seqReads = new GeneSequenceReads<HIV>(
-    			hiv.getGene("HIV1RT"), posList, 0.1);
+    			hiv.getGene("HIV1RT"), posList, 0.1, 0);
     	List<GeneSequenceReads<HIV>> allGeneSequenceReads = new ArrayList<>();
     	allGeneSequenceReads.add(seqReads);
     	
@@ -200,7 +200,7 @@ public class SequenceReadsHistogramTest {
 		posList.add(posCodonReads);
     	
     	GeneSequenceReads<HIV> seqReads = new GeneSequenceReads<HIV>(
-    			hiv.getGene("HIV1RT"), posList, 0.1);
+    			hiv.getGene("HIV1RT"), posList, 0.1, 0);
     	List<GeneSequenceReads<HIV>> allGeneSequenceReads = new ArrayList<>();
     	allGeneSequenceReads.add(seqReads);
     	
@@ -235,7 +235,7 @@ public class SequenceReadsHistogramTest {
 		posList.add(posCodonReads);
     	
     	GeneSequenceReads<HIV> seqReads = new GeneSequenceReads<HIV>(
-    			hiv.getGene("HIV1RT"), posList, 0.1);
+    			hiv.getGene("HIV1RT"), posList, 0.1, 0);
     	List<GeneSequenceReads<HIV>> allGeneSequenceReads = new ArrayList<>();
     	allGeneSequenceReads.add(seqReads);
     	
@@ -259,7 +259,7 @@ public class SequenceReadsHistogramTest {
 		posList.add(posCodonReads);
     	
     	GeneSequenceReads<HIV> seqReads = new GeneSequenceReads<HIV>(
-    			hiv.getGene("HIV1RT"), posList, 0.1);
+    			hiv.getGene("HIV1RT"), posList, 0.1, 0);
     	List<GeneSequenceReads<HIV>> allGeneSequenceReads = new ArrayList<>();
     	allGeneSequenceReads.add(seqReads);
     	
@@ -283,7 +283,7 @@ public class SequenceReadsHistogramTest {
 		posList.add(posCodonReads);
     	
     	GeneSequenceReads<HIV> seqReads = new GeneSequenceReads<HIV>(
-    			hiv.getGene("HIV1RT"), posList, 0.1);
+    			hiv.getGene("HIV1RT"), posList, 0.1, 0);
     	List<GeneSequenceReads<HIV>> allGeneSequenceReads = new ArrayList<>();
     	allGeneSequenceReads.add(seqReads);
     	
@@ -307,7 +307,7 @@ public class SequenceReadsHistogramTest {
 		posList.add(posCodonReads);
     	
     	GeneSequenceReads<HIV> seqReads = new GeneSequenceReads<HIV>(
-    			hiv.getGene("HIV1RT"), posList, 0.1);
+    			hiv.getGene("HIV1RT"), posList, 0.1, 0);
     	List<GeneSequenceReads<HIV>> allGeneSequenceReads = new ArrayList<>();
     	allGeneSequenceReads.add(seqReads);
     	
@@ -331,7 +331,7 @@ public class SequenceReadsHistogramTest {
 		posList.add(posCodonReads);
     	
     	GeneSequenceReads<HIV> seqReads = new GeneSequenceReads<HIV>(
-    			hiv.getGene("HIV1RT"), posList, 0.1);
+    			hiv.getGene("HIV1RT"), posList, 0.1, 0);
     	List<GeneSequenceReads<HIV>> allGeneSequenceReads = new ArrayList<>();
     	allGeneSequenceReads.add(seqReads);
     	

@@ -54,6 +54,7 @@ import static edu.stanford.hivdb.graphql.DrugResistanceDef.*;
 import static edu.stanford.hivdb.graphql.SubtypeV2Def.*;
 import static edu.stanford.hivdb.graphql.PositionCodonReadsDef.*;
 import static edu.stanford.hivdb.graphql.SequenceReadsHistogramDef.*;
+import static edu.stanford.hivdb.graphql.SequenceReadsHistogramByCodonCountDef.*;
 import static edu.stanford.hivdb.graphql.DrugResistanceAlgorithmDef.*;
 import static edu.stanford.hivdb.graphql.DescriptiveStatisticsDef.*;
 
@@ -97,14 +98,19 @@ public class SequenceReadsAnalysisDef {
 			throw new GraphQLException("`allReads` is a required field but doesn't have value");
 		}
 		Double minPrevalence = (Double) input.get("minPrevalence");
-		if (minPrevalence == null) {
-			throw new GraphQLException("`minPrevalence` is a required field but doesn't have value");
+		Long minCodonCount = (Long) input.get("minCodonCount");
+		if (minPrevalence == null && minCodonCount == null) {
+			throw new GraphQLException(
+				"Must specify prevalence cutoff via `minPrevalence` (percentage) or `minCodonCount` (fixed number)"
+			);
 		}
+		
 		return SequenceReads.fromCodonReadsTable(
 			(String) input.get("name"),
 			strain,
 			allReads,
-			(Double) input.get("minPrevalence"),
+			minPrevalence,
+			minCodonCount,
 			(Long) input.get("minReadDepth"));
 	}
 
@@ -127,17 +133,25 @@ public class SequenceReadsAnalysisDef {
 			.field(field -> field
 				.type(GraphQLFloat)
 				.name("minPrevalence")
-				.defaultValue(-1.0d)
+				.defaultValue(0.)
 				.description(
-					"The minimal prevalence cutoff to apply on each codon. " +
-					"Leave this field empty or specify a negative number to " +
-					"use the dynamic cutoff based on sequencing quality."))
+					"The minimal prevalence cutoff to apply on each **codon**. " +
+					"Default to zero if this field was left empty or had a " +
+					"negative number specified."))
+			.field(field -> field
+				.type(GraphQLLong)
+				.name("minCodonCount")
+				.defaultValue(0L)
+				.description(
+					"The minimal read count cutoff to apply on each **codon**. " +
+					"Default to zero if this field was left empty or had a " +
+					"negative number specified."))
 			.field(field -> field
 				.type(GraphQLLong)
 				.name("minReadDepth")
 				.defaultValue(1000L)
 				.description(
-					"The minal read depth for each codon. Default to 1000 " +
+					"The minal read depth for each **position**. Default to 1000 " +
 					"if this field was left empty or had a negative number" +
 					"specified."))
 			.build()
@@ -215,6 +229,10 @@ public class SequenceReadsAnalysisDef {
 				seqReadsHistogramDataFetcher
 			)
 			.dataFetcher(
+				coordinates("SequenceReadsAnalysis", "histogramByCodonCount"),
+				seqReadsHistogramByCodonCountDataFetcher
+			)
+			.dataFetcher(
 				coordinates("SequenceReadsAnalysis", "mutations"),
 				new MutationSetDataFetcher<>(virusIns, "mutations")
 			)
@@ -257,15 +275,19 @@ public class SequenceReadsAnalysisDef {
 				.type(GraphQLFloat)
 				.name("minPrevalence")
 				.description(
-					"The minimal prevalence cutoff applied on this sequence. " +
-					"If the same name field didn't specified in `SequenceReadsInput`, " +
-					"this value was dynamically selected by the program " +
-					"based on sequencing quality."))
+					"The minimal prevalence cutoff applied on this sequence."
+				))
+			.field(field -> field
+				.type(GraphQLLong)
+				.name("minCodonCount")
+				.description(
+					"The minimal codon count cutoff applied on this sequence."
+				))
 			.field(field -> field
 				.type(GraphQLLong)
 				.name("minReadDepth")
 				.description(
-					"The minimal read depth for each codon of the sequence reads."
+					"The minimal read depth for each position of the sequence reads."
 				))
 			.field(field -> field
 				.type(new GraphQLList(oGene.get(virusName)))
@@ -310,6 +332,7 @@ public class SequenceReadsAnalysisDef {
 					.description("One of the built-in ASI algorithms."))
 				.description("List of drug resistance results by genes."))
 			.field(oSeqReadsHistogramBuilder)
+			.field(oSeqReadsHistogramByCodonCountBuilder)
 			.field(field -> field
 				.name("readDepthStats")
 				.type(oDescriptiveStatistics)

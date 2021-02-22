@@ -148,7 +148,7 @@ public class PositionCodonReadsTest {
 		PositionCodonReads<HIV> posCodonReads = new PositionCodonReads<HIV>(
 				hiv.getGene("HIV1RT"), 215, 1000, allCodonReads);
 		
-		assertTrue(posCodonReads.getCodonWithPrevalence(0.1).isEmpty());
+		assertTrue(posCodonReads.getCodonWithPrevalence(0.1, 0L).isEmpty());
 		
 	}
 	
@@ -162,7 +162,7 @@ public class PositionCodonReadsTest {
 		PositionCodonReads<HIV> posCodonReads = new PositionCodonReads<HIV>(
 				hiv.getGene("HIV1RT"), 215, 1000, allCodonReads);
 		
-		assertEquals(posCodonReads.getCodonConsensus(0.2), "NNN");
+		assertEquals(posCodonReads.getCodonConsensus(0.2, 0L), "NNN");
 		
 	}
 	

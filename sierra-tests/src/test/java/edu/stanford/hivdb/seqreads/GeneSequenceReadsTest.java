@@ -30,7 +30,7 @@ public class GeneSequenceReadsTest {
 		posList.add(posCodonReads);
     	
     	GeneSequenceReads<HIV> seqReads = new GeneSequenceReads<HIV>(
-    			hiv.getGene("HIV1RT"), posList, 0.1);
+    			hiv.getGene("HIV1RT"), posList, 0.1, 0);
     	
     	assertNotNull(seqReads);
     }
@@ -47,7 +47,7 @@ public class GeneSequenceReadsTest {
 		posList.add(posCodonReads);
 		
 		GeneSequenceReads<HIV> seqReads = new GeneSequenceReads<HIV>(
-				posList, 0.1);
+				posList, 0.1, 0);
 		
 		assertNotNull(seqReads);
     }
@@ -64,7 +64,7 @@ public class GeneSequenceReadsTest {
 		posList.add(posCodonReads);
 		
 		GeneSequenceReads<HIV> seqReads = new GeneSequenceReads<HIV>(
-				posList, 0.1);
+				posList, 0.1, 0);
 		
 		assertEquals(seqReads.getGene(), hiv.getGene("HIV1RT"));  	
     }
@@ -81,7 +81,7 @@ public class GeneSequenceReadsTest {
 		posList.add(posCodonReads);
 		
 		GeneSequenceReads<HIV> seqReads = new GeneSequenceReads<HIV>(
-				posList, 0.1);
+				posList, 0.1, 0);
 		
 		assertEquals(seqReads.getFirstAA(), 215);  	
     }
@@ -98,7 +98,7 @@ public class GeneSequenceReadsTest {
 		posList.add(posCodonReads);
 		
 		GeneSequenceReads<HIV> seqReads = new GeneSequenceReads<HIV>(
-				posList, 0.1);
+				posList, 0.1, 0);
 		
 		assertEquals(seqReads.getLastAA(), 215);  	
     }
@@ -115,7 +115,7 @@ public class GeneSequenceReadsTest {
 		posList.add(posCodonReads);
 		
 		GeneSequenceReads<HIV> seqReads = new GeneSequenceReads<HIV>(
-				posList, 0.1);
+				posList, 0.1, 0);
 		
 		assertEquals(seqReads.getSize(), 0);  	
     }
@@ -132,7 +132,7 @@ public class GeneSequenceReadsTest {
 		posList.add(posCodonReads);
 		
 		GeneSequenceReads<HIV> seqReads = new GeneSequenceReads<HIV>(
-				posList, 0.1);
+				posList, 0.1, 0);
 		
 		assertEquals(seqReads.getNumPositions(), 1);  	
     }
@@ -149,7 +149,7 @@ public class GeneSequenceReadsTest {
 		posList.add(posCodonReads);
 		
 		GeneSequenceReads<HIV> seqReads = new GeneSequenceReads<HIV>(
-				posList, 0.1);
+				posList, 0.1, 0);
 		
 		assertEquals(seqReads.getAllPositionCodonReads().size(), 1);  	
     }
@@ -166,11 +166,11 @@ public class GeneSequenceReadsTest {
 		posList.add(posCodonReads);
 		
 		GeneSequenceReads<HIV> seqReads = new GeneSequenceReads<HIV>(
-				posList, 0.1);
+				posList, 0.1, 0);
 		
-		assertTrue(seqReads.getMutations(0.01) instanceof MutationSet);
+		assertTrue(seqReads.getMutations(0.01, 0) instanceof MutationSet);
 		
-		assertTrue(seqReads.getMutations(0.1) instanceof MutationSet);
+		assertTrue(seqReads.getMutations(0.1, 0) instanceof MutationSet);
     }
     
     @Test
@@ -185,7 +185,7 @@ public class GeneSequenceReadsTest {
 		posList.add(posCodonReads);
 		
 		GeneSequenceReads<HIV> seqReads = new GeneSequenceReads<HIV>(
-				posList, 0.1);
+				posList, 0.1, 0);
 		
 		assertEquals(seqReads.getMedianReadDepth(), 1000, 1);  	
     }
@@ -202,7 +202,7 @@ public class GeneSequenceReadsTest {
 		posList.add(posCodonReads);
 		
 		GeneSequenceReads<HIV> seqReads = new GeneSequenceReads<HIV>(
-				posList, 0.1);
+				posList, 0.1, 0);
 		
 		SequenceReadsHistogram<HIV> histogram = seqReads.getHistogram(
 				0.01, 0.2, 2, false, SequenceReadsHistogram.AggregationOption.Codon);
@@ -222,7 +222,7 @@ public class GeneSequenceReadsTest {
 		posList.add(posCodonReads);
 		
 		GeneSequenceReads<HIV> seqReads = new GeneSequenceReads<HIV>(
-				posList, 0.1);
+				posList, 0.1, 0);
 		
 		SequenceReadsHistogram<HIV> histogram = seqReads.getHistogram(
 				0.01, 0.2, new Double[] {0.01, 0.1}, false, SequenceReadsHistogram.AggregationOption.Codon);
@@ -242,7 +242,7 @@ public class GeneSequenceReadsTest {
 		posList.add(posCodonReads);
 		
 		GeneSequenceReads<HIV> seqReads = new GeneSequenceReads<HIV>(
-				posList, 0.1);
+				posList, 0.1, 0);
 		
 		
 		assertTrue(seqReads.getReadDepthStats() instanceof DescriptiveStatistics);
@@ -260,7 +260,7 @@ public class GeneSequenceReadsTest {
 		posList.add(posCodonReads);
 		
 		GeneSequenceReads<HIV> seqReads = new GeneSequenceReads<HIV>(
-				posList, 0.1);
+				posList, 0.1, 0);
 		
 		
 		assertTrue(seqReads.getMutations() instanceof MutationSet);
@@ -278,7 +278,7 @@ public class GeneSequenceReadsTest {
 		posList.add(posCodonReads);
 		
 		GeneSequenceReads<HIV> seqReads = new GeneSequenceReads<HIV>(
-				posList, 0.1);
+				posList, 0.1, 0);
 		
 		
 		assertEquals(seqReads.getAlignedNAs(false), "NNN");
@@ -296,14 +296,14 @@ public class GeneSequenceReadsTest {
 		posList.add(posCodonReads);
 		
 		GeneSequenceReads<HIV> seqReads = new GeneSequenceReads<HIV>(
-				posList, 0.1);
+				posList, 0.1, 0);
 		
 		
-		assertEquals(seqReads.getAlignedNAs(0.1, false), "NNN");
+		assertEquals(seqReads.getAlignedNAs(0.1, 0, false), "NNN");
 		
-		assertEquals(seqReads.getAlignedNAs(0.001, false), "AGW");
+		assertEquals(seqReads.getAlignedNAs(0.001, 0, false), "AGW");
 		
-		assertTrue(seqReads.getAlignedNAs(0.1, true).contains("NNN"));
+		assertTrue(seqReads.getAlignedNAs(0.1, 0, true).contains("NNN"));
     }
     
     @Test
@@ -318,7 +318,7 @@ public class GeneSequenceReadsTest {
 		posList.add(posCodonReads);
 		
 		GeneSequenceReads<HIV> seqReads = new GeneSequenceReads<HIV>(
-				posList, 0.1);
+				posList, 0.1, 0);
 		
 		
 		assertEquals(seqReads.getAlignedNAs(), "NNN");
@@ -336,7 +336,7 @@ public class GeneSequenceReadsTest {
 		posList.add(posCodonReads);
 		
 		GeneSequenceReads<HIV> seqReads = new GeneSequenceReads<HIV>(
-				posList, 0.1);
+				posList, 0.1, 0);
 		
 		
 		assertEquals(seqReads.getAlignedAAs(), "X");

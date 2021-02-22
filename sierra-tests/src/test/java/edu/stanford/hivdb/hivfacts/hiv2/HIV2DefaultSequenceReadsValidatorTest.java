@@ -32,7 +32,7 @@ public class HIV2DefaultSequenceReadsValidatorTest {
 		allReads.add(posCodonReads);
 		
 		SequenceReads<HIV2> seqReads = SequenceReads.fromCodonReadsTable(
-				"test", hiv.getStrain("HIV2A"), allReads, Double.valueOf(0.01), Long.valueOf(1000));
+				"test", hiv.getStrain("HIV2A"), allReads, 0.01, 0L, 1000L);
 		
 		List<ValidationResult> results = validator.validate(seqReads);
 		assertEquals(results.size(), 1);
@@ -40,21 +40,21 @@ public class HIV2DefaultSequenceReadsValidatorTest {
 		// Empty
 		allReads = new ArrayList<>();
 		seqReads = SequenceReads.fromCodonReadsTable(
-				"test", hiv.getStrain("HIV2A"), allReads, Double.valueOf(0.01), Long.valueOf(1000));
+				"test", hiv.getStrain("HIV2A"), allReads, 0.01, 0L, 1000L);
 		results = validator.validate(seqReads);
 		assertEquals(results.size(), 1);
 		
 		allReads = new ArrayList<>();
 		allReads.add(posCodonReads);
 		seqReads = SequenceReads.fromCodonReadsTable(
-				"test", hiv.getStrain("HIV2A"), allReads, Double.valueOf(0.01), Long.valueOf(10000));
+				"test", hiv.getStrain("HIV2A"), allReads, 0.01, 0L, 10000L);
 		results = validator.validateTrimmedPositions(seqReads);
 		assertEquals(results.size(), 1);
 		
 		
 		allReads = new ArrayList<>();
 		seqReads = SequenceReads.fromCodonReadsTable(
-				"test", hiv.getStrain("HIV2A"), allReads, Double.valueOf(0.01), Long.valueOf(1000));
+				"test", hiv.getStrain("HIV2A"), allReads, 0.01, 0L, 1000L);
 		results = validator.validateNoMissingPositions(seqReads);
 		assertEquals(results.size(), 0);
 		
@@ -93,7 +93,7 @@ public class HIV2DefaultSequenceReadsValidatorTest {
 		allReads.add(posCodonReads);
 		
 		seqReads = SequenceReads.fromCodonReadsTable(
-				"test", hiv.getStrain("HIV2A"), allReads, Double.valueOf(0.01), Long.valueOf(1000));
+				"test", hiv.getStrain("HIV2A"), allReads, 0.01, 0L, 1000L);
 		results = validator.validateNoTooManyApobec(seqReads);
 		assertEquals(results.size(), 0);
 	}
