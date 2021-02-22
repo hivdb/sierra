@@ -27338,7 +27338,7 @@
             "[L33F]": 5.0,
             "[F53L]": 10.0,
             "[F53L, L90M]": 10.0,
-            "[I54AV]": 30.0,
+            "[I54AV]": 15.0,
             "[I54AV, V82F]": 10.0,
             "[I54AV, L90M]": 10.0,
             "[V82F]": 15.0,
@@ -27396,7 +27396,7 @@
           "partialScores": {
             "[L33F]": 10.0,
             "[F53L, L90M]": 10.0,
-            "[I54AV]": 20.0,
+            "[I54AV]": 10.0,
             "[I54AV, V82F]": 10.0,
             "[I54AV, L90M]": 10.0,
             "[V82F]": 30.0,
@@ -27427,7 +27427,7 @@
           "partialScores": {
             "[L33F]": 5.0,
             "[F53L, L90M]": 10.0,
-            "[I54AV]": 30.0,
+            "[I54AV]": 15.0,
             "[I54AV, V82F]": 10.0,
             "[I54AV, L90M]": 10.0,
             "[V82F]": 30.0,
@@ -27457,7 +27457,7 @@
           "sir": "R",
           "partialScores": {
             "[L33F]": 5.0,
-            "[I54AV]": 30.0,
+            "[I54AV]": 15.0,
             "[I54AV, V82F]": 10.0,
             "[I54AV, L90M]": 5.0,
             "[V82F]": 30.0,
@@ -27490,7 +27490,7 @@
             "[K43T]": 10.0,
             "[F53L]": 10.0,
             "[F53L, L90M]": 10.0,
-            "[I54AV]": 40.0,
+            "[I54AV]": 20.0,
             "[I54AV, V82F]": 10.0,
             "[I54AV, L90M]": 10.0,
             "[V82F]": 30.0,
@@ -27522,7 +27522,7 @@
             "[L33F]": 5.0,
             "[F53L]": 15.0,
             "[F53L, L90M]": 10.0,
-            "[I54AV]": 30.0,
+            "[I54AV]": 15.0,
             "[I54AV, V82F]": 10.0,
             "[I54AV, L90M]": 10.0,
             "[V82F]": 10.0,
@@ -27553,7 +27553,7 @@
           "partialScores": {
             "[L33F]": 10.0,
             "[K43T]": 10.0,
-            "[I54AV]": 40.0
+            "[I54AV]": 20.0
           },
           "statement": "SCORE FROM(24I \u003d\u003e -5, 32I \u003d\u003e 5, 33F \u003d\u003e 10, 43T \u003d\u003e 10, MAX ( 46I \u003d\u003e 5, 46L \u003d\u003e 10, 46V \u003d\u003e 5 ), MAX ( 47A \u003d\u003e 30, 47V \u003d\u003e 30 ), MAX ( 50L \u003d\u003e -5, 50V \u003d\u003e -5 ), MAX ( 54A \u003d\u003e 20, 54L \u003d\u003e -10, 54M \u003d\u003e 20, 54S \u003d\u003e 20, 54T \u003d\u003e 20, 54V \u003d\u003e 20 ), 58E \u003d\u003e 15, 74P \u003d\u003e 25, 76V \u003d\u003e -5, MAX ( 82C \u003d\u003e 10, 82L \u003d\u003e 45, 82M \u003d\u003e 10, 82S \u003d\u003e 30, 82T \u003d\u003e 45 ), 83D \u003d\u003e 25, MAX ( 84A \u003d\u003e 60, 84C \u003d\u003e 30, 84V \u003d\u003e 30 ), (46IL AND 84V AND 90M) \u003d\u003e 5)",
           "triggered": true
@@ -27580,7 +27580,7 @@
             "[L10IV]": 0.25,
             "[K20R]": 0.25,
             "[L33F]": 0.25,
-            "[I54AV]": 2.5,
+            "[I54AV]": 1.5,
             "[A71V]": 0.25,
             "[V82F]": 0.5,
             "[L90M]": 1.0
@@ -27639,7 +27639,7 @@
             "[K20R]": 0.25,
             "[L33F]": 0.5,
             "[K43T]": 0.5,
-            "[I54AV]": 1.5,
+            "[I54AV]": 1.0,
             "[V82F]": 1.0,
             "[L90M]": 0.25
           },
@@ -27668,7 +27668,7 @@
             "[L10IV]": 0.25,
             "[K20R]": 0.25,
             "[K43T]": 0.5,
-            "[I54AV]": 2.5,
+            "[I54AV]": 1.5,
             "[I62V]": 0.25,
             "[A71V]": 0.25,
             "[V82F]": 2.0,
@@ -27701,7 +27701,7 @@
             "[L33F]": 0.5,
             "[K43T]": 0.5,
             "[F53L]": 0.5,
-            "[I54AV]": 2.5,
+            "[I54AV]": 1.5,
             "[I64V]": 0.25,
             "[A71V]": 0.25,
             "[V82F]": 1.0,
@@ -27733,7 +27733,7 @@
             "[K20R]": 0.25,
             "[L33F]": 0.25,
             "[K43T]": 0.5,
-            "[I54AV]": 2.5,
+            "[I54AV]": 1.5,
             "[I62V]": 0.25,
             "[I64V]": 0.25,
             "[A71V]": 0.25,
@@ -27765,7 +27765,7 @@
             "[L10IV]": 0.25,
             "[K20R]": 0.25,
             "[F53L]": 1.0,
-            "[I54AV]": 2.5,
+            "[I54AV]": 1.5,
             "[I62V]": 0.25,
             "[A71V]": 1.0,
             "[V82F]": 0.25,
@@ -31753,7 +31753,7 @@
           "sir": "R",
           "partialScores": {
             "[L100LI]": 2.0,
-            "[K101KPQT]": 2.5,
+            "[K101KPQT]": 2.0,
             "[K103N]": 2.0
           },
           "statement": "SCORE FROM ( 90I \u003d\u003e 0.5, 98G \u003d\u003e 0.5, 100I \u003d\u003e 2, MAX ( 101P \u003d\u003e 2, 101EHNQ \u003d\u003e 0.5 ), MAX ( 103HNST \u003d\u003e 2, 103R \u003d\u003e 0.5 ), MAX ( 106M \u003d\u003e 2, 106A \u003d\u003e 1.5, 106I \u003d\u003e 0.5 ), 108I \u003d\u003e 0.5, MAX ( 138Q \u003d\u003e 1.5, 138K \u003d\u003e 0.5 ), 179DE \u003d\u003e 0.5, 181CIV \u003d\u003e 2, 188CHFL \u003d\u003e 2, 190ACEQSTV \u003d\u003e 2, 221Y \u003d\u003e 0.5, 225H \u003d\u003e 1.5, 227CL \u003d\u003e 0.5, 230IL \u003d\u003e 2, 238NT \u003d\u003e 0.5, 318F \u003d\u003e 0.5 )",
@@ -31779,7 +31779,7 @@
           "sir": "R",
           "partialScores": {
             "[L100LI]": 1.5,
-            "[K101KPQT]": 2.0,
+            "[K101KPQT]": 1.5,
             "[K103N]": 0.25
           },
           "statement": "SCORE FROM ( 90I \u003d\u003e 0.25, 98G \u003d\u003e 0.25, 100I \u003d\u003e 1.5, MAX ( 101P \u003d\u003e 1.5, 101EHNQ \u003d\u003e 0.5, 101R \u003d\u003e 0.25 ), 103HNST \u003d\u003e 0.25, MAX ( 106I \u003d\u003e 0.5, 106AM \u003d\u003e 0.25 ), 108I \u003d\u003e 0.25, MAX ( 138KQ \u003d\u003e 0.75, 138A \u003d\u003e 0.5 ), MAX ( 179F \u003d\u003e 0.75, 179DET \u003d\u003e 0.25 ), 181CIV \u003d\u003e 1.5, 188CHFL \u003d\u003e 0.25, MAX ( 190CEQSTV \u003d\u003e 0.75, 190A \u003d\u003e 0.5 ), 221Y \u003d\u003e 0.25, 225H \u003d\u003e 0.25, MAX ( 227C \u003d\u003e 1.5, 227L \u003d\u003e 0.25 ), 230IL \u003d\u003e 1.5, 234I \u003d\u003e 0.25, 236L \u003d\u003e 0.25, 238NT \u003d\u003e 0.25, 318F \u003d\u003e 0.25 )",
@@ -31849,7 +31849,7 @@
           "sir": "R",
           "partialScores": {
             "[L100LI]": 2.0,
-            "[K101KPQT]": 2.5,
+            "[K101KPQT]": 2.0,
             "[K103N]": 2.0
           },
           "statement": "SCORE FROM ( 98G \u003d\u003e 0.5, 100I \u003d\u003e 2, MAX ( 101P \u003d\u003e 2, 101EHNQ \u003d\u003e 0.5 ), MAX ( 103HNST \u003d\u003e 2, 103R \u003d\u003e 0.5 ), MAX ( 106AM \u003d\u003e 2, 106I \u003d\u003e 0.5 ), 108I \u003d\u003e 0.5, 138KQ \u003d\u003e 1, 179DE \u003d\u003e 0.5, 181CIV \u003d\u003e 2, 188CHL \u003d\u003e 2, 190ACEQSTV \u003d\u003e 2, 221Y \u003d\u003e 0.5, 227CL \u003d\u003e 1, 230IL \u003d\u003e 2, 238NT \u003d\u003e 1, 318F \u003d\u003e 1 )",
@@ -31875,7 +31875,7 @@
           "sir": "R",
           "partialScores": {
             "[L100LI, K103N]": 2.5,
-            "[K101KPQT]": 3.0,
+            "[K101KPQT]": 2.5,
             "[V179I]": 0.5
           },
           "statement": "SCORE FROM ( 90I \u003d\u003e 0.5, MAX(101E \u003d\u003e 1.5, 101P \u003d\u003e 2.5, 101QT \u003d\u003e 0.5, (101E AND 184IV) \u003d\u003e 2.5), 103S \u003d\u003e 0.5, 106AI \u003d\u003e 0.5, 108I \u003d\u003e 0.5, MAX(138AGKQRS \u003d\u003e 1.5, (138K AND 184IV) \u003d\u003e 2.5), MAX(179DTI \u003d\u003e 0.5, 179L \u003d\u003e 1.5), MAX(181C \u003d\u003e 1.5, 181IV \u003d\u003e 2.5), 188L \u003d\u003e 2.5, 189I \u003d\u003e 0.5, 190E \u003d\u003e 0.5, 221Y \u003d\u003e 1.5, 227C \u003d\u003e 1.5, 230IL \u003d\u003e 1.5, (100I AND 103N) \u003d\u003e 2.5)",
@@ -31945,7 +31945,7 @@
             "[I54V]": 15.0,
             "[I54V, V82VAFS]": 10.0,
             "[I54V, L90M]": 10.0,
-            "[V82VAFS]": 60.0,
+            "[V82VAFS]": 30.0,
             "[V82VAFS, L90M]": 10.0,
             "[L90M]": 25.0
           },
@@ -32001,7 +32001,7 @@
             "[I54V]": 10.0,
             "[I54V, V82VAFS]": 10.0,
             "[I54V, L90M]": 10.0,
-            "[V82VAFS]": 60.0,
+            "[V82VAFS]": 30.0,
             "[V82VAFS, L90M]": 10.0,
             "[L90M]": 20.0
           },
@@ -32031,7 +32031,7 @@
             "[I54V]": 15.0,
             "[I54V, V82VAFS]": 10.0,
             "[I54V, L90M]": 10.0,
-            "[V82VAFS]": 90.0,
+            "[V82VAFS]": 30.0,
             "[V82VAFS, L90M]": 10.0,
             "[L90M]": 30.0
           },
@@ -32060,7 +32060,7 @@
             "[I54V]": 15.0,
             "[I54V, V82VAFS]": 10.0,
             "[I54V, L90M]": 5.0,
-            "[V82VAFS]": 90.0,
+            "[V82VAFS]": 30.0,
             "[V82VAFS, L90M]": 5.0,
             "[L90M]": 15.0
           },
@@ -32091,7 +32091,7 @@
             "[I54V]": 20.0,
             "[I54V, V82VAFS]": 10.0,
             "[I54V, L90M]": 10.0,
-            "[V82VAFS]": 90.0,
+            "[V82VAFS]": 30.0,
             "[V82VAFS, L90M]": 10.0,
             "[L90M]": 60.0
           },
@@ -32122,7 +32122,7 @@
             "[I54V]": 15.0,
             "[I54V, V82VAFS]": 10.0,
             "[I54V, L90M]": 10.0,
-            "[V82VAFS]": 40.0,
+            "[V82VAFS]": 15.0,
             "[V82VAFS, L90M]": 10.0,
             "[L90M]": 45.0
           },
@@ -32230,7 +32230,7 @@
           "partialScores": {
             "[L10I]": 0.25,
             "[I54V]": 1.0,
-            "[V82VAFS]": 1.5,
+            "[V82VAFS]": 1.0,
             "[L90M]": 0.25
           },
           "statement": "SCORE FROM ( MAX ( 10F \u003d\u003e 0.5, 10IV \u003d\u003e 0.25 ), MAX ( 20T \u003d\u003e 0.5, 20IRMV \u003d\u003e 0.25 ), 24I \u003d\u003e 0.5, 32I \u003d\u003e 0.5, MAX ( 33F \u003d\u003e 0.5, 33I \u003d\u003e 0.25 ), MAX ( 43T \u003d\u003e 0.5, 43R \u003d\u003e 0.25 ), 46IL \u003d\u003e 0.5, 47AV \u003d\u003e 1, MAX ( 48M \u003d\u003e 1, 48A \u003d\u003e 0.5, 48V \u003d\u003e 0.25 ), MAX ( 50V \u003d\u003e 2, 50L \u003d\u003e -0.25 ), MAX ( 54MTV \u003d\u003e 1, 54AL \u003d\u003e 0.5 ), 58E \u003d\u003e 0.5, 76V \u003d\u003e 1.5, MAX ( 82F \u003d\u003e 1, 82AMST \u003d\u003e 0.5 ), 84ACV \u003d\u003e 1.5, 88S \u003d\u003e -0.25, MAX ( 89TV \u003d\u003e 0.5, 89I \u003d\u003e 0.25 ), 90M \u003d\u003e 0.25 )",
@@ -32288,7 +32288,7 @@
             "[F53L]": 0.5,
             "[I54V]": 1.0,
             "[A71V]": 0.25,
-            "[V82VAFS]": 1.5,
+            "[V82VAFS]": 1.0,
             "[L90M]": 0.5
           },
           "statement": "SCORE FROM ( MAX ( 10F \u003d\u003e 0.5, 10IV \u003d\u003e 0.25 ), MAX ( 20T \u003d\u003e 0.5, 20IMRV \u003d\u003e 0.25 ), 24FI \u003d\u003e 0.5, MAX ( 32i \u003d\u003e 1.5, 32I \u003d\u003e 0.5 ), MAX ( 33F \u003d\u003e 0.5, 33I \u003d\u003e 0.25 ), MAX ( 43T \u003d\u003e 0.5, 43R \u003d\u003e 0.25 ), 46IL \u003d\u003e 0.5, MAX ( 47A \u003d\u003e 2, 47V \u003d\u003e 1 ), MAX ( 48M \u003d\u003e 1, 48AV \u003d\u003e 0.5 ), MAX ( 50V \u003d\u003e 1.5, 50L \u003d\u003e -0.25 ), 53L \u003d\u003e 0.5, MAX ( 54AT \u003d\u003e 1.5, 54SV \u003d\u003e 1, 54LM \u003d\u003e 0.5 ), 64MV \u003d\u003e 0.25, MAX ( 71I \u003d\u003e 0.5, 71TV \u003d\u003e 0.25 ), 73STC \u003d\u003e 0.5, 76V \u003d\u003e 1.5, 77ATV \u003d\u003e 0.25, MAX ( 82FS \u003d\u003e 1, 82ALMT \u003d\u003e 0.5 ), MAX ( 84A \u003d\u003e 1, 84V \u003d\u003e 0.5 ), 88D \u003d\u003e 0.5, 90M \u003d\u003e 0.5 )",
@@ -32317,7 +32317,7 @@
             "[I54V]": 1.0,
             "[I62V]": 0.25,
             "[A71V]": 0.25,
-            "[V82VAFS]": 1.5,
+            "[V82VAFS]": 1.0,
             "[L90M]": 2.0
           },
           "statement": "SCORE FROM ( MAX ( 10F \u003d\u003e 0.5, 10IV \u003d\u003e 0.25 ), MAX ( 20T \u003d\u003e 0.5, 20IMRV \u003d\u003e 0.25 ), 23I \u003d\u003e 0.5, 24I \u003d\u003e 0.5, 30N \u003d\u003e 2, 32I \u003d\u003e 0.5, 33FI \u003d\u003e 0.25, 35GN \u003d\u003e 0.25, MAX ( 43T \u003d\u003e 0.5, 43R \u003d\u003e 0.25 ), 46IL \u003d\u003e 0.5, 48AV \u003d\u003e 0.5, 50L \u003d\u003e -0.25, MAX ( 54AST \u003d\u003e 1.5, 54V \u003d\u003e 1, 54LM \u003d\u003e 0.5 ), 58E \u003d\u003e 0.5, 62V \u003d\u003e 0.25, 64V \u003d\u003e 0.25, 66F \u003d\u003e 0.5, MAX ( 71I \u003d\u003e 0.5, 71TV \u003d\u003e 0.25 ), 73STC \u003d\u003e 0.5, MAX ( 74P \u003d\u003e 0.5, 74AS \u003d\u003e 0.25 ), 76V \u003d\u003e 0.5, MAX ( 82ATF \u003d\u003e 1, 82LMS \u003d\u003e 0.5 ), MAX ( 84AC \u003d\u003e 1.5, 84V \u003d\u003e 0.5 ), MAX ( 88S \u003d\u003e 1.5, 88D \u003d\u003e 1 ), MAX ( 89TV \u003d\u003e 0.5, 89I \u003d\u003e 0.25 ), 90M \u003d\u003e 2, 93M \u003d\u003e 0.5 )",
@@ -32373,7 +32373,7 @@
           "sir": "I",
           "partialScores": {
             "[I54V]": 1.0,
-            "[V82VAFS]": 1.75,
+            "[V82VAFS]": 1.5,
             "[L90M]": 0.25
           },
           "statement": "SCORE FROM ( 11L \u003d\u003e 0.25, 32I \u003d\u003e 0.25, 33F \u003d\u003e 0.5, 38W \u003d\u003e 0.25, 41T \u003d\u003e 1, 43T \u003d\u003e 1, 45I \u003d\u003e 0.25, 46L \u003d\u003e 0.5, MAX ( 47V \u003d\u003e 2, 47A \u003d\u003e 0.5 ), 50L \u003d\u003e -0.25, MAX ( 54AMV \u003d\u003e 1, 54ST \u003d\u003e 0.5 ), 58E \u003d\u003e 1.5, 71L \u003d\u003e 0.25, 73T \u003d\u003e 0.25, 74P \u003d\u003e 2, MAX ( 82T \u003d\u003e 2, 82LS \u003d\u003e 1.5, 82AFM \u003d\u003e 0.25 ), 83D \u003d\u003e 1.5, 84ACV \u003d\u003e 1, 89TV \u003d\u003e 0.25, 90M \u003d\u003e 0.25 )",
@@ -37359,7 +37359,7 @@
           "partialScores": {
             "[M46I]": 10.0,
             "[M46I, L90M]": 10.0,
-            "[G73ST]": 20.0,
+            "[G73ST]": 10.0,
             "[G73ST, L90M]": 10.0,
             "[L90M]": 25.0
           },
@@ -37411,7 +37411,7 @@
           "partialScores": {
             "[M46I]": 10.0,
             "[M46I, L90M]": 10.0,
-            "[G73ST]": 20.0,
+            "[G73ST]": 10.0,
             "[G73ST, L90M]": 10.0,
             "[L90M]": 20.0
           },
@@ -37439,7 +37439,7 @@
           "partialScores": {
             "[M46I]": 10.0,
             "[M46I, L90M]": 10.0,
-            "[G73ST]": 30.0,
+            "[G73ST]": 15.0,
             "[G73ST, L90M]": 10.0,
             "[L90M]": 30.0
           },
@@ -37466,7 +37466,7 @@
           "sir": "I",
           "partialScores": {
             "[M46I]": 10.0,
-            "[G73ST]": 10.0,
+            "[G73ST]": 5.0,
             "[L90M]": 15.0
           },
           "statement": "SCORE FROM(10F \u003d\u003e 5, MAX ( 24F \u003d\u003e 5, 24I \u003d\u003e 10, 24M \u003d\u003e 5 ), 32I \u003d\u003e 15, 33F \u003d\u003e 5, MAX ( 46I \u003d\u003e 10, 46L \u003d\u003e 10, 46V \u003d\u003e 5 ), MAX ( 47A \u003d\u003e 60, 47V \u003d\u003e 15 ), MAX ( 48A \u003d\u003e 10, 48L \u003d\u003e 10, 48M \u003d\u003e 10, 48Q \u003d\u003e 10, 48S \u003d\u003e 10, 48T \u003d\u003e 10, 48V \u003d\u003e 10 ), MAX ( 50L \u003d\u003e -10, 50V \u003d\u003e 30 ), MAX ( 54A \u003d\u003e 15, 54L \u003d\u003e 20, 54M \u003d\u003e 20, 54S \u003d\u003e 15, 54T \u003d\u003e 15, 54V \u003d\u003e 15 ), MAX ( 73A \u003d\u003e 5, 73C \u003d\u003e 5, 73D \u003d\u003e 5, 73S \u003d\u003e 5, 73T \u003d\u003e 5, 73V \u003d\u003e 5 ), 74P \u003d\u003e 5, 76V \u003d\u003e 30, MAX ( 82A \u003d\u003e 30, 82C \u003d\u003e 15, 82F \u003d\u003e 30, 82L \u003d\u003e 10, 82M \u003d\u003e 25, 82S \u003d\u003e 30, 82T \u003d\u003e 30 ), MAX ( 84A \u003d\u003e 60, 84C \u003d\u003e 30, 84V \u003d\u003e 30 ), 90M \u003d\u003e 15, (11IL AND 32I) \u003d\u003e 5, (11IL AND 54LM) \u003d\u003e 5, (32I AND 47AV) \u003d\u003e 5, (32I AND 54LM) \u003d\u003e 5, (32I AND 76V) \u003d\u003e 5, (32I AND 84V) \u003d\u003e 5, (32I AND 89V) \u003d\u003e 5, (46IL AND 84V AND 90M) \u003d\u003e 5, (46ILV AND 76V) \u003d\u003e 10, (46ILV AND 82ACFLMST) \u003d\u003e 10, (47AV AND 54LM) \u003d\u003e 5, (47AV AND 84V) \u003d\u003e 5, (54ALMSTV AND 82ACFLMST) \u003d\u003e 10, (54ALMSTV AND 90M) \u003d\u003e 5, (54LM AND 84V) \u003d\u003e 5, (54LM AND 89V) \u003d\u003e 5, (82ACFLMST AND 90M) \u003d\u003e 5)",
@@ -37493,7 +37493,7 @@
           "partialScores": {
             "[M46I]": 30.0,
             "[M46I, L90M]": 10.0,
-            "[G73ST]": 30.0,
+            "[G73ST]": 15.0,
             "[G73ST, L90M]": 10.0,
             "[L90M]": 60.0
           },
@@ -37521,7 +37521,7 @@
           "partialScores": {
             "[M46I]": 10.0,
             "[M46I, L90M]": 5.0,
-            "[G73ST]": 30.0,
+            "[G73ST]": 15.0,
             "[G73ST, L90M]": 10.0,
             "[L90M]": 45.0
           },
@@ -38569,7 +38569,7 @@
           "sir": "R",
           "partialScores": {
             "[L10I]": 0.25,
-            "[K20IT]": 1.25,
+            "[K20IT]": 1.0,
             "[A71V]": 0.25,
             "[G73GS]": 0.5,
             "[T74TP]": 1.0,
@@ -38625,7 +38625,7 @@
           "sir": "S",
           "partialScores": {
             "[L10I]": 0.25,
-            "[K20IT]": 0.75,
+            "[K20IT]": 0.5,
             "[L90M]": 0.25
           },
           "statement": "SCORE FROM ( MAX ( 10F \u003d\u003e 0.5, 10IV \u003d\u003e 0.25 ), MAX ( 20T \u003d\u003e 0.5, 20IRMV \u003d\u003e 0.25 ), 24I \u003d\u003e 0.5, 32I \u003d\u003e 0.5, MAX ( 33F \u003d\u003e 0.5, 33I \u003d\u003e 0.25 ), MAX ( 43T \u003d\u003e 0.5, 43R \u003d\u003e 0.25 ), 46IL \u003d\u003e 0.5, 47AV \u003d\u003e 1, MAX ( 48M \u003d\u003e 1, 48A \u003d\u003e 0.5, 48V \u003d\u003e 0.25 ), MAX ( 50V \u003d\u003e 2, 50L \u003d\u003e -0.25 ), MAX ( 54MTV \u003d\u003e 1, 54AL \u003d\u003e 0.5 ), 58E \u003d\u003e 0.5, 76V \u003d\u003e 1.5, MAX ( 82F \u003d\u003e 1, 82AMST \u003d\u003e 0.5 ), 84ACV \u003d\u003e 1.5, 88S \u003d\u003e -0.25, MAX ( 89TV \u003d\u003e 0.5, 89I \u003d\u003e 0.25 ), 90M \u003d\u003e 0.25 )",
@@ -38651,7 +38651,7 @@
           "sir": "R",
           "partialScores": {
             "[L10I]": 0.25,
-            "[K20IT]": 0.75,
+            "[K20IT]": 0.5,
             "[I62V]": 0.25,
             "[A71V]": 0.25,
             "[G73GS]": 0.5,
@@ -38681,7 +38681,7 @@
           "sir": "I",
           "partialScores": {
             "[L10I]": 0.25,
-            "[K20IT]": 0.75,
+            "[K20IT]": 0.5,
             "[A71V]": 0.25,
             "[G73GS]": 0.5,
             "[V77VI]": 0.25,
@@ -38710,7 +38710,7 @@
           "sir": "R",
           "partialScores": {
             "[L10I]": 0.25,
-            "[K20IT]": 0.75,
+            "[K20IT]": 0.5,
             "[I62V]": 0.25,
             "[A71V]": 0.25,
             "[G73GS]": 0.5,
@@ -38740,7 +38740,7 @@
           "sir": "R",
           "partialScores": {
             "[L10I]": 0.25,
-            "[K20IT]": 0.75,
+            "[K20IT]": 0.5,
             "[I62V]": 0.25,
             "[A71V]": 1.0,
             "[G73GS]": 0.5,
@@ -41431,7 +41431,7 @@
             "[M41L, T215Y]": 15.0,
             "[A62AV]": 5.0,
             "[T69Insertion]": 60.0,
-            "[M184MIV]": 30.0,
+            "[M184MIV]": 15.0,
             "[L210LW]": 5.0,
             "[L210LW, T215Y]": 10.0,
             "[T215Y]": 10.0
@@ -41463,7 +41463,7 @@
             "[M41L, T215Y]": 10.0,
             "[A62AV]": 5.0,
             "[T69Insertion]": 60.0,
-            "[M184MIV]": -20.0,
+            "[M184MIV]": -10.0,
             "[L210LW]": 15.0,
             "[L210LW, T215Y]": 10.0,
             "[T215Y]": 40.0
@@ -41495,7 +41495,7 @@
             "[M41L, T215Y]": 10.0,
             "[A62AV]": 5.0,
             "[T69Insertion]": 60.0,
-            "[M184MIV]": -20.0,
+            "[M184MIV]": -10.0,
             "[L210LW]": 15.0,
             "[L210LW, T215Y]": 10.0,
             "[T215Y]": 40.0
@@ -41527,7 +41527,7 @@
             "[M41L, T215Y]": 10.0,
             "[A62AV]": 5.0,
             "[T69Insertion]": 60.0,
-            "[M184MIV]": 20.0,
+            "[M184MIV]": 10.0,
             "[L210LW]": 10.0,
             "[L210LW, T215Y]": 10.0,
             "[T215Y]": 15.0
@@ -41624,7 +41624,7 @@
             "[M41L, T215Y]": 5.0,
             "[A62AV]": 5.0,
             "[T69Insertion]": 30.0,
-            "[M184MIV]": 120.0,
+            "[M184MIV]": 60.0,
             "[L210LW, T215Y]": 5.0
           },
           "statement": "SCORE FROM(62V \u003d\u003e 5, MAX ( 65N \u003d\u003e 15, 65R \u003d\u003e 30 ), 67d \u003d\u003e 15, 68d \u003d\u003e 15, MAX ( 69i \u003d\u003e 30, 69d \u003d\u003e 15 ), MAX ( 70E \u003d\u003e 10, 70G \u003d\u003e 10, 70N \u003d\u003e 10, 70Q \u003d\u003e 10, 70S \u003d\u003e 10, 70T \u003d\u003e 10, 70d \u003d\u003e 15 ), 75I \u003d\u003e 5, 77L \u003d\u003e 5, 116Y \u003d\u003e 5, MAX ( 151L \u003d\u003e 10, 151M \u003d\u003e 15 ), MAX ( 184I \u003d\u003e 60, 184V \u003d\u003e 60 ), (210W AND 215FY) \u003d\u003e 5, (41L AND 210W AND 215FY) \u003d\u003e 5, (41L AND 215FY) \u003d\u003e 5, (41L AND 67EGN AND 215FY) \u003d\u003e 5, (67EGN AND 70R AND 219ENQR) \u003d\u003e 10, (77L AND 116Y AND 151M) \u003d\u003e 15)",
@@ -41653,7 +41653,7 @@
             "[M41L, T215Y]": 5.0,
             "[A62AV]": 5.0,
             "[T69Insertion]": 30.0,
-            "[M184MIV]": 120.0,
+            "[M184MIV]": 60.0,
             "[L210LW, T215Y]": 5.0
           },
           "statement": "SCORE FROM(62V \u003d\u003e 5, MAX ( 65N \u003d\u003e 15, 65R \u003d\u003e 30 ), 67d \u003d\u003e 15, 68d \u003d\u003e 15, MAX ( 69i \u003d\u003e 30, 69d \u003d\u003e 15 ), MAX ( 70E \u003d\u003e 10, 70G \u003d\u003e 10, 70N \u003d\u003e 10, 70Q \u003d\u003e 10, 70S \u003d\u003e 10, 70T \u003d\u003e 10, 70d \u003d\u003e 15 ), 75I \u003d\u003e 5, 77L \u003d\u003e 5, 116Y \u003d\u003e 5, MAX ( 151L \u003d\u003e 10, 151M \u003d\u003e 15 ), MAX ( 184I \u003d\u003e 60, 184V \u003d\u003e 60 ), (210W AND 215FY) \u003d\u003e 5, (41L AND 210W AND 215FY) \u003d\u003e 5, (41L AND 215FY) \u003d\u003e 5, (41L AND 67EGN AND 215FY) \u003d\u003e 5, (67EGN AND 70R AND 219ENQR) \u003d\u003e 10, (77L AND 116Y AND 151M) \u003d\u003e 15)",
@@ -41728,7 +41728,7 @@
             "[M41L, T215Y]": 10.0,
             "[A62AV]": 5.0,
             "[T69Insertion]": 60.0,
-            "[M184MIV]": -20.0,
+            "[M184MIV]": -10.0,
             "[L210LW]": 5.0,
             "[L210LW, T215Y]": 10.0,
             "[T215Y]": 10.0
@@ -67912,7 +67912,7 @@
           "sir": "R",
           "partialScores": {
             "[K65KR]": 45.0,
-            "[M184MIV]": 30.0
+            "[M184MIV]": 15.0
           },
           "statement": "SCORE FROM(41L \u003d\u003e 5, 62V \u003d\u003e 5, MAX ( 65E \u003d\u003e 10, 65N \u003d\u003e 30, 65R \u003d\u003e 45 ), MAX ( 67E \u003d\u003e 5, 67G \u003d\u003e 5, 67H \u003d\u003e 5, 67N \u003d\u003e 5, 67S \u003d\u003e 5, 67T \u003d\u003e 5, 67d \u003d\u003e 30 ), 68d \u003d\u003e 15, MAX ( 69G \u003d\u003e 10, 69i \u003d\u003e 60, 69d \u003d\u003e 15 ), MAX ( 70E \u003d\u003e 15, 70G \u003d\u003e 15, 70N \u003d\u003e 15, 70Q \u003d\u003e 15, 70R \u003d\u003e 5, 70S \u003d\u003e 15, 70T \u003d\u003e 15, 70d \u003d\u003e 15 ), MAX ( 74I \u003d\u003e 30, 74V \u003d\u003e 30 ), 75I \u003d\u003e 5, 77L \u003d\u003e 5, 115F \u003d\u003e 60, 116Y \u003d\u003e 10, MAX ( 151L \u003d\u003e 30, 151M \u003d\u003e 60 ), MAX ( 184I \u003d\u003e 15, 184V \u003d\u003e 15 ), 210W \u003d\u003e 5, MAX ( 215A \u003d\u003e 5, 215C \u003d\u003e 5, 215D \u003d\u003e 5, 215E \u003d\u003e 5, 215F \u003d\u003e 10, 215I \u003d\u003e 5, 215L \u003d\u003e 5, 215N \u003d\u003e 5, 215S \u003d\u003e 5, 215V \u003d\u003e 5, 215Y \u003d\u003e 10 ), MAX ( 219E \u003d\u003e 5, 219N \u003d\u003e 5, 219Q \u003d\u003e 5, 219R \u003d\u003e 5 ), (40F AND 41L AND 210W AND 215FY) \u003d\u003e 5, (41L AND 210W) \u003d\u003e 10, (41L AND 210W AND 215FY) \u003d\u003e 5, (41L AND 44AD AND 210W AND 215FY) \u003d\u003e 5, (41L AND 67EGN AND 215FY) \u003d\u003e 5, (67EGN AND 215FY AND 219ENQR) \u003d\u003e 5, (67EGN AND 70R AND 184IV AND 219ENQR) \u003d\u003e 20, (67EGN AND 70R AND 219ENQR) \u003d\u003e 10, (70R AND 215FY) \u003d\u003e 5, (74IV AND 184IV) \u003d\u003e 15, (77L AND 116Y AND 151M) \u003d\u003e 10, MAX ((210W AND 215ACDEILNSV) \u003d\u003e 5, (210W AND 215FY) \u003d\u003e 10), MAX ((41L AND 215ACDEILNSV) \u003d\u003e 5, (41L AND 215FY) \u003d\u003e 15))",
           "triggered": true
@@ -67937,7 +67937,7 @@
           "sir": "S",
           "partialScores": {
             "[K65KR]": -15.0,
-            "[M184MIV]": -20.0
+            "[M184MIV]": -10.0
           },
           "statement": "SCORE FROM(41L \u003d\u003e 15, 62V \u003d\u003e 5, MAX ( 65N \u003d\u003e -10, 65R \u003d\u003e -15 ), MAX ( 67E \u003d\u003e 10, 67G \u003d\u003e 10, 67H \u003d\u003e 10, 67N \u003d\u003e 15, 67S \u003d\u003e 10, 67T \u003d\u003e 10, 67d \u003d\u003e 30 ), MAX ( 69G \u003d\u003e 5, 69i \u003d\u003e 60 ), MAX ( 70E \u003d\u003e -10, 70G \u003d\u003e -10, 70R \u003d\u003e 30 ), MAX ( 75I \u003d\u003e 5, 75M \u003d\u003e 10 ), 77L \u003d\u003e 10, 116Y \u003d\u003e 10, MAX ( 151L \u003d\u003e 30, 151M \u003d\u003e 60 ), MAX ( 184I \u003d\u003e -10, 184V \u003d\u003e -10 ), 210W \u003d\u003e 15, MAX ( 215A \u003d\u003e 20, 215C \u003d\u003e 20, 215D \u003d\u003e 20, 215E \u003d\u003e 20, 215F \u003d\u003e 40, 215I \u003d\u003e 20, 215L \u003d\u003e 20, 215N \u003d\u003e 20, 215S \u003d\u003e 20, 215V \u003d\u003e 20, 215Y \u003d\u003e 40 ), MAX ( 219E \u003d\u003e 10, 219N \u003d\u003e 10, 219Q \u003d\u003e 10, 219R \u003d\u003e 10, 219W \u003d\u003e 10 ), (151M AND 184IV) \u003d\u003e 10, (40F AND 41L AND 210W AND 215FY) \u003d\u003e 5, (41L AND 210W) \u003d\u003e 10, (41L AND 44AD AND 210W AND 215FY) \u003d\u003e 5, (41L AND 67EGN AND 215FY) \u003d\u003e 5, (65R AND 151M) \u003d\u003e 10, (67EGN AND 215FY AND 219ENQR) \u003d\u003e 5, (67EGN AND 70R AND 219ENQR) \u003d\u003e 10, (70R AND 215FY) \u003d\u003e 5, (77L AND 116Y AND 151M) \u003d\u003e 10, MAX ((210W AND 215ACDEILNSV) \u003d\u003e 5, (210W AND 215FY) \u003d\u003e 10), MAX ((41L AND 215ACDEILNSV) \u003d\u003e 5, (41L AND 215FY) \u003d\u003e 10))",
           "triggered": true
@@ -67962,7 +67962,7 @@
           "sir": "I",
           "partialScores": {
             "[K65KR]": 60.0,
-            "[M184MIV]": -20.0
+            "[M184MIV]": -10.0
           },
           "statement": "SCORE FROM(41L \u003d\u003e 15, 62V \u003d\u003e 5, MAX ( 65E \u003d\u003e 10, 65N \u003d\u003e 30, 65R \u003d\u003e 60 ), MAX ( 67E \u003d\u003e 10, 67G \u003d\u003e 10, 67H \u003d\u003e 10, 67N \u003d\u003e 15, 67S \u003d\u003e 10, 67T \u003d\u003e 10, 67d \u003d\u003e 30 ), 68d \u003d\u003e 30, MAX ( 69D \u003d\u003e 10, 69G \u003d\u003e 10, 69i \u003d\u003e 60, 69d \u003d\u003e 30 ), MAX ( 70E \u003d\u003e 15, 70G \u003d\u003e 15, 70N \u003d\u003e 15, 70Q \u003d\u003e 15, 70R \u003d\u003e 15, 70S \u003d\u003e 15, 70T \u003d\u003e 15, 70d \u003d\u003e 30 ), MAX ( 75A \u003d\u003e 30, 75I \u003d\u003e 5, 75M \u003d\u003e 30, 75S \u003d\u003e 30, 75T \u003d\u003e 60 ), 77L \u003d\u003e 10, 116Y \u003d\u003e 10, MAX ( 151L \u003d\u003e 30, 151M \u003d\u003e 60 ), MAX ( 184I \u003d\u003e -10, 184V \u003d\u003e -10 ), 210W \u003d\u003e 15, MAX ( 215A \u003d\u003e 20, 215C \u003d\u003e 20, 215D \u003d\u003e 20, 215E \u003d\u003e 20, 215F \u003d\u003e 40, 215I \u003d\u003e 20, 215L \u003d\u003e 20, 215N \u003d\u003e 20, 215S \u003d\u003e 20, 215V \u003d\u003e 20, 215Y \u003d\u003e 40 ), MAX ( 219E \u003d\u003e 10, 219N \u003d\u003e 10, 219Q \u003d\u003e 10, 219R \u003d\u003e 10, 219W \u003d\u003e 10 ), (151M AND 184IV) \u003d\u003e 10, (40F AND 41L AND 210W AND 215FY) \u003d\u003e 5, (41L AND 210W) \u003d\u003e 10, (41L AND 44AD AND 210W AND 215FY) \u003d\u003e 5, (41L AND 67EGN AND 215FY) \u003d\u003e 5, (67EGN AND 215FY AND 219ENQR) \u003d\u003e 5, (67EGN AND 70R AND 219ENQR) \u003d\u003e 10, (70EGNQST AND 184IV) \u003d\u003e 10, (70R AND 215FY) \u003d\u003e 5, (77L AND 116Y AND 151M) \u003d\u003e 10, MAX ((210W AND 215ACDEILNSV) \u003d\u003e 5, (210W AND 215FY) \u003d\u003e 10), MAX ((41L AND 215ACDEILNSV) \u003d\u003e 5, (41L AND 215FY) \u003d\u003e 10))",
           "triggered": true
@@ -67987,7 +67987,7 @@
           "sir": "R",
           "partialScores": {
             "[K65KR]": 60.0,
-            "[M184MIV]": 20.0
+            "[M184MIV]": 10.0
           },
           "statement": "SCORE FROM(41L \u003d\u003e 10, 62V \u003d\u003e 5, MAX ( 65E \u003d\u003e 10, 65N \u003d\u003e 30, 65R \u003d\u003e 60 ), MAX ( 67E \u003d\u003e 5, 67G \u003d\u003e 5, 67H \u003d\u003e 5, 67N \u003d\u003e 5, 67S \u003d\u003e 5, 67T \u003d\u003e 5, 67d \u003d\u003e 30 ), 68d \u003d\u003e 30, MAX ( 69D \u003d\u003e 30, 69G \u003d\u003e 10, 69i \u003d\u003e 60, 69d \u003d\u003e 30 ), MAX ( 70E \u003d\u003e 15, 70G \u003d\u003e 15, 70N \u003d\u003e 15, 70Q \u003d\u003e 15, 70R \u003d\u003e 10, 70S \u003d\u003e 15, 70T \u003d\u003e 15, 70d \u003d\u003e 30 ), MAX ( 74I \u003d\u003e 60, 74V \u003d\u003e 60 ), MAX ( 75A \u003d\u003e 15, 75I \u003d\u003e 5, 75M \u003d\u003e 15, 75S \u003d\u003e 15, 75T \u003d\u003e 30 ), 77L \u003d\u003e 10, 116Y \u003d\u003e 10, MAX ( 151L \u003d\u003e 30, 151M \u003d\u003e 60 ), MAX ( 184I \u003d\u003e 10, 184V \u003d\u003e 10 ), 210W \u003d\u003e 10, MAX ( 215A \u003d\u003e 10, 215C \u003d\u003e 10, 215D \u003d\u003e 10, 215E \u003d\u003e 10, 215F \u003d\u003e 15, 215I \u003d\u003e 10, 215L \u003d\u003e 10, 215N \u003d\u003e 10, 215S \u003d\u003e 10, 215V \u003d\u003e 10, 215Y \u003d\u003e 15 ), MAX ( 219E \u003d\u003e 5, 219N \u003d\u003e 5, 219Q \u003d\u003e 5, 219R \u003d\u003e 5, 219W \u003d\u003e 5 ), (40F AND 41L AND 210W AND 215FY) \u003d\u003e 5, (41L AND 210W) \u003d\u003e 10, (41L AND 44AD AND 210W AND 215FY) \u003d\u003e 5, (41L AND 67EGN AND 215FY) \u003d\u003e 5, (67EGN AND 215FY AND 219ENQR) \u003d\u003e 5, (67EGN AND 70R AND 219ENQR) \u003d\u003e 10, (70R AND 215FY) \u003d\u003e 5, (77L AND 116Y AND 151M) \u003d\u003e 10, MAX ((210W AND 215ACDEILNSV) \u003d\u003e 5, (210W AND 215FY) \u003d\u003e 10), MAX ((41L AND 215ACDEILNSV) \u003d\u003e 5, (41L AND 215FY) \u003d\u003e 10))",
           "triggered": true
@@ -68078,7 +68078,7 @@
           "sir": "R",
           "partialScores": {
             "[K65KR]": 30.0,
-            "[M184MIV]": 120.0
+            "[M184MIV]": 60.0
           },
           "statement": "SCORE FROM(62V \u003d\u003e 5, MAX ( 65N \u003d\u003e 15, 65R \u003d\u003e 30 ), 67d \u003d\u003e 15, 68d \u003d\u003e 15, MAX ( 69i \u003d\u003e 30, 69d \u003d\u003e 15 ), MAX ( 70E \u003d\u003e 10, 70G \u003d\u003e 10, 70N \u003d\u003e 10, 70Q \u003d\u003e 10, 70S \u003d\u003e 10, 70T \u003d\u003e 10, 70d \u003d\u003e 15 ), 75I \u003d\u003e 5, 77L \u003d\u003e 5, 116Y \u003d\u003e 5, MAX ( 151L \u003d\u003e 10, 151M \u003d\u003e 15 ), MAX ( 184I \u003d\u003e 60, 184V \u003d\u003e 60 ), (210W AND 215FY) \u003d\u003e 5, (41L AND 210W AND 215FY) \u003d\u003e 5, (41L AND 215FY) \u003d\u003e 5, (41L AND 67EGN AND 215FY) \u003d\u003e 5, (67EGN AND 70R AND 219ENQR) \u003d\u003e 10, (77L AND 116Y AND 151M) \u003d\u003e 15)",
           "triggered": true
@@ -68103,7 +68103,7 @@
           "sir": "R",
           "partialScores": {
             "[K65KR]": 30.0,
-            "[M184MIV]": 120.0
+            "[M184MIV]": 60.0
           },
           "statement": "SCORE FROM(62V \u003d\u003e 5, MAX ( 65N \u003d\u003e 15, 65R \u003d\u003e 30 ), 67d \u003d\u003e 15, 68d \u003d\u003e 15, MAX ( 69i \u003d\u003e 30, 69d \u003d\u003e 15 ), MAX ( 70E \u003d\u003e 10, 70G \u003d\u003e 10, 70N \u003d\u003e 10, 70Q \u003d\u003e 10, 70S \u003d\u003e 10, 70T \u003d\u003e 10, 70d \u003d\u003e 15 ), 75I \u003d\u003e 5, 77L \u003d\u003e 5, 116Y \u003d\u003e 5, MAX ( 151L \u003d\u003e 10, 151M \u003d\u003e 15 ), MAX ( 184I \u003d\u003e 60, 184V \u003d\u003e 60 ), (210W AND 215FY) \u003d\u003e 5, (41L AND 210W AND 215FY) \u003d\u003e 5, (41L AND 215FY) \u003d\u003e 5, (41L AND 67EGN AND 215FY) \u003d\u003e 5, (67EGN AND 70R AND 219ENQR) \u003d\u003e 10, (77L AND 116Y AND 151M) \u003d\u003e 15)",
           "triggered": true
@@ -68172,7 +68172,7 @@
           "sir": "I",
           "partialScores": {
             "[K65KR]": 60.0,
-            "[M184MIV]": -20.0
+            "[M184MIV]": -10.0
           },
           "statement": "SCORE FROM(41L \u003d\u003e 5, 62V \u003d\u003e 5, MAX ( 65E \u003d\u003e 10, 65N \u003d\u003e 30, 65R \u003d\u003e 60 ), MAX ( 67E \u003d\u003e 5, 67G \u003d\u003e 5, 67H \u003d\u003e 5, 67N \u003d\u003e 5, 67S \u003d\u003e 5, 67T \u003d\u003e 5, 67d \u003d\u003e 30 ), 68d \u003d\u003e 15, MAX ( 69G \u003d\u003e 5, 69i \u003d\u003e 60, 69d \u003d\u003e 15 ), MAX ( 70E \u003d\u003e 15, 70G \u003d\u003e 15, 70N \u003d\u003e 15, 70Q \u003d\u003e 15, 70R \u003d\u003e 5, 70S \u003d\u003e 15, 70T \u003d\u003e 15, 70d \u003d\u003e 15 ), 74I \u003d\u003e 5, 75I \u003d\u003e 5, 77L \u003d\u003e 5, 115F \u003d\u003e 15, 116Y \u003d\u003e 5, MAX ( 151L \u003d\u003e 10, 151M \u003d\u003e 15 ), MAX ( 184I \u003d\u003e -10, 184V \u003d\u003e -10 ), 210W \u003d\u003e 5, MAX ( 215A \u003d\u003e 5, 215C \u003d\u003e 5, 215D \u003d\u003e 5, 215E \u003d\u003e 5, 215F \u003d\u003e 10, 215I \u003d\u003e 5, 215L \u003d\u003e 5, 215N \u003d\u003e 5, 215S \u003d\u003e 5, 215V \u003d\u003e 5, 215Y \u003d\u003e 10 ), MAX ( 219E \u003d\u003e 5, 219N \u003d\u003e 5, 219Q \u003d\u003e 5, 219R \u003d\u003e 5 ), (151M AND 184IV) \u003d\u003e 10, (40F AND 41L AND 210W AND 215FY) \u003d\u003e 5, (41L AND 210W) \u003d\u003e 10, (41L AND 210W AND 215FY) \u003d\u003e 5, (41L AND 44AD AND 210W AND 215FY) \u003d\u003e 5, (41L AND 67EGN AND 215FY) \u003d\u003e 5, (65R AND 151M) \u003d\u003e 10, (67EGN AND 215FY AND 219ENQR) \u003d\u003e 5, (67EGN AND 70R AND 219ENQR) \u003d\u003e 10, (70EGNQST AND 184IV) \u003d\u003e 10, (70R AND 215FY) \u003d\u003e 5, (77L AND 116Y AND 151M) \u003d\u003e 15, MAX ((210W AND 215ACDEILNSV) \u003d\u003e 5, (210W AND 215FY) \u003d\u003e 10), MAX ((41L AND 215ACDEILNSV) \u003d\u003e 5, (41L AND 215FY) \u003d\u003e 10))",
           "triggered": true
