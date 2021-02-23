@@ -18,7 +18,7 @@ public class DrugTest {
     @Test
     public void testLoadJSON() {
     	// WARNING: This test would fail each time new drug is added.
-    	assertEquals(hiv.getDrugs().size(), 24);
+    	assertEquals(hiv.getDrugs().size(), 25);
     }
 
     @Test
@@ -111,7 +111,7 @@ public class DrugTest {
     public void testFullDrugs() {
 		// WARNING: This test would fail every time a drug is added.
     	// INFO: You should update all the fullDrugs test below adding new drug and also update this test.
-  		assertEquals(hiv.getDrugs().size(), 24);
+  		assertEquals(hiv.getDrugs().size(), 25);
 
     }
 
@@ -147,6 +147,7 @@ public class DrugTest {
     	assertEquals(hiv.getDrug("RPV").getDrugClass(), NNRTI);
 
     	assertEquals(hiv.getDrug("BIC").getDrugClass(), INSTI);
+    	assertEquals(hiv.getDrug("CAB").getDrugClass(), INSTI);
     	assertEquals(hiv.getDrug("DTG").getDrugClass(), INSTI);
     	assertEquals(hiv.getDrug("EVG").getDrugClass(), INSTI);
     	assertEquals(hiv.getDrug("RAL").getDrugClass(), INSTI);
@@ -181,6 +182,7 @@ public class DrugTest {
 		assertEquals(hiv.getDrug("RPV").getFullName(), "rilpivirine");
 
 		assertEquals(hiv.getDrug("BIC").getFullName(), "bictegravir");
+		assertEquals(hiv.getDrug("CAB").getFullName(), "cabotegravir");
 		assertEquals(hiv.getDrug("DTG").getFullName(), "dolutegravir");
 		assertEquals(hiv.getDrug("EVG").getFullName(), "elvitegravir");
 		assertEquals(hiv.getDrug("RAL").getFullName(), "raltegravir");
@@ -213,6 +215,7 @@ public class DrugTest {
 		assertEquals(StringUtils.joinWith(", ", hiv.getDrug("RPV").getSynonyms().toArray()), "");
 
 		assertEquals(StringUtils.joinWith(", ", hiv.getDrug("BIC").getSynonyms().toArray()), "");
+		assertEquals(StringUtils.joinWith(", ", hiv.getDrug("CAB").getSynonyms().toArray()), "");
 		assertEquals(StringUtils.joinWith(", ", hiv.getDrug("DTG").getSynonyms().toArray()), "DTG_QD");
 		assertEquals(StringUtils.joinWith(", ", hiv.getDrug("EVG").getSynonyms().toArray()), "");
 		assertEquals(StringUtils.joinWith(", ", hiv.getDrug("RAL").getSynonyms().toArray()), "");
@@ -245,6 +248,7 @@ public class DrugTest {
 		assertEquals(hiv.getDrug("RPV").getDisplayAbbr(), "RPV");
 
 		assertEquals(hiv.getDrug("BIC").getDisplayAbbr(), "BIC");
+		assertEquals(hiv.getDrug("CAB").getDisplayAbbr(), "CAB");
 		assertEquals(hiv.getDrug("DTG").getDisplayAbbr(), "DTG");
 		assertEquals(hiv.getDrug("EVG").getDisplayAbbr(), "EVG");
 		assertEquals(hiv.getDrug("RAL").getDisplayAbbr(), "RAL");

@@ -164,7 +164,7 @@ public class HIV2Test {
     @Test
     public void testGetDrugs() {
     	assertNotNull(hiv2.getDrugs());
-    	assertEquals(hiv2.getDrugs().size(), 24);
+    	assertEquals(25, hiv2.getDrugs().size());
     }
 
 	@Test
@@ -196,6 +196,7 @@ public class HIV2Test {
 		assertEquals(hiv2.getDrugSynonymMap().get("ETR"),   hiv2.getDrug("ETR"));
 		assertEquals(hiv2.getDrugSynonymMap().get("NVP"),   hiv2.getDrug("NVP"));
 		assertEquals(hiv2.getDrugSynonymMap().get("RPV"),   hiv2.getDrug("RPV"));
+		assertEquals(hiv2.getDrugSynonymMap().get("CAB"),   hiv2.getDrug("CAB"));
 		assertEquals(hiv2.getDrugSynonymMap().get("DTG"),   hiv2.getDrug("DTG"));
 		assertEquals(hiv2.getDrugSynonymMap().get("EVG"),   hiv2.getDrug("EVG"));
 		assertEquals(hiv2.getDrugSynonymMap().get("RAL"),   hiv2.getDrug("RAL"));

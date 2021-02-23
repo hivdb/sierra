@@ -985,7 +985,7 @@ public class AAMutationTest {
 
 		 List<MutationPrevalence<HIV>> prevalence = mutation.getPrevalences();
 		 
-		 assertEquals(prevalence.size(), 26);
+		 assertEquals(prevalence.size(), 28);
 	 }
 	 
 	 @Test

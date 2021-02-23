@@ -165,7 +165,7 @@ public class HIVTest {
     @Test
     public void testGetDrugs() {
     	assertNotNull(hiv.getDrugs());
-    	assertEquals(hiv.getDrugs().size(), 24);
+    	assertEquals(hiv.getDrugs().size(), 25);
     }
 
 	@Test
@@ -197,6 +197,8 @@ public class HIVTest {
 		assertEquals(hiv.getDrugSynonymMap().get("ETR"),   hiv.getDrug("ETR"));
 		assertEquals(hiv.getDrugSynonymMap().get("NVP"),   hiv.getDrug("NVP"));
 		assertEquals(hiv.getDrugSynonymMap().get("RPV"),   hiv.getDrug("RPV"));
+		assertEquals(hiv.getDrugSynonymMap().get("BIC"),   hiv.getDrug("BIC"));
+		assertEquals(hiv.getDrugSynonymMap().get("CAB"),   hiv.getDrug("CAB"));
 		assertEquals(hiv.getDrugSynonymMap().get("DTG"),   hiv.getDrug("DTG"));
 		assertEquals(hiv.getDrugSynonymMap().get("EVG"),   hiv.getDrug("EVG"));
 		assertEquals(hiv.getDrugSynonymMap().get("RAL"),   hiv.getDrug("RAL"));
@@ -213,7 +215,7 @@ public class HIVTest {
 	public void testGetDrugResistAlgorithms() {
 		assertNotNull(hiv.getDrugResistAlgorithms());
 		// 20200214, 28 algorithms
-		assertEquals(hiv.getDrugResistAlgorithms().size(), 28);
+		assertEquals(hiv.getDrugResistAlgorithms().size(), 29);
 	}
 
 	@Test
@@ -225,9 +227,9 @@ public class HIVTest {
 
 		assertEquals(hiv.getDrugResistAlgorithms(algoNames).size(), 3);
 
-		// 20200214 no HIVDB_9.0
+		// 20210222 HIVDB_10.0 not exist
 		List<String> algoNames2 = new ArrayList<>();
-		algoNames2.add("HIVDB_9.0");
+		algoNames2.add("HIVDB_10.0");
 		assertEquals(hiv.getDrugResistAlgorithms(algoNames2).size(), 1);
 		assertNull(hiv.getDrugResistAlgorithms(algoNames2).iterator().next());
 	}
@@ -375,8 +377,8 @@ public class HIVTest {
 	@Test
 	public void testGetMutationTypePairs() {
 		assertNotNull(hiv.getMutationTypePairs());
-		// 20200214, 260 mutation type pairs
-		assertEquals(hiv.getMutationTypePairs().size(), 260);
+		// 20210222, 261 mutation type pairs
+		assertEquals(261, hiv.getMutationTypePairs().size());
 	}
 
 	@Test

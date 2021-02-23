@@ -54,12 +54,14 @@ public class ResistanceSummaryTSVTest {
 	public void testGetHeaderFields() {
 		ResistanceSummaryTSV<HIV> rs = ResistanceSummaryTSV.getInstance(hiv);
 		List<String> headerFields = rs.getHeaderFields();
-		assertEquals(headerFields.get(0), "Sequence Name");
-		assertEquals(headerFields.get(1), "Strain");
-		assertEquals(headerFields.get(2), "Genes");
-		assertEquals(headerFields.get(3), "PI Major");
-		assertEquals(headerFields.get(4), "PI Accessory");
-		assertEquals(headerFields.get(59), "Algorithm Date");
+		assertEquals("Sequence Name", headerFields.get(0));
+		assertEquals("Strain", headerFields.get(1));
+		assertEquals("Genes", headerFields.get(2));
+		assertEquals("PI Major", headerFields.get(3));
+		assertEquals("PI Accessory", headerFields.get(4));
+		assertEquals("Algorithm Name", headerFields.get(59));
+		assertEquals("Algorithm Version", headerFields.get(60));
+		assertEquals("Algorithm Date", headerFields.get(61));
 
 	}
 	
