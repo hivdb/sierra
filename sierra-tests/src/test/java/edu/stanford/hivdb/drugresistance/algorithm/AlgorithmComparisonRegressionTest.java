@@ -42,8 +42,8 @@ public class AlgorithmComparisonRegressionTest {
 		
 		List<DrugResistanceAlgorithm<HIV>> algorithms = new ArrayList<>();
 		
-		DrugResistanceAlgorithm<HIV> hivdbAlgo = hiv1.getDrugResistAlgorithm("HIVDB_8.9-1");
-		DrugResistanceAlgorithm<HIV> regaAlgo = hiv1.getDrugResistAlgorithm("Rega_9.1");
+		DrugResistanceAlgorithm<HIV> hivdbAlgo = hiv1.getLatestDrugResistAlgorithm("HIVDB");
+		DrugResistanceAlgorithm<HIV> regaAlgo = hiv1.getLatestDrugResistAlgorithm("Rega");
 		
 		algorithms.add(hivdbAlgo);
 		algorithms.add(regaAlgo);

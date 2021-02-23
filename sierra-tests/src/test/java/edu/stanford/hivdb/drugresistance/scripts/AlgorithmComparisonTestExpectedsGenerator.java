@@ -63,8 +63,8 @@ public class AlgorithmComparisonTestExpectedsGenerator {
 				MutationSet<HIV> mutationSets = alignedSeq.getMutations();
 				List<DrugResistanceAlgorithm<HIV>> hivAlgo = new ArrayList<>();
 
-				hivAlgo.add(hiv.getLatestDrugResistAlgorithm("HIVDB"));
-				hivAlgo.add(hiv.getLatestDrugResistAlgorithm("Rega"));
+				hivAlgo.add(hiv.getDrugResistAlgorithm("HIVDB_9.0"));
+				hivAlgo.add(hiv.getDrugResistAlgorithm("Rega_9.1"));
 				AlgorithmComparison<HIV> algorithmComparison =
 					new AlgorithmComparison<HIV>(mutationSets, hivAlgo);
 				r.putIfAbsent(property.toString(), new LinkedHashMap<>());
