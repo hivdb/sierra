@@ -462,6 +462,10 @@ public class XmlOutput<VirusT extends Virus<VirusT>> {
 	private Element createDrugScoreElement(Drug<VirusT> drug, GeneDR<VirusT> geneDR) {
 		Element drugScore = document.createElement("drugScore");
 		ASIDrugSusc<VirusT> drugSusc = geneDR.getDrugSusc(drug);
+		
+		if (drugSusc == null) {
+			return drugScore;
+		}
 
 		// name="drugCode" type="xs:string"
 		drugScore.appendChild(
@@ -575,7 +579,15 @@ public class XmlOutput<VirusT extends Virus<VirusT>> {
 		for (MutationSet<VirusT> muts : scoredMuts) {
 			scoreTable.appendChild(createScoreRowElement(
 				muts.join('+'), drugClass,
-				drug -> geneDR.getDrugSusc(drug).getPartialScore(muts)
+				drug -> {
+					ASIDrugSusc<VirusT> drugSusc = geneDR.getDrugSusc(drug);
+					if (drugSusc == null) {
+						return null;
+					}
+					else {
+						return drugSusc.getPartialScore(muts);
+					}
+				}
 			));
 		}
 
@@ -583,7 +595,15 @@ public class XmlOutput<VirusT extends Virus<VirusT>> {
 		scoreTable.appendChild(createScoreRowElement(
 			"Total:",
 			drugClass,
-			drug -> geneDR.getDrugSusc(drug).getScore()
+			drug -> {
+				ASIDrugSusc<VirusT> drugSusc = geneDR.getDrugSusc(drug);
+				if (drugSusc == null) {
+					return null;
+				}
+				else {
+					return drugSusc.getScore();
+				}
+			}
 		));
 
 		return scoreTable;

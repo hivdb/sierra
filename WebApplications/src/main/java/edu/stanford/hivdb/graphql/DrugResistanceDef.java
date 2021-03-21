@@ -81,6 +81,9 @@ public class DrugResistanceDef {
 			for (DrugClass<VirusT> drugClass : drugClasses) {
 				for (Drug<VirusT> drug : drugClass.getDrugs()) {
 					ASIDrugSusc<VirusT> drugSusc = geneDR.getDrugSusc(drug);
+					if (drugSusc == null) {
+						continue;
+					}
 					Map<String, Object> map = new HashMap<>();
 					map.put("drug", drug);
 					map.put("drugClass", drugClass);
