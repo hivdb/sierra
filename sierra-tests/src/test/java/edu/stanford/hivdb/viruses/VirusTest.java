@@ -44,4 +44,12 @@ public class VirusTest {
 	public void testExtractMutationGenesInvaid() {
 		assertEquals(Collections.emptySet(), hiv.extractMutationGenes(Lists.newArrayList("RT:69B")));
 	}
+	
+	@Test
+	public void testGetLatestDrugResistAlgorithm() {
+		assertEquals("9.0", hiv.getLatestDrugResistAlgorithm("HIVDB").getVersion());
+		assertEquals("30", hiv.getLatestDrugResistAlgorithm("ANRS").getVersion());
+		assertEquals("10.0", hiv.getLatestDrugResistAlgorithm("Rega").getVersion());
+		
+	}
 }

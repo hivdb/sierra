@@ -63,7 +63,7 @@ public class TabularAlgorithmComparisonTests {
 		
 		String result = cmp.toString();
 		assertEquals(
-			"sequenceName\tgene\tdrugName\tANRS_30.drugLevel\tHIVDB_9.0.drugLevel\tRega_9.1.drugLevel\tHIVDB_7.0.drugLevel",
+			"sequenceName\tgene\tdrugName\tANRS_30.drugLevel\tHIVDB_9.0.drugLevel\tRega_10.0.drugLevel\tHIVDB_7.0.drugLevel",
 			result.split("\n", 2)[0]
 		);
 		assertEquals(193, result.split("\n").length);

@@ -64,7 +64,7 @@ public class AlgorithmComparisonTestExpectedsGenerator {
 				List<DrugResistanceAlgorithm<HIV>> hivAlgo = new ArrayList<>();
 
 				hivAlgo.add(hiv.getDrugResistAlgorithm("HIVDB_9.0"));
-				hivAlgo.add(hiv.getDrugResistAlgorithm("Rega_9.1"));
+				hivAlgo.add(hiv.getDrugResistAlgorithm("Rega_10.0"));
 				AlgorithmComparison<HIV> algorithmComparison =
 					new AlgorithmComparison<HIV>(mutationSets, hivAlgo);
 				r.putIfAbsent(property.toString(), new LinkedHashMap<>());
