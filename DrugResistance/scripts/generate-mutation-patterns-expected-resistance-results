@@ -1,6 +1,0 @@
-#! /bin/bash
-set -e
-cd $(dirname $0)
-cd ..
-mvn -D maven.test.skip=true install
-mvn -Dexec.mainClass="edu.stanford.hivdb.drugresistance.scripts.MutationPatternsResistanceToJson" -Dexec.cleanupDaemonThreads=false exec:java -Dexec.classpathScope="test"
