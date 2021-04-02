@@ -1,4 +1,4 @@
-include 'sierra-core', 'sierra-tests', 'DrugResistance', 'WebApplications', 'asi_interpreter', 'hivfacts-java'
+include 'sierra-core', 'sierra-tests', 'WebApplications', 'asi_interpreter', 'hivfacts-java'
 project(':hivfacts-java').projectDir = new File('./hivfacts/hivfacts-java')
 
 rootProject.name = 'sierra'

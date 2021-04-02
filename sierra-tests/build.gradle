@@ -20,7 +20,6 @@ repositories {
 dependencies {
     compile project(':sierra-core')
     compile project(':hivfacts-java')
-    compile project(':DrugResistance')
     compile project(':WebApplications')
 
     implementation 'org.apache.commons:commons-lang3:3.9'
