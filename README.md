@@ -1,8 +1,9 @@
 # Sierra Project - HIVDB Genotypic Resistance Interpretation Program
 
-![Sierra project][sierra-logo]
+<img alt="Sierra project" src="https://cms.hivdb.org/prod/images/slide-sierra.png" width="200">
 
-[![Travis CI](https://api.travis-ci.org/hivdb/sierra.svg?branch=master)](https://travis-ci.org/hivdb/sierra)<!--
+[![JAVA CI with Gradle](https://github.com/hivdb/sierra/actions/workflows/gradle.yml/badge.svg)](https://github.com/hivdb/sierra/actions/workflows/gradle.yml)
+[![CodeQL](https://github.com/hivdb/sierra/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/hivdb/sierra/actions/workflows/codeql-analysis.yml)<!--
 [![codecov](https://codecov.io/gh/hivdb/sierra/branch/master/graph/badge.svg)](https://codecov.io/gh/hivdb/sierra)-->
 [![donation](https://img.shields.io/badge/Donate-Stanford_Giving-green.svg)][donation]
 
@@ -173,7 +174,6 @@ so through [Stanford Make a Gift][donation] form. Your contribution will be
 greatly appreciated.
 
 
-[sierra-logo]: http://hivdb.stanford.edu/DR/webservices/images/Sierra.gif
 [nucamino-paper]: https://hivdb.stanford.edu/pages/pdf/Tzou.2017.BMCBioinformatics.pdf
 [nucamino-github]: https://github.com/hivdb/nucamino
 [deployment]: https://github.com/hivdb/hivdb-deployment
