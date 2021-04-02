@@ -11,9 +11,7 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
@@ -26,6 +24,7 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     - name: Build with Gradle
-      run: ./gradlew build
       env:
-        NUCAMINO_PROGRAM: ${GITHUB_WORKSPACE}/docker/tomcat-with-nucamino/nucamino-linux-amd64
+        NUCAMINO_PROGRAM: '${{ github.workspace }}/docker/tomcat-with-nucamino/nucamino-linux-amd64'
+      run: |
+        ./gradlew build
