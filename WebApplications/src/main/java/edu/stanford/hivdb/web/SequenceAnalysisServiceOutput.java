@@ -15,7 +15,7 @@ import com.google.gson.reflect.TypeToken;
 
 import edu.stanford.hivdb.drugresistance.GeneDR;
 import edu.stanford.hivdb.drugresistance.algorithm.DrugResistanceAlgorithm;
-import edu.stanford.hivdb.drugresistance.reports.TabularAlgorithmsComparison;
+import edu.stanford.hivdb.drugresistance.algorithm.TabularAlgorithmsComparison;
 import edu.stanford.hivdb.reports.ResistanceSummaryTSV;
 import edu.stanford.hivdb.reports.SequenceSummaryTSV;
 import edu.stanford.hivdb.sequences.AlignedGeneSeq;

@@ -16,7 +16,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package edu.stanford.hivdb.drugresistance.reports;
+package edu.stanford.hivdb.drugresistance.algorithm;
 
 import static org.junit.Assert.*;
 
@@ -27,7 +27,6 @@ import java.util.List;
 
 import org.junit.Test;
 
-import edu.stanford.hivdb.drugresistance.algorithm.DrugResistanceAlgorithm;
 import edu.stanford.hivdb.hivfacts.HIV;
 import edu.stanford.hivdb.sequences.AlignedSequence;
 import edu.stanford.hivdb.sequences.NucAminoAligner;
