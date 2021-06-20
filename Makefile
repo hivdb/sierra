@@ -1,8 +1,11 @@
-sierra_container_version = $(shell cat docker/sierra/.latest-version)
-DOCKERREPO ?= $(shell docker/sierra/get-docker-repo.sh)
+sierra_container_version = $(shell cat .latest-version)
+DOCKERREPO ?= $(shell scripts/get-docker-repo.sh)
 
 build:
-	@cd docker/sierra; make build DOCKERREPO=$(DOCKERREPO)
+	@docker build -t ${DOCKERREPO} .
+
+force-build: .build
+	@docker build --no-cache -t ${DOCKERREPO} .
 
 dev: build
 	@docker rm -f hivdb-sierra-dev 2>/dev/null || true
@@ -16,7 +19,12 @@ inspect:
 	@docker exec -it hivdb-sierra-dev /bin/bash
 
 release:
-	@cd docker/sierra; make release DOCKERREPO=$(DOCKERREPO)
+	@docker login
+	@docker tag ${DOCKERREPO}:latest ${DOCKERREPO}:${VERSION}
+	@docker push ${DOCKERREPO}:${VERSION}
+	@docker push ${DOCKERREPO}:latest
+	@echo ${VERSION} > .latest-version
+	@sleep 2
 
 release-testing:
 	@cd docker/sierra; make release DOCKERREPO=hivdb/sierra-testing

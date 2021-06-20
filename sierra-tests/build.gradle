@@ -6,7 +6,11 @@ plugins {
 }
 
 group = 'edu.stanford.hivdb'
+<<<<<<< HEAD
 version = '3.1.3'
+=======
+version = '3.2.0a1'
+>>>>>>> 944edbd (Start merging SARS2 fork with HIV fork and creating version 3.2)
 
 description = """Sierra Unit Tests"""
 
@@ -33,7 +37,7 @@ dependencies {
     implementation 'org.apache.logging.log4j:log4j-core:2.17.1'
     implementation 'org.slf4j:slf4j-api:1.7.29'
 
-    implementation 'com.google.guava:guava:28.1-jre'
+    implementation 'com.google.guava:guava:30.1.1-jre'
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'com.google.code.gson:gson-extras:2.8.5'
 

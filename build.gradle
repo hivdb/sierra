@@ -1,5 +1,39 @@
 plugins {
+    id "java"
+    id "jacoco"
     id "eclipse"
+    id "war"
+}
+
+version = '3.2.0a1'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+     mavenCentral()
+     maven {
+         url 'https://artifactory.cronapp.io/public-release/'
+     }
+}
+
+dependencies {
+    implementation 'org.apache.logging.log4j:log4j-api:2.14.1'
+    implementation 'org.apache.logging.log4j:log4j-core:2.14.1'
+    implementation 'javax.ws.rs:javax.ws.rs-api:2.1.1'
+    implementation 'org.jboss.resteasy:resteasy-jaxrs:3.9.3.Final'
+    implementation 'org.jboss.resteasy:resteasy-servlet-initializer:3.9.3.Final'
+    implementation 'org.jboss.resteasy:resteasy-jackson2-provider:3.9.3.Final'
+    implementation 'org.jboss.resteasy:resteasy-client:3.9.3.Final'
+    implementation 'com.graphql-java:graphql-java:15.0'
+    implementation 'org.apache.commons:commons-lang3:3.10'
+    implementation 'org.apache.commons:commons-math3:3.6.1'
+    implementation 'org.apache.commons:commons-collections4:4.1'
+    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation project(':sierra-core')
+    implementation project(':sierra-graphql')
+    implementation project(':hivfacts-java')
+    testImplementation 'junit:junit:4.12'
 }
 
 subprojects {
@@ -23,26 +57,12 @@ subprojects {
     dependencies {}
 }
 
-project(':WebApplications') {
-    apply plugin: 'war'
-}
-
-ext {
-    isTravisBuild = System.getenv().get("TRAVIS") == 'true'
-    if (isTravisBuild) {
-        println("Total processors: " + Runtime.runtime.availableProcessors())
+jacocoTestReport {
+    reports {
+        xml.enabled = true
+        html.enabled = true
     }
 }
 
-subprojects { project ->
-    test {
-        if (isTravisBuild) {
-            maxParallelForks = Runtime.runtime.availableProcessors()
-            afterSuite {
-                System.out.print('.')
-                System.out.flush()
-            }
-        }
-        exclude '**/edu/stanford/hivdb/genotyper/*'
-    }
-}
+check.dependsOn jacocoTestReport
+
