@@ -23,7 +23,7 @@ public class PrettyAlignmentsTest {
 		GenotypeReference<HIV> refGene = hiv.getGenotypeReferences().get(0);
 		Sequence seq = new Sequence("> test", refGene.getSequence());
 
-		NucAminoAligner<HIV> aligner = NucAminoAligner.getInstance(hiv);
+		Aligner<HIV> aligner = Aligner.getInstance(hiv);
 		
 		List<AlignedGeneSeq<HIV>> alignedGeneSeq = (
 			aligner.align(seq).getAlignedGeneSequences()
@@ -42,7 +42,7 @@ public class PrettyAlignmentsTest {
 		GenotypeReference<HIV> refGene = hiv.getGenotypeReferences().get(0);
 		Sequence seq = new Sequence("> test", refGene.getSequence());
 
-		NucAminoAligner<HIV> aligner = NucAminoAligner.getInstance(hiv);
+		Aligner<HIV> aligner = Aligner.getInstance(hiv);
 		List<AlignedGeneSeq<HIV>> alignedGeneSeq = aligner.align(seq).getAlignedGeneSequences();
 		new PrettyAlignments<HIV>(hiv.getGene("HIV1PR"), alignedGeneSeq);
 	}
@@ -52,7 +52,7 @@ public class PrettyAlignmentsTest {
 		GenotypeReference<HIV> refGene = hiv.getGenotypeReferences().get(0);
 		Sequence seq = new Sequence("> test", refGene.getSequence());
 
-		NucAminoAligner<HIV> aligner = NucAminoAligner.getInstance(hiv);
+		Aligner<HIV> aligner = Aligner.getInstance(hiv);
 		
 		List<AlignedGeneSeq<HIV>> alignedGeneSeq = (
 			aligner.align(seq).getAlignedGeneSequences()
@@ -71,7 +71,7 @@ public class PrettyAlignmentsTest {
 		GenotypeReference<HIV> refGene = hiv.getGenotypeReferences().get(0);
 		Sequence seq = new Sequence("> test", refGene.getSequence());
 
-		NucAminoAligner<HIV> aligner = NucAminoAligner.getInstance(hiv);
+		Aligner<HIV> aligner = Aligner.getInstance(hiv);
 		
 		List<AlignedGeneSeq<HIV>> alignedGeneSeq = (
 			aligner.align(seq).getAlignedGeneSequences()
@@ -90,7 +90,7 @@ public class PrettyAlignmentsTest {
 		HIV2 hiv2 = HIV2.getInstance();
 		Sequence seq = Sequence.fromGenbank("FJ442006");
 		
-		NucAminoAligner<HIV2> aligner = NucAminoAligner.getInstance(hiv2);
+		Aligner<HIV2> aligner = Aligner.getInstance(hiv2);
 		
 		List<AlignedGeneSeq<HIV2>> alignedGeneSeq = (
 			aligner.align(seq).getAlignedGeneSequences()
@@ -98,6 +98,8 @@ public class PrettyAlignmentsTest {
 			.filter(geneseq -> geneseq.getAbstractGene().equals("IN"))
 			.collect(Collectors.toList())
 		);
+		// TODO: why there's a warning?
+		// System.out.println(aligner.align(seq).getValidationResults());
 		PrettyAlignments<HIV2> prettyAlignment = new PrettyAlignments<>(hiv2.getGene("HIV2AIN"), alignedGeneSeq);
 		Map<String, Map<Integer, String>> posAAs = prettyAlignment.getSequenceAllPosAAs();
 		
@@ -105,6 +107,9 @@ public class PrettyAlignmentsTest {
 		for (int i = 1; i < 294; i ++) {
 			expecteds.put(i, "-");
 		}
+		// TODO: these two lines can fix the results but why?
+		// expecteds.put(1, ".");
+		// expecteds.put(2, ".");
 		expecteds.put(17, "G");
 		expecteds.put(34, "K");
 		expecteds.put(92, "G");

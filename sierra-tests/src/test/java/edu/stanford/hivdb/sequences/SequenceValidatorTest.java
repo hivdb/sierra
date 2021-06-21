@@ -33,9 +33,6 @@ import edu.stanford.hivdb.hivfacts.HIV;
 //import edu.stanford.hivdb.hivfacts.HIVDefaultSequenceValidator;
 //import edu.stanford.hivdb.mutations.MutationSet;
 //import edu.stanford.hivdb.sequences.AlignedGeneSeq;
-import edu.stanford.hivdb.sequences.AlignedSequence;
-import edu.stanford.hivdb.sequences.NucAminoAligner;
-import edu.stanford.hivdb.sequences.Sequence;
 import edu.stanford.hivdb.testutils.TestSequencesFiles;
 import edu.stanford.hivdb.testutils.TestSequencesFiles.TestSequencesProperties;
 import edu.stanford.hivdb.utilities.FastaUtils;
@@ -51,7 +48,7 @@ public class SequenceValidatorTest {
 		final InputStream testSequenceInputStream =
 				TestSequencesFiles.getTestSequenceInputStream(TestSequencesProperties.JUST_IN);
 		final List<Sequence> sequences = FastaUtils.readStream(testSequenceInputStream);
-		List<AlignedSequence<HIV>> allAligneds = NucAminoAligner.getInstance(hiv).parallelAlign(sequences);
+		List<AlignedSequence<HIV>> allAligneds = Aligner.getInstance(hiv).parallelAlign(sequences);
 		assertNotNull(allAligneds);
 //		for (AlignedSequence<HIV> alignedSeq : allAligneds) {
 //			System.out.println("\n" + alignedSeq.getInputSequence().getHeader());

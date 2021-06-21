@@ -29,9 +29,6 @@ import org.apache.commons.lang3.StringUtils;
 import edu.stanford.hivdb.hivfacts.HIV;
 
 import edu.stanford.hivdb.hivfacts.extras.HIV1Sample;
-import edu.stanford.hivdb.sequences.AlignedSequence;
-import edu.stanford.hivdb.sequences.NucAminoAligner;
-import edu.stanford.hivdb.sequences.Sequence;
 
 public class AlignedSequenceTest {
 
@@ -40,7 +37,7 @@ public class AlignedSequenceTest {
 	@Test
 	public void testEmptySeq() {
 		Sequence seq = new Sequence("empty", "EMPTY");
-		AlignedSequence<HIV> alignedSeq = NucAminoAligner.getInstance(hiv).align(seq);
+		AlignedSequence<HIV> alignedSeq = Aligner.getInstance(hiv).align(seq);
 		assertTrue(alignedSeq.isEmpty());
 		assertEquals(Collections.emptyMap(), alignedSeq.getAlignedGeneSequenceMap());
 		assertEquals(Collections.emptyList(), alignedSeq.getAlignedGeneSequences());
@@ -65,8 +62,8 @@ public class AlignedSequenceTest {
 
 		assertEquals("NA", alignedSeq.getGenotypeText());
 
-		assertEquals(0.0, alignedSeq.getMixturePcnt(), 1e-10);
-		assertEquals(0.0, alignedSeq.getMixturePcnt(), 1e-10);
+		assertEquals(0.0, alignedSeq.getMixtureRate(), 1e-10);
+		assertEquals(0.0, alignedSeq.getMixtureRate(), 1e-10);
 	}
 
 
@@ -80,15 +77,16 @@ public class AlignedSequenceTest {
 		sample.addSubstitutionRule(hiv.getGene("HIV1PR"), 0, 33, "");
 
 		// RT (nts): 123 to 1653
-		sample.addSubstitutionRule(hiv.getGene("HIV1RT"), 1653, 1680, "");
-		sample.addSubstitutionRule(hiv.getGene("HIV1RT"), 0, 123, "");
+		//sample.addSubstitutionRule(hiv.getGene("HIV1RT"), 1653, 1680, "");
+		sample.addSubstitutionRule(hiv.getGene("HIV1RT"), 0, 12, "");
 
 		// IN: empty
-		sample.addSubstitutionRule(hiv.getGene("HIV1IN"), 0, 864, "");
+		//sample.addSubstitutionRule(hiv.getGene("HIV1IN"), 0, 864, "");
 
 		Sequence seq = sample.getSequence();
+		System.out.println(seq.getSequence());
 
-		AlignedSequence<HIV> alignedSeq = NucAminoAligner.getInstance(hiv).align(seq);
+		AlignedSequence<HIV> alignedSeq = Aligner.getInstance(hiv).align(seq);
 
 		assertEquals(Collections.emptyList(), alignedSeq.getValidationResults());
 
@@ -99,7 +97,7 @@ public class AlignedSequenceTest {
 
 		// there should be exactly 46 "..." between PR and RT
 		int endPR = 282 - 33;
-		int startRT = 297 - 33 + 123;
+		int startRT = 297 - 33 + 12;
 		assertEquals(
 			alignedSeqStr.substring(endPR, startRT),
 			StringUtils.repeat(".", startRT - endPR));
@@ -132,7 +130,7 @@ public class AlignedSequenceTest {
 
 		Sequence seq = sample.getSequence();
 
-		AlignedSequence<HIV> alignedSeq = NucAminoAligner.getInstance(hiv).align(seq);
+		AlignedSequence<HIV> alignedSeq = Aligner.getInstance(hiv).align(seq);
 
 		String alignedSeqStr = alignedSeq.getConcatenatedSeq();
 
@@ -175,7 +173,7 @@ public class AlignedSequenceTest {
 
 		Sequence seq = sample.getSequence();
 
-		AlignedSequence<HIV> alignedSeq = NucAminoAligner.getInstance(hiv).align(seq);
+		AlignedSequence<HIV> alignedSeq = Aligner.getInstance(hiv).align(seq);
 
 		String alignedSeqStr = alignedSeq.getConcatenatedSeq();
 
@@ -218,7 +216,7 @@ public class AlignedSequenceTest {
 
 		Sequence seq = sample.getSequence();
 
-		AlignedSequence<HIV> alignedSeq = NucAminoAligner.getInstance(hiv).align(seq);
+		AlignedSequence<HIV> alignedSeq = Aligner.getInstance(hiv).align(seq);
 
 		String alignedSeqStr = alignedSeq.getConcatenatedSeq();
 
@@ -273,7 +271,7 @@ public class AlignedSequenceTest {
 
 		Sequence seq = sample.getSequence();
 
-		AlignedSequence<HIV> alignedSeq = NucAminoAligner.getInstance(hiv).align(seq);
+		AlignedSequence<HIV> alignedSeq = Aligner.getInstance(hiv).align(seq);
 
 		String alignedSeqStr = alignedSeq.getConcatenatedSeq();
 
@@ -304,7 +302,7 @@ public class AlignedSequenceTest {
 
 		Sequence seq = sample.getSequence();
 
-		AlignedSequence<HIV> alignedSeq = NucAminoAligner.getInstance(hiv).align(seq);
+		AlignedSequence<HIV> alignedSeq = Aligner.getInstance(hiv).align(seq);
 
 		String alignedSeqStr = alignedSeq.getConcatenatedSeq();
 
@@ -335,7 +333,7 @@ public class AlignedSequenceTest {
 
 		Sequence seq = sample.getSequence();
 
-		AlignedSequence<HIV> alignedSeq = NucAminoAligner.getInstance(hiv).align(seq);
+		AlignedSequence<HIV> alignedSeq = Aligner.getInstance(hiv).align(seq);
 
 		String alignedSeqStr = alignedSeq.getConcatenatedSeq();
 

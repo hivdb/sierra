@@ -3,6 +3,7 @@ package edu.stanford.hivdb.seqreads;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -34,24 +35,24 @@ public class SequenceReadsTest {
 		allReads.add(posCodonReads);
 		
 		SequenceReads<HIV> seqReads = SequenceReads.fromCodonReadsTable(
-				"test", hiv.getStrain("HIV1"), allReads, 0.01, 0L, 1000L);
+				"test", hiv.getStrain("HIV1"), allReads, Collections.emptyList(), 1., 0.01, 0L, 1000L);
 		
 		assertNotNull(seqReads);
 		
 		
 		seqReads = SequenceReads.fromCodonReadsTable(
-				"test", hiv.getStrain("HIV1"), allReads, -1.0, 0L, 1L);
+				"test", hiv.getStrain("HIV1"), allReads, Collections.emptyList(), 1., -1.0, 0L, 1L);
 		assertNotNull(seqReads);
 		
 		seqReads = SequenceReads.fromCodonReadsTable(
-				"test", hiv.getStrain("HIV1"), allReads, 0.01, 0L, 0L);
+				"test", hiv.getStrain("HIV1"), allReads, Collections.emptyList(), 1., 0.01, 0L, 0L);
 		assertNotNull(seqReads);
 		
 		PositionCodonReads<HIV> posCodonReads2 = new PositionCodonReads<HIV>(
 				hiv.getGene("HIV1RT"), 103, 1000, allCodonReads);
 		allReads.add(posCodonReads2);
 		seqReads = SequenceReads.fromCodonReadsTable(
-				"test", hiv.getStrain("HIV1"), allReads, 0.01, 0L, 0L);
+				"test", hiv.getStrain("HIV1"), allReads, Collections.emptyList(), 1., 0.01, 0L, 0L);
 		assertNotNull(seqReads);
 	}
 	
@@ -69,7 +70,7 @@ public class SequenceReadsTest {
 		allReads.add(posCodonReads);
 		
 		SequenceReads<HIV> seqReads = SequenceReads.fromCodonReadsTable(
-				"test", hiv.getStrain("HIV1"), allReads, 0.01, 0L, 1000L);
+				"test", hiv.getStrain("HIV1"), allReads, Collections.emptyList(), 1., 0.01, 0L, 1000L);
 		
 		assertFalse(seqReads.getCodonReadsCoverage().isEmpty());
 	}
@@ -88,47 +89,9 @@ public class SequenceReadsTest {
 		allReads.add(posCodonReads);
 		
 		SequenceReads<HIV> seqReads = SequenceReads.fromCodonReadsTable(
-				"test", hiv.getStrain("HIV1"), allReads, 0.01, 0L, 1000L);
+				"test", hiv.getStrain("HIV1"), allReads, Collections.emptyList(), 1., 0.01, 0L, 1000L);
 		
 		assertEquals(seqReads.getSize(), Integer.valueOf(0));
-	}
-	
-	@Test
-	public void testGetCutoffSuggestionLooserLimit() {
-		
-		Map<String, Long> allCodonReads = new TreeMap<>();
-		allCodonReads.put("AGT", Long.valueOf(12));
-		allCodonReads.put("AGA", Long.valueOf(12));
-		
-		PositionCodonReads<HIV> posCodonReads = new PositionCodonReads<HIV>(
-				hiv.getGene("HIV1RT"), 215, 1000, allCodonReads);
-		
-		List<PositionCodonReads<HIV>> allReads = new ArrayList<>();
-		allReads.add(posCodonReads);
-		
-		SequenceReads<HIV> seqReads = SequenceReads.fromCodonReadsTable(
-				"test", hiv.getStrain("HIV1"), allReads, 0.01, 0L, 1000L);
-		
-		assertEquals(seqReads.getCutoffSuggestionLooserLimit(), Double.valueOf(0));
-	}
-	
-	@Test
-	public void testGetCutoffSuggestionStricterLimit() {
-		
-		Map<String, Long> allCodonReads = new TreeMap<>();
-		allCodonReads.put("AGT", Long.valueOf(12));
-		allCodonReads.put("AGA", Long.valueOf(12));
-		
-		PositionCodonReads<HIV> posCodonReads = new PositionCodonReads<HIV>(
-				hiv.getGene("HIV1RT"), 215, 1000, allCodonReads);
-		
-		List<PositionCodonReads<HIV>> allReads = new ArrayList<>();
-		allReads.add(posCodonReads);
-		
-		SequenceReads<HIV> seqReads = SequenceReads.fromCodonReadsTable(
-				"test", hiv.getStrain("HIV1"), allReads, 0.01, 0L, 1000L);
-		
-		assertEquals(seqReads.getCutoffSuggestionStricterLimit(), Double.valueOf(0));
 	}
 	
 	@Test
@@ -145,7 +108,7 @@ public class SequenceReadsTest {
 		allReads.add(posCodonReads);
 		
 		SequenceReads<HIV> seqReads = SequenceReads.fromCodonReadsTable(
-				"test", hiv.getStrain("HIV1"), allReads, 0.01, 0L, 1000L);
+				"test", hiv.getStrain("HIV1"), allReads, Collections.emptyList(), 1., 0.01, 0L, 1000L);
 		
 		assertEquals(seqReads.getProportionTrimmedPositions(), Double.valueOf(0));
 	}
@@ -164,7 +127,7 @@ public class SequenceReadsTest {
 		allReads.add(posCodonReads);
 		
 		SequenceReads<HIV> seqReads = SequenceReads.fromCodonReadsTable(
-				"test", hiv.getStrain("HIV1"), allReads, 0.01, 0L, 1000L);
+				"test", hiv.getStrain("HIV1"), allReads, Collections.emptyList(), 1., 0.01, 0L, 1000L);
 		
 		assertEquals(seqReads.getName(), "test");
 	}
@@ -183,7 +146,7 @@ public class SequenceReadsTest {
 		allReads.add(posCodonReads);
 		
 		SequenceReads<HIV> seqReads = SequenceReads.fromCodonReadsTable(
-				"test", hiv.getStrain("HIV1"), allReads, 0.01, 0L, 1000L);
+				"test", hiv.getStrain("HIV1"), allReads, Collections.emptyList(), 1., 0.01, 0L, 1000L);
 		
 		assertEquals(seqReads.getStrain(), hiv.getStrain("HIV1"));
 	}
@@ -202,7 +165,7 @@ public class SequenceReadsTest {
 		allReads.add(posCodonReads);
 		
 		SequenceReads<HIV> seqReads = SequenceReads.fromCodonReadsTable(
-				"test", hiv.getStrain("HIV1"), allReads, 0.01, 0L, 1000L);
+				"test", hiv.getStrain("HIV1"), allReads, Collections.emptyList(), 1., 0.01, 0L, 1000L);
 		
 		assertFalse(seqReads.isEmpty());
 	}
@@ -221,7 +184,7 @@ public class SequenceReadsTest {
 		allReads.add(posCodonReads);
 		
 		SequenceReads<HIV> seqReads = SequenceReads.fromCodonReadsTable(
-				"test", hiv.getStrain("HIV1"), allReads, 0.01, 0L, 1000L);
+				"test", hiv.getStrain("HIV1"), allReads, Collections.emptyList(), 1., 0.01, 0L, 1000L);
 		
 		assertEquals(seqReads.getMinPrevalence(), 0.01, 0.01);
 	}
@@ -240,9 +203,9 @@ public class SequenceReadsTest {
 		allReads.add(posCodonReads);
 		
 		SequenceReads<HIV> seqReads = SequenceReads.fromCodonReadsTable(
-				"test", hiv.getStrain("HIV1"), allReads, 0.01, 0L, 1000L);
+				"test", hiv.getStrain("HIV1"), allReads, Collections.emptyList(), 1., 0.01, 0L, 1000L);
 		
-		assertEquals(seqReads.getMinReadDepth(), 1000);
+		assertEquals(seqReads.getMinPositionReads().longValue(), 1000L);
 	}
 	
 	@Test
@@ -259,7 +222,7 @@ public class SequenceReadsTest {
 		allReads.add(posCodonReads);
 		
 		SequenceReads<HIV> seqReads = SequenceReads.fromCodonReadsTable(
-				"test", hiv.getStrain("HIV1"), allReads, 0.01, 0L, 1000L);
+				"test", hiv.getStrain("HIV1"), allReads, Collections.emptyList(), 1., 0.01, 0L, 1000L);
 		
 		assertFalse(seqReads.getValidationResults().isEmpty());
 	}
@@ -278,7 +241,7 @@ public class SequenceReadsTest {
 		allReads.add(posCodonReads);
 		
 		SequenceReads<HIV> seqReads = SequenceReads.fromCodonReadsTable(
-				"test", hiv.getStrain("HIV1"), allReads, 0.01, 0L, 1000L);
+				"test", hiv.getStrain("HIV1"), allReads, Collections.emptyList(), 1., 0.01, 0L, 1000L);
 		
 		assertTrue(seqReads.getReadDepthStats() instanceof DescriptiveStatistics);
 	}
@@ -297,7 +260,7 @@ public class SequenceReadsTest {
 		allReads.add(posCodonReads);
 		
 		SequenceReads<HIV> seqReads = SequenceReads.fromCodonReadsTable(
-				"test", hiv.getStrain("HIV1"), allReads, 0.01, 0L, 1000L);
+				"test", hiv.getStrain("HIV1"), allReads, Collections.emptyList(), 1., 0.01, 0L, 1000L);
 		
 		assertFalse(seqReads.getAllGeneSequenceReads().isEmpty());
 	}
@@ -316,7 +279,7 @@ public class SequenceReadsTest {
 		allReads.add(posCodonReads);
 		
 		SequenceReads<HIV> seqReads = SequenceReads.fromCodonReadsTable(
-				"test", hiv.getStrain("HIV1"), allReads, 0.01, 0L, 1000L);
+				"test", hiv.getStrain("HIV1"), allReads, Collections.emptyList(), 1., 0.01, 0L, 1000L);
 		
 		assertTrue(seqReads.getGeneSequenceReads(hiv.getGene("HIV1RT")) instanceof GeneSequenceReads);
 	}
@@ -335,7 +298,7 @@ public class SequenceReadsTest {
 		allReads.add(posCodonReads);
 		
 		SequenceReads<HIV> seqReads = SequenceReads.fromCodonReadsTable(
-				"test", hiv.getStrain("HIV1"), allReads, 0.01, 0L, 1000L);
+				"test", hiv.getStrain("HIV1"), allReads, Collections.emptyList(), 1., 0.01, 0L, 1000L);
 		
 		assertFalse(seqReads.getAvailableGenes().isEmpty());
 	}
@@ -354,7 +317,7 @@ public class SequenceReadsTest {
 		allReads.add(posCodonReads);
 		
 		SequenceReads<HIV> seqReads = SequenceReads.fromCodonReadsTable(
-				"test", hiv.getStrain("HIV1"), allReads, 0.01, 0L, 1000L);
+				"test", hiv.getStrain("HIV1"), allReads, Collections.emptyList(), 1., 0.01, 0L, 1000L);
 		
 		assertTrue(seqReads.getConcatenatedSeq().startsWith("....."));
 		assertTrue(seqReads.getConcatenatedSeq().contains("AGW"));
@@ -374,7 +337,7 @@ public class SequenceReadsTest {
 		allReads.add(posCodonReads);
 		
 		SequenceReads<HIV> seqReads = SequenceReads.fromCodonReadsTable(
-				"test", hiv.getStrain("HIV1"), allReads, 0.01, 0L, 1000L);
+				"test", hiv.getStrain("HIV1"), allReads, Collections.emptyList(), 1., 0.01, 0L, 1000L);
 		
 		assertTrue(seqReads.getConcatenatedSeqForSubtyping().startsWith("....."));
 		assertTrue(seqReads.getConcatenatedSeqForSubtyping().contains("NNN"));
@@ -393,7 +356,7 @@ public class SequenceReadsTest {
 		allReads.add(posCodonReads);
 		
 		SequenceReads<HIV> seqReads = SequenceReads.fromCodonReadsTable(
-				"test", hiv.getStrain("HIV1"), allReads, 0.01, 0L, 1000L);
+				"test", hiv.getStrain("HIV1"), allReads, Collections.emptyList(), 1., 0.01, 0L, 1000L);
 		
 		SequenceReadsHistogram<HIV> histogram = seqReads.getHistogram(
 				0.01, 0.1, 2, true, SequenceReadsHistogram.AggregationOption.Codon);
@@ -415,7 +378,7 @@ public class SequenceReadsTest {
 		allReads.add(posCodonReads);
 		
 		SequenceReads<HIV> seqReads = SequenceReads.fromCodonReadsTable(
-				"test", hiv.getStrain("HIV1"), allReads, 0.01, 0L, 1000L);
+				"test", hiv.getStrain("HIV1"), allReads, Collections.emptyList(), 1., 0.01, 0L, 1000L);
 		
 		SequenceReadsHistogram<HIV> histogram = seqReads.getHistogram(
 				0.01, 0.1, new Double[] {Double.valueOf(0.1), Double.valueOf(0.01)},
@@ -438,7 +401,7 @@ public class SequenceReadsTest {
 		allReads.add(posCodonReads);
 		
 		SequenceReads<HIV> seqReads = SequenceReads.fromCodonReadsTable(
-				"test", hiv.getStrain("HIV1"), allReads, 0.01, 0L, 1000L);
+				"test", hiv.getStrain("HIV1"), allReads, Collections.emptyList(), 1., 0.01, 0L, 1000L);
 		
 		
 		assertTrue(seqReads.getMutations(0.01, 0L) instanceof MutationSet);
@@ -458,7 +421,7 @@ public class SequenceReadsTest {
 		allReads.add(posCodonReads);
 		
 		SequenceReads<HIV> seqReads = SequenceReads.fromCodonReadsTable(
-				"test", hiv.getStrain("HIV1"), allReads, 0.01, 0L, 1000L);
+				"test", hiv.getStrain("HIV1"), allReads, Collections.emptyList(), 1., 0.01, 0L, 1000L);
 		
 		
 		assertTrue(seqReads.getMutations() instanceof MutationSet);
@@ -478,7 +441,7 @@ public class SequenceReadsTest {
 		allReads.add(posCodonReads);
 		
 		SequenceReads<HIV> seqReads = SequenceReads.fromCodonReadsTable(
-				"test", hiv.getStrain("HIV1"), allReads, 0.01, 0L, 1000L);
+				"test", hiv.getStrain("HIV1"), allReads, Collections.emptyList(), 1., 0.01, 0L, 1000L);
 		
 		
 		assertTrue(seqReads.getSubtypeResult() instanceof GenotypeResult);
@@ -498,7 +461,7 @@ public class SequenceReadsTest {
 		allReads.add(posCodonReads);
 		
 		SequenceReads<HIV> seqReads = SequenceReads.fromCodonReadsTable(
-				"test", hiv.getStrain("HIV1"), allReads, 0.01, 0L, 1000L);
+				"test", hiv.getStrain("HIV1"), allReads, Collections.emptyList(), 1., 0.01, 0L, 1000L);
 		
 		
 		assertTrue(seqReads.getBestMatchingSubtype() instanceof BoundGenotype);
@@ -518,7 +481,7 @@ public class SequenceReadsTest {
 		allReads.add(posCodonReads);
 		
 		SequenceReads<HIV> seqReads = SequenceReads.fromCodonReadsTable(
-				"test", hiv.getStrain("HIV1"), allReads, 0.01, 0L, 1000L);
+				"test", hiv.getStrain("HIV1"), allReads, Collections.emptyList(), 1., 0.01, 0L, 1000L);
 		
 		
 		assertEquals(seqReads.getSubtypeText(), "CRF02_AG (0.00%)");
@@ -526,7 +489,7 @@ public class SequenceReadsTest {
 	}
 	
 	@Test
-	public void testGetMixturePcnt() {
+	public void testGetMixtureRate() {
 		Map<String, Long> allCodonReads = new TreeMap<>();
 		allCodonReads.put("AGT", Long.valueOf(12));
 		allCodonReads.put("AGA", Long.valueOf(12));
@@ -538,10 +501,10 @@ public class SequenceReadsTest {
 		allReads.add(posCodonReads);
 		
 		SequenceReads<HIV> seqReads = SequenceReads.fromCodonReadsTable(
-				"test", hiv.getStrain("HIV1"), allReads, 0.01, 0L, 1000L);
+				"test", hiv.getStrain("HIV1"), allReads, Collections.emptyList(), 1., 0.01, 0L, 1000L);
 		
 		
-		assertEquals(seqReads.getMixturePcnt(), 33, 1);
+		assertEquals(seqReads.getMixtureRate(), 0.333, 3);
 		
 	}
 }

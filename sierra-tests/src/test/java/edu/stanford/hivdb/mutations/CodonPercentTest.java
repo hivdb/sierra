@@ -3,7 +3,6 @@ package edu.stanford.hivdb.mutations;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
-import edu.stanford.hivdb.mutations.CodonPercent;
 import edu.stanford.hivdb.hivfacts.HIV;
 
 public class CodonPercentTest {
@@ -13,7 +12,7 @@ public class CodonPercentTest {
 	@Test
 	public void testCodonPercent() {
 		CodonPercent<HIV> mPR5A = new CodonPercent<HIV>(
-			hiv.getGene("HIV1PR"), 5, "GCT", 'A',
+			hiv.getGene("HIV1PR"), 5, "GCT",
 			/* percent   = */ 5.664567000498482e-06,
 			/* count     = */ 1,
 			/* total     = */ 176536

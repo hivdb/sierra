@@ -37,7 +37,7 @@ public class StrainTest {
 		assertEquals(hiv2b.getDisplayText(), "HIV-2 Group B");
 	}
 	
-	@Test
+	/*@Test
 	public void testGetNucaminoProfile() {
 		assertEquals(hiv1s.getNucaminoProfile(), "hiv1b");
 	
@@ -51,7 +51,7 @@ public class StrainTest {
 	@Test
 	public void testGetNucaminoGeneOffset() {
 		assertEquals(hiv1s.getNucaminoGeneOffset(), Integer.valueOf(56));
-	}
+	}*/
 	
 	@Test
 	public void testAbsoluteFirstNA() {

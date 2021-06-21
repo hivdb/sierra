@@ -26,9 +26,6 @@ import java.util.Collections;
 import org.junit.Test;
 
 import edu.stanford.hivdb.hivfacts.HIV;
-import edu.stanford.hivdb.sequences.AlignedGeneSeq;
-import edu.stanford.hivdb.sequences.AlignedSite;
-import edu.stanford.hivdb.sequences.Sequence;
 
 public class AlignedGeneSeqTest {
 

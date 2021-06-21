@@ -32,7 +32,7 @@ import edu.stanford.hivdb.utilities.FastaUtils;
 import edu.stanford.hivdb.hivfacts.HIV;
 import edu.stanford.hivdb.sequences.AlignedGeneSeq;
 import edu.stanford.hivdb.sequences.AlignedSequence;
-import edu.stanford.hivdb.sequences.NucAminoAligner;
+import edu.stanford.hivdb.sequences.Aligner;
 import edu.stanford.hivdb.sequences.Sequence;
 import edu.stanford.hivdb.testutils.TestSequencesFiles;
 import edu.stanford.hivdb.testutils.TestSequencesFiles.TestSequencesProperties;
@@ -56,7 +56,7 @@ public class AlignerTestExpectedsGenerator {
 			System.out.println("In AlignedGeneSeqToJson:" + testSequenceProperty.toString());
 			final List<Sequence> sequences = FastaUtils.readStream(testSequenceInputStream);
 
-			NucAminoAligner<HIV> aligner = NucAminoAligner.getInstance(hiv);
+			Aligner<HIV> aligner = Aligner.getInstance(hiv);
 			List<AlignedSequence<HIV>> alignedSeqs = aligner.parallelAlign(sequences);
 			for (AlignedSequence<HIV> alignedSeq : alignedSeqs) {
 				Sequence seq = alignedSeq.getInputSequence();

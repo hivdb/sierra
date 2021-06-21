@@ -35,7 +35,7 @@ import edu.stanford.hivdb.drugresistance.algorithm.DrugResistanceAlgorithm;
 import edu.stanford.hivdb.hivfacts.HIV;
 import edu.stanford.hivdb.mutations.MutationSet;
 import edu.stanford.hivdb.sequences.AlignedGeneSeq;
-import edu.stanford.hivdb.sequences.NucAminoAligner;
+import edu.stanford.hivdb.sequences.Aligner;
 import edu.stanford.hivdb.sequences.Sequence;
 
 public class GeneDRTest {
@@ -46,7 +46,7 @@ public class GeneDRTest {
 	public void testNewFromAlignedGeneSeqs() {
 		Sequence testSeq = Sequence.fromGenbank("AF096883");
 		
-		List<AlignedGeneSeq<HIV>> alignedGeneSeqs = NucAminoAligner.getInstance(hiv).align(testSeq).getAlignedGeneSequences();
+		List<AlignedGeneSeq<HIV>> alignedGeneSeqs = Aligner.getInstance(hiv).align(testSeq).getAlignedGeneSequences();
 		
 		DrugResistanceAlgorithm<HIV> algorithm = hiv.getLatestDrugResistAlgorithm("HIVDB");
 		
@@ -61,7 +61,7 @@ public class GeneDRTest {
 	@Test
 	public void testConstructor$AlignedGeneSeq() {
 		Sequence testSeq = Sequence.fromGenbank("AF096883");
-		List<AlignedGeneSeq<HIV>> alignedGeneSeqs = NucAminoAligner.getInstance(hiv).align(testSeq).getAlignedGeneSequences();
+		List<AlignedGeneSeq<HIV>> alignedGeneSeqs = Aligner.getInstance(hiv).align(testSeq).getAlignedGeneSequences();
 		
 		AlignedGeneSeq<HIV> alignedGeneSeq = alignedGeneSeqs.get(0);
 		DrugResistanceAlgorithm<HIV> algorithm = hiv.getLatestDrugResistAlgorithm("HIVDB");

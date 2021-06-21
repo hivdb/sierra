@@ -28,9 +28,8 @@ import java.util.Map;
 import org.junit.Test;
 
 import edu.stanford.hivdb.hivfacts.HIV;
-import edu.stanford.hivdb.reports.SequenceSummaryTSV;
 import edu.stanford.hivdb.sequences.AlignedSequence;
-import edu.stanford.hivdb.sequences.NucAminoAligner;
+import edu.stanford.hivdb.sequences.Aligner;
 import edu.stanford.hivdb.sequences.Sequence;
 import edu.stanford.hivdb.testutils.TestSequencesFiles;
 import edu.stanford.hivdb.testutils.TestSequencesFiles.TestSequencesProperties;
@@ -47,7 +46,7 @@ public class SequenceSummaryTSVTest {
 		final InputStream testSequenceInputStream =
 				TestSequencesFiles.getTestSequenceInputStream(TestSequencesProperties.VGI);
 		final List<Sequence> sequences = FastaUtils.readStream(testSequenceInputStream);
-		final List<AlignedSequence<HIV>> allSequenceResults = NucAminoAligner.getInstance(hiv).parallelAlign(sequences);
+		final List<AlignedSequence<HIV>> allSequenceResults = Aligner.getInstance(hiv).parallelAlign(sequences);
 		SequenceSummaryTSV<HIV> seqSummaryTSV = SequenceSummaryTSV.getInstance(hiv);
 		printOutTable(
 			seqSummaryTSV.getHeaderFields(),
@@ -60,7 +59,7 @@ public class SequenceSummaryTSVTest {
 		final InputStream testSequenceInputStream =
 				TestSequencesFiles.getTestSequenceInputStream(TestSequencesProperties.VGI);
 		final List<Sequence> sequences = FastaUtils.readStream(testSequenceInputStream);
-		final List<AlignedSequence<HIV>> allSequenceResults = NucAminoAligner.getInstance(hiv).parallelAlign(sequences);
+		final List<AlignedSequence<HIV>> allSequenceResults = Aligner.getInstance(hiv).parallelAlign(sequences);
 		
 		SequenceSummaryTSV<HIV> seqSummaryTSV = SequenceSummaryTSV.getInstance(hiv);
 		

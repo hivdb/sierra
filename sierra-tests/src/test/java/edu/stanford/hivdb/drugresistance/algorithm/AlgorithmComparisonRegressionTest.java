@@ -18,7 +18,7 @@ import com.google.gson.reflect.TypeToken;
 import edu.stanford.hivdb.hivfacts.HIV;
 import edu.stanford.hivdb.mutations.MutationSet;
 import edu.stanford.hivdb.sequences.AlignedSequence;
-import edu.stanford.hivdb.sequences.NucAminoAligner;
+import edu.stanford.hivdb.sequences.Aligner;
 import edu.stanford.hivdb.sequences.Sequence;
 import edu.stanford.hivdb.testutils.TestSequencesFiles;
 import edu.stanford.hivdb.testutils.TestUtils;
@@ -57,7 +57,7 @@ public class AlgorithmComparisonRegressionTest {
 					TestSequencesFiles.getTestSequenceInputStream(property);
 			final List<Sequence> sequences = FastaUtils.readStream(testSequenceInputStream);
 
-			NucAminoAligner<HIV> aligner = NucAminoAligner.getInstance(hiv1);
+			Aligner<HIV> aligner = Aligner.getInstance(hiv1);
 			List<AlignedSequence<HIV>> allAligneds = aligner.parallelAlign(sequences);
 
 			for (AlignedSequence<HIV> alignedSeq : allAligneds) {

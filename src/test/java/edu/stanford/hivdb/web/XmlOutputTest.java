@@ -16,7 +16,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package edu.stanford.hivdb.drugresistance.reports;
+package edu.stanford.hivdb.web;
 
 import static org.junit.Assert.*;
 
@@ -30,10 +30,9 @@ import org.junit.Test;
 
 import edu.stanford.hivdb.drugresistance.GeneDR;
 import edu.stanford.hivdb.viruses.Gene;
-import edu.stanford.hivdb.web.XmlOutput;
 import edu.stanford.hivdb.hivfacts.HIV;
 import edu.stanford.hivdb.sequences.AlignedSequence;
-import edu.stanford.hivdb.sequences.NucAminoAligner;
+import edu.stanford.hivdb.sequences.Aligner;
 import edu.stanford.hivdb.sequences.Sequence;
 import edu.stanford.hivdb.testutils.TestSequencesFiles;
 import edu.stanford.hivdb.testutils.TestUtils;
@@ -68,7 +67,7 @@ public class XmlOutputTest {
 	private void runAnalysis(List<Sequence> sequences) {
 		alignedSequences = new ArrayList<>();
 		allResistanceResults = new ArrayList<>();
-		NucAminoAligner<HIV> aligner = NucAminoAligner.getInstance(hiv);
+		Aligner<HIV> aligner = Aligner.getInstance(hiv);
 		alignedSequences = aligner.parallelAlign(sequences);
 		for (AlignedSequence<HIV> alignedSeq : alignedSequences) {
 			Map<Gene<HIV>, GeneDR<HIV>> resistanceResults =
