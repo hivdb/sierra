@@ -28,3 +28,5 @@ release:
 
 release-testing:
 	@make release DOCKERREPO=hivdb/sierra-testing
+
+.PHONY: build force-build dev inspect release release-testing
