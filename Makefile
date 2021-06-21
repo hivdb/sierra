@@ -29,4 +29,4 @@ release:
 release-testing:
 	@cd docker/sierra; make release DOCKERREPO=hivdb/sierra-testing
 
-.PHONY: *
+.PHONY: build force-build dev inspect release release-testing
