@@ -27,11 +27,6 @@ import java.util.stream.Collectors;
 import org.junit.Test;
 
 import edu.stanford.hivdb.hivfacts.HIV;
-import edu.stanford.hivdb.sequences.AlignedGeneSeq;
-import edu.stanford.hivdb.sequences.AlignedSequence;
-import edu.stanford.hivdb.sequences.NucAminoAligner;
-import edu.stanford.hivdb.sequences.PrettyAlignments;
-import edu.stanford.hivdb.sequences.Sequence;
 import edu.stanford.hivdb.testutils.TestSequencesFiles;
 import edu.stanford.hivdb.testutils.TestUtils;
 import edu.stanford.hivdb.testutils.TestSequencesFiles.TestSequencesProperties;
@@ -51,7 +46,7 @@ public class PrettyAlignmentsRegressionTest {
 		final InputStream testSequenceInputStream = TestSequencesFiles.getTestSequenceInputStream(TestSequencesProperties.MALDARELLI2);
 		final List<Sequence> sequences = FastaUtils.readStream(testSequenceInputStream);
 		
-		NucAminoAligner<HIV> aligner = NucAminoAligner.getInstance(hiv);
+		Aligner<HIV> aligner = Aligner.getInstance(hiv);
 		Map<Sequence, AlignedSequence<HIV>> allAligneds = (
 				aligner.parallelAlign(sequences)
 			.stream().collect(Collectors.toMap(as -> as.getInputSequence(), as -> as))

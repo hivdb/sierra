@@ -31,9 +31,8 @@ import edu.stanford.hivdb.drugresistance.GeneDR;
 import edu.stanford.hivdb.drugresistance.algorithm.DrugResistanceAlgorithm;
 import edu.stanford.hivdb.hivfacts.HIV;
 import edu.stanford.hivdb.mutations.MutationSet;
-import edu.stanford.hivdb.reports.ResistanceSummaryTSV;
 import edu.stanford.hivdb.sequences.AlignedSequence;
-import edu.stanford.hivdb.sequences.NucAminoAligner;
+import edu.stanford.hivdb.sequences.Aligner;
 import edu.stanford.hivdb.sequences.Sequence;
 import edu.stanford.hivdb.testutils.TestSequencesFiles;
 import edu.stanford.hivdb.testutils.TestSequencesFiles.TestSequencesProperties;
@@ -82,7 +81,7 @@ public class ResistanceSummaryTSVTest {
 	 	List<Map<Gene<HIV>, GeneDR<HIV>>> allResistanceResults = new ArrayList<>();
 	 	
 	 	for (Sequence seq : sequences) {
-	 		AlignedSequence<HIV> alignedSeq = NucAminoAligner.getInstance(hiv).align(seq);
+	 		AlignedSequence<HIV> alignedSeq = Aligner.getInstance(hiv).align(seq);
 	 		List<Gene<HIV>> genes = alignedSeq.getAvailableGenes();
 	 		
 	 		Map<Gene<HIV>, GeneDR<HIV>> resistanceResults = new TreeMap<>();

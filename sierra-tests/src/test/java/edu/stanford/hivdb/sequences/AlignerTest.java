@@ -39,10 +39,6 @@ import edu.stanford.hivdb.hivfacts.HIV;
 import edu.stanford.hivdb.viruses.Gene;
 import edu.stanford.hivdb.mutations.FrameShift;
 import edu.stanford.hivdb.mutations.MutationSet;
-import edu.stanford.hivdb.sequences.AlignedGeneSeq;
-import edu.stanford.hivdb.sequences.AlignedSequence;
-import edu.stanford.hivdb.sequences.NucAminoAligner;
-import edu.stanford.hivdb.sequences.Sequence;
 import edu.stanford.hivdb.testutils.TestSequencesFiles;
 import edu.stanford.hivdb.testutils.TestSequencesFiles.TestSequencesProperties;
 import edu.stanford.hivdb.utilities.Json;
@@ -53,7 +49,7 @@ public class AlignerTest {
 	private static final HIV hiv = HIV.getInstance();
 
 //	@Test
-	public void test() throws FileNotFoundException, IOException {
+	public void test() {
 
 		for (TestSequencesProperties testSequenceProperty : TestSequencesProperties.values()) {
 			if (!testSequenceProperty.forRoutineTesting) {
@@ -68,7 +64,7 @@ public class AlignerTest {
 					TestSequencesFiles.getTestSequenceInputStream(testSequenceProperty);
 			final List<Sequence> sequences = FastaUtils.readStream(testSequenceInputStream);
 
-			NucAminoAligner<HIV> aligner = NucAminoAligner.getInstance(hiv);
+			NucAminoAligner<HIV> aligner = Aligner.getInstance(hiv);
 			Map<Sequence, AlignedSequence<HIV>> allAligneds = 
 				aligner.parallelAlign(sequences)
 				.stream()

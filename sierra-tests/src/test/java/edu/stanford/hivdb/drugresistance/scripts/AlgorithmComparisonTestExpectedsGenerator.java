@@ -29,7 +29,7 @@ import edu.stanford.hivdb.drugresistance.algorithm.DrugResistanceAlgorithm;
 import edu.stanford.hivdb.hivfacts.HIV;
 import edu.stanford.hivdb.mutations.MutationSet;
 import edu.stanford.hivdb.sequences.AlignedSequence;
-import edu.stanford.hivdb.sequences.NucAminoAligner;
+import edu.stanford.hivdb.sequences.Aligner;
 import edu.stanford.hivdb.sequences.Sequence;
 import edu.stanford.hivdb.utilities.FastaUtils;
 import edu.stanford.hivdb.utilities.Json;
@@ -54,9 +54,7 @@ public class AlgorithmComparisonTestExpectedsGenerator {
 			final List<Sequence> sequences = FastaUtils.readStream(testSequenceInputStream);
 
 			List<AlignedSequence<HIV>> allAligneds =
-					NucAminoAligner.getInstance(hiv).parallelAlign(sequences);
-
-
+					Aligner.getInstance(hiv).parallelAlign(sequences);
 
 			for (AlignedSequence<HIV> alignedSeq : allAligneds) {
 				Sequence sequence = alignedSeq.getInputSequence();

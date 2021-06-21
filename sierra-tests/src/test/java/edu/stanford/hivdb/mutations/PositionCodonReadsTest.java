@@ -92,7 +92,7 @@ public class PositionCodonReadsTest {
 		PositionCodonReads<HIV> posCodonReads = new PositionCodonReads<HIV>(
 				hiv.getGene("HIV1RT"), 215, 1000, allCodonReads);
 		
-		assertEquals(posCodonReads.getGenePositon(), new GenePosition<HIV>(hiv.getGene("HIV1RT"), 215));
+		assertEquals(posCodonReads.getGenePosition(), new GenePosition<HIV>(hiv.getGene("HIV1RT"), 215));
 		
 	}
 	
@@ -153,17 +153,48 @@ public class PositionCodonReadsTest {
 	}
 	
 	@Test
-	public void testGetCodonConsensus() {
+	public void testGetCodonConsensusWithoutIns() {
 		
 		Map<String, Long> allCodonReads = new TreeMap<>();
-		allCodonReads.put("AGT", Long.valueOf(12));
-		allCodonReads.put("AGA", Long.valueOf(12));
+		allCodonReads.put("AGTAAA", 500L);
+		allCodonReads.put("AGA", 500L);
 		
 		PositionCodonReads<HIV> posCodonReads = new PositionCodonReads<HIV>(
-				hiv.getGene("HIV1RT"), 215, 1000, allCodonReads);
+			hiv.getGene("HIV1RT"), 215, 1000, allCodonReads);
 		
-		assertEquals(posCodonReads.getCodonConsensus(0.2, 0L), "NNN");
+		assertEquals("AGW", posCodonReads.getCodonConsensusWithoutIns(0.2, 0L));
+
+		allCodonReads.put("AGTAAA", 850L);
+		allCodonReads.put("AGA", 150L);
+
+		assertEquals("AGW", posCodonReads.getCodonConsensusWithoutIns(0.2, 0L));
+
+		posCodonReads = new PositionCodonReads<HIV>(
+			hiv.getGene("HIV1RT"), 215, 1000, allCodonReads);
+		assertEquals("AGT", posCodonReads.getCodonConsensusWithoutIns(0.2, 0L));
+	}
+
+	@Test
+	public void testGetCodonConsensusWithIns() {
 		
+		Map<String, Long> allCodonReads = new TreeMap<>();
+		allCodonReads.put("AGT", 500L);
+		allCodonReads.put("AGAAAA", 500L);
+		
+		PositionCodonReads<HIV> posCodonReads = new PositionCodonReads<HIV>(
+			hiv.getGene("HIV1RT"), 215, 1000, allCodonReads);
+		
+		assertEquals("AGWAAA", posCodonReads.getCodonConsensusWithIns(0.2, 0L));
+
+
+		allCodonReads.put("AGT", 850L);
+		allCodonReads.put("AGAAAA", 150L);
+
+		assertEquals("AGWAAA", posCodonReads.getCodonConsensusWithIns(0.2, 0L));
+
+		posCodonReads = new PositionCodonReads<HIV>(
+			hiv.getGene("HIV1RT"), 215, 1000, allCodonReads);
+		assertEquals("AGT", posCodonReads.getCodonConsensusWithIns(0.2, 0L));
 	}
 	
 	@Test

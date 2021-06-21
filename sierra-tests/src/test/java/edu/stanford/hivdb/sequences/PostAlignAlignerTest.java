@@ -27,13 +27,9 @@ import org.junit.Test;
 import edu.stanford.hivdb.hivfacts.HIV;
 import edu.stanford.hivdb.hivfacts.hiv2.HIV2;
 import edu.stanford.hivdb.mutations.MutationSet;
-import edu.stanford.hivdb.sequences.AlignedGeneSeq;
-import edu.stanford.hivdb.sequences.AlignedSequence;
-import edu.stanford.hivdb.sequences.NucAminoAligner;
-import edu.stanford.hivdb.sequences.Sequence;
 import edu.stanford.hivdb.utilities.FastaUtils;
 
-public class NucAminoAlignerTest {
+public class PostAlignAlignerTest {
 
 	private final static HIV hiv = HIV.getInstance();
 	private final static HIV2 hiv2 = HIV2.getInstance();
@@ -57,8 +53,8 @@ public class NucAminoAlignerTest {
 	public void testSingleSequence() {
 //		Sequence testSeq = Sequence.fromGenbank("AF096883");
 		Sequence testSeq = fallbackFromGenBank("AF096883");
-		AlignedSequence<HIV> alignedSeq = NucAminoAligner.getInstance(hiv).align(testSeq);
-		assertEquals("B (4.86%)", alignedSeq.getGenotypeText());
+		AlignedSequence<HIV> alignedSeq = Aligner.getInstance(hiv).align(testSeq);
+		assertEquals("B (4.76%)", alignedSeq.getGenotypeText());
 		AlignedGeneSeq<HIV> seqPR = alignedSeq.getAlignedGeneSequence(hiv.getGene("HIV1PR"));
 		assertEquals(1, seqPR.getFirstAA());
 		assertEquals(1, seqPR.getFirstNA());
@@ -101,7 +97,7 @@ public class NucAminoAlignerTest {
 	public void testHIV2ASequence() {
 //		Sequence testSeq = Sequence.fromGenbank("Z48731");
 		Sequence testSeq = fallbackFromGenBank("Z48731");
-		AlignedSequence<HIV2> alignedSeq = NucAminoAligner.getInstance(hiv2).align(testSeq);
+		AlignedSequence<HIV2> alignedSeq = Aligner.getInstance(hiv2).align(testSeq);
 		assertEquals(hiv2.getStrain("HIV2A"), alignedSeq.getStrain());
 		assertEquals("HIV-2 Group A (0.00%)", alignedSeq.getGenotypeText());
 		AlignedGeneSeq<HIV2> seqPR = alignedSeq.getAlignedGeneSequence(hiv2.getGene("HIV2APR"));
@@ -149,7 +145,7 @@ public class NucAminoAlignerTest {
 	public void testHIV2BSequence() {
 //		Sequence testSeq = Sequence.fromGenbank("L07625");
 		Sequence testSeq = fallbackFromGenBank("L07625");
-		AlignedSequence<HIV2> alignedSeq = NucAminoAligner.getInstance(hiv2).align(testSeq);
+		AlignedSequence<HIV2> alignedSeq = Aligner.getInstance(hiv2).align(testSeq);
 		assertEquals(hiv2.getStrain("HIV2B"), alignedSeq.getStrain());
 		assertEquals("HIV-2 Group B (0.00%)", alignedSeq.getGenotypeText());
 		AlignedGeneSeq<HIV2> seqPR = alignedSeq.getAlignedGeneSequence(hiv2.getGene("HIV2BPR"));

@@ -80,13 +80,6 @@ public class GeneTest {
 		assertEquals(888, hiv2.getGene("HIV2BIN").getNASize());
 	}
 	
-	@Test
-	public void testGetNucaminoMinNumOfAA() {
-		assertEquals(hiv.getGene("HIV1PR").getNucaminoMinNumOfAA(), 40);
-		assertEquals(hiv.getGene("HIV1RT").getNucaminoMinNumOfAA(), 60);
-		assertEquals(hiv.getGene("HIV1IN").getNucaminoMinNumOfAA(), 30);
-	}
-	
 	
 	@Test
 	public void testGetRefChar() {

@@ -5,6 +5,7 @@ plugins {
     id "war"
 }
 
+group = 'edu.stanford.hivdb'
 version = '3.2.0a1'
 
 sourceCompatibility = 1.8
@@ -33,6 +34,7 @@ dependencies {
     implementation project(':sierra-core')
     implementation project(':sierra-graphql')
     implementation project(':hivfacts-java')
+    testImplementation project(':sierra-tests')
     testImplementation 'junit:junit:4.12'
 }
 

@@ -27,6 +27,7 @@ import java.util.stream.Collectors;
 
 import org.junit.Test;
 
+import edu.stanford.hivdb.hivfacts.HIV;
 import edu.stanford.hivdb.testutils.TestSequencesFiles;
 import edu.stanford.hivdb.testutils.TestSequencesFiles.TestSequencesProperties;
 import edu.stanford.hivdb.utilities.FastaUtils;
@@ -37,6 +38,7 @@ import graphql.ExecutionResult;
 import graphql.GraphQL;
 import graphql.GraphQLError;
 import graphql.InvalidSyntaxError;
+import graphql.schema.GraphQLSchema;
 
 public class SierraSchemaTest {
 
@@ -54,7 +56,8 @@ public class SierraSchemaTest {
 			})
 			.collect(Collectors.toList());
 		arguments.put("sequences", sequences);
-		GraphQL gql = GraphQL.newGraphQL(SierraSchema.schema).build();
+		GraphQLSchema schema = SierraSchema.makeSchema(HIV.getInstance());
+		GraphQL gql = GraphQL.newGraphQL(schema).build();
 		ExecutionInput input = ExecutionInput.newExecutionInput()
 			.query(
 				"query ($sequences: [UnalignedSequenceInput]) {\n" +
@@ -124,7 +127,8 @@ public class SierraSchemaTest {
 			})
 			.collect(Collectors.toList());
 		arguments.put("sequences", sequences);
-		GraphQL gql = GraphQL.newGraphQL(SierraSchema.schema).build();
+		GraphQLSchema schema = SierraSchema.makeSchema(HIV.getInstance());
+		GraphQL gql = GraphQL.newGraphQL(schema).build();
 		ExecutionInput input = ExecutionInput.newExecutionInput()
 			.query(
 				"query ($sequences: [UnalignedSequenceInput]) {\n" +

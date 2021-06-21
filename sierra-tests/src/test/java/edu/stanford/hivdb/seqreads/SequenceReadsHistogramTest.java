@@ -34,21 +34,32 @@ public class SequenceReadsHistogramTest {
     	assertEquals(bin.getPercentStart(), 316.22, 0.1);
     	assertEquals(bin.getPercentStop(), 398.10, 0.1);
     }
-    
-    @Test
-    public void testSequenceReadsHistogram() {
-    	
+
+    private GeneSequenceReads<HIV> createTestGeneSeqReads() {
     	Map<String, Long> allCodonReads = new TreeMap<>();
 		allCodonReads.put("AGT", Long.valueOf(12));
 		allCodonReads.put("AGA", Long.valueOf(12));
+		allCodonReads.put("ACA", Long.valueOf(12));
 		
 		PositionCodonReads<HIV> posCodonReads = new PositionCodonReads<HIV>(
 				hiv.getGene("HIV1RT"), 215, 1000, allCodonReads);
 		List<PositionCodonReads<HIV>> posList = new ArrayList<>();
 		posList.add(posCodonReads);
+		CutoffCalculator<HIV> cutoff = new CutoffCalculator<>(
+			posList,
+			/* maxMixturePcnt */ 1.,
+			/* minPrevalence */ 0.1,
+			/* minCodonReads */ 0L,
+			/* minPositionReads */ 0L
+		);
     	
-    	GeneSequenceReads<HIV> seqReads = new GeneSequenceReads<HIV>(
-    			hiv.getGene("HIV1RT"), posList, 0.1, 0);
+    	return new GeneSequenceReads<HIV>(hiv.getGene("HIV1RT"), posList, cutoff);
+    }
+    
+    
+    @Test
+    public void testSequenceReadsHistogram() {
+    	GeneSequenceReads<HIV> seqReads = createTestGeneSeqReads();
     	List<GeneSequenceReads<HIV>> allGeneSequenceReads = new ArrayList<>();
     	allGeneSequenceReads.add(seqReads);
     	
@@ -60,18 +71,7 @@ public class SequenceReadsHistogramTest {
  
     @Test
     public void testSequenceReadsHistogram2() {
-    	
-    	Map<String, Long> allCodonReads = new TreeMap<>();
-		allCodonReads.put("AGT", Long.valueOf(12));
-		allCodonReads.put("AGA", Long.valueOf(12));
-		
-		PositionCodonReads<HIV> posCodonReads = new PositionCodonReads<HIV>(
-				hiv.getGene("HIV1RT"), 215, 1000, allCodonReads);
-		List<PositionCodonReads<HIV>> posList = new ArrayList<>();
-		posList.add(posCodonReads);
-    	
-    	GeneSequenceReads<HIV> seqReads = new GeneSequenceReads<HIV>(
-    			hiv.getGene("HIV1RT"), posList, 0.1, 0);
+    	GeneSequenceReads<HIV> seqReads = createTestGeneSeqReads();
     	List<GeneSequenceReads<HIV>> allGeneSequenceReads = new ArrayList<>();
     	allGeneSequenceReads.add(seqReads);
     	
@@ -83,19 +83,7 @@ public class SequenceReadsHistogramTest {
     
     @Test
     public void testGetUsualSites() {
-    	
-    	Map<String, Long> allCodonReads = new TreeMap<>();
-		allCodonReads.put("AGT", Long.valueOf(12));
-		allCodonReads.put("AGA", Long.valueOf(12));
-		allCodonReads.put("ACA", Long.valueOf(12));
-		
-		PositionCodonReads<HIV> posCodonReads = new PositionCodonReads<HIV>(
-				hiv.getGene("HIV1RT"), 215, 1000, allCodonReads);
-		List<PositionCodonReads<HIV>> posList = new ArrayList<>();
-		posList.add(posCodonReads);
-    	
-    	GeneSequenceReads<HIV> seqReads = new GeneSequenceReads<HIV>(
-    			hiv.getGene("HIV1RT"), posList, 0.1, 0);
+    	GeneSequenceReads<HIV> seqReads = createTestGeneSeqReads();
     	List<GeneSequenceReads<HIV>> allGeneSequenceReads = new ArrayList<>();
     	allGeneSequenceReads.add(seqReads);
     	
@@ -118,19 +106,7 @@ public class SequenceReadsHistogramTest {
     
     @Test
     public void testGetUnusualSites() {
-    	
-    	Map<String, Long> allCodonReads = new TreeMap<>();
-		allCodonReads.put("AGT", Long.valueOf(12));
-		allCodonReads.put("AGA", Long.valueOf(12));
-		allCodonReads.put("ACA", Long.valueOf(12));
-		
-		PositionCodonReads<HIV> posCodonReads = new PositionCodonReads<HIV>(
-				hiv.getGene("HIV1RT"), 215, 1000, allCodonReads);
-		List<PositionCodonReads<HIV>> posList = new ArrayList<>();
-		posList.add(posCodonReads);
-    	
-    	GeneSequenceReads<HIV> seqReads = new GeneSequenceReads<HIV>(
-    			hiv.getGene("HIV1RT"), posList, 0.1, 0);
+    	GeneSequenceReads<HIV> seqReads = createTestGeneSeqReads();
     	List<GeneSequenceReads<HIV>> allGeneSequenceReads = new ArrayList<>();
     	allGeneSequenceReads.add(seqReads);
     	
@@ -153,19 +129,7 @@ public class SequenceReadsHistogramTest {
     
     @Test
     public void testGetUnusualApobecSites() {
-    	
-    	Map<String, Long> allCodonReads = new TreeMap<>();
-		allCodonReads.put("AGT", Long.valueOf(12));
-		allCodonReads.put("AGA", Long.valueOf(12));
-		allCodonReads.put("ACA", Long.valueOf(12));
-		
-		PositionCodonReads<HIV> posCodonReads = new PositionCodonReads<HIV>(
-				hiv.getGene("HIV1RT"), 215, 1000, allCodonReads);
-		List<PositionCodonReads<HIV>> posList = new ArrayList<>();
-		posList.add(posCodonReads);
-    	
-    	GeneSequenceReads<HIV> seqReads = new GeneSequenceReads<HIV>(
-    			hiv.getGene("HIV1RT"), posList, 0.1, 0);
+    	GeneSequenceReads<HIV> seqReads = createTestGeneSeqReads();
     	List<GeneSequenceReads<HIV>> allGeneSequenceReads = new ArrayList<>();
     	allGeneSequenceReads.add(seqReads);
     	
@@ -188,19 +152,7 @@ public class SequenceReadsHistogramTest {
     
     @Test
     public void testGetUnusualNonApobecSites() {
-    	
-    	Map<String, Long> allCodonReads = new TreeMap<>();
-		allCodonReads.put("AGT", Long.valueOf(12));
-		allCodonReads.put("AGA", Long.valueOf(12));
-		allCodonReads.put("ACA", Long.valueOf(12));
-		
-		PositionCodonReads<HIV> posCodonReads = new PositionCodonReads<HIV>(
-				hiv.getGene("HIV1RT"), 215, 1000, allCodonReads);
-		List<PositionCodonReads<HIV>> posList = new ArrayList<>();
-		posList.add(posCodonReads);
-    	
-    	GeneSequenceReads<HIV> seqReads = new GeneSequenceReads<HIV>(
-    			hiv.getGene("HIV1RT"), posList, 0.1, 0);
+    	GeneSequenceReads<HIV> seqReads = createTestGeneSeqReads();
     	List<GeneSequenceReads<HIV>> allGeneSequenceReads = new ArrayList<>();
     	allGeneSequenceReads.add(seqReads);
     	
@@ -223,19 +175,7 @@ public class SequenceReadsHistogramTest {
     
     @Test
     public void testGetApobecSites() {
-    	
-    	Map<String, Long> allCodonReads = new TreeMap<>();
-		allCodonReads.put("AGT", Long.valueOf(12));
-		allCodonReads.put("AGA", Long.valueOf(12));
-		allCodonReads.put("ACA", Long.valueOf(12));
-		
-		PositionCodonReads<HIV> posCodonReads = new PositionCodonReads<HIV>(
-				hiv.getGene("HIV1RT"), 215, 1000, allCodonReads);
-		List<PositionCodonReads<HIV>> posList = new ArrayList<>();
-		posList.add(posCodonReads);
-    	
-    	GeneSequenceReads<HIV> seqReads = new GeneSequenceReads<HIV>(
-    			hiv.getGene("HIV1RT"), posList, 0.1, 0);
+    	GeneSequenceReads<HIV> seqReads = createTestGeneSeqReads();
     	List<GeneSequenceReads<HIV>> allGeneSequenceReads = new ArrayList<>();
     	allGeneSequenceReads.add(seqReads);
     	
@@ -247,19 +187,7 @@ public class SequenceReadsHistogramTest {
     
     @Test
     public void testGetApobecDrmSites() {
-    	
-    	Map<String, Long> allCodonReads = new TreeMap<>();
-		allCodonReads.put("AGT", Long.valueOf(12));
-		allCodonReads.put("AGA", Long.valueOf(12));
-		allCodonReads.put("ACA", Long.valueOf(12));
-		
-		PositionCodonReads<HIV> posCodonReads = new PositionCodonReads<HIV>(
-				hiv.getGene("HIV1RT"), 215, 1000, allCodonReads);
-		List<PositionCodonReads<HIV>> posList = new ArrayList<>();
-		posList.add(posCodonReads);
-    	
-    	GeneSequenceReads<HIV> seqReads = new GeneSequenceReads<HIV>(
-    			hiv.getGene("HIV1RT"), posList, 0.1, 0);
+    	GeneSequenceReads<HIV> seqReads = createTestGeneSeqReads();
     	List<GeneSequenceReads<HIV>> allGeneSequenceReads = new ArrayList<>();
     	allGeneSequenceReads.add(seqReads);
     	
@@ -271,19 +199,7 @@ public class SequenceReadsHistogramTest {
     
     @Test
     public void testGetStopCodonSites() {
-    	
-    	Map<String, Long> allCodonReads = new TreeMap<>();
-		allCodonReads.put("AGT", Long.valueOf(12));
-		allCodonReads.put("AGA", Long.valueOf(12));
-		allCodonReads.put("ACA", Long.valueOf(12));
-		
-		PositionCodonReads<HIV> posCodonReads = new PositionCodonReads<HIV>(
-				hiv.getGene("HIV1RT"), 215, 1000, allCodonReads);
-		List<PositionCodonReads<HIV>> posList = new ArrayList<>();
-		posList.add(posCodonReads);
-    	
-    	GeneSequenceReads<HIV> seqReads = new GeneSequenceReads<HIV>(
-    			hiv.getGene("HIV1RT"), posList, 0.1, 0);
+    	GeneSequenceReads<HIV> seqReads = createTestGeneSeqReads();
     	List<GeneSequenceReads<HIV>> allGeneSequenceReads = new ArrayList<>();
     	allGeneSequenceReads.add(seqReads);
     	
@@ -295,19 +211,7 @@ public class SequenceReadsHistogramTest {
     
     @Test
     public void testGetDrmSites() {
-    	
-    	Map<String, Long> allCodonReads = new TreeMap<>();
-		allCodonReads.put("AGT", Long.valueOf(12));
-		allCodonReads.put("AGA", Long.valueOf(12));
-		allCodonReads.put("ACA", Long.valueOf(12));
-		
-		PositionCodonReads<HIV> posCodonReads = new PositionCodonReads<HIV>(
-				hiv.getGene("HIV1RT"), 215, 1000, allCodonReads);
-		List<PositionCodonReads<HIV>> posList = new ArrayList<>();
-		posList.add(posCodonReads);
-    	
-    	GeneSequenceReads<HIV> seqReads = new GeneSequenceReads<HIV>(
-    			hiv.getGene("HIV1RT"), posList, 0.1, 0);
+    	GeneSequenceReads<HIV> seqReads = createTestGeneSeqReads();
     	List<GeneSequenceReads<HIV>> allGeneSequenceReads = new ArrayList<>();
     	allGeneSequenceReads.add(seqReads);
     	
@@ -319,19 +223,7 @@ public class SequenceReadsHistogramTest {
     
     @Test
     public void testGetNumPositions() {
-    	
-    	Map<String, Long> allCodonReads = new TreeMap<>();
-		allCodonReads.put("AGT", Long.valueOf(12));
-		allCodonReads.put("AGA", Long.valueOf(12));
-		allCodonReads.put("ACA", Long.valueOf(12));
-		
-		PositionCodonReads<HIV> posCodonReads = new PositionCodonReads<HIV>(
-				hiv.getGene("HIV1RT"), 215, 1000, allCodonReads);
-		List<PositionCodonReads<HIV>> posList = new ArrayList<>();
-		posList.add(posCodonReads);
-    	
-    	GeneSequenceReads<HIV> seqReads = new GeneSequenceReads<HIV>(
-    			hiv.getGene("HIV1RT"), posList, 0.1, 0);
+    	GeneSequenceReads<HIV> seqReads = createTestGeneSeqReads();
     	List<GeneSequenceReads<HIV>> allGeneSequenceReads = new ArrayList<>();
     	allGeneSequenceReads.add(seqReads);
     	
