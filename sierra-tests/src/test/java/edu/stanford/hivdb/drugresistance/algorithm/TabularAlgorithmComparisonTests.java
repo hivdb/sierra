@@ -30,7 +30,6 @@ import org.junit.Test;
 import edu.stanford.hivdb.hivfacts.HIV;
 import edu.stanford.hivdb.sequences.AlignedSequence;
 import edu.stanford.hivdb.sequences.Aligner;
-import edu.stanford.hivdb.sequences.NucAminoAligner;
 import edu.stanford.hivdb.sequences.Sequence;
 import edu.stanford.hivdb.testutils.TestSequencesFiles;
 import edu.stanford.hivdb.testutils.TestSequencesFiles.TestSequencesProperties;
@@ -56,7 +55,7 @@ public class TabularAlgorithmComparisonTests {
 		algorithms.add(hiv.getDrugResistAlgorithm("HIVDB_7.0"));
 		
 
-		NucAminoAligner<HIV> aligner = Aligner.getInstance(hiv);
+		Aligner<HIV> aligner = Aligner.getInstance(hiv);
 		final List<AlignedSequence<HIV>> alignedSeqs = aligner.parallelAlign(sequences);
 		TabularAlgorithmsComparison<HIV> cmp = new TabularAlgorithmsComparison<HIV>(alignedSeqs, algorithms);
 		
