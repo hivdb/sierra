@@ -192,5 +192,5 @@ greatly appreciated.
 [graphql-java]: https://github.com/graphql-java/graphql-java
 [asi-github]: https://github.com/FrontierScience/asi_interpreter
 [fstrf]: https://www.fstrf.org/
-[donation]: https://giving.stanford.edu/goto/shafergift
+[donation]: https://makeagift.stanford.edu/goto/shafergift
 [lambda-create]: https://docs.aws.amazon.com/lambda/latest/dg/get-started-create-function.html
