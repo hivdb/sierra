@@ -18,9 +18,9 @@ repositories {
 }
 
 dependencies {
-    compile project(':sierra-core')
-    compile project(':hivfacts-java')
-    compile project(':WebApplications')
+    implementation project(':sierra-core')
+    implementation project(':hivfacts-java')
+    implementation project(':WebApplications')
 
     implementation 'org.apache.commons:commons-lang3:3.9'
     implementation 'org.apache.commons:commons-math3:3.6.1'
@@ -75,8 +75,8 @@ test {
 jacocoTestReport {
     classDirectories.from = files(jacocoReportClasses)
     reports {
-        xml.enabled = true
-        html.enabled = true
+        xml.required = true
+        html.required = true
     }
 }
 
@@ -90,7 +90,7 @@ task clearCachable(type: Exec, group: 'Generator', description: 'Clean files cre
 }
 
 task updateCachable(type: JavaExec, group: 'Generator', description: 'Generate files with Cachable.') {
-    main = 'edu.stanford.hivdb.utilities.Cachable'
+    mainClass = 'edu.stanford.hivdb.utilities.Cachable'
     classpath = sourceSets.main.runtimeClasspath
     systemProperty 'hivdb.updateCachable', """
     """

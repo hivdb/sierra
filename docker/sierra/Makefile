@@ -20,3 +20,5 @@ release: build
 	@docker push ${DOCKERREPO}:latest
 	@echo ${VERSION} > .latest-version
 	@sleep 2
+
+.PHONY: *

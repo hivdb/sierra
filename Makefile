@@ -20,3 +20,5 @@ release:
 
 release-testing:
 	@cd docker/sierra; make release DOCKERREPO=hivdb/sierra-testing
+
+.PHONY: *

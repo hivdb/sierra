@@ -7,9 +7,6 @@ subprojects {
 
     repositories {
         mavenCentral()
-        maven {
-            url 'https://dl.bintray.com/hivdb/hivdb'
-        }
 	    maven {
 	    	url 'https://artifactory.cronapp.io/public-release/'
 	    }

@@ -45,3 +45,4 @@ gradle-app.setting
 # gradle/wrapper/gradle-wrapper.properties
 .syntastic_javac_config
 *.pem
+testResult
