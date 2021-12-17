@@ -1,7 +1,6 @@
 FROM ubuntu:20.04
 ENV LC_ALL=C.UTF-8
 ENV LANG=C.UTF-8
-ENV TOMCAT_VERSION=10.0.14
 ENV CATALINA_OPTS "-Xms512M -Xmx1024M"
 RUN apt-get update -qy && \
     apt-get install -qqy software-properties-common curl && \
@@ -9,8 +8,9 @@ RUN apt-get update -qy && \
     apt-get update -qy && \
     echo debconf shared/accepted-oracle-license-v1-3 select true | debconf-set-selections && \
     echo debconf shared/accepted-oracle-license-v1-3 seen true | debconf-set-selections && \
-    apt-get install -qqy oracle-java17-installer oracle-java17-set-default && \
-    cd /tmp && \
+    apt-get install -qqy oracle-java17-installer oracle-java17-set-default
+ARG TOMCAT_VERSION=10.0.14
+RUN cd /tmp && \
     curl -sSL https://www.apache.org/dist/tomcat/tomcat-10/v${TOMCAT_VERSION}/bin/apache-tomcat-${TOMCAT_VERSION}.tar.gz -o tomcat10.tar.gz && \
     tar zxf tomcat10.tar.gz && \
     mkdir -p /usr/share/tomcat10 && \
