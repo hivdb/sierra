@@ -4,7 +4,7 @@ DOCKERREPO ?= $(shell scripts/get-docker-repo.sh)
 build:
 	@docker build -t ${DOCKERREPO} .
 
-force-build: .build
+force-build:
 	@docker build --no-cache -t ${DOCKERREPO} .
 
 dev: build
