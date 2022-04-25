@@ -21,7 +21,12 @@ repositories {
 dependencies {
     implementation 'org.apache.logging.log4j:log4j-api:2.14.1'
     implementation 'org.apache.logging.log4j:log4j-core:2.14.1'
-    implementation 'javax.ws.rs:javax.ws.rs-api:2.1.1'
+    implementation 'jakarta.ws.rs:jakarta.ws.rs-api:3.0.0'
+    // following three are required by Tomcat, which is not a full JEE server
+    implementation 'org.glassfish.jersey.containers:jersey-container-servlet:3.0.2'
+    implementation 'org.glassfish.jersey.inject:jersey-hk2:3.0.2'
+    // implementation 'org.glassfish.jersey.ext.cdi:jersey-cdi1x:3.0.2'
+
     implementation 'org.jboss.resteasy:resteasy-jaxrs:3.9.3.Final'
     implementation 'org.jboss.resteasy:resteasy-servlet-initializer:3.9.3.Final'
     implementation 'org.jboss.resteasy:resteasy-jackson2-provider:3.9.3.Final'

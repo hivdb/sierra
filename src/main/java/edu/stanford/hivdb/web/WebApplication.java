@@ -1,6 +1,6 @@
 /*
 
-    Copyright (C) 2017 Stanford HIVDB team
+    Copyright (C) 2022 Stanford HIVDB team
 
     Sierra is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -21,27 +21,23 @@ package edu.stanford.hivdb.web;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.ws.rs.ApplicationPath;
-import javax.ws.rs.core.Application;
-import javax.ws.rs.core.Context;
+import jakarta.ws.rs.ApplicationPath;
+import jakarta.ws.rs.core.Application;
+import jakarta.ws.rs.core.Context;
 
-import org.jboss.resteasy.core.Dispatcher;
-import org.jboss.resteasy.plugins.interceptors.CorsFilter;
 @ApplicationPath("/rest")
 public class WebApplication extends Application {
 
 	private Set<Object> singletons = new HashSet<>();
 	private Set<Class<?>> classes = new HashSet<>();
 
-	public WebApplication(@Context Dispatcher dispatcher) {
+	public WebApplication() {
 		singletons.add(new HivdbVersionService());
 		singletons.add(new GraphQLService());
 		singletons.add(new HIV2GraphQLService());
 		classes.add(HIV1SequenceAnalysisService.class);
 		classes.add(HIV2SequenceAnalysisService.class);
-	    CorsFilter corsFilter = new CorsFilter();
-	    corsFilter.getAllowedOrigins().add("*");
-	    singletons.add(corsFilter);
+		classes.add(CorsFilter.class);
 	}
 
 	@Override
