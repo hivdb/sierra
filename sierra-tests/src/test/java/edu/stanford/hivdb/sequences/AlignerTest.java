@@ -21,8 +21,6 @@ package edu.stanford.hivdb.sequences;
 import static org.junit.Assert.*;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.reflect.Type;
@@ -64,7 +62,7 @@ public class AlignerTest {
 					TestSequencesFiles.getTestSequenceInputStream(testSequenceProperty);
 			final List<Sequence> sequences = FastaUtils.readStream(testSequenceInputStream);
 
-			NucAminoAligner<HIV> aligner = Aligner.getInstance(hiv);
+			PostAlignAligner<HIV> aligner = Aligner.getInstance(hiv);
 			Map<Sequence, AlignedSequence<HIV>> allAligneds = 
 				aligner.parallelAlign(sequences)
 				.stream()
