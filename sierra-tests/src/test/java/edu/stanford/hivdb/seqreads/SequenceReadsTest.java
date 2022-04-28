@@ -324,7 +324,7 @@ public class SequenceReadsTest {
 	}
 	
 	@Test
-	public void testGetConcatenatedSeqForSubtyping() {
+	public void testGetAssembledUnambiguousConsensusForSubtyping() {
 		
 		Map<String, Long> allCodonReads = new TreeMap<>();
 		allCodonReads.put("AGT", Long.valueOf(12));
@@ -339,8 +339,8 @@ public class SequenceReadsTest {
 		SequenceReads<HIV> seqReads = SequenceReads.fromCodonReadsTable(
 				"test", hiv.getStrain("HIV1"), allReads, Collections.emptyList(), 1., 0.01, 0L, 1000L);
 		
-		assertTrue(seqReads.getConcatenatedSeqForSubtyping().startsWith("....."));
-		assertTrue(seqReads.getConcatenatedSeqForSubtyping().contains("NNN"));
+		assertTrue(seqReads.getAssembledUnambiguousConsensus(true).startsWith("....."));
+		assertTrue(seqReads.getAssembledUnambiguousConsensus(true).contains("NNN"));
 	}
 	
 	@Test
