@@ -1,4 +1,4 @@
-sierra_container_version = $(shell cat .latest-version)
+VERSION = $(shell date -u +"%Y%m%d%H%M%S")
 DOCKERREPO ?= $(shell scripts/get-docker-repo.sh)
 
 build:
