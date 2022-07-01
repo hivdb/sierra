@@ -26,7 +26,7 @@ public class FrameShiftTest {
 		fsList.add(fs1);
 		fsList.add(fs2);
 		
-		assertEquals(FrameShift.joinFrameShifts(fsList), "PR10del1bp, PR10ins1bp_G");
+		assertEquals("10del1bp, 10ins1bp_G", FrameShift.joinFrameShifts(fsList));
 	}
 	
 	@Test
@@ -54,8 +54,8 @@ public class FrameShiftTest {
 		FrameShift<HIV> fs1 = FrameShift.createDeletion(hiv.getGene("HIV1PR"), 10, 1);
 		FrameShift<HIV> fs2 = FrameShift.createInsertion(hiv.getGene("HIV1PR"), 10, 1, "G");
 		
-		assertEquals(fs1.getHumanFormat(), "PR10del1bp");
-		assertEquals(fs2.getHumanFormat(), "PR10ins1bp_G");
+		assertEquals("10del1bp", fs1.getHumanFormat());
+		assertEquals("10ins1bp_G", fs2.getHumanFormat());
 		
 	}
 	
@@ -127,13 +127,13 @@ public class FrameShiftTest {
 	@Test
 	public void testGetText() {
 		FrameShift<HIV> fs1 = FrameShift.createDeletion(hiv.getGene("HIV1PR"), 10, 2);
-		assertEquals(fs1.getText(), "PR10del2bp");
+		assertEquals("10del2bp", fs1.getText());
 	}
 	
 	@Test
 	public void testToString() {
 		FrameShift<HIV> fs1 = FrameShift.createDeletion(hiv.getGene("HIV1PR"), 10, 2);
-		assertEquals(fs1.toString(), "PR10del2bp");
+		assertEquals("10del2bp", fs1.toString());
 	}
 	
 	@Test

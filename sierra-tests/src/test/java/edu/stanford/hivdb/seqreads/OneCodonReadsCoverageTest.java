@@ -65,7 +65,7 @@ public class OneCodonReadsCoverageTest {
     	OneCodonReadsCoverage<HIV> reads = new OneCodonReadsCoverage<HIV>(
     			hiv.getGene("HIV1PR"), 89, 1000, false);
     	
-    	assertEquals(reads.getPositionInStrain(), Integer.valueOf(89));
+    	assertEquals(Integer.valueOf(89 + 3235), reads.getPositionInStrain());
     }
     
     @Test

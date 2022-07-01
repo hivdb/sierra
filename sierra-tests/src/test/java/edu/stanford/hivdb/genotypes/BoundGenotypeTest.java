@@ -171,11 +171,6 @@ public class BoundGenotypeTest {
 	}
 
 	@Test
-	public void testShouldFallbackTo() {
-		assertFalse(boundGenotype.shouldFallbackTo(boundGenotype));
-	}
-
-	@Test
 	public void testToString() {
 		assertEquals(boundGenotype.toString(), boundGenotype.getDisplay());
 	}

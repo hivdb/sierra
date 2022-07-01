@@ -36,6 +36,7 @@ import edu.stanford.hivdb.utilities.ValidationResult;
 public class MutationListValidatorTest {
 
 	final static HIV hiv = HIV.getInstance();
+	final static List<String> includeGenes = List.of("PR", "RT", "IN");
 
 	private void assertValidationResult(
 			AAMutation<HIV>[] mutations, ValidationLevel[] levels, String[] messages) {
@@ -43,11 +44,11 @@ public class MutationListValidatorTest {
 		
 		if (levels.length == 0) {
 			@SuppressWarnings("unused")
-			List<ValidationResult> results = hiv.validateMutations(mutSet);	
+			List<ValidationResult> results = hiv.validateMutations(mutSet, includeGenes);	
 //			System.out.println(results.get(0).getMessage());
 			}
 		else {
-			List<ValidationResult> results = hiv.validateMutations(mutSet);	
+			List<ValidationResult> results = hiv.validateMutations(mutSet, includeGenes);	
 			assertEquals(levels.length, results.size());
 			for (int i=0; i < levels.length; i ++) {
 				assertEquals(levels[i], results.get(i).getLevel());
@@ -69,7 +70,7 @@ public class MutationListValidatorTest {
 		final List<MutationSet<HIV>> mutationSets = MutationFileReader.readMutationLists(testMutationsInputStream, hiv);
 		for (MutationSet<HIV> mutSet : mutationSets) {
 			@SuppressWarnings("unused")
-			List<ValidationResult> results = hiv.validateMutations(mutSet);
+			List<ValidationResult> results = hiv.validateMutations(mutSet, includeGenes);
 //			for (ValidationResult result : results) {
 //				System.out.println(" Level:" + result.getLevel());
 //				System.out.println(" Message:" + result.getMessage());
@@ -91,13 +92,13 @@ public class MutationListValidatorTest {
 			},
 			/* expected result level(s) */
 			new ValidationLevel[] {
-				ValidationLevel.SEVERE_WARNING,
 				ValidationLevel.WARNING,
+				ValidationLevel.WARNING
 			},
 			/* expected result message(s) */
 			new String[] {
-				"The submitted mutations contain 2 stop codons.",
-				"There are 2 unusual mutations: HIV1RT_K122*, HIV1IN_A23*."
+				"There is one stop codon in RT: RT:K122*.",
+				"There is one stop codon in IN: IN:A23*."
 			});
 
 	}
@@ -117,7 +118,7 @@ public class MutationListValidatorTest {
 			},
 			/* expected result message(s) */
 			new String[] {
-				"The submitted mutations contain 1 stop codon.",
+				"There is one stop codon in RT: RT:K43*.",
 			});
 
 	}
@@ -129,7 +130,7 @@ public class MutationListValidatorTest {
 				new CodonMutation<HIV>(hiv.getGene("HIV1PR"), 54, "V"),
 			});
 		/* mutations as the input for MutationListValidator */
-		List<ValidationResult> results = hiv.validateMutations(mutset);
+		List<ValidationResult> results = hiv.validateMutations(mutset, includeGenes);
 		assertEquals(0, results.size());
 		/* the expected result should be empty */
 	}

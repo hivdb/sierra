@@ -133,8 +133,7 @@ public class CodonPercentsTest {
 		CodonPercent<HIV> mutIN263GTG = allall.get(hiv.getGene("HIV1IN"), 263, "GTG");
 		assertEquals(hiv.getGene("HIV1IN"), mutIN263GTG.getGene());
 		assertEquals(263, (int) mutIN263GTG.getPosition());
-		// TODO: don't know the translation. Probably should introduce codon translator
-		assertEquals('X', (char) mutIN263GTG.getAA());
+		assertEquals('V', (char) mutIN263GTG.getAA());
 		assertEquals("GTG", mutIN263GTG.getCodon());
 	}
 

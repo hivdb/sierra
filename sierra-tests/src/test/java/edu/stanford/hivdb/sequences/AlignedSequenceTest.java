@@ -21,6 +21,7 @@ package edu.stanford.hivdb.sequences;
 import static org.junit.Assert.*;
 
 import java.util.Collections;
+import java.util.List;
 
 import org.junit.Test;
 
@@ -49,8 +50,8 @@ public class AlignedSequenceTest {
 		assertEquals(1, alignedSeq.getValidationResults().size());
 		assertEquals(1, alignedSeq.getValidationResults().size());
 
-		assertEquals(Collections.emptySet(), alignedSeq.getSdrms());
-		assertEquals(Collections.emptySet(), alignedSeq.getSdrms());
+		assertEquals(Collections.emptySet(), alignedSeq.getMutations().getSDRMs());
+		assertEquals(Collections.emptySet(), alignedSeq.getMutations().getSDRMs());
 
 		assertEquals(Collections.emptySet(), alignedSeq.getMutations().getApobecDRMs());
 		assertEquals(Collections.emptySet(), alignedSeq.getMutations().getApobecMutations());
@@ -69,7 +70,7 @@ public class AlignedSequenceTest {
 
 	@Test
 	public void testPRnRT() {
-		// partial PR + ... + partial RT
+		// partial PR + NNN + partial RT
 		HIV1Sample sample = new HIV1Sample();
 
 		// PR (nts): 33 to 282
@@ -84,37 +85,39 @@ public class AlignedSequenceTest {
 		//sample.addSubstitutionRule(hiv.getGene("HIV1IN"), 0, 864, "");
 
 		Sequence seq = sample.getSequence();
-		System.out.println(seq.getSequence());
 
 		AlignedSequence<HIV> alignedSeq = Aligner.getInstance(hiv).align(seq);
 
-		assertEquals(Collections.emptyList(), alignedSeq.getValidationResults());
+		assertEquals(
+			"WARNING: 20 positions were not sequenced or aligned: PR 1-11, " +
+			"95-99; RT 1-4. Of them, 2 are at drug-resistance positions: PR 10-11.",
+			alignedSeq.getValidationResults(List.of("PR", "RT", "IN")).get(0).toString()
+		);
 
-		String alignedSeqStr = alignedSeq.getConcatenatedSeq();
+		String alignedSeqStr = alignedSeq.getAssembledAlignment(false);
 
-		// not start with "..."
-		assertNotEquals(alignedSeqStr.substring(0, 3), "...");
+		// not start with "NNN"
+		assertNotEquals("NNN", alignedSeqStr.substring(0, 3));
 
-		// there should be exactly 46 "..." between PR and RT
+		// there should be exactly 9 "NNN" between PR and RT
 		int endPR = 282 - 33;
 		int startRT = 297 - 33 + 12;
 		assertEquals(
-			alignedSeqStr.substring(endPR, startRT),
-			StringUtils.repeat(".", startRT - endPR));
-		assertNotEquals(
-			alignedSeqStr.substring(endPR - 3, endPR), "...");
-		assertNotEquals(
-			alignedSeqStr.substring(startRT, startRT + 3), "...");
+			StringUtils.repeat("NNN", 9),
+			alignedSeqStr.substring(endPR, startRT)
+		);
+		assertNotEquals("NNN", alignedSeqStr.substring(endPR - 3, endPR));
+		
+		assertNotEquals("NNN", alignedSeqStr.substring(startRT, startRT + 3));
 
-		// not end with "..."
+		// not end with "NNN"
 		int seqLen = alignedSeqStr.length();
-		assertNotEquals(
-			alignedSeqStr.substring(seqLen - 3, seqLen), "...");
+		assertNotEquals("NNN", alignedSeqStr.substring(seqLen - 3, seqLen));
 	}
 
 	@Test
 	public void testPRnIN() {
-		// partial PR + ... + partial IN
+		// partial PR + NNN + partial IN
 		HIV1Sample sample = new HIV1Sample();
 
 		// PR (nts): 33 to 282
@@ -132,32 +135,32 @@ public class AlignedSequenceTest {
 
 		AlignedSequence<HIV> alignedSeq = Aligner.getInstance(hiv).align(seq);
 
-		String alignedSeqStr = alignedSeq.getConcatenatedSeq();
+		String alignedSeqStr = alignedSeq.getAssembledAlignment(false);
 
-		// not start with "..."
-		assertNotEquals(alignedSeqStr.substring(0, 3), "...");
+		// not start with "NNN"
+		assertNotEquals(alignedSeqStr.substring(0, 3), "NNN");
 
-		// there should be exactly 31 "..." between PR and IN
+		// there should be exactly 5 + 560 + 26 = 591 "NNN" between PR and IN
 		int endPR = 282 - 33;
 		int startIN = 297 - 33 + 1680 + 78;
 
 		assertEquals(
-			StringUtils.repeat(".", startIN - endPR),
+			StringUtils.repeat("NNN", 591),
 			alignedSeqStr.substring(endPR, startIN));
 		assertNotEquals(
-			alignedSeqStr.substring(endPR - 3, endPR), "...");
+			alignedSeqStr.substring(endPR - 3, endPR), "NNN");
 		assertNotEquals(
-			alignedSeqStr.substring(startIN, startIN + 3), "...");
+			alignedSeqStr.substring(startIN, startIN + 3), "NNN");
 
-		// not end with "..."
+		// not end with "NNN"
 		int seqLen = alignedSeqStr.length();
 		assertNotEquals(
-			alignedSeqStr.substring(seqLen - 3, seqLen), "...");
+			alignedSeqStr.substring(seqLen - 3, seqLen), "NNN");
 	}
 
 	@Test
 	public void testRTnIN() {
-		// partial RT + ... + partial IN
+		// partial RT + NNN + partial IN
 		HIV1Sample sample = new HIV1Sample();
 
 		// PR: Empty
@@ -175,26 +178,26 @@ public class AlignedSequenceTest {
 
 		AlignedSequence<HIV> alignedSeq = Aligner.getInstance(hiv).align(seq);
 
-		String alignedSeqStr = alignedSeq.getConcatenatedSeq();
+		String alignedSeqStr = alignedSeq.getAssembledAlignment(false);
 
-		// not start with "..."
-		assertNotEquals(alignedSeqStr.substring(0, 3), "...");
+		// not start with "NNN"
+		assertNotEquals(alignedSeqStr.substring(0, 3), "NNN");
 
-		// there should be exactly 35 "..." between RT and IN
+		// there should be exactly 35 "NNN" between RT and IN
 		int endRT = 1653 - 123;
 		int startIN = 1680 - 123 + 78;
 		assertEquals(
 			alignedSeqStr.substring(endRT, startIN),
-			StringUtils.repeat(".", startIN - endRT));
+			StringUtils.repeat("NNN", 35));
 		assertNotEquals(
-			alignedSeqStr.substring(endRT - 3, endRT), "...");
+			alignedSeqStr.substring(endRT - 3, endRT), "NNN");
 		assertNotEquals(
-			alignedSeqStr.substring(startIN, startIN + 3), "...");
+			alignedSeqStr.substring(startIN, startIN + 3), "NNN");
 
-		// not end with "..."
+		// not end with "NNN"
 		int seqLen = alignedSeqStr.length();
 		assertNotEquals(
-			alignedSeqStr.substring(seqLen - 3, seqLen), "...");
+			alignedSeqStr.substring(seqLen - 3, seqLen), "NNN");
 	}
 
 	@Test
@@ -218,23 +221,23 @@ public class AlignedSequenceTest {
 
 		AlignedSequence<HIV> alignedSeq = Aligner.getInstance(hiv).align(seq);
 
-		String alignedSeqStr = alignedSeq.getConcatenatedSeq();
+		String alignedSeqStr = alignedSeq.getAssembledAlignment(false);
 
-		// not start with "..."
-		assertNotEquals(alignedSeqStr.substring(0, 3), "...");
+		// not start with "NNN"
+		assertNotEquals(alignedSeqStr.substring(0, 3), "NNN");
 
-		// there should be exactly 46 "..." between PR and RT
+		// there should be exactly 46 "NNN" between PR and RT
 		int endPR = 282 - 33;
 		int startRT = 297 - 33 + 123;
 		assertEquals(
 			alignedSeqStr.substring(endPR, startRT),
-			StringUtils.repeat(".", startRT - endPR));
+			StringUtils.repeat("NNN", 46));
 		assertNotEquals(
-			alignedSeqStr.substring(endPR - 3, endPR), "...");
+			alignedSeqStr.substring(endPR - 3, endPR), "NNN");
 		assertNotEquals(
-			alignedSeqStr.substring(startRT, startRT + 3), "...");
+			alignedSeqStr.substring(startRT, startRT + 3), "NNN");
 
-		// there should be exactly 35 "..." between RT and IN
+		// there should be exactly 35 "NNN" between RT and IN
 		int endRT = 1653 + 297 - 33;
 		int startIN = 1680 + 78 + 297 - 33;
 		//System.out.println(alignedGeneSeqs.get(Gene.IN).getOriginalAATripletLine());
@@ -243,16 +246,16 @@ public class AlignedSequenceTest {
 		//System.out.println(concatSeqStr);
 		assertEquals(
 			alignedSeqStr.substring(endRT, startIN),
-			StringUtils.repeat(".", startIN - endRT));
+			StringUtils.repeat("NNN", 35));
 		assertNotEquals(
-			alignedSeqStr.substring(endRT - 3, endRT), "...");
+			alignedSeqStr.substring(endRT - 3, endRT), "NNN");
 		assertNotEquals(
-			alignedSeqStr.substring(startIN, startIN + 3), "...");
+			alignedSeqStr.substring(startIN, startIN + 3), "NNN");
 
-		// not end with "..."
+		// not end with "NNN"
 		int seqLen = alignedSeqStr.length();
 		assertNotEquals(
-			alignedSeqStr.substring(seqLen - 3, seqLen), "...");
+			alignedSeqStr.substring(seqLen - 3, seqLen), "NNN");
 	}
 
 	@Test
@@ -273,17 +276,17 @@ public class AlignedSequenceTest {
 
 		AlignedSequence<HIV> alignedSeq = Aligner.getInstance(hiv).align(seq);
 
-		String alignedSeqStr = alignedSeq.getConcatenatedSeq();
+		String alignedSeqStr = alignedSeq.getAssembledAlignment(false);
 
-		// not start with "..."
-		assertNotEquals(alignedSeqStr.substring(0, 3), "...");
+		// not start with "NNN"
+		assertNotEquals(alignedSeqStr.substring(0, 3), "NNN");
 
 		assertEquals(alignedSeqStr.length(), 282 - 33);
 
-		// not end with "..."
+		// not end with "NNN"
 		int seqLen = alignedSeqStr.length();
 		assertNotEquals(
-			alignedSeqStr.substring(seqLen - 3, seqLen), "...");
+			alignedSeqStr.substring(seqLen - 3, seqLen), "NNN");
 	}
 
 	@Test
@@ -304,17 +307,17 @@ public class AlignedSequenceTest {
 
 		AlignedSequence<HIV> alignedSeq = Aligner.getInstance(hiv).align(seq);
 
-		String alignedSeqStr = alignedSeq.getConcatenatedSeq();
+		String alignedSeqStr = alignedSeq.getAssembledAlignment(false);
 
-		// not start with "..."
-		assertNotEquals(alignedSeqStr.substring(0, 3), "...");
+		// not start with "NNN"
+		assertNotEquals(alignedSeqStr.substring(0, 3), "NNN");
 
 		assertEquals(alignedSeqStr.length(), 1626 - 45);
 
-		// not end with "..."
+		// not end with "NNN"
 		int seqLen = alignedSeqStr.length();
 		assertNotEquals(
-			alignedSeqStr.substring(seqLen - 3, seqLen), "...");
+			alignedSeqStr.substring(seqLen - 3, seqLen), "NNN");
 	}
 
 	@Test
@@ -335,17 +338,17 @@ public class AlignedSequenceTest {
 
 		AlignedSequence<HIV> alignedSeq = Aligner.getInstance(hiv).align(seq);
 
-		String alignedSeqStr = alignedSeq.getConcatenatedSeq();
+		String alignedSeqStr = alignedSeq.getAssembledAlignment(false);
 
-		// not start with "..."
-		assertNotEquals(alignedSeqStr.substring(0, 3), "...");
+		// not start with "NNN"
+		assertNotEquals(alignedSeqStr.substring(0, 3), "NNN");
 
 		assertEquals(alignedSeqStr.length(), 837 - 12);
 
-		// not end with "..."
+		// not end with "NNN"
 		int seqLen = alignedSeqStr.length();
 		assertNotEquals(
-			alignedSeqStr.substring(seqLen - 3, seqLen), "...");
+			alignedSeqStr.substring(seqLen - 3, seqLen), "NNN");
 	}
 
 }

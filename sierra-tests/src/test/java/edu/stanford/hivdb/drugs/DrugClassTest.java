@@ -14,7 +14,7 @@ public class DrugClassTest {
 	
 	@Test
 	public void testLoadJSON() {
-		assertEquals(hiv.getDrugClasses().size(), 4);
+		assertEquals(5, hiv.getDrugClasses().size());
 	}
 	
 	@Test

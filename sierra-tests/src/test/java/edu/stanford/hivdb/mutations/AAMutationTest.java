@@ -1005,7 +1005,8 @@ public class AAMutationTest {
 		 AAMutation<HIV> mutation = new AAMutation<HIV>(hiv.getGene("HIV1RT"), 184,
 					new char[] {'A', 'C', 'D', 'E', 'F', 'V', 'X', '_', '*', '-'});
 		 
-		 assertEquals(mutation.getASIFormat(), "M184X");
+		 // sierra-core#8: don't convert to X
+		 assertEquals(mutation.getASIFormat(), "M184ZdACDEFVZi");
 		 
 		 mutation = new AAMutation<HIV>(hiv.getGene("HIV1RT"), 184,
 					new char[] {'A', 'C', 'D', 'E', '_', '-'});
@@ -1015,7 +1016,7 @@ public class AAMutationTest {
 		 mutation = new AAMutation<HIV>(hiv.getGene("HIV1RT"), 184,
 					new char[] {'A', 'C', 'D', 'E', 'F', '_', '-'});
 		 
-		 assertEquals(mutation.getASIFormat(), "M184X");
+		 assertEquals(mutation.getASIFormat(), "M184dACDEFi");
 	 }
 
 	 @Test
@@ -1043,11 +1044,11 @@ public class AAMutationTest {
 		 
 		 mutation = new AAMutation<HIV>(hiv.getGene("HIV1RT"), 184,
 				 	new char[] {'_'});
-		 assertEquals(mutation.getHumanFormat(), "M184Insertion");
+		 assertEquals(mutation.getHumanFormat(), "M184ins");
 		 
 		 mutation = new AAMutation<HIV>(hiv.getGene("HIV1RT"), 184,
 				 	new char[] {'-'});
-		 assertEquals(mutation.getHumanFormat(), "M184Deletion");
+		 assertEquals(mutation.getHumanFormat(), "M184del");
 	 }
 
 	 @Test
@@ -1088,7 +1089,7 @@ public class AAMutationTest {
 	 public void testGetHumanFormatWithGene() {
 		 AAMutation<HIV> mutation = new AAMutation<HIV>( hiv.getGene("HIV1RT"), 184,
 					new char[] {'A', 'C', 'D', 'E', 'F', 'M'});
-		 assertEquals(mutation.getHumanFormatWithGene(), "HIV1RT_M184MACDEF");
+		 assertEquals(mutation.getHumanFormatWithGene(), "HIV1RT:M184MACDEF");
 	 }
 	 
 	 @Test

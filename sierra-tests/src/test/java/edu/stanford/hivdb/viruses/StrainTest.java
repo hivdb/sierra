@@ -55,7 +55,7 @@ public class StrainTest {
 	
 	@Test
 	public void testAbsoluteFirstNA() {
-		assertEquals(hiv1s.getAbsoluteFirstNA(), Integer.valueOf(2253));
+		assertEquals(hiv1s.getAbsoluteFirstNA(), Integer.valueOf(1));
 	}
 	
 	@Test
@@ -65,7 +65,7 @@ public class StrainTest {
 	
 	@Test
 	public void testGetDrugClasses() {
-		assertEquals(hiv1s.getDrugClasses().size(), 4);
+		assertEquals(hiv1s.getDrugClasses().size(), 5);
 		assertEquals(hiv2a.getDrugClasses().size(), 3);
 	}
 	

@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.junit.Assert;
 import org.junit.Test;
 
 import edu.stanford.hivdb.hivfacts.HIV;
@@ -20,7 +21,7 @@ import edu.stanford.hivdb.sequences.Sequence;
 
 public class GenotypeResultRegressionTest {
     private static final Logger LOGGER = LogManager.getLogger();
-	private static final String filePath = "GenotypeResultRegressionTest.txt";
+	// private static final String filePath = "GenotypeResultRegressionTest.txt";
 
     private static final HIV hiv = HIV.getInstance();
 
@@ -34,7 +35,7 @@ public class GenotypeResultRegressionTest {
 				TestSequencesFiles.getTestSequenceInputStream(TestSequencesProperties.SUBTYPE_TESTS_ALL);
 		List<Sequence> sequences = FastaUtils.readStream(testSequenceInputStream);
 
-		StringBuffer output = new StringBuffer();
+		// StringBuffer output = new StringBuffer();
 		sequences = sequences.subList(0, 1000);
 
 		List<AlignedSequence<HIV>> allAligneds = Aligner.getInstance(hiv).parallelAlign(sequences);
@@ -53,9 +54,9 @@ public class GenotypeResultRegressionTest {
 			LOGGER.debug("Sequence header:" + sequence.getHeader());
 			LOGGER.debug("From header: Subtype:" + knownGenotype + " FirstNA:" + firstNAFromHeader);
 
-			String completeSequence = alignedSeq.getConcatenatedSeq();
+			String completeSequence = alignedSeq.getAssembledAlignment(false);
 			int firstNA = alignedSeq.getStrain().getAbsoluteFirstNA();
-			MutationSet<HIV> sdrms = alignedSeq.getSdrms();
+			MutationSet<HIV> sdrms = alignedSeq.getMutations().getSDRMs();
 			LOGGER.debug("Genes:" + alignedSeq.getAvailableGenes() + " firstNA:" + firstNA);
 			LOGGER.debug("completeSequence:" + completeSequence);
 			LOGGER.debug("SDRMs:" + sdrms.join());
@@ -66,19 +67,20 @@ public class GenotypeResultRegressionTest {
 			//Subtype closestSubtype = closestSubtypes.get(0);
 			//Double closestDistance = closestDistances.get(0);
 
-			if (bestMatch.getGenotype() != knownGenotype) {
+			Assert.assertEquals(knownGenotype, bestMatch.getGenotype());
+			/*if (bestMatch.getGenotype() != knownGenotype) {
 				output.append("Conflict" + "\t");
-				output.append("Subtype:" + bestMatch.getDisplay() + "\t");
+				output.append("Subtype:" + bestMatch.getGenotype() + "\t");
 				output.append("SubtypeInDB:" + knownGenotype + "\t" +  sequence.getHeader());
 				output.append("\n");
 			} else {
 				//output.append("OK" + "\t");
-			}
+			}*/
 
 
 		}
 
-		TestUtils.writeFile(filePath, output.toString());
+		// TestUtils.writeFile(filePath, output.toString());
     }
 
 	/*private static String printOutSubypeResults(Map<Integer, Map<Subtype, Map<String, Double>>> subtypeResults) {

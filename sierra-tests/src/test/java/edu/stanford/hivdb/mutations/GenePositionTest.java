@@ -132,9 +132,9 @@ public class GenePositionTest {
 
     @Test
 	public void testGetPositionInStrain() {
-		assertEquals(1,   (int) new GenePosition<HIV>(hiv.getGene("HIV1PR"), 1).getPositionInStrain());
-		assertEquals(100, (int) new GenePosition<HIV>(hiv.getGene("HIV1RT"), 1).getPositionInStrain());
-		assertEquals(660, (int) new GenePosition<HIV>(hiv.getGene("HIV1IN"), 1).getPositionInStrain());
+		assertEquals(3236, (int) new GenePosition<HIV>(hiv.getGene("HIV1PR"), 1).getPositionInStrain());
+		assertEquals(3335, (int) new GenePosition<HIV>(hiv.getGene("HIV1RT"), 1).getPositionInStrain());
+		assertEquals(3895, (int) new GenePosition<HIV>(hiv.getGene("HIV1IN"), 1).getPositionInStrain());
 		assertEquals(444, (int) new GenePosition<HIV2>(hiv2.getGene("HIV2ART"), 345).getPositionInStrain());
 		assertEquals(445, (int) new GenePosition<HIV2>(hiv2.getGene("HIV2ART"), 346).getPositionInStrain());
 		assertEquals(658, (int) new GenePosition<HIV2>(hiv2.getGene("HIV2ART"), 559).getPositionInStrain());

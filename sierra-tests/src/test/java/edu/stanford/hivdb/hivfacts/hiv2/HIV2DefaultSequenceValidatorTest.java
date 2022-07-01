@@ -14,6 +14,7 @@ import edu.stanford.hivdb.utilities.ValidationResult;
 public class HIV2DefaultSequenceValidatorTest {
 
 	final static HIV2 hiv = HIV2.getInstance();
+	final static List<String> includeGenes = List.of("PR", "RT", "IN");
 	
 	@Test
 	public void test() {
@@ -22,14 +23,14 @@ public class HIV2DefaultSequenceValidatorTest {
 		Sequence seq = new Sequence("empty", "EMPTY");
 		AlignedSequence<HIV2> alignedSeq = Aligner.getInstance(hiv).align(seq);
 		
-		List<ValidationResult> results = validator.validate(alignedSeq);
+		List<ValidationResult> results = validator.validate(alignedSeq, includeGenes);
 		assertEquals(1, results.size());
 		
 		Sequence testSeq = Sequence.fromGenbank("AF096883");
 		
 		alignedSeq = Aligner.getInstance(hiv).align(testSeq);
 		
-		results = validator.validate(alignedSeq);
+		results = validator.validate(alignedSeq, includeGenes);
 		assertEquals(5, results.size());
 	}
 }

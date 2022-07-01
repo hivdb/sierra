@@ -17,6 +17,7 @@ import edu.stanford.hivdb.utilities.ValidationResult;
 public class HIV2DefaultSequenceReadsValidatorTest {
 
 	final static HIV2 hiv = HIV2.getInstance();
+	final static List<String> includeGenes = List.of("PR", "RT", "IN");
 	
 	@Test
 	public void test() {
@@ -39,7 +40,7 @@ public class HIV2DefaultSequenceReadsValidatorTest {
 				Collections.emptyList(),
 				1., 0.01, 0L, 1000L);
 		
-		List<ValidationResult> results = validator.validate(seqReads);
+		List<ValidationResult> results = validator.validate(seqReads, includeGenes);
 		assertEquals(results.size(), 1);
 		
 		// Empty
@@ -50,7 +51,7 @@ public class HIV2DefaultSequenceReadsValidatorTest {
 				allReads,
 				Collections.emptyList(),
 				1., 0.01, 0L, 1000L);
-		results = validator.validate(seqReads);
+		results = validator.validate(seqReads, includeGenes);
 		assertEquals(results.size(), 1);
 		
 		allReads = new ArrayList<>();
@@ -61,7 +62,7 @@ public class HIV2DefaultSequenceReadsValidatorTest {
 				allReads,
 				Collections.emptyList(),
 				1., 0.01, 0L, 10000L);
-		results = validator.validateTrimmedPositions(seqReads);
+		results = validator.validateTrimmedPositions(seqReads, includeGenes);
 		assertEquals(results.size(), 1);
 		
 		
@@ -72,7 +73,7 @@ public class HIV2DefaultSequenceReadsValidatorTest {
 				allReads,
 				Collections.emptyList(),
 				1., 0.01, 0L, 1000L);
-		results = validator.validateNoMissingPositions(seqReads);
+		results = validator.validateNoMissingPositions(seqReads, includeGenes);
 		assertEquals(results.size(), 0);
 		
 		

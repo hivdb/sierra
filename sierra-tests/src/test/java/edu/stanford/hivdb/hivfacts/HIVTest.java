@@ -101,13 +101,24 @@ public class HIVTest {
     	Collection<Gene<HIV>> genes = hiv.getGenes(strain);
 
     	assertNotNull(genes);
-    	assertEquals(genes.size(), 3);
+    	assertEquals(13, genes.size());
+    	System.out.println(hiv.getGenes(hiv.getStrain("HIV1")));
 
-		assertArrayEquals(hiv.getGenes(hiv.getStrain("HIV1")).toArray(), new Gene[] {
+		assertArrayEquals(new Gene[] {
+				hiv.getGene("HIV1gag"),
+				hiv.getGene("HIV1CA"),
+				hiv.getGene("HIV1pol"),
 				hiv.getGene("HIV1PR"),
 				hiv.getGene("HIV1RT"),
-				hiv.getGene("HIV1IN")
-			});
+				hiv.getGene("HIV1IN"),
+				hiv.getGene("HIV1vif"),
+				hiv.getGene("HIV1vpr"),
+				hiv.getGene("HIV1tat"),
+				hiv.getGene("HIV1rev"),
+				hiv.getGene("HIV1vpu"),
+				hiv.getGene("HIV1env"),
+				hiv.getGene("HIV1nef")
+			}, hiv.getGenes(hiv.getStrain("HIV1")).toArray());
     }
     
 
@@ -125,10 +136,14 @@ public class HIVTest {
     @Test
     public void testGetDrugClasses() {
         assertNotNull(hiv.getDrugClasses());
-        assertEquals(hiv.getDrugClasses().size(), 4);
+        assertEquals(5, hiv.getDrugClasses().size());
 
-        assertEquals(hiv.getDrugClasses().iterator().next().getName(), "PI");
+        assertEquals(hiv.getDrugClasses().iterator().next().getName(), "CAI");
 
+		assertArrayEquals(
+				new DrugClass[] {hiv.getDrugClass("CAI")},
+				hiv.getGene("HIV1CA").getDrugClasses().toArray()
+				);
 		assertArrayEquals(
 				new DrugClass[] {hiv.getDrugClass("PI")},
 				hiv.getGene("HIV1PR").getDrugClasses().toArray()
@@ -165,7 +180,7 @@ public class HIVTest {
     @Test
     public void testGetDrugs() {
     	assertNotNull(hiv.getDrugs());
-    	assertEquals(hiv.getDrugs().size(), 25);
+    	assertEquals(26, hiv.getDrugs().size());
     }
 
 	@Test
@@ -312,7 +327,7 @@ public class HIVTest {
 	@Test
 	public void testGetDrugResistMutations() {
 		assertNotNull(hiv.getDrugResistMutations());
-		assertEquals(hiv.getDrugResistMutations().size(), 4);
+		assertEquals(5, hiv.getDrugResistMutations().size());
 	}
 
 	@Test
@@ -377,8 +392,8 @@ public class HIVTest {
 	@Test
 	public void testGetMutationTypePairs() {
 		assertNotNull(hiv.getMutationTypePairs());
-		// 20210222, 261 mutation type pairs
-		assertEquals(261, hiv.getMutationTypePairs().size());
+		// 20220630, 270 mutation type pairs
+		assertEquals(270, hiv.getMutationTypePairs().size());
 	}
 
 	@Test
@@ -414,7 +429,7 @@ public class HIVTest {
 	@Test
 	public void testGetNumPatientsForAAPercents() {
 		Strain<HIV> strain = hiv.getStrain("HIV1");
-		assertEquals(hiv.getNumPatientsForAAPercents(strain).size(), 3);
+		assertEquals(13, hiv.getNumPatientsForAAPercents(strain).size());
 	}
 
 	@Test

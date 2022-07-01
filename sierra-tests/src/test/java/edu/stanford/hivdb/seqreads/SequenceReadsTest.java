@@ -72,7 +72,7 @@ public class SequenceReadsTest {
 		SequenceReads<HIV> seqReads = SequenceReads.fromCodonReadsTable(
 				"test", hiv.getStrain("HIV1"), allReads, Collections.emptyList(), 1., 0.01, 0L, 1000L);
 		
-		assertFalse(seqReads.getCodonReadsCoverage().isEmpty());
+		assertFalse(seqReads.getCodonReadsCoverage(List.of("PR", "RT", "IN")).isEmpty());
 	}
 	
 	@Test
@@ -339,7 +339,7 @@ public class SequenceReadsTest {
 		SequenceReads<HIV> seqReads = SequenceReads.fromCodonReadsTable(
 				"test", hiv.getStrain("HIV1"), allReads, Collections.emptyList(), 1., 0.01, 0L, 1000L);
 		
-		assertTrue(seqReads.getAssembledUnambiguousConsensus(true).startsWith("....."));
+		assertTrue(seqReads.getAssembledUnambiguousConsensus(true).startsWith("NNNNN"));
 		assertTrue(seqReads.getAssembledUnambiguousConsensus(true).contains("NNN"));
 	}
 	
@@ -484,7 +484,7 @@ public class SequenceReadsTest {
 				"test", hiv.getStrain("HIV1"), allReads, Collections.emptyList(), 1., 0.01, 0L, 1000L);
 		
 		
-		assertEquals(seqReads.getSubtypeText(), "CRF02_AG (0.00%)");
+		assertEquals(seqReads.getSubtypeText(), "Unknown");
 		
 	}
 	

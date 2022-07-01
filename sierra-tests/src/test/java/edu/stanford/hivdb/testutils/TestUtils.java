@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.util.List;
 
+import edu.stanford.hivdb.utilities.Json;
 import edu.stanford.hivdb.utilities.MyFileUtils;
 
 public class TestUtils {
@@ -49,6 +50,11 @@ public class TestUtils {
 
 		writeFile(filePath, fileContent.toString());
 		
+		return;
+	}
+	
+	public static void writeJSONFile(String filePath, Object object) {
+		writeFile(filePath, Json.dumps(object));
 		return;
 	}
 	

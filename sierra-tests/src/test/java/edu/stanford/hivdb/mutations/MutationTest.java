@@ -388,15 +388,15 @@ public class MutationTest {
 		assertEquals(mut1, mut2);
 		assertEquals(mut1.hashCode(), mut2.hashCode());
 
-		assertEquals("V118Insertion", mut3.getHumanFormat());
-		assertEquals("V118Insertion", mut4.getHumanFormat());
+		assertEquals("V118ins", mut3.getHumanFormat());
+		assertEquals("V118ins", mut4.getHumanFormat());
 		assertNotEquals(mut1, mut3);
 		assertNotEquals(mut2, mut4);
 		assertEquals(mut3, mut4);
 		// we consider insertions are the same
 		assertEquals(mut3.hashCode(), mut4.hashCode());
 
-		assertEquals("T69Deletion", mut6.getHumanFormat());
+		assertEquals("T69del", mut6.getHumanFormat());
 
 		assertEquals("N155S", mut8.getHumanFormat());
 		assertEquals("N155NS", mut9.getHumanFormat());
@@ -441,45 +441,45 @@ public class MutationTest {
 		AAMutation<HIV> mut15 = new AAMutation<HIV>(hiv.getGene("HIV1RT"), 188, "*".toCharArray());
 		AAMutation<HIV> mut16 = new AAMutation<HIV>(hiv.getGene("HIV1IN"), 263, "RKGY".toCharArray());
 		AAMutation<HIV> mut17 = new AAMutation<HIV>(hiv.getGene("HIV1IN"), 263, "X".toCharArray());
-		assertEquals("HIV1RT_K65KN", mut1.getHumanFormatWithGene());
-		assertEquals("RT_K65KN", mut1.getHumanFormatWithAbstractGene());
-		assertEquals("HIV1RT_K65KN", mut2.getHumanFormatWithGene());
-		assertEquals("RT_K65KN", mut2.getHumanFormatWithAbstractGene());
-		assertEquals("HIV1RT_V118Insertion", mut3.getHumanFormatWithGene());
-		assertEquals("RT_V118Insertion", mut3.getHumanFormatWithAbstractGene());
-		assertEquals("HIV1RT_V118Insertion", mut4.getHumanFormatWithGene());
-		assertEquals("RT_V118Insertion", mut4.getHumanFormatWithAbstractGene());
-		assertEquals("HIV1RT_T69Deletion", mut6.getHumanFormatWithGene());
-		assertEquals("RT_T69Deletion", mut6.getHumanFormatWithAbstractGene());
-		assertEquals("HIV1IN_N155S", mut8.getHumanFormatWithGene());
-		assertEquals("IN_N155S", mut8.getHumanFormatWithAbstractGene());
-		assertEquals("HIV1IN_N155NS", mut9.getHumanFormatWithGene());
-		assertEquals("IN_N155NS", mut9.getHumanFormatWithAbstractGene());
-		assertEquals("HIV1RT_V10S", mut10.getHumanFormatWithGene());
-		assertEquals("RT_V10S", mut10.getHumanFormatWithAbstractGene());
-		assertEquals("HIV1PR_L10S", mut11.getHumanFormatWithGene());
-		assertEquals("PR_L10S", mut11.getHumanFormatWithAbstractGene());
-		assertEquals("HIV1RT_T215TFIS", mut12.getHumanFormatWithGene());
-		assertEquals("RT_T215TFIS", mut12.getHumanFormatWithAbstractGene());
-		assertEquals("HIV1RT_T215TNSY", mut13.getHumanFormatWithGene());
-		assertEquals("RT_T215TNSY", mut13.getHumanFormatWithAbstractGene());
-		assertEquals("HIV1RT_Y188Y*L", mut14.getHumanFormatWithGene());
-		assertEquals("RT_Y188Y*L", mut14.getHumanFormatWithAbstractGene());
-		assertEquals("HIV1RT_Y188*", mut15.getHumanFormatWithGene());
-		assertEquals("RT_Y188*", mut15.getHumanFormatWithAbstractGene());
-		assertEquals("HIV1IN_R263RGKY", mut16.getHumanFormatWithGene());
-		assertEquals("IN_R263RGKY", mut16.getHumanFormatWithAbstractGene());
-		assertEquals("HIV1IN_R263X", mut17.getHumanFormatWithGene());
-		assertEquals("IN_R263X", mut17.getHumanFormatWithAbstractGene());
+		assertEquals("HIV1RT:K65KN", mut1.getHumanFormatWithGene());
+		assertEquals("RT:K65KN", mut1.getHumanFormatWithAbstractGene());
+		assertEquals("HIV1RT:K65KN", mut2.getHumanFormatWithGene());
+		assertEquals("RT:K65KN", mut2.getHumanFormatWithAbstractGene());
+		assertEquals("HIV1RT:V118ins", mut3.getHumanFormatWithGene());
+		assertEquals("RT:V118ins", mut3.getHumanFormatWithAbstractGene());
+		assertEquals("HIV1RT:V118ins", mut4.getHumanFormatWithGene());
+		assertEquals("RT:V118ins", mut4.getHumanFormatWithAbstractGene());
+		assertEquals("HIV1RT:T69del", mut6.getHumanFormatWithGene());
+		assertEquals("RT:T69del", mut6.getHumanFormatWithAbstractGene());
+		assertEquals("HIV1IN:N155S", mut8.getHumanFormatWithGene());
+		assertEquals("IN:N155S", mut8.getHumanFormatWithAbstractGene());
+		assertEquals("HIV1IN:N155NS", mut9.getHumanFormatWithGene());
+		assertEquals("IN:N155NS", mut9.getHumanFormatWithAbstractGene());
+		assertEquals("HIV1RT:V10S", mut10.getHumanFormatWithGene());
+		assertEquals("RT:V10S", mut10.getHumanFormatWithAbstractGene());
+		assertEquals("HIV1PR:L10S", mut11.getHumanFormatWithGene());
+		assertEquals("PR:L10S", mut11.getHumanFormatWithAbstractGene());
+		assertEquals("HIV1RT:T215TFIS", mut12.getHumanFormatWithGene());
+		assertEquals("RT:T215TFIS", mut12.getHumanFormatWithAbstractGene());
+		assertEquals("HIV1RT:T215TNSY", mut13.getHumanFormatWithGene());
+		assertEquals("RT:T215TNSY", mut13.getHumanFormatWithAbstractGene());
+		assertEquals("HIV1RT:Y188Y*L", mut14.getHumanFormatWithGene());
+		assertEquals("RT:Y188Y*L", mut14.getHumanFormatWithAbstractGene());
+		assertEquals("HIV1RT:Y188*", mut15.getHumanFormatWithGene());
+		assertEquals("RT:Y188*", mut15.getHumanFormatWithAbstractGene());
+		assertEquals("HIV1IN:R263RGKY", mut16.getHumanFormatWithGene());
+		assertEquals("IN:R263RGKY", mut16.getHumanFormatWithAbstractGene());
+		assertEquals("HIV1IN:R263X", mut17.getHumanFormatWithGene());
+		assertEquals("IN:R263X", mut17.getHumanFormatWithAbstractGene());
 	}
 
 	@Test
 	public void testGetHumanFormatWithoutCons() {
 		assertEquals(
-			"69Insertion",
+			"69ins",
 			new AAMutation<HIV>(hiv.getGene("HIV1RT"), 69, '#').getHumanFormatWithoutLeadingRef());
 		assertEquals(
-			"67Deletion",
+			"67del",
 			new AAMutation<HIV>(hiv.getGene("HIV1RT"), 67, '-').getHumanFormatWithoutLeadingRef());
 	}
 

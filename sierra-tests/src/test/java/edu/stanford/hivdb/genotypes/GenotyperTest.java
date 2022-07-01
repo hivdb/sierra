@@ -19,7 +19,7 @@ public class GenotyperTest {
 		assertEquals("X51", primary.getGenotype().getIndexName());
 		assertEquals("KJ485697", primary.getReference().getAccession());
 		assertEquals(65.0 / 2841, primary.getDistance(), 1e-10);
-		assertEquals("B", result.getFallbackMatch().getGenotype().getIndexName());
+		assertEquals("B", result.getParentFallbackMatch(primary).getGenotype().getIndexName());
 		
 		GenotypeResult<HIV> result2 = hiv.getGenotyper().compareAll(
 				seqX51.sequence,
@@ -29,7 +29,7 @@ public class GenotyperTest {
 		assertEquals("X51", primary2.getGenotype().getIndexName());
 		assertEquals("KJ485697", primary2.getReference().getAccession());
 		assertEquals(65.0 / 2841, primary2.getDistance(), 1e-10);
-		assertEquals("B", result2.getFallbackMatch().getGenotype().getIndexName());
+		assertEquals("B", result2.getParentFallbackMatch(primary).getGenotype().getIndexName());
 		
 		
 
