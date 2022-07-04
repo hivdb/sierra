@@ -31,9 +31,12 @@ import java.util.stream.Collectors;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
+import org.junit.Test;
+
 import com.google.gson.reflect.TypeToken;
 
 import edu.stanford.hivdb.hivfacts.HIV;
+import edu.stanford.hivdb.hivfacts.hiv2.HIV2;
 import edu.stanford.hivdb.viruses.Gene;
 import edu.stanford.hivdb.mutations.FrameShift;
 import edu.stanford.hivdb.mutations.MutationSet;
@@ -45,6 +48,30 @@ import edu.stanford.hivdb.utilities.FastaUtils;
 public class AlignerTest {
 	private static final Logger LOGGER = LogManager.getLogger();
 	private static final HIV hiv = HIV.getInstance();
+	private static final HIV2 hiv2 = HIV2.getInstance();
+	
+	@Test
+	public void testHIV2Alignment1() {
+		Sequence seq = Sequence.fromGenbank("FJ442006");
+		PostAlignAligner<HIV2> aligner = Aligner.getInstance(hiv2);
+		AlignedSequence<HIV2> alignedSeq = aligner.align(seq);
+		assertEquals(List.of(hiv2.getGene("HIV2BIN")), alignedSeq.getAvailableGenes());
+		AlignedGeneSeq<HIV2> geneSeq = alignedSeq.getAlignedGeneSequence("IN");
+		assertEquals(1, geneSeq.getFirstAA());
+		assertEquals(296, geneSeq.getLastAA());
+	}
+
+	@Test
+	public void testHIV2Alignment2() {
+		Sequence seq = Sequence.fromGenbank("KJ131139");
+		PostAlignAligner<HIV2> aligner = Aligner.getInstance(hiv2);
+		AlignedSequence<HIV2> alignedSeq = aligner.align(seq);
+		assertEquals(List.of(hiv2.getGene("HIV2APR")), alignedSeq.getAvailableGenes());
+		AlignedGeneSeq<HIV2> geneSeq = alignedSeq.getAlignedGeneSequence("PR");
+		assertEquals(1, geneSeq.getFirstAA());
+		// The last codon TTT is too far from ref CTA
+		assertEquals(98, geneSeq.getLastAA());
+	}
 
 //	@Test
 	public void test() {

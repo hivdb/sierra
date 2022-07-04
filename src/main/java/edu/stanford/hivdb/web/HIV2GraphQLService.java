@@ -1,6 +1,6 @@
 /*
 
-    Copyright (C) 2017 Stanford HIVDB team
+    Copyright (C) 2022 Stanford HIVDB team
 
     Sierra is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -24,13 +24,13 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.Status;
+import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.core.Response.Status;
 
 import edu.stanford.hivdb.graphql.SierraSchema;
 import edu.stanford.hivdb.hivfacts.hiv2.HIV2;
@@ -40,6 +40,8 @@ import graphql.ExecutionInput;
 import graphql.ExecutionResult;
 import graphql.GraphQL;
 import graphql.GraphQLError;
+import graphql.SerializationError;
+import graphql.UnresolvedTypeError;
 import graphql.schema.GraphQLSchema;
 
 @Path("/hiv2/graphql")
@@ -98,8 +100,17 @@ public class HIV2GraphQLService {
 			errorMap.put("type", error.getErrorType());
 			errorMap.put("message", error.getMessage());
 			errorMap.put("locations", error.getLocations());
-			if (error instanceof ExceptionWhileDataFetching) {
-				Throwable innerExc = ((ExceptionWhileDataFetching) error).getException();
+			Throwable innerExc = null;
+			if (error instanceof SerializationError) {
+				innerExc = ((SerializationError) error).getException();
+			}
+			else if (error instanceof ExceptionWhileDataFetching) {
+				innerExc = ((ExceptionWhileDataFetching) error).getException();
+			}
+			else if (error instanceof UnresolvedTypeError) {
+				innerExc = ((UnresolvedTypeError) error).getException();
+			}
+			if (innerExc != null) {
 				List<Map<String, Object>> details = new ArrayList<>();
 				do {
 					Map<String, Object> errDetail = new LinkedHashMap<>();
@@ -110,9 +121,6 @@ public class HIV2GraphQLService {
 					innerExc = innerExc.getCause();
 				} while (innerExc != null);
 				errorMap.put("details", details);
-				/*if (!(innerExc instanceof InvalidMutationStringException)) {
-					throw new RuntimeException("Unhandled exception", innerExc);
-				}*/
 			}
 			errors.add(errorMap);
 			/*else if (error instanceof InvalidSyntaxError) {

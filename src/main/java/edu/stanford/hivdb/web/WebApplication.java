@@ -35,8 +35,6 @@ public class WebApplication extends Application {
 		singletons.add(new HivdbVersionService());
 		singletons.add(new GraphQLService());
 		singletons.add(new HIV2GraphQLService());
-		classes.add(HIV1SequenceAnalysisService.class);
-		classes.add(HIV2SequenceAnalysisService.class);
 		classes.add(CorsFilter.class);
 	}
 
