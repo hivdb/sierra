@@ -20,8 +20,9 @@ package edu.stanford.hivdb.viruses;
 
 import static org.junit.Assert.*;
 
-
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import com.google.common.base.Strings;
 
@@ -34,6 +35,9 @@ public class GeneTest {
 
 	private final static HIV hiv = HIV.getInstance();
 	private final static HIV2 hiv2 = HIV2.getInstance();
+
+	@Rule
+	public ExpectedException expectedEx = ExpectedException.none();
 
 	@Test
 	public void testGetGeneInstance() {
@@ -203,6 +207,42 @@ public class GeneTest {
 	@Test
 	public void testHashCode() {
 		assertEquals(hiv.getGene("HIV1PR").hashCode(), hiv.getGene("HIV1PR").hashCode());
+	}
+	
+	@Test
+	public void testCalcAbsoluteNAposition() {
+		assertEquals(2253, hiv.getGene("HIV1PR").calcAbsoluteNAPosition(1));
+		assertEquals(2256, hiv.getGene("HIV1PR").calcAbsoluteNAPosition(2));
+		assertEquals(2553, hiv.getGene("HIV1RT").calcAbsoluteNAPosition(2));
+		assertEquals(5562, hiv.getGene("HIV1vpr").calcAbsoluteNAPosition(2));
+		assertEquals(5769, hiv.getGene("HIV1vpr").calcAbsoluteNAPosition(71));
+		assertEquals(5773, hiv.getGene("HIV1vpr").calcAbsoluteNAPosition(72));
+		assertEquals(5831, hiv.getGene("HIV1tat").calcAbsoluteNAPosition(1));
+		assertEquals(6044, hiv.getGene("HIV1tat").calcAbsoluteNAPosition(72));
+		assertEquals(8380, hiv.getGene("HIV1tat").calcAbsoluteNAPosition(73));
+		assertEquals(8464, hiv.getGene("HIV1tat").calcAbsoluteNAPosition(101));
+		
+		assertEquals(256, hiv2.getGene("HIV2APR").calcAbsoluteNAPosition(1));
+		assertEquals(553, hiv2.getGene("HIV2ART").calcAbsoluteNAPosition(1));
+		assertEquals(2230, hiv2.getGene("HIV2AIN").calcAbsoluteNAPosition(1));
+
+		assertEquals(253, hiv2.getGene("HIV2BPR").calcAbsoluteNAPosition(1));
+		assertEquals(550, hiv2.getGene("HIV2BRT").calcAbsoluteNAPosition(1));
+		assertEquals(2227, hiv2.getGene("HIV2BIN").calcAbsoluteNAPosition(1));
+	}
+	
+	@Test
+	public void testCalcAbsoluteNAPositionOutOfBounds() {
+		expectedEx.expect(RuntimeException.class);
+		expectedEx.expectMessage("HIV2ART aaPos out of bound: 560");
+		hiv2.getGene("HIV2ART").calcAbsoluteNAPosition(560);
+	}
+	
+	@Test
+	public void testCalcAbsoluteNAPositionOutOfBounds2() {
+		expectedEx.expect(RuntimeException.class);
+		expectedEx.expectMessage("HIV1tat aaPos out of bound: 102");
+		hiv.getGene("HIV1tat").calcAbsoluteNAPosition(102);
 	}
 
 }

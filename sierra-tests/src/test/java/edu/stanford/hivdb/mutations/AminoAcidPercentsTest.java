@@ -15,9 +15,6 @@ public class AminoAcidPercentsTest {
 	private final static HIV hiv = HIV.getInstance();
 	private static AminoAcidPercents<HIV> aaPcnts = null;
 	
-	@Rule
-	public ExpectedException expectedEx = ExpectedException.none();
-	
 	private static void initInstance() {
 		aaPcnts = hiv.getAminoAcidPercents(hiv.getStrain("HIV1"), "all", "all");
 	}
@@ -35,19 +32,11 @@ public class AminoAcidPercentsTest {
 	}
 
 	@Test
-	public void testAminoAcidPercentsWithException() {
-		expectedEx.expect(ExceptionInInitializerError.class);
-		expectedEx.expectMessage("Invalid resource name (aapcnt/rx-all_subtype-E.json)");
-		hiv.getAminoAcidPercents(hiv.getStrain("HIV1"), "all", "E");
+	public void testEmptyAminoAcidPercents() {
+		assertTrue(hiv.getAminoAcidPercents(hiv.getStrain("HIV1"), "all", "E").isEmpty());
+		assertTrue(hiv.getAminoAcidPercents(hiv.getStrain("HIV1"), "aaaaaaa", "all").isEmpty());
 	}
 
-	@Test
-	public void testAminoAcidPercentsWithException2() {
-		expectedEx.expect(ExceptionInInitializerError.class);
-		expectedEx.expectMessage("Invalid resource name (aapcnt/rx-aaaaaaa_subtype-all.json)");
-        hiv.getAminoAcidPercents(hiv.getStrain("HIV1"), "aaaaaaa", "all");
-	}
-	
 	@Test
 	public void testNewEmptyInstance() {
 		assertTrue(AminoAcidPercents.newEmptyInstance() instanceof AminoAcidPercents<?>);

@@ -78,10 +78,15 @@ public class GenotyperTest {
 		assertEquals("B", primary.getGenotype().getIndexName());
 		assertEquals("KJ704787", primary.getReference().getAccession());
 		/* removed 7 ambiguities and 4 SDRMs:
-		 *   RT67N:GAC=>AAC; RT70R:AAA=>AGA;
-		 *   RT184V:ATG=>GTG; RT219Q:AAA=>CAA
+		 *   RT67N:GAC=>AAC (2748); RT70R:AAA=>AGA (2758);
+		 *   RT184V:ATG=>GTG (3099); RT219Q:AAA=>CAA (3204)
 		 */
+		
+		assertFalse(primary.getDiscordanceList().contains(2748));
+		assertFalse(primary.getDiscordanceList().contains(2758));
+		assertFalse(primary.getDiscordanceList().contains(3099));
+		assertFalse(primary.getDiscordanceList().contains(3204));
 
-		assertEquals(41.0 / 1174, primary.getDistance(), 1e-10);
+		assertEquals(37.0 / 1174, primary.getDistance(), 1e-10);
 	}
 }

@@ -61,11 +61,11 @@ public class OneCodonReadsCoverageTest {
     }
     
     @Test
-    public void testGetPositionInStrain() {
+    public void testGetAbsoluteNAPosition() {
     	OneCodonReadsCoverage<HIV> reads = new OneCodonReadsCoverage<HIV>(
     			hiv.getGene("HIV1PR"), 89, 1000, false);
     	
-    	assertEquals(Integer.valueOf(89 + 3235), reads.getPositionInStrain());
+    	assertEquals(Integer.valueOf(88 * 3 + 2253), reads.getAbsoluteNAPosition());
     }
     
     @Test

@@ -54,7 +54,7 @@ public class PostAlignAlignerTest {
 //		Sequence testSeq = Sequence.fromGenbank("AF096883");
 		Sequence testSeq = fallbackFromGenBank("AF096883");
 		AlignedSequence<HIV> alignedSeq = Aligner.getInstance(hiv).align(testSeq);
-		assertEquals("B (4.86%)", alignedSeq.getGenotypeText());
+		assertEquals("B (3.85%)", alignedSeq.getGenotypeText());
 		AlignedGeneSeq<HIV> seqPR = alignedSeq.getAlignedGeneSequence(hiv.getGene("HIV1PR"));
 		assertEquals(1, seqPR.getFirstAA());
 		assertEquals(1, seqPR.getFirstNA());
