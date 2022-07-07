@@ -8,6 +8,6 @@ if [ -z "$1" ]; then
     exit 1
 fi
 
-cd docker/sierra; make release
+make build release
 docker tag hivdb/sierra:latest hivdb/sierra:$1
 docker push hivdb/sierra:$1

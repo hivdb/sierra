@@ -33,7 +33,13 @@ release:
 	@echo ${VERSION} > .latest-version
 	@sleep 2
 
+sync-to-testing:
+	@docker tag hivdb/sierra:latest hivdb/sierra-testing:latest
+	@docker tag hivdb/sierra:latest hivdb/sierra-testing:$(shell cat .latest-version)
+	@docker push hivdb/sierra-testing:latest
+	@docker push hivdb/sierra-testing:$(shell cat .latest-version)
+
 release-testing:
-	@cd docker/sierra; make release DOCKERREPO=hivdb/sierra-testing
+	@make release DOCKERREPO=hivdb/sierra-testing
 
 .PHONY: build force-build dev inspect release release-testing
