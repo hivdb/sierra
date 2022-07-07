@@ -21,7 +21,7 @@ dev: build
 inspect:
 	@docker exec -it hivdb-sierra-dev /bin/bash
 
-release-ci:
+release-ci: build-ci
 	@docker login
 	@docker push hivdb/sierra-ci:latest
 

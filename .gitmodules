@@ -10,4 +10,4 @@
 	url = https://github.com/hivdb/sierra-core.git
 [submodule "sierra-graphql"]
 	path = sierra-graphql
-	url = git@github.com:hivdb/sierra-graphql.git
+	url = https://github.com/hivdb/sierra-graphql.git
