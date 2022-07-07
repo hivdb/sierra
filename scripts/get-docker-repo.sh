@@ -2,7 +2,7 @@
 
 BRANCH=`git rev-parse --abbrev-ref HEAD`
 
-if [[ "$BRANCH" == "master" ]]; then
+if [[ "$BRANCH" == "main" ]]; then
     echo "hivdb/sierra"
 else
     echo "hivdb/sierra-testing"

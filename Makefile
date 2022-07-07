@@ -4,6 +4,9 @@ DOCKERREPO ?= $(shell scripts/get-docker-repo.sh)
 build:
 	@docker build -t ${DOCKERREPO} .
 
+build-ci:
+	@docker build -t hivdb/sierra-ci -f Dockerfile.CI .
+
 force-build:
 	@docker build --no-cache -t ${DOCKERREPO} .
 
@@ -17,6 +20,10 @@ dev: build
 
 inspect:
 	@docker exec -it hivdb-sierra-dev /bin/bash
+
+release-ci: build-ci
+	@docker login
+	@docker push hivdb/sierra-ci:latest
 
 release:
 	@docker login

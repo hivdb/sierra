@@ -20,6 +20,7 @@ dependencies {
     implementation project(':sierra-core')
     implementation project(':hivfacts-java')
     implementation project(':sierra-graphql')
+    implementation project(':asi_interpreter')
 
     implementation 'org.apache.commons:commons-lang3:3.9'
     implementation 'org.apache.commons:commons-math3:3.6.1'
