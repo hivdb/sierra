@@ -13,7 +13,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: hivdb/sierra:latest
+      image: hivdb/sierra-ci:latest
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2

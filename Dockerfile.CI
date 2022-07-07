@@ -1,0 +1,2 @@
+FROM hivdb/sierra-testing:latest
+RUN apt-get -q update && apt-get install -qqy git
