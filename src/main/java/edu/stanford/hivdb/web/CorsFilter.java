@@ -35,7 +35,7 @@ public class CorsFilter implements ContainerResponseFilter {
 		response.getHeaders().add("Access-Control-Allow-Origin", "*");
 		response.getHeaders().add(
 			"Access-Control-Allow-Headers",
-			"CSRF-Token, X-Requested-By, Authorization, Content-Type, apollographql-client-name, apollographql-client-version"
+			"X-CSRF-Token, CSRF-Token, X-Requested-By, Authorization, Content-Type, apollographql-client-name, apollographql-client-version"
 		);
 		response.getHeaders().add("Access-Control-Allow-Credentials", "true");
 		response.getHeaders().add(

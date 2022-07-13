@@ -89,7 +89,7 @@ public class AlignedSequenceTest {
 		AlignedSequence<HIV> alignedSeq = Aligner.getInstance(hiv).align(seq);
 
 		assertEquals(
-			"WARNING: 20 positions were not sequenced or aligned: PR 1-11, " +
+			"NOTE: 20 positions were not sequenced or aligned: PR 1-11, " +
 			"95-99; RT 1-4. Of them, 2 are at drug-resistance positions: PR 10-11.",
 			alignedSeq.getValidationResults(List.of("PR", "RT", "IN")).get(0).toString()
 		);
