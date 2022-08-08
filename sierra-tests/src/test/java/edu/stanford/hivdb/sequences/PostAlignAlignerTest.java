@@ -92,7 +92,7 @@ public class PostAlignAlignerTest {
 			seqRT.getAlignedAAs()
 		);
 	}
-
+	
 	@Test
 	public void testHIV2ASequence() {
 //		Sequence testSeq = Sequence.fromGenbank("Z48731");

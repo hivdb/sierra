@@ -51,7 +51,9 @@ public class AlignedGeneSeqTest {
 
 	@Test
 	public void testReversedSeqGetAlignedNAs() {
-		Sequence revSeq = new Sequence("ReversedSeq", "CCAAAGAGTGATTTGAGG");
+		Sequence revSeq = new Sequence("ReversedSeq", "CCAAAGAGTGATTTGAGG", true);
+		
+		// AlignedGeneSeq shouldn't handle reversed compliment
 		AlignedGeneSeq<HIV> alignedGeneSeq = new AlignedGeneSeq<HIV>(
 			revSeq, hiv.getGene("HIV1PR"),
 			1, 6, 1, 18, Arrays.asList(
@@ -62,26 +64,15 @@ public class AlignedGeneSeqTest {
 				new AlignedSite(5, 13, 3),
 				new AlignedSite(6, 16, 3)
 			),
-			Collections.emptyList(), Collections.emptyList(), 0, 0, true);
-		assertEquals("CCTCAAATCACTCTTTGG", alignedGeneSeq.getAlignedNAs());
-
-		AlignedGeneSeq<HIV> alignedGeneSeq2 = new AlignedGeneSeq<HIV>(
-			revSeq, hiv.getGene("HIV1PR"),
-			1, 6, 1, 18, Arrays.asList(
-				new AlignedSite(1, 1, 3),
-				new AlignedSite(2, 4, 3),
-				new AlignedSite(3, 7, 3),
-				new AlignedSite(4, 10, 3),
-				new AlignedSite(5, 13, 3),
-				new AlignedSite(6, 16, 3)
-			),
-			Collections.emptyList(), Collections.emptyList(), 0, 0, false);
-		assertEquals("CCAAAGAGTGATTTGAGG", alignedGeneSeq2.getAlignedNAs());
+			Collections.emptyList(), Collections.emptyList(), 0, 0);
+		assertEquals("CCAAAGAGTGATTTGAGG", alignedGeneSeq.getAlignedNAs());
 	}
 
 	@Test
 	public void testReversedSeqGetAlignedAAs() {
-		Sequence revSeq = new Sequence("ReversedSeq", "CCAAAGAGTGATTTGAGG");
+		Sequence revSeq = new Sequence("ReversedSeq", "CCAAAGAGTGATTTGAGG", true);
+
+		// AlignedGeneSeq shouldn't handle reversed compliment
 		AlignedGeneSeq<HIV> alignedGeneSeq = new AlignedGeneSeq<HIV>(
 			revSeq, hiv.getGene("HIV1PR"),
 			1, 6, 1, 18, Arrays.asList(
@@ -92,21 +83,8 @@ public class AlignedGeneSeqTest {
 				new AlignedSite(5, 13, 3),
 				new AlignedSite(6, 16, 3)
 			),
-			Collections.emptyList(), Collections.emptyList(), 0, 0, true);
-		assertEquals("PQITLW", alignedGeneSeq.getAlignedAAs());
-
-		AlignedGeneSeq<HIV> alignedGeneSeq2 = new AlignedGeneSeq<HIV>(
-			revSeq, hiv.getGene("HIV1PR"),
-			1, 6, 1, 18, Arrays.asList(
-				new AlignedSite(1, 1, 3),
-				new AlignedSite(2, 4, 3),
-				new AlignedSite(3, 7, 3),
-				new AlignedSite(4, 10, 3),
-				new AlignedSite(5, 13, 3),
-				new AlignedSite(6, 16, 3)
-			),
-			Collections.emptyList(), Collections.emptyList(), 0, 0, false);
-		assertEquals("PKSDLR", alignedGeneSeq2.getAlignedAAs());
+			Collections.emptyList(), Collections.emptyList(), 0, 0);
+		assertEquals("PKSDLR", alignedGeneSeq.getAlignedAAs());
 	}
 
 }

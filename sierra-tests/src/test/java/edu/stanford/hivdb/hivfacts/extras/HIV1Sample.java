@@ -130,4 +130,10 @@ public class HIV1Sample {
 	public Sequence getSequence() {
 		return getSequence("test");
 	}
+	
+	public Sequence getReversedCompliment() {
+		Sequence seq = getSequence("test");
+		seq = seq.reverseCompliment();
+		return new Sequence("reversed", seq.getSequence());
+	}
 }

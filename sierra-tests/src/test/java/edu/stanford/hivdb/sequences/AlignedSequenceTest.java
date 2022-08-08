@@ -66,6 +66,15 @@ public class AlignedSequenceTest {
 		assertEquals(0.0, alignedSeq.getMixtureRate(), 1e-10);
 		assertEquals(0.0, alignedSeq.getMixtureRate(), 1e-10);
 	}
+	
+	@Test
+	public void testReversedCompliment() {
+		HIV1Sample sample = new HIV1Sample();
+		Sequence seq = sample.getReversedCompliment();
+		AlignedSequence<HIV> alignedSeq = Aligner.getInstance(hiv).align(seq);
+		
+		assertEquals("B (0.28%)", alignedSeq.getSubtypeResult().getBestMatch().getDisplay());
+	}
 
 
 	@Test
