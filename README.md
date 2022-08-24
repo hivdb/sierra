@@ -63,6 +63,10 @@ through this URL:
 
     http://localhost:8111/sierra/rest/graphql
 
+Before Sierra 3.2, the entry-point was:
+
+    http://localhost:8111/WebApplications/rest/graphql
+
 ### Development with Eclipse IDE
 
 Sierra project uses Gradle to manage the dependencies, build and test. The
