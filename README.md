@@ -87,7 +87,7 @@ so through [Stanford Make a Gift][donation] form. Your contribution will be
 greatly appreciated.
 
 
-[postalign-github]: https://github.com/hivdb/postalign
+[postalign-github]: https://github.com/hivdb/post-align
 [deployment]: https://github.com/hivdb/hivdb-deployment
 [gradle]: http://gradle.org/
 [homebrew]: http://brew.sh/
