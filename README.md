@@ -87,8 +87,7 @@ so through [Stanford Make a Gift][donation] form. Your contribution will be
 greatly appreciated.
 
 
-[nucamino-paper]: https://hivdb.stanford.edu/pages/pdf/Tzou.2017.BMCBioinformatics.pdf
-[nucamino-github]: https://github.com/hivdb/nucamino
+[postalign-github]: https://github.com/hivdb/postalign
 [deployment]: https://github.com/hivdb/hivdb-deployment
 [gradle]: http://gradle.org/
 [homebrew]: http://brew.sh/
@@ -106,4 +105,3 @@ greatly appreciated.
 [asi-github]: https://github.com/FrontierScience/asi_interpreter
 [fstrf]: https://www.fstrf.org/
 [donation]: https://give.stanford.edu/med/fund/?kwoDCFilter=KDC-469CVQ9&kwoDCPreselect=KDC-469CVQ9
-[lambda-create]: https://docs.aws.amazon.com/lambda/latest/dg/get-started-create-function.html
