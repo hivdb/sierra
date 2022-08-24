@@ -52,10 +52,13 @@ to be installed with other dependencies when runing Gradle.
 ### Start Sierra with Docker
 
 Docker images are released publicly for each version of Sierra since 2.2.6.
-To pull and start a Sierra instance:
+To pull and start a Sierra instance (this is how we host our production
+server):
 
-    docker pull hivdb/sierra:latest
-    docker run -it --publish=8111:8080 hivdb/sierra dev
+```bash
+docker pull hivdb/sierra:latest
+docker run -it --publish=8111:8080 hivdb/sierra dev
+```
 
 After started the instance, the local Sierra web service is accessable
 through this URL:
@@ -79,6 +82,19 @@ easiest way to install the whole project is through Eclipse. Here're the steps:
 There may be an issue that you can't find "Gradle Project" in step #2. In this
 case you can install the latest "Buildship Gradle Integration" with "Help" >
 "Eclipse Marketplace...". then you can import a Gradle project in Eclipse.
+
+## Development
+
+JDK ≥ 8 is required. But OpenJDK or OracleJDK should work fine. OracleJDK 17
+is recommended for best consistence between the development and production
+envrionments.
+
+Docker is also required to be installed for hosting a development server. To
+start a development server:
+
+```
+make dev
+```
 
 ## Donation
 
