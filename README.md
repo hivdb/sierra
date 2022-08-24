@@ -83,11 +83,11 @@ There may be an issue that you can't find "Gradle Project" in step #2. In this
 case you can install the latest "Buildship Gradle Integration" with "Help" >
 "Eclipse Marketplace...". then you can import a Gradle project in Eclipse.
 
-## Development
+### Host development server
 
 JDK ≥ 8 is required. But OpenJDK or OracleJDK should work fine. OracleJDK 17
 is recommended for best consistence between the development and production
-envrionments.
+environments.
 
 Docker is also required to be installed for hosting a development server. To
 start a development server:
