@@ -9,21 +9,22 @@
 
 ## Prerequisites
 
-Here're the full prerequisites of Sierra project:
+Here're the full **development** prerequisites of Sierra project:
 
-1. JDK 11 (tested with Oracle Java; maybe also work with OpenJDK);
-2. Apache Tomcat for starting an HTTP server. If you just need to make small
-   modifications and run the tests, you may not need Tomcat.
-3. PostAlign Alignment Program. It is an open source codon-aware alignment
+1. JDK 17 (tested with Oracle Java; also work with OpenJDK).
+2. PostAlign Alignment Program. It is an open source codon-aware alignment
    program written by Philip Tzou (philiptz(at)stanford.edu) of the Stanford
    HIVDB team. One can retrieve the source code and binary file from
    [the GitHub repository][postalign-github].
+3. Docker.
 
 Following system environment is required for running sequence alignment:
 
 - `POSTALIGN_PROGRAM`: path to the PostAlign command
 
-## Dependency Lists
+***For host a production server of Sierra project, only Docker is required***.
+
+### Dependency Lists
 
 Full dependency list of each sub-project can be found in `build.gradle` file
 under each sub-project directory. Here's an unfinished list of main
@@ -41,11 +42,8 @@ dependencies:
 - [c3p0][c3p0] (dev only)
 - [junit][junit] (dev only)
 
-Note: the `DrugResistance` sub-project also depends on an open source project
-named [ASI][asi-github] created by us and [Frontier Science][fstrf]. The
-binary jar file is located in `DrugResistance/lib` directory and is configured
-to be installed with other dependencies when runing Gradle.
-
+Note: These dependencies are automatically installed by Gradle which is shipped
+with this repository. You don't need to install them manually.
 
 ## Installation
 
@@ -83,14 +81,9 @@ There may be an issue that you can't find "Gradle Project" in step #2. In this
 case you can install the latest "Buildship Gradle Integration" with "Help" >
 "Eclipse Marketplace...". then you can import a Gradle project in Eclipse.
 
-### Host development server
+### Development server
 
-JDK ≥ 8 is required. But OpenJDK or OracleJDK should work fine. OracleJDK 17
-is recommended for best consistence between the development and production
-environments.
-
-Docker is also required to be installed for hosting a development server. To
-start a development server:
+To start a development server:
 
 ```
 make dev
