@@ -189,6 +189,14 @@ public class GeneTest {
 	}
 
 	@Test
+	public void testapplyCodonModifiersForNASeqHIV2() {
+		StrainModifier modifier = hiv2.getGene("HIV2ART").getTargetStrainModifier("HIV1");
+		assertEquals(
+			Strings.repeat("...", 342) + "AAABBBCCC...DDDEEEFFF" + Strings.repeat("...", 211),
+			modifier.modifyNASeq(hiv2.getGene("HIV2ART"), "AAABBBCCCDDDEEEFFF", 343, 348));
+	}
+
+	@Test
 	public void testCompareTo() {
         assertSame(0, hiv.getGene("HIV1PR").compareTo(hiv.getGene("HIV1PR")));
         assertEquals(-1, hiv.getGene("HIV1PR").compareTo(hiv.getGene("HIV1RT")));
