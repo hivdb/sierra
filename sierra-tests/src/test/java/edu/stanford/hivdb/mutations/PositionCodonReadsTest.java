@@ -210,4 +210,19 @@ public class PositionCodonReadsTest {
 		assertFalse(posCodonReads.getCodonReads(true, 1, 0).isEmpty());
 		
 	}
+	
+	@Test
+	public void testCalcMinReads() {
+		Map<String, Long> allCodonReads = new TreeMap<>();
+		allCodonReads.put("GAC", Long.valueOf(6));
+		allCodonReads.put("TCT", Long.valueOf(1));
+
+		PositionCodonReads<HIV> posCodonReads = new PositionCodonReads<HIV>(
+				hiv.getGene("HIV1RT"), 215, 7, allCodonReads);
+		// the minReads of 20% should be 2 but not 1, since 1/7 = 0.14 < 20%
+		assertEquals(2, posCodonReads.calcMinReads(0.2, 1));
+
+		// the second parameter should override the minReads when is greater 
+		assertEquals(3, posCodonReads.calcMinReads(0.2, 3));
+	}
 }
