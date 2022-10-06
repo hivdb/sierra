@@ -1,13 +1,16 @@
 VERSION = $(shell date -u +"%Y%m%d%H%M%S")
 DOCKERREPO ?= $(shell scripts/get-docker-repo.sh)
 
-build:
+sync-hivfacts:
+	@rsync -avc --delete hivfacts/data/* --delete-excluded --exclude=*/.mypy_cache --exclude *.swp --exclude *.swo hivfacts/hivfacts-java/src/main/resources
+
+build: sync-hivfacts
 	@docker build -t ${DOCKERREPO} .
 
 build-ci:
 	@docker build -t hivdb/sierra-ci -f Dockerfile.CI .
 
-force-build:
+force-build: sync-hivfacts
 	@docker build --no-cache -t ${DOCKERREPO} .
 
 dev: build
@@ -42,4 +45,4 @@ sync-to-testing:
 release-testing:
 	@make release DOCKERREPO=hivdb/sierra-testing
 
-.PHONY: build force-build dev inspect release release-testing
+.PHONY: sync-hivfacts build force-build dev inspect release release-testing
