@@ -29258,12 +29258,13 @@
             "version": "9.1",
             "publishDate": "2022-06-02"
           },
-          "score": 30.0,
+          "score": 45.0,
           "level": 4,
           "levelText": "Intermediate Resistance",
           "sir": "I",
           "partialScores": {
             "[D67S]": 5.0,
+            "[T69del]": 15.0,
             "[M184V]": 15.0,
             "[T215L]": 5.0,
             "[K219E]": 5.0
@@ -29312,12 +29313,13 @@
             "version": "9.1",
             "publishDate": "2022-06-02"
           },
-          "score": 30.0,
-          "level": 4,
-          "levelText": "Intermediate Resistance",
-          "sir": "I",
+          "score": 60.0,
+          "level": 5,
+          "levelText": "High-Level Resistance",
+          "sir": "R",
           "partialScores": {
             "[D67S]": 10.0,
+            "[T69del]": 30.0,
             "[M184V]": -10.0,
             "[T215L]": 20.0,
             "[K219E]": 10.0
@@ -29339,12 +29341,13 @@
             "version": "9.1",
             "publishDate": "2022-06-02"
           },
-          "score": 30.0,
-          "level": 4,
-          "levelText": "Intermediate Resistance",
-          "sir": "I",
+          "score": 60.0,
+          "level": 5,
+          "levelText": "High-Level Resistance",
+          "sir": "R",
           "partialScores": {
             "[D67S]": 5.0,
+            "[T69del]": 30.0,
             "[M184V]": 10.0,
             "[T215L]": 10.0,
             "[K219E]": 5.0
@@ -29432,11 +29435,12 @@
             "version": "9.1",
             "publishDate": "2022-06-02"
           },
-          "score": 60.0,
+          "score": 75.0,
           "level": 5,
           "levelText": "High-Level Resistance",
           "sir": "R",
           "partialScores": {
+            "[T69del]": 15.0,
             "[M184V]": 60.0
           },
           "statement": "SCORE FROM(62V \u003d\u003e 5, MAX ( 65N \u003d\u003e 15, 65R \u003d\u003e 30 ), 67d \u003d\u003e 15, 68d \u003d\u003e 15, MAX ( 69i \u003d\u003e 30, 69d \u003d\u003e 15 ), MAX ( 70E \u003d\u003e 10, 70G \u003d\u003e 10, 70N \u003d\u003e 10, 70Q \u003d\u003e 10, 70S \u003d\u003e 10, 70T \u003d\u003e 10, 70d \u003d\u003e 15 ), 75I \u003d\u003e 5, 77L \u003d\u003e 5, 116Y \u003d\u003e 5, MAX ( 151L \u003d\u003e 10, 151M \u003d\u003e 15 ), MAX ( 184I \u003d\u003e 60, 184V \u003d\u003e 60 ), (210W AND 215FY) \u003d\u003e 5, (41L AND 210W AND 215FY) \u003d\u003e 5, (41L AND 215FY) \u003d\u003e 5, (41L AND 67EGN AND 215FY) \u003d\u003e 5, (67EGN AND 70R AND 219ENQR) \u003d\u003e 10, (77L AND 116Y AND 151M) \u003d\u003e 15)",
@@ -29456,11 +29460,12 @@
             "version": "9.1",
             "publishDate": "2022-06-02"
           },
-          "score": 60.0,
+          "score": 75.0,
           "level": 5,
           "levelText": "High-Level Resistance",
           "sir": "R",
           "partialScores": {
+            "[T69del]": 15.0,
             "[M184V]": 60.0
           },
           "statement": "SCORE FROM(62V \u003d\u003e 5, MAX ( 65N \u003d\u003e 15, 65R \u003d\u003e 30 ), 67d \u003d\u003e 15, 68d \u003d\u003e 15, MAX ( 69i \u003d\u003e 30, 69d \u003d\u003e 15 ), MAX ( 70E \u003d\u003e 10, 70G \u003d\u003e 10, 70N \u003d\u003e 10, 70Q \u003d\u003e 10, 70S \u003d\u003e 10, 70T \u003d\u003e 10, 70d \u003d\u003e 15 ), 75I \u003d\u003e 5, 77L \u003d\u003e 5, 116Y \u003d\u003e 5, MAX ( 151L \u003d\u003e 10, 151M \u003d\u003e 15 ), MAX ( 184I \u003d\u003e 60, 184V \u003d\u003e 60 ), (210W AND 215FY) \u003d\u003e 5, (41L AND 210W AND 215FY) \u003d\u003e 5, (41L AND 215FY) \u003d\u003e 5, (41L AND 67EGN AND 215FY) \u003d\u003e 5, (67EGN AND 70R AND 219ENQR) \u003d\u003e 10, (77L AND 116Y AND 151M) \u003d\u003e 15)",
@@ -29524,12 +29529,13 @@
             "version": "9.1",
             "publishDate": "2022-06-02"
           },
-          "score": 5.0,
-          "level": 1,
-          "levelText": "Susceptible",
-          "sir": "S",
+          "score": 20.0,
+          "level": 3,
+          "levelText": "Low-Level Resistance",
+          "sir": "I",
           "partialScores": {
             "[D67S]": 5.0,
+            "[T69del]": 15.0,
             "[M184V]": -10.0,
             "[T215L]": 5.0,
             "[K219E]": 5.0
@@ -39802,11 +39808,12 @@
             "version": "10.0",
             "publishDate": "2017-05-22"
           },
-          "score": 3.0,
+          "score": 3.25,
           "level": 3,
           "levelText": "Intermediate Resistant GSS 0.75",
           "sir": "I",
           "partialScores": {
+            "[L10I]": 0.25,
             "[M46MI]": 0.5,
             "[G73T]": 0.5,
             "[I84V]": 1.0,
@@ -39856,11 +39863,12 @@
             "version": "10.0",
             "publishDate": "2017-05-22"
           },
-          "score": 2.25,
+          "score": 2.5,
           "level": 3,
           "levelText": "Intermediate Resistant GSS 0.75",
           "sir": "I",
           "partialScores": {
+            "[L10I]": 0.25,
             "[M46MI]": 0.5,
             "[I84V]": 1.5,
             "[L90M]": 0.25
@@ -39882,11 +39890,12 @@
             "version": "10.0",
             "publishDate": "2017-05-22"
           },
-          "score": 5.0,
+          "score": 5.25,
           "level": 6,
           "levelText": "Resistant GSS 0",
           "sir": "R",
           "partialScores": {
+            "[L10I]": 0.25,
             "[M46MI]": 1.5,
             "[G73T]": 0.5,
             "[I84V]": 2.0,
@@ -39909,11 +39918,12 @@
             "version": "10.0",
             "publishDate": "2017-05-22"
           },
-          "score": 2.25,
+          "score": 2.5,
           "level": 3,
           "levelText": "Intermediate Resistant GSS 0.75",
           "sir": "I",
           "partialScores": {
+            "[L10I]": 0.25,
             "[M46MI]": 0.5,
             "[I64V]": 0.25,
             "[G73T]": 0.5,
@@ -39937,11 +39947,12 @@
             "version": "10.0",
             "publishDate": "2017-05-22"
           },
-          "score": 3.75,
+          "score": 4.0,
           "level": 6,
           "levelText": "Resistant GSS 0",
           "sir": "R",
           "partialScores": {
+            "[L10I]": 0.25,
             "[M46MI]": 0.5,
             "[I64V]": 0.25,
             "[G73T]": 0.5,
@@ -39965,11 +39976,12 @@
             "version": "10.0",
             "publishDate": "2017-05-22"
           },
-          "score": 4.0,
+          "score": 4.25,
           "level": 6,
           "levelText": "Resistant GSS 0",
           "sir": "R",
           "partialScores": {
+            "[L10I]": 0.25,
             "[M46MI]": 0.5,
             "[G73T]": 0.5,
             "[I84V]": 1.0,
@@ -40018,7 +40030,7 @@
             "version": "9.1",
             "publishDate": "2022-06-02"
           },
-          "score": 75.0,
+          "score": 135.0,
           "level": 5,
           "levelText": "High-Level Resistance",
           "sir": "R",
@@ -40027,6 +40039,7 @@
             "[M41L, L210W]": 10.0,
             "[M41L, L210W, T215Y]": 5.0,
             "[M41L, T215Y]": 15.0,
+            "[T69ins]": 60.0,
             "[M184V]": 15.0,
             "[L210W]": 5.0,
             "[L210W, T215Y]": 10.0,
@@ -40049,7 +40062,7 @@
             "version": "9.1",
             "publishDate": "2022-06-02"
           },
-          "score": 100.0,
+          "score": 160.0,
           "level": 5,
           "levelText": "High-Level Resistance",
           "sir": "R",
@@ -40057,6 +40070,7 @@
             "[M41L]": 15.0,
             "[M41L, L210W]": 10.0,
             "[M41L, T215Y]": 10.0,
+            "[T69ins]": 60.0,
             "[V75M]": 10.0,
             "[M184V]": -10.0,
             "[L210W]": 15.0,
@@ -40080,7 +40094,7 @@
             "version": "9.1",
             "publishDate": "2022-06-02"
           },
-          "score": 120.0,
+          "score": 180.0,
           "level": 5,
           "levelText": "High-Level Resistance",
           "sir": "R",
@@ -40088,6 +40102,7 @@
             "[M41L]": 15.0,
             "[M41L, L210W]": 10.0,
             "[M41L, T215Y]": 10.0,
+            "[T69ins]": 60.0,
             "[V75M]": 30.0,
             "[M184V]": -10.0,
             "[L210W]": 15.0,
@@ -40111,7 +40126,7 @@
             "version": "9.1",
             "publishDate": "2022-06-02"
           },
-          "score": 90.0,
+          "score": 150.0,
           "level": 5,
           "levelText": "High-Level Resistance",
           "sir": "R",
@@ -40119,6 +40134,7 @@
             "[M41L]": 10.0,
             "[M41L, L210W]": 10.0,
             "[M41L, T215Y]": 10.0,
+            "[T69ins]": 60.0,
             "[V75M]": 15.0,
             "[M184V]": 10.0,
             "[L210W]": 10.0,
@@ -40208,13 +40224,14 @@
             "version": "9.1",
             "publishDate": "2022-06-02"
           },
-          "score": 75.0,
+          "score": 105.0,
           "level": 5,
           "levelText": "High-Level Resistance",
           "sir": "R",
           "partialScores": {
             "[M41L, L210W, T215Y]": 5.0,
             "[M41L, T215Y]": 5.0,
+            "[T69ins]": 30.0,
             "[M184V]": 60.0,
             "[L210W, T215Y]": 5.0
           },
@@ -40235,13 +40252,14 @@
             "version": "9.1",
             "publishDate": "2022-06-02"
           },
-          "score": 75.0,
+          "score": 105.0,
           "level": 5,
           "levelText": "High-Level Resistance",
           "sir": "R",
           "partialScores": {
             "[M41L, L210W, T215Y]": 5.0,
             "[M41L, T215Y]": 5.0,
+            "[T69ins]": 30.0,
             "[M184V]": 60.0,
             "[L210W, T215Y]": 5.0
           },
@@ -40306,15 +40324,16 @@
             "version": "9.1",
             "publishDate": "2022-06-02"
           },
-          "score": 45.0,
-          "level": 4,
-          "levelText": "Intermediate Resistance",
-          "sir": "I",
+          "score": 105.0,
+          "level": 5,
+          "levelText": "High-Level Resistance",
+          "sir": "R",
           "partialScores": {
             "[M41L]": 5.0,
             "[M41L, L210W]": 10.0,
             "[M41L, L210W, T215Y]": 5.0,
             "[M41L, T215Y]": 10.0,
+            "[T69ins]": 60.0,
             "[M184V]": -10.0,
             "[L210W]": 5.0,
             "[L210W, T215Y]": 10.0,
@@ -40338,9 +40357,9 @@
             "publishDate": "2017-05-22"
           },
           "score": 0.0,
-          "level": 4,
-          "levelText": "Intermediate Resistant GSS 0.5",
-          "sir": "I",
+          "level": 6,
+          "levelText": "Resistant GSS 0",
+          "sir": "R",
           "partialScores": {},
           "statement": "SELECT ATLEAST 3 FROM (41L,67N,70R,210W,215ACDEGHILNSVYF,219QEHNR)",
           "triggered": true
@@ -40360,9 +40379,9 @@
             "publishDate": "2017-05-22"
           },
           "score": 0.0,
-          "level": 4,
-          "levelText": "Intermediate Resistant GSS 0.5",
-          "sir": "I",
+          "level": 6,
+          "levelText": "Resistant GSS 0",
+          "sir": "R",
           "partialScores": {},
           "statement": "SELECT ATLEAST 2 AND NOTMORETHAN 3 FROM (41L,67GN,69AN,70R,210W,215ACDEGHILNSVFY,219EHNQR)",
           "triggered": true
@@ -40404,9 +40423,9 @@
             "publishDate": "2017-05-22"
           },
           "score": 0.0,
-          "level": 4,
-          "levelText": "Intermediate Resistant GSS 0.5",
-          "sir": "I",
+          "level": 6,
+          "levelText": "Resistant GSS 0",
+          "sir": "R",
           "partialScores": {},
           "statement": "SELECT ATLEAST 3 AND NOTMORETHAN 4 FROM (41L,67N,70R,210W,215ACDEGHILNSVFY,219EHNQR)",
           "triggered": true
@@ -40474,7 +40493,7 @@
           "levelText": "Resistant GSS 0",
           "sir": "R",
           "partialScores": {},
-          "statement": "184VI",
+          "statement": "SELECT ATLEAST 1 FROM (67d,69i,65NR,70EG)",
           "triggered": true
         },
         {
@@ -40496,7 +40515,7 @@
           "levelText": "Resistant GSS 0",
           "sir": "R",
           "partialScores": {},
-          "statement": "184VI",
+          "statement": "SELECT ATLEAST 1 FROM (67d,69i,65NR,70EG)",
           "triggered": true
         },
         {
@@ -40558,9 +40577,9 @@
             "publishDate": "2017-05-22"
           },
           "score": 0.0,
-          "level": 4,
-          "levelText": "Intermediate Resistant GSS 0.5",
-          "sir": "I",
+          "level": 6,
+          "levelText": "Resistant GSS 0",
+          "sir": "R",
           "partialScores": {},
           "statement": "41L AND 210W AND 215Y AND 184IV",
           "triggered": true
@@ -41620,7 +41639,7 @@
             "version": "9.1",
             "publishDate": "2022-06-02"
           },
-          "score": 90.0,
+          "score": 140.0,
           "level": 5,
           "levelText": "High-Level Resistance",
           "sir": "R",
@@ -41630,7 +41649,7 @@
             "[M41L, L210LW, T215Y]": 5.0,
             "[M41L, T215Y]": 15.0,
             "[A62AV]": 5.0,
-            "[T69G]": 10.0,
+            "[T69ins]": 60.0,
             "[M184MIV]": 15.0,
             "[L210LW]": 5.0,
             "[L210LW, T215Y]": 10.0,
@@ -41653,7 +41672,7 @@
             "version": "9.1",
             "publishDate": "2022-06-02"
           },
-          "score": 100.0,
+          "score": 155.0,
           "level": 5,
           "levelText": "High-Level Resistance",
           "sir": "R",
@@ -41662,7 +41681,7 @@
             "[M41L, L210LW]": 10.0,
             "[M41L, T215Y]": 10.0,
             "[A62AV]": 5.0,
-            "[T69G]": 5.0,
+            "[T69ins]": 60.0,
             "[M184MIV]": -10.0,
             "[L210LW]": 15.0,
             "[L210LW, T215Y]": 10.0,
@@ -41685,7 +41704,7 @@
             "version": "9.1",
             "publishDate": "2022-06-02"
           },
-          "score": 105.0,
+          "score": 155.0,
           "level": 5,
           "levelText": "High-Level Resistance",
           "sir": "R",
@@ -41694,7 +41713,7 @@
             "[M41L, L210LW]": 10.0,
             "[M41L, T215Y]": 10.0,
             "[A62AV]": 5.0,
-            "[T69G]": 10.0,
+            "[T69ins]": 60.0,
             "[M184MIV]": -10.0,
             "[L210LW]": 15.0,
             "[L210LW, T215Y]": 10.0,
@@ -41717,7 +41736,7 @@
             "version": "9.1",
             "publishDate": "2022-06-02"
           },
-          "score": 90.0,
+          "score": 140.0,
           "level": 5,
           "levelText": "High-Level Resistance",
           "sir": "R",
@@ -41726,7 +41745,7 @@
             "[M41L, L210LW]": 10.0,
             "[M41L, T215Y]": 10.0,
             "[A62AV]": 5.0,
-            "[T69G]": 10.0,
+            "[T69ins]": 60.0,
             "[M184MIV]": 10.0,
             "[L210LW]": 10.0,
             "[L210LW, T215Y]": 10.0,
@@ -41815,7 +41834,7 @@
             "version": "9.1",
             "publishDate": "2022-06-02"
           },
-          "score": 80.0,
+          "score": 110.0,
           "level": 5,
           "levelText": "High-Level Resistance",
           "sir": "R",
@@ -41823,6 +41842,7 @@
             "[M41L, L210LW, T215Y]": 5.0,
             "[M41L, T215Y]": 5.0,
             "[A62AV]": 5.0,
+            "[T69ins]": 30.0,
             "[M184MIV]": 60.0,
             "[L210LW, T215Y]": 5.0
           },
@@ -41843,7 +41863,7 @@
             "version": "9.1",
             "publishDate": "2022-06-02"
           },
-          "score": 80.0,
+          "score": 110.0,
           "level": 5,
           "levelText": "High-Level Resistance",
           "sir": "R",
@@ -41851,6 +41871,7 @@
             "[M41L, L210LW, T215Y]": 5.0,
             "[M41L, T215Y]": 5.0,
             "[A62AV]": 5.0,
+            "[T69ins]": 30.0,
             "[M184MIV]": 60.0,
             "[L210LW, T215Y]": 5.0
           },
@@ -41915,17 +41936,17 @@
             "version": "9.1",
             "publishDate": "2022-06-02"
           },
-          "score": 55.0,
-          "level": 4,
-          "levelText": "Intermediate Resistance",
-          "sir": "I",
+          "score": 110.0,
+          "level": 5,
+          "levelText": "High-Level Resistance",
+          "sir": "R",
           "partialScores": {
             "[M41L]": 5.0,
             "[M41L, L210LW]": 10.0,
             "[M41L, L210LW, T215Y]": 5.0,
             "[M41L, T215Y]": 10.0,
             "[A62AV]": 5.0,
-            "[T69G]": 5.0,
+            "[T69ins]": 60.0,
             "[M184MIV]": -10.0,
             "[L210LW]": 5.0,
             "[L210LW, T215Y]": 10.0,
@@ -41971,9 +41992,9 @@
             "publishDate": "2017-05-22"
           },
           "score": 0.0,
-          "level": 4,
-          "levelText": "Intermediate Resistant GSS 0.5",
-          "sir": "I",
+          "level": 6,
+          "levelText": "Resistant GSS 0",
+          "sir": "R",
           "partialScores": {},
           "statement": "SELECT ATLEAST 2 AND NOTMORETHAN 3 FROM (41L,67GN,69AN,70R,210W,215ACDEGHILNSVFY,219EHNQR)",
           "triggered": true
@@ -41997,7 +42018,7 @@
           "levelText": "Resistant GSS 0",
           "sir": "R",
           "partialScores": {},
-          "statement": "(41L AND 210W AND 215Y)",
+          "statement": "SELECT ATLEAST 2 AND NOTMORETHAN 3 FROM (41L,67N,69ADGN,70R,210W,215ACDEGHILNSVFY,219EHNQR)",
           "triggered": true
         },
         {
@@ -42085,7 +42106,7 @@
           "levelText": "Resistant GSS 0",
           "sir": "R",
           "partialScores": {},
-          "statement": "184VI",
+          "statement": "SELECT ATLEAST 1 FROM (67d,69i,65NR,70EG)",
           "triggered": true
         },
         {
@@ -42107,7 +42128,7 @@
           "levelText": "Resistant GSS 0",
           "sir": "R",
           "partialScores": {},
-          "statement": "184VI",
+          "statement": "SELECT ATLEAST 1 FROM (67d,69i,65NR,70EG)",
           "triggered": true
         },
         {
@@ -42169,9 +42190,9 @@
             "publishDate": "2017-05-22"
           },
           "score": 0.0,
-          "level": 4,
-          "levelText": "Intermediate Resistant GSS 0.5",
-          "sir": "I",
+          "level": 6,
+          "levelText": "Resistant GSS 0",
+          "sir": "R",
           "partialScores": {},
           "statement": "41L AND 210W AND 215Y AND 184IV",
           "triggered": true
@@ -42208,13 +42229,13 @@
             "version": "9.1",
             "publishDate": "2022-06-02"
           },
-          "score": 40.0,
-          "level": 4,
-          "levelText": "Intermediate Resistance",
-          "sir": "I",
+          "score": 90.0,
+          "level": 5,
+          "levelText": "High-Level Resistance",
+          "sir": "R",
           "partialScores": {
-            "[D67S]": 5.0,
-            "[T69G]": 10.0,
+            "[D67E]": 5.0,
+            "[T69ins]": 60.0,
             "[L210W]": 5.0,
             "[L210W, T215Y]": 10.0,
             "[T215Y]": 10.0
@@ -42236,13 +42257,13 @@
             "version": "9.1",
             "publishDate": "2022-06-02"
           },
-          "score": 80.0,
+          "score": 135.0,
           "level": 5,
           "levelText": "High-Level Resistance",
           "sir": "R",
           "partialScores": {
-            "[D67S]": 10.0,
-            "[T69G]": 5.0,
+            "[D67E]": 10.0,
+            "[T69ins]": 60.0,
             "[L210W]": 15.0,
             "[L210W, T215Y]": 10.0,
             "[T215Y]": 40.0
@@ -42264,13 +42285,13 @@
             "version": "9.1",
             "publishDate": "2022-06-02"
           },
-          "score": 85.0,
+          "score": 135.0,
           "level": 5,
           "levelText": "High-Level Resistance",
           "sir": "R",
           "partialScores": {
-            "[D67S]": 10.0,
-            "[T69G]": 10.0,
+            "[D67E]": 10.0,
+            "[T69ins]": 60.0,
             "[L210W]": 15.0,
             "[L210W, T215Y]": 10.0,
             "[T215Y]": 40.0
@@ -42292,13 +42313,13 @@
             "version": "9.1",
             "publishDate": "2022-06-02"
           },
-          "score": 50.0,
-          "level": 4,
-          "levelText": "Intermediate Resistance",
-          "sir": "I",
+          "score": 100.0,
+          "level": 5,
+          "levelText": "High-Level Resistance",
+          "sir": "R",
           "partialScores": {
-            "[D67S]": 5.0,
-            "[T69G]": 10.0,
+            "[D67E]": 5.0,
+            "[T69ins]": 60.0,
             "[L210W]": 10.0,
             "[L210W, T215Y]": 10.0,
             "[T215Y]": 15.0
@@ -42392,11 +42413,12 @@
             "version": "9.1",
             "publishDate": "2022-06-02"
           },
-          "score": 5.0,
-          "level": 1,
-          "levelText": "Susceptible",
-          "sir": "S",
+          "score": 35.0,
+          "level": 4,
+          "levelText": "Intermediate Resistance",
+          "sir": "I",
           "partialScores": {
+            "[T69ins]": 30.0,
             "[L210W, T215Y]": 5.0
           },
           "statement": "SCORE FROM(62V \u003d\u003e 5, MAX ( 65N \u003d\u003e 15, 65R \u003d\u003e 30 ), 67d \u003d\u003e 15, 68d \u003d\u003e 15, MAX ( 69i \u003d\u003e 30, 69d \u003d\u003e 15 ), MAX ( 70E \u003d\u003e 10, 70G \u003d\u003e 10, 70N \u003d\u003e 10, 70Q \u003d\u003e 10, 70S \u003d\u003e 10, 70T \u003d\u003e 10, 70d \u003d\u003e 15 ), 75I \u003d\u003e 5, 77L \u003d\u003e 5, 116Y \u003d\u003e 5, MAX ( 151L \u003d\u003e 10, 151M \u003d\u003e 15 ), MAX ( 184I \u003d\u003e 60, 184V \u003d\u003e 60 ), (210W AND 215FY) \u003d\u003e 5, (41L AND 210W AND 215FY) \u003d\u003e 5, (41L AND 215FY) \u003d\u003e 5, (41L AND 67EGN AND 215FY) \u003d\u003e 5, (67EGN AND 70R AND 219ENQR) \u003d\u003e 10, (77L AND 116Y AND 151M) \u003d\u003e 15)",
@@ -42416,11 +42438,12 @@
             "version": "9.1",
             "publishDate": "2022-06-02"
           },
-          "score": 5.0,
-          "level": 1,
-          "levelText": "Susceptible",
-          "sir": "S",
+          "score": 35.0,
+          "level": 4,
+          "levelText": "Intermediate Resistance",
+          "sir": "I",
           "partialScores": {
+            "[T69ins]": 30.0,
             "[L210W, T215Y]": 5.0
           },
           "statement": "SCORE FROM(62V \u003d\u003e 5, MAX ( 65N \u003d\u003e 15, 65R \u003d\u003e 30 ), 67d \u003d\u003e 15, 68d \u003d\u003e 15, MAX ( 69i \u003d\u003e 30, 69d \u003d\u003e 15 ), MAX ( 70E \u003d\u003e 10, 70G \u003d\u003e 10, 70N \u003d\u003e 10, 70Q \u003d\u003e 10, 70S \u003d\u003e 10, 70T \u003d\u003e 10, 70d \u003d\u003e 15 ), 75I \u003d\u003e 5, 77L \u003d\u003e 5, 116Y \u003d\u003e 5, MAX ( 151L \u003d\u003e 10, 151M \u003d\u003e 15 ), MAX ( 184I \u003d\u003e 60, 184V \u003d\u003e 60 ), (210W AND 215FY) \u003d\u003e 5, (41L AND 210W AND 215FY) \u003d\u003e 5, (41L AND 215FY) \u003d\u003e 5, (41L AND 67EGN AND 215FY) \u003d\u003e 5, (67EGN AND 70R AND 219ENQR) \u003d\u003e 10, (77L AND 116Y AND 151M) \u003d\u003e 15)",
@@ -42488,13 +42511,13 @@
             "version": "9.1",
             "publishDate": "2022-06-02"
           },
-          "score": 35.0,
-          "level": 4,
-          "levelText": "Intermediate Resistance",
-          "sir": "I",
+          "score": 90.0,
+          "level": 5,
+          "levelText": "High-Level Resistance",
+          "sir": "R",
           "partialScores": {
-            "[D67S]": 5.0,
-            "[T69G]": 5.0,
+            "[D67E]": 5.0,
+            "[T69ins]": 60.0,
             "[L210W]": 5.0,
             "[L210W, T215Y]": 10.0,
             "[T215Y]": 10.0
@@ -42517,11 +42540,11 @@
             "publishDate": "2017-05-22"
           },
           "score": 0.0,
-          "level": 6,
-          "levelText": "Resistant GSS 0",
-          "sir": "R",
+          "level": 4,
+          "levelText": "Intermediate Resistant GSS 0.5",
+          "sir": "I",
           "partialScores": {},
-          "statement": "SELECT ATLEAST 1 FROM (67d,69G)",
+          "statement": "SELECT ATLEAST 1 AND NOTMORETHAN 1 FROM (69i,70EG,151M)",
           "triggered": true
         },
         {
@@ -42539,9 +42562,9 @@
             "publishDate": "2017-05-22"
           },
           "score": 0.0,
-          "level": 4,
-          "levelText": "Intermediate Resistant GSS 0.5",
-          "sir": "I",
+          "level": 6,
+          "levelText": "Resistant GSS 0",
+          "sir": "R",
           "partialScores": {},
           "statement": "(215ACDEGHILNSVFY AND EXCLUDE 184IV)",
           "triggered": true
@@ -42561,9 +42584,9 @@
             "publishDate": "2017-05-22"
           },
           "score": 0.0,
-          "level": 4,
-          "levelText": "Intermediate Resistant GSS 0.5",
-          "sir": "I",
+          "level": 6,
+          "levelText": "Resistant GSS 0",
+          "sir": "R",
           "partialScores": {},
           "statement": "(215ACDEGHILNSVFY AND EXCLUDE 184IV)",
           "triggered": true
@@ -42653,12 +42676,12 @@
             "publishDate": "2017-05-22"
           },
           "score": 0.0,
-          "level": 1,
-          "levelText": "Susceptible GSS 1",
-          "sir": "S",
+          "level": 4,
+          "levelText": "Intermediate Resistant GSS 0.5",
+          "sir": "I",
           "partialScores": {},
-          "statement": "",
-          "triggered": false
+          "statement": "SELECT ATLEAST 1 FROM (67d,69i,65NR,70EG)",
+          "triggered": true
         },
         {
           "drug": {
@@ -42675,12 +42698,12 @@
             "publishDate": "2017-05-22"
           },
           "score": 0.0,
-          "level": 1,
-          "levelText": "Susceptible GSS 1",
-          "sir": "S",
+          "level": 4,
+          "levelText": "Intermediate Resistant GSS 0.5",
+          "sir": "I",
           "partialScores": {},
-          "statement": "",
-          "triggered": false
+          "statement": "SELECT ATLEAST 1 FROM (67d,69i,65NR,70EG)",
+          "triggered": true
         },
         {
           "drug": {
@@ -42743,12 +42766,12 @@
             "publishDate": "2017-05-22"
           },
           "score": 0.0,
-          "level": 1,
-          "levelText": "Susceptible GSS 1",
-          "sir": "S",
+          "level": 6,
+          "levelText": "Resistant GSS 0",
+          "sir": "R",
           "partialScores": {},
-          "statement": "",
-          "triggered": false
+          "statement": "69i",
+          "triggered": true
         }
       ]
     },
@@ -50594,13 +50617,14 @@
             "version": "10.0",
             "publishDate": "2017-05-22"
           },
-          "score": 3.25,
-          "level": 3,
-          "levelText": "Intermediate Resistant GSS 0.75",
-          "sir": "I",
+          "score": 3.5,
+          "level": 6,
+          "levelText": "Resistant GSS 0",
+          "sir": "R",
           "partialScores": {
             "[L10I]": 0.25,
             "[K20IM]": 0.25,
+            "[L33I]": 0.25,
             "[A71V]": 0.25,
             "[G73S]": 0.5,
             "[I84V]": 1.0,
@@ -50649,13 +50673,14 @@
             "version": "10.0",
             "publishDate": "2017-05-22"
           },
-          "score": 2.25,
+          "score": 2.5,
           "level": 3,
           "levelText": "Intermediate Resistant GSS 0.75",
           "sir": "I",
           "partialScores": {
             "[L10I]": 0.25,
             "[K20IM]": 0.25,
+            "[L33I]": 0.25,
             "[I84V]": 1.5,
             "[L90M]": 0.25
           },
@@ -50676,13 +50701,14 @@
             "version": "10.0",
             "publishDate": "2017-05-22"
           },
-          "score": 4.5,
+          "score": 4.75,
           "level": 6,
           "levelText": "Resistant GSS 0",
           "sir": "R",
           "partialScores": {
             "[L10I]": 0.25,
             "[K20IM]": 0.25,
+            "[E35GR]": 0.25,
             "[I62IV]": 0.25,
             "[A71V]": 0.25,
             "[G73S]": 0.5,
@@ -50706,13 +50732,14 @@
             "version": "10.0",
             "publishDate": "2017-05-22"
           },
-          "score": 2.25,
+          "score": 2.5,
           "level": 3,
           "levelText": "Intermediate Resistant GSS 0.75",
           "sir": "I",
           "partialScores": {
             "[L10I]": 0.25,
             "[K20IM]": 0.25,
+            "[L33I]": 0.25,
             "[A71V]": 0.25,
             "[G73S]": 0.5,
             "[I84V]": 0.5,
@@ -50735,13 +50762,15 @@
             "version": "10.0",
             "publishDate": "2017-05-22"
           },
-          "score": 4.0,
+          "score": 4.5,
           "level": 6,
           "levelText": "Resistant GSS 0",
           "sir": "R",
           "partialScores": {
             "[L10I]": 0.25,
             "[K20IM]": 0.25,
+            "[L33I]": 0.25,
+            "[E35GR]": 0.25,
             "[I62IV]": 0.25,
             "[A71V]": 0.25,
             "[G73S]": 0.5,

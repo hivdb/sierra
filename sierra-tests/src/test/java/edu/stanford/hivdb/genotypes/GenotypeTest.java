@@ -21,6 +21,7 @@ public class GenotypeTest {
 	public void testGetPrimaryRegionalGenotype() {
 		Genotype<HIV> typeB = hiv.getGenotype("B");
 		assertTrue(typeB.getPrimaryRegionalGenotype(2333, 4555) instanceof RegionalGenotype);
+		assertEquals("B (100%)", typeB.getPrimaryRegionalGenotype(1, 1000).toString());
 	}
 	
 	@Test

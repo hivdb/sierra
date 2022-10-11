@@ -70,7 +70,7 @@ public class AlignerTest {
 		AlignedGeneSeq<HIV2> geneSeq = alignedSeq.getAlignedGeneSequence("PR");
 		assertEquals(1, geneSeq.getFirstAA());
 		// The last codon TTT is too far from ref CTA
-		assertEquals(98, geneSeq.getLastAA());
+		assertEquals(99, geneSeq.getLastAA());
 	}
 
 //	@Test
