@@ -31,7 +31,7 @@ public class HIVDefaultSequenceValidatorTest {
 		alignedSeq = Aligner.getInstance(hiv).align(testSeq);
 		
 		results = validator.validate(alignedSeq, includeGenes);
-		assertEquals(results.size(), 1);
+		assertEquals(1, results.size());
 	}
 
 }
