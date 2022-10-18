@@ -2,7 +2,7 @@ VERSION = $(shell date -u +"%Y%m%d%H%M%S")
 DOCKERREPO ?= $(shell scripts/get-docker-repo.sh)
 
 sync-hivfacts:
-	@rsync -avc --delete hivfacts/data/* --delete-excluded --exclude=*/.mypy_cache --exclude *.swp --exclude *.swo hivfacts/hivfacts-java/src/main/resources
+	@rsync -avc --delete hivfacts/data/* --delete-excluded --exclude={'*/.mypy_cache','*.swp','*.swo'} hivfacts/hivfacts-java/src/main/resources
 
 build: sync-hivfacts
 	@docker build -t ${DOCKERREPO} .
