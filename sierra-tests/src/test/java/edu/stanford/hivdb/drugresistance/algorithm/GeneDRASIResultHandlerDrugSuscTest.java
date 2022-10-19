@@ -155,7 +155,8 @@ public class GeneDRASIResultHandlerDrugSuscTest {
 		mutationSets = MutationSet.parseString(hiv.getGene("HIV1PR"), "PR73V,PR76V,PR84V,PR88S");
 		algorithmComparison = new AlgorithmComparison<HIV>(mutationSets, ansrAlgo);
 		geneDR = algorithmComparison.getGeneDR(hiv.getGene("HIV1PR")).get(0);
-		assertEquals(SIREnum.S, geneDR.getDrugSusc(hiv.getDrug("FPV")).getSIR());
+		// FPV is no longer available for ANRS 33
+		assertEquals(null, geneDR.getDrugSusc(hiv.getDrug("FPV")));
 
 		mutationSets = MutationSet.parseString(hiv.getGene("HIV1RT"), "RT67N,RT70R,RT184V,RT219Q");
 		algorithmComparison = new AlgorithmComparison<HIV>(mutationSets, ansrAlgo);
