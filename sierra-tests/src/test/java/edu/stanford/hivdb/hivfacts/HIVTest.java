@@ -230,7 +230,7 @@ public class HIVTest {
 	public void testGetDrugResistAlgorithms() {
 		assertNotNull(hiv.getDrugResistAlgorithms());
 		// 20220602, 30 algorithms
-		assertEquals(hiv.getDrugResistAlgorithms().size(), 33);
+		assertEquals(hiv.getDrugResistAlgorithms().size(), 34);
 	}
 
 	@Test
@@ -242,9 +242,9 @@ public class HIVTest {
 
 		assertEquals(hiv.getDrugResistAlgorithms(algoNames).size(), 3);
 
-		// 20210222 HIVDB_10.0 not exist
+		// 20221026 HIVDB_999.0 not exist
 		List<String> algoNames2 = new ArrayList<>();
-		algoNames2.add("HIVDB_10.0");
+		algoNames2.add("HIVDB_999.0");
 		assertEquals(hiv.getDrugResistAlgorithms(algoNames2).size(), 1);
 		assertNull(hiv.getDrugResistAlgorithms(algoNames2).iterator().next());
 	}
@@ -392,8 +392,8 @@ public class HIVTest {
 	@Test
 	public void testGetMutationTypePairs() {
 		assertNotNull(hiv.getMutationTypePairs());
-		// 20220630, 270 mutation type pairs
-		assertEquals(270, hiv.getMutationTypePairs().size());
+		// 20221026, 265 mutation type pairs
+		assertEquals(265, hiv.getMutationTypePairs().size());
 	}
 
 	@Test

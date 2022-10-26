@@ -134,7 +134,7 @@ public class GeneDRTest {
 	@Test
 	public void testGetTotalDrugScore() {
 		MutationSet<HIV> mutations = MutationSet.parseString(hiv.getGene("HIV1RT"), "RT184V");
-		DrugResistanceAlgorithm<HIV> algorithm = hiv.getDrugResistAlgorithm("HIVDB_8.9");
+		DrugResistanceAlgorithm<HIV> algorithm = hiv.getDrugResistAlgorithm("HIVDB_9.2");
 		GeneDR<HIV> geneDR = new GeneDR<HIV>(hiv.getGene("HIV1RT"), mutations, algorithm);
 		
 		assertEquals(geneDR.getTotalDrugScore(hiv.getDrug("EFV")), Double.valueOf(0.0));
@@ -143,7 +143,7 @@ public class GeneDRTest {
 	@Test
 	public void testGetDrugLevel() {
 		MutationSet<HIV> mutations = MutationSet.parseString(hiv.getGene("HIV1RT"), "RT184V");
-		DrugResistanceAlgorithm<HIV> algorithm = hiv.getDrugResistAlgorithm("HIVDB_8.9");
+		DrugResistanceAlgorithm<HIV> algorithm = hiv.getDrugResistAlgorithm("HIVDB_9.2");
 		GeneDR<HIV> geneDR = new GeneDR<HIV>(hiv.getGene("HIV1RT"), mutations, algorithm);
 		
 		assertEquals(geneDR.getDrugLevel(hiv.getDrug("EFV")), Integer.valueOf(1));
@@ -152,7 +152,7 @@ public class GeneDRTest {
 	@Test
 	public void testGetDrugLevelText() {
 		MutationSet<HIV> mutations = MutationSet.parseString(hiv.getGene("HIV1RT"), "RT184V");
-		DrugResistanceAlgorithm<HIV> algorithm = hiv.getDrugResistAlgorithm("HIVDB_8.9");
+		DrugResistanceAlgorithm<HIV> algorithm = hiv.getDrugResistAlgorithm("HIVDB_9.2");
 		GeneDR<HIV> geneDR = new GeneDR<HIV>(hiv.getGene("HIV1RT"), mutations, algorithm);
 		
 		assertEquals(geneDR.getDrugLevelText(hiv.getDrug("EFV")), "Susceptible");
@@ -161,7 +161,7 @@ public class GeneDRTest {
 	@Test
 	public void testGetDrugLevelSIR() {
 		MutationSet<HIV> mutations = MutationSet.parseString(hiv.getGene("HIV1RT"), "RT184V");
-		DrugResistanceAlgorithm<HIV> algorithm = hiv.getDrugResistAlgorithm("HIVDB_8.9");
+		DrugResistanceAlgorithm<HIV> algorithm = hiv.getDrugResistAlgorithm("HIVDB_9.2");
 		GeneDR<HIV> geneDR = new GeneDR<HIV>(hiv.getGene("HIV1RT"), mutations, algorithm);
 		
 		assertEquals(geneDR.getDrugLevelSIR(hiv.getDrug("EFV")), "S");
@@ -169,7 +169,7 @@ public class GeneDRTest {
 
 	@Test
 	public void testGetGene() {
-		GeneDR<HIV> geneDR = new GeneDR<HIV>(hiv.getGene("HIV1IN"), new MutationSet<HIV>(), hiv.getDrugResistAlgorithm("HIVDB_8.9"));
+		GeneDR<HIV> geneDR = new GeneDR<HIV>(hiv.getGene("HIV1IN"), new MutationSet<HIV>(), hiv.getDrugResistAlgorithm("HIVDB_9.2"));
 		assertEquals(hiv.getGene("HIV1IN"), geneDR.getGene());
 	}
 
@@ -177,7 +177,7 @@ public class GeneDRTest {
 	public void testGetMutations() {
 		
 		MutationSet<HIV> mutations = MutationSet.parseString(hiv.getGene("HIV1RT"), "RT184V");
-		DrugResistanceAlgorithm<HIV> algorithm = hiv.getDrugResistAlgorithm("HIVDB_8.9");
+		DrugResistanceAlgorithm<HIV> algorithm = hiv.getDrugResistAlgorithm("HIVDB_9.2");
 		GeneDR<HIV> geneDR = new GeneDR<HIV>(hiv.getGene("HIV1RT"), mutations, algorithm);
 		
 		assertFalse(geneDR.getMutations().isEmpty());
@@ -187,7 +187,7 @@ public class GeneDRTest {
 	public void testGroupMutationsByTypes() {
 		
 		MutationSet<HIV> mutations = MutationSet.parseString(hiv.getGene("HIV1RT"), "RT184V");
-		DrugResistanceAlgorithm<HIV> algorithm = hiv.getDrugResistAlgorithm("HIVDB_8.9");
+		DrugResistanceAlgorithm<HIV> algorithm = hiv.getDrugResistAlgorithm("HIVDB_9.2");
 		GeneDR<HIV> geneDR = new GeneDR<HIV>(hiv.getGene("HIV1RT"), mutations, algorithm);
 		
 		assertFalse(geneDR.groupMutationsByTypes().isEmpty());
@@ -196,20 +196,20 @@ public class GeneDRTest {
 	
 	@Test
 	public void testGetMutationByType() {
-		GeneDR<HIV> geneDR = new GeneDR<HIV>(hiv.getGene("HIV1IN"), new MutationSet<HIV>(), hiv.getDrugResistAlgorithm("HIVDB_8.9"));
+		GeneDR<HIV> geneDR = new GeneDR<HIV>(hiv.getGene("HIV1IN"), new MutationSet<HIV>(), hiv.getDrugResistAlgorithm("HIVDB_9.2"));
 		assertEquals(Collections.emptySet(), geneDR.getMutations(hiv.getMutationType("Major")));
 
-		geneDR = new GeneDR<HIV>(hiv.getGene("HIV1RT"), MutationSet.parseString(hiv.getGene("HIV1RT"), "RT69T_TT, RT43E"), hiv.getDrugResistAlgorithm("HIVDB_8.9"));
+		geneDR = new GeneDR<HIV>(hiv.getGene("HIV1RT"), MutationSet.parseString(hiv.getGene("HIV1RT"), "RT69T_TT, RT43E"), hiv.getDrugResistAlgorithm("HIVDB_9.2"));
 		assertEquals(MutationSet.parseString(hiv.getGene("HIV1RT"), "RT69T_TT"), geneDR.getMutations(hiv.getMutationType("NRTI")));
 		assertEquals(MutationSet.parseString(hiv.getGene("HIV1RT"), "RT43E"), geneDR.getMutations(hiv.getMutationType("Other")));
 	}
 
 	@Test
 	public void testGetCommentsByType() {
-		GeneDR<HIV> geneDR = new GeneDR<HIV>(hiv.getGene("HIV1IN"), new MutationSet<HIV>(), hiv.getDrugResistAlgorithm("HIVDB_8.9"));
+		GeneDR<HIV> geneDR = new GeneDR<HIV>(hiv.getGene("HIV1IN"), new MutationSet<HIV>(), hiv.getDrugResistAlgorithm("HIVDB_9.2"));
 		assertEquals(Collections.emptyList(), geneDR.getComments(CommentType.Major));
 
-		geneDR = new GeneDR<HIV>(hiv.getGene("HIV1RT"), MutationSet.parseString(hiv.getGene("HIV1RT"), "RT69T_TT, RT138D"), hiv.getDrugResistAlgorithm("HIVDB_8.9"));
+		geneDR = new GeneDR<HIV>(hiv.getGene("HIV1RT"), MutationSet.parseString(hiv.getGene("HIV1RT"), "RT69T_TT, RT138D"), hiv.getDrugResistAlgorithm("HIVDB_9.2"));
 		assertEquals(Collections.emptyList(), geneDR.getComments(CommentType.Major));
 		assertEquals(1, geneDR.getComments(CommentType.NRTI).size());
 		assertNotEquals(Collections.emptyList(), geneDR.getComments(CommentType.NRTI));
@@ -221,7 +221,7 @@ public class GeneDRTest {
 	public void testGetDrugSuscsCase1() {
 		
 		MutationSet<HIV> mutations = MutationSet.parseString(hiv.getGene("HIV1RT"), "RT41L");
-		DrugResistanceAlgorithm<HIV> algorithm = hiv.getDrugResistAlgorithm("HIVDB_8.9");
+		DrugResistanceAlgorithm<HIV> algorithm = hiv.getDrugResistAlgorithm("HIVDB_9.2");
 		GeneDR<HIV> geneDR = new GeneDR<HIV>(hiv.getGene("HIV1RT"), mutations, algorithm);
 		
 		assertFalse(geneDR.getDrugSuscs(ds -> ds.drugClassIs("NRTI")).isEmpty());
@@ -232,7 +232,7 @@ public class GeneDRTest {
 	public void testGetDrugComboMutScores$DrugClass() {
 		
 		MutationSet<HIV> mutations = MutationSet.parseString(hiv.getGene("HIV1RT"), "RT101E, RT181C");
-		DrugResistanceAlgorithm<HIV> algorithm = hiv.getDrugResistAlgorithm("HIVDB_8.9");
+		DrugResistanceAlgorithm<HIV> algorithm = hiv.getDrugResistAlgorithm("HIVDB_9.2");
 		GeneDR<HIV> geneDR = new GeneDR<HIV>(hiv.getGene("HIV1RT"), mutations, algorithm);
 		
 		assertFalse(geneDR.getDrugComboMutScores(hiv.getDrugClass("NNRTI")).isEmpty());
@@ -243,7 +243,7 @@ public class GeneDRTest {
 	public void testHasScoredMuts$DrugClass() {
 		
 		MutationSet<HIV> mutations = MutationSet.parseString(hiv.getGene("HIV1RT"), "RT101E, RT181C");
-		DrugResistanceAlgorithm<HIV> algorithm = hiv.getDrugResistAlgorithm("HIVDB_8.9");
+		DrugResistanceAlgorithm<HIV> algorithm = hiv.getDrugResistAlgorithm("HIVDB_9.2");
 		GeneDR<HIV> geneDR = new GeneDR<HIV>(hiv.getGene("HIV1RT"), mutations, algorithm);
 		
 		assertTrue(geneDR.hasScoredMuts(hiv.getDrugClass("NNRTI")));
@@ -255,7 +255,7 @@ public class GeneDRTest {
 	public void testHasScoredIndividualMuts$DrugClass() {
 		
 		MutationSet<HIV> mutations = MutationSet.parseString(hiv.getGene("HIV1RT"), "RT101E, RT181C");
-		DrugResistanceAlgorithm<HIV> algorithm = hiv.getDrugResistAlgorithm("HIVDB_8.9");
+		DrugResistanceAlgorithm<HIV> algorithm = hiv.getDrugResistAlgorithm("HIVDB_9.2");
 		GeneDR<HIV> geneDR = new GeneDR<HIV>(hiv.getGene("HIV1RT"), mutations, algorithm);
 		
 		assertTrue(geneDR.hasScoredIndividualMuts(hiv.getDrugClass("NNRTI")));
@@ -265,7 +265,7 @@ public class GeneDRTest {
 	@Test
 	public void testHasScoredComboMuts$DrugClass() {
 		MutationSet<HIV> mutations = MutationSet.parseString(hiv.getGene("HIV1RT"), "RT101E, RT181C");
-		DrugResistanceAlgorithm<HIV> algorithm = hiv.getDrugResistAlgorithm("HIVDB_8.9");
+		DrugResistanceAlgorithm<HIV> algorithm = hiv.getDrugResistAlgorithm("HIVDB_9.2");
 		GeneDR<HIV> geneDR = new GeneDR<HIV>(hiv.getGene("HIV1RT"), mutations, algorithm);
 		
 		assertTrue(geneDR.hasScoredComboMuts(hiv.getDrugClass("NNRTI")));
@@ -274,7 +274,7 @@ public class GeneDRTest {
 	@Test
 	public void testGetMutScores$Drug() {
 		MutationSet<HIV> mutations = MutationSet.parseString(hiv.getGene("HIV1RT"), "RT101E, RT181C");
-		DrugResistanceAlgorithm<HIV> algorithm = hiv.getDrugResistAlgorithm("HIVDB_8.9");
+		DrugResistanceAlgorithm<HIV> algorithm = hiv.getDrugResistAlgorithm("HIVDB_9.2");
 		GeneDR<HIV> geneDR = new GeneDR<HIV>(hiv.getGene("HIV1RT"), mutations, algorithm);
 		
 		assertFalse(geneDR.getMutScores(hiv.getDrug("NVP")).isEmpty());
@@ -283,7 +283,7 @@ public class GeneDRTest {
 	@Test
 	public void testGetMutScores$UseMaxScore() {
 		MutationSet<HIV> mutations = MutationSet.parseString(hiv.getGene("HIV1RT"), "RT184IV");
-		DrugResistanceAlgorithm<HIV> algorithm = hiv.getDrugResistAlgorithm("HIVDB_8.9");
+		DrugResistanceAlgorithm<HIV> algorithm = hiv.getDrugResistAlgorithm("HIVDB_9.2");
 		GeneDR<HIV> geneDR = new GeneDR<HIV>(hiv.getGene("HIV1RT"), mutations, algorithm);
 		Map<MutationSet<HIV>, Double> expects = new HashMap<>();
 		expects.put(mutations, -10.0);
@@ -293,7 +293,7 @@ public class GeneDRTest {
 	@Test
 	public void testGetComboMutScores$Drug() {
 		MutationSet<HIV> mutations = MutationSet.parseString(hiv.getGene("HIV1RT"), "RT101E, RT181C");
-		DrugResistanceAlgorithm<HIV> algorithm = hiv.getDrugResistAlgorithm("HIVDB_8.9");
+		DrugResistanceAlgorithm<HIV> algorithm = hiv.getDrugResistAlgorithm("HIVDB_9.2");
 		GeneDR<HIV> geneDR = new GeneDR<HIV>(hiv.getGene("HIV1RT"), mutations, algorithm);
 		
 		assertFalse(geneDR.getComboMutScores(hiv.getDrug("NVP")).isEmpty());
@@ -302,7 +302,7 @@ public class GeneDRTest {
 	@Test
 	public void testHasScoredMuts() {
 		MutationSet<HIV> mutations = MutationSet.parseString(hiv.getGene("HIV1RT"), "RT101E, RT181C");
-		DrugResistanceAlgorithm<HIV> algorithm = hiv.getDrugResistAlgorithm("HIVDB_8.9");
+		DrugResistanceAlgorithm<HIV> algorithm = hiv.getDrugResistAlgorithm("HIVDB_9.2");
 		GeneDR<HIV> geneDR = new GeneDR<HIV>(hiv.getGene("HIV1RT"), mutations, algorithm);
 		
 		assertTrue(geneDR.hasScoredMuts(hiv.getDrug("NVP")));
@@ -311,7 +311,7 @@ public class GeneDRTest {
 	@Test
 	public void testHasScoredIndividualMuts$Drug() {
 		MutationSet<HIV> mutations = MutationSet.parseString(hiv.getGene("HIV1RT"), "RT101E, RT181C");
-		DrugResistanceAlgorithm<HIV> algorithm = hiv.getDrugResistAlgorithm("HIVDB_8.9");
+		DrugResistanceAlgorithm<HIV> algorithm = hiv.getDrugResistAlgorithm("HIVDB_9.2");
 		GeneDR<HIV> geneDR = new GeneDR<HIV>(hiv.getGene("HIV1RT"), mutations, algorithm);
 		
 		assertTrue(geneDR.hasScoredIndividualMuts(hiv.getDrug("NVP")));
@@ -323,7 +323,7 @@ public class GeneDRTest {
 	@Test
 	public void testHasScoredComboMuts$Drug() {
 		MutationSet<HIV> mutations = MutationSet.parseString(hiv.getGene("HIV1RT"), "RT101E, RT181C");
-		DrugResistanceAlgorithm<HIV> algorithm = hiv.getDrugResistAlgorithm("HIVDB_8.9");
+		DrugResistanceAlgorithm<HIV> algorithm = hiv.getDrugResistAlgorithm("HIVDB_9.2");
 		GeneDR<HIV> geneDR = new GeneDR<HIV>(hiv.getGene("HIV1RT"), mutations, algorithm);
 		
 		assertTrue(geneDR.hasScoredComboMuts(hiv.getDrug("NVP")));

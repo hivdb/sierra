@@ -105,36 +105,40 @@ public class ConditionalCommentTest {
 	}
 
 	@Test
-	public void testGetMutationGene() {
-		assertNull(commentDrug.getMutationGene());
-		assertNotNull(commentMutation.getMutationGene());
-		
-		assertEquals(commentMutation.getMutationGene(), hiv.getGene("HIV1IN"));
+	public void testExtractMutationGene() {
+		assertEquals(
+			hiv.getGene("HIV1IN"),
+			ConditionalComment.extractMutationGene(
+				commentMutation.conditionValue,
+				commentMutation.strain
+			)
+		);
 	}
 
 	@Test
-	public void testGetMutationPosition() {
-		assertNull(commentDrug.getMutationPosition());
-		assertNotNull(commentMutation.getMutationPosition());
-
-		assertEquals(commentMutation.getMutationPosition(), Integer.valueOf(151));
+	public void testExtractMutationPosition() {
+		assertEquals(
+			Integer.valueOf(151),
+			ConditionalComment.extractMutationPosition(commentMutation.conditionValue) 
+		);
 	}
 
 	@Test
 	public void testGetMutationAAs() {
-		assertNull(commentDrug.getMutationAAs());
-		assertNotNull(commentMutation.getMutationAAs());
+		GenePosition<HIV> genePos = new GenePosition<>(hiv.getGene("HIV1IN"), 151);
+		assertNull(commentDrug.getMutationAAs(genePos));
+		assertNotNull(commentMutation.getMutationAAs(genePos));
 
-		assertEquals(commentMutation.getMutationAAs(), "A");
+		assertEquals(commentMutation.getMutationAAs(genePos), "A");
 	}
 
 	@Test
-	public void testGetMutationGenePosition() {
-		assertNull(commentDrug.getMutationGenePosition());
-		assertNotNull(commentMutation.getMutationGenePosition());
+	public void testGetMutationLookup() {
+		assertNull(commentDrug.getMutationLookup());
+		assertNotNull(commentMutation.getMutationLookup());
 		
 		GenePosition<HIV> genePos = new GenePosition<HIV>(hiv.getGene("HIV1IN"), 151);
-		assertEquals(commentMutation.getMutationGenePosition(), genePos);
+		assertEquals(genePos, commentMutation.getMutationLookup().keySet().stream().findFirst().get());
 	}
 
 	@Test

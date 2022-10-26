@@ -8,7 +8,6 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import edu.stanford.hivdb.comments.ConditionalComments;
 import edu.stanford.hivdb.mutations.Mutation;
 import edu.stanford.hivdb.mutations.MutationSet;
 import edu.stanford.hivdb.hivfacts.HIV;
@@ -63,7 +62,7 @@ public class ConditionalCommentsTest {
 				"Y181I/V are 2-base pair non-polymorphic mutations selected by NVP and ETR.");
 		defs.add(commentDef);
 		commentDef = new CommentDefinition(
-				"RT184ACDEFGHKLNPQRSTWY_-",
+				"RT184ACDEFGHKLNPQRSTWYid",
 				"184V/I cause high-level in vitro resistance to 3TC and FTC and low-level resistance to ddI and ABC.");
 		defs.add(commentDef);
 		
@@ -117,14 +116,14 @@ public class ConditionalCommentsTest {
 				"Y181I/V are 2-base pair non-polymorphic mutations selected by NVP and ETR.");
 		defs.add(commentDef);
 		commentDef = new CommentDefinition(
-				"RT184ACDEFGHKLNPQRSTWY_-",
+				"RT184ACDEFGHKLNPQRSTWYid",
 				"184V/I cause high-level in vitro resistance to 3TC and FTC and low-level resistance to ddI and ABC.");
 		defs.add(commentDef);
 		
 		MutationSet<HIV> mutations = MutationSet.parseString(hiv.getGene("HIV1RT"), "RT184V");
 		
 		thrown.expect(IllegalArgumentException.class);
-		thrown.expectMessage("Mutation M184V is not match with comment definition RT184ACDEFGHKLNPQRSTWY_-.");
+		thrown.expectMessage("Mutation M184V is not match with comment definition RT184ACDEFGHKLNPQRSTWYid.");
 		comments.fromAsiMutationComments(defs, mutations);
 	}
 	
