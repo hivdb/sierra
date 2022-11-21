@@ -186,7 +186,7 @@ public class GeneDRASIResultHandlerDrugSuscTest {
 
 		assertEquals(15.0, geneDR.getDrugSusc(hiv.getDrug("TDF")).getScore(), 1e-6);
 
-		assertEquals(60.0, geneDR.getDrugSusc(hiv.getDrug("ABC")).getScore(), 1e-6);
+		assertEquals(50.0, geneDR.getDrugSusc(hiv.getDrug("ABC")).getScore(), 1e-6);
 
 		IllegalArgumentException expectedExc = null;
 		try {
@@ -214,12 +214,12 @@ public class GeneDRASIResultHandlerDrugSuscTest {
 		geneDR = algorithmComparison.getGeneDR(hiv.getGene("HIV1RT")).get(0);
 		Map<Drug<HIV>, Double> expected = new TreeMap<>();
 		expected.put(hiv.getDrug("D4T"), 40.0);
-		expected.put(hiv.getDrug("AZT"), 55.0);
+		expected.put(hiv.getDrug("AZT"), 60.0);
 		expected.put(hiv.getDrug("FTC"), 70.0);
 		expected.put(hiv.getDrug("TDF"), 15.0);
 		expected.put(hiv.getDrug("DDI"), 40.0);
 		expected.put(hiv.getDrug("LMV"), 70.0);
-		expected.put(hiv.getDrug("ABC"), 60.0);
+		expected.put(hiv.getDrug("ABC"), 50.0);
 		expected.put(hiv.getDrug("DOR"), 0.0);
 		expected.put(hiv.getDrug("NVP"), 0.0);
 		expected.put(hiv.getDrug("RPV"), 0.0);
@@ -229,12 +229,12 @@ public class GeneDRASIResultHandlerDrugSuscTest {
 
 		Map<Drug<HIV>, Double> expectedNRTI = new TreeMap<>();
 		expectedNRTI.put(hiv.getDrug("D4T"), 40.0);
-		expectedNRTI.put(hiv.getDrug("AZT"), 55.0);
+		expectedNRTI.put(hiv.getDrug("AZT"), 60.0);
 		expectedNRTI.put(hiv.getDrug("FTC"), 70.0);
 		expectedNRTI.put(hiv.getDrug("TDF"), 15.0);
 		expectedNRTI.put(hiv.getDrug("DDI"), 40.0);
 		expectedNRTI.put(hiv.getDrug("LMV"), 70.0);
-		expectedNRTI.put(hiv.getDrug("ABC"), 60.0);
+		expectedNRTI.put(hiv.getDrug("ABC"), 50.0);
 		 assertEquals(
 		 	expectedNRTI,
 		 	geneDR.getTotalDrugScores(hiv.getDrugClass("NRTI")));
