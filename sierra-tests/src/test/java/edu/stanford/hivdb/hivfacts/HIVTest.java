@@ -229,8 +229,8 @@ public class HIVTest {
 	@Test
 	public void testGetDrugResistAlgorithms() {
 		assertNotNull(hiv.getDrugResistAlgorithms());
-		// 20220602, 30 algorithms
-		assertEquals(35, hiv.getDrugResistAlgorithms().size());
+		// 20221207, 36 algorithms
+		assertEquals(36, hiv.getDrugResistAlgorithms().size());
 	}
 
 	@Test
