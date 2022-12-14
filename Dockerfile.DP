@@ -1,0 +1,4 @@
+FROM hivdb/sierra-ebv:latest AS sierra-ebv
+
+FROM hivdb/sierra:latest
+COPY --from=sierra-ebv /usr/share/tomcat/webapps/Sierra-EBV.war /usr/share/tomcat/webapps

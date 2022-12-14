@@ -9,6 +9,12 @@ if [ -z "$1" ]; then
 fi
 
 make build release
-make release-ci
+
 docker tag hivdb/sierra:latest hivdb/sierra:$1
 docker push hivdb/sierra:$1
+
+make release-ci
+
+make release-dp
+docker tag hivdb/sierra-dp:latest hivdb/sierra-dp:$(cat .latest-version)
+docker push hivdb/sierra-dp:$(cat .latest-version)

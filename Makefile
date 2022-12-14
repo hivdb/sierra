@@ -10,16 +10,20 @@ build: sync-hivfacts
 build-ci:
 	@docker build -t hivdb/sierra-ci -f Dockerfile.CI .
 
+build-dp:
+	@echo "Build deployment version..."
+	@docker build -t hivdb/sierra-dp -f Dockerfile.DP .
+
 force-build: sync-hivfacts
 	@docker build --no-cache -t ${DOCKERREPO} .
 
-dev: build
+dev: build build-dp
 	@docker rm -f hivdb-sierra-dev 2>/dev/null || true
 	@docker run \
 		--name=hivdb-sierra-dev \
 		--volume ~/.aws:/root/.aws:ro \
 		--env NUCAMINO_AWS_LAMBDA=nucamino:3 \
-		--rm -it --publish=8111:8080 ${DOCKERREPO} dev
+		--rm -it --publish=8111:8080 hivdb/sierra-dp dev
 
 inspect:
 	@docker exec -it hivdb-sierra-dev /bin/bash
@@ -27,6 +31,10 @@ inspect:
 release-ci: build-ci
 	@docker login
 	@docker push hivdb/sierra-ci:latest
+
+release-dp: build-dp
+	@docker login
+	@docker push hivdb/sierra-dp:latest
 
 release:
 	@docker login
