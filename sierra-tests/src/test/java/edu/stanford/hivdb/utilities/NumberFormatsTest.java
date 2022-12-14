@@ -17,11 +17,11 @@ public class NumberFormatsTest {
 	
 	@Test
 	public void prettyDecimalTest() {
-		assertEquals(NumberFormats.prettyDecimal(11.11), new Double(11.0));
-		assertEquals(NumberFormats.prettyDecimal(5.11), new Double(5.1));
-		assertEquals(NumberFormats.prettyDecimal(0.123), new Double(0.12));
-		assertEquals(NumberFormats.prettyDecimal(0.01234), new Double(0.012));
-		assertEquals(NumberFormats.prettyDecimal(0.0000123), new Double(1e-05));
+		assertEquals(NumberFormats.prettyDecimal(11.11), Double.valueOf(11.0));
+		assertEquals(NumberFormats.prettyDecimal(5.11), Double.valueOf(5.1));
+		assertEquals(NumberFormats.prettyDecimal(0.123), Double.valueOf(0.12));
+		assertEquals(NumberFormats.prettyDecimal(0.01234), Double.valueOf(0.012));
+		assertEquals(NumberFormats.prettyDecimal(0.0000123), Double.valueOf(1e-05));
 		
 	}
 }

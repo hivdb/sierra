@@ -196,6 +196,30 @@ public class PositionCodonReadsTest {
 			hiv.getGene("HIV1RT"), 215, 1000, allCodonReads);
 		assertEquals("AGT", posCodonReads.getCodonConsensusWithIns(0.2, 0L));
 	}
+
+	@Test
+	public void testGetCodonConsensusWithInsWithDelFs() {
+		
+		Map<String, Long> allCodonReads = new TreeMap<>();
+		allCodonReads.put("-GG", 1235L);
+		allCodonReads.put("AGG", 1L);
+		
+		PositionCodonReads<HIV> posCodonReads = new PositionCodonReads<HIV>(
+			hiv.getGene("HIV1RT"), 215, 1236, allCodonReads);
+		
+		// deliberately change consensus frameshift to NNN
+		assertEquals("-GG", posCodonReads.getCodonConsensusWithIns(0.2, 0L));
+		
+		allCodonReads = new TreeMap<>();
+		allCodonReads.put("AG-", 123L);
+		allCodonReads.put("AGG", 124L);
+
+		posCodonReads = new PositionCodonReads<HIV>(
+			hiv.getGene("HIV1RT"), 215, 227, allCodonReads);
+		
+		// suppress frameshift when it's not the majority one; even its prevalence qualified
+		assertEquals("AGG", posCodonReads.getCodonConsensusWithIns(0.2, 0L));
+	}
 	
 	@Test
 	public void testExtMap() {

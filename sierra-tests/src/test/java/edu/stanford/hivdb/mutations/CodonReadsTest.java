@@ -89,21 +89,23 @@ public class CodonReadsTest {
 		CodonReads<HIV> codonReads= new CodonReads<HIV>(
 				hiv.getGene("HIV1RT"), 215, "CGT", 33, 1000);
 		
-		assertEquals(codonReads.getAminoAcid(), Character.valueOf('R'));
+		assertEquals(Character.valueOf('R'), codonReads.getAminoAcid());
 		
 		codonReads= new CodonReads<HIV>(
 				hiv.getGene("HIV1RT"), 215, "VVV", 33, 1000);
-		assertEquals(codonReads.getAminoAcid(), Character.valueOf('X'));
+		assertEquals(Character.valueOf('X'), codonReads.getAminoAcid());
 		
 		codonReads= new CodonReads<HIV>(
 				hiv.getGene("HIV1RT"), 215, "AAAAAA", 33, 1000);
-		assertEquals(codonReads.getAminoAcid(), Character.valueOf('_'));
+		assertEquals(Character.valueOf('_'), codonReads.getAminoAcid());
 		
 		codonReads= new CodonReads<HIV>(
-				hiv.getGene("HIV1RT"), 215, "AA", 33, 1000);
-		assertEquals(codonReads.getAminoAcid(), Character.valueOf('-'));
+				hiv.getGene("HIV1RT"), 215, "-AA", 33, 1000);
+		assertEquals(Character.valueOf('X'), codonReads.getAminoAcid());
 		
-		assertEquals(codonReads.getAminoAcid(), Character.valueOf('-'));
+		codonReads= new CodonReads<HIV>(
+				hiv.getGene("HIV1RT"), 215, "---", 33, 1000);
+		assertEquals(Character.valueOf('-'), codonReads.getAminoAcid());
 	}
 	
 	

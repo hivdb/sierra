@@ -64,7 +64,7 @@ public class AlignedGeneSeqTest {
 				new AlignedSite(5, 13, 3),
 				new AlignedSite(6, 16, 3)
 			),
-			Collections.emptyList(), Collections.emptyList(), 0, 0);
+			Collections.emptyList(), Collections.emptyList());
 		assertEquals("CCAAAGAGTGATTTGAGG", alignedGeneSeq.getAlignedNAs());
 	}
 
@@ -83,7 +83,7 @@ public class AlignedGeneSeqTest {
 				new AlignedSite(5, 13, 3),
 				new AlignedSite(6, 16, 3)
 			),
-			Collections.emptyList(), Collections.emptyList(), 0, 0);
+			Collections.emptyList(), Collections.emptyList());
 		assertEquals("PKSDLR", alignedGeneSeq.getAlignedAAs());
 	}
 

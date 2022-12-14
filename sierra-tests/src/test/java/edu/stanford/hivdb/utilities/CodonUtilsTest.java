@@ -59,10 +59,13 @@ public class CodonUtilsTest {
 	
 	@Test
 	public void getMergedCodonTest() {
-		List<String> codons = new ArrayList<>();
-		codons.add("-AT");
-		codons.add("GAT");
-		codons.add("GTT");
+		List<String> codons = List.of("-AT", "GAT", "GTT");
 		assertEquals(CodonUtils.getMergedCodon(codons), "-WT");
+
+		codons = List.of("GGA", "GG-");
+		assertEquals(CodonUtils.getMergedCodon(codons), "GGA");
+
+		codons = List.of("GGA", "GG");
+		assertEquals(CodonUtils.getMergedCodon(codons), "GGA");
 	}
 }
