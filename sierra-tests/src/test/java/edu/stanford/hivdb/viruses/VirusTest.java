@@ -47,7 +47,7 @@ public class VirusTest {
 	
 	@Test
 	public void testGetLatestDrugResistAlgorithm() {
-		assertEquals("9.4", hiv.getLatestDrugResistAlgorithm("HIVDB").getVersion());
+		assertEquals("9.4.1", hiv.getLatestDrugResistAlgorithm("HIVDB").getVersion());
 		assertEquals("33", hiv.getLatestDrugResistAlgorithm("ANRS").getVersion());
 		assertEquals("10.0", hiv.getLatestDrugResistAlgorithm("Rega").getVersion());
 	}
