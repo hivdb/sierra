@@ -177,6 +177,12 @@ public class MutationTest {
 		expected = new HashSet<>();
 		expected.add(new AAMutation<HIV>(hiv.getGene("HIV1PR"), 1, 'L'));
 		assertEquals(expected, new AAMutation<HIV>(hiv.getGene("HIV1PR"), 1, "PL".toCharArray()).split());
+
+		// Don't split an ambiguous mutation if the ambiguity is not caused by BDHVN
+		AAMutation<HIV> mut = new AAMutation<HIV>(hiv.getGene("HIV1RT"), 101, "ADEHKNPQT".toCharArray());
+		expected = new HashSet<>();
+		expected.add(mut);
+		assertEquals(expected, mut.split());
 	}
 
 	@Test
@@ -643,4 +649,14 @@ public class MutationTest {
 		assertEquals(4., prevMutsWConsAndStop.getHighestMutPrevalence(), 1);
 		assertEquals(0.0, new AAMutation<HIV>(hiv.getGene("HIV1PR"), 1, "PX".toCharArray()).getHighestMutPrevalence(), 1e-8);
 	}
+
+	@Test
+	public void testAmbiguousTSMDrugClass() {
+		AAMutation<HIV> mut = new AAMutation<HIV>(hiv.getGene("HIV1RT"), 101, "ADE".toCharArray());
+		assertEquals(hiv.getDrugClass("NNRTI"), mut.getTSMDrugClass());
+		mut = new AAMutation<HIV>(hiv.getGene("HIV1RT"), 101, "ADEHKNPQT".toCharArray());
+		assertFalse(mut.isTSM());
+		assertNull(mut.getTSMDrugClass());
+	}
+
 }
