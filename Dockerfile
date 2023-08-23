@@ -15,7 +15,8 @@ COPY hivfacts /sierra/hivfacts
 COPY src /sierra/src
 RUN /sierra/gradlew assemble
 RUN mv build/libs/sierra-*.war build/libs/sierra.war 2>/dev/null
-ENV MINIMAP2_VERSION=2.26
+# NOTE: MiniMap2 ≥ 2.18 handles --score-N=0 differently, so we stick with 2.17 for now
+ENV MINIMAP2_VERSION=2.17
 RUN apt-get -q update && apt-get install -qqy curl bzip2
 RUN cd /tmp && \
     curl -sSL https://github.com/lh3/minimap2/releases/download/v${MINIMAP2_VERSION}/minimap2-${MINIMAP2_VERSION}_x64-linux.tar.bz2 -o minimap2.tar.bz2 && \
