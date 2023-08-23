@@ -27,7 +27,7 @@ RUN apt-get -q update && apt-get install -qqy python3.11-full python3.11-dev gcc
 ADD https://bootstrap.pypa.io/get-pip.py /tmp/get-pip.py
 RUN python3.11 /tmp/get-pip.py
 RUN pip install cython==0.29.35
-ARG POSTALIGN_VERSION=889295116cd5ac590e3929064551af82ee6741b4
+ARG POSTALIGN_VERSION=8e2ee118261987208c17add6cef5c1270e325a4c
 RUN pip install https://github.com/hivdb/post-align/archive/${POSTALIGN_VERSION}.zip
 
 FROM hivdb/tomcat-with-nucamino:latest
