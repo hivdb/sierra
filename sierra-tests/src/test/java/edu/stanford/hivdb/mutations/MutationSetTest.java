@@ -397,9 +397,14 @@ public class MutationSetTest {
 		List<Mutation<HIV>> mutations = new ArrayList<>();
 		mutations.add(hiv.parseMutationString("RT215V"));
 		mutations.add(hiv.parseMutationString("RT67N"));
+		 // AHT is the codon for triggering isAmbiguous() returning true
+		mutations.add(hiv.parseMutationString("RT123INT:AHT"));
 		
 		MutationSet<HIV> mSet = new MutationSet<HIV>(mutations);
-		assertNotNull(mSet.getAmbiguousCodons());
+		assertEquals(
+			new MutationSet<>(hiv.parseMutationString("RT123INT")),
+			mSet.getAmbiguousCodons()
+		);
 	}
 	
 	@Test
