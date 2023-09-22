@@ -345,7 +345,7 @@ public class MutationTest {
 		AAMutation<HIV> mut2 = new AAMutation<HIV>(hiv.getGene("HIV1PR"), 51, "VEF".toCharArray());
 		List<MutationType<HIV>> eTyoes1 = new ArrayList<>();
 		eTyoes1.add(hiv.getMutationType("Major"));
-		eTyoes1.add(hiv.getMutationType("Accessory"));
+		eTyoes1.add(hiv.getMutationType("Other"));
 		List<MutationType<HIV>>eTyoes2 = new ArrayList<>();
 		eTyoes2.add(hiv.getMutationType("Other"));
 		assertEquals(eTyoes1, mut1.getTypes());

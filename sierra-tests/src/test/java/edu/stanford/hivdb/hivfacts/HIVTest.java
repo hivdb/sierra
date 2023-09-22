@@ -392,8 +392,8 @@ public class HIVTest {
 	@Test
 	public void testGetMutationTypePairs() {
 		assertNotNull(hiv.getMutationTypePairs());
-		// 20230822, 276 mutation type pairs
-		assertEquals(276, hiv.getMutationTypePairs().size());
+		// 20230922, 275 mutation type pairs
+		assertEquals(275, hiv.getMutationTypePairs().size());
 	}
 
 	@Test
