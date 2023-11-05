@@ -352,6 +352,16 @@ public class MutationTest {
 		assertEquals(eTyoes1, mut1.getTypes()); // post instantiation of types
 		assertEquals(eTyoes2, mut2.getTypes());
 	}
+	
+	@Test
+	public void testGetTypesRTK70HN() {
+		AAMutation<HIV> mutK70HN = new AAMutation<HIV>(hiv.getGene("HIV1RT"), 70, "HN".toCharArray());
+		List<MutationType<HIV>> types = new ArrayList<>();
+		types.add(hiv.getMutationType("NRTI"));
+		types.add(hiv.getMutationType("Other"));
+		assertEquals(types, mutK70HN.getTypes());
+		assertEquals(types, mutK70HN.getTypes()); // post instantiation of types
+	}
 
 	@Test
 	public void testGetPrimaryType() {

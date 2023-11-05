@@ -229,14 +229,14 @@ public class HIVTest {
 	@Test
 	public void testGetDrugResistAlgorithms() {
 		assertNotNull(hiv.getDrugResistAlgorithms());
-		// 20230822, 43 algorithms
-		assertEquals(43, hiv.getDrugResistAlgorithms().size());
+		// 20231105, 44 algorithms
+		assertEquals(44, hiv.getDrugResistAlgorithms().size());
 	}
 
 	@Test
 	public void testGetDrugResistAlgorithms2() {
 		List<String> algoNames = new ArrayList<>();
-		algoNames.add("HIVDB_8.9");
+		algoNames.add("HIVDB_9.5.1");
 		algoNames.add("Rega_10.0");
 		algoNames.add("ANRS_30");
 
@@ -251,16 +251,16 @@ public class HIVTest {
 
 	@Test
 	public void testGetDrugResistAlgorithm() {
-		DrugResistanceAlgorithm<HIV> algo = hiv.getDrugResistAlgorithm("HIVDB_8.9");
+		DrugResistanceAlgorithm<HIV> algo = hiv.getDrugResistAlgorithm("HIVDB_9.5.1");
 		assertNotNull(algo);
 		assertEquals(algo.getFamily(), "HIVDB");
 	}
 
 	@Test
 	public void testGetDrugResistAlgorithm2() {
-		DrugResistanceAlgorithm<HIV> algo = hiv.getDrugResistAlgorithm("HIVDB", "8.9");
+		DrugResistanceAlgorithm<HIV> algo = hiv.getDrugResistAlgorithm("HIVDB", "9.5.1");
 		assertNotNull(algo);
-		assertEquals(algo.getVersion(), "8.9");
+		assertEquals(algo.getVersion(), "9.5.1");
 	}
 
 
