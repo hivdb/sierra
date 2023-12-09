@@ -16,7 +16,7 @@ public class GenotypeReferenceTest {
 	@Test
 	public void testLoadJson() {
 		assertNotNull(hiv.getGenotypeReferences());
-		assertEquals(hiv.getGenotypeReferences().size(), 718);
+		assertEquals(720, hiv.getGenotypeReferences().size());
 	}
 	
 	@Test

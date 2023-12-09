@@ -49,7 +49,7 @@ public class BoundGenotypeRegressionTest {
 				GenotypeResult<HIV> result = hiv.getGenotyper().compareAll(
 					seq.sequence, seq.firstNA, seq.lastNA);
 				BoundGenotype<HIV> primary = result.getFirstMatch();
-				assertEquals("A (3.44%)", primary.getDisplay());
+				assertEquals("A3 (3.44%)", primary.getDisplay());
 				assertEquals(1047, primary.getSequence().length());
 			}
 		}

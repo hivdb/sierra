@@ -45,7 +45,7 @@ public class GenotypeTest {
 
 	@Test
 	public void testGetParentGenotypes() {
-		Genotype<HIV> typeA = hiv.getGenotype("A");
+		Genotype<HIV> typeA = hiv.getGenotype("A1");
 		Genotype<HIV> typeX01 = hiv.getGenotype("X01");
 		assertEquals(typeA, typeX01.getParentGenotypes().get(0));
 		
@@ -55,7 +55,7 @@ public class GenotypeTest {
 	
 	@Test
 	public void testCheckDistance() {
-		Genotype<HIV> typeA = hiv.getGenotype("A");
+		Genotype<HIV> typeA = hiv.getGenotype("A1");
 		assertFalse(typeA.checkDistance(0.4));
 	}
 

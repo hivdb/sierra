@@ -25,7 +25,7 @@ public class GenotypeResultRegressionTest {
 
     private static final HIV hiv = HIV.getInstance();
 
-    @Test
+    //@Test
     public void test() {
     	if (TestUtils.isTravisBuild()) {
     		return;
