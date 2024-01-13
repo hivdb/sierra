@@ -212,8 +212,8 @@ public class HIV2Test {
 	@Test
 	public void testGetDrugResistAlgorithms() {
 		assertNotNull(hiv2.getDrugResistAlgorithms());
-		// 20200214, 28 algorithms
-		assertEquals(hiv2.getDrugResistAlgorithms().size(), 1);
+		// 20240113, 2 algorithms
+		assertEquals(hiv2.getDrugResistAlgorithms().size(), 2);
 	}
 
 	@Test
@@ -225,16 +225,16 @@ public class HIV2Test {
 
 		assertEquals(hiv2.getDrugResistAlgorithms(algoNames).size(), 3);
 
-		// 20200214 no HIVDB_9.0
+		// 20240113 no HIVDB_10.0
 		List<String> algoNames2 = new ArrayList<>();
-		algoNames2.add("HIVDB_9.0");
+		algoNames2.add("HIVDB_10.0");
 		assertEquals(hiv2.getDrugResistAlgorithms(algoNames2).size(), 1);
 		assertNull(hiv2.getDrugResistAlgorithms(algoNames2).iterator().next());
 	}
 
 	@Test
 	public void testGetDrugResistAlgorithm() {
-		DrugResistanceAlgorithm<HIV2> algo = hiv2.getDrugResistAlgorithm("HIVDB_9.0a3");
+		DrugResistanceAlgorithm<HIV2> algo = hiv2.getDrugResistAlgorithm("HIVDB_9.0");
 		assertNotNull(algo);
 		assertEquals(algo.getFamily(), "HIVDB");
 	}
@@ -248,9 +248,9 @@ public class HIV2Test {
 
 	@Test
 	public void testGetDrugResistAlgorithm2() {
-		DrugResistanceAlgorithm<HIV2> algo = hiv2.getDrugResistAlgorithm("HIVDB", "9.0a3");
+		DrugResistanceAlgorithm<HIV2> algo = hiv2.getDrugResistAlgorithm("HIVDB", "9.0");
 		assertNotNull(algo);
-		assertEquals(algo.getVersion(), "9.0a3");
+		assertEquals(algo.getVersion(), "9.0");
 	}
 
 
@@ -382,8 +382,8 @@ public class HIV2Test {
 	@Test
 	public void testGetMutationTypePairs() {
 		assertNotNull(hiv2.getMutationTypePairs());
-		// 20200214, 260 mutation type pairs
-		assertEquals(hiv2.getMutationTypePairs().size(), 124);
+		// 20240113, 130 mutation type pairs
+		assertEquals(hiv2.getMutationTypePairs().size(), 130);
 	}
 
 	@Test
