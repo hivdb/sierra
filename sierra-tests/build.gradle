@@ -63,6 +63,7 @@ test {
 
     if (!enableRegressionTest) {
         exclude '**/*Regression*.class'
+        exclude '**/MutationPatternsResistanceJsonComparisonTest.class'
     }
 
     // testLogging {
