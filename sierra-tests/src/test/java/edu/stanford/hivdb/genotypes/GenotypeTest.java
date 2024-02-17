@@ -25,12 +25,6 @@ public class GenotypeTest {
 	}
 	
 	@Test
-	public void testGetMinPrimaryRegionalGenotypeProportion() {
-		Genotype<HIV> typeB = hiv.getGenotype("B");
-		assertEquals(typeB.getMinPrimaryRegionalGenotypeProportion(), Double.valueOf(0.9));
-	}
-
-	@Test
 	public void testGetIndexName() {
 		Genotype<HIV> typeX01 = hiv.getGenotype("X01");
 		assertEquals("X01", typeX01.getIndexName());

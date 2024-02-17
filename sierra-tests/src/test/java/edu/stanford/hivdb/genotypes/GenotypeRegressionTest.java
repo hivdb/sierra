@@ -77,7 +77,7 @@ public class GenotypeRegressionTest {
 		}
 	}
 
-	//@Test
+	@Test
 	public void test() throws FileNotFoundException {
 		
 		InputStream json = TestUtils.readTestResource("GenotypeRegression/GenotypeRegression.json");
@@ -87,7 +87,6 @@ public class GenotypeRegressionTest {
 			    new TypeToken<List<SequenceWithExpectedGenotype>>(){}.getType());
 	
 
-		String jsonFilePath = "newGenotypeRegression.json";
 		
 		List<SequenceWithExpectedGenotype> rows = new ArrayList<>();
 		
@@ -119,6 +118,7 @@ public class GenotypeRegressionTest {
 				
 			rows.add(oneRow);
 		}
+		String jsonFilePath = "newGenotypeRegression.json";
 		TestUtils.writeJSONFile(jsonFilePath, rows);
 		assertEquals(verifications, rows);
 	}

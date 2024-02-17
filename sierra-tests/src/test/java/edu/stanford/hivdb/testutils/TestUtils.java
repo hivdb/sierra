@@ -2,8 +2,12 @@ package edu.stanford.hivdb.testutils;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
+
+import org.apache.commons.io.IOUtils;
 
 import edu.stanford.hivdb.utilities.Json;
 import edu.stanford.hivdb.utilities.MyFileUtils;
@@ -23,6 +27,11 @@ public class TestUtils {
 		filePath = TEST_RESULT_FOLDER + filePath;
 		
 		return new FileOutputStream(filePath);
+	}
+
+	public static String readTestResourceToString(String resPath) throws IOException {
+		InputStream stream = readTestResource(resPath);
+		return IOUtils.toString(stream, StandardCharsets.UTF_8);
 	}
 	
 	public static InputStream readTestResource(String filePath) throws FileNotFoundException {

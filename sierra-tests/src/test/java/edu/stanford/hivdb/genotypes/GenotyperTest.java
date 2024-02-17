@@ -5,6 +5,9 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import edu.stanford.hivdb.hivfacts.HIV;
+import edu.stanford.hivdb.sequences.AlignedSequence;
+import edu.stanford.hivdb.sequences.Aligner;
+import edu.stanford.hivdb.sequences.Sequence;
 
 public class GenotyperTest {
 	
@@ -32,7 +35,6 @@ public class GenotyperTest {
 		assertEquals("B", result2.getParentFallbackMatch(primary).getGenotype().getIndexName());
 		
 		
-
 		// test boundary cases
 		StringBuffer buf = new StringBuffer(seqX51.sequence);
 		buf.setCharAt(0, 'A');
@@ -88,5 +90,15 @@ public class GenotyperTest {
 		assertFalse(primary.getDiscordanceList().contains(3204));
 
 		assertEquals(37.0 / 1174, primary.getDistance(), 1e-10);
+	}
+	
+	@Test
+	public void testDQ366663() {
+		Sequence seq = Sequence.fromGenbank("DQ366663");
+		AlignedSequence<HIV> alignedSeq = Aligner.getInstance(hiv).align(seq);
+		assertEquals(
+			alignedSeq.getBestMatchingSubtype().getDisplayGenotypes().get(0),
+			hiv.getGenotype("X53")
+		);
 	}
 }
