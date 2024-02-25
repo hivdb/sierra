@@ -86,7 +86,7 @@ public class GenePositionTest {
     			new GenePosition<HIV>(hiv.getGene("HIV1PR"), 1),
     			new GenePosition<HIV>(hiv.getGene("HIV1IN"), 288)
     		);
-    	assertEquals(gps1.size(),88);
+    	assertEquals(90, gps1.size());
     }
 	
 	

@@ -229,8 +229,8 @@ public class HIVTest {
 	@Test
 	public void testGetDrugResistAlgorithms() {
 		assertNotNull(hiv.getDrugResistAlgorithms());
-		// 20231105, 44 algorithms
-		assertEquals(44, hiv.getDrugResistAlgorithms().size());
+		// 20240224, 45 algorithms
+		assertEquals(45, hiv.getDrugResistAlgorithms().size());
 	}
 
 	@Test
@@ -392,7 +392,7 @@ public class HIVTest {
 	@Test
 	public void testGetMutationTypePairs() {
 		assertNotNull(hiv.getMutationTypePairs());
-		// 20230922, 275 mutation type pairs
+		// 20240224, 275 mutation type pairs
 		assertEquals(275, hiv.getMutationTypePairs().size());
 	}
 

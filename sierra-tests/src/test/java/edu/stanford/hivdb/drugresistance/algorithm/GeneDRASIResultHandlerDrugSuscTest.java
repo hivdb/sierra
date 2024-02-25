@@ -313,7 +313,6 @@ public class GeneDRASIResultHandlerDrugSuscTest {
 		mutScores.put(hiv.newMutationSet("RT181C"), 60.);
 		mutScores.put(hiv.newMutationSet("RT101E"), 30.);
 		mutScores.put(hiv.newMutationSet("RT100I"), 60.);
-		mutScores.put(hiv.newMutationSet("RT101E,RT181C"), 5.);
 		expected.put(hiv.getDrug("NVP"), mutScores);
 
 		mutScores = new TreeMap<>();
@@ -331,15 +330,16 @@ public class GeneDRASIResultHandlerDrugSuscTest {
 
 		mutScores = new TreeMap<>();
 		mutScores.put(hiv.newMutationSet("RT181C"), 30.);
-		mutScores.put(hiv.newMutationSet("RT101E"), 15.);
+		mutScores.put(hiv.newMutationSet("RT101E"), 10.);
 		mutScores.put(hiv.newMutationSet("RT100I"), 30.);
 		mutScores.put(hiv.newMutationSet("RT101E,RT181C"), 5.);
 		expected.put(hiv.getDrug("ETR"), mutScores);
 				
 		mutScores = new TreeMap<>();
-		mutScores.put(hiv.newMutationSet("RT181C"), 10.);
-		mutScores.put(hiv.newMutationSet("RT101E"), 15.);
 		mutScores.put(hiv.newMutationSet("RT100I"), 15.);
+		mutScores.put(hiv.newMutationSet("RT101E"), 10.);
+		mutScores.put(hiv.newMutationSet("RT101E,RT181C"), 5.);
+		mutScores.put(hiv.newMutationSet("RT181C"), 5.);
 		expected.put(hiv.getDrug("DOR"), mutScores);
 				
 		mutScores = new TreeMap<>();
