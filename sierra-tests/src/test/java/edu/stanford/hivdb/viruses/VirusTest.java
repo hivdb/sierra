@@ -51,4 +51,9 @@ public class VirusTest {
 		assertEquals("33", hiv.getLatestDrugResistAlgorithm("ANRS").getVersion());
 		assertEquals("10.0", hiv.getLatestDrugResistAlgorithm("Rega").getVersion());
 	}
+
+	@Test
+	public void testGetDefaultDrugResistAlgorithm() {
+		assertEquals("9.6a1", hiv.getDefaultDrugResistAlgorithm().getVersion());
+	}
 }

@@ -25,6 +25,9 @@ dev: build build-dp
 		--env NUCAMINO_AWS_LAMBDA=nucamino:3 \
 		--rm -it --publish=8111:8080 hivdb/sierra-dp dev
 
+run-testing:
+	@docker run --rm -it --publish=8111:8080 hivdb/sierra-testing:$(shell cat .latest-version) dev
+
 inspect:
 	@docker exec -it hivdb-sierra-dev /bin/bash
 
