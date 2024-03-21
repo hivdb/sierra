@@ -236,7 +236,7 @@ public class HIVTest {
 	@Test
 	public void testGetDrugResistAlgorithms2() {
 		List<String> algoNames = new ArrayList<>();
-		algoNames.add("HIVDB_9.5.1");
+		algoNames.add("HIVDB_9.6");
 		algoNames.add("Rega_10.0");
 		algoNames.add("ANRS_30");
 
@@ -251,16 +251,16 @@ public class HIVTest {
 
 	@Test
 	public void testGetDrugResistAlgorithm() {
-		DrugResistanceAlgorithm<HIV> algo = hiv.getDrugResistAlgorithm("HIVDB_9.5.1");
+		DrugResistanceAlgorithm<HIV> algo = hiv.getDrugResistAlgorithm("HIVDB_9.6");
 		assertNotNull(algo);
 		assertEquals(algo.getFamily(), "HIVDB");
 	}
 
 	@Test
 	public void testGetDrugResistAlgorithm2() {
-		DrugResistanceAlgorithm<HIV> algo = hiv.getDrugResistAlgorithm("HIVDB", "9.5.1");
+		DrugResistanceAlgorithm<HIV> algo = hiv.getDrugResistAlgorithm("HIVDB", "9.6");
 		assertNotNull(algo);
-		assertEquals(algo.getVersion(), "9.5.1");
+		assertEquals(algo.getVersion(), "9.6");
 	}
 
 
