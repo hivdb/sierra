@@ -28,8 +28,6 @@ import java.util.Map;
 import org.junit.Before;
 import org.junit.Test;
 
-import edu.stanford.hivdb.comments.ConditionType;
-import edu.stanford.hivdb.comments.ConditionalComment;
 import edu.stanford.hivdb.drugs.DrugClass;
 import edu.stanford.hivdb.mutations.GenePosition;
 import edu.stanford.hivdb.viruses.Strain;
@@ -51,7 +49,7 @@ public class ConditionalCommentTest {
 		
 		Map<String, Object> condValue = new HashMap<>();
 		List<Double> levels = new ArrayList<>();
-		levels.add(new Double(5.0));
+		levels.add(Double.valueOf(5.0));
 		condValue.put("drug", "DRV");
 		condValue.put("levels", levels);
 		
@@ -156,12 +154,12 @@ public class ConditionalCommentTest {
 		
 		Map<String, Object> condValueOfAnd = new HashMap<>();
 		List<Double> levels = new ArrayList<>();
-		levels.add(new Double(5.0));
+		levels.add(Double.valueOf(5.0));
 		condValueOfAnd.put("drug", "DRV");
 		condValueOfAnd.put("levels", levels);
 		andValue.add(condValueOfAnd);
 		levels = new ArrayList<>();
-		levels.add(new Double(4.0));
+		levels.add(Double.valueOf(4.0));
 		condValueOfAnd.put("drug", "TPV");
 		condValueOfAnd.put("levels", levels);
 		andValue.add(condValueOfAnd);

@@ -14,7 +14,7 @@ public class CommentTypeTest {
 	
 	@Test
 	public void testCommentType() {
-		assertEquals(CommentType.values().length, 6);
+		assertEquals(CommentType.values().length, 7);
 		
 		CommentType.valueOf("Major");
 		CommentType.valueOf("Accessory");
