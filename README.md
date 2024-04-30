@@ -118,3 +118,8 @@ greatly appreciated.
 [asi-github]: https://github.com/FrontierScience/asi_interpreter
 [fstrf]: https://www.fstrf.org/
 [donation]: https://give.stanford.edu/med/fund/?kwoDCFilter=KDC-469CVQ9&kwoDCPreselect=KDC-469CVQ9
+
+
+## release
+
+`./scripts/release_stable_version <customized version name>`
