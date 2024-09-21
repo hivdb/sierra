@@ -72,6 +72,7 @@ public class PostAlignAlignerTest {
 			seqPR.getAlignedAAs()
 		);
 		AlignedGeneSeq<HIV> seqRT = alignedSeq.getAlignedGeneSequence(hiv.getGene("HIV1RT"));
+		
 		assertEquals(1, seqRT.getFirstAA());
 		assertEquals(298, seqRT.getFirstNA());
 		assertEquals(230, seqRT.getLastAA());
