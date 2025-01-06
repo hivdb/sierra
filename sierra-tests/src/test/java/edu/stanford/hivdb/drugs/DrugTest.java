@@ -18,7 +18,7 @@ public class DrugTest {
     @Test
     public void testLoadJSON() {
     	// WARNING: This test would fail each time new drug is added.
-    	assertEquals(26, hiv.getDrugs().size());
+    	assertEquals(hiv.getDrugs().size(), 27);
     }
 
     @Test
@@ -111,7 +111,7 @@ public class DrugTest {
     public void testFullDrugs() {
 		// WARNING: This test would fail every time a drug is added.
     	// INFO: You should update all the fullDrugs test below adding new drug and also update this test.
-  		assertEquals(26, hiv.getDrugs().size());
+  		assertEquals(hiv.getDrugs().size(), 27);
 
     }
 

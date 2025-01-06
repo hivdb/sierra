@@ -32,7 +32,7 @@ public class DrugClassTest {
 	@Test
 	public void testGetDrugs() {
 		DrugClass<HIV> drugClass = hiv.getDrugClass("NNRTI");
-		assertEquals(drugClass.getDrugs().size(), 5);
+		assertEquals(drugClass.getDrugs().size(), 6);
 	}
 	
 	@Test
@@ -175,6 +175,7 @@ public class DrugClassTest {
 
 		List<Drug<HIV>> NNRTIDrugs = new ArrayList<>();
 		NNRTIDrugs.add(hiv.getDrug("DOR"));
+		NNRTIDrugs.add(hiv.getDrug("DPV"));
 		NNRTIDrugs.add(hiv.getDrug("EFV"));
 		NNRTIDrugs.add(hiv.getDrug("ETR"));
 		NNRTIDrugs.add(hiv.getDrug("NVP"));
