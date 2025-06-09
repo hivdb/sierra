@@ -37,6 +37,8 @@ release-ci: build-ci
 
 release-dp: build-dp
 	@docker login
+	@docker tag hivdb/sierra-dp:latest hivdb/sierra-dp:$(shell cat .latest-version)
+	@docker push hivdb/sierra-dp:$(shell cat .latest-version)
 	@docker push hivdb/sierra-dp:latest
 
 release:
