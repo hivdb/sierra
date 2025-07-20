@@ -15,6 +15,8 @@ COPY hivfacts /sierra/hivfacts
 COPY src /sierra/src
 RUN /sierra/gradlew assemble
 RUN mv build/libs/sierra-*.war build/libs/sierra.war 2>/dev/null
+
+FROM hivdb/tomcat-with-nucamino:latest as minimap2-downloader
 # NOTE: MiniMap2 ≥ 2.18 handles --score-N=0 differently, so we stick with 2.17 for now
 ENV MINIMAP2_VERSION=2.17
 RUN apt-get -q update && apt-get install -qqy curl bzip2
@@ -34,8 +36,8 @@ RUN pip install https://github.com/hivdb/post-align/archive/${POSTALIGN_VERSION}
 FROM hivdb/tomcat-with-nucamino:latest
 ENV CATALINA_OPTS "-Xms1024M -Xmx3584M -XX:+UseG1GC -XX:MaxHeapFreeRatio=30 -XX:MinHeapFreeRatio=10"
 RUN apt-get -q update && apt-get install -qqy python3.11
-COPY --from=builder /usr/local/minimap2 /usr/local/minimap2
 COPY --from=builder /sierra/build/libs/sierra.war /usr/share/tomcat/webapps
+COPY --from=minimap2-downloader /usr/local/minimap2 /usr/local/minimap2
 COPY --from=postalign-builder /usr/local/lib/python3.11 /usr/local/lib/python3.11
 COPY --from=postalign-builder /usr/local/bin/postalign /usr/local/bin/postalign
 RUN sed -i 's/<Context>/<Context privileged="true">/' /usr/share/tomcat/conf/context.xml
