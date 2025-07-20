@@ -1,8 +1,9 @@
+ARG BASE_IMAGE=hivdb/sierra:latest
 FROM hivdb/sierra-ebv:latest AS sierra-ebv
 FROM hivdb/sierra-hbv:latest AS sierra-hbv
 FROM hivdb/sierra-hcv:latest AS sierra-hcv
 
-FROM hivdb/sierra:latest
+FROM $BASE_IMAGE
 COPY --from=sierra-ebv /usr/share/tomcat/webapps/Sierra-EBV.war /usr/share/tomcat/webapps
 COPY --from=sierra-hbv /usr/share/tomcat/webapps/Sierra-HBV.war /usr/share/tomcat/webapps
 COPY --from=sierra-hcv /usr/share/tomcat/webapps/Sierra-HCV.war /usr/share/tomcat/webapps

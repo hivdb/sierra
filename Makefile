@@ -12,7 +12,7 @@ build-ci:
 
 build-dp:
 	@echo "Build deployment version..."
-	@docker build -t hivdb/sierra-dp -f Dockerfile.DP .
+	@docker build --build-arg BASE_IMAGE=${DOCKERREPO}:latest -t hivdb/sierra-dp -f Dockerfile.DP .
 
 force-build: sync-hivfacts
 	@docker build --no-cache -t ${DOCKERREPO} .
