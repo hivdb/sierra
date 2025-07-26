@@ -5,7 +5,6 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import edu.stanford.hivdb.hivfacts.HIV;
-import edu.stanford.hivdb.mutations.AminoAcidPercent;
 
 public class AminoAcidPercentTest {
 

@@ -4,9 +4,7 @@ import static org.junit.Assert.*;
 
 import java.util.List;
 
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 
 import edu.stanford.hivdb.hivfacts.HIV;
 

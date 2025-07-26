@@ -7,7 +7,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
-import org.junit.Test;
 
 import edu.stanford.hivdb.hivfacts.HIV;
 import edu.stanford.hivdb.mutations.MutationSet;

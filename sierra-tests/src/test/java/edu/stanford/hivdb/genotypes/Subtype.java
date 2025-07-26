@@ -18,8 +18,6 @@
 
 package edu.stanford.hivdb.genotypes;
 
-import edu.stanford.hivdb.genotypes.BoundGenotype;
-import edu.stanford.hivdb.genotypes.Genotype;
 import edu.stanford.hivdb.hivfacts.HIV;
 
 @Deprecated
