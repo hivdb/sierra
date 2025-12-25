@@ -64,7 +64,7 @@ public class GeneDRASIResultHandlerDrugSuscTest {
 		AlgorithmComparison<HIV> algorithmComparison = new AlgorithmComparison<HIV>(mutationSets, hivdbAlgo);
 		GeneDR<HIV> geneDR = algorithmComparison.getGeneDR(hiv.getGene("HIV1RT")).get(0);
 
-		assertEquals((Integer) 3, geneDR.getDrugSusc(hiv.getDrug("TDF")).getLevel());
+		assertEquals((Integer) 2, geneDR.getDrugSusc(hiv.getDrug("TDF")).getLevel());
 
 		MutationSet<HIV> mutationSets2 = MutationSet.parseString(hiv.getGene("HIV1IN"), "IN184A");
 		AlgorithmComparison<HIV> algorithmComparison2 = new AlgorithmComparison<HIV>(mutationSets2, hivdbAlgo);
@@ -83,7 +83,7 @@ public class GeneDRASIResultHandlerDrugSuscTest {
 		AlgorithmComparison<HIV> algorithmComparison = new AlgorithmComparison<HIV>(mutationSets, hivdbAlgo);
 		GeneDR<HIV> geneDR = algorithmComparison.getGeneDR(hiv.getGene("HIV1RT")).get(0);
 
-		assertEquals("Low-Level Resistance", geneDR.getDrugSusc(hiv.getDrug("TDF")).getLevelText());
+		assertEquals("Potential Low-Level Resistance", geneDR.getDrugSusc(hiv.getDrug("TDF")).getLevelText());
 
 
 		MutationSet<HIV> mutationSets2 = MutationSet.parseString(hiv.getGene("HIV1IN"), "IN184A");
@@ -122,7 +122,7 @@ public class GeneDRASIResultHandlerDrugSuscTest {
 		mutationSets = MutationSet.parseString(hiv.getGene("HIV1RT"), "RT67N,RT70R,RT184V,RT219Q");
 		algorithmComparison = new AlgorithmComparison<HIV>(mutationSets, hivdbAlgo);
 		geneDR = algorithmComparison.getGeneDR(hiv.getGene("HIV1RT")).get(0);
-		assertEquals(SIREnum.I, geneDR.getDrugSusc(hiv.getDrug("TDF")).getSIR());
+		assertEquals(SIREnum.S, geneDR.getDrugSusc(hiv.getDrug("TDF")).getSIR());
 
 		mutationSets = MutationSet.parseString(hiv.getGene("HIV1IN"), "IN184A");
 		algorithmComparison = new AlgorithmComparison<HIV>(mutationSets, hivdbAlgo);
@@ -184,9 +184,9 @@ public class GeneDRASIResultHandlerDrugSuscTest {
 		geneDR = algorithmComparison.getGeneDR(hiv.getGene("HIV1RT")).get(0);
 
 
-		assertEquals(15.0, geneDR.getDrugSusc(hiv.getDrug("TDF")).getScore(), 1e-6);
+		assertEquals(10.0, geneDR.getDrugSusc(hiv.getDrug("TDF")).getScore(), 1e-6);
 
-		assertEquals(50.0, geneDR.getDrugSusc(hiv.getDrug("ABC")).getScore(), 1e-6);
+		assertEquals(45.0, geneDR.getDrugSusc(hiv.getDrug("ABC")).getScore(), 1e-6);
 
 		IllegalArgumentException expectedExc = null;
 		try {
@@ -216,10 +216,10 @@ public class GeneDRASIResultHandlerDrugSuscTest {
 		expected.put(hiv.getDrug("D4T"), 40.0);
 		expected.put(hiv.getDrug("AZT"), 60.0);
 		expected.put(hiv.getDrug("FTC"), 70.0);
-		expected.put(hiv.getDrug("TDF"), 15.0);
+		expected.put(hiv.getDrug("TDF"), 10.0);
 		expected.put(hiv.getDrug("DDI"), 40.0);
 		expected.put(hiv.getDrug("LMV"), 70.0);
-		expected.put(hiv.getDrug("ABC"), 50.0);
+		expected.put(hiv.getDrug("ABC"), 45.0);
 		expected.put(hiv.getDrug("DOR"), 0.0);
 		expected.put(hiv.getDrug("NVP"), 0.0);
 		expected.put(hiv.getDrug("RPV"), 0.0);
@@ -232,10 +232,10 @@ public class GeneDRASIResultHandlerDrugSuscTest {
 		expectedNRTI.put(hiv.getDrug("D4T"), 40.0);
 		expectedNRTI.put(hiv.getDrug("AZT"), 60.0);
 		expectedNRTI.put(hiv.getDrug("FTC"), 70.0);
-		expectedNRTI.put(hiv.getDrug("TDF"), 15.0);
+		expectedNRTI.put(hiv.getDrug("TDF"), 10.0);
 		expectedNRTI.put(hiv.getDrug("DDI"), 40.0);
 		expectedNRTI.put(hiv.getDrug("LMV"), 70.0);
-		expectedNRTI.put(hiv.getDrug("ABC"), 50.0);
+		expectedNRTI.put(hiv.getDrug("ABC"), 45.0);
 		 assertEquals(
 		 	expectedNRTI,
 		 	geneDR.getTotalDrugScores(hiv.getDrugClass("NRTI")));
@@ -320,14 +320,14 @@ public class GeneDRASIResultHandlerDrugSuscTest {
 		mutScores = new TreeMap<>();
 		mutScores.put(hiv.newMutationSet("RT181C"), 30.);
 		mutScores.put(hiv.newMutationSet("RT101E"), 15.);
-		mutScores.put(hiv.newMutationSet("RT100I"), 60.);
+		mutScores.put(hiv.newMutationSet("RT100I"), 45.);
 		mutScores.put(hiv.newMutationSet("RT101E,RT181C"), 5.);
 		expected.put(hiv.getDrug("EFV"), mutScores);
 
 		mutScores = new TreeMap<>();
 		mutScores.put(hiv.newMutationSet("RT181C"), 45.);
 		mutScores.put(hiv.newMutationSet("RT101E"), 45.);
-		mutScores.put(hiv.newMutationSet("RT100I"), 60.);
+		mutScores.put(hiv.newMutationSet("RT100I"), 45.);
 		expected.put(hiv.getDrug("RPV"), mutScores);
 
 		mutScores = new TreeMap<>();
@@ -344,15 +344,14 @@ public class GeneDRASIResultHandlerDrugSuscTest {
 		expected.put(hiv.getDrug("ETR"), mutScores);
 				
 		mutScores = new TreeMap<>();
-		mutScores.put(hiv.newMutationSet("RT100I"), 15.);
-		mutScores.put(hiv.newMutationSet("RT101E"), 10.);
+		mutScores.put(hiv.newMutationSet("RT100I"), 10.);
+		mutScores.put(hiv.newMutationSet("RT101E"), 5.);
 		mutScores.put(hiv.newMutationSet("RT101E,RT181C"), 5.);
 		mutScores.put(hiv.newMutationSet("RT181C"), 5.);
 		expected.put(hiv.getDrug("DOR"), mutScores);
 				
 		mutScores = new TreeMap<>();
 		mutScores.put(hiv.newMutationSet("RT184V"), 15.);
-		mutScores.put(hiv.newMutationSet("RT219Q"), 5.);
 		mutScores.put(hiv.newMutationSet("RT67AN"), 5.);
 		expected.put(hiv.getDrug("ABC"), mutScores);
 				
@@ -364,7 +363,6 @@ public class GeneDRASIResultHandlerDrugSuscTest {
 				
 		mutScores = new TreeMap<>();
 		mutScores.put(hiv.newMutationSet("RT184V"), -10.);
-		mutScores.put(hiv.newMutationSet("RT219Q"), 5.);
 		mutScores.put(hiv.newMutationSet("RT67AN"), 5.);
 		expected.put(hiv.getDrug("TDF"), mutScores);
 
