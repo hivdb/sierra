@@ -6,7 +6,7 @@ plugins {
 }
 
 group = 'edu.stanford.hivdb'
-version = '3.5.3'
+version = '3.5.4'
 
 sourceCompatibility = 15
 targetCompatibility = 15
