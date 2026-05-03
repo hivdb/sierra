@@ -5,12 +5,14 @@ plugins {
 }
 
 group = 'edu.stanford.hivdb'
-version = '3.5.5'
+version = '3.5.6'
 
 description = """Sierra Unit Tests"""
 
-sourceCompatibility = 15
-targetCompatibility = 15
+java {
+    sourceCompatibility = JavaVersion.VERSION_25
+    targetCompatibility = JavaVersion.VERSION_25
+}
 
 repositories {
     mavenCentral()
@@ -55,22 +57,17 @@ ext {
             jacocoReportClasses.add(project.sourceSets.main.output)
         }
     }
-    isTravisBuild = System.getenv().get("TRAVIS") == 'true'
-    enableRegressionTest = System.getenv().get("ENABLE_REGRESSION_TEST") == 'true'
+    enableRegressionTest = project.hasProperty('enableRegressionTest') ||
+        System.getenv().get("ENABLE_REGRESSION_TEST") == 'true'
 }
 
 test {
+    maxHeapSize = enableRegressionTest ? "4G" : "1G"
 
     if (!enableRegressionTest) {
         exclude '**/*Regression*.class'
         exclude '**/MutationPatternsResistanceJsonComparisonTest.class'
     }
-
-    // testLogging {
-    //     showStandardStreams = true
-	// 	events "failed"
-	// 	exceptionFormat "full"
-    // }
 }
 
 jacocoTestReport {
@@ -100,3 +97,20 @@ task updateCachable(type: JavaExec, group: 'Generator', description: 'Generate f
 updateCachable.dependsOn classes
 updateCachable.dependsOn clearCachable
 updateCachable.dependsOn ':utilities:updateCachable'
+
+// Regression test expectation generators
+task generateMutationPatterns(type: JavaExec, group: 'Generator', description: 'Regenerate mutation pattern expected files for all drug classes.') {
+    mainClass = 'edu.stanford.hivdb.drugresistance.mutationpattern.MutationPatternExpectedsGenerator'
+    classpath = sourceSets.test.runtimeClasspath
+    maxHeapSize = '4G'
+}
+
+generateMutationPatterns.dependsOn testClasses
+
+task generateAlgorithmComparison(type: JavaExec, group: 'Generator', description: 'Regenerate algorithm comparison expected file.') {
+    mainClass = 'edu.stanford.hivdb.drugresistance.scripts.AlgorithmComparisonTestExpectedsGenerator'
+    classpath = sourceSets.test.runtimeClasspath
+    maxHeapSize = '4G'
+}
+
+generateAlgorithmComparison.dependsOn testClasses

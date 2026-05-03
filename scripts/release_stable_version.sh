@@ -8,13 +8,14 @@ if [ -z "$1" ]; then
     exit 1
 fi
 
-make build release
+make release
 
-docker tag hivdb/sierra:latest hivdb/sierra:$1
-docker push hivdb/sierra:$1
+# Tag the dynamic version as the stable version
+docker-buildx imagetools create \
+    -t hivdb/sierra:$1 \
+    hivdb/sierra:$(cat .latest-version)
 
 make release-ci
-
 make release-dp
-docker tag hivdb/sierra-dp:latest hivdb/sierra-dp:$(cat .latest-version)
-docker push hivdb/sierra-dp:$(cat .latest-version)
+
+echo "Released sierra $1 (amd64 + arm64)"

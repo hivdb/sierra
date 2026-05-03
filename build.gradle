@@ -6,10 +6,12 @@ plugins {
 }
 
 group = 'edu.stanford.hivdb'
-version = '3.5.5'
+version = '3.5.6'
 
-sourceCompatibility = 15
-targetCompatibility = 15
+java {
+    sourceCompatibility = JavaVersion.VERSION_25
+    targetCompatibility = JavaVersion.VERSION_25
+}
 
 repositories {
      mavenCentral()
@@ -39,7 +41,9 @@ dependencies {
     implementation project(':sierra-core')
     implementation project(':sierra-graphql')
     implementation project(':hivfacts-java')
-    testImplementation project(':sierra-tests')
+    if (findProject(':sierra-tests') != null) {
+        testImplementation project(':sierra-tests')
+    }
     testImplementation 'junit:junit:4.12'
 }
 
@@ -70,8 +74,8 @@ test {
 
 jacocoTestReport {
     reports {
-        xml.enabled = true
-        html.enabled = true
+        xml.required = true
+        html.required = true
     }
 }
 

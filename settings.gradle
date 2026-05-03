@@ -1,4 +1,9 @@
-include 'sierra-core', 'sierra-graphql', 'sierra-tests', 'asi_interpreter', 'hivfacts-java'
+include 'sierra-core', 'sierra-graphql', 'asi_interpreter', 'hivfacts-java'
+
+if (new File(rootDir, 'sierra-tests').directory) {
+    include 'sierra-tests'
+}
+
 project(':hivfacts-java').projectDir = new File('./hivfacts/hivfacts-java')
 
 rootProject.name = 'sierra'

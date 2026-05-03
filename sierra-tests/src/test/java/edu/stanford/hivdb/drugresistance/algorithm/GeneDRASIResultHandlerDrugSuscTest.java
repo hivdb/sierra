@@ -220,6 +220,7 @@ public class GeneDRASIResultHandlerDrugSuscTest {
 		expected.put(hiv.getDrug("DDI"), 40.0);
 		expected.put(hiv.getDrug("LMV"), 70.0);
 		expected.put(hiv.getDrug("ABC"), 45.0);
+		expected.put(hiv.getDrug("ISL"), 40.0);
 		expected.put(hiv.getDrug("DOR"), 0.0);
 		expected.put(hiv.getDrug("NVP"), 0.0);
 		expected.put(hiv.getDrug("RPV"), 0.0);
@@ -236,6 +237,7 @@ public class GeneDRASIResultHandlerDrugSuscTest {
 		expectedNRTI.put(hiv.getDrug("DDI"), 40.0);
 		expectedNRTI.put(hiv.getDrug("LMV"), 70.0);
 		expectedNRTI.put(hiv.getDrug("ABC"), 45.0);
+		expectedNRTI.put(hiv.getDrug("ISL"), 40.0);
 		 assertEquals(
 		 	expectedNRTI,
 		 	geneDR.getTotalDrugScores(hiv.getDrugClass("NRTI")));
@@ -387,6 +389,10 @@ public class GeneDRASIResultHandlerDrugSuscTest {
 		mutScores.put(hiv.newMutationSet("RT184V"), 60.);
 		expected.put(hiv.getDrug("FTC"), mutScores);
 
+		mutScores = new TreeMap<>();
+		mutScores.put(hiv.newMutationSet("RT184V"), 30.);
+		expected.put(hiv.getDrug("ISL"), mutScores);
+
 		assertEquals(
 			expected,
 			geneDR.getDrugSuscs()
@@ -417,6 +423,7 @@ public class GeneDRASIResultHandlerDrugSuscTest {
 		SortedMap<Drug<HIV>, Pair<String, String>> expected = new TreeMap<>();
 		expected.put(hiv.getDrug("ABC"), Pair.of("184VI", "Possible resistance"));
 		expected.put(hiv.getDrug("FTC"), Pair.of("184VI", "Resistance"));
+		expected.put(hiv.getDrug("ISL"), Pair.of("184VI", "Resistance"));
 		expected.put(hiv.getDrug("LMV"), Pair.of("184VI", "Resistance"));
 		assertEquals(
 			expected,

@@ -167,6 +167,7 @@ public class DrugClassTest {
 		NRTIDrugs.add(hiv.getDrug("D4T"));
 		NRTIDrugs.add(hiv.getDrug("DDI"));
 		NRTIDrugs.add(hiv.getDrug("FTC"));
+		NRTIDrugs.add(hiv.getDrug("ISL"));
 		NRTIDrugs.add(hiv.getDrug("LMV"));
 		NRTIDrugs.add(hiv.getDrug("TDF"));
 

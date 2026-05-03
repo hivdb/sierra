@@ -164,7 +164,7 @@ public class HIV2Test {
     @Test
     public void testGetDrugs() {
     	assertNotNull(hiv2.getDrugs());
-    	assertEquals(hiv2.getDrugs().size(), 27);
+    	assertEquals(hiv2.getDrugs().size(), 28);
     }
 
 	@Test
