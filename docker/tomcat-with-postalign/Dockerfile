@@ -46,7 +46,6 @@ RUN apt-get -q update && \
     cp /usr/share/tomcat/conf/web.xml /root/web.dev.xml && \
     cp /usr/share/tomcat/conf/web.xml /root/web.prod.xml && \
     sed -i 's/<Context>/<Context privileged="true">/' /usr/share/tomcat/conf/context.xml && \
-    apt-get remove -qqy curl && apt-get autoremove -qqy && \
     rm -rf /tmp/* /var/lib/apt/lists/*
 
 ENV CATALINA_OPTS="-Xms1024M -Xmx3584M -XX:+UseG1GC -XX:MaxHeapFreeRatio=30 -XX:MinHeapFreeRatio=10"
