@@ -1,8 +1,8 @@
 PLATFORMS = linux/amd64,linux/arm64
 
 build:
-	@docker-buildx build --platform ${PLATFORMS} \
-		-t hivdb/tomcat-with-postalign:latest
+	@docker buildx build --platform ${PLATFORMS} \
+		-t hivdb/tomcat-with-postalign:latest .
 
 force-build:
 	@docker build --no-cache -t hivdb/tomcat-with-postalign:latest .
@@ -13,7 +13,7 @@ inspect:
 
 release:
 	@docker login
-	@docker-buildx build --platform ${PLATFORMS} \
+	@docker buildx build --platform ${PLATFORMS} \
 		-t hivdb/tomcat-with-postalign:latest \
 		--push .
 

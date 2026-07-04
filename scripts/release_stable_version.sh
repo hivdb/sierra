@@ -11,7 +11,7 @@ fi
 make release
 
 # Tag the dynamic version as the stable version
-docker-buildx imagetools create \
+docker buildx imagetools create \
     -t hivdb/sierra:$1 \
     hivdb/sierra:$(cat .latest-version)
 

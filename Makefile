@@ -57,7 +57,7 @@ release-ci: build-ci
 
 release: sync-hivfacts
 	@docker login
-	@docker-buildx build --platform ${PLATFORMS} \
+	@docker buildx build --platform ${PLATFORMS} \
 		-t ${DOCKERREPO}:${VERSION} \
 		-t ${DOCKERREPO}:latest \
 		--push .
@@ -65,7 +65,7 @@ release: sync-hivfacts
 
 release-dp: sync-hivfacts
 	@docker login
-	@docker-buildx build --platform ${PLATFORMS} \
+	@docker buildx build --platform ${PLATFORMS} \
 		-t hivdb/sierra-dp:$(shell cat .latest-version) \
 		-t hivdb/sierra-dp:latest \
 		-f Dockerfile.DP --push .

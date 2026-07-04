@@ -6,6 +6,7 @@ import static org.junit.Assert.*;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -69,6 +70,31 @@ public class FastaUtilsTest {
     	
     	FastaUtils.writeStream(sequences, out);
 
+    }
+
+    @Test
+    public void writeStreamSHA512NameTest() {
+        // A non-ASCII character in the header would crash the ASCII-only
+        // aligner (postalign) if sent as-is. writeStream(..., true) must emit
+        // the ASCII SHA-512 hash as the FASTA name instead, keeping the whole
+        // stream ASCII-safe while the Sequence's real header stays untouched.
+        Sequence seq = new Sequence("Pop11_771491955Ê_2020Aug25_virus", "ACGTACGT");
+        // the header itself is left unchanged
+        assertEquals("Pop11_771491955Ê_2020Aug25_virus", seq.getHeader());
+
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        FastaUtils.writeStream(List.of(seq), out, true);
+        byte[] bytes = out.toByteArray();
+
+        // the emitted stream must not contain any non-ASCII byte
+        for (byte b : bytes) {
+            assertTrue("writeStream output must be ASCII-only", (b & 0x80) == 0);
+        }
+
+        // the FASTA name is the SHA-512 hash, not the original header
+        String text = new String(bytes, StandardCharsets.US_ASCII);
+        assertTrue(text.contains(seq.getSHA512()));
+        assertFalse(text.contains("Pop11_771491955"));
     }
 
     @Test

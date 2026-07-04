@@ -15,9 +15,6 @@ java {
 
 repositories {
      mavenCentral()
-     maven {
-         url 'https://artifactory.cronapp.io/public-release/'
-     }
 }
 
 dependencies {
@@ -52,9 +49,6 @@ subprojects {
 
     repositories {
         mavenCentral()
-	    maven {
-	    	url 'https://artifactory.cronapp.io/public-release/'
-	    }
     }
 
     compileJava {
