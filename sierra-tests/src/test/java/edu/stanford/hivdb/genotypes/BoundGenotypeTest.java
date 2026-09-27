@@ -165,6 +165,65 @@ public class BoundGenotypeTest {
 		assertFalse(boundGenotype.shouldDisplayUnknown());
 	}
 
+	/** Build a BoundGenotype for the given subtype reference at (approximately)
+	 *  the requested distance, by seeding a discordance list of the right size.
+	 *  The distance is discordanceList.size() / seqLen, so the values in the
+	 *  list are irrelevant.
+	 */
+	private BoundGenotype<HIV> boundGenotypeAtDistance(String indexName, double targetDistance) {
+		GenotypeReference<HIV> ref = hiv.getGenotypeReferences().stream()
+			.filter(r -> r.getGenotype().getIndexName().equals(indexName))
+			.findFirst()
+			.orElseThrow(() -> new IllegalArgumentException("No reference for " + indexName));
+		int length = ref.getLastNA() - ref.getFirstNA() + 1;
+		int numDiscordance = (int) Math.round(length * targetDistance);
+		List<Integer> discordance = new ArrayList<>();
+		for (int i = 0; i < numDiscordance; i++) {
+			discordance.add(Integer.valueOf(i));
+		}
+		return ref.getBoundGenotype(
+			ref.getSequence(), ref.getFirstNA(), ref.getLastNA(), discordance);
+	}
+
+	@Test
+	public void testIsPureSubtypeAboveDistanceUpperLimit() {
+		// K's distance upper-limit is 6% and the "unknown" threshold is 11%.
+
+		// Below the upper-limit: reported normally, no warning ("point 2").
+		assertFalse(
+			boundGenotypeAtDistance("K", 0.03).isPureSubtypeAboveDistanceUpperLimit());
+
+		// Above the upper-limit but below "unknown": the "point 5" scenario.
+		BoundGenotype<HIV> point5 = boundGenotypeAtDistance("K", 0.09);
+		assertTrue(point5.isPureSubtypeAboveDistanceUpperLimit());
+		assertEquals("K", point5.getDisplayWithoutDistance());
+
+		// Above the "unknown" threshold: reported as Unknown, no warning ("point 1").
+		assertFalse(
+			boundGenotypeAtDistance("K", 0.15).isPureSubtypeAboveDistanceUpperLimit());
+	}
+
+	@Test
+	public void testIsPureSubtypeAboveDistanceUpperLimitNotPureSubtype() {
+		// A recombinant (CRF) above its upper-limit is handled by "point 4",
+		// not "point 5", so it must not trigger the pure-subtype warning even
+		// though the distance is in the same band.
+		GenotypeReference<HIV> crfRef = hiv.getGenotypeReferences().stream()
+			.filter(r -> r.getGenotype().getClassificationLevel() == GenotypeClassificationLevel.CRF)
+			.findFirst()
+			.orElseThrow(() -> new IllegalStateException("No CRF reference found"));
+		int length = crfRef.getLastNA() - crfRef.getFirstNA() + 1;
+		List<Integer> discordance = new ArrayList<>();
+		for (int i = 0; i < Math.round(length * 0.09); i++) {
+			discordance.add(Integer.valueOf(i));
+		}
+		BoundGenotype<HIV> crf = crfRef.getBoundGenotype(
+			crfRef.getSequence(), crfRef.getFirstNA(), crfRef.getLastNA(), discordance);
+		assertFalse(crf.shouldDisplayUnknown());
+		assertFalse(crf.checkDistance());
+		assertFalse(crf.isPureSubtypeAboveDistanceUpperLimit());
+	}
+
 	@Test
 	public void testGetParentGenotypes() {
 		assertTrue(boundGenotype.getParentGenotypes() instanceof List);
